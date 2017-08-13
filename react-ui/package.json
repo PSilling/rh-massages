@@ -1,16 +1,21 @@
 {
   "name": "react-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": ".",
   "private": true,
   "dependencies": {
     "localize": "^0.4.7",
+    "moment": "^2.18.1",
     "react": "^15.6.1",
+    "react-datepicker": "^0.53.0",
     "react-dom": "^15.6.1",
+    "react-modal-dialog": "^4.0.7",
     "react-notifications": "^1.4.3",
     "react-paginate": "^4.4.3",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "react-select": "^1.0.0-rc.5",
+    "react-simpletabs": "^0.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

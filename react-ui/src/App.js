@@ -1,4 +1,4 @@
-// 'base' imports
+// react imports
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect, withRouter } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import MyMassages from './views/MyMassages.js';
 import Profile from './views/Profile.js';
 
 // component imports
-
+import LangLink from './components/LangLink';
 
 // module imports
 import { NotificationContainer } from 'react-notifications';
@@ -30,32 +30,34 @@ const NoMatch = ({ location }) => (
   </div>
 )
 
-// active page variable
-var active = 0;
-
 // navigation bar with view links
 const NavWithLinks = withRouter(() => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
-        <Link className="navbar-brand" to="/" onClick={() => {active = 0}}>{ _t.translate("Massages") }</Link>
+        <Link className="navbar-brand" to="/">{ _t.translate("Massages") }</Link>
       </div>
       <ul className="nav navbar-nav">
-        <li className={ (active === 0) ? "active" : "" }>
-          <Link to="/" onClick={() => {active = 0}}>{ _t.translate("Massages") }</Link>
+        <li>
+          <Link to="/">{ _t.translate("Massages") }</Link>
         </li>
         { Auth.isAuthenticated ?
-          <li className={ (active === 1) ? "active" : "" }>
-            <Link to="/my-massages" onClick={() => {active = 1}}>{ _t.translate("My Massages") }</Link>
+          <li>
+            <Link to="/my-massages">{ _t.translate("My Massages") }</Link>
           </li> : '' }
         { Auth.isAuthenticated ?
-          <li className={ (active === 2) ? "active" : "" }>
-            <Link to="/profile" onClick={() => {active = 2}}>{ _t.translate("Profile") }</Link>
+          <li>
+            <Link to="/profile">{ _t.translate("Profile") }</Link>
           </li> : '' }
         { Auth.isAdmin ?
-          <li className={ (active === 3) ? "active" : "" }>
-            <Link to="/facilities" onClick={() => {active = 3}}>{ _t.translate("Facilities") }</Link>
+          <li>
+            <Link to="/facilities">{ _t.translate("Facilities") }</Link>
           </li> : '' }
+      </ul>
+      <ul className="nav navbar-nav navbar-right">
+        <li>
+          <LangLink />
+        </li>
       </ul>
     </div>
   </nav>

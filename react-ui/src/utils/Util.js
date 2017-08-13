@@ -66,6 +66,7 @@ Util.get = (url, update) => {
  * @param update          callback function to update the resources
  */
 Util.post = (url, data, update) => {
+  console.log(data);
   fetch(url, {
     credentials: 'same-origin',
     method: 'post',
@@ -89,6 +90,7 @@ Util.post = (url, data, update) => {
  * @param update          callback function to update the resources
  */
 Util.put = (url, data, update) => {
+  console.log(data);
   fetch(url, {
     credentials: 'same-origin',
     method: 'put',

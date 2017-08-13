@@ -15,6 +15,72 @@ const myLocalize = new Localize({
       "cs": "Profil"
     },
 
+    // other titles
+    "New Massage": {
+      "cs": "Nová masáž"
+    },
+    "Edit Massage": {
+      "cs": "Upravit masáž"
+    },
+    "New Facility": {
+      "cs": "Nová budova"
+    },
+    "Edit Facility": {
+      "cs": "Upravit budovu"
+    },
+    "Time of the massage": {
+      "cs": "Čas masáže"
+    },
+
+    // table items
+    "Date": {
+      "cs": "Datum"
+    },
+    "Masseuse": {
+      "cs": "Masérka"
+    },
+    "Facility": {
+      "cs": "Budova"
+    },
+    "Status": {
+      "cs": "Status"
+    },
+    "Free": {
+      "cs": "Volno"
+    },
+    "Full": {
+      "cs": "Plno"
+    },
+    "Name": {
+      "cs": "Jméno"
+    },
+
+    // actions
+    "Delete": {
+      "cs": "Smazat"
+    },
+    "Edit": {
+      "cs": "Upravit"
+    },
+    "Add": {
+      "cs": "Přidat"
+    },
+    "Cancel": {
+      "cs": "Zrušit"
+    },
+    "Dismiss": {
+      "cs": "Zrušit"
+    },
+    "Now": {
+      "cs": "Nyní"
+    },
+    "Proceed": {
+      "cs": "Pokračovat"
+    },
+    "Assign me": {
+      "cs": "Zapsat se"
+    },
+
     // notification messages
     "Your request has been successful.": {
       "cs": "Váš požadavek byl úspěšný."
@@ -27,6 +93,20 @@ const myLocalize = new Localize({
     },
     "page doesn't exist:": {
       "cs": "stránka neexistuje:"
+    },
+
+    // text messages
+    "Action confirmation": {
+      "cs": "Potvrzení akce"
+    },
+    "Are you sure? This action cannot be reverted.": {
+      "cs": "Jste si jisti? Tato akce nemůže být navrácena."
+    },
+    "Are you sure you want to assign yourself to this massage?": {
+      "cs": "Jste si jisti, že se chcete zapsat na tuto masáž?"
+    },
+    "Are you sure you want to cancel this massage?": {
+      "cs": "Jste si jisti, že chcete zrušit tuto masáž?"
     }
 });
 
