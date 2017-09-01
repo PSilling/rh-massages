@@ -1,6 +1,6 @@
 {
   "name": "react-ui",
-  "version": "0.3.0",
+  "version": "0.2.0",
   "homepage": ".",
   "private": true,
   "dependencies": {
@@ -14,7 +14,6 @@
     "react-paginate": "^4.4.3",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
-    "react-select": "^1.0.0-rc.5",
     "react-simpletabs": "^0.7.0"
   },
   "scripts": {

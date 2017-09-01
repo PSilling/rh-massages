@@ -1,6 +1,5 @@
 // react imports
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
 
 // util imports
 import _t from '../utils/Translations.js';

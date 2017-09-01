@@ -28,7 +28,7 @@ const myLocalize = new Localize({
     "Edit Facility": {
       "cs": "Upravit budovu"
     },
-    "Time of the massage": {
+    "Massage time": {
       "cs": "Čas masáže"
     },
 

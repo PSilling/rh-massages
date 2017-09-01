@@ -18,7 +18,7 @@ var facility1 = {
       id: 1,
       date: new Date(),
       user: {name: "User1"},
-      masseuse: {name: "Mas1", id: -1},
+      masseuse: "Mas1",
       facility: {name: "Fac"}
     }
   ]
@@ -67,7 +67,7 @@ class MassagesList extends Component {
               <tr key={index}>
                 <td>{item.facility.name}</td>
                 <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
-                <td>{item.masseuse.name}</td>
+                <td>{item.masseuse}</td>
                 <td width="55px">
                   <span className="pull-right">
                     <CancelButton onCancel={() => this.cancelMassage(item)} />

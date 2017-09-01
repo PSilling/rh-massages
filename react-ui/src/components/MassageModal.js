@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 
 // component imports
 import AddButton from './AddButton';
-import MasseuseSelect from './MasseuseSelect';
 import ModalActions from './ModalActions';
 
 // module imports
@@ -19,7 +18,7 @@ import Util from '../utils/Util.js';
 
 class MassageModal extends Component {
 
-  state = {date: moment(), masseuse: -1}
+  state = {date: moment(), masseuse: ""}
 
   /**
    * Sets default input values on props change.
@@ -29,12 +28,12 @@ class MassageModal extends Component {
 
     this.setState({
       date: (nextProps.massage === -1) ? moment() : moment(nextProps.massage.date),
-      masseuse: (nextProps.massage === -1) ? -1 : nextProps.massage.masseuse.id
+      masseuse: (nextProps.massage === -1) ? "" : nextProps.massage.masseuse
     });
   }
 
-  changeMasseuse = (id) => {
-    this.setState({masseuse: id});
+  changeMasseuse = (event) => {
+    this.setState({masseuse: event.target.value});
   }
 
   changeDate = (date) => {
@@ -47,7 +46,7 @@ class MassageModal extends Component {
   addMassage = () => {
     Util.post("/api/massages", {
       date: this.state.date,
-      masseuse: this.state.user,
+      masseuse: this.state.masseuse,
       user: null,
       facility: {name: this.props.facilityName}
     }, this.props.getCallback);
@@ -59,7 +58,7 @@ class MassageModal extends Component {
   editMassage = () => {
     Util.put("/api/massages/" + this.props.massage.id, {
       date: this.state.date,
-      masseuse: this.state.user,
+      masseuse: this.state.masseuse,
       user: this.props.massage.user,
       facility: this.props.massage.facility
     }, this.props.getCallback);
@@ -80,14 +79,14 @@ class MassageModal extends Component {
               </h2>
               <hr />
               <div className="form-group">
-                <label>{ _t.translate('Masseuse') }</label>
-                <MasseuseSelect
-                  value={this.state.masseuse}
-                  onChange={(id) => this.changeMasseuse(id)}
-                />
+                <div className="form-group">
+                  <label>{ _t.translate('Masseuse') }</label>
+                  <input value={this.state.masseuse} onChange={this.changeMasseuse}
+                    className="form-control" />
+                </div>
               </div>
               <div className="form-group">
-                <label>{ _t.translate('Time of the massage') }</label>
+                <label>{ _t.translate('Massage time') }</label>
                 <DatePicker
                   selected={this.state.date}
                   onChange={this.changeDate}

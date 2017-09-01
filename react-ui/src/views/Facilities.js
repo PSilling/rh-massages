@@ -18,7 +18,7 @@ var facility1 = {
       id: 1,
       date: new Date(),
       user: {name: "User1"},
-      masseuse: {name: "Mas1", id: -1},
+      masseuse: "Mas1",
       facility: {name: "Fac"}
     }
   ]
@@ -31,7 +31,7 @@ var facility2 = {
       id: 2,
       date: new Date(0),
       user: null,
-      masseuse: {name: "Mas2", id: 1},
+      masseuse: "Mas2",
       facility: {name: "Fac2"}
     }
   ]
