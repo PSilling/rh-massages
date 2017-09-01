@@ -71,7 +71,7 @@
         }
       }
     },
-    "/facilities/{id}": {
+    "/facilities/{name}": {
       "get": {
         "consumes": [
           "application/json"
@@ -82,7 +82,7 @@
         "parameters": [
           {
             "type": "string",
-            "name": "id",
+            "name": "name",
             "in": "path",
             "required": true
           }
@@ -111,7 +111,7 @@
         "parameters": [
           {
             "type": "string",
-            "name": "id",
+            "name": "name",
             "in": "path",
             "required": true
           },
@@ -152,7 +152,7 @@
         "parameters": [
           {
             "type": "string",
-            "name": "id",
+            "name": "name",
             "in": "path",
             "required": true
           }
@@ -515,49 +515,6 @@
             }
           }
         }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "Location": {
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {}
-          }
-        }
       }
     }
   },
@@ -578,12 +535,15 @@
     "Massage": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "long"
         },
         "date": {
           "type": "object"
         },
-        "massause": {
+        "masseuse": {
+          "type": "string"
+        },
+        "user": {
           "$ref": "#/definitions/User"
         },
         "facility": {
@@ -594,7 +554,7 @@
     "User": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "long"
         },
         "email": {
           "type": "string"
