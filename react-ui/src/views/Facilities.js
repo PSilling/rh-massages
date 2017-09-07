@@ -38,9 +38,8 @@ var facility2 = {
 }
 
 /**
- * Tabbed facilities with their massage lists.
+ * Facility management
  */
-
 class FacilitiesList extends Component {
 
   state = {facilities: [facility1, facility2], modalActive: false, editId: -1}

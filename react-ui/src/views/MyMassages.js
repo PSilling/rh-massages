@@ -32,7 +32,7 @@ class MassagesList extends Component {
   state = {massages: facility1.massages}
 
   getMassages = () => {
-    Util.get("/api/user/" + "/massages", (json) => {
+    Util.get("/api/user/" + "userID" + "/massages", (json) => {
       this.setState({massages: json});
     });
   }

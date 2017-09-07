@@ -54,6 +54,15 @@ const myLocalize = new Localize({
     "Name": {
       "cs": "Jméno"
     },
+    "Email": {
+      "cs": "Email"
+    },
+    "Total massages": {
+      "cs": "Počet masáží"
+    },
+    "No assigned massages": {
+      "cs": "Žádné zapsané masáže"
+    },
 
     // actions
     "Delete": {
