@@ -169,6 +169,40 @@
         }
       }
     },
+    "/facilities/{name}/massages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Facility"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/massages": {
       "get": {
         "consumes": [
@@ -523,12 +557,6 @@
       "properties": {
         "name": {
           "type": "string"
-        },
-        "massages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Massage"
-          }
         }
       }
     },
