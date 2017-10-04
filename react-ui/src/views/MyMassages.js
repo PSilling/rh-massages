@@ -11,37 +11,28 @@ import moment from 'moment';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
-var facility1 = {
-  name: "Fac",
-  massages: [
-    {
-      id: 1,
-      date: new Date(),
-      user: {name: "User1"},
-      masseuse: "Mas1",
-      facility: {name: "Fac"}
-    }
-  ]
-}
-
 /**
  * Tabled list of all assigned massages.
  */
 class MassagesList extends Component {
 
-  state = {massages: facility1.massages}
+  state = {massages: []}
+
+  componentDidMount() {
+    this.getMassages();
+  }
 
   getMassages = () => {
-    Util.get("/api/user/" + "userID" + "/massages", (json) => {
+    Util.get(Util.USERS_URL + "1" + "/massages", (json) => {
       this.setState({massages: json});
     });
   }
 
   cancelMassage = (massage) => {
-    Util.put("/api/massages/" + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: {},
+      user: null,
       facility: massage.facility
     }, this.getMassages);
   }

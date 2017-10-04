@@ -44,11 +44,11 @@ class MassageModal extends Component {
    * Handles the post request.
    */
   addMassage = () => {
-    Util.post("/api/massages", {
-      date: this.state.date,
+    Util.post(Util.MASSAGES_URL, {
+      date: this.state.date.toDate(),
       masseuse: this.state.masseuse,
       user: null,
-      facility: {name: this.props.facilityName}
+      facility: {id: this.props.facilityId}
     }, this.props.getCallback);
   }
 
@@ -56,8 +56,8 @@ class MassageModal extends Component {
    * Handles the put request.
    */
   editMassage = () => {
-    Util.put("/api/massages/" + this.props.massage.id, {
-      date: this.state.date,
+    Util.put(Util.MASSAGES_URL + this.props.massage.id, {
+      date: this.state.date.toDate(),
       masseuse: this.state.masseuse,
       user: this.props.massage.user,
       facility: this.props.massage.facility

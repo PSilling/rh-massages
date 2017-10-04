@@ -19,73 +19,56 @@ import Auth from '../utils/Auth.js';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
-var facility1 = {
-  name: "Fac",
-  massages: [
-    {
-      id: 1,
-      date: new Date(),
-      user: {name: "User1"},
-      masseuse: "Mas1",
-      facility: {name: "Fac"}
-    }
-  ]
-}
-
-var facility2 = {
-  name: "Fac2",
-  massages: [
-    {
-      id: 2,
-      date: new Date(0),
-      user: null,
-      masseuse: "Mas2",
-      facility: {name: "Fac2"}
-    }
-  ]
-}
-
 /**
  * Tabbed facilities with their massage lists.
  */
 
 class FacilitiesList extends Component {
 
-  state = {facilities: [facility1, facility2], index: 1, modalActive: false, editId: -1}
+  state = {facilities: [], massages: [], index: 1, modalActive: false, editId: -1}
 
   componentDidMount() {
-    //this.getFacilities();
+    this.getFacilities();
   }
 
   getFacilities = () => {
-    Util.get("/api/facilities", (json) => {
+    Util.get(Util.FACILITIES_URL, (json) => {
       this.setState({facilities: json});
+      this.getMassages(0);
+    });
+  }
+
+  getMassages = (index) => {
+    Util.get(Util.FACILITIES_URL + this.state.facilities[index].id +
+      "/massages", (json) => {
+      this.setState({massages: json});
     });
   }
 
   assignMassage = (massage) => {
-    Util.put("/api/massages/" + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: {id: 0},
+      user: {id: 1},
       facility: massage.facility
     }, this.getFacilities);
   }
 
   cancelMassage = (massage) => {
-    Util.put("/api/massages/" + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: {},
+      user: null,
       facility: massage.facility
     }, this.getFacilities);
   }
 
   deleteMassage = (id) => {
-    Util.delete("/api/massages/" + id, this.getFacilities);
+    Util.delete(Util.MASSAGES_URL + id, this.getFacilities);
   }
 
   onTabChange = (index) => {
+    this.getMassages(index-1);
     this.setState({index: index});
   }
 
@@ -115,9 +98,8 @@ class FacilitiesList extends Component {
                       <th>
                         <MassageModal
                           active={this.state.modalActive}
-                          massage={this.state.editId === -1 ?
-                            -1 : this.state.facilities[this.state.index-1].massages[this.state.editId]}
-                          facilityName={this.state.facilities[this.state.index-1].name}
+                          massage={this.state.editId === -1 ? -1 : this.state.massages[this.state.editId]}
+                          facilityId={this.state.facilities[this.state.index-1].id}
                           getCallback={() => {this.getFacilities()}}
                           onToggle={() => {this.toggleModal(-1)}}
                         />
@@ -126,7 +108,7 @@ class FacilitiesList extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {item.massages.map((item, index) => (
+                  {this.state.massages.map((item, index) => (
                     <tr key={index}>
                       <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
                       <td>{item.masseuse}</td>

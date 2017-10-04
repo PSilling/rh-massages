@@ -55,6 +55,7 @@ Util.get = (url, update) => {
         _t.translate('An error occured!'));
     }
   }).then(function(json) {
+    console.log(json);
     update(json);
   });
 }
@@ -126,5 +127,9 @@ Util.delete = (url, update) => {
     }
   });
 }
+
+Util.FACILITIES_URL = "http://localhost:8080/facilities/";
+Util.MASSAGES_URL = "http://localhost:8080/massages/";
+Util.USERS_URL = "http://localhost:8080/users/";
 
 export default Util

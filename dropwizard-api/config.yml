@@ -1,0 +1,22 @@
+domain: http://localhost:8080
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: postgres
+
+  # the password
+  password: postgres
+
+  # the JDBC URL
+  url: jdbc:postgresql://localhost:5432/postgres
+  
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "SELECT 1"

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "0.3.0",
+    "version": "1.0.0",
     "title": "Red Hat Massages"
   },
   "host": "localhost:8080",
@@ -71,7 +71,7 @@
         }
       }
     },
-    "/facilities/{name}": {
+    "/facilities/{id}": {
       "get": {
         "consumes": [
           "application/json"
@@ -169,7 +169,7 @@
         }
       }
     },
-    "/facilities/{name}/massages": {
+    "/facilities/{id}/massages": {
       "get": {
         "consumes": [
           "application/json"
@@ -555,6 +555,9 @@
   "definitions": {
     "Facility": {
       "properties": {
+        "id": {
+          "type": "long"
+        },
         "name": {
           "type": "string"
         }

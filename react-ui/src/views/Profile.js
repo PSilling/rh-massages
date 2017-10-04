@@ -5,33 +5,19 @@ import React, { Component } from 'react';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
-var user = {
-  name: "User1",
-  email: "mail@example.com",
-  massages: [
-    {
-      id: 1,
-      date: new Date(),
-      user: {name: "User1"},
-      masseuse: "Mas1",
-      facility: {name: "Fac"}
-    }
-  ]
-}
-
 /**
  * User profile page
  */
 class ProfileView extends Component {
 
-  state = {user: user}
+  state = {user: {}}
 
   componentDidMount() {
-    //this.getUser();
+    this.getUser();
   }
 
   getUser = () => {
-    Util.get("/api/users/" + "UserID", (json) => {
+    Util.get(Util.USERS_URL + "1", (json) => {
       this.setState({user: json});
     });
   }
@@ -40,7 +26,7 @@ class ProfileView extends Component {
     return (
       <div>
         <h1>
-          { _t.translate('Profile') }
+          { this.state.user.admin ? _t.translate('Profile (admin)') : _t.translate('Profile') }
         </h1>
         <hr />
         <div className="col-md-6">

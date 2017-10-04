@@ -14,6 +14,9 @@ const myLocalize = new Localize({
     "Profile": {
       "cs": "Profil"
     },
+    "Profile (admin)": {
+      "cs": "Profil (admin)"
+    },
 
     // other titles
     "New Massage": {

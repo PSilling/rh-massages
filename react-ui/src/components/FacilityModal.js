@@ -36,9 +36,8 @@ class FacilityModal extends Component {
    * Handles the post request.
    */
   addFacility = () => {
-    Util.post("/api/facilities", {
-      name: this.state.name,
-      massages: []
+    Util.post(Util.FACILITIES_URL, {
+      name: this.state.name
     }, this.props.getCallback);
   }
 
@@ -46,9 +45,8 @@ class FacilityModal extends Component {
    * Handles the put request.
    */
   editFacility = () => {
-    Util.put("/api/facilities/" + this.props.facility.name, {
-      name: this.state.name,
-      massages: this.props.facility.massages
+    Util.put(Util.FACILITIES_URL + this.props.facility.id, {
+      name: this.state.name
     }, this.props.getCallback);
   }
 

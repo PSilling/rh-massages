@@ -11,51 +11,25 @@ import FacilityModal from '../components/FacilityModal';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
-var facility1 = {
-  name: "Fac",
-  massages: [
-    {
-      id: 1,
-      date: new Date(),
-      user: {name: "User1"},
-      masseuse: "Mas1",
-      facility: {name: "Fac"}
-    }
-  ]
-}
-
-var facility2 = {
-  name: "Fac2",
-  massages: [
-    {
-      id: 2,
-      date: new Date(0),
-      user: null,
-      masseuse: "Mas2",
-      facility: {name: "Fac2"}
-    }
-  ]
-}
-
 /**
  * Facility management
  */
 class FacilitiesList extends Component {
 
-  state = {facilities: [facility1, facility2], modalActive: false, editId: -1}
+  state = {facilities: [], modalActive: false, editId: -1}
 
   componentDidMount() {
-    //this.getFacilities();
+    this.getFacilities();
   }
 
   getFacilities = () => {
-    Util.get("/api/facilities", (json) => {
+    Util.get(Util.FACILITIES_URL, (json) => {
       this.setState({facilities: json});
     });
   }
 
-  deleteFacility = (name) => {
-    Util.delete("/api/facilities/" + name, this.getFacilities);
+  deleteFacility = (id) => {
+    Util.delete(Util.FACILITIES_URL + id, this.getFacilities);
   }
 
   toggleModal = (id) => {
@@ -93,7 +67,7 @@ class FacilitiesList extends Component {
                     <span style={{ 'marginRight': '5px' }}>
                       <EditButton onEdit={() => this.toggleModal(index)} />
                     </span>
-                    <DeleteButton onDelete={() => this.deleteFacility(item.name)} />
+                    <DeleteButton onDelete={() => this.deleteFacility(item.id)} />
                   </span>
                 </td>
               </tr>
