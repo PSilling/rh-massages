@@ -1,12 +1,25 @@
+/*******************************************************************************
+ *     Copyright (C) 2017  Petr Silling
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
 package net.rh.massages.core;
 
 import java.security.Principal;
 import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +28,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * User user representation class
+ * 
+ * @author psilling
+ * @since 1.0.0
+ */
 
 @Entity
 @Table(name = "Users")
@@ -25,69 +46,127 @@ import org.hibernate.validator.constraints.NotEmpty;
 	@NamedQuery(name = "User.findByAdmin", query = "SELECT user FROM User user WHERE user.admin = :admin")})
 public class User implements Principal {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
-  private long id;
-	
-  @NotEmpty
-  private String name;
-  
-  @NotEmpty
-  private String email;
-  
-  @NotNull
-  private boolean admin;
-  
-  public User() {
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private long id; // id of the user
 
-  public User(long id, String name, String email, boolean admin) {
-    this.id = id;
-	this.name = name;
-    this.email = email;
-    this.admin = admin;
-  }
+	@NotEmpty
+	private String name; // name of the user
 
-  public long getId() {
-    return id;
-  }
+	@NotEmpty
+	@Email
+	private String email; // email of the user
 
-  public void setId(long id) {
-    this.id = id;
-  }
+	@NotNull
+	private boolean admin; // whether the user is an administrator
 
-  public String getName() {
-    return name;
-  }
+	/**
+	 * User constructor
+	 */
+	public User() {
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	/**
+	 * User parameterized constructor
+	 * 
+	 * @param id new User id
+	 * @param name new User name
+	 * @param email new User email
+	 * @param admin new User admin
+	 */
+	public User(long id, String name, String email, boolean admin) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.admin = admin;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	/**
+	 * Id getter
+	 * 
+	 * @return current id
+	 */
+	public long getId() {
+		return id;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	/**
+	 * Id setter
+	 * 
+	 * @param id new id
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public boolean getAdmin() {
-    return admin;
-  }
+	/**
+	 * Name getter
+	 * 
+	 * @return current name
+	 */
+	public String getName() {
+		return name;
+	}
 
-  public void setAdmin(boolean isAdmin) {
-    this.admin = isAdmin;
-  }
+	/**
+	 * Name setter
+	 * 
+	 * @param name new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name, email);
-  }
+	/**
+	 * E-mail getter
+	 * 
+	 * @return current email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-  @Override
-  public String toString() {
-    return String.format("User[id=%s, name=%s, email=%s]", id, name, email);
-  }
+	/**
+	 * E-mail setter
+	 * 
+	 * @param email new email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Admin getter
+	 * 
+	 * @return current admin
+	 */
+	public boolean getAdmin() {
+		return admin;
+	}
+
+	/**
+	 * Admin setter
+	 * 
+	 * @param admin new admin
+	 */
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	/**
+	 * Hashing method
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, email);
+	}
+
+	/**
+	 * String conversion method
+	 */
+	@Override
+	public String toString() {
+		return String.format("User[id=%s, name=%s, email=%s]", id, name, email);
+	}
 }

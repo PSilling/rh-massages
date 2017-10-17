@@ -1,3 +1,19 @@
+/*******************************************************************************
+ *     Copyright (C) 2017  Petr Silling
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
 package net.rh.massages.core;
 
 import java.util.Objects;
@@ -7,59 +23,101 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * Facility facility representation class
+ * 
+ * @author psilling
+ * @since 1.0.0
+ */
 
 @Entity
 @Table(name = "Facilities")
 @NamedQueries({ @NamedQuery(name = "Facility.findAll", query = "SELECT facility FROM Facility facility"),
 	@NamedQuery(name = "Facility.findByName", query = "SELECT facility FROM Facility facility WHERE facility.name = :name") })
 public class Facility {
-	  
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
-  private long id;
-  
-  @Column(name = "name", unique = true)
-  @NotEmpty
-  private String name;
 
-  public Facility() {
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private long id; // id of the facility
 
-  public Facility(long id, String name) {
-    this.id = id;
-	this.name = name;
-  }
+	@Column(name = "name", unique = true)
+	@NotEmpty
+	private String name; // name of the massage
 
-  public long getId() {
-	return id;
-  }
+	/**
+	 * Facility constructor
+	 */
+	public Facility() {
+	}
 
-  public void setId(long id) {
-	this.id = id;
-  }
+	/**
+	 * Parameterized Facility constructor
+	 * 
+	 * @param id new Facilty id
+	 * @param name new Facility name
+	 */
+	public Facility(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  public String getName() {
-    return name;
-  }
+	/**
+	 * Id getter
+	 * 
+	 * @return current id
+	 */
+	public long getId() {
+		return id;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	/**
+	 * Id setter
+	 * 
+	 * @param id new id
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name);
-  }
+	/**
+	 * Name getter
+	 * 
+	 * @return current name
+	 */
+	public String getName() {
+		return name;
+	}
 
-  @Override
-  public String toString() {
-    return String.format("Facility[name=%s]", name);
-  }
+	/**
+	 * Name setter
+	 * 
+	 * @param name new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Hashing method
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	/**
+	 * String conversion method
+	 */
+	@Override
+	public String toString() {
+		return String.format("Facility[name=%s]", name);
+	}
 }

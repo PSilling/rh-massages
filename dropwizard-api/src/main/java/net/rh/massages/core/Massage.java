@@ -1,3 +1,19 @@
+/*******************************************************************************
+ *     Copyright (C) 2017  Petr Silling
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
 package net.rh.massages.core;
 
 import java.util.Date;
@@ -18,93 +34,168 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Massage Massage representation class
+ * 
+ * @author psilling
+ * @since  1.0.0
+ */
+
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
-    @NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
-    @NamedQuery(name = "Massage.findByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
-    @NamedQuery(name = "Massage.findByUser", query = "SELECT massage FROM Massage massage WHERE massage.user = :user"),
-    @NamedQuery(name = "Massage.findByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
+	@NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
+	@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
+	@NamedQuery(name = "Massage.findAllByUser", query = "SELECT massage FROM Massage massage WHERE massage.user = :user"),
+	@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
 public class Massage {
-  
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
-  private long id;
 
-  @NotNull
-  private Date date;
-  
-  @NotEmpty
-  private String masseuse;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private long id; // id of the massage
 
-  @ManyToOne
-  @Nullable
-  private User user;
+	@NotNull
+	private Date date; // date of the massage
 
-  @ManyToOne
-  @NotNull
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  private Facility facility;
+	@NotEmpty
+	private String masseuse; // masseuse that does the massage
 
-  public Massage() {
-  }
+	@ManyToOne
+	@Nullable
+	private User user; // user taking the massage
 
-  public Massage(long id, Date date, String masseuse, User user, Facility facility) {
-    this.id = id;
-	this.date = date;
-    this.masseuse = masseuse;
-    this.user = user;
-    this.facility = facility;
-  }
+	@ManyToOne
+	@NotNull
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Facility facility; // facility where the massage will be
 
-  public long getId() {
-	return id;
-  }
+	/**
+	 * Massage constructor
+	 */
+	public Massage() {
+	}
 
-  public void setId(long id) {
-	this.id = id;
-  }
+	/**
+	 * Massage parameterized constructor
+	 * 
+	 * @param id new Massage id
+	 * @param date new Massage date
+	 * @param masseuse new Massage masseuse
+	 * @param user new Massage user
+	 * @param facility new Massage facility
+	 */
+	public Massage(long id, Date date, String masseuse, User user, Facility facility) {
+		this.id = id;
+		this.date = date;
+		this.masseuse = masseuse;
+		this.user = user;
+		this.facility = facility;
+	}
 
-  public Date getDate() {
-	return date;
-  }
+	/**
+	 * Id getter
+	 * 
+	 * @return current id
+	 */
+	public long getId() {
+		return id;
+	}
 
-  public void setDate(Date date) {
-	  this.date = date;
-  }
+	/**
+	 * Id setter
+	 * 
+	 * @param id new id
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getMasseuse() {
-	  return masseuse;
-  }
+	/**
+	 * Date getter
+	 * 
+	 * @return current date
+	 */
+	public Date getDate() {
+		return date;
+	}
 
-  public void setMasseuse(String masseuse) {
-	  this.masseuse = masseuse;
-  }
+	/**
+	 * Date setter
+	 * 
+	 * @param date new date
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-  public User getUser() {
-	  return user;
-  }
+	/**
+	 * Masseuse getter
+	 * 
+	 * @return current masseuse
+	 */
+	public String getMasseuse() {
+		return masseuse;
+	}
 
-  public void setUser(User user) {
-	  this.user = user;
-  }
+	/**
+	 * Masseuse setter
+	 * 
+	 * @param masseuse
+	 */
+	public void setMasseuse(String masseuse) {
+		this.masseuse = masseuse;
+	}
 
-  public Facility getFacility() {
-  	  return facility;
-  }
+	/**
+	 * User getter
+	 * 
+	 * @return current user
+	 */
+	public User getUser() {
+		return user;
+	}
 
-  public void setFacility(Facility facility) {
-	  this.facility = facility;
-  }
-	
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, date, masseuse);
-  }
+	/**
+	 * User setter
+	 * 
+	 * @param user new user
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-  @Override
-  public String toString() {
-    return String.format("Task[id=%s, masseuse=%s]", id, masseuse);
-  }
+	/**
+	 * Facility getter
+	 * 
+	 * @return current facility
+	 */
+	public Facility getFacility() {
+		return facility;
+	}
+
+	/**
+	 * Facility setter
+	 * 
+	 * @param facility new facility
+	 */
+	public void setFacility(Facility facility) {
+		this.facility = facility;
+	}
+
+	/**
+	 * Hashing method
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, date, masseuse);
+	}
+
+	/**
+	 * String conversion method
+	 */
+	@Override
+	public String toString() {
+		return String.format("Task[id=%s, masseuse=%s]", id, masseuse);
+	}
 }
