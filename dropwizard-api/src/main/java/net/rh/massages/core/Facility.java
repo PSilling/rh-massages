@@ -32,7 +32,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Facility facility representation class
- * 
+ *
  * @author psilling
  * @since 1.0.0
  */
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "Facilities")
 @NamedQueries({ @NamedQuery(name = "Facility.findAll", query = "SELECT facility FROM Facility facility"),
-	@NamedQuery(name = "Facility.findByName", query = "SELECT facility FROM Facility facility WHERE facility.name = :name") })
+		@NamedQuery(name = "Facility.findByName", query = "SELECT facility FROM Facility facility WHERE facility.name = :name") })
 public class Facility {
 
 	@Id
@@ -60,18 +60,17 @@ public class Facility {
 
 	/**
 	 * Parameterized Facility constructor
-	 * 
-	 * @param id new Facilty id
-	 * @param name new Facility name
+	 *
+	 * @param name
+	 *            new Facility name
 	 */
-	public Facility(long id, String name) {
-		this.id = id;
+	public Facility(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * Id getter
-	 * 
+	 *
 	 * @return current id
 	 */
 	public long getId() {
@@ -80,8 +79,9 @@ public class Facility {
 
 	/**
 	 * Id setter
-	 * 
-	 * @param id new id
+	 *
+	 * @param id
+	 *            new id
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -89,7 +89,7 @@ public class Facility {
 
 	/**
 	 * Name getter
-	 * 
+	 *
 	 * @return current name
 	 */
 	public String getName() {
@@ -98,8 +98,9 @@ public class Facility {
 
 	/**
 	 * Name setter
-	 * 
-	 * @param name new name
+	 *
+	 * @param name
+	 *            new name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -110,7 +111,22 @@ public class Facility {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(id, name);
+	}
+
+	/**
+	 * Equalization method
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+
+		return Integer.compare(hashCode(), obj.hashCode()) == 0;
 	}
 
 	/**
@@ -118,6 +134,6 @@ public class Facility {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Facility[name=%s]", name);
+		return String.format("Facility[id=%s, name=%s]", id, name);
 	}
 }

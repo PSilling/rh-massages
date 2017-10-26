@@ -36,18 +36,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Massage Massage representation class
- * 
+ *
  * @author psilling
- * @since  1.0.0
+ * @since 1.0.0
  */
 
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
-	@NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
-	@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
-	@NamedQuery(name = "Massage.findAllByUser", query = "SELECT massage FROM Massage massage WHERE massage.user = :user"),
-	@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
+		@NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
+		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
+		@NamedQuery(name = "Massage.findAllByUser", query = "SELECT massage FROM Massage massage WHERE massage.user = :user"),
+		@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
 public class Massage {
 
 	@Id
@@ -78,15 +78,13 @@ public class Massage {
 
 	/**
 	 * Massage parameterized constructor
-	 * 
-	 * @param id new Massage id
+	 *
 	 * @param date new Massage date
 	 * @param masseuse new Massage masseuse
 	 * @param user new Massage user
 	 * @param facility new Massage facility
 	 */
-	public Massage(long id, Date date, String masseuse, User user, Facility facility) {
-		this.id = id;
+	public Massage(Date date, String masseuse, User user, Facility facility) {
 		this.date = date;
 		this.masseuse = masseuse;
 		this.user = user;
@@ -95,7 +93,7 @@ public class Massage {
 
 	/**
 	 * Id getter
-	 * 
+	 *
 	 * @return current id
 	 */
 	public long getId() {
@@ -104,7 +102,7 @@ public class Massage {
 
 	/**
 	 * Id setter
-	 * 
+	 *
 	 * @param id new id
 	 */
 	public void setId(long id) {
@@ -113,7 +111,7 @@ public class Massage {
 
 	/**
 	 * Date getter
-	 * 
+	 *
 	 * @return current date
 	 */
 	public Date getDate() {
@@ -122,7 +120,7 @@ public class Massage {
 
 	/**
 	 * Date setter
-	 * 
+	 *
 	 * @param date new date
 	 */
 	public void setDate(Date date) {
@@ -131,7 +129,7 @@ public class Massage {
 
 	/**
 	 * Masseuse getter
-	 * 
+	 *
 	 * @return current masseuse
 	 */
 	public String getMasseuse() {
@@ -140,7 +138,7 @@ public class Massage {
 
 	/**
 	 * Masseuse setter
-	 * 
+	 *
 	 * @param masseuse
 	 */
 	public void setMasseuse(String masseuse) {
@@ -149,7 +147,7 @@ public class Massage {
 
 	/**
 	 * User getter
-	 * 
+	 *
 	 * @return current user
 	 */
 	public User getUser() {
@@ -158,7 +156,7 @@ public class Massage {
 
 	/**
 	 * User setter
-	 * 
+	 *
 	 * @param user new user
 	 */
 	public void setUser(User user) {
@@ -167,7 +165,7 @@ public class Massage {
 
 	/**
 	 * Facility getter
-	 * 
+	 *
 	 * @return current facility
 	 */
 	public Facility getFacility() {
@@ -176,7 +174,7 @@ public class Massage {
 
 	/**
 	 * Facility setter
-	 * 
+	 *
 	 * @param facility new facility
 	 */
 	public void setFacility(Facility facility) {
@@ -192,10 +190,25 @@ public class Massage {
 	}
 
 	/**
+	 * Equalization method
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+
+		return Integer.compare(hashCode(), obj.hashCode()) == 0;
+	}
+
+	/**
 	 * String conversion method
 	 */
 	@Override
 	public String toString() {
-		return String.format("Task[id=%s, masseuse=%s]", id, masseuse);
+		return String.format("Task[id=%s, date=%s, masseuse=%s]", id, date, masseuse);
 	}
 }

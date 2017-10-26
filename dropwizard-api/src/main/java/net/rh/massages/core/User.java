@@ -70,13 +70,11 @@ public class User implements Principal {
 	/**
 	 * User parameterized constructor
 	 * 
-	 * @param id new User id
 	 * @param name new User name
 	 * @param email new User email
 	 * @param admin new User admin
 	 */
-	public User(long id, String name, String email, boolean admin) {
-		this.id = id;
+	public User(String name, String email, boolean admin) {
 		this.name = name;
 		this.email = email;
 		this.admin = admin;
@@ -160,6 +158,21 @@ public class User implements Principal {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name, email);
+	}
+
+	/**
+	 * Equalization method
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+
+		return Integer.compare(hashCode(), obj.hashCode()) == 0;
 	}
 
 	/**
