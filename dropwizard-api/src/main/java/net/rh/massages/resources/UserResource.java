@@ -16,11 +16,10 @@
  *******************************************************************************/
 package net.rh.massages.resources;
 
-import io.dropwizard.hibernate.UnitOfWork;
-import io.dropwizard.jersey.params.LongParam;
-
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -37,6 +36,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
+import io.dropwizard.auth.Auth;
+import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 import net.rh.massages.core.Massage;
 import net.rh.massages.core.User;
 import net.rh.massages.db.MassageDAO;
@@ -44,7 +46,7 @@ import net.rh.massages.db.UserDAO;
 
 /**
  * UserResource User resource class
- * 
+ *
  * @author psilling
  * @since 1.0.0
  *
@@ -60,7 +62,7 @@ public class UserResource {
 
 	/**
 	 * Parameterized UserResource constructor
-	 * 
+	 *
 	 * @param massageDao new UserResource massageDao
 	 * @param userDao new UserResource userDao
 	 */
@@ -71,64 +73,71 @@ public class UserResource {
 
 	/**
 	 * GETs all users that can be found
-	 * 
+	 *
 	 * @return list of all users
 	 */
 	@GET
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public List<User> fetch() {
+	public List<User> fetch(@Auth User user) {
 		return userDao.findAll();
 	}
 
 	/**
 	 * Accepts POST request with a new User
-	 * 
+	 *
 	 * @param user new User
 	 * @exception WebApplicationException if user could not be found after creation
 	 * @return on creation response
 	 */
 	@POST
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response createUser(@NotNull @Valid User user) {
+	public Response createUser(@NotNull @Valid User user, @Auth User authUser) {
 		userDao.create(user);
 
-		if (userDao.findById(user.getId()) == null)
+		if (userDao.findById(user.getId()) == null) {
 			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+		}
 
-		return Response.created(UriBuilder.fromResource(UserResource.class).path("/{id}")
-				.build(user.getId())).entity(user).build();
+		return Response.created(UriBuilder.fromResource(UserResource.class).path("/{id}").build(user.getId()))
+				.entity(user).build();
 	}
 
 	/**
 	 * GETs a user based on id
-	 * 
+	 *
 	 * @param id user id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return the desired user
 	 */
 	@GET
 	@Path("/{id}")
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public User findById(@PathParam("id") LongParam id) {
-		if (userDao.findById(id.get()) == null)
+	public User findById(@PathParam("id") LongParam id, @Auth User user) {
+		if (userDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		return userDao.findById(id.get());
 	}
 
 	/**
 	 * DELETEs a user given by id
-	 * 
+	 *
 	 * @param id user id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return on delete response
 	 */
 	@DELETE
 	@Path("/{id}")
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response delete(@PathParam("id") LongParam id) {
-		if (userDao.findById(id.get()) == null)
+	public Response delete(@PathParam("id") LongParam id, @Auth User user) {
+		if (userDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		userDao.delete(userDao.findById(id.get()));
 
@@ -137,7 +146,7 @@ public class UserResource {
 
 	/**
 	 * Updates a user given by id to a given value
-	 * 
+	 *
 	 * @param user updated user
 	 * @param id user id
 	 * @exception WebApplicationException if the id could not be found
@@ -145,10 +154,12 @@ public class UserResource {
 	 */
 	@PUT
 	@Path("/{id}")
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response update(@NotNull @Valid User user, @PathParam("id") LongParam id) {
-		if (userDao.findById(id.get()) == null)
+	public Response update(@NotNull @Valid User user, @PathParam("id") LongParam id, @Auth User authUser) {
+		if (userDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		user.setId(id.get());
 		userDao.update(user);
@@ -158,17 +169,19 @@ public class UserResource {
 
 	/**
 	 * GETs all massages of a user given by id
-	 * 
+	 *
 	 * @param id user id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return list of the desired massages
 	 */
 	@GET
 	@Path("/{id}/massages")
+	@PermitAll
 	@UnitOfWork
-	public List<Massage> fetchMassages(@PathParam("id") LongParam id) {
-		if (userDao.findById(id.get()) == null)
+	public List<Massage> fetchMassages(@PathParam("id") LongParam id, @Auth User user) {
+		if (userDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		return massageDao.findAllByUser(userDao.findById(id.get()));
 	}

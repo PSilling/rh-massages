@@ -81,6 +81,11 @@
 	    	<version>2.3</version>
 	    	<scope>test</scope>
 	    </dependency>
+	    <dependency>
+	    	<groupId>de.ahus1.keycloak.dropwizard</groupId>
+	    	<artifactId>keycloak-dropwizard</artifactId>
+	    	<version>1.0.0</version>
+	    </dependency>
     </dependencies>
 
     <build>

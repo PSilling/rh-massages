@@ -1,5 +1,6 @@
 import _t from './Translations';
 import { NotificationManager } from 'react-notifications';
+import Auth from './Auth';
 
 var Util = function() { };
 
@@ -44,9 +45,12 @@ Util.notify = (type, message, title) => {
  * @param update          callback function to update the resources
  */
 Util.get = (url, update) => {
+  console.log(Auth.keycloak.token);
   fetch(url, {
-    credentials: 'same-origin',
-    method: 'get'
+    method: 'get',
+    headers: {
+      'Authorization': 'Bearer ' + Auth.keycloak.token
+    }
   }).then(function(response) {
     if (response.ok) {
       return response.json();
@@ -71,7 +75,10 @@ Util.post = (url, data, update) => {
   fetch(url, {
     credentials: 'same-origin',
     method: 'post',
-    headers: { "Content-Type" : "application/json" },
+    headers: {
+      "Authorization" : "bearer " + Auth.getToken(),
+      "Content-Type" : "application/json"
+    },
     body: JSON.stringify(data)
   }).then(function(response) {
     if (response.ok) {
@@ -95,7 +102,10 @@ Util.put = (url, data, update) => {
   fetch(url, {
     credentials: 'same-origin',
     method: 'put',
-    headers: { "Content-Type" : "application/json" },
+    headers: {
+      "Authorization" : "bearer " + Auth.getToken(),
+      "Content-Type" : "application/json"
+    },
     body: JSON.stringify(data)
   }).then(function(response) {
     if (response.ok) {
@@ -116,6 +126,9 @@ Util.put = (url, data, update) => {
 Util.delete = (url, update) => {
   fetch(url, {
     credentials: 'same-origin',
+    headers: {
+      "Authorization" : "bearer " + Auth.getToken()
+    },
     method: 'delete'
   }).then(function(response) {
     if (response.ok) {

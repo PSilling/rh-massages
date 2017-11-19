@@ -16,6 +16,15 @@
  *******************************************************************************/
 package net.rh.massages;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+
+import de.ahus1.keycloak.dropwizard.KeycloakBundle;
+import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -32,12 +41,11 @@ import net.rh.massages.resources.FacilityResource;
 import net.rh.massages.resources.MassageResource;
 import net.rh.massages.resources.UserResource;
 
-
 /**
  * MassagesApplication main class of the project
- * 
+ *
  * @author psilling
- * @since  1.0.0
+ * @since 1.0.0
  */
 
 public class MassagesApplication extends Application<MassagesConfiguration> {
@@ -46,8 +54,8 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 
 	/**
 	 * Main method of the application
-	 * 
-	 * @param  args
+	 *
+	 * @param args
 	 * @throws Exception
 	 */
 	public static void main(final String[] args) throws Exception {
@@ -56,7 +64,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 
 	/**
 	 * Returns the application name
-	 * 
+	 *
 	 * @return current application name
 	 */
 	@Override
@@ -69,37 +77,45 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 */
 	private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
 			Facility.class, Massage.class, User.class) {
-		public DataSourceFactory getDataSourceFactory(
-				MassagesConfiguration configuration) {
+
+		@Override
+		public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
 			return configuration.getDataSourceFactory();
 		}
 	};
 
 	/**
 	 * Inicializes the Boostrap bundle
-	 * 
+	 *
 	 * @param bootsrap the bundle
 	 */
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
 		bootstrap.addBundle(HIBERNATE);
 		bootstrap.addBundle(new MigrationsBundle<MassagesConfiguration>() {
-			public DataSourceFactory getDataSourceFactory(
-					MassagesConfiguration configuration) {
+
+			@Override
+			public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
 				return configuration.getDataSourceFactory();
+			}
+		});
+		bootstrap.addBundle(new KeycloakBundle<MassagesConfiguration>() {
+
+			@Override
+			protected KeycloakConfiguration getKeycloakConfiguration(MassagesConfiguration configuration) {
+				return (KeycloakConfiguration) configuration.getKeycloakConfiguration();
 			}
 		});
 	}
 
 	/**
 	 * The application's run method
-	 * 
+	 *
 	 * @param configuration configuration of the application
 	 * @param enviroment jersey enviroment of the application
 	 */
 	@Override
-	public void run(final MassagesConfiguration configuration,
-			final Environment environment) {
+	public void run(final MassagesConfiguration configuration, final Environment environment) {
 		final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
 		final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
 		final UserDAO userDao = new UserDAO(HIBERNATE.getSessionFactory());
@@ -107,5 +123,15 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 		environment.jersey().register(new FacilityResource(facilityDao, massageDao));
 		environment.jersey().register(new MassageResource(massageDao));
 		environment.jersey().register(new UserResource(massageDao, userDao));
+
+		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+
+		// Configure CORS parameters
+		cors.setInitParameter("allowedOrigins", "*");
+		cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin,Authorization");
+		cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+
+		// Add URL mapping
+		cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 	}
 }

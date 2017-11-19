@@ -16,11 +16,10 @@
  *******************************************************************************/
 package net.rh.massages.resources;
 
-import io.dropwizard.hibernate.UnitOfWork;
-import io.dropwizard.jersey.params.LongParam;
-
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -37,6 +36,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
+import de.ahus1.keycloak.dropwizard.User;
+import io.dropwizard.auth.Auth;
+import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.FacilityDAO;
@@ -44,7 +47,7 @@ import net.rh.massages.db.MassageDAO;
 
 /**
  * FacilityResource Facility resource class
- * 
+ *
  * @author psilling
  * @since 1.0.0
  */
@@ -59,7 +62,7 @@ public class FacilityResource {
 
 	/**
 	 * Parameterized FacilityResource constructor
-	 * 
+	 *
 	 * @param facilityDao new FacilityResource facilityDao
 	 * @param massageDao new FacilityResource massageDao
 	 */
@@ -70,54 +73,60 @@ public class FacilityResource {
 
 	/**
 	 * GETs all facilities that can be found
-	 * 
+	 *
 	 * @return list of all facilities
 	 */
 	@GET
+	@PermitAll
 	@UnitOfWork
-	public List<Facility> fetch() {
+	public List<Facility> fetch(@Auth User user) {
 		return facilityDao.findAll();
 	}
 
 	/**
 	 * Accepts POST request with a new Facility
-	 * 
+	 *
 	 * @param facility Facility new Facility
-	 * @exception WebApplicationException if facility could not be found after creation
+	 * @exception WebApplicationException if facility could not be found after
+	 *                creation
 	 * @return on creation response
 	 */
 	@POST
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response createFacility(@NotNull @Valid Facility facility) {
+	public Response createFacility(@NotNull @Valid Facility facility, @Auth User user) {
 		facilityDao.create(facility);
 
-		if (facilityDao.findByName(facility.getName()) == null)
+		if (facilityDao.findByName(facility.getName()) == null) {
 			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+		}
 
-		return Response.created(UriBuilder.fromResource(FacilityResource.class).path("/{id}")
-				.build(facility.getId())).entity(facility).build();
+		return Response.created(UriBuilder.fromResource(FacilityResource.class).path("/{id}").build(facility.getId()))
+				.entity(facility).build();
 	}
 
 	/**
 	 * GETs a facility based on its id
-	 * 
+	 *
 	 * @param id facility id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return the desired facility
 	 */
 	@GET
 	@Path("/{id}")
+	@PermitAll
 	@UnitOfWork
-	public Facility getById(@PathParam("id") LongParam id) {
-		if (facilityDao.findById(id.get()) == null)
+	public Facility getById(@PathParam("id") LongParam id, @Auth User user) {
+		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		return facilityDao.findById(id.get());
 	}
 
 	/**
 	 * Updates a facility given by id to a given value
-	 * 
+	 *
 	 * @param facility Facility updated Facility
 	 * @param id facility id
 	 * @exception WebApplicationException if the id could not be found
@@ -125,10 +134,12 @@ public class FacilityResource {
 	 */
 	@PUT
 	@Path("/{id}")
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response update(@NotNull @Valid Facility facility, @PathParam("id") LongParam id) {
-		if (facilityDao.findById(id.get()) == null)
+	public Response update(@NotNull @Valid Facility facility, @PathParam("id") LongParam id, @Auth User user) {
+		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		facility.setId(id.get());
 		facilityDao.update(facility);
@@ -138,17 +149,19 @@ public class FacilityResource {
 
 	/**
 	 * DELETEs a facility given by id
-	 * 
+	 *
 	 * @param id facility id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return on delete response
 	 */
 	@DELETE
 	@Path("/{id}")
+	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response delete(@PathParam("id") LongParam id) {
-		if (facilityDao.findById(id.get()) == null)
+	public Response delete(@PathParam("id") LongParam id, @Auth User user) {
+		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		facilityDao.delete(facilityDao.findById(id.get()));
 
@@ -157,17 +170,19 @@ public class FacilityResource {
 
 	/**
 	 * GETs all massages of a facility based on its id
-	 * 
+	 *
 	 * @param id facility id
 	 * @exception WebApplicationException if the id could not be found
 	 * @return list of all found massages
 	 */
 	@GET
 	@Path("/{id}/massages")
+	@PermitAll
 	@UnitOfWork
-	public List<Massage> getMassages(@PathParam("id") LongParam id) {
-		if (facilityDao.findById(id.get()) == null)
+	public List<Massage> getMassages(@PathParam("id") LongParam id, @Auth User user) {
+		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		return massageDao.findAllByFacility(facilityDao.findById(id.get()));
 	}

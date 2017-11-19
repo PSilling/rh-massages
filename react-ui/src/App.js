@@ -81,6 +81,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
 
   render() {
+    if (!Auth.isAuthenticated()) {
+      Auth.authenticate();
+    }
+    
     return (
       <Router>
         <div>
