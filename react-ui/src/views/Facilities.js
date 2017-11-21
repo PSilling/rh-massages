@@ -6,8 +6,10 @@ import React, { Component } from 'react';
 import DeleteButton from '../components/DeleteButton';
 import EditButton from '../components/EditButton';
 import FacilityModal from '../components/FacilityModal';
+import UnauthorizedMessage from '../components/UnauthorizedMessage';
 
 // util imports
+import Auth from '../utils/Auth.js';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
@@ -37,6 +39,12 @@ class FacilitiesList extends Component {
   }
 
   render () {
+    if (!Auth.isAdmin()) {
+      return(
+        <UnauthorizedMessage title={ _t.translate('Facilities') } />
+      );
+    }
+
     return (
       <div>
         <h1>
@@ -58,21 +66,30 @@ class FacilitiesList extends Component {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.facilities.map((item, index) => (
-              <tr key={index}>
-                <td>{item.name}</td>
-                <td width="105px">
-                  <span className="pull-right">
-                    <span style={{ 'marginRight': '5px' }}>
-                      <EditButton onEdit={() => this.toggleModal(index)} />
+          {this.state.facilities.length > 0 ?
+            <tbody>
+              {this.state.facilities.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.name}</td>
+                  <td width="105px">
+                    <span className="pull-right">
+                      <span style={{ 'marginRight': '5px' }}>
+                        <EditButton onEdit={() => this.toggleModal(index)} />
+                      </span>
+                      <DeleteButton onDelete={() => this.deleteFacility(item.id)} />
                     </span>
-                    <DeleteButton onDelete={() => this.deleteFacility(item.id)} />
-                  </span>
-                </td>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            : <tbody>
+              <tr>
+                <th>
+                  { _t.translate('None') }
+                </th>
               </tr>
-            ))}
-          </tbody>
+            </tbody>
+          }
         </table>
       </div>
     );

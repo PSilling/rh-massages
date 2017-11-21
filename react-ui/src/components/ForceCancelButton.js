@@ -8,9 +8,9 @@ import ConfirmationModal from '../components/ConfirmationModal';
 import _t from '../utils/Translations.js';
 
 /**
- * Custom cancel button component.
+ * Custom cancel button component for brute force cancel (canceling of an assigned massage).
  */
-class CancelButton extends Component {
+class ForceCancelButton extends Component {
 
   state = {active: false}
 
@@ -21,12 +21,12 @@ class CancelButton extends Component {
   render() {
     return(
       <span>
-        <button type="button" className="btn btn-warning pull-right" onClick={this.handleToggle}>
-          { _t.translate('Cancel') }
+        <button type="button" className="btn btn-danger pull-right" onClick={this.handleToggle}>
+            { _t.translate('Force cancel') }
         </button>
         {this.state.active ?
           <ConfirmationModal
-            message={ _t.translate('Are you sure you want to cancel this massage?') }
+            message={ _t.translate('Are you sure you want to cancel a massage that is assigned?') }
             onClose={this.handleToggle}
             onConfirm={this.props.onCancel}
           /> : ''
@@ -36,4 +36,4 @@ class CancelButton extends Component {
   }
 }
 
-export default CancelButton
+export default ForceCancelButton

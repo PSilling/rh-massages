@@ -27,8 +27,7 @@
             <column name="masseuse" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="true"/>
+            <column name="client" type="VARCHAR(255)">
             </column>
             <column name="facility_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -36,25 +35,6 @@
         </createTable>
     </changeSet>
     <changeSet id="3" author="psilling">
-        <createTable tableName="users">
-            <column autoIncrement="true" name="id" type="BIGSERIAL">
-                <constraints primaryKey="true" primaryKeyName="users_pkey" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(255)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="admin" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet id="4" author="psilling">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="massages" constraintName="fk_address_user" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
-    </changeSet>
-    <changeSet id="5" author="psilling">
     	<addForeignKeyConstraint baseColumnNames="facility_id" baseTableName="massages" constraintName="fk_address_facility" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="facilities"/>
     </changeSet>
 </databaseChangeLog>

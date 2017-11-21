@@ -36,10 +36,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
-import de.ahus1.keycloak.dropwizard.User;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.MassageDAO;
 
@@ -146,7 +146,9 @@ public class MassageResource {
 	 *
 	 * @param massage updated massage
 	 * @param id massage id
-	 * @exception WebApplicationException if the id could not be found
+	 * @exception WebApplicationException if the id could not be found or when
+	 *                normal user tries to change a massage that isn't assigned to
+	 *                him or change the massage itself
 	 * @return on update response
 	 */
 	@PUT
@@ -154,17 +156,40 @@ public class MassageResource {
 	@PermitAll
 	@UnitOfWork
 	public Response update(@NotNull @Valid Massage massage, @PathParam("id") LongParam id, @Auth User user) {
-		if (massageDao.findById(id.get()) == null) {
+		Massage daoMassage = massageDao.findById(id.get());
+
+		if (daoMassage == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
-		if (!user.getRoles().contains("admin") && user.getName() != massageDao.findById(id.get()).getUser().getName()) {
-			throw new WebApplicationException(Status.FORBIDDEN);
+		massage.setId(id.get());
+
+		if (!user.getRoles().contains("admin")) {
+			// user is forbidden to edit anything other than the client and even then the
+			// client has to be the user himself or a null
+			if (!daoMassage.equals(massage)
+					|| (!user.getSubject().equals(massage.getClient())
+							&& !user.getSubject().equals(daoMassage.getClient()))
+					|| (massage.getClient() != null && !massage.getClient().equals(user.getSubject()))) {
+				throw new WebApplicationException(Status.FORBIDDEN);
+			}
 		}
 
-		massage.setId(id.get());
 		massageDao.update(massage);
 
 		return Response.ok(massage).build();
+	}
+
+	/**
+	 * GETs all massages of a give client
+	 *
+	 * @return all found massages
+	 */
+	@GET
+	@Path("/client")
+	@PermitAll
+	@UnitOfWork
+	public List<Massage> findAllByClient(@Auth User user) {
+		return massageDao.findAllByClient(user.getSubject());
 	}
 }

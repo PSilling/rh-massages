@@ -11,12 +11,15 @@ Auth.isAuthenticated = () => {
 }
 
 Auth.isAdmin = () => {
-  return true;
+  return Auth.keycloak.hasRealmRole("admin");
 }
 
 Auth.getToken = () => {
-  console.log("Returned token: " + Auth.keycloak.token);
   return Auth.keycloak.token;
+}
+
+Auth.getSub = () => {
+  return Auth.keycloak.idTokenParsed.sub;
 }
 
 export default Auth

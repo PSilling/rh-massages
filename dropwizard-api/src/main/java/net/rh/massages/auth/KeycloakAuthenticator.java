@@ -14,37 +14,43 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package net.rh.massages.health;
+package net.rh.massages.auth;
 
-import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
-import com.codahale.metrics.health.HealthCheck;
+import org.keycloak.KeycloakSecurityContext;
 
-import io.dropwizard.hibernate.UnitOfWork;
-import net.rh.massages.db.FacilityDAO;
+import de.ahus1.keycloak.dropwizard.AbstractKeycloakAuthenticator;
+import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 
 /**
- * MassagesHealthCheck Health check of the application.
+ * KeycloakAuthenticator Keycloak authenticator updated to work with new User
+ * representation.
  *
  * @author psilling
  * @since 1.0.0
+ *
  */
 
-public class MassagesHealthCheck extends HealthCheck {
-
-	@Inject
-	private FacilityDAO facilityDAO; // facility data access object
+public class KeycloakAuthenticator extends AbstractKeycloakAuthenticator<User> {
 
 	/**
-	 * Checks whether the application is healthy by checking database connection and
-	 * by checking if there is at least one User and one Facility.
+	 * Parameterized KeycloakAuthenticator constructor
+	 *
+	 * @param configuration Keycloak configuration
 	 */
-	@UnitOfWork
+	public KeycloakAuthenticator(KeycloakConfiguration configuration) {
+		super(configuration);
+	}
+
+	/**
+	 * Authenticates a new Keycloak user
+	 *
+	 * @return new authenticated User
+	 */
 	@Override
-	protected Result check() throws Exception {
-		if (facilityDAO.findAll().isEmpty()) {
-			return Result.unhealthy("The application is unhealthy as there is no existing Facility.");
-		}
-		return Result.healthy("The application is healthy.");
+	protected User prepareAuthentication(KeycloakSecurityContext securityContext, HttpServletRequest request,
+			KeycloakConfiguration configuration) {
+		return new User(securityContext, request, configuration);
 	}
 }

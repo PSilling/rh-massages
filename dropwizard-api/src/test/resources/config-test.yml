@@ -29,11 +29,9 @@ server:
 
 keycloakConfiguration:
   realm: massages
-  realm-public-key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhjYpBs5Z5W8iLxhUY7BjpCNp4PVtz3X4YE85ehndiJN35dKWLfLUqW6ZIgoJ4UxwYm7h+RmoBD+2dy/649ytk2gFIKuJ5VRQbM2fyafmFfIF9IUcCaz+t8bdx9FdB66UoRuRWJPJbY2i3YA7lKqMdPb06Ojdn31vVntj9qpIHDdxwZ2j2I+1KSIAV3+vCiRIlWpdnSG0l2Dy/3+gkpQo09vvDuWxXb9ddVE1CjiASPuP4oU7TZz9aqQroiN0mmVKmZ+Bld9viXL/bF42Bo/P76aDfbXH1q5FojQ610HwXFNnNMxUzyoQW3CXTMgeqiO9A64qCh8QJh2AvbJ6zY9qBQIDAQAB"
   auth-server-url: http://localhost:9090/auth
-  ssl-required: external
-  register-node-at-startup: true
-  register-node-period: 600
-  resource: ui-client
+  ssl-required: none
+  resource: api-client
+  bearer-only: true
   credentials:
-    secret: f7dc0763-3a9d-4e5b-b966-c3693777124e
+    secret: b4a1ee69-6441-49a0-b653-e2875234c0ef

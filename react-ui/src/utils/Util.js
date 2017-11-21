@@ -45,11 +45,10 @@ Util.notify = (type, message, title) => {
  * @param update          callback function to update the resources
  */
 Util.get = (url, update) => {
-  console.log(Auth.keycloak.token);
   fetch(url, {
     method: 'get',
     headers: {
-      'Authorization': 'Bearer ' + Auth.keycloak.token
+      'Authorization': 'Bearer ' + Auth.getToken()
     }
   }).then(function(response) {
     if (response.ok) {
@@ -73,8 +72,8 @@ Util.get = (url, update) => {
 Util.post = (url, data, update) => {
   console.log(data);
   fetch(url, {
-    credentials: 'same-origin',
     method: 'post',
+    credentials: 'same-origin',
     headers: {
       "Authorization" : "bearer " + Auth.getToken(),
       "Content-Type" : "application/json"
@@ -100,8 +99,8 @@ Util.post = (url, data, update) => {
 Util.put = (url, data, update) => {
   console.log(data);
   fetch(url, {
-    credentials: 'same-origin',
     method: 'put',
+    credentials: 'same-origin',
     headers: {
       "Authorization" : "bearer " + Auth.getToken(),
       "Content-Type" : "application/json"
@@ -125,11 +124,11 @@ Util.put = (url, data, update) => {
  */
 Util.delete = (url, update) => {
   fetch(url, {
+    method: 'delete',
     credentials: 'same-origin',
     headers: {
       "Authorization" : "bearer " + Auth.getToken()
-    },
-    method: 'delete'
+    }
   }).then(function(response) {
     if (response.ok) {
       Util.notify("success", "", _t.translate('Your request has been successful.'));
@@ -143,6 +142,6 @@ Util.delete = (url, update) => {
 
 Util.FACILITIES_URL = "http://localhost:8080/facilities/";
 Util.MASSAGES_URL = "http://localhost:8080/massages/";
-Util.USERS_URL = "http://localhost:8080/users/";
+Util.LOGOUT_URL = "http://localhost:8080/logout/";
 
 export default Util

@@ -36,10 +36,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
-import de.ahus1.keycloak.dropwizard.User;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.FacilityDAO;

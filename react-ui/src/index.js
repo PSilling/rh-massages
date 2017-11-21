@@ -5,9 +5,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Auth from './utils/Auth';
 
-Auth.keycloak.init({ onLoad: 'login-required' }).success(function (authenticated) {
-    if(authenticated) {
-        console.log('The authentication has been successful, welcome back, ' + Auth.keycloak.idTokenParsed.name + '!');
+// The whole application needs to be authenticated before access.
+Auth.keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function (authenticated) {
+    if (authenticated) {
+        console.log('The authentication has been successful!');
+        console.log(Auth.keycloak.token);
 
         ReactDOM.render(<App />, document.getElementById('root'));
         registerServiceWorker();

@@ -16,6 +16,7 @@
  *******************************************************************************/
 package net.rh.massages;
 
+import java.security.Principal;
 import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
@@ -26,20 +27,23 @@ import org.eclipse.jetty.servlets.CrossOriginFilter;
 import de.ahus1.keycloak.dropwizard.KeycloakBundle;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
+import io.dropwizard.auth.Authenticator;
+import io.dropwizard.auth.Authorizer;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import net.rh.massages.auth.KeycloakAuthenticator;
+import net.rh.massages.auth.User;
+import net.rh.massages.auth.UserAuthorizer;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
-import net.rh.massages.core.User;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
-import net.rh.massages.db.UserDAO;
 import net.rh.massages.resources.FacilityResource;
+import net.rh.massages.resources.LogoutResource;
 import net.rh.massages.resources.MassageResource;
-import net.rh.massages.resources.UserResource;
 
 /**
  * MassagesApplication main class of the project
@@ -76,7 +80,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 * Hibernate bundle used by the application
 	 */
 	private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
-			Facility.class, Massage.class, User.class) {
+			Facility.class, Massage.class) {
 
 		@Override
 		public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
@@ -105,6 +109,21 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 			protected KeycloakConfiguration getKeycloakConfiguration(MassagesConfiguration configuration) {
 				return (KeycloakConfiguration) configuration.getKeycloakConfiguration();
 			}
+
+			@Override
+			protected Class<? extends Principal> getUserClass() {
+				return User.class;
+			}
+
+			@Override
+			protected Authorizer createAuthorizer() {
+				return new UserAuthorizer();
+			}
+
+			@Override
+			protected Authenticator createAuthenticator(KeycloakConfiguration configuration) {
+				return new KeycloakAuthenticator(configuration);
+			}
 		});
 	}
 
@@ -118,11 +137,10 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	public void run(final MassagesConfiguration configuration, final Environment environment) {
 		final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
 		final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
-		final UserDAO userDao = new UserDAO(HIBERNATE.getSessionFactory());
 
 		environment.jersey().register(new FacilityResource(facilityDao, massageDao));
 		environment.jersey().register(new MassageResource(massageDao));
-		environment.jersey().register(new UserResource(massageDao, userDao));
+		environment.jersey().register(new LogoutResource());
 
 		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 

@@ -46,7 +46,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
 		@NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
 		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
-		@NamedQuery(name = "Massage.findAllByUser", query = "SELECT massage FROM Massage massage WHERE massage.user = :user"),
+		@NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client"),
 		@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
 public class Massage {
 
@@ -61,9 +61,8 @@ public class Massage {
 	@NotEmpty
 	private String masseuse; // masseuse that does the massage
 
-	@ManyToOne
 	@Nullable
-	private User user; // user taking the massage
+	private String client; // ID of the client taking the massage
 
 	@ManyToOne
 	@NotNull
@@ -81,13 +80,13 @@ public class Massage {
 	 *
 	 * @param date new Massage date
 	 * @param masseuse new Massage masseuse
-	 * @param user new Massage user
+	 * @param client new Massage client
 	 * @param facility new Massage facility
 	 */
-	public Massage(Date date, String masseuse, User user, Facility facility) {
+	public Massage(Date date, String masseuse, String client, Facility facility) {
 		this.date = date;
 		this.masseuse = masseuse;
-		this.user = user;
+		this.client = client;
 		this.facility = facility;
 	}
 
@@ -146,21 +145,21 @@ public class Massage {
 	}
 
 	/**
-	 * User getter
+	 * Client getter
 	 *
-	 * @return current user
+	 * @return current client
 	 */
-	public User getUser() {
-		return user;
+	public String getClient() {
+		return client;
 	}
 
 	/**
-	 * User setter
+	 * Client setter
 	 *
-	 * @param user new user
+	 * @param client new client
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String client) {
+		this.client = client;
 	}
 
 	/**
@@ -186,7 +185,7 @@ public class Massage {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, date, masseuse);
+		return Objects.hash(id, date, masseuse, facility.toString());
 	}
 
 	/**
@@ -209,6 +208,6 @@ public class Massage {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Task[id=%s, date=%s, masseuse=%s]", id, date, masseuse);
+		return String.format("Task[id=%s, date=%s, masseuse=%s, facility=%s]", id, date, masseuse, facility.toString());
 	}
 }

@@ -8,6 +8,7 @@ import CancelButton from '../components/CancelButton';
 import moment from 'moment';
 
 // util imports
+import Auth from '../utils/Auth.js';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
@@ -23,7 +24,7 @@ class MassagesList extends Component {
   }
 
   getMassages = () => {
-    Util.get(Util.USERS_URL + "1" + "/massages", (json) => {
+    Util.get(Util.MASSAGES_URL + "client/", (json) => {
       this.setState({massages: json});
     });
   }
@@ -32,7 +33,7 @@ class MassagesList extends Component {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: null,
+      client: null,
       facility: massage.facility
     }, this.getMassages);
   }
@@ -53,20 +54,29 @@ class MassagesList extends Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.massages.map((item, index) => (
-              <tr key={index}>
-                <td>{item.facility.name}</td>
-                <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
-                <td>{item.masseuse}</td>
-                <td width="55px">
-                  <span className="pull-right">
-                    <CancelButton onCancel={() => this.cancelMassage(item)} />
-                  </span>
-                </td>
-              </tr>
-            ))}
+          {this.state.massages.length > 0 ?
+            <tbody>
+              {this.state.massages.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.facility.name}</td>
+                  <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
+                  <td>{item.masseuse}</td>
+                  <td width="55px">
+                    <span className="pull-right">
+                      <CancelButton onCancel={() => this.cancelMassage(item)} />
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          : <tbody>
+            <tr>
+              <th>
+                { _t.translate('None') }
+              </th>
+            </tr>
           </tbody>
+        }
         </table>
       </div>
     );
