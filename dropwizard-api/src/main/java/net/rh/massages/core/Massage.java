@@ -158,7 +158,7 @@ public class Massage {
 	 *
 	 * @param client new client
 	 */
-	public void setUser(String client) {
+	public void setClient(String client) {
 		this.client = client;
 	}
 

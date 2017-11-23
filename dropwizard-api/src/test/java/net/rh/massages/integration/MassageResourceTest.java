@@ -118,7 +118,7 @@ public class MassageResourceTest {
 		assertEquals(1, massage.getId());
 		assertEquals(new Date(0), massage.getDate());
 		assertTrue(massage.getMasseuse().equals("Great Masseuse") || massage.getMasseuse().equals("Updated Masseuse"));
-		assertEquals(null, massage.getUser());
+		assertEquals(null, massage.getClient());
 		assertEquals(1, massage.getFacility().getId());
 	}
 
@@ -146,7 +146,7 @@ public class MassageResourceTest {
 		assertEquals(1, updatedMassage.getId());
 		assertEquals(new Date(0), updatedMassage.getDate());
 		assertEquals("Updated Masseuse", updatedMassage.getMasseuse());
-		assertEquals(null, updatedMassage.getUser());
+		assertEquals(null, updatedMassage.getClient());
 		assertEquals(facility, updatedMassage.getFacility());
 	}
 }

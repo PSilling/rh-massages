@@ -30,7 +30,6 @@ import org.junit.Test;
 import io.dropwizard.testing.junit.DAOTestRule;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
-import net.rh.massages.core.User;
 
 /**
  * MassageDAOTest Massage Data Access Object JUnit test class
@@ -43,12 +42,11 @@ import net.rh.massages.core.User;
 public class MassageDAOTest {
 
 	@Rule
-	public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class).addEntityClass(User.class)
+	public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class)
 			.addEntityClass(Massage.class).build(); // database mock
 
 	private FacilityDAO facilityDAO; // facility data access object
 	private MassageDAO massageDAO; // massage data access object
-	private UserDAO userDAO; // user data access object
 
 	/**
 	 * Creates MassageDAO with current database Session
@@ -59,7 +57,6 @@ public class MassageDAOTest {
 	public void setUp() throws Exception {
 		facilityDAO = new FacilityDAO(daoTestRule.getSessionFactory());
 		massageDAO = new MassageDAO(daoTestRule.getSessionFactory());
-		userDAO = new UserDAO(daoTestRule.getSessionFactory());
 	}
 
 	/**
@@ -92,16 +89,12 @@ public class MassageDAOTest {
 			facilityDAO.create(new Facility("Second Facility"));
 			return facilityDAO.findById((long) 2);
 		});
-		final User user = daoTestRule.inTransaction(() -> {
-			userDAO.create(new User("Normal User", "example@email.com", false));
-			return userDAO.findById((long) 1);
-		});
 		Massage massage = new Massage(new Date(0), "Great Masseuse", null, facility1);
 		final Massage updatedMassage = daoTestRule.inTransaction(() -> {
 			massageDAO.create(massage);
 			massage.setDate(new Date(1000));
 			massage.setMasseuse("Updated Masseuse");
-			massage.setUser(user);
+			massage.setClient("Client");
 			massage.setFacility(facility2);
 			return massageDAO.update(massage);
 		});
@@ -109,7 +102,7 @@ public class MassageDAOTest {
 		assertEquals(1, updatedMassage.getId());
 		assertEquals(new Date(1000), updatedMassage.getDate());
 		assertEquals("Updated Masseuse", updatedMassage.getMasseuse());
-		assertEquals(user, updatedMassage.getUser());
+		assertEquals("Client", updatedMassage.getClient());
 		assertEquals(facility2, updatedMassage.getFacility());
 		assertEquals(massage, updatedMassage);
 	}
@@ -145,12 +138,8 @@ public class MassageDAOTest {
 			facilityDAO.create(new Facility("Big Facility"));
 			return facilityDAO.findById((long) 1);
 		});
-		final User user = daoTestRule.inTransaction(() -> {
-			userDAO.create(new User("Normal User", "example@email.com", false));
-			return userDAO.findById((long) 1);
-		});
 		final Massage massage1 = new Massage(new Date(0), "First Masseuse", null, facility);
-		final Massage massage2 = new Massage(new Date(1000), "Second Masseuse", user, facility);
+		final Massage massage2 = new Massage(new Date(1000), "Second Masseuse", "Client", facility);
 		daoTestRule.inTransaction(() -> {
 			massageDAO.create(massage1);
 			massageDAO.create(massage2);
@@ -159,7 +148,7 @@ public class MassageDAOTest {
 		Massage massageById = massageDAO.findById((long) 1);
 		Massage massageByDate = massageDAO.findByDate((new Date(1000)));
 		List<Massage> massagesByMasseuse = massageDAO.findAllByMasseuse("First Masseuse");
-		List<Massage> massagesByUser = massageDAO.findAllByUser(user);
+		List<Massage> massagesByUser = massageDAO.findAllByClient("Client");
 		List<Massage> massagesByFacility = massageDAO.findAllByFacility(facility);
 		List<Massage> massages = massageDAO.findAll();
 

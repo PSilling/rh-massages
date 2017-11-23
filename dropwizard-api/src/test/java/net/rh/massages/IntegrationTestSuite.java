@@ -26,7 +26,6 @@ import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import net.rh.massages.integration.FacilityResourceTest;
 import net.rh.massages.integration.MassageResourceTest;
-import net.rh.massages.integration.UserResourceTest;
 
 /**
  * IntegrationTestSuite JUnit test suite that runs integration resource tests
@@ -37,7 +36,7 @@ import net.rh.massages.integration.UserResourceTest;
  */
 
 @RunWith(Suite.class)
-@SuiteClasses({ FacilityResourceTest.class, MassageResourceTest.class, UserResourceTest.class })
+@SuiteClasses({ FacilityResourceTest.class, MassageResourceTest.class })
 public class IntegrationTestSuite {
 
 	/*
