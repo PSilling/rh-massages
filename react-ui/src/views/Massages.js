@@ -5,9 +5,11 @@ import React, { Component } from 'react';
 // component imports
 import AssignButton from '../components/AssignButton';
 import CancelButton from '../components/CancelButton';
+import ForceCancelButton from '../components/ForceCancelButton';
 import DeleteButton from '../components/DeleteButton';
 import EditButton from '../components/EditButton';
 import MassageModal from '../components/MassageModal';
+import UnauthorizedMessage from '../components/UnauthorizedMessage';
 
 // module imports
 import Tabs from 'react-simpletabs';
@@ -49,7 +51,7 @@ class FacilitiesList extends Component {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: {id: 1},
+      client: Auth.getSub(),
       facility: massage.facility
     }, this.getFacilities);
   }
@@ -58,7 +60,7 @@ class FacilitiesList extends Component {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
       masseuse: massage.masseuse,
-      user: null,
+      client: null,
       facility: massage.facility
     }, this.getFacilities);
   }
@@ -77,6 +79,12 @@ class FacilitiesList extends Component {
   }
 
   render () {
+    if (!Auth.isAuthenticated()) {
+      return(
+        <UnauthorizedMessage title={ _t.translate('Massages') } />
+      );
+    }
+
     return (
       <div>
         <h1>
@@ -103,38 +111,48 @@ class FacilitiesList extends Component {
                           getCallback={() => {this.getFacilities()}}
                           onToggle={() => {this.toggleModal(-1)}}
                         />
-                      </th> : ''
+                      </th> : <th className="hidden"></th>
                     }
                   </tr>
                 </thead>
-                <tbody>
-                  {this.state.massages.map((item, index) => (
-                    <tr key={index}>
-                      <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
-                      <td>{item.masseuse}</td>
-                      {Util.isEmpty(item.user) ?
-                        <td className="success">
-                          { _t.translate('Free') }
-                          <AssignButton onAssign={() => this.assignMassage(item)} />
-                        </td> :
-                        <td className="danger">
-                          { _t.translate('Full') }
-                          <CancelButton onCancel={() => this.cancelMassage(item)} />
-                        </td>
-                      }
-                      {Auth.isAdmin() ?
-                        <td width="105px">
-                          <span className="pull-right">
-                            <span style={{ 'marginRight': '5px' }}>
-                              <EditButton onEdit={() => this.toggleModal(index)} />
+                {this.state.massages.length > 0 ?
+                  <tbody>
+                    {this.state.massages.map((item, index) => (
+                      <tr key={index}>
+                        <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
+                        <td>{item.masseuse}</td>
+                        {Util.isEmpty(item.client) ?
+                          <td className="success">
+                            { _t.translate('Free') }
+                            <AssignButton onAssign={() => this.assignMassage(item)} />
+                          </td> :
+                          <td className={ Auth.getSub() === item.client ? "warning" : "danger" }>
+                            { Auth.getSub() === item.client ? _t.translate('Assigned') : _t.translate('Full') }
+                            { Auth.getSub() === item.client ? <CancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
+                            { Auth.isAdmin() && Auth.getSub() !== item.client ? <ForceCancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
+                          </td>
+                        }
+                        {Auth.isAdmin() ?
+                          <td width="105px">
+                            <span className="pull-right">
+                              <span style={{ 'marginRight': '5px' }}>
+                                <EditButton onEdit={() => this.toggleModal(index)} />
+                              </span>
+                              <DeleteButton onDelete={() => this.deleteMassage(item.id)} />
                             </span>
-                            <DeleteButton onDelete={() => this.deleteMassage(item.id)} />
-                          </span>
-                        </td> : ''
-                      }
+                          </td> : <td className="hidden"></td>
+                        }
+                      </tr>
+                    ))}
+                  </tbody> :
+                  <tbody>
+                    <tr>
+                      <th>
+                        { _t.translate('None') }
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
+                  </tbody>
+                }
               </table>
             </Tabs.Panel>
           ))}

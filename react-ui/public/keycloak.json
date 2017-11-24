@@ -1,0 +1,7 @@
+{
+  "realm": "massages",
+  "auth-server-url": "http://localhost:9090/auth",
+  "ssl-required": "none",
+  "resource": "ui-client",
+  "public-client": true
+}

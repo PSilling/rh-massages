@@ -11,12 +11,6 @@ const myLocalize = new Localize({
     "My Massages": {
       "cs": "Moje masáže"
     },
-    "Profile": {
-      "cs": "Profil"
-    },
-    "Profile (admin)": {
-      "cs": "Profil (admin)"
-    },
 
     // other titles
     "New Massage": {
@@ -33,6 +27,12 @@ const myLocalize = new Localize({
     },
     "Massage time": {
       "cs": "Čas masáže"
+    },
+    "Profile": {
+      "cs": "Profil"
+    },
+    "Logout": {
+      "cs": "Odhlásit"
     },
 
     // table items
@@ -55,16 +55,13 @@ const myLocalize = new Localize({
       "cs": "Plno"
     },
     "Name": {
-      "cs": "Jméno"
+      "cs": "Název"
     },
-    "Email": {
-      "cs": "Email"
+    "Unauthorized": {
+      "cs": "Unauthorized"
     },
-    "Total massages": {
-      "cs": "Počet masáží"
-    },
-    "No assigned massages": {
-      "cs": "Žádné zapsané masáže"
+    "Assigned": {
+      "cs": "Zapsáno"
     },
 
     // actions
@@ -79,6 +76,9 @@ const myLocalize = new Localize({
     },
     "Cancel": {
       "cs": "Zrušit"
+    },
+    "Force cancel": {
+      "cs": "Vynutit zrušení"
     },
     "Dismiss": {
       "cs": "Zrušit"
@@ -106,6 +106,9 @@ const myLocalize = new Localize({
     "page doesn't exist:": {
       "cs": "stránka neexistuje:"
     },
+    "None": {
+      "cs": "Žádné"
+    },
 
     // text messages
     "Action confirmation": {
@@ -119,6 +122,9 @@ const myLocalize = new Localize({
     },
     "Are you sure you want to cancel this massage?": {
       "cs": "Jste si jisti, že chcete zrušit tuto masáž?"
+    },
+    "Are you sure you want to cancel a massage that is assigned?": {
+      "cs": "Jste si jisti, že chcete zrušit masáž, která je zapsaná?"
     }
 });
 

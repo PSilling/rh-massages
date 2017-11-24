@@ -13,6 +13,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // util imports
+import Auth from '../utils/Auth.js';
 import _t from '../utils/Translations.js';
 import Util from '../utils/Util.js';
 
@@ -47,7 +48,7 @@ class MassageModal extends Component {
     Util.post(Util.MASSAGES_URL, {
       date: this.state.date.toDate(),
       masseuse: this.state.masseuse,
-      user: null,
+      client: null,
       facility: {id: this.props.facilityId}
     }, this.props.getCallback);
   }
@@ -59,7 +60,7 @@ class MassageModal extends Component {
     Util.put(Util.MASSAGES_URL + this.props.massage.id, {
       date: this.state.date.toDate(),
       masseuse: this.state.masseuse,
-      user: this.props.massage.user,
+      client: this.props.massage.client,
       facility: this.props.massage.facility
     }, this.props.getCallback);
   }

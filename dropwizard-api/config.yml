@@ -18,3 +18,20 @@ database:
   
   # the SQL query to run when validating a connection's liveness
   validationQuery: "SELECT 1"
+
+server:
+  applicationConnectors:
+      - type: http
+        port: 8080
+  adminConnectors:
+      - type: http
+        port: 8081
+
+keycloakConfiguration:
+  realm: massages
+  auth-server-url: http://localhost:9090/auth
+  ssl-required: none
+  resource: api-client
+  bearer-only: true
+  credentials:
+    secret: b4a1ee69-6441-49a0-b653-e2875234c0ef

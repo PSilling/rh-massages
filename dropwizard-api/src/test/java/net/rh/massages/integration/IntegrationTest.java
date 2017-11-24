@@ -14,31 +14,40 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package net.rh.massages;
+package net.rh.massages.integration;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import org.junit.Test;
 
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import net.rh.massages.integration.FacilityResourceTest;
-import net.rh.massages.integration.MassageResourceTest;
-import net.rh.massages.integration.UserResourceTest;
+import net.rh.massages.MassagesApplication;
+import net.rh.massages.MassagesConfiguration;
+import net.rh.massages.core.Facility;
+import net.rh.massages.core.Massage;
 
 /**
- * IntegrationTestSuite JUnit test suite that runs integration resource tests
+ * IntegrationTest JUnit integration test that also checks whether authorization
+ * is applied
  *
  * @author psilling
  * @since 1.0.0
  *
  */
 
-@RunWith(Suite.class)
-@SuiteClasses({ FacilityResourceTest.class, MassageResourceTest.class, UserResourceTest.class })
-public class IntegrationTestSuite {
+public class IntegrationTest {
 
 	/*
 	 * Creates a new static DropwizardAppRule that starts the whole application in
@@ -56,5 +65,23 @@ public class IntegrationTestSuite {
 	@BeforeClass
 	public static void migrateDb() throws Exception {
 		RULE.getApplication().run("db", "migrate", ResourceHelpers.resourceFilePath("config-test.yml"));
+	}
+
+	/**
+	 * Tests whether endpoints using Auth annotation require authentication.
+	 */
+	@Test(expected = NotAuthorizedException.class)
+	public void testAuth() {
+		final Facility facility = new Facility("Facility"); // test Facility
+		final Massage massage = new Massage(new Date(0), "Great Masseuse", null, facility); // test Massage
+
+		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/massages/1")
+				.request(MediaType.APPLICATION_JSON).put(Entity.json(massage));
+
+		assertEquals(401, respone.getStatus());
+
+		List<Massage> massages = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/massages/client")
+				.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Massage>>() {
+				});
 	}
 }

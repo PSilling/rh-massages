@@ -14,37 +14,36 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package net.rh.massages.health;
+package net.rh.massages.auth;
 
-import javax.inject.Inject;
+import javax.ws.rs.ForbiddenException;
 
-import com.codahale.metrics.health.HealthCheck;
-
-import io.dropwizard.hibernate.UnitOfWork;
-import net.rh.massages.db.FacilityDAO;
+import io.dropwizard.auth.Authorizer;
 
 /**
- * MassagesHealthCheck Health check of the application.
+ * UserAuthorizer User authorizer updated to work with new User representation.
  *
  * @author psilling
  * @since 1.0.0
+ *
  */
 
-public class MassagesHealthCheck extends HealthCheck {
-
-	@Inject
-	private FacilityDAO facilityDAO; // facility data access object
+public class UserAuthorizer implements Authorizer<User> {
 
 	/**
-	 * Checks whether the application is healthy by checking database connection and
-	 * by checking if there is at least one User and one Facility.
+	 * Authorizes a User to an action depending on his role.
+	 *
+	 * @param user the User to be authorized
+	 * @param role the role that is required for the authorization
+	 * @return true if the User is authorized, false otherwise
 	 */
-	@UnitOfWork
 	@Override
-	protected Result check() throws Exception {
-		if (facilityDAO.findAll().isEmpty()) {
-			return Result.unhealthy("The application is unhealthy as there is no existing Facility.");
+	public boolean authorize(User user, String role) {
+		try {
+			user.checkUserInRole(role);
+			return true;
+		} catch (ForbiddenException e) {
+			return false;
 		}
-		return Result.healthy("The application is healthy.");
 	}
 }

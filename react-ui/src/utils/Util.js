@@ -1,5 +1,6 @@
 import _t from './Translations';
 import { NotificationManager } from 'react-notifications';
+import Auth from './Auth';
 
 var Util = function() { };
 
@@ -44,19 +45,26 @@ Util.notify = (type, message, title) => {
  * @param update          callback function to update the resources
  */
 Util.get = (url, update) => {
-  fetch(url, {
-    credentials: 'same-origin',
-    method: 'get'
-  }).then(function(response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-        _t.translate('An error occured!'));
-    }
-  }).then(function(json) {
-    console.log(json);
-    update(json);
+  Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
+    fetch(url, {
+      method: 'get',
+      headers: {
+        'Authorization': 'Bearer ' + Auth.getToken()
+      }
+    }).then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
+          _t.translate('An error occured!'));
+      }
+    }).then(function(json) {
+      console.log(json);
+      update(json);
+    });
+  }).error(function() {
+    console.log('Failed to refresh the token!');
+    Auth.keycloak.login();
   });
 }
 
@@ -67,20 +75,28 @@ Util.get = (url, update) => {
  * @param update          callback function to update the resources
  */
 Util.post = (url, data, update) => {
-  console.log(data);
-  fetch(url, {
-    credentials: 'same-origin',
-    method: 'post',
-    headers: { "Content-Type" : "application/json" },
-    body: JSON.stringify(data)
-  }).then(function(response) {
-    if (response.ok) {
-      Util.notify("success", "", _t.translate('Your request has been successful.'));
-      update();
-    } else {
-      Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-        _t.translate('An error occured!'));
-    }
+  Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
+    console.log(data);
+    fetch(url, {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {
+        "Authorization" : "bearer " + Auth.getToken(),
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(function(response) {
+      if (response.ok) {
+        Util.notify("success", "", _t.translate('Your request has been successful.'));
+        update();
+      } else {
+        Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
+          _t.translate('An error occured!'));
+      }
+    });
+  }).error(function() {
+    console.log('Failed to refresh the token!');
+    Auth.keycloak.login();
   });
 }
 
@@ -91,20 +107,28 @@ Util.post = (url, data, update) => {
  * @param update          callback function to update the resources
  */
 Util.put = (url, data, update) => {
-  console.log(data);
-  fetch(url, {
-    credentials: 'same-origin',
-    method: 'put',
-    headers: { "Content-Type" : "application/json" },
-    body: JSON.stringify(data)
-  }).then(function(response) {
-    if (response.ok) {
-      Util.notify("success", "", _t.translate('Your request has been successful.'));
-      update();
-    } else {
-      Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-        _t.translate('An error occured!'));
-    }
+  Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
+    console.log(data);
+    fetch(url, {
+      method: 'put',
+      credentials: 'same-origin',
+      headers: {
+        "Authorization" : "bearer " + Auth.getToken(),
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(function(response) {
+      if (response.ok) {
+        Util.notify("success", "", _t.translate('Your request has been successful.'));
+        update();
+      } else {
+        Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
+          _t.translate('An error occured!'));
+      }
+    });
+  }).error(function() {
+    console.log('Failed to refresh the token!');
+    Auth.keycloak.login();
   });
 }
 
@@ -114,22 +138,31 @@ Util.put = (url, data, update) => {
  * @param update          callback function to update the resources
  */
 Util.delete = (url, update) => {
-  fetch(url, {
-    credentials: 'same-origin',
-    method: 'delete'
-  }).then(function(response) {
-    if (response.ok) {
-      Util.notify("success", "", _t.translate('Your request has been successful.'));
-      update();
-    } else {
-      Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-        _t.translate('An error occured!'));
-    }
+  Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
+    fetch(url, {
+      method: 'delete',
+      credentials: 'same-origin',
+      headers: {
+        "Authorization" : "bearer " + Auth.getToken()
+      }
+    }).then(function(response) {
+      if (response.ok) {
+        Util.notify("success", "", _t.translate('Your request has been successful.'));
+        update();
+      } else {
+        Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
+          _t.translate('An error occured!'));
+      }
+    });
+  }).error(function() {
+    console.log('Failed to refresh the token!');
+    Auth.keycloak.login();
   });
 }
 
 Util.FACILITIES_URL = "http://localhost:8080/facilities/";
 Util.MASSAGES_URL = "http://localhost:8080/massages/";
-Util.USERS_URL = "http://localhost:8080/users/";
+Util.LOGOUT_URL = "http://localhost:8080/logout/";
+Util.REFRESH_MIN_TIME = 150;
 
 export default Util

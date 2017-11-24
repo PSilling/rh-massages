@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect, withRouter } fr
 import Facilities from './views/Facilities.js';
 import Massages from './views/Massages.js';
 import MyMassages from './views/MyMassages.js';
-import Profile from './views/Profile.js';
 
 // component imports
+import ProfileLink from './components/ProfileLink';
 import LangLink from './components/LangLink';
+import LogoutLink from './components/LogoutLink';
 
 // module imports
 import { NotificationContainer } from 'react-notifications';
@@ -41,20 +42,22 @@ const NavWithLinks = withRouter(() => (
         <li>
           <Link to="/">{ _t.translate("Massages") }</Link>
         </li>
-        { Auth.isAuthenticated ?
+        { Auth.isAuthenticated() ?
           <li>
             <Link to="/my-massages">{ _t.translate("My Massages") }</Link>
           </li> : '' }
-        { Auth.isAuthenticated ?
-          <li>
-            <Link to="/profile">{ _t.translate("Profile") }</Link>
-          </li> : '' }
-        { Auth.isAdmin ?
+        { Auth.isAdmin() ?
           <li>
             <Link to="/facilities">{ _t.translate("Facilities") }</Link>
           </li> : '' }
       </ul>
       <ul className="nav navbar-nav navbar-right">
+        <li>
+          <ProfileLink />
+        </li>
+        <li>
+          <LogoutLink />
+        </li>
         <li>
           <LangLink />
         </li>
@@ -63,24 +66,14 @@ const NavWithLinks = withRouter(() => (
   </nav>
 ))
 
-// route with authorization enforcement
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    Auth.isAuthenticated() ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
-
 // main application component
 class App extends Component {
 
   render() {
+    if (!Auth.isAuthenticated()) {
+      Auth.authenticate();
+    }
+
     return (
       <Router>
         <div>
@@ -91,9 +84,8 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <Route exact path="/" component={Massages}/>
-              <PrivateRoute exact path="/my-massages" component={MyMassages}/>
-              <PrivateRoute exact path="/facilities" component={Facilities}/>
-              <PrivateRoute path="/profile" component={Profile}/>
+              <Route exact path="/my-massages" component={MyMassages}/>
+              <Route exact path="/facilities" component={Facilities}/>
               <Route component={NoMatch}/>
             </Switch>
           </div>

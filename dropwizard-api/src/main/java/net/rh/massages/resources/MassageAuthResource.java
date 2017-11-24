@@ -19,13 +19,11 @@ package net.rh.massages.resources;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,15 +31,17 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriBuilder;
 
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.MassageDAO;
 
 /**
- * MassageResource Massage resource class
+ * MassageAuthResource Massage resource class that groups methods using Auth
+ * annotation to allow resource testing
  *
  * @author psilling
  * @since 1.0.0
@@ -51,7 +51,7 @@ import net.rh.massages.db.MassageDAO;
 @Path("/massages")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class MassageResource {
+public class MassageAuthResource {
 
 	private final MassageDAO massageDao; // massage data access object
 
@@ -60,81 +60,59 @@ public class MassageResource {
 	 *
 	 * @param massageDao new MassageResource massageDao
 	 */
-	public MassageResource(MassageDAO massageDao) {
+	public MassageAuthResource(MassageDAO massageDao) {
 		this.massageDao = massageDao;
 	}
 
 	/**
-	 * GETs all massages that can be found
+	 * Updates a massage given by id to a given value
 	 *
-	 * @return list of all massages
-	 */
-	@GET
-	@PermitAll
-	@UnitOfWork
-	public List<Massage> fetch() {
-		return massageDao.findAll();
-	}
-
-	/**
-	 * Accepts POST request with a new Massage
-	 *
-	 * @param massage new Massage
-	 * @exception WebApplicationException if massage could not be found after
-	 *                creation
-	 * @return on creation response
-	 */
-	@POST
-	@RolesAllowed("admin")
-	@UnitOfWork
-	public Response createMassage(@NotNull @Valid Massage massage) {
-		massageDao.create(massage);
-
-		if (massageDao.findById(massage.getId()) == null) {
-			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
-		}
-
-		return Response.created(UriBuilder.fromResource(MassageResource.class).path("/{id}").build(massage.getId()))
-				.entity(massage).build();
-	}
-
-	/**
-	 * GETs a massage based on its id
-	 *
+	 * @param massage updated massage
 	 * @param id massage id
-	 * @exception WebApplicationException if the id could not be found
-	 * @return the desired massage
+	 * @exception WebApplicationException if the id could not be found or when
+	 *                normal user tries to change a massage that isn't assigned to
+	 *                him or change the massage itself
+	 * @return on update response
 	 */
-	@GET
+	@PUT
 	@Path("/{id}")
 	@PermitAll
 	@UnitOfWork
-	public Massage findById(@PathParam("id") LongParam id) {
-		if (massageDao.findById(id.get()) == null) {
+	public Response update(@NotNull @Valid Massage massage, @PathParam("id") LongParam id, @Auth User user) {
+		Massage daoMassage = massageDao.findById(id.get());
+
+		if (daoMassage == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
-		return massageDao.findById(id.get());
+		massage.setId(id.get());
+
+		if (!user.getRoles().contains("admin")) {
+			// user is forbidden to edit anything other than the client and even then the
+			// client has to be the user himself or a null
+			if (!daoMassage.equals(massage)
+					|| (!user.getSubject().equals(massage.getClient())
+							&& !user.getSubject().equals(daoMassage.getClient()))
+					|| (massage.getClient() != null && !massage.getClient().equals(user.getSubject()))) {
+				throw new WebApplicationException(Status.FORBIDDEN);
+			}
+		}
+
+		massageDao.update(massage);
+
+		return Response.ok(massage).build();
 	}
 
 	/**
-	 * DELETEs a massage given by id
+	 * GETs all massages of a give client
 	 *
-	 * @param id massage id
-	 * @exception WebApplicationException if the id could not be found
-	 * @return on delete response
+	 * @return all found massages
 	 */
-	@DELETE
-	@Path("/{id}")
-	@RolesAllowed("admin")
+	@GET
+	@Path("/client")
+	@PermitAll
 	@UnitOfWork
-	public Response delete(@PathParam("id") LongParam id) {
-		if (massageDao.findById(id.get()) == null) {
-			throw new WebApplicationException(Status.NOT_FOUND);
-		}
-
-		massageDao.delete(massageDao.findById(id.get()));
-
-		return Response.noContent().build();
+	public List<Massage> findAllByClient(@Auth User user) {
+		return massageDao.findAllByClient(user.getSubject());
 	}
 }

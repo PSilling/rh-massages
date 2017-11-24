@@ -16,20 +16,18 @@
  *******************************************************************************/
 package net.rh.massages.db;
 
-import io.dropwizard.hibernate.AbstractDAO;
-
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
+import io.dropwizard.hibernate.AbstractDAO;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
-import net.rh.massages.core.User;
-
-import org.hibernate.SessionFactory;
 
 /**
  * MassageDAO Massage Data Access Object
- * 
+ *
  * @author psilling
  * @since 1.0.0
  *
@@ -39,7 +37,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Parameterized MassageDAO constructor
-	 * 
+	 *
 	 * @param sessionFactory new MassageDAO SessionFactory
 	 */
 	public MassageDAO(SessionFactory sessionFactory) {
@@ -48,7 +46,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session and adds a given Massage to the database
-	 * 
+	 *
 	 * @param massage Massage to be created
 	 * @return the created Massage
 	 */
@@ -57,8 +55,9 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Clears the current Session and then updates a given Massage with a new Session
-	 * 
+	 * Clears the current Session and then updates a given Massage with a new
+	 * Session
+	 *
 	 * @param massage updated Massage
 	 * @return the updated Massage
 	 */
@@ -69,7 +68,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on its id
-	 * 
+	 *
 	 * @param id id to be found
 	 * @return the found Massage
 	 */
@@ -79,7 +78,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on its Date
-	 * 
+	 *
 	 * @param date Date to be found
 	 * @return the found Massage
 	 */
@@ -88,8 +87,9 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds all massages in the database based on their masseuse
-	 * 
+	 * Creates a new Session that finds all massages in the database based on their
+	 * masseuse
+	 *
 	 * @param masseuse masseuse of the massages that are to be found
 	 * @return list of all found massages
 	 */
@@ -98,18 +98,20 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on their User
-	 * 
-	 * @param user User of the massages the are to be found
+	 * Creates a new Session that finds a Massage in the database based on their
+	 * User
+	 *
+	 * @param client client ID of the massages the are to be found
 	 * @return list of all found massages
 	 */
-	public List<Massage> findAllByUser(User user) {
-		return list(namedQuery("Massage.findAllByUser").setParameter("user", user));
+	public List<Massage> findAllByClient(String client) {
+		return list(namedQuery("Massage.findAllByClient").setParameter("client", client));
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on their Facility
-	 * 
+	 * Creates a new Session that finds a Massage in the database based on their
+	 * Facility
+	 *
 	 * @param facility Facility of the massages the are to be found
 	 * @return list of all found massages
 	 */
@@ -119,7 +121,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds all massages in the database
-	 * 
+	 *
 	 * @return list of all massages
 	 */
 	public List<Massage> findAll() {
@@ -128,7 +130,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Removes a given Massage from the current Session
-	 * 
+	 *
 	 * @param massage Massage to be removed
 	 */
 	public void delete(Massage massage) {

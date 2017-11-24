@@ -16,44 +16,72 @@
  *******************************************************************************/
 package net.rh.massages;
 
-import io.dropwizard.Configuration;
-import io.dropwizard.db.DataSourceFactory;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.keycloak.representations.adapters.config.AdapterConfig;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
+import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
 
 /**
  * MassagesConfiguration configuration class of the project
- * 
+ *
  * @author psilling
- * @since  1.0.0
+ * @since 1.0.0
  */
 
 public class MassagesConfiguration extends Configuration {
 
 	@Valid
 	@NotNull
-	private DataSourceFactory database = new DataSourceFactory(); // applications database
+	private DataSourceFactory database = new DataSourceFactory(); // application's database
+
+	@Valid
+	@NotNull
+	private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // application's Keycloak
+																						// configuration
 
 	/**
 	 * DataSourceFactory setter
-	 * 
+	 *
 	 * @param factory DataSourceFactory factory to be set
 	 */
 	@JsonProperty("database")
 	public void setDataSourceFactory(DataSourceFactory factory) {
-		this.database = factory;
+		database = factory;
 	}
 
 	/**
 	 * DataSourceFactory getter
-	 * 
+	 *
 	 * @return current DataSourceFactory
 	 */
 	@JsonProperty("database")
 	public DataSourceFactory getDataSourceFactory() {
 		return database;
+	}
+
+	/**
+	 * KeycloakConfiguration setter
+	 *
+	 * @param keycloakConfiguration new keycloakConfiguration value
+	 */
+	@JsonProperty("keycloakConfiguration")
+	public void setKeycloakConfiguration(KeycloakConfiguration keycloakConfiguration) {
+		this.keycloakConfiguration = keycloakConfiguration;
+	}
+
+	/**
+	 * KeycloakConfiguration getter
+	 *
+	 * @return current keycloakConfiguration
+	 */
+	@JsonProperty("keycloakConfiguration")
+	public AdapterConfig getKeycloakConfiguration() {
+		return keycloakConfiguration;
 	}
 }
