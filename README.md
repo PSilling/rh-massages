@@ -13,3 +13,13 @@ Red Hat massages management site.
 1. Run `npm install` to build your application
 1. Start the application with `npm start`
 1. To check that your application is running enter url `http://localhost:3000`
+
+## DB environmental variables
+
+The application supports these environmental variables for its database:
+
+| VARIABLE        | MEANING                       | DEFAULT VALUE                             |
+| --------------- |------------------------------ | ----------------------------------------- |
+| RM_DB_USERNAME  | Database username             | postgres                                  |
+| RM_DB_PASSWORD  | Database password             | postgres                                  |
+| RM_DB_URL       | Database adress               | jdbc:postgresql://localhost:5432/postgres |

@@ -29,6 +29,8 @@ import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
 import io.dropwizard.auth.Authenticator;
 import io.dropwizard.auth.Authorizer;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
@@ -97,6 +99,10 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
 		bootstrap.addBundle(HIBERNATE);
+
+		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
+				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
+
 		bootstrap.addBundle(new MigrationsBundle<MassagesConfiguration>() {
 
 			@Override
@@ -104,6 +110,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 				return configuration.getDataSourceFactory();
 			}
 		});
+
 		bootstrap.addBundle(new KeycloakBundle<MassagesConfiguration>() {
 
 			@Override
@@ -132,7 +139,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 * The application's run method
 	 *
 	 * @param configuration configuration of the application
-	 * @param enviroment jersey enviroment of the application
+	 * @param enviroment jersey environment of the application
 	 */
 	@Override
 	public void run(final MassagesConfiguration configuration, final Environment environment) {

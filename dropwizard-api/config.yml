@@ -3,13 +3,13 @@ database:
   driverClass: org.postgresql.Driver
 
   # the username
-  user: postgres
+  user: ${RM_DB_USERNAME:-postgres}
 
   # the password
-  password: postgres
+  password: ${RM_DB_USERNAME:-postgres}
 
   # the JDBC URL
-  url: jdbc:postgresql://localhost:5432/postgres
+  url: ${RM_DB_URL:-jdbc:postgresql://localhost:5432/postgres}
   
   # any properties specific to your JDBC driver:
   properties:
