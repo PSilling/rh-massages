@@ -43,6 +43,7 @@ import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 import net.rh.massages.resources.FacilityResource;
 import net.rh.massages.resources.LogoutResource;
+import net.rh.massages.resources.MassageAuthResource;
 import net.rh.massages.resources.MassageResource;
 
 /**
@@ -140,6 +141,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 
 		environment.jersey().register(new FacilityResource(facilityDao, massageDao));
 		environment.jersey().register(new MassageResource(massageDao));
+		environment.jersey().register(new MassageAuthResource(massageDao));
 		environment.jersey().register(new LogoutResource());
 
 		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
