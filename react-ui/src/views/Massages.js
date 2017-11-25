@@ -30,7 +30,14 @@ class FacilitiesList extends Component {
   state = {facilities: [], massages: [], index: 1, modalActive: false, editId: -1}
 
   componentDidMount() {
+    Util.clearAllIntervals();
+
     this.getFacilities();
+
+    setInterval(() => {
+      if (this.state.modalActive) return;
+      this.getMassages(this.state.index-1);
+    }, Util.AUTO_REFRESH_TIME);
   }
 
   getFacilities = () => {

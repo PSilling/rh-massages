@@ -20,7 +20,13 @@ class MassagesList extends Component {
   state = {massages: []}
 
   componentDidMount() {
+    Util.clearAllIntervals();
+
     this.getMassages();
+
+    setInterval(() => {
+      this.getMassages();
+    }, Util.AUTO_REFRESH_TIME * 6);
   }
 
   getMassages = () => {

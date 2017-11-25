@@ -160,9 +160,22 @@ Util.delete = (url, update) => {
   });
 }
 
+
+/**
+ * Stops all active intervals.
+ */
+Util.clearAllIntervals = () => {
+  var maxIntervalId = setTimeout(function() {
+    for (var i = 0; i < maxIntervalId; i++) {
+        clearInterval(i);
+    }
+  }, 0);
+}
+
 Util.FACILITIES_URL = "http://localhost:8080/facilities/";
 Util.MASSAGES_URL = "http://localhost:8080/massages/";
 Util.LOGOUT_URL = "http://localhost:8080/logout/";
 Util.REFRESH_MIN_TIME = 150;
+Util.AUTO_REFRESH_TIME = 10000;
 
 export default Util

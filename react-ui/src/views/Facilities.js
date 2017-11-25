@@ -21,7 +21,14 @@ class FacilitiesList extends Component {
   state = {facilities: [], modalActive: false, editId: -1}
 
   componentDidMount() {
+    Util.clearAllIntervals();
+
     this.getFacilities();
+
+    setInterval(() => {
+      if (this.state.modalActive) return;
+      this.getFacilities();
+    }, Util.AUTO_REFRESH_TIME * 3);
   }
 
   getFacilities = () => {
