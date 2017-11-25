@@ -28,7 +28,10 @@ class DeleteButton extends Component {
           <ConfirmationModal
             message={ _t.translate('Are you sure? This action cannot be reverted.') }
             onClose={() => this.handleToggle()}
-            onConfirm={() => this.props.onDelete()}
+            onConfirm={() => {
+              this.handleToggle();
+              this.props.onDelete();
+            }}
           /> : ''
         }
       </span>

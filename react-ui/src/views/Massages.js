@@ -41,7 +41,7 @@ class FacilitiesList extends Component {
         return 0;
       });
       this.setState({facilities: json});
-      this.getMassages(0);
+      this.getMassages(this.state.index-1);
     });
   }
 
@@ -61,7 +61,7 @@ class FacilitiesList extends Component {
       masseuse: massage.masseuse,
       client: Auth.getSub(),
       facility: massage.facility
-    }, this.getFacilities);
+    }, () => this.getMassages(this.state.index-1));
   }
 
   cancelMassage = (massage) => {
@@ -70,11 +70,11 @@ class FacilitiesList extends Component {
       masseuse: massage.masseuse,
       client: null,
       facility: massage.facility
-    }, this.getFacilities);
+    }, () => this.getMassages(this.state.index-1));
   }
 
   deleteMassage = (id) => {
-    Util.delete(Util.MASSAGES_URL + id, this.getFacilities);
+    Util.delete(Util.MASSAGES_URL + id, () => this.getMassages(this.state.index-1));
   }
 
   onTabChange = (index) => {
@@ -116,7 +116,7 @@ class FacilitiesList extends Component {
                           active={this.state.modalActive}
                           massage={this.state.editId === -1 ? -1 : this.state.massages[this.state.editId]}
                           facilityId={this.state.facilities[this.state.index-1].id}
-                          getCallback={() => {this.getFacilities()}}
+                          getCallback={() => {this.getMassages(this.state.index-1)}}
                           onToggle={() => {this.toggleModal(-1)}}
                         />
                       </th> : <th className="hidden"></th>

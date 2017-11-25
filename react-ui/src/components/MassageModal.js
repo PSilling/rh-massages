@@ -50,7 +50,10 @@ class MassageModal extends Component {
       masseuse: this.state.masseuse,
       client: null,
       facility: {id: this.props.facilityId}
-    }, this.props.getCallback);
+    }, () => {
+      this.props.onToggle();
+      this.props.getCallback();
+    });
   }
 
   /**
@@ -62,7 +65,10 @@ class MassageModal extends Component {
       masseuse: this.state.masseuse,
       client: this.props.massage.client,
       facility: this.props.massage.facility
-    }, this.props.getCallback);
+    }, () => {
+      this.props.onToggle();
+      this.props.getCallback();
+    });
   }
 
   render() {

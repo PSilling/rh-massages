@@ -28,7 +28,10 @@ class AssignButton extends Component {
           <ConfirmationModal
             message={ _t.translate('Are you sure you want to assign yourself to this massage?') }
             onClose={this.handleToggle}
-            onConfirm={this.props.onAssign}
+            onConfirm={() => {
+              this.handleToggle();
+              this.props.onAssign();
+            }}
           /> : ''
         }
       </span>

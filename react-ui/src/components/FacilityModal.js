@@ -38,7 +38,10 @@ class FacilityModal extends Component {
   addFacility = () => {
     Util.post(Util.FACILITIES_URL, {
       name: this.state.name
-    }, this.props.getCallback);
+    }, () => {
+      this.props.onToggle();
+      this.props.getCallback();
+    });
   }
 
   /**
@@ -47,7 +50,10 @@ class FacilityModal extends Component {
   editFacility = () => {
     Util.put(Util.FACILITIES_URL + this.props.facility.id, {
       name: this.state.name
-    }, this.props.getCallback);
+    }, () => {
+      this.props.onToggle();
+      this.props.getCallback();
+    });
   }
 
   render() {

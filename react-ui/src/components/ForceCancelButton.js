@@ -28,7 +28,10 @@ class ForceCancelButton extends Component {
           <ConfirmationModal
             message={ _t.translate('Are you sure you want to cancel a massage that is assigned?') }
             onClose={this.handleToggle}
-            onConfirm={this.props.onCancel}
+            onConfirm={() => {
+              this.handleToggle();
+              this.props.onCancel();
+            }}
           /> : ''
         }
       </span>
