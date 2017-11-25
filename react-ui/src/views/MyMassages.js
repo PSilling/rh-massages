@@ -25,6 +25,9 @@ class MassagesList extends Component {
 
   getMassages = () => {
     Util.get(Util.MASSAGES_URL + "client/", (json) => {
+      json.sort(function(a, b) {
+        return a.date - b.date;
+      });
       this.setState({massages: json});
     });
   }

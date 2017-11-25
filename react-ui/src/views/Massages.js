@@ -35,6 +35,11 @@ class FacilitiesList extends Component {
 
   getFacilities = () => {
     Util.get(Util.FACILITIES_URL, (json) => {
+      json.sort(function(a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
       this.setState({facilities: json});
       this.getMassages(0);
     });
@@ -43,6 +48,9 @@ class FacilitiesList extends Component {
   getMassages = (index) => {
     Util.get(Util.FACILITIES_URL + this.state.facilities[index].id +
       "/massages", (json) => {
+      json.sort(function(a, b) {
+        return a.date - b.date;
+      });
       this.setState({massages: json});
     });
   }
