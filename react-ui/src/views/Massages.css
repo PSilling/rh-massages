@@ -1,0 +1,48 @@
+.tabs {
+  margin-top: 15px;
+}
+
+.tabs-navigation {
+  padding: 0 15px;
+  max-height: 45px;
+  border-bottom: 1px solid #DDD;
+}
+
+.tabs-menu {
+  display: table;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.tabs-menu-item {
+  float: left;
+}
+
+.tabs-menu-item a {
+  display: block;
+  padding: 0 20px;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 0;
+  color: #666;
+}
+
+.tabs-menu-item:not(.is-active) a:hover {
+  color: #444;
+  background-color: #EEE;
+  border: 1px solid #DDD;
+  border-top: 2px solid #BBB;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.tabs-menu-item.is-active a {
+  color: #000;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  border-top: 2px solid #BBB;
+  border-bottom: none;
+  text-decoration: none;
+}

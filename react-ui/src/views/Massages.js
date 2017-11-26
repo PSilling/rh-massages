@@ -14,6 +14,7 @@ import UnauthorizedMessage from '../components/UnauthorizedMessage';
 // module imports
 import Tabs from 'react-simpletabs';
 import 'react-simpletabs/lib/react-simpletabs.css';
+import './Massages.css';
 import moment from 'moment';
 
 // util imports
@@ -109,7 +110,7 @@ class FacilitiesList extends Component {
           {this.state.facilities.map((item) => (
             <Tabs.Panel title={item.name} key={item}>
               <h2>
-                {item.name}
+                {_t.translate('Facility') + ' ' + item.name}
               </h2>
               <table className="table table-hover table-responsive">
                 <thead>
