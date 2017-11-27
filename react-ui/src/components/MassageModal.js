@@ -11,6 +11,7 @@ import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './MassageModal.css';
 
 // util imports
 import Auth from '../utils/Auth.js';
@@ -97,6 +98,7 @@ class MassageModal extends Component {
                 <DatePicker
                   selected={this.state.date}
                   onChange={this.changeDate}
+                  minDate={moment()}
                   dateFormat="DD. MM. HH:mm"
                   todayButton={ _t.translate('Now') }
                   className="btn btn-default"
