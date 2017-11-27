@@ -75,12 +75,13 @@ public class IntegrationTest {
 		final Facility facility = new Facility("Facility"); // test Facility
 		final Massage massage = new Massage(new Date(0), "Great Masseuse", null, facility); // test Massage
 
-		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/massages/1")
+		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/1")
 				.request(MediaType.APPLICATION_JSON).put(Entity.json(massage));
 
 		assertEquals(401, respone.getStatus());
 
-		List<Massage> massages = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/massages/client")
+		List<Massage> massages = RULE.client()
+				.target("http://localhost:" + RULE.getLocalPort() + "/api/massages/client")
 				.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Massage>>() {
 				});
 	}

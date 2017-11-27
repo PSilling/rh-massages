@@ -5,9 +5,16 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    
     <prerequisites>
         <maven>3.0.0</maven>
     </prerequisites>
+    
+    <parent>
+    	<version>1.0.0-SNAPSHOT</version>
+    	<artifactId>parent</artifactId>
+    	<groupId>net.rh.massages</groupId>
+    </parent>
 
     <groupId>net.rh.massages</groupId>
     <artifactId>Massages</artifactId>
@@ -17,9 +24,6 @@
     <name>Massages</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <dropwizard.version>1.1.4</dropwizard.version>
         <mainClass>net.rh.massages.MassagesApplication</mainClass>
     </properties>
 
@@ -36,6 +40,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>net.rh.massages</groupId>
+            <artifactId>react-ui</artifactId>
+            <classifier>assets</classifier>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
@@ -63,7 +73,7 @@
 		<dependency>
 		    <groupId>postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
-		    <version>9.0-801.jdbc4</version>
+		    <version>${postgresql.version}</version>
 		</dependency>
 	    <dependency>
 	      <groupId>io.dropwizard</groupId>
@@ -78,13 +88,13 @@
 	    <dependency>
 	    	<groupId>net.minidev</groupId>
 	    	<artifactId>json-smart</artifactId>
-	    	<version>2.3</version>
+	    	<version>${json-smart.version}</version>
 	    	<scope>test</scope>
 	    </dependency>
 	    <dependency>
 	    	<groupId>de.ahus1.keycloak.dropwizard</groupId>
 	    	<artifactId>keycloak-dropwizard</artifactId>
-	    	<version>1.0.0</version>
+	    	<version>${keycloak-dropwizard.version}</version>
 	    </dependency>
 		 <dependency>
 		   <groupId>io.dropwizard</groupId>
@@ -108,13 +118,17 @@
 		 	<groupId>org.mockito</groupId>
 		 	<artifactId>mockito-core</artifactId>
 		 </dependency>
+		 <dependency>
+		 	<groupId>io.dropwizard</groupId>
+		 	<artifactId>dropwizard-assets</artifactId>
+		 </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.1</version>
+                <version>${maven-shade-plugin.version}</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <transformers>
@@ -146,7 +160,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven-jar-plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -158,15 +172,15 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven-compiler-plugin.configuration.source}</source>
+                    <target>${maven-compiler-plugin.configuration.target}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -178,7 +192,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -195,7 +209,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>${maven-project-info-reports-plugin.version}</version>
                 <configuration>
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -203,7 +217,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${maven-javadoc-plugin.version}</version>
             </plugin>
         </plugins>
     </reporting>

@@ -172,9 +172,9 @@ Util.clearAllIntervals = () => {
   }, 0);
 }
 
-Util.FACILITIES_URL = "http://localhost:8080/facilities/";
-Util.MASSAGES_URL = "http://localhost:8080/massages/";
-Util.LOGOUT_URL = "http://localhost:8080/logout/";
+Util.FACILITIES_URL = "http://localhost:8080/api/facilities/";
+Util.MASSAGES_URL = "http://localhost:8080/api/massages/";
+Util.LOGOUT_URL = "http://localhost:8080/api/logout/";
 Util.REFRESH_MIN_TIME = 150;
 Util.AUTO_REFRESH_TIME = 10000;
 

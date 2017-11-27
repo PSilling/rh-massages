@@ -27,6 +27,7 @@ import org.eclipse.jetty.servlets.CrossOriginFilter;
 import de.ahus1.keycloak.dropwizard.KeycloakBundle;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.auth.Authenticator;
 import io.dropwizard.auth.Authorizer;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
@@ -99,6 +100,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
 		bootstrap.addBundle(HIBERNATE);
+		bootstrap.addBundle(new AssetsBundle("/assets", "/"));
 
 		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
 				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
@@ -143,6 +145,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 */
 	@Override
 	public void run(final MassagesConfiguration configuration, final Environment environment) {
+		// Register resources with their DAOs
 		final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
 		final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
 

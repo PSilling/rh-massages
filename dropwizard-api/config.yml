@@ -20,6 +20,7 @@ database:
   validationQuery: "SELECT 1"
 
 server:
+  rootPath: /api/
   applicationConnectors:
       - type: http
         port: 8080
@@ -34,4 +35,4 @@ keycloakConfiguration:
   resource: api-client
   bearer-only: true
   credentials:
-    secret: b4a1ee69-6441-49a0-b653-e2875234c0ef
+    secret: ${KC_CONFIG_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}

@@ -20,6 +20,7 @@ database:
   validationQuery: "SELECT 1"
 
 server:
+  rootPath: /api/
   applicationConnectors:
       - type: http
         port: 8080
