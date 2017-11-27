@@ -100,7 +100,10 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
 		bootstrap.addBundle(HIBERNATE);
-		bootstrap.addBundle(new AssetsBundle("/assets", "/"));
+
+		bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html", "massages"));
+		bootstrap.addBundle(new AssetsBundle("/assets", "/my-massages", "index.html", "my-massages"));
+		bootstrap.addBundle(new AssetsBundle("/assets", "/facilities", "index.html", "facilities"));
 
 		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
 				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
