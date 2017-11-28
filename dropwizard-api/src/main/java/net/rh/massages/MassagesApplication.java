@@ -1,18 +1,18 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages;
 
@@ -22,6 +22,7 @@ import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 
+import org.eclipse.jetty.servlet.ErrorPageErrorHandler;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import de.ahus1.keycloak.dropwizard.KeycloakBundle;
@@ -93,7 +94,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	};
 
 	/**
-	 * Inicializes the Boostrap bundle
+	 * Initializes the Bootstrap bundle
 	 *
 	 * @param bootsrap the bundle
 	 */
@@ -101,9 +102,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
 		bootstrap.addBundle(HIBERNATE);
 
-		bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html", "massages"));
-		bootstrap.addBundle(new AssetsBundle("/assets", "/my-massages", "index.html", "my-massages"));
-		bootstrap.addBundle(new AssetsBundle("/assets", "/facilities", "index.html", "facilities"));
+		bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
 
 		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
 				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
@@ -157,6 +156,13 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 		environment.jersey().register(new MassageAuthResource(massageDao));
 		environment.jersey().register(new LogoutResource());
 
+		// Register ErrorPageErrorHandler so that the server routing is connected to
+		// React routing
+		final ErrorPageErrorHandler epeh = new ErrorPageErrorHandler();
+		epeh.addErrorPage(404, "/index.html");
+		environment.getApplicationContext().setErrorHandler(epeh);
+
+		// Register CORS filter
 		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 
 		// Configure CORS parameters
