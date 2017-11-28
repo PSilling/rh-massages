@@ -35,6 +35,7 @@ import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.hibernate.UnitOfWorkAwareProxyFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -45,6 +46,7 @@ import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
+import net.rh.massages.health.MassagesHealthCheck;
 import net.rh.massages.resources.FacilityResource;
 import net.rh.massages.resources.LogoutResource;
 import net.rh.massages.resources.MassageAuthResource;
@@ -161,6 +163,11 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 		final ErrorPageErrorHandler epeh = new ErrorPageErrorHandler();
 		epeh.addErrorPage(404, "/index.html");
 		environment.getApplicationContext().setErrorHandler(epeh);
+
+		// Register health check
+		MassagesHealthCheck health = new UnitOfWorkAwareProxyFactory(HIBERNATE).create(MassagesHealthCheck.class,
+				FacilityDAO.class, facilityDao);
+		environment.healthChecks().register("massages", health);
 
 		// Register CORS filter
 		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
