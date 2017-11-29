@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 // component imports
 import CancelButton from '../components/CancelButton';
+import CalendarButton from '../components/CalendarButton';
 
 // module imports
 import moment from 'moment';
@@ -60,6 +61,7 @@ class MassagesList extends Component {
               <th>{ _t.translate('Facility') }</th>
               <th>{ _t.translate('Date') }</th>
               <th>{ _t.translate('Masseuse') }</th>
+              <th>{ _t.translate('Event') }</th>
               <th></th>
             </tr>
           </thead>
@@ -70,6 +72,11 @@ class MassagesList extends Component {
                   <td>{item.facility.name}</td>
                   <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
                   <td>{item.masseuse}</td>
+                  <td width="55px">
+                    <span className="pull-right">
+                      <CalendarButton disabled={false} onAdd={() => Util.addToCalendar(item)} />
+                    </span>
+                  </td>
                   <td width="55px">
                     <span className="pull-right">
                       <CancelButton onCancel={() => this.cancelMassage(item)} />

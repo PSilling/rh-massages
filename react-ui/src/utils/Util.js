@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import _t from './Translations';
 import { NotificationManager } from 'react-notifications';
 import Auth from './Auth';
@@ -160,7 +162,6 @@ Util.delete = (url, update) => {
   });
 }
 
-
 /**
  * Stops all active intervals.
  */
@@ -170,6 +171,21 @@ Util.clearAllIntervals = () => {
         clearInterval(i);
     }
   }, 0);
+}
+
+/**
+ * Adds a massage event to Google Calendar (opens a new tab).
+ *
+ * @param massage the massage to be added to the calendar
+ */
+Util.addToCalendar = (massage) => {
+  var url = "https://www.google.com/calendar/render?action=TEMPLATE";
+  url += "&text=" + _t.translate('Massage in facility') + ' ' + massage.facility.name;
+  url += "&dates=" + moment.utc(massage.date).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
+  url += "/" + moment.utc(massage.date).add(1, 'h').format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
+  url += "&details=" + _t.translate('Masseuse') + ' ' + massage.masseuse;
+
+  window.open(url,"_blank");
 }
 
 Util.FACILITIES_URL = "/api/facilities/";

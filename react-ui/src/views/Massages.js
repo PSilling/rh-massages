@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import AssignButton from '../components/AssignButton';
 import CancelButton from '../components/CancelButton';
 import ForceCancelButton from '../components/ForceCancelButton';
+import CalendarButton from '../components/CalendarButton';
 import DeleteButton from '../components/DeleteButton';
 import EditButton from '../components/EditButton';
 import MassageModal from '../components/MassageModal';
@@ -72,6 +73,18 @@ class FacilitiesList extends Component {
     }, () => this.getMassages(this.state.index-1));
   }
 
+  assignMassageWithEvent = (massage) => {
+    Util.put(Util.MASSAGES_URL + massage.id, {
+      date: massage.date,
+      masseuse: massage.masseuse,
+      client: Auth.getSub(),
+      facility: massage.facility
+    }, () => {
+      Util.addToCalendar(massage);
+      this.getMassages(this.state.index-1);
+    });
+  }
+
   cancelMassage = (massage) => {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
@@ -118,6 +131,7 @@ class FacilitiesList extends Component {
                     <th>{ _t.translate('Date') }</th>
                     <th>{ _t.translate('Masseuse') }</th>
                     <th>{ _t.translate('Status') }</th>
+                    <th>{ _t.translate('Event') }</th>
                     {Auth.isAdmin() ?
                       <th>
                         <MassageModal
@@ -140,12 +154,25 @@ class FacilitiesList extends Component {
                         {Util.isEmpty(item.client) ?
                           <td className="success">
                             { _t.translate('Free') }
-                            <AssignButton onAssign={() => this.assignMassage(item)} />
+                            <AssignButton onAssign={() => this.assignMassage(item)}
+                              onAssignWithEvent={() => this.assignMassageWithEvent(item)} />
                           </td> :
                           <td className={ Auth.getSub() === item.client ? "warning" : "danger" }>
                             { Auth.getSub() === item.client ? _t.translate('Assigned') : _t.translate('Full') }
                             { Auth.getSub() === item.client ? <CancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
                             { Auth.isAdmin() && Auth.getSub() !== item.client ? <ForceCancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
+                          </td>
+                        }
+                        { Auth.getSub() === item.client ?
+                          <td width="55px">
+                            <span>
+                              <CalendarButton disabled={false} onAdd={() => Util.addToCalendar(item)} />
+                            </span>
+                          </td> :
+                          <td width="55px">
+                            <span>
+                              <CalendarButton disabled={true} onAdd={() => Util.addToCalendar(item)} />
+                            </span>
                           </td>
                         }
                         {Auth.isAdmin() ?

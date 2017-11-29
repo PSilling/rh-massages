@@ -48,6 +48,12 @@ const myLocalize = new Localize({
     "Status": {
       "cs": "Status"
     },
+    "Event": {
+      "cs": "Event"
+    },
+    "Add to Google Calendar": {
+      "cs": "Přidat do Google kalendáře"
+    },
     "Free": {
       "cs": "Volno"
     },
@@ -89,6 +95,9 @@ const myLocalize = new Localize({
     "Proceed": {
       "cs": "Pokračovat"
     },
+    "Proceed and add to calendar": {
+      "cs": "Pokračovat a přidat do kalendáře"
+    },
     "Assign me": {
       "cs": "Zapsat se"
     },
@@ -125,6 +134,9 @@ const myLocalize = new Localize({
     },
     "Are you sure you want to cancel a massage that is assigned?": {
       "cs": "Jste si jisti, že chcete zrušit masáž, která je zapsaná?"
+    },
+    "Massage in facility": {
+      "cs": "Masáž v budově"
     }
 });
 
