@@ -1,5 +1,6 @@
 // react imports
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 
 // component imports
@@ -36,6 +37,10 @@ class FacilityModal extends Component {
    * Handles the post request.
    */
   addFacility = () => {
+    if (Util.isEmpty(this.state.name)) {
+      Util.notify("error", "", _t.translate('Name is required!'));
+      return;
+    }
     Util.post(Util.FACILITIES_URL, {
       name: this.state.name
     }, () => {
@@ -48,12 +53,42 @@ class FacilityModal extends Component {
    * Handles the put request.
    */
   editFacility = () => {
+    if (Util.isEmpty(this.state.name)) {
+      Util.notify("error", "", _t.translate('Name is required!'));
+      return;
+    }
     Util.put(Util.FACILITIES_URL + this.props.facility.id, {
       name: this.state.name
     }, () => {
       this.props.onToggle();
       this.props.getCallback();
     });
+  }
+
+  handleModalKeyPress = (event) => {
+    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
+      if (this.props.facility === -1) {
+        this.addFacility();
+      } else {
+        this.editFacility();
+      }
+    }
+  }
+
+  handleInputKeyPress = (event) => {
+    if (event.charCode === 13) {
+      if (this.props.facility === -1) {
+        this.addFacility();
+      } else {
+        this.editFacility();
+      }
+    }
+  }
+
+  moveCursorToEnd = (event) => {
+    var value = event.target.value;
+    event.target.value = '';
+    event.target.value = value;
   }
 
   render() {
@@ -63,7 +98,11 @@ class FacilityModal extends Component {
 
         {this.props.active ?
           <ModalContainer onClose={this.props.onToggle}>
-            <ModalDialog onClose={this.props.onToggle} width="50%">
+            <ModalDialog onClose={this.props.onToggle} width="50%" style={{ 'outline': 'none' }}
+              tabIndex="1" onKeyPress={this.handleModalKeyPress}
+              ref={(dialog) => {
+                this.modalDialog = dialog;
+              }}>
               <h2>
                 {this.props.facility === -1 ?
                   _t.translate('New Facility') : _t.translate('Edit Facility')
@@ -73,18 +112,22 @@ class FacilityModal extends Component {
               <div className="form-group">
                 <label>{ _t.translate('Name') }</label>
                 <input value={this.state.name} onChange={this.changeName}
-                  className="form-control" />
+                  className="form-control" autoFocus onFocus={this.moveCursorToEnd}
+                  onKeyPress={this.handleInputKeyPress}
+                />
               </div>
               {this.props.facility === -1 ?
                 <ModalActions
                   primaryLabel={ _t.translate('Add') }
                   onProceed={this.addFacility}
                   onClose={this.props.onToggle}
+                  autoFocus={false}
                 /> :
                 <ModalActions
                   primaryLabel={ _t.translate('Edit') }
                   onProceed={this.editFacility}
                   onClose={this.props.onToggle}
+                  autoFocus={false}
                 />
               }
             </ModalDialog>

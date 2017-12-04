@@ -12,7 +12,7 @@ var Util = function() { };
  * @return boolean
  */
 Util.isEmpty = function(object) {
-  return (object === null) || (typeof object === 'undefined')
+  return (object === null) || (typeof object === 'undefined') || (object === '')
 }
 
 /**
@@ -188,9 +188,9 @@ Util.addToCalendar = (massage) => {
   window.open(url,"_blank");
 }
 
-Util.FACILITIES_URL = "/api/facilities/";
-Util.MASSAGES_URL = "/api/massages/";
-Util.LOGOUT_URL = "/api/logout/";
+Util.FACILITIES_URL = "api/facilities/";
+Util.MASSAGES_URL = "api/massages/";
+Util.LOGOUT_URL = "api/logout/";
 Util.REFRESH_MIN_TIME = 150;
 Util.AUTO_REFRESH_TIME = 10000;
 

@@ -12,8 +12,8 @@ class ModalActions extends Component {
   render() {
     return(
       <div className="pull-right">
-        <button type="button" className="btn btn-primary"
-          onClick={this.props.onProceed} style={{ 'marginRight': '5px' }}>
+        <button type="button" className="btn btn-primary" onClick={this.props.onProceed}
+          style={{ 'marginRight': '5px' }} autoFocus={this.props.autoFocus}>
           {this.props.primaryLabel}
         </button>
         <button type="button" className="btn btn-default"

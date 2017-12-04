@@ -17,8 +17,8 @@ class EventModalActions extends Component {
           onClick={this.props.onProceedWithEvent} style={{ 'marginRight': '5px' }}>
           {this.props.primaryWithEventLabel}
         </button>
-        <button type="button" className="btn btn-primary"
-          onClick={this.props.onProceed} style={{ 'marginRight': '5px' }}>
+        <button type="button" className="btn btn-primary" onClick={this.props.onProceed}
+          style={{ 'marginRight': '5px' }} autoFocus>
           {this.props.primaryLabel}
         </button>
         <button type="button" className="btn btn-default"

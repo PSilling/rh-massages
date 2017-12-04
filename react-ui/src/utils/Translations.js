@@ -118,6 +118,12 @@ const myLocalize = new Localize({
     "None": {
       "cs": "Žádné"
     },
+    "Name is required!": {
+      "cs": "Název je vyžadován!"
+    },
+    "Masseuse is required!": {
+      "cs": "Jméno masérky je vyžadováno!"
+    },
 
     // text messages
     "Action confirmation": {

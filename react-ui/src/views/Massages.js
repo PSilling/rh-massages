@@ -1,7 +1,6 @@
 // react imports
 import React, { Component } from 'react';
 
-
 // component imports
 import AssignButton from '../components/AssignButton';
 import CancelButton from '../components/CancelButton';
