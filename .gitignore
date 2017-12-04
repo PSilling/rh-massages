@@ -1,6 +1,6 @@
 # Eclipse files
-.classpath
-.project
+**/.classpath
+**/.project
 **/.settings/
 
 # production and build files

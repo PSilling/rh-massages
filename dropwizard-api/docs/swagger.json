@@ -1,608 +1,502 @@
+
 {
-  "swagger": "2.0",
-  "info": {
-    "version": "1.0.0",
-    "title": "Red Hat Massages"
-  },
-  "host": "localhost:8080",
-  "basePath": "/",
-  "schemes": [
-    "http"
-  ],
-  "paths": {
-    "/facilities": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Facility"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Facility"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "Location": {
-                "type": "string"
-              }
+    "swagger":"2.0",
+    "info":{
+        "version":"1.0.0-SNAPSHOT",
+        "title":"Massages"
+    },
+    "host":"localhost:8080",
+    "basePath":"/",
+    "schemes":[
+        "http"
+    ],
+    "paths":{
+        "/facilities":{
+            "get":{
+                "description":"GETs all facilities that can be found",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Facility"
+                            }
+                        }
+                    }
+                }
             },
-            "schema": {
-              "$ref": "#/definitions/Facility"
+            "post":{
+                "description":"Accepts POST request with a new Facility",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/Facility"
+                        },
+                        "description":"Facility new Facility"
+                    }
+                ],
+                "responses":{
+                    "201":{
+                        "description":"Created",
+                        "headers":{
+                            "Location":{
+                                "type":"string"
+                            }
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Facility"
+                        }
+                    },
+                    "500":{
+                        "description":"Internal Server Error",
+                        "headers":{
+                        }
+                    }
+                }
             }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/facilities/{id}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "name",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/Facility"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "name",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Facility"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/Facility"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      },
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "name",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/facilities/{id}/massages": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "name",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Facility"
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/massages": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Massage"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "Location": {
-                "type": "string"
-              }
+        },
+        "/facilities/{id}":{
+            "get":{
+                "description":"GETs a facility based on its id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"facility id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Facility"
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
             },
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/massages/{id}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/Massage"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      },
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/users": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "Location": {
-                "type": "string"
-              }
+            "put":{
+                "description":"Updates a facility given by id to a given value",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"facility id"
+                    },
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/Facility"
+                        },
+                        "description":"Facility updated Facility"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Facility"
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
             },
-            "schema": {
-              "$ref": "#/definitions/User"
+            "delete":{
+                "description":"DELETEs a facility given by id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"facility id"
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
             }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {}
-          }
+        },
+        "/facilities/{id}/massages":{
+            "get":{
+                "description":"GETs all massages of a facility based on its id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"facility id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            }
+        },
+        "/logout":{
+            "get":{
+                "description":"Logs out the User",
+                "consumes":[
+                ],
+                "produces":[
+                ],
+                "parameters":[
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"string"
+                        }
+                    }
+                }
+            }
+        },
+        "/massages":{
+            "get":{
+                "description":"GETs all massages that can be found",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "description":"Accepts POST request with a new Massage",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        },
+                        "description":"new Massage"
+                    }
+                ],
+                "responses":{
+                    "201":{
+                        "description":"Created",
+                        "headers":{
+                            "Location":{
+                                "type":"string"
+                            }
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        }
+                    },
+                    "500":{
+                        "description":"Internal Server Error",
+                        "headers":{
+                        }
+                    }
+                }
+            }
+        },
+        "/massages/client":{
+            "get":{
+                "description":"GETs all massages of a give client",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/massages/{id}":{
+            "get":{
+                "description":"GETs a massage based on its id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"massage id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            },
+            "put":{
+                "description":"Updates a massage given by id to a given value",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"massage id"
+                    },
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        },
+                        "description":"updated massage"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        }
+                    },
+                    "403":{
+                        "description":"Forbidden",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "description":"DELETEs a massage given by id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"massage id"
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            }
         }
-      }
     },
-    "/users/{id}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/User"
+    "definitions":{
+        "Facility":{
+            "properties":{
+                "id":{
+                    "type":"integer"
+                },
+                "name":{
+                    "type":"string"
+                }
             }
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
+        },
+        "Massage":{
+            "properties":{
+                "client":{
+                    "type":"string"
+                },
+                "date":{
+                    "type":"object"
+                },
+                "facility":{
+                    "$ref":"#/definitions/Facility"
+                },
+                "id":{
+                    "type":"integer"
+                },
+                "masseuse":{
+                    "type":"string"
+                }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "$ref": "#/definitions/User"
+        },
+        "User":{
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "roles":{
+                    "type":"array",
+                    "items":{
+                        "type":"string"
+                    }
+                },
+                "subject":{
+                    "type":"string"
+                }
             }
-          },
-          "403": {
-            "description": "Forbidden",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
         }
-      },
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "headers": {}
-          },
-          "404": {
-            "description": "Not Found",
-            "headers": {}
-          }
-        }
-      }
-    },
-    "/users/{id}/massages": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Massage"
-              }
-            }
-          }
-        }
-      }
     }
-  },
-  "definitions": {
-    "Facility": {
-      "properties": {
-        "id": {
-          "type": "long"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Massage": {
-      "properties": {
-        "id": {
-          "type": "long"
-        },
-        "date": {
-          "type": "object"
-        },
-        "masseuse": {
-          "type": "string"
-        },
-        "user": {
-          "$ref": "#/definitions/User"
-        },
-        "facility": {
-          "$ref": "#/definitions/Facility"
-        }
-      }
-    },
-    "User": {
-      "properties": {
-        "id": {
-          "type": "long"
-        },
-        "email": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "massages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Massage"
-          }
-        },
-        "isAdmin": {
-          "type": "boolean"
-        }
-      }
-    }
-  }
 }
