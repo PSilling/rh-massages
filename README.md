@@ -33,5 +33,6 @@ The application requires this Keycloak setup to work properly:
 
 Client `api-client` should connect to the server (correct secret (variable `KC_CONFIG_SECRET` needs to be suplied) and should be set as `bearer-only`.
 Client `ui-client` should connect to the ui and should be set as `public` with `http://localhost:8080/*` as its `Redirect URI`.
+Example Keycloak setup can be found [here](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-export.json).
 
 
