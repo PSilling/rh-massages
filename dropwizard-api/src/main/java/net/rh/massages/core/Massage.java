@@ -1,18 +1,18 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages.core;
 
@@ -44,7 +44,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
-		@NamedQuery(name = "Massage.findByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
+		@NamedQuery(name = "Massage.findAllByDate", query = "SELECT massage FROM Massage massage WHERE massage.date = :date"),
+		@NamedQuery(name = "Massage.findAllByEnding", query = "SELECT massage FROM Massage massage WHERE massage.ending = :ending"),
 		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
 		@NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client"),
 		@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
@@ -57,6 +58,9 @@ public class Massage {
 
 	@NotNull
 	private Date date; // date of the massage
+
+	@NotNull
+	private Date ending; // ending of the massage
 
 	@NotEmpty
 	private String masseuse; // masseuse that does the massage
@@ -79,12 +83,14 @@ public class Massage {
 	 * Massage parameterized constructor
 	 *
 	 * @param date new Massage date
+	 * @param endDate new Massage endDate
 	 * @param masseuse new Massage masseuse
 	 * @param client new Massage client
 	 * @param facility new Massage facility
 	 */
-	public Massage(Date date, String masseuse, String client, Facility facility) {
+	public Massage(Date date, Date ending, String masseuse, String client, Facility facility) {
 		this.date = date;
+		this.ending = ending;
 		this.masseuse = masseuse;
 		this.client = client;
 		this.facility = facility;
@@ -124,6 +130,24 @@ public class Massage {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	/**
+	 * Ending getter
+	 *
+	 * @return current ending
+	 */
+	public Date getEnding() {
+		return ending;
+	}
+
+	/**
+	 * Ending setter
+	 *
+	 * @param ending new ending
+	 */
+	public void setEnding(Date ending) {
+		this.ending = ending;
 	}
 
 	/**
@@ -185,7 +209,7 @@ public class Massage {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, date, masseuse, facility.toString());
+		return Objects.hash(id, date, ending, masseuse, facility.toString());
 	}
 
 	/**
@@ -208,6 +232,7 @@ public class Massage {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Task[id=%s, date=%s, masseuse=%s, facility=%s]", id, date, masseuse, facility.toString());
+		return String.format("Task[id=%s, date=%s, endDate=%s, masseuse=%s, facility=%s]", id, date, ending, masseuse,
+				facility.toString());
 	}
 }

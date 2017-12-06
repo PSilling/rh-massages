@@ -182,7 +182,7 @@ Util.addToCalendar = (massage) => {
   var url = "https://www.google.com/calendar/render?action=TEMPLATE";
   url += "&text=" + _t.translate('Massage in facility') + ' ' + massage.facility.name;
   url += "&dates=" + moment.utc(massage.date).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
-  url += "/" + moment.utc(massage.date).add(1, 'h').format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
+  url += "/" + moment.utc(massage.ending).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "&details=" + _t.translate('Masseuse') + ' ' + massage.masseuse;
 
   window.open(url,"_blank");

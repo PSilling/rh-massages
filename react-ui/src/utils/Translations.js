@@ -28,6 +28,9 @@ const myLocalize = new Localize({
     "Massage time": {
       "cs": "Čas masáže"
     },
+    "Duration": {
+      "cs": "Délka trvání"
+    },
     "Profile": {
       "cs": "Profil"
     },
@@ -38,6 +41,9 @@ const myLocalize = new Localize({
     // table items
     "Date": {
       "cs": "Datum"
+    },
+    "Time": {
+      "cs": "Čas"
     },
     "Masseuse": {
       "cs": "Masérka"

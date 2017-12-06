@@ -20,7 +20,7 @@ import Util from '../utils/Util.js';
 
 class MassageModal extends Component {
 
-  state = {date: moment(), masseuse: ""}
+  state = {date: moment(), time: "01:00", masseuse: ""}
 
   /**
    * Sets default input values on props change.
@@ -30,6 +30,8 @@ class MassageModal extends Component {
 
     this.setState({
       date: (nextProps.massage === -1) ? moment() : moment(nextProps.massage.date),
+      time: (nextProps.massage === -1) ? "01:00" :
+        moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))).format("HH:mm"),
       masseuse: (nextProps.massage === -1) ? "" : nextProps.massage.masseuse
     });
   }
@@ -42,6 +44,15 @@ class MassageModal extends Component {
     this.setState({date: date});
   }
 
+  changeTime = (event) => {
+    this.setState({time: event.target.value});
+  }
+
+  getEndingDate = () => {
+    var minutes = parseInt(this.state.time.substring(0, 2) * 60) + parseInt(this.state.time.substring(3, 5));
+    return this.state.date.add(minutes, 'minutes').toDate();
+  }
+
   /**
    * Handles the post request.
    */
@@ -52,6 +63,7 @@ class MassageModal extends Component {
     }
     Util.post(Util.MASSAGES_URL, {
       date: this.state.date.toDate(),
+      ending: this.getEndingDate(),
       masseuse: this.state.masseuse,
       client: null,
       facility: {id: this.props.facilityId}
@@ -71,6 +83,7 @@ class MassageModal extends Component {
     }
     Util.put(Util.MASSAGES_URL + this.props.massage.id, {
       date: this.state.date.toDate(),
+      ending: this.getEndingDate(),
       masseuse: this.state.masseuse,
       client: this.props.massage.client,
       facility: this.props.massage.facility
@@ -125,15 +138,27 @@ class MassageModal extends Component {
               </h2>
               <hr />
               <div className="form-group">
-                <div className="form-group">
+                <div className="form-group col-md-12">
                   <label>{ _t.translate('Masseuse') }</label>
                   <input value={this.state.masseuse} onChange={this.changeMasseuse}
                     className="form-control" autoFocus onFocus={this.moveCursorToEnd}
-                    onKeyPress={this.handleInputKeyPress}
+                    onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                    placeholder={ _t.translate('Masseuse') }
                   />
                 </div>
               </div>
-              <div className="form-group">
+              <div className="form-group col-md-12">
+                <label>{ _t.translate('Duration') }</label><br />
+                <div className="row">
+                  <div className="col-md-3">
+                    <input value={this.state.time} onChange={this.changeTime}
+                      className="form-control" onKeyPress={this.handleInputKeyPress}
+                      type="time" placeholder={ _t.translate('Duration') }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="form-group col-md-12">
                 <label>{ _t.translate('Massage time') }</label>
                 <DatePicker
                   selected={this.state.date}

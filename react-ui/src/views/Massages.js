@@ -54,18 +54,21 @@ class FacilitiesList extends Component {
   }
 
   getMassages = (index) => {
-    Util.get(Util.FACILITIES_URL + this.state.facilities[index].id +
-      "/massages", (json) => {
-      json.sort(function(a, b) {
-        return a.date - b.date;
+    if (this.state.facilities.length > 0) {
+      Util.get(Util.FACILITIES_URL + this.state.facilities[index].id +
+        "/massages", (json) => {
+        json.sort(function(a, b) {
+          return a.date - b.date;
+        });
+        this.setState({massages: json});
       });
-      this.setState({massages: json});
-    });
+    }
   }
 
   assignMassage = (massage) => {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
+      ending: massage.ending,
       masseuse: massage.masseuse,
       client: Auth.getSub(),
       facility: massage.facility
@@ -75,6 +78,7 @@ class FacilitiesList extends Component {
   assignMassageWithEvent = (massage) => {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
+      ending: massage.ending,
       masseuse: massage.masseuse,
       client: Auth.getSub(),
       facility: massage.facility
@@ -87,6 +91,7 @@ class FacilitiesList extends Component {
   cancelMassage = (massage) => {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
+      ending: massage.ending,
       masseuse: massage.masseuse,
       client: null,
       facility: massage.facility
@@ -99,9 +104,9 @@ class FacilitiesList extends Component {
 
   onTabChange = (index) => {
     this.getMassages(index-1);
+
     this.setState({index: index});
   }
-
   toggleModal = (id) => {
     this.setState({modalActive: !this.state.modalActive, editId: id});
   }
@@ -118,87 +123,94 @@ class FacilitiesList extends Component {
         <h1>
           { _t.translate('Massages') }
         </h1>
-        <Tabs tabActive={this.state.index} onAfterChange={this.onTabChange}>
-          {this.state.facilities.map((item) => (
-            <Tabs.Panel title={item.name} key={item}>
-              <h2>
-                {_t.translate('Facility') + ' ' + item.name}
-              </h2>
-              <table className="table table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>{ _t.translate('Date') }</th>
-                    <th>{ _t.translate('Masseuse') }</th>
-                    <th>{ _t.translate('Status') }</th>
-                    <th>{ _t.translate('Event') }</th>
-                    {Auth.isAdmin() ?
-                      <th>
-                        <MassageModal
-                          active={this.state.modalActive}
-                          massage={this.state.editId === -1 ? -1 : this.state.massages[this.state.editId]}
-                          facilityId={this.state.facilities[this.state.index-1].id}
-                          getCallback={() => {this.getMassages(this.state.index-1)}}
-                          onToggle={() => {this.toggleModal(-1)}}
-                        />
-                      </th> : <th className="hidden"></th>
-                    }
-                  </tr>
-                </thead>
-                {this.state.massages.length > 0 ?
-                  <tbody>
-                    {this.state.massages.map((item, index) => (
-                      <tr key={index}>
-                        <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
-                        <td>{item.masseuse}</td>
-                        {Util.isEmpty(item.client) ?
-                          <td className="success">
-                            { _t.translate('Free') }
-                            <AssignButton onAssign={() => this.assignMassage(item)}
-                              onAssignWithEvent={() => this.assignMassageWithEvent(item)} />
-                          </td> :
-                          <td className={ Auth.getSub() === item.client ? "warning" : "danger" }>
-                            { Auth.getSub() === item.client ? _t.translate('Assigned') : _t.translate('Full') }
-                            { Auth.getSub() === item.client ? <CancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
-                            { Auth.isAdmin() && Auth.getSub() !== item.client ? <ForceCancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
-                          </td>
-                        }
-                        { Auth.getSub() === item.client ?
-                          <td width="55px">
-                            <span>
-                              <CalendarButton disabled={false} onAdd={() => Util.addToCalendar(item)} />
-                            </span>
-                          </td> :
-                          <td width="55px">
-                            <span>
-                              <CalendarButton disabled={true} onAdd={() => Util.addToCalendar(item)} />
-                            </span>
-                          </td>
-                        }
-                        {Auth.isAdmin() ?
-                          <td width="105px">
-                            <span className="pull-right">
-                              <span style={{ 'marginRight': '5px' }}>
-                                <EditButton onEdit={() => this.toggleModal(index)} />
-                              </span>
-                              <DeleteButton onDelete={() => this.deleteMassage(item.id)} />
-                            </span>
-                          </td> : <td className="hidden"></td>
-                        }
-                      </tr>
-                    ))}
-                  </tbody> :
-                  <tbody>
+        {this.state.facilities.length > 0 ?
+          <Tabs tabActive={this.state.index} onAfterChange={this.onTabChange}>
+            {this.state.facilities.map((item) => (
+              <Tabs.Panel title={item.name} key={item}>
+                <h2>
+                  {_t.translate('Facility') + ' ' + item.name}
+                </h2>
+                <table className="table table-hover table-responsive">
+                  <thead>
                     <tr>
-                      <th>
-                        { _t.translate('None') }
-                      </th>
+                      <th>{ _t.translate('Date') }</th>
+                      <th>{ _t.translate('Time') }</th>
+                      <th>{ _t.translate('Masseuse') }</th>
+                      <th>{ _t.translate('Status') }</th>
+                      <th>{ _t.translate('Event') }</th>
+                      {Auth.isAdmin() ?
+                        <th>
+                          <MassageModal
+                            active={this.state.modalActive}
+                            massage={this.state.editId === -1 ? -1 : this.state.massages[this.state.editId]}
+                            facilityId={this.state.facilities[this.state.index-1].id}
+                            getCallback={() => {this.getMassages(this.state.index-1)}}
+                            onToggle={() => {this.toggleModal(-1)}}
+                          />
+                        </th> : <th className="hidden"></th>
+                      }
                     </tr>
-                  </tbody>
-                }
-              </table>
-            </Tabs.Panel>
-          ))}
-        </Tabs>
+                  </thead>
+                  {this.state.massages.length > 0 ?
+                    <tbody>
+                      {this.state.massages.map((item, index) => (
+                        <tr key={index}>
+                          <td>{moment(item.date).format("DD. MM.")}</td>
+                          <td>{moment(item.date).format("HH:mm") + "–" + moment(item.ending).format("HH:mm")}</td>
+                          <td>{item.masseuse}</td>
+                          {Util.isEmpty(item.client) ?
+                            <td className="success">
+                              { _t.translate('Free') }
+                              <AssignButton onAssign={() => this.assignMassage(item)}
+                                onAssignWithEvent={() => this.assignMassageWithEvent(item)} />
+                            </td> :
+                            <td className={ Auth.getSub() === item.client ? "warning" : "danger" }>
+                              { Auth.getSub() === item.client ? _t.translate('Assigned') : _t.translate('Full') }
+                              { Auth.getSub() === item.client ? <CancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
+                              { Auth.isAdmin() && Auth.getSub() !== item.client ? <ForceCancelButton onCancel={() => this.cancelMassage(item)} /> : '' }
+                            </td>
+                          }
+                          { Auth.getSub() === item.client ?
+                            <td width="55px">
+                              <span>
+                                <CalendarButton disabled={false} onAdd={() => Util.addToCalendar(item)} />
+                              </span>
+                            </td> :
+                            <td width="55px">
+                              <span>
+                                <CalendarButton disabled={true} onAdd={() => Util.addToCalendar(item)} />
+                              </span>
+                            </td>
+                          }
+                          {Auth.isAdmin() ?
+                            <td width="105px">
+                              <span className="pull-right">
+                                <span style={{ 'marginRight': '5px' }}>
+                                  <EditButton onEdit={() => this.toggleModal(index)} />
+                                </span>
+                                <DeleteButton onDelete={() => this.deleteMassage(item.id)} />
+                              </span>
+                            </td> : <td className="hidden"></td>
+                          }
+                        </tr>
+                      ))}
+                    </tbody> :
+                    <tbody>
+                      <tr>
+                        <th>
+                          { _t.translate('None') }
+                        </th>
+                      </tr>
+                    </tbody>
+                  }
+                </table>
+              </Tabs.Panel>
+            ))}
+          </Tabs> :
+          <h3>
+            { _t.translate('None') }
+          </h3>
+        }
       </div>
     );
   }

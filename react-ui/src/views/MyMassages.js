@@ -42,6 +42,7 @@ class MassagesList extends Component {
   cancelMassage = (massage) => {
     Util.put(Util.MASSAGES_URL + massage.id, {
       date: massage.date,
+      ending: massage.ending,
       masseuse: massage.masseuse,
       client: null,
       facility: massage.facility
@@ -60,6 +61,7 @@ class MassagesList extends Component {
             <tr>
               <th>{ _t.translate('Facility') }</th>
               <th>{ _t.translate('Date') }</th>
+              <th>{ _t.translate('Time') }</th>
               <th>{ _t.translate('Masseuse') }</th>
               <th>{ _t.translate('Event') }</th>
               <th></th>
@@ -70,7 +72,8 @@ class MassagesList extends Component {
               {this.state.massages.map((item, index) => (
                 <tr key={index}>
                   <td>{item.facility.name}</td>
-                  <td>{moment(item.date).format("DD. MM. HH:mm")}</td>
+                  <td>{moment(item.date).format("DD. MM.")}</td>
+                  <td>{moment(item.date).format("HH:mm") + "–" + moment(item.ending).format("HH:mm")}</td>
                   <td>{item.masseuse}</td>
                   <td width="55px">
                     <span className="pull-right">

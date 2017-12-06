@@ -109,11 +109,12 @@ class FacilityModal extends Component {
                 }
               </h2>
               <hr />
-              <div className="form-group">
+              <div className="form-group col-md-12">
                 <label>{ _t.translate('Name') }</label>
                 <input value={this.state.name} onChange={this.changeName}
                   className="form-control" autoFocus onFocus={this.moveCursorToEnd}
-                  onKeyPress={this.handleInputKeyPress}
+                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                  placeholder={ _t.translate('Name') }
                 />
               </div>
               {this.props.facility === -1 ?

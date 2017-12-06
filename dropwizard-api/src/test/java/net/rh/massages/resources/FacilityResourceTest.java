@@ -53,7 +53,8 @@ public class FacilityResourceTest {
 
 	private final Facility facility = new Facility("Facility"); // test Facility
 	private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
-	private final Massage massage = new Massage(new Date(0), "Great Masseuse", null, facility); // test Massage
+	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
+																												// Massage
 
 	/*
 	 * Creates a new static ResourceTestRule that tests a given resource. Uses

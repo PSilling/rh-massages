@@ -24,6 +24,9 @@
             <column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE">
             	<constraints nullable="false"/>
             </column>
+            <column name="ending" type="TIMESTAMP(6) WITHOUT TIME ZONE">
+            	<constraints nullable="false"/>
+            </column>
             <column name="masseuse" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
