@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // component imports
-import ModalActions from './ModalActions';
+import ModalActions from '../buttons/ModalActions';
 
 // module imports
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Custom confirmation modal component.

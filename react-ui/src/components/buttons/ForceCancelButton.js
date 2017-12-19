@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
-import ConfirmationModal from '../components/ConfirmationModal';
+import ConfirmationModal from '../modals/ConfirmationModal';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Custom cancel button component for brute force cancel (canceling of an assigned massage).

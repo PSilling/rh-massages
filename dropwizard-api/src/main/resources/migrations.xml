@@ -32,6 +32,8 @@
             </column>
             <column name="client" type="VARCHAR(255)">
             </column>
+            <column name="contact" type="VARCHAR(255)">
+            </column>
             <column name="facility_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>

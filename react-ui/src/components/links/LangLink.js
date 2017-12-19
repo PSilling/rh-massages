@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Language changer.
@@ -18,7 +18,8 @@ class LangLink extends Component {
 
   render() {
     return(
-      <button type="button" className="btn btn-link navbar-btn" onClick={() => this.changeLanguage()}>
+      <button type="button" className="btn btn-link navbar-btn"
+        onClick={() => this.changeLanguage()} title={ _t.translate("Change language to czech") }>
         <span className="glyphicon glyphicon-globe"></span>&nbsp;
         { localStorage.getItem("sh-locale") === 'en' ? 'CZ' : 'EN' }
       </button>

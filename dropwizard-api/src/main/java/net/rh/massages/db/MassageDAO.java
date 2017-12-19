@@ -90,7 +90,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * Creates a new Session that finds a Massage in the database based on its
 	 * ending
 	 *
-	 * @param date Date to be found
+	 * @param ending Date to be found
 	 * @return the found Massage
 	 */
 	public List<Massage> findAllByEnding(Date ending) {
@@ -117,6 +117,17 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 */
 	public List<Massage> findAllByClient(String client) {
 		return list(namedQuery("Massage.findAllByClient").setParameter("client", client));
+	}
+
+	/**
+	 * Creates a new Session that finds a Massage in the database based on their
+	 * contact information
+	 *
+	 * @param contact the contact information
+	 * @return list of all found massages
+	 */
+	public List<Massage> findAllByContact(String contact) {
+		return list(namedQuery("Massage.findAllByContact").setParameter("contact", contact));
 	}
 
 	/**

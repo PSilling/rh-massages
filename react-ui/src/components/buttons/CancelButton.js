@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
-import ConfirmationModal from '../components/ConfirmationModal';
+import ConfirmationModal from '../modals/ConfirmationModal';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Custom cancel button component.
@@ -21,7 +21,8 @@ class CancelButton extends Component {
   render() {
     return(
       <span>
-        <button type="button" className="btn btn-warning pull-right" onClick={this.handleToggle}>
+        <button type="button" className="btn btn-warning pull-right" onClick={this.handleToggle}
+          disabled={this.props.disabled} title={this.props.disabled ? _t.translate('Too late to cancel this massage') : "" }>
           { _t.translate('Cancel') }
         </button>
         {this.state.active ?

@@ -73,7 +73,8 @@ public class IntegrationTest {
 	@Test(expected = NotAuthorizedException.class)
 	public void testAuth() {
 		final Facility facility = new Facility("Facility"); // test Facility
-		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test Massage
+		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility); // test
+																												// Massage
 
 		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/1")
 				.request(MediaType.APPLICATION_JSON).put(Entity.json(massage));

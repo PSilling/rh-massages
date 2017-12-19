@@ -98,7 +98,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	/**
 	 * Initializes the Bootstrap bundle
 	 *
-	 * @param bootsrap the bundle
+	 * @param bootstrap the bundle
 	 */
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
@@ -145,7 +145,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 * The application's run method
 	 *
 	 * @param configuration configuration of the application
-	 * @param enviroment jersey environment of the application
+	 * @param environment jersey environment of the application
 	 */
 	@Override
 	public void run(final MassagesConfiguration configuration, final Environment environment) {

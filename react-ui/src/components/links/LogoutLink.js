@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 
 // util imports
-import Auth from '../utils/Auth.js';
-import _t from '../utils/Translations.js';
-import Util from '../utils/Util.js';
+import Auth from '../../util/Auth';
+import _t from '../../util/Translations';
+import Util from '../../util/Util';
 
 /**
  * Link that redirects to Keycloak logout and the application after backend logout.

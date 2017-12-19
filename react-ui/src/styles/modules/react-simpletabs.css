@@ -35,6 +35,7 @@
   border: 1px solid #DDD;
   border-top: 2px solid #BBB;
   border-bottom: none;
+  padding: 0 19px;
   text-decoration: none;
 }
 
@@ -46,3 +47,7 @@
   border-bottom: none;
   text-decoration: none;
 }
+ .tab-panel {
+   padding: 0;
+   padding-top: 15px;
+ }

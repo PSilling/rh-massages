@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Message shown to unauthorized users.

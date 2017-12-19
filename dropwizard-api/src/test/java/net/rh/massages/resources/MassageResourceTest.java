@@ -64,9 +64,11 @@ public class MassageResourceTest {
 
 	private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
 
+	private final long MILLISECONDS = new Date().getTime(); // current time milliseconds
 	private final Facility facility = new Facility("Facility"); // test Facility
-	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility);
-	private final Massage newMassage = new Massage(new Date(1000), new Date(1001), "Super Masseuse", null, facility);
+	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility);
+	private final Massage newMassage = new Massage(new Date(MILLISECONDS + 10000), new Date(MILLISECONDS + 10001),
+			"Super Masseuse", null, null, facility);
 
 	/*
 	 * Creates a new static ResourceTestRule that tests a given resource. Uses

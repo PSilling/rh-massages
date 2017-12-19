@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 
 
 // component imports
-import DeleteButton from '../components/DeleteButton';
-import EditButton from '../components/EditButton';
-import FacilityModal from '../components/FacilityModal';
-import UnauthorizedMessage from '../components/UnauthorizedMessage';
+import DeleteButton from '../components/iconbuttons/DeleteButton';
+import EditButton from '../components/iconbuttons/EditButton';
+import FacilityModal from '../components/modals/FacilityModal';
+import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 
 // util imports
-import Auth from '../utils/Auth.js';
-import _t from '../utils/Translations.js';
-import Util from '../utils/Util.js';
+import Auth from '../util/Auth';
+import _t from '../util/Translations';
+import Util from '../util/Util';
 
 /**
  * Facility management
@@ -28,7 +28,7 @@ class FacilitiesList extends Component {
     setInterval(() => {
       if (this.state.modalActive) return;
       this.getFacilities();
-    }, Util.AUTO_REFRESH_TIME * 3);
+    }, Util.AUTO_REFRESH_TIME * 30);
   }
 
   getFacilities = () => {
@@ -38,7 +38,9 @@ class FacilitiesList extends Component {
         if (a.name > b.name) return 1;
         return 0;
       });
-      this.setState({facilities: json});
+      if (!Util.arraysEqual(this.state.facilities, json)) {
+        this.setState({facilities: json});
+      }
     });
   }
 
@@ -63,7 +65,7 @@ class FacilitiesList extends Component {
           { _t.translate('Facilities') }
         </h1>
         <hr />
-        <table className="table table-hover table-responsive">
+        <table className="table table-hover table-responsive table-striped">
           <thead>
             <tr>
               <th>{ _t.translate('Name') }</th>
@@ -96,7 +98,7 @@ class FacilitiesList extends Component {
             </tbody>
             : <tbody>
               <tr>
-                <th>
+                <th colSpan="2">
                   { _t.translate('None') }
                 </th>
               </tr>

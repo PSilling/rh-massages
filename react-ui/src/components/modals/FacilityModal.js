@@ -4,15 +4,15 @@ import ReactDOM from 'react-dom';
 
 
 // component imports
-import AddButton from './AddButton';
-import ModalActions from './ModalActions';
+import AddButton from '../iconbuttons/AddButton';
+import ModalActions from '../buttons/ModalActions';
 
 // module imports
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 
 // util imports
-import _t from '../utils/Translations.js';
-import Util from '../utils/Util.js';
+import _t from '../../util/Translations';
+import Util from '../../util/Util';
 
 class FacilityModal extends Component {
 
@@ -109,14 +109,16 @@ class FacilityModal extends Component {
                 }
               </h2>
               <hr />
-              <div className="form-group col-md-12">
-                <label>{ _t.translate('Name') }</label>
-                <input value={this.state.name} onChange={this.changeName}
-                  className="form-control" autoFocus onFocus={this.moveCursorToEnd}
-                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
-                  placeholder={ _t.translate('Name') }
-                />
-              </div>
+              <form>
+                <div className="form-group col-md-12">
+                  <label>{ _t.translate('Name') }</label>
+                  <input value={this.state.name} onChange={this.changeName}
+                    className="form-control" autoFocus onFocus={this.moveCursorToEnd}
+                    onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                    placeholder={ _t.translate('Name') }
+                  />
+                </div>
+              </form>
               {this.props.facility === -1 ?
                 <ModalActions
                   primaryLabel={ _t.translate('Add') }

@@ -48,6 +48,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 		@NamedQuery(name = "Massage.findAllByEnding", query = "SELECT massage FROM Massage massage WHERE massage.ending = :ending"),
 		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
 		@NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client"),
+		@NamedQuery(name = "Massage.findAllByContact", query = "SELECT massage FROM Massage massage WHERE massage.contact = :contact"),
 		@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility") })
 public class Massage {
 
@@ -68,6 +69,9 @@ public class Massage {
 	@Nullable
 	private String client; // ID of the client taking the massage
 
+	@Nullable
+	private String contact; // contact info of the client taking the massage
+
 	@ManyToOne
 	@NotNull
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -83,16 +87,18 @@ public class Massage {
 	 * Massage parameterized constructor
 	 *
 	 * @param date new Massage date
-	 * @param endDate new Massage endDate
+	 * @param ending new Massage ending
 	 * @param masseuse new Massage masseuse
 	 * @param client new Massage client
+	 * @param contact new Massage contact
 	 * @param facility new Massage facility
 	 */
-	public Massage(Date date, Date ending, String masseuse, String client, Facility facility) {
+	public Massage(Date date, Date ending, String masseuse, String client, String contact, Facility facility) {
 		this.date = date;
 		this.ending = ending;
 		this.masseuse = masseuse;
 		this.client = client;
+		this.contact = contact;
 		this.facility = facility;
 	}
 
@@ -187,6 +193,24 @@ public class Massage {
 	}
 
 	/**
+	 * Contact getter
+	 *
+	 * @return current contact
+	 */
+	public String getContact() {
+		return contact;
+	}
+
+	/**
+	 * Contact setter
+	 *
+	 * @param contact new contact
+	 */
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	/**
 	 * Facility getter
 	 *
 	 * @return current facility
@@ -202,6 +226,40 @@ public class Massage {
 	 */
 	public void setFacility(Facility facility) {
 		this.facility = facility;
+	}
+
+	/**
+	 * Returns the time difference between Massage ending and date
+	 *
+	 * @return the difference in milliseconds
+	 */
+	public long calculateDuration() {
+		return ending.getTime() - date.getTime();
+	}
+
+	/**
+	 * Checks and possibly swaps date with ending if ending date is before date
+	 */
+	public void checkDates() {
+		if (date.after(ending)) {
+			Date dateHolder = date;
+			date = ending;
+			ending = dateHolder;
+		}
+	}
+
+	/**
+	 * Compares date and ending with another Massage and checks if they collide with
+	 * each other
+	 *
+	 * @param massage Massage to compare dates with
+	 * @return true if collides, false otherwise
+	 */
+	public boolean datesCollide(Massage massage) {
+		if (date.compareTo(massage.getEnding()) <= 0 && ending.compareTo(massage.getDate()) >= 0) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -232,7 +290,7 @@ public class Massage {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Task[id=%s, date=%s, endDate=%s, masseuse=%s, facility=%s]", id, date, ending, masseuse,
-				facility.toString());
+		return String.format("Task[id=%s, date=%s, endDate=%s, masseuse=%s, contact=%s, facility=%s]", id, date, ending,
+				masseuse, contact, facility.toString());
 	}
 }

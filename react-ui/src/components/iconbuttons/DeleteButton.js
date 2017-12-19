@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
-import ConfirmationModal from '../components/ConfirmationModal';
+import ConfirmationModal from '../modals/ConfirmationModal';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Custom delete button component.
@@ -21,7 +21,8 @@ class DeleteButton extends Component {
   render() {
     return(
       <span>
-        <button style={{ 'color': '#000' }} type="button" className="btn btn-link" onClick={this.handleToggle}>
+        <button style={{ 'color': '#000' }} type="button" className="btn btn-link"
+          onClick={this.handleToggle} title={ _t.translate("Delete") }>
           <span className="glyphicon glyphicon-remove"></span>
         </button>
         {this.state.active ?

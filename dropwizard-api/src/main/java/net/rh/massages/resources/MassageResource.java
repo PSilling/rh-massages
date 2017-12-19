@@ -1,21 +1,23 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages.resources;
 
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -81,13 +83,39 @@ public class MassageResource {
 	 *
 	 * @param massage new Massage
 	 * @exception WebApplicationException if massage could not be found after
-	 *                creation
+	 *                creation or its ending is before now or when massage time
+	 *                collides with other massages with the same massuese
 	 * @return on creation response
 	 */
 	@POST
 	@RolesAllowed("admin")
 	@UnitOfWork
 	public Response createMassage(@NotNull @Valid Massage massage) {
+		massage.checkDates();
+		if (massage.getEnding().before(new Date())) {
+			throw new WebApplicationException(Status.FORBIDDEN);
+		}
+
+		// check for date collision for the given masseuse
+		List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
+		List<Massage> massagesForRemoval = new LinkedList<>();
+
+		for (Massage masseuseMassage : daoMassages) {
+			if (massage.datesCollide(masseuseMassage)) {
+				// queue and then remove all colliding Massages for removal if they all have no
+				// client or cancel the request if a client is assigned to them
+				if (masseuseMassage.getClient() == null) {
+					massagesForRemoval.add(masseuseMassage);
+				} else {
+					return Response.noContent().build();
+				}
+			}
+		}
+
+		for (Massage massageForRemoval : massagesForRemoval) {
+			massageDao.delete(massageForRemoval);
+		}
+
 		massageDao.create(massage);
 
 		if (massageDao.findById(massage.getId()) == null) {

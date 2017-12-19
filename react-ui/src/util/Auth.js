@@ -1,5 +1,4 @@
 // Auth handler using Keycloak
-import Util from './Util';
 import Keycloak from 'keycloak-js';
 
 var Auth = function() { };
@@ -19,7 +18,11 @@ Auth.getToken = () => {
 }
 
 Auth.getSub = () => {
-  return Auth.keycloak.idTokenParsed.sub;
+  return Auth.keycloak.subject;
+}
+
+Auth.getContact = () => {
+  return Auth.keycloak.idTokenParsed.name + " (" + Auth.keycloak.idTokenParsed.email + ")";
 }
 
 export default Auth

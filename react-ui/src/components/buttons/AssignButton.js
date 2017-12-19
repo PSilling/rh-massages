@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
-import AssignConfirmationModal from '../components/AssignConfirmationModal';
+import AssignConfirmationModal from '../modals/AssignConfirmationModal';
 
 // util imports
-import _t from '../utils/Translations.js';
+import _t from '../../util/Translations';
 
 /**
  * Custom assign myself button component.
@@ -21,7 +21,8 @@ class AssignButton extends Component {
   render() {
     return(
       <span>
-        <button type="button" className="btn btn-success pull-right" onClick={this.handleToggle}>
+        <button type="button" className="btn btn-success pull-right" onClick={this.handleToggle} disabled={this.props.disabled}
+          title={this.props.disabled ? _t.translate('Maximal simultaneous massage time per user would be exceeded') : "" }>
           { _t.translate('Assign me') }
         </button>
         {this.state.active ?
