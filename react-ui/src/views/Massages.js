@@ -32,7 +32,7 @@ import Util from '../util/Util';
  * Tabbed facilities with their massage lists.
  */
 
-class FacilitiesList extends Component {
+class FacilitiesTabs extends Component {
 
   state = {facilities: [], massages: [], allMassages: [], masseuses: [], selected: [], index: 1,
             page: 1, editId: -1, massageMinutes: 0,  modalActive: false, copyModalActive: false,
@@ -95,39 +95,39 @@ class FacilitiesList extends Component {
   }
 
   assignMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, [{
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
       client: Auth.getSub(),
       contact: Auth.getContact(),
       facility: massage.facility
-    }, () => this.getMassages(this.state.index-1));
+    }], () => this.getMassages(this.state.index-1));
   }
 
   assignMassageWithEvent = (massage) => {
-    Util.put(Util.MASSAGES_URL + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, [{
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
       client: Auth.getSub(),
       contact: Auth.getContact(),
       facility: massage.facility
-    }, () => {
+    }], () => {
       Util.addToCalendar(massage);
       this.getMassages(this.state.index-1);
     });
   }
 
   cancelMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, [{
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
       client: null,
       contact: null,
       facility: massage.facility
-    }, () => this.getMassages(this.state.index-1));
+    }], () => this.getMassages(this.state.index-1));
   }
 
   deleteMassage = (id) => {
@@ -135,15 +135,16 @@ class FacilitiesList extends Component {
   }
 
   deleteSelectedMassages = () => {
-    var callback = () => {
-      this.setState({selected: []});
-      this.getMassages(this.state.index-1);
-    }
+    var idString = "";
 
     for (var i = 0; i < this.state.selected.length; i++) {
-      Util.delete(Util.MASSAGES_URL + this.state.selected[i].id, callback,
-        this.state.selected.length === (i + 1) ? true : false);
+      idString += this.state.selected[i].id + "&";
     }
+
+    Util.delete(Util.MASSAGES_URL + idString, () => {
+      this.setState({selected: []});
+      this.getMassages(this.state.index-1);
+    });
   }
 
   findUniqueMasseuses = () => {
@@ -277,7 +278,7 @@ class FacilitiesList extends Component {
             { _t.translate('Massages in ') + this.state.facilities[this.state.index-1].name}
           </h1> : _t.translate('Massages')
         }
-        {this.state.facilities.length > 0 ?
+          {this.state.facilities.length > 0 ?
           <Tabs tabActive={this.state.index} onAfterChange={this.onTabChange}>
             {this.state.facilities.map((item) => (
               <Tabs.Panel title={item.name} key={item}>
@@ -425,7 +426,7 @@ class FacilitiesList extends Component {
 
 const Massages = () => (
   <div>
-    <FacilitiesList />
+    <FacilitiesTabs />
   </div>
 );
 

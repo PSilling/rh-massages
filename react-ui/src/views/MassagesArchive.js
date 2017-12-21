@@ -83,14 +83,12 @@ class MassagesList extends Component {
   }
 
   deleteAllMassages = () => {
-    var callback = () => {
-      this.getMassages();
+    var idString = "";
+    for (var i = 0; i < this.state.allMassages.length; i++) {
+      idString += this.state.allMassages[i].id + "&";
     }
 
-    for (var i = 0; i < this.state.allMassages.length; i++) {
-      Util.delete(Util.MASSAGES_URL + this.state.allMassages[i].id, callback,
-        this.state.allMassages.length === (i + 1) ? true : false);
-    }
+    Util.delete(Util.MASSAGES_URL + idString, () => this.getMassages());
   }
 
   changePage = (page) => {

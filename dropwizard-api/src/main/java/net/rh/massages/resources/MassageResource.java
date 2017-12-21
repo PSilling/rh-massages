@@ -79,51 +79,64 @@ public class MassageResource {
 	}
 
 	/**
-	 * Accepts POST request with a new Massage
+	 * Accepts POST request with a new list of Massages
 	 *
-	 * @param massage new Massage
+	 * @param massages list of Massages to create
 	 * @exception WebApplicationException if massage could not be found after
 	 *                creation or its ending is before now or when massage time
 	 *                collides with other massages with the same massuese
-	 * @return on creation response
+	 * @return on creation response of last created Massage
 	 */
 	@POST
 	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response createMassage(@NotNull @Valid Massage massage) {
-		massage.checkDates();
-		if (massage.getEnding().before(new Date())) {
+	public Response createMassage(@NotNull @Valid List<Massage> massages) {
+		Response response = null;
+		boolean throwForbidden = false;
+		for (Massage massage : massages) {
+			massage.checkDates();
+			if (massage.getEnding().before(new Date())) {
+				throwForbidden = true;
+				continue;
+			}
+
+			// check for date collision for the given masseuse
+			List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
+			List<Massage> massagesForRemoval = new LinkedList<>();
+
+			for (Massage masseuseMassage : daoMassages) {
+				if (massage.datesCollide(masseuseMassage)) {
+					// queue and then remove all colliding Massages for removal if they all have no
+					// client or cancel the request if a client is assigned to them
+					if (masseuseMassage.getClient() == null) {
+						massagesForRemoval.add(masseuseMassage);
+					} else {
+						response = Response.noContent().build();
+						continue;
+					}
+				}
+			}
+
+			for (Massage massageForRemoval : massagesForRemoval) {
+				massageDao.delete(massageForRemoval);
+			}
+
+			massageDao.create(massage);
+
+			if (massageDao.findById(massage.getId()) == null) {
+				throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+			}
+
+			response = Response
+					.created(UriBuilder.fromResource(MassageResource.class).path("/{id}").build(massage.getId()))
+					.entity(massage).build();
+		}
+
+		if (throwForbidden) {
 			throw new WebApplicationException(Status.FORBIDDEN);
 		}
 
-		// check for date collision for the given masseuse
-		List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
-		List<Massage> massagesForRemoval = new LinkedList<>();
-
-		for (Massage masseuseMassage : daoMassages) {
-			if (massage.datesCollide(masseuseMassage)) {
-				// queue and then remove all colliding Massages for removal if they all have no
-				// client or cancel the request if a client is assigned to them
-				if (masseuseMassage.getClient() == null) {
-					massagesForRemoval.add(masseuseMassage);
-				} else {
-					return Response.noContent().build();
-				}
-			}
-		}
-
-		for (Massage massageForRemoval : massagesForRemoval) {
-			massageDao.delete(massageForRemoval);
-		}
-
-		massageDao.create(massage);
-
-		if (massageDao.findById(massage.getId()) == null) {
-			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
-		}
-
-		return Response.created(UriBuilder.fromResource(MassageResource.class).path("/{id}").build(massage.getId()))
-				.entity(massage).build();
+		return response;
 	}
 
 	/**
@@ -146,9 +159,9 @@ public class MassageResource {
 	}
 
 	/**
-	 * DELETEs a massage given by id
+	 * DELETEs a massages given their id
 	 *
-	 * @param id massage id
+	 * @param idString Massage ids
 	 * @exception WebApplicationException if the id could not be found
 	 * @return on delete response
 	 */
@@ -156,12 +169,21 @@ public class MassageResource {
 	@Path("/{id}")
 	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response delete(@PathParam("id") LongParam id) {
-		if (massageDao.findById(id.get()) == null) {
-			throw new WebApplicationException(Status.NOT_FOUND);
+	public Response delete(@PathParam("id") String idString) {
+		boolean throwNotFound = false;
+		String[] ids = idString.split("&");
+		for (int i = 0; i < ids.length; i++) {
+			if (massageDao.findById(Long.valueOf(ids[i])) == null) {
+				throwNotFound = true;
+				continue;
+			}
+
+			massageDao.delete(massageDao.findById(Long.valueOf(ids[i])));
 		}
 
-		massageDao.delete(massageDao.findById(id.get()));
+		if (throwNotFound) {
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
 
 		return Response.noContent().build();
 	}

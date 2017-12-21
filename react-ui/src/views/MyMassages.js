@@ -50,13 +50,13 @@ class MassagesList extends Component {
   }
 
   cancelMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + massage.id, {
+    Util.put(Util.MASSAGES_URL + massage.id, [{
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
       client: null,
       facility: massage.facility
-    }, this.getMassages);
+    }], this.getMassages);
   }
 
   render() {

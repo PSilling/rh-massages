@@ -19,6 +19,7 @@ package net.rh.massages.integration;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.NotAuthorizedException;
@@ -68,21 +69,24 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Tests whether endpoints using Auth annotation require authentication.
+	 * Tests whether endpoints using Auth annotation require authentication. Throws
+	 * non-severe DB errors as no Facility has been created inside of the DB
+	 * beforehand.
 	 */
 	@Test(expected = NotAuthorizedException.class)
 	public void testAuth() {
 		final Facility facility = new Facility("Facility"); // test Facility
 		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility); // test
 																												// Massage
+		List<Massage> massages = new LinkedList<>();
+		massages.add(massage);
 
 		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/1")
-				.request(MediaType.APPLICATION_JSON).put(Entity.json(massage));
+				.request(MediaType.APPLICATION_JSON).put(Entity.json(massages));
 
 		assertEquals(401, respone.getStatus());
 
-		List<Massage> massages = RULE.client()
-				.target("http://localhost:" + RULE.getLocalPort() + "/api/massages/client")
+		massages = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/client")
 				.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Massage>>() {
 				});
 	}

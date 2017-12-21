@@ -89,14 +89,12 @@ class MassagaBatchEditModal extends Component {
    * Handles the put request.
    */
   editMassages = () => {
+    var idString = "";
+    var putArray = [];
     var informed = false;
-    var callback = () => {
-      this.props.getCallback();
-      this.props.onToggle(true);
-    }
 
     for (var i = 0; i < this.props.massages.length; i++) {
-      if (this.getDate(this.props.massages[i].ending) === -1) {
+      if (this.getDate(this.props.massages[i].date) === -1 || this.getDate(this.props.massages[i].ending) === -1) {
         if (!informed) {
           Util.notify("warning",
             _t.translate('Not all massages were edited as in some cases the new date would have been before now.'),
@@ -105,14 +103,21 @@ class MassagaBatchEditModal extends Component {
         }
         continue;
       }
-      Util.put(Util.MASSAGES_URL + this.props.massages[i].id, {
+      idString += this.props.massages[i].id + "&";
+      putArray.push({
         date: this.getDate(this.props.massages[i].date),
         ending: this.getDate(this.props.massages[i].ending),
         masseuse: (this.state.editMasseuse) ? this.state.masseuse : this.props.massages[i].masseuse,
         client: (this.state.removeClients) ? null : this.props.massages[i].client,
         contact: (this.state.removeClients) ? null : this.props.massages[i].contact,
         facility: {id: this.props.massages[i].facility.id}
-      }, callback, this.props.massages.length === (i + 1) ? true : false);
+      });
+    }
+    if (putArray.length > 0) {
+      Util.put(Util.MASSAGES_URL + idString, putArray, () => {
+        this.props.getCallback();
+        this.props.onToggle(true);
+      });
     }
   }
 

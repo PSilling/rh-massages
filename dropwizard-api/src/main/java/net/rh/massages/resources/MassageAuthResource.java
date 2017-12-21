@@ -36,7 +36,6 @@ import javax.ws.rs.core.Response.Status;
 
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
-import io.dropwizard.jersey.params.LongParam;
 import net.rh.massages.auth.User;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.MassageDAO;
@@ -69,100 +68,122 @@ public class MassageAuthResource {
 	}
 
 	/**
-	 * Updates a massage given by id to a given value
+	 * Updates Massage in a list given by ids to a new value
 	 *
-	 * @param massage updated massage
-	 * @param id massage id
+	 * @param massages list of updated Massages
+	 * @param idString Massage ids
 	 * @exception WebApplicationException if the id could not be found or when
 	 *                normal user tries to change a massage that isn't assigned to
 	 *                him, change the massage itself or even too late or when its
 	 *                ending is before now or when massage time collides with other
 	 *                massages with the same massuese
-	 * @return on update response
+	 * @return on update response of last updated Massage
 	 */
 	@PUT
 	@Path("/{id}")
 	@PermitAll
 	@UnitOfWork
-	public Response update(@NotNull @Valid Massage massage, @PathParam("id") LongParam id, @Auth User user) {
-		Massage daoMassage = massageDao.findById(id.get());
+	public Response update(@NotNull @Valid List<Massage> massages, @PathParam("id") String idString, @Auth User user) {
+		Response response = null;
+		boolean throwForbidden = false;
+		boolean throwNotFound = false;
+		String[] ids = idString.split("&");
+		for (int i = 0; i < ids.length; i++) {
+			Massage daoMassage = massageDao.findById(Long.valueOf(ids[i]));
+			Massage massage = massages.get(i);
 
-		if (daoMassage == null) {
+			if (daoMassage == null) {
+				throwNotFound = true;
+				continue;
+			}
+
+			massage.setId(Long.valueOf(ids[i]));
+
+			if (!user.getRoles().contains("admin")) {
+				// user is forbidden to edit anything other than the client and even then the
+				// client has to be the user himself or a null
+				if (!daoMassage.equals(massage)
+						|| (!user.getSubject().equals(massage.getClient())
+								&& !user.getSubject().equals(daoMassage.getClient()))
+						|| (massage.getClient() != null && !massage.getClient().equals(user.getSubject()))
+						|| ((massage.getDate().before(new Date(new Date().getTime() + MAX_OFFSET)))
+								&& daoMassage.getClient() != null)) {
+					throwForbidden = true;
+					continue;
+				}
+			}
+
+			massage.checkDates();
+			if (massage.getDate().before(new Date())) {
+				throwForbidden = true;
+				continue;
+			}
+
+			// check whether the user still has massage time available for the given
+			// Facility
+			if (massage.getClient() != null) {
+				long massageTime = massage.calculateDuration();
+				List<Massage> daoMassagesFacility = massageDao.findAllByFacility(massage.getFacility());
+
+				if (daoMassagesFacility.contains(daoMassage)) {
+					daoMassagesFacility.remove(daoMassage);
+				}
+
+				for (Massage facilityMassage : daoMassagesFacility) {
+					if (facilityMassage.getClient() == null || facilityMassage.getDate().before(new Date())) {
+						continue;
+					}
+					if (facilityMassage.getClient().equals(massage.getClient())) {
+						massageTime += facilityMassage.calculateDuration();
+					}
+				}
+
+				if (massageTime > MASSAGE_LIMIT) {
+					throwForbidden = true;
+					continue;
+				}
+			}
+
+			// check for date collision for the given masseuse
+			List<Massage> daoMassagesMasseuse = massageDao.findAllByMasseuse(massage.getMasseuse());
+			List<Massage> massagesForRemoval = new LinkedList<>();
+
+			// remove the updated Massage from list
+			if (daoMassagesMasseuse.contains(daoMassage)) {
+				daoMassagesMasseuse.remove(daoMassage);
+			}
+
+			for (Massage masseuseMassage : daoMassagesMasseuse) {
+				if (massage.datesCollide(masseuseMassage)) {
+					// queue and then remove all colliding Massages for removal if they all have no
+					// client or cancel the request if a client is assigned to them
+					if (masseuseMassage.getClient() == null) {
+						massagesForRemoval.add(masseuseMassage);
+					} else {
+						response = Response.noContent().build();
+						continue;
+					}
+				}
+			}
+
+			massageDao.update(massage);
+
+			for (Massage massageForRemoval : massagesForRemoval) {
+				massageDao.delete(massageForRemoval);
+			}
+
+			response = Response.ok(massage).build();
+		}
+
+		if (throwNotFound) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
-		massage.setId(id.get());
-
-		if (!user.getRoles().contains("admin")) {
-			// user is forbidden to edit anything other than the client and even then the
-			// client has to be the user himself or a null
-			if (!daoMassage.equals(massage)
-					|| (!user.getSubject().equals(massage.getClient())
-							&& !user.getSubject().equals(daoMassage.getClient()))
-					|| (massage.getClient() != null && !massage.getClient().equals(user.getSubject()))
-					|| ((massage.getDate().before(new Date(new Date().getTime() + MAX_OFFSET)))
-							&& daoMassage.getClient() != null)) {
-				throw new WebApplicationException(Status.FORBIDDEN);
-			}
-		}
-
-		massage.checkDates();
-		if (massage.getDate().before(new Date())) {
+		if (throwForbidden) {
 			throw new WebApplicationException(Status.FORBIDDEN);
 		}
 
-		// check whether the user still has massage time available for the given
-		// Facility
-		if (massage.getClient() != null) {
-			long massageTime = massage.calculateDuration();
-			List<Massage> daoMassagesFacility = massageDao.findAllByFacility(massage.getFacility());
-
-			if (daoMassagesFacility.contains(daoMassage)) {
-				daoMassagesFacility.remove(daoMassage);
-			}
-
-			for (Massage facilityMassage : daoMassagesFacility) {
-				if (facilityMassage.getClient() == null || facilityMassage.getDate().before(new Date())) {
-					continue;
-				}
-				if (facilityMassage.getClient().equals(massage.getClient())) {
-					massageTime += facilityMassage.calculateDuration();
-				}
-			}
-
-			if (massageTime > MASSAGE_LIMIT) {
-				throw new WebApplicationException(Status.FORBIDDEN);
-			}
-		}
-
-		// check for date collision for the given masseuse
-		List<Massage> daoMassagesMasseuse = massageDao.findAllByMasseuse(massage.getMasseuse());
-		List<Massage> massagesForRemoval = new LinkedList<>();
-
-		// remove the updated Massage from list
-		if (daoMassagesMasseuse.contains(daoMassage)) {
-			daoMassagesMasseuse.remove(daoMassage);
-		}
-
-		for (Massage masseuseMassage : daoMassagesMasseuse) {
-			if (massage.datesCollide(masseuseMassage)) {
-				// queue and then remove all colliding Massages for removal if they all have no
-				// client or cancel the request if a client is assigned to them
-				if (masseuseMassage.getClient() == null) {
-					massagesForRemoval.add(masseuseMassage);
-				} else {
-					return Response.noContent().build();
-				}
-			}
-		}
-
-		massageDao.update(massage);
-
-		for (Massage massageForRemoval : massagesForRemoval) {
-			massageDao.delete(massageForRemoval);
-		}
-
-		return Response.ok(massage).build();
+		return response;
 	}
 
 	/**

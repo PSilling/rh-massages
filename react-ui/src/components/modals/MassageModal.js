@@ -74,14 +74,14 @@ class MassageModal extends Component {
       return;
     }
     var date = this.getStartingDate();
-    Util.post(Util.MASSAGES_URL, {
+    Util.post(Util.MASSAGES_URL, [{
       date: moment(date).toDate(),
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
       client: null,
       contact: null,
       facility: {id: this.props.facilityId}
-    }, () => {
+    }], () => {
       this.props.onToggle();
       this.props.getCallback();
     });
@@ -96,14 +96,14 @@ class MassageModal extends Component {
       return;
     }
     var date = this.getStartingDate();
-    Util.put(Util.MASSAGES_URL + this.props.massage.id, {
+    Util.put(Util.MASSAGES_URL + this.props.massage.id, [{
       date: moment(date).toDate(),
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
       client: this.props.massage.client,
       contact: this.props.massage.contact,
       facility: this.props.massage.facility
-    }, () => {
+    }], () => {
       this.props.onToggle();
       this.props.getCallback();
     });

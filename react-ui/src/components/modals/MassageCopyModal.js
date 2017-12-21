@@ -38,23 +38,25 @@ class MassagaCopyModal extends Component {
    * Handles the post request.
    */
   addMassages = () => {
-    var callback = () => {
-      this.props.getCallback();
-      this.props.onToggle(true);
-    }
+    var postArray = [];
 
     for (var i = 1; i <= parseInt(this.state.count, 10); i++) {
       for (var j = 0; j < this.props.massages.length; j++) {
-        Util.post(Util.MASSAGES_URL, {
+        postArray.push({
           date: moment(this.props.massages[j].date).add(this.state.step * i, 'days').toDate(),
           ending: moment(this.props.massages[j].ending).add(this.state.step * i, 'days').toDate(),
           masseuse: this.props.massages[j].masseuse,
           client: null,
           contact: null,
           facility: {id: this.props.massages[j].facility.id}
-        }, callback, (parseInt(this.state.count, 10) === i && this.props.massages.length === (j + 1)) ? true : false);
+        });
       }
     }
+
+    Util.post(Util.MASSAGES_URL, postArray, () => {
+      this.props.getCallback();
+      this.props.onToggle(true);
+    });
   }
 
   handleModalKeyPress = (event) => {

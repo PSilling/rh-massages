@@ -25,6 +25,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.client.Entity;
@@ -153,10 +154,12 @@ public class MassageResourceTest {
 	 */
 	@Test
 	public void createDeleteTest() {
+		List<Massage> massages = new LinkedList<>();
+		massages.add(newMassage);
 		// Tests the creation
 		Response response = RULE.target("/massages").request(MediaType.APPLICATION_JSON_TYPE)
-				.header("Authorization", "Bearer TOKEN").post(Entity.json(newMassage));
-		List<Massage> massages = fetchAll();
+				.header("Authorization", "Bearer TOKEN").post(Entity.json(massages));
+		massages = fetchAll();
 
 		assertNotNull(response);
 		assertEquals(201, response.getStatus());

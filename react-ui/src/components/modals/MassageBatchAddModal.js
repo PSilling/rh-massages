@@ -196,17 +196,13 @@ class MassagaBatchAddModal extends Component {
    * Handles the post request.
    */
   addMassages = () => {
+    var postArray = [];
     var informed = false;
     for (var i = 0; i < this.state.rules.length; i++) {
       if (Util.isEmpty(this.state.rules[i].masseuse)) {
         Util.notify("error", _t.translate('Masseuse is required!'), _t.translate('Rule #') + (i + 1));
         return;
       }
-    }
-
-    var callback = () => {
-      this.props.getCallback();
-      this.props.onToggle(true);
     }
 
     for (i = 0; i < this.state.rules.length; i++) {
@@ -224,17 +220,22 @@ class MassagaBatchAddModal extends Component {
             }
             continue;
           }
-          Util.post(Util.MASSAGES_URL, {
+          postArray.push({
             date: this.getDate(false, i, j, k),
             ending: this.getDate(true, i, j, k),
             masseuse: this.state.rules[i].masseuse,
             client: null,
             contact: null,
             facility: {id: this.props.facilityId}
-          }, callback, (!this.hasMoreDays(i, j)
-            && parseInt(this.state.rules[i].massagesPerDay, 10) === (k + 1)) ? true : false);
+          });
         }
       }
+    }
+    if (postArray.length > 0) {
+      Util.post(Util.MASSAGES_URL, postArray, () => {
+        this.props.getCallback();
+        this.props.onToggle(true);
+      });
     }
   }
 
