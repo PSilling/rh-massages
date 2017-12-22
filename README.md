@@ -35,4 +35,7 @@ Client `api-client` should connect to the server (correct secret (variable `KC_C
 Client `ui-client` should connect to the ui and should be set as `public` with `http://localhost:8080/*` as its `Redirect URI`.
 Example Keycloak setup can be found [here](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-export.json).
 
+## Docker
 
+The application can be easily started using Docker with its [Dockerfile](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/Dockerfile).
+The container needs to be connected to a database to be usable, however.
