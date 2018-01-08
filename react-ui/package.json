@@ -7,14 +7,14 @@
     "keycloak-js": "^3.4.0",
     "localize": "^0.4.7",
     "moment": "^2.18.1",
+    "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-modal-dialog": "^4.0.7",
     "react-notifications": "^1.4.3",
     "react-paginate": "^4.4.3",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10",
-    "react-simpletabs": "pedronauck/react-simpletabs#92d048f"
+    "react-scripts": "1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",

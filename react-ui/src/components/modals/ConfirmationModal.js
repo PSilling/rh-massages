@@ -1,6 +1,7 @@
 // react imports
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 // component imports
 import ModalActions from '../buttons/ModalActions';
@@ -23,7 +24,7 @@ class ConfirmationModal extends Component {
   }
 
   render() {
-    return(
+    return (
       <ModalContainer onClose={this.props.onClose}>
         <ModalDialog onClose={this.props.onClose} width="40%" style={{ 'outline': 'none' }}
           tabIndex="1" onKeyPress={this.handleKeyPress}
@@ -32,16 +33,19 @@ class ConfirmationModal extends Component {
           }}>
           <h3>{ _t.translate('Action confirmation') }</h3>
           <p>{this.props.message}</p>
-          <ModalActions
-            primaryLabel={ _t.translate('Proceed') }
-            onProceed={this.props.onConfirm}
-            onClose={this.props.onClose}
-            autoFocus={true}
-          />
+          <ModalActions onProceed={this.props.onConfirm} onClose={this.props.onClose} autoFocus>
+            {this.props.children}
+          </ModalActions>
         </ModalDialog>
       </ModalContainer>
     )
   }
 }
+
+ConfirmationModal.propTypes = {
+  message: PropTypes.string.isRequired, // message in the Modal
+  onConfirm: PropTypes.func.isRequired, // callback function triggered on primary button click
+  onClose: PropTypes.func.isRequired, // callback function triggered on Modal closure
+};
 
 export default ConfirmationModal

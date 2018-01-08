@@ -5,15 +5,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Auth from './util/Auth';
 
-// The whole application needs to be authenticated before access.
+// The whole application needs to be authenticated with Keycloak adapter before access can be granted.
 Auth.keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function (authenticated) {
-    if (authenticated) {
-        console.log('[KEYCLOAK] The authentication has been successful!');
-        ReactDOM.render(<App />, document.getElementById('root'));
-        registerServiceWorker();
-    } else {
-        console.log('[KEYCLOAK] The authentication has failed!');
-    }
+  if (authenticated) {
+      console.log('[KEYCLOAK] Authentication has been successful!');
+      ReactDOM.render(<App />, document.getElementById('root'));
+      registerServiceWorker();
+  } else {
+      console.log('[KEYCLOAK] Authentication has failed!');
+  }
 }).error(function () {
-    console.log('[KEYCLOAK] Failed to initialize Keycloak authentication!');
+  console.log('[KEYCLOAK] Failed to initialize Keycloak authentication!');
 });

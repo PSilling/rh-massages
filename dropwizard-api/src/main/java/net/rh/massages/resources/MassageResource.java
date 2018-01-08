@@ -23,14 +23,17 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,6 +41,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.MassageDAO;
@@ -140,6 +144,50 @@ public class MassageResource {
 	}
 
 	/**
+	 * DELETEs Massages given by their id
+	 *
+	 * @param ids set of Massage ids
+	 * @exception WebApplicationException if the id could not be found
+	 * @return on delete response
+	 */
+	@DELETE
+	@RolesAllowed("admin")
+	@UnitOfWork
+	public Response delete(@NotNull @QueryParam("ids") List<Integer> ids) {
+		boolean throwNotFound = false;
+		for (int id : ids) {
+			if (massageDao.findById(Long.valueOf(id)) == null) {
+				throwNotFound = true;
+				continue;
+			}
+
+			massageDao.delete(massageDao.findById(Long.valueOf(id)));
+		}
+
+		if (throwNotFound) {
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+
+		return Response.noContent().build();
+	}
+
+	/**
+	 * GETs all Massages that are after the current time
+	 *
+	 * @param search value of the text to be searched for
+	 * @param limit highest possible number of results
+	 * @return list of all old Massages
+	 */
+	@GET
+	@Path("/old")
+	@PermitAll
+	@UnitOfWork
+	public List<Massage> fetchOld(@QueryParam("search") String search,
+			@Min(-1) @DefaultValue("-1") @QueryParam("limit") IntParam limit) {
+		return massageDao.findAllOld(search, limit.get());
+	}
+
+	/**
 	 * GETs a massage based on its id
 	 *
 	 * @param id massage id
@@ -156,35 +204,5 @@ public class MassageResource {
 		}
 
 		return massageDao.findById(id.get());
-	}
-
-	/**
-	 * DELETEs a massages given their id
-	 *
-	 * @param idString Massage ids
-	 * @exception WebApplicationException if the id could not be found
-	 * @return on delete response
-	 */
-	@DELETE
-	@Path("/{id}")
-	@RolesAllowed("admin")
-	@UnitOfWork
-	public Response delete(@PathParam("id") String idString) {
-		boolean throwNotFound = false;
-		String[] ids = idString.split("&");
-		for (int i = 0; i < ids.length; i++) {
-			if (massageDao.findById(Long.valueOf(ids[i])) == null) {
-				throwNotFound = true;
-				continue;
-			}
-
-			massageDao.delete(massageDao.findById(Long.valueOf(ids[i])));
-		}
-
-		if (throwNotFound) {
-			throw new WebApplicationException(Status.NOT_FOUND);
-		}
-
-		return Response.noContent().build();
 	}
 }

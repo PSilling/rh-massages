@@ -11,13 +11,13 @@ import _t from '../../util/Translations';
 class ProfileLink extends Component {
 
   viewProfile = () => {
-      Auth.keycloak.accountManagement();
-    }
+    Auth.keycloak.accountManagement();
+  }
 
   render() {
     return(
       <button type="button" className="btn btn-link navbar-btn"
-        onClick={() => this.viewProfile()} title={ _t.translate("Show Keycloak profile") }>
+        onClick={this.viewProfile} title={ _t.translate("Show Keycloak profile") }>
         <span className="glyphicon glyphicon-user"></span>&nbsp;
           { _t.translate('Profile') }
       </button>

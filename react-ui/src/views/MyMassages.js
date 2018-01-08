@@ -1,9 +1,9 @@
 // react imports
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // component imports
-import CancelButton from '../components/buttons/CancelButton';
-import CalendarButton from '../components/iconbuttons/CalendarButton';
+import MyMassagePanel from '../components/panels/MyMassagePanel';
 
 // module imports
 import moment from 'moment';
@@ -14,7 +14,7 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Tabled list of all assigned massages.
+ * Panel list of all assigned massages sorted by timestamps.
  */
 class MassagesList extends Component {
 
@@ -24,7 +24,6 @@ class MassagesList extends Component {
     Util.clearAllIntervals();
 
     this.getMassages();
-
     setInterval(() => {
       this.getMassages();
     }, Util.AUTO_REFRESH_TIME * 60);
@@ -32,82 +31,52 @@ class MassagesList extends Component {
 
   getMassages = () => {
     Util.get(Util.MASSAGES_URL + "client", (json) => {
-      json.sort(function(a, b) {
-        return a.date - b.date;
-      });
-
-      for (var i = 0; i < json.length; i++) {
-        if (moment(json[i].ending).isBefore(moment())) {
-          json.splice(i, 1);
-          i--;
-        }
-      }
-
-      if (!Util.arraysEqual(this.state.massages, json)) {
-        this.setState({massages: json});
-      }
+      this.setState({massages: json});
     });
   }
 
-  cancelMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + massage.id, [{
-      date: massage.date,
-      ending: massage.ending,
-      masseuse: massage.masseuse,
-      client: null,
-      facility: massage.facility
-    }], this.getMassages);
+  createPanels = () => {
+    var panels = [],
+        i = 0,
+        addHeader = true,
+        headerTypes = ['Today', 'This week', 'Next week', 'Later than next week'],
+        startOfTypes = ['day', 'week', 'week', 'year'];
+    for (var timeType = 0; timeType < 4; timeType++) {
+      for (i; i < this.state.massages.length; i++) {
+        if (timeType !== 3 && !moment(this.state.massages[i].date).startOf(startOfTypes[timeType])
+        .isSame(moment().add(timeType === 2 ? 7 : 0, 'days').startOf(startOfTypes[timeType]))) {
+          addHeader = true;
+          break;
+        }
+        if (addHeader) {
+          panels.push(<h1 key={headerTypes[timeType]}>{ _t.translate(headerTypes[timeType]) }</h1>);
+          addHeader = false;
+        }
+        let tooLate = (moment(this.state.massages[i].date).diff(moment(), 'minutes') <= Util.CANCELLATION_LIMIT);
+        panels.push(
+          <MyMassagePanel key={this.state.massages[i].id} type={tooLate ? "warning" : "info"} massage={this.state.massages[i]}
+            getCallback={this.getMassages} disabled={tooLate && !Auth.isAdmin()} />
+        );
+      }
+      panels.push(<div key={"row" + timeType} className="row"></div>);
+    }
+    return panels;
   }
 
   render() {
-    return(
+    return (
       <div>
         <h1>
           { _t.translate('My Massages') }
         </h1>
         <hr />
-        <table className="table table-hover table-responsive table-striped">
-          <thead>
-            <tr>
-              <th>{ _t.translate('Facility') }</th>
-              <th>{ _t.translate('Date') }</th>
-              <th>{ _t.translate('Time') }</th>
-              <th>{ _t.translate('Masseur/Masseuse') }</th>
-              <th>{ _t.translate('Event') }</th>
-              <th></th>
-            </tr>
-          </thead>
-          {this.state.massages.length > 0 ?
-            <tbody>
-              {this.state.massages.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.facility.name}</td>
-                  <td>{moment(item.date).format("dd DD. MM.")}</td>
-                  <td>{moment(item.date).format("HH:mm") + "–" + moment(item.ending).format("HH:mm")}</td>
-                  <td>{item.masseuse}</td>
-                  <td width="55px">
-                    <span className="pull-right">
-                      <CalendarButton disabled={false} onAdd={() => Util.addToCalendar(item)} />
-                    </span>
-                  </td>
-                  <td width="55px">
-                    <span className="pull-right">
-                      <CancelButton onCancel={() => this.cancelMassage(item)}
-                        disabled={(moment(item.date).diff(moment(), 'minutes') <= Util.CANCELLATION_LIMIT) && !Auth.isAdmin() ? true : false} />
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          : <tbody>
-            <tr>
-              <th colSpan="6">
-                { _t.translate('None') }
-              </th>
-            </tr>
-          </tbody>
+        {this.state.massages.length > 0 ?
+          this.createPanels()
+        : <h3>
+            { _t.translate('None') + " – "}
+            <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Go to massages") }</Link>
+          </h3>
         }
-        </table>
       </div>
     );
   }

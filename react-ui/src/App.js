@@ -22,6 +22,10 @@ import 'react-notifications/lib/notifications.css';
 import Auth from './util/Auth';
 import _t from './util/Translations';
 
+// Bootstrap customization import
+import './styles/main/bootstrap.min.css';
+
+// moment.js localization
 moment.updateLocale('en', {
   weekdaysMin : _t.translate('Su_Mo_Tu_We_Th_Fr_Sa').split('_')
 });
@@ -33,6 +37,9 @@ const NoMatch = ({ location }) => (
   <div className='text-center'>
     <h3>
       <code>Error 404:</code> { _t.translate("page doesn't exist:") } <code>{location.pathname}</code>
+    </h3>
+    <h3 style={{ 'marginTop': '30px' }}>
+      { Auth.isAuthenticated() ? <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Back to main page") }</Link> : '' }
     </h3>
   </div>
 )

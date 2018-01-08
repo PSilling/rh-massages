@@ -81,8 +81,8 @@ public class IntegrationTest {
 		List<Massage> massages = new LinkedList<>();
 		massages.add(massage);
 
-		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/1")
-				.request(MediaType.APPLICATION_JSON).put(Entity.json(massages));
+		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages")
+				.queryParam("ids", 1).request(MediaType.APPLICATION_JSON).put(Entity.json(massages));
 
 		assertEquals(401, respone.getStatus());
 

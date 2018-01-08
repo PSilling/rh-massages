@@ -19,7 +19,7 @@ class LangLink extends Component {
   render() {
     return(
       <button type="button" className="btn btn-link navbar-btn"
-        onClick={() => this.changeLanguage()} title={ _t.translate("Change language to czech") }>
+        onClick={this.changeLanguage} title={ _t.translate("Change language to czech") }>
         <span className="glyphicon glyphicon-globe"></span>&nbsp;
         { localStorage.getItem("sh-locale") === 'en' ? 'CZ' : 'EN' }
       </button>

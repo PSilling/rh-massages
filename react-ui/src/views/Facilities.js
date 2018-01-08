@@ -1,11 +1,9 @@
 // react imports
 import React, { Component } from 'react';
 
-
 // component imports
-import DeleteButton from '../components/iconbuttons/DeleteButton';
-import EditButton from '../components/iconbuttons/EditButton';
 import FacilityModal from '../components/modals/FacilityModal';
+import FacilityRow from '../components/rows/FacilityRow';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 
 // util imports
@@ -14,9 +12,9 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Facility management
+ * Management table of fetched Facilities.
  */
-class FacilitiesList extends Component {
+class FacilitiesTable extends Component {
 
   state = {facilities: [], modalActive: false, editId: -1}
 
@@ -24,7 +22,6 @@ class FacilitiesList extends Component {
     Util.clearAllIntervals();
 
     this.getFacilities();
-
     setInterval(() => {
       if (this.state.modalActive) return;
       this.getFacilities();
@@ -33,14 +30,7 @@ class FacilitiesList extends Component {
 
   getFacilities = () => {
     Util.get(Util.FACILITIES_URL, (json) => {
-      json.sort(function(a, b) {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-      });
-      if (!Util.arraysEqual(this.state.facilities, json)) {
-        this.setState({facilities: json});
-      }
+      this.setState({facilities: json});
     });
   }
 
@@ -54,7 +44,7 @@ class FacilitiesList extends Component {
 
   render () {
     if (!Auth.isAdmin()) {
-      return(
+      return (
         <UnauthorizedMessage title={ _t.translate('Facilities') } />
       );
     }
@@ -65,17 +55,16 @@ class FacilitiesList extends Component {
           { _t.translate('Facilities') }
         </h1>
         <hr />
-        <table className="table table-hover table-responsive table-striped">
+        <table className="table table-hover table-responsive table-striped table-condensed">
           <thead>
             <tr>
               <th>{ _t.translate('Name') }</th>
               <th>
                 <FacilityModal
                   active={this.state.modalActive}
-                  facility={this.state.editId === -1 ?
-                    -1 : this.state.facilities[this.state.editId]}
-                  getCallback={() => {this.getFacilities()}}
-                  onToggle={() => {this.toggleModal(-1)}}
+                  facility={this.state.editId === -1 ? null : this.state.facilities[this.state.editId]}
+                  getCallback={this.getFacilities}
+                  onToggle={() => this.toggleModal(-1)}
                 />
               </th>
             </tr>
@@ -83,17 +72,8 @@ class FacilitiesList extends Component {
           {this.state.facilities.length > 0 ?
             <tbody>
               {this.state.facilities.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.name}</td>
-                  <td width="105px">
-                    <span className="pull-right">
-                      <span style={{ 'marginRight': '5px' }}>
-                        <EditButton onEdit={() => this.toggleModal(index)} />
-                      </span>
-                      <DeleteButton onDelete={() => this.deleteFacility(item.id)} />
-                    </span>
-                  </td>
-                </tr>
+                <FacilityRow key={item.id} facility={item} onEdit={() => this.toggleModal(index)}
+                  onDelete={() => this.deleteFacility(item.id)} />
               ))}
             </tbody>
             : <tbody>
@@ -112,7 +92,7 @@ class FacilitiesList extends Component {
 
 const Facilities = () => (
   <div>
-    <FacilitiesList />
+    <FacilitiesTable />
   </div>
 );
 

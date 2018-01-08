@@ -1,6 +1,7 @@
 // react imports
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 // component imports
 import BatchButton from '../buttons/BatchButton';
@@ -14,7 +15,10 @@ import moment from 'moment';
 import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
-class MassagaBatchEditModal extends Component {
+/**
+ * Custom modal for editing multiple Massages at once
+ */
+class MassageBatchEditModal extends Component {
 
   state = {editMasseuse: false, editDate: 1, removeClients: false,
             masseuse: "", days: "1", time: "00:00"}
@@ -89,10 +93,9 @@ class MassagaBatchEditModal extends Component {
    * Handles the put request.
    */
   editMassages = () => {
-    var idString = "";
-    var putArray = [];
-    var informed = false;
-
+    var idString = "?",
+        putArray = [],
+        informed = false;
     for (var i = 0; i < this.props.massages.length; i++) {
       if (this.getDate(this.props.massages[i].date) === -1 || this.getDate(this.props.massages[i].ending) === -1) {
         if (!informed) {
@@ -103,7 +106,10 @@ class MassagaBatchEditModal extends Component {
         }
         continue;
       }
-      idString += this.props.massages[i].id + "&";
+      if (idString.length > 2000) {
+        break;
+      }
+      idString += "ids=" + this.props.massages[i].id + "&";
       putArray.push({
         date: this.getDate(this.props.massages[i].date),
         ending: this.getDate(this.props.massages[i].ending),
@@ -121,16 +127,6 @@ class MassagaBatchEditModal extends Component {
     }
   }
 
-  addMasseuseOptions = () => {
-    var options = [];
-
-    for (var i = 0; i < this.props.masseuses.length; i++) {
-        options.push(<option key={i} value={this.props.masseuses[i]} />);
-    }
-
-    return options;
-  }
-
   handleModalKeyPress = (event) => {
     if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
       this.editMassages();
@@ -143,16 +139,10 @@ class MassagaBatchEditModal extends Component {
     }
   }
 
-  moveCursorToEnd = (event) => {
-    var value = event.target.value;
-    event.target.value = '';
-    event.target.value = value;
-  }
-
   render() {
-    return(
+    return (
       <span style={{ 'marginRight': '5px' }}>
-        <BatchButton onSubmit={() => this.props.onToggle(false)} disabled={this.props.disabled}
+        <BatchButton onClick={() => this.props.onToggle(false)} disabled={this.props.disabled}
           label={ _t.translate('Edit selected') } />
 
         {this.props.active ?
@@ -166,63 +156,75 @@ class MassagaBatchEditModal extends Component {
                 { _t.translate('Edit Massages') }
               </h2>
               <hr />
-              <form>
-                <div className="form-group col-md-12">
-                  <input type="checkbox" onChange={(event) => this.changeEditMasseuse(event)}
+              <div className="form-group col-md-12">
+                <label className="checkbox-inline">
+                  <input type="checkbox" onChange={this.changeEditMasseuse}
                     checked={this.state.editMasseuse} style={{ 'marginRight': '5px' }}
                     onKeyPress={this.handleInputKeyPress}
                   />
-                  <label>{ _t.translate('Edit masseur/masseuse') }</label>
-                  <input value={this.state.masseuse} onChange={this.changeMasseuse}
-                    className="form-control" onFocus={this.moveCursorToEnd}
-                    onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
-                    placeholder={ _t.translate('Masseur/Masseuse') } list="masseuses"
-                    disabled={!this.state.editMasseuse}
-                  />
-                  <datalist id="masseuses">
-                    {this.addMasseuseOptions()}
-                  </datalist>
-                </div>
-                <div className="form-group col-md-12">
+                  <strong>{ _t.translate('Change masseur/masseuse') }</strong>
+                </label>
+                <input value={this.state.masseuse} onChange={this.changeMasseuse}
+                  className="form-control" onFocus={Util.moveCursorToEnd}
+                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                  placeholder={ _t.translate('Masseur/Masseuse') } list="masseuses"
+                  disabled={!this.state.editMasseuse}
+                />
+                <datalist id="masseuses">
+                  {this.props.masseuses.map((item) => (
+                    <option key={item} value={item} />
+                  ))}
+                </datalist>
+              </div>
+
+              <div className="form-group col-md-12">
+                <label className="checkbox-inline">
                   <input type="checkbox" onChange={(event) => this.changeEditDate(event, true)}
                     onKeyPress={this.handleInputKeyPress} style={{ 'marginRight': '5px' }}
                     checked={this.state.editDate === 0 ? false : true}
                   />
-                  <label>{ _t.translate('Edit massage date (day and time)') }</label>
-                  <div className="row">
-                    <div className="col-md-2">
-                      <input value={this.state.days} onChange={this.changeDays} className="form-control"
-                        onKeyPress={this.handleInputKeyPress} autoFocus onFocus={this.moveCursorToEnd}
-                        type="number" min="0" max="365" placeholder={ _t.translate('Day change') }
-                        title={ _t.translate('Days') }
-                        disabled={this.state.editDate === 0 ? true : false}
-                      />
-                    </div>
-                    <div className="col-md-3">
-                      <input value={this.state.time} onChange={this.changeTime}
-                        className="form-control" onKeyPress={this.handleInputKeyPress}
-                        type="time" placeholder={ _t.translate('Duration change') }
-                        disabled={this.state.editDate === 0 ? true : false}
-                      />
-                    </div>
-                    <div className="col-md-4" style={{ 'marginTop': '5px' }}>
+                  <strong>{ _t.translate('Shift massage date (day and time)') }</strong>
+                </label>
+                <div className="row">
+                  <div className="col-md-2">
+                    <input value={this.state.days} onChange={this.changeDays} className="form-control"
+                      onKeyPress={this.handleInputKeyPress} autoFocus onFocus={Util.moveCursorToEnd}
+                      type="number" min="0" max="365" placeholder={ _t.translate('Day change') }
+                      title={ _t.translate('Days') }
+                      disabled={this.state.editDate === 0 ? true : false}
+                    />
+                  </div>
+
+                  <div className="col-md-3">
+                    <input value={this.state.time} onChange={this.changeTime}
+                      className="form-control" onKeyPress={this.handleInputKeyPress}
+                      type="time" placeholder={ _t.translate('Duration change') }
+                      disabled={this.state.editDate === 0 ? true : false}
+                    />
+                  </div>
+
+                  <div className="col-md-4" style={{ 'marginTop': '5px' }}>
+                    <label className="checkbox-inline">
                       <input type="checkbox" onChange={(event) => this.changeEditDate(event, false)}
                         checked={this.state.editDate < 0 ? true : false} onKeyPress={this.handleInputKeyPress}
                         disabled={this.state.editDate === 0 ? true : false}
                         style={{ 'marginRight': '5px' }}
                       />
-                      <label>{ _t.translate('...earlier') }</label>
-                    </div>
+                      <strong>{ _t.translate('...earlier') }</strong>
+                    </label>
                   </div>
                 </div>
-                <div className="form-group col-md-12">
-                  <input type="checkbox" onChange={(event) => this.changeRemoveClients(event)}
+              </div>
+
+              <div className="form-group col-md-12">
+                <label className="checkbox-inline">
+                  <input type="checkbox" onChange={this.changeRemoveClients}
                     checked={this.state.removeClients} style={{ 'marginRight': '5px' }}
                     onKeyPress={this.handleInputKeyPress}
                   />
-                  <label>{ _t.translate('Also remove all assigned clients') }</label>
-                </div>
-              </form>
+                  <strong>{ _t.translate('Also remove all assigned clients') }</strong>
+                </label>
+              </div>
               <ModalActions
                 primaryLabel={ _t.translate('Edit') }
                 onProceed={this.editMassages}
@@ -237,4 +239,13 @@ class MassagaBatchEditModal extends Component {
   }
 }
 
-export default MassagaBatchEditModal
+MassageBatchEditModal.propTypes = {
+  active: PropTypes.bool, // whether the dialog should be shown
+  disabled: PropTypes.bool, // whether the trigger button should be disabled or not
+  massages: PropTypes.arrayOf(PropTypes.object).isRequired, // Massages to be copied
+  masseuses: PropTypes.arrayOf(PropTypes.string), // unique Massage masseuses of the given Facility
+  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
+  onToggle: PropTypes.func.isRequired // function called on modal toggle
+};
+
+export default MassageBatchEditModal

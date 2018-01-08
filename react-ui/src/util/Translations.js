@@ -67,14 +67,14 @@ const myLocalize = new Localize({
     "Show Keycloak profile": {
       "cs": "Zobrazit Keycloak profil"
     },
-    "Edit masseur/masseuse": {
+    "Change masseur/masseuse": {
       "cs": "Změnit maséra/masérku"
     },
     "...earlier": {
       "cs": "...dříve"
     },
-    "Edit massage date (day and time)": {
-      "cs": "Změnit datum masáže (den a času)"
+    "Shift massage date (day and time)": {
+      "cs": "Posunout datum masáže (den a čas)"
     },
     "Day change": {
       "cs": "Změna dne"
@@ -96,27 +96,6 @@ const myLocalize = new Localize({
     },
     "Repeat each": {
       "cs": "Opakovat v"
-    },
-    "monday": {
-      "cs": "pondělí"
-    },
-    "tuesday": {
-      "cs": "úterý"
-    },
-    "wednesday": {
-      "cs": "středu"
-    },
-    "thursday": {
-      "cs": "čtvrtek"
-    },
-    "friday": {
-      "cs": "pátek"
-    },
-    "saturday": {
-      "cs": "sobotu"
-    },
-    "sunday": {
-      "cs": "neděli"
     },
     "Shift start": {
       "cs": "Začátek směny"
@@ -207,6 +186,12 @@ const myLocalize = new Localize({
     "Assigned": {
       "cs": "Zapsáno"
     },
+    "View as a table": {
+      "cs": "Zobrazit jako tabulku"
+    },
+    "View as panels": {
+      "cs": "Zobrazit jako panely"
+    },
 
     // actions
     "Delete": {
@@ -260,9 +245,6 @@ const myLocalize = new Localize({
     "Copy selected": {
       "cs": "Kopírovat vybrané"
     },
-    "Su_Mo_Tu_We_Th_Fr_Sa": {
-      "cs": "Ne_Po_Út_St_Čt_Pá_So"
-    },
 
     // notification messages
     "Your request has been successful.": {
@@ -283,8 +265,14 @@ const myLocalize = new Localize({
     "page doesn't exist:": {
       "cs": "stránka neexistuje:"
     },
+    "Back to main page": {
+      "cs": "Zpět na hlavní stránku"
+    },
     "None": {
       "cs": "Žádné"
+    },
+    "Go to massages": {
+      "cs": "Jít na masáže"
     },
     "Name is required!": {
       "cs": "Název je vyžadován!"
@@ -294,6 +282,30 @@ const myLocalize = new Localize({
     },
     "Search": {
       "cs": "Vyhledávání"
+    },
+    "Today": {
+      "cs": "Dnes"
+    },
+    "This week": {
+      "cs": "Tento týden"
+    },
+    "Next week": {
+      "cs": "Další týden"
+    },
+    "This month": {
+      "cs": "Tento měsíc"
+    },
+    "Next month": {
+      "cs": "Další měsíc"
+    },
+    "Later than next week": {
+      "cs": "Později než další týden"
+    },
+    "Later than next month": {
+      "cs": "Později než další měsíc"
+    },
+    " in ": {
+      "cs": " v "
     },
 
     // text messages
@@ -309,8 +321,8 @@ const myLocalize = new Localize({
     "Are you sure you want to cancel this massage?": {
       "cs": "Jste si jisti, že chcete zrušit tuto masáž?"
     },
-    "Are you sure you want to cancel a massage that is assigned?": {
-      "cs": "Jste si jisti, že chcete zrušit masáž, která je zapsaná?"
+    "Are you sure you want to cancel a massage that is already assigned?": {
+      "cs": "Jste si jisti, že chcete zrušit masáž, která je již zapsaná?"
     },
     "Massage in facility": {
       "cs": "Masáž v budově"
@@ -320,6 +332,32 @@ const myLocalize = new Localize({
     },
     "Invalid import file.": {
       "cs": "Importovaný soubor je neplatný."
+    },
+
+    // moment localization
+    "monday": {
+      "cs": "pondělí"
+    },
+    "tuesday": {
+      "cs": "úterý"
+    },
+    "wednesday": {
+      "cs": "středu"
+    },
+    "thursday": {
+      "cs": "čtvrtek"
+    },
+    "friday": {
+      "cs": "pátek"
+    },
+    "saturday": {
+      "cs": "sobotu"
+    },
+    "sunday": {
+      "cs": "neděli"
+    },
+    "Su_Mo_Tu_We_Th_Fr_Sa": {
+      "cs": "Ne_Po_Út_St_Čt_Pá_So"
     }
 });
 
@@ -330,4 +368,4 @@ if (localStorage.getItem("sh-locale") === 'en') {
   localStorage.setItem("sh-locale", "cs");
 }
 
-export default myLocalize;
+export default myLocalize

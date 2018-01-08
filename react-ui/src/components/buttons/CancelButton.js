@@ -1,5 +1,6 @@
 // react imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // component imports
 import ConfirmationModal from '../modals/ConfirmationModal';
@@ -19,7 +20,7 @@ class CancelButton extends Component {
   }
 
   render() {
-    return(
+    return (
       <span>
         <button type="button" className="btn btn-warning pull-right" onClick={this.handleToggle}
           disabled={this.props.disabled} title={this.props.disabled ? _t.translate('Too late to cancel this massage') : "" }>
@@ -39,5 +40,14 @@ class CancelButton extends Component {
     )
   }
 }
+
+CancelButton.propTypes = {
+  onCancel: PropTypes.func.isRequired, // function to be called on action confirmation
+  disabled: PropTypes.bool // whether the button should be disabled
+};
+
+CancelButton.defaultProps = {
+  disabled: false
+};
 
 export default CancelButton

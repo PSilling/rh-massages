@@ -1,5 +1,6 @@
 // react imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // util imports
 import _t from '../../util/Translations';
@@ -10,7 +11,7 @@ import _t from '../../util/Translations';
 class EditButton extends Component {
 
   render() {
-    return(
+    return (
       <span>
         <button style={{ 'color': '#000' }}  type="button" className="btn btn-link"
           onClick={this.props.onEdit} title={ _t.translate("Edit") }>
@@ -20,5 +21,9 @@ class EditButton extends Component {
     );
   }
 }
+
+EditButton.propTypes = {
+  onEdit: PropTypes.func.isRequired // function to be called on button click
+};
 
 export default EditButton

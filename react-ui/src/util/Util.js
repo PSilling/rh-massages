@@ -7,39 +7,18 @@ import Auth from './Auth';
 var Util = function() { };
 
 /**
- * Checks whether an object is null or undefined
+ * Checks whether an object is null, undefined or an empty string
+ *
  * @param  object to check
  * @return boolean
  */
 Util.isEmpty = function(object) {
-  return (object === null) || (typeof object === 'undefined') || (object === '')
-}
-
-/**
- * Checks whether an array is the same as an another array (without nesting).
- * @param  array1 array to check
- * @param  array2 array to compare array1 with
- * @return boolean
- */
-Util.arraysEqual = function(array1, array2) {
-  if (Util.isEmpty(array1) || Util.isEmpty(array2)) {
-    return false;
-  }
-
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (var i = 0; i < array1.length; i++) {
-    if (array1[i] !== array2[i] && JSON.stringify(array1[i]) !== JSON.stringify(array2[i])) {
-      return false;
-    }
-  }
-  return true;
+  return (object === null) || (typeof object === 'undefined') || (object === '');
 }
 
 /**
  * Creates a new notification.
+ *
  * @param type            notification type
  * @param message         notification message
  * @param title           notification title
@@ -66,6 +45,7 @@ Util.notify = (type, message, title) => {
 
 /**
  * Fetches data from a given endpoint.
+ *
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  */
@@ -84,7 +64,6 @@ Util.get = (url, update) => {
           _t.translate('An error occured!'));
       }
     }).then(function(json) {
-      console.log(json);
       update(json);
     });
   }).error(function() {
@@ -95,6 +74,7 @@ Util.get = (url, update) => {
 
 /**
  * Creates a new element at a given endpoint.
+ *
  * @param url             defined endpoint
  * @param data            data to send
  * @param update          callback function to update the resources
@@ -102,7 +82,6 @@ Util.get = (url, update) => {
  */
 Util.post = (url, data, update, notify = true) => {
   Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
-    console.log(data);
     fetch(url, {
       method: 'post',
       credentials: 'same-origin',
@@ -137,7 +116,6 @@ Util.post = (url, data, update, notify = true) => {
  */
 Util.put = (url, data, update, notify = true) => {
   Auth.keycloak.updateToken(Util.REFRESH_MIN_TIME).success(function() {
-    console.log(data);
     fetch(url, {
       method: 'put',
       credentials: 'same-origin',
@@ -220,13 +198,22 @@ Util.addToCalendar = (massage) => {
   window.open(url,"_blank");
 }
 
-Util.FACILITIES_URL = "http://localhost:8080/api/facilities/";
-Util.MASSAGES_URL = "http://localhost:8080/api/massages/";
-Util.LOGOUT_URL = "http://localhost:8080/api/logout/";
-Util.REFRESH_MIN_TIME = 150;
-Util.AUTO_REFRESH_TIME = 1000;
-Util.CANCELLATION_LIMIT = 30;
-Util.MAX_MASSAGE_MINS = 120;
-Util.MASSAGES_PER_PAGE = 12;
+/**
+ * Moves cursor in an input to the end of event value.
+ */
+Util.moveCursorToEnd = (event) => {
+  var value = event.target.value;
+  event.target.value = '';
+  event.target.value = value;
+}
+
+Util.FACILITIES_URL = "api/facilities/"; // url of facilities endpoint
+Util.MASSAGES_URL = "api/massages/"; // url of massages endpoint
+Util.LOGOUT_URL = "api/logout/"; // url of logout endpoint
+Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in milliseconds
+Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
+Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes
+Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per client
+Util.MASSAGES_PER_PAGE = 12; // number of Massages shown per page
 
 export default Util

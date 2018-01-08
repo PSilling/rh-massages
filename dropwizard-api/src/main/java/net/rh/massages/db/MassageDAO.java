@@ -16,7 +16,6 @@
  *******************************************************************************/
 package net.rh.massages.db;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -77,32 +76,43 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on its date
+	 * Creates a new Session that finds all Massages in the database
 	 *
-	 * @param date Date to be found
-	 * @return the found Massage
+	 * @return list of all Massages
 	 */
-	public List<Massage> findAllByDate(Date date) {
-		return list(namedQuery("Massage.findAllByDate").setParameter("date", date));
+	public List<Massage> findAll() {
+		return list(namedQuery("Massage.findAll"));
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on its
-	 * ending
+	 * Creates a new Session that finds all Massages in the database that have
+	 * already passed. The list is searched with the included search pattern and
+	 * ordered by date and doesn't include upcoming Massages.
 	 *
-	 * @param ending Date to be found
-	 * @return the found Massage
+	 * @param search value of the search pattern
+	 * @param limit highest possible number of results; for -1 all results are
+	 *            returned
+	 * @return list of all found Massages
 	 */
-	public List<Massage> findAllByEnding(Date ending) {
-		return list(namedQuery("Massage.findAllByEnding").setParameter("ending", ending));
+	public List<Massage> findAllOld(String search, int limit) {
+		if (search == null || search == "") {
+			search = "%";
+		} else {
+			search = "%" + search.toLowerCase() + "%";
+		}
+		if (limit == -1) {
+			return list(namedQuery("Massage.findAllOld").setParameter("search", search));
+		} else {
+			return list(namedQuery("Massage.findAllOld").setParameter("search", search).setMaxResults(limit));
+		}
 	}
 
 	/**
-	 * Creates a new Session that finds all massages in the database based on their
+	 * Creates a new Session that finds all Massages in the database based on their
 	 * masseuse
 	 *
-	 * @param masseuse masseuse of the massages that are to be found
-	 * @return list of all found massages
+	 * @param masseuse masseuse of the Massages that are to be found
+	 * @return list of all found Massages
 	 */
 	public List<Massage> findAllByMasseuse(String masseuse) {
 		return list(namedQuery("Massage.findAllByMasseuse").setParameter("masseuse", masseuse));
@@ -110,10 +120,10 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on their
-	 * User
+	 * User. The list is ordered by date and doesn't include old Massages.
 	 *
-	 * @param client client ID of the massages the are to be found
-	 * @return list of all found massages
+	 * @param client client ID of the Massages the are to be found
+	 * @return list of all found Massages
 	 */
 	public List<Massage> findAllByClient(String client) {
 		return list(namedQuery("Massage.findAllByClient").setParameter("client", client));
@@ -121,33 +131,26 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on their
-	 * contact information
+	 * Facility. The list is ordered by date and doesn't include old Massages.
 	 *
-	 * @param contact the contact information
+	 * @param facility Facility of the Massages the are to be found
+	 * @param search value of the search pattern; for -1 all results are returned
+	 * @param limit highest possible number of results
 	 * @return list of all found massages
 	 */
-	public List<Massage> findAllByContact(String contact) {
-		return list(namedQuery("Massage.findAllByContact").setParameter("contact", contact));
-	}
-
-	/**
-	 * Creates a new Session that finds a Massage in the database based on their
-	 * Facility
-	 *
-	 * @param facility Facility of the massages the are to be found
-	 * @return list of all found massages
-	 */
-	public List<Massage> findAllByFacility(Facility facility) {
-		return list(namedQuery("Massage.findAllByFacility").setParameter("facility", facility));
-	}
-
-	/**
-	 * Creates a new Session that finds all massages in the database
-	 *
-	 * @return list of all massages
-	 */
-	public List<Massage> findAll() {
-		return list(namedQuery("Massage.findAll"));
+	public List<Massage> findAllByFacility(Facility facility, String search, int limit) {
+		if (search == null || search == "") {
+			search = "%";
+		} else {
+			search = "%" + search.toLowerCase() + "%";
+		}
+		if (limit == -1) {
+			return list(namedQuery("Massage.findAllByFacility").setParameter("facility", facility)
+					.setParameter("search", search));
+		} else {
+			return list(namedQuery("Massage.findAllByFacility").setParameter("facility", facility)
+					.setParameter("search", search).setMaxResults(limit));
+		}
 	}
 
 	/**

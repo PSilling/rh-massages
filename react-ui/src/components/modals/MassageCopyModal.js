@@ -1,6 +1,7 @@
 // react imports
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 // component imports
 import BatchButton from '../buttons/BatchButton';
@@ -14,7 +15,10 @@ import moment from 'moment';
 import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
-class MassagaCopyModal extends Component {
+/**
+ * Custom modal for copying multiple Massages at once
+ */
+class MassageCopyModal extends Component {
 
   state = {count: 1, step: 7}
 
@@ -39,7 +43,6 @@ class MassagaCopyModal extends Component {
    */
   addMassages = () => {
     var postArray = [];
-
     for (var i = 1; i <= parseInt(this.state.count, 10); i++) {
       for (var j = 0; j < this.props.massages.length; j++) {
         postArray.push({
@@ -71,16 +74,10 @@ class MassagaCopyModal extends Component {
     }
   }
 
-  moveCursorToEnd = (event) => {
-    var value = event.target.value;
-    event.target.value = '';
-    event.target.value = value;
-  }
-
   render() {
-    return(
+    return (
       <span style={{ 'marginRight': '5px' }}>
-        <BatchButton onSubmit={() => this.props.onToggle(false)} disabled={this.props.disabled}
+        <BatchButton onClick={() => this.props.onToggle(false)} disabled={this.props.disabled}
           label={ _t.translate('Copy selected') } />
 
         {this.props.active ?
@@ -94,31 +91,30 @@ class MassagaCopyModal extends Component {
                 { _t.translate('Copy Massages') }
               </h2>
               <hr />
-              <form>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Number of repetitions') }</label>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <input value={this.state.count} onChange={this.changeCount}
-                        className="form-control" onKeyPress={this.handleInputKeyPress}
-                        autoFocus onFocus={this.moveCursorToEnd} type="number" min="1"
-                        max="54" placeholder={ _t.translate('Number of repetitions') }
-                      />
-                    </div>
+              <div className="form-group col-md-12">
+                <label htmlFor="valueInput">{ _t.translate('Number of repetitions') }</label>
+                <div className="row">
+                  <div className="col-md-4">
+                    <input id="valueInput" value={this.state.count} onChange={this.changeCount}
+                      className="form-control" onKeyPress={this.handleInputKeyPress}
+                      autoFocus onFocus={Util.moveCursorToEnd} type="number" min="1"
+                      max="54" placeholder={ _t.translate('Number of repetitions') }
+                    />
                   </div>
                 </div>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Day step per repetition') }</label>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <input value={this.state.step} onChange={this.changeStep}
-                        className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={this.moveCursorToEnd}
-                        type="number" min="1" max="365" placeholder={ _t.translate('Day step per repetition') }
-                      />
-                    </div>
+              </div>
+
+              <div className="form-group col-md-12">
+                <label htmlFor="stepInput">{ _t.translate('Day step per repetition') }</label>
+                <div className="row">
+                  <div className="col-md-4">
+                    <input id="stepInput" value={this.state.step} onChange={this.changeStep}
+                      className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
+                      type="number" min="1" max="365" placeholder={ _t.translate('Day step per repetition') }
+                    />
                   </div>
                 </div>
-              </form>
+              </div>
               <ModalActions
                 primaryLabel={ _t.translate('Copy') }
                 onProceed={this.addMassages}
@@ -133,4 +129,12 @@ class MassagaCopyModal extends Component {
   }
 }
 
-export default MassagaCopyModal
+MassageCopyModal.propTypes = {
+  active: PropTypes.bool, // whether the dialog should be shown
+  disabled: PropTypes.bool, // whether the trigger button should be disabled or not
+  massages: PropTypes.arrayOf(PropTypes.object).isRequired, // Massages to be copied
+  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
+  onToggle: PropTypes.func.isRequired // function called on modal toggle
+};
+
+export default MassageCopyModal

@@ -1,7 +1,7 @@
 // react imports
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import PropTypes from 'prop-types';
 
 // component imports
 import AddButton from '../iconbuttons/AddButton';
@@ -14,6 +14,9 @@ import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
+/**
+ * Modal dialog for Facility management
+ */
 class FacilityModal extends Component {
 
   state = {name: ""}
@@ -22,10 +25,10 @@ class FacilityModal extends Component {
    * Sets default input values on props change.
    */
   componentWillReceiveProps(nextProps) {
-    if(this.props === nextProps) return;
+    if (this.props === nextProps) return;
 
     this.setState({
-      name: (nextProps.facility === -1) ? "" : nextProps.facility.name
+      name: (nextProps.facility === null) ? "" : nextProps.facility.name
     });
   }
 
@@ -67,7 +70,7 @@ class FacilityModal extends Component {
 
   handleModalKeyPress = (event) => {
     if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
-      if (this.props.facility === -1) {
+      if (this.props.facility === null) {
         this.addFacility();
       } else {
         this.editFacility();
@@ -77,7 +80,7 @@ class FacilityModal extends Component {
 
   handleInputKeyPress = (event) => {
     if (event.charCode === 13) {
-      if (this.props.facility === -1) {
+      if (this.props.facility === null) {
         this.addFacility();
       } else {
         this.editFacility();
@@ -85,14 +88,8 @@ class FacilityModal extends Component {
     }
   }
 
-  moveCursorToEnd = (event) => {
-    var value = event.target.value;
-    event.target.value = '';
-    event.target.value = value;
-  }
-
   render() {
-    return(
+    return (
       <div className='pull-right'>
         <AddButton onAdd={this.props.onToggle} />
 
@@ -104,33 +101,29 @@ class FacilityModal extends Component {
                 this.modalDialog = dialog;
               }}>
               <h2>
-                {this.props.facility === -1 ?
+                {this.props.facility === null ?
                   _t.translate('New Facility') : _t.translate('Edit Facility')
                 }
               </h2>
               <hr />
-              <form>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Name') }</label>
-                  <input value={this.state.name} onChange={this.changeName}
-                    className="form-control" autoFocus onFocus={this.moveCursorToEnd}
-                    onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
-                    placeholder={ _t.translate('Name') }
-                  />
-                </div>
-              </form>
-              {this.props.facility === -1 ?
+              <div className="form-group col-md-12">
+                <label htmlFor="facilityInput">{ _t.translate('Name') }</label>
+                <input id="facilityInput" value={this.state.name} onChange={this.changeName}
+                  className="form-control" autoFocus onFocus={Util.moveCursorToEnd}
+                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                  placeholder={ _t.translate('Name') }
+                />
+              </div>
+              {this.props.facility === null ?
                 <ModalActions
                   primaryLabel={ _t.translate('Add') }
                   onProceed={this.addFacility}
                   onClose={this.props.onToggle}
-                  autoFocus={false}
                 /> :
                 <ModalActions
                   primaryLabel={ _t.translate('Edit') }
                   onProceed={this.editFacility}
                   onClose={this.props.onToggle}
-                  autoFocus={false}
                 />
               }
             </ModalDialog>
@@ -139,6 +132,13 @@ class FacilityModal extends Component {
       </div>
     )
   }
+}
+
+FacilityModal.propTypes = {
+  active: PropTypes.bool.isRequired, // whether the dialog should be shown
+  facility: PropTypes.object, // Facility to be possibly edited or null when adding
+  getCallback: PropTypes.func.isRequired, // callback function for Facility list update
+  onToggle: PropTypes.func.isRequired // function called on modal toggle
 }
 
 export default FacilityModal

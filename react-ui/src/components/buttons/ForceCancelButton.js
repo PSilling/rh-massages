@@ -1,5 +1,6 @@
 // react imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // component imports
 import ConfirmationModal from '../modals/ConfirmationModal';
@@ -19,14 +20,14 @@ class ForceCancelButton extends Component {
   }
 
   render() {
-    return(
+    return (
       <span>
         <button type="button" className="btn btn-danger pull-right" onClick={this.handleToggle}>
             { _t.translate('Force cancel') }
         </button>
         {this.state.active ?
           <ConfirmationModal
-            message={ _t.translate('Are you sure you want to cancel a massage that is assigned?') }
+            message={ _t.translate('Are you sure you want to cancel a massage that is already assigned?') }
             onClose={this.handleToggle}
             onConfirm={() => {
               this.handleToggle();
@@ -38,5 +39,9 @@ class ForceCancelButton extends Component {
     )
   }
 }
+
+ForceCancelButton.propTypes = {
+  onCancel: PropTypes.func.isRequired // function to be called on button click
+};
 
 export default ForceCancelButton

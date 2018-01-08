@@ -1,5 +1,6 @@
 // react imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // component imports
 import ConfirmationModal from '../modals/ConfirmationModal';
@@ -19,7 +20,7 @@ class DeleteButton extends Component {
   }
 
   render() {
-    return(
+    return (
       <span>
         <button style={{ 'color': '#000' }} type="button" className="btn btn-link"
           onClick={this.handleToggle} title={ _t.translate("Delete") }>
@@ -28,7 +29,7 @@ class DeleteButton extends Component {
         {this.state.active ?
           <ConfirmationModal
             message={ _t.translate('Are you sure? This action cannot be reverted.') }
-            onClose={() => this.handleToggle()}
+            onClose={this.handleToggle}
             onConfirm={() => {
               this.handleToggle();
               this.props.onDelete();
@@ -39,5 +40,9 @@ class DeleteButton extends Component {
     )
   }
 }
+
+DeleteButton.propTypes = {
+  onDelete: PropTypes.func.isRequired, // function to be called on button click
+};
 
 export default DeleteButton

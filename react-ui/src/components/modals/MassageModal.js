@@ -1,6 +1,7 @@
 // react imports
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 // component imports
 import AddButton from '../iconbuttons/AddButton';
@@ -16,7 +17,7 @@ import Util from '../../util/Util';
 
 class MassageModal extends Component {
 
-  state = {date: moment().format("YYYY-MM-DDTHH:mm"), time: "00:30", masseuse: ""}
+  state = {date: moment().add(1, 'hours').format("YYYY-MM-DDTHH:mm"), time: "00:30", masseuse: ""}
 
   /**
    * Sets default input values on props change.
@@ -25,11 +26,11 @@ class MassageModal extends Component {
     if (this.props === nextProps) return;
 
     this.setState({
-      date: (nextProps.massage === -1) ? moment().format("YYYY-MM-DDTHH:mm") :
+      date: (nextProps.massage === null) ? moment().add(1, 'hours').format("YYYY-MM-DDTHH:mm") :
         moment(nextProps.massage.date).format("YYYY-MM-DDTHH:mm"),
-      time: (nextProps.massage === -1) ? "00:30" :
+      time: (nextProps.massage === null) ? "00:30" :
         moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))).format("HH:mm"),
-      masseuse: (nextProps.massage === -1) ? "" : nextProps.massage.masseuse
+      masseuse: (nextProps.massage === null) ? "" : nextProps.massage.masseuse
     });
   }
 
@@ -96,7 +97,7 @@ class MassageModal extends Component {
       return;
     }
     var date = this.getStartingDate();
-    Util.put(Util.MASSAGES_URL + this.props.massage.id, [{
+    Util.put(Util.MASSAGES_URL + "?ids=" + this.props.massage.id, [{
       date: moment(date).toDate(),
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
@@ -109,19 +110,9 @@ class MassageModal extends Component {
     });
   }
 
-  addMasseuseOptions = () => {
-    var options = [];
-
-    for (var i = 0; i < this.props.masseuses.length; i++) {
-        options.push(<option key={i} value={this.props.masseuses[i]} />);
-    }
-
-    return options;
-  }
-
   handleModalKeyPress = (event) => {
     if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
-      if (this.props.massage === -1) {
+      if (this.props.massage === null) {
         this.addMassage();
       } else {
         this.editMassage();
@@ -131,18 +122,12 @@ class MassageModal extends Component {
 
   handleInputKeyPress = (event) => {
     if (event.key === 'Enter') {
-      if (this.props.massage === -1) {
+      if (this.props.massage === null) {
         this.addMassage();
       } else {
         this.editMassage();
       }
     }
-  }
-
-  moveCursorToEnd = (event) => {
-    var value = event.target.value;
-    event.target.value = '';
-    event.target.value = value;
   }
 
   render() {
@@ -158,48 +143,50 @@ class MassageModal extends Component {
                 this.modalDialog = dialog;
               }}>
               <h2>
-                {this.props.massage === -1 ?
+                {this.props.massage === null ?
                   _t.translate('New Massage') : _t.translate('Edit Massage')
                 }
               </h2>
               <hr />
-              <form>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Masseur/Masseuse') }</label>
-                  <input value={this.state.masseuse} onChange={this.changeMasseuse}
-                    className="form-control" autoFocus onFocus={this.moveCursorToEnd}
-                    onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
-                    placeholder={ _t.translate('Masseur/Masseuse') } list="masseuses"
-                  />
-                  <datalist id="masseuses">
-                    {this.addMasseuseOptions()}
-                  </datalist>
-                </div>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Duration') }</label>
-                  <div className="row">
-                    <div className="col-md-3">
-                      <input value={this.state.time} onChange={this.changeTime}
-                        className="form-control" onKeyPress={this.handleInputKeyPress}
-                        type="time" placeholder={ _t.translate('Duration') }
-                      />
-                    </div>
+              <div className="form-group col-md-12">
+                <label htmlFor="masseuseInput">{ _t.translate('Masseur/Masseuse') }</label>
+                <input id="masseuseInput" value={this.state.masseuse} onChange={this.changeMasseuse}
+                  className="form-control" autoFocus onFocus={Util.moveCursorToEnd}
+                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+                  placeholder={ _t.translate('Masseur/Masseuse') } list="masseuses"
+                />
+                <datalist id="masseuses">
+                  {this.props.masseuses.map((item) => (
+                    <option key={item} value={item} />
+                  ))}
+                </datalist>
+              </div>
+
+              <div className="form-group col-md-12">
+                <label htmlFor="durationInput">{ _t.translate('Duration') }</label>
+                <div className="row">
+                  <div className="col-md-3">
+                    <input id="durationInput" value={this.state.time} onChange={this.changeTime}
+                      className="form-control" onKeyPress={this.handleInputKeyPress}
+                      type="time" placeholder={ _t.translate('Duration') }
+                    />
                   </div>
                 </div>
-                <div className="form-group col-md-12">
-                  <label>{ _t.translate('Massage time') }</label>
-                  <div className="row">
-                    <div className="col-md-5">
-                      <input value={this.state.date} onChange={this.changeDate}
-                        className="form-control" onKeyPress={this.handleInputKeyPress}
-                        type="datetime-local" min={moment().format("YYYY-MM-DD")}
-                        placeholder={ _t.translate('Massage time') }
-                      />
-                    </div>
+              </div>
+
+              <div className="form-group col-md-12">
+                <label htmlFor="dateInput">{ _t.translate('Massage time') }</label>
+                <div className="row">
+                  <div className="col-md-5">
+                    <input id="dateInput" value={this.state.date} onChange={this.changeDate}
+                      className="form-control" onKeyPress={this.handleInputKeyPress}
+                      type="datetime-local" min={moment().format("YYYY-MM-DD")}
+                      placeholder={ _t.translate('Massage time') }
+                    />
                   </div>
                 </div>
-              </form>
-              {this.props.massage === -1 ?
+              </div>
+              {this.props.massage === null ?
                 <ModalActions
                   primaryLabel={ _t.translate('Add') }
                   onProceed={this.addMassage}
@@ -217,8 +204,17 @@ class MassageModal extends Component {
           </ModalContainer> : ''
         }
       </div>
-    )
+    );
   }
+}
+
+MassageModal.propTypes = {
+  active: PropTypes.bool.isRequired, // whether the dialog should be shown
+  massage: PropTypes.object, // Massage to be possibly edited or null when adding
+  facilityId: PropTypes.number, // ID of the selected Facility
+  masseuses: PropTypes.arrayOf(PropTypes.string), // unique Massage masseuses of the given Facility
+  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
+  onToggle: PropTypes.func.isRequired // function called on modal toggle
 }
 
 export default MassageModal

@@ -1,18 +1,18 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages.core;
 
@@ -39,7 +39,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Facilities")
-@NamedQueries({ @NamedQuery(name = "Facility.findAll", query = "SELECT facility FROM Facility facility"),
+@NamedQueries({
+		@NamedQuery(name = "Facility.findAll", query = "SELECT facility FROM Facility facility ORDER BY facility.name ASC"),
 		@NamedQuery(name = "Facility.findByName", query = "SELECT facility FROM Facility facility WHERE facility.name = :name") })
 public class Facility {
 
@@ -61,8 +62,7 @@ public class Facility {
 	/**
 	 * Parameterized Facility constructor
 	 *
-	 * @param name
-	 *            new Facility name
+	 * @param name new Facility name
 	 */
 	public Facility(String name) {
 		this.name = name;
@@ -80,8 +80,7 @@ public class Facility {
 	/**
 	 * Id setter
 	 *
-	 * @param id
-	 *            new id
+	 * @param id new id
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -99,8 +98,7 @@ public class Facility {
 	/**
 	 * Name setter
 	 *
-	 * @param name
-	 *            new name
+	 * @param name new name
 	 */
 	public void setName(String name) {
 		this.name = name;

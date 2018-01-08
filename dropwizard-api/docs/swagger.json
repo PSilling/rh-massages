@@ -2,7 +2,7 @@
 {
     "swagger":"2.0",
     "info":{
-        "version":"1.0.0-SNAPSHOT",
+        "version":"1.1.2-SNAPSHOT",
         "title":"Massages"
     },
     "host":"localhost:8080",
@@ -184,7 +184,7 @@
         },
         "/facilities/{id}/massages":{
             "get":{
-                "description":"GETs all massages of a facility based on its id",
+                "description":"GETs all Massages of a Facility that haven't already passed based on its ID.",
                 "consumes":[
                     "application/json"
                 ],
@@ -198,6 +198,21 @@
                         "in":"path",
                         "required":true,
                         "description":"facility id"
+                    },
+                    {
+                        "type":"string",
+                        "name":"limit",
+                        "in":"query",
+                        "required":false,
+                        "description":"highest possible number of results",
+                        "default":"-1"
+                    },
+                    {
+                        "type":"string",
+                        "name":"search",
+                        "in":"query",
+                        "required":true,
+                        "description":"value of the text to be searched for"
                     }
                 ],
                 "responses":{
@@ -266,8 +281,66 @@
                     }
                 }
             },
+            "put":{
+                "description":"Updates Massage in a list given by ids to a new value",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"array",
+                        "items":{
+                            "type":"integer"
+                        },
+                        "name":"ids",
+                        "in":"query",
+                        "required":true,
+                        "description":"set of Massage ids"
+                    },
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
+                        },
+                        "description":"list of updated Massages"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Massage"
+                        }
+                    },
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "403":{
+                        "description":"Forbidden",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            },
             "post":{
-                "description":"Accepts POST request with a new Massage",
+                "description":"Accepts POST request with a new list of Massages",
                 "consumes":[
                     "application/json"
                 ],
@@ -280,9 +353,12 @@
                         "in":"body",
                         "required":true,
                         "schema":{
-                            "$ref":"#/definitions/Massage"
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
                         },
-                        "description":"new Massage"
+                        "description":"list of Massages to create"
                     }
                 ],
                 "responses":{
@@ -297,8 +373,51 @@
                             "$ref":"#/definitions/Massage"
                         }
                     },
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "403":{
+                        "description":"Forbidden",
+                        "headers":{
+                        }
+                    },
                     "500":{
                         "description":"Internal Server Error",
+                        "headers":{
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "description":"DELETEs Massages given by their id",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"array",
+                        "items":{
+                            "type":"integer"
+                        },
+                        "name":"ids",
+                        "in":"query",
+                        "required":true,
+                        "description":"set of Massage ids"
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
                         "headers":{
                         }
                     }
@@ -307,7 +426,7 @@
         },
         "/massages/client":{
             "get":{
-                "description":"GETs all massages of a give client",
+                "description":"GETs all massages of a given client that haven't already passed",
                 "consumes":[
                     "application/json"
                 ],
@@ -322,6 +441,78 @@
                         "schema":{
                             "$ref":"#/definitions/User"
                         }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Massage"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/massages/client/time":{
+            "get":{
+                "description":"GETs the total time of upcoming Massages of a client",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                }
+            }
+        },
+        "/massages/old":{
+            "get":{
+                "description":"GETs all Massages that are after the current time",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "type":"string",
+                        "name":"limit",
+                        "in":"query",
+                        "required":false,
+                        "description":"highest possible number of results",
+                        "default":"-1"
+                    },
+                    {
+                        "type":"string",
+                        "name":"search",
+                        "in":"query",
+                        "required":true,
+                        "description":"value of the text to be searched for"
                     }
                 ],
                 "responses":{
@@ -372,83 +563,6 @@
                         }
                     }
                 }
-            },
-            "put":{
-                "description":"Updates a massage given by id to a given value",
-                "consumes":[
-                    "application/json"
-                ],
-                "produces":[
-                    "application/json"
-                ],
-                "parameters":[
-                    {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"massage id"
-                    },
-                    {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/Massage"
-                        },
-                        "description":"updated massage"
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
-                        },
-                        "schema":{
-                            "$ref":"#/definitions/Massage"
-                        }
-                    },
-                    "403":{
-                        "description":"Forbidden",
-                        "headers":{
-                        }
-                    },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
-                        }
-                    }
-                }
-            },
-            "delete":{
-                "description":"DELETEs a massage given by id",
-                "consumes":[
-                    "application/json"
-                ],
-                "produces":[
-                    "application/json"
-                ],
-                "parameters":[
-                    {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"massage id"
-                    }
-                ],
-                "responses":{
-                    "204":{
-                        "description":"No Content",
-                        "headers":{
-                        }
-                    },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
-                        }
-                    }
-                }
             }
         }
     },
@@ -468,7 +582,13 @@
                 "client":{
                     "type":"string"
                 },
+                "contact":{
+                    "type":"string"
+                },
                 "date":{
+                    "type":"object"
+                },
+                "ending":{
                     "type":"object"
                 },
                 "facility":{

@@ -114,7 +114,7 @@ public class FacilityResourceTest {
 		List<Massage> massages = new ArrayList<>();
 		massages.add(massage);
 
-		when(massageDao.findAllByFacility(facility)).thenReturn(massages);
+		when(massageDao.findAllByFacility(facility, "%", -1)).thenReturn(massages);
 	}
 
 	/**
@@ -211,8 +211,8 @@ public class FacilityResourceTest {
 	 */
 	@Test
 	public void getMassagesTest() {
-		List<Massage> massages = RULE.target("/facilities/1/massages").request().header("Authorization", "Bearer TOKEN")
-				.get(new GenericType<List<Massage>>() {
+		List<Massage> massages = RULE.target("/facilities/1/massages").queryParam("search", "%").request()
+				.header("Authorization", "Bearer TOKEN").get(new GenericType<List<Massage>>() {
 				});
 
 		assertNotNull(massages);

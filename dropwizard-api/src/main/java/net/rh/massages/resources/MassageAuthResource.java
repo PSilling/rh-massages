@@ -27,8 +27,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -71,7 +71,7 @@ public class MassageAuthResource {
 	 * Updates Massage in a list given by ids to a new value
 	 *
 	 * @param massages list of updated Massages
-	 * @param idString Massage ids
+	 * @param ids set of Massage ids
 	 * @exception WebApplicationException if the id could not be found or when
 	 *                normal user tries to change a massage that isn't assigned to
 	 *                him, change the massage itself or even too late or when its
@@ -80,16 +80,15 @@ public class MassageAuthResource {
 	 * @return on update response of last updated Massage
 	 */
 	@PUT
-	@Path("/{id}")
 	@PermitAll
 	@UnitOfWork
-	public Response update(@NotNull @Valid List<Massage> massages, @PathParam("id") String idString, @Auth User user) {
+	public Response update(@NotNull @Valid List<Massage> massages, @NotNull @QueryParam("ids") List<Integer> ids,
+			@Auth User user) {
 		Response response = null;
 		boolean throwForbidden = false;
 		boolean throwNotFound = false;
-		String[] ids = idString.split("&");
-		for (int i = 0; i < ids.length; i++) {
-			Massage daoMassage = massageDao.findById(Long.valueOf(ids[i]));
+		for (int i = 0; i < ids.size(); i++) {
+			Massage daoMassage = massageDao.findById(Long.valueOf(ids.get(i)));
 			Massage massage = massages.get(i);
 
 			if (daoMassage == null) {
@@ -97,7 +96,7 @@ public class MassageAuthResource {
 				continue;
 			}
 
-			massage.setId(Long.valueOf(ids[i]));
+			massage.setId(Long.valueOf(ids.get(i)));
 
 			if (!user.getRoles().contains("admin")) {
 				// user is forbidden to edit anything other than the client and even then the
@@ -114,7 +113,7 @@ public class MassageAuthResource {
 			}
 
 			massage.checkDates();
-			if (massage.getDate().before(new Date())) {
+			if (massage.getEnding().before(new Date())) {
 				throwForbidden = true;
 				continue;
 			}
@@ -123,19 +122,14 @@ public class MassageAuthResource {
 			// Facility
 			if (massage.getClient() != null) {
 				long massageTime = massage.calculateDuration();
-				List<Massage> daoMassagesFacility = massageDao.findAllByFacility(massage.getFacility());
+				List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
 
-				if (daoMassagesFacility.contains(daoMassage)) {
-					daoMassagesFacility.remove(daoMassage);
+				if (daoMassagesClient.contains(daoMassage)) {
+					daoMassagesClient.remove(daoMassage);
 				}
 
-				for (Massage facilityMassage : daoMassagesFacility) {
-					if (facilityMassage.getClient() == null || facilityMassage.getDate().before(new Date())) {
-						continue;
-					}
-					if (facilityMassage.getClient().equals(massage.getClient())) {
-						massageTime += facilityMassage.calculateDuration();
-					}
+				for (Massage clientMassage : daoMassagesClient) {
+					massageTime += clientMassage.calculateDuration();
 				}
 
 				if (massageTime > MASSAGE_LIMIT) {
@@ -187,7 +181,7 @@ public class MassageAuthResource {
 	}
 
 	/**
-	 * GETs all massages of a give client
+	 * GETs all massages of a given client that haven't already passed
 	 *
 	 * @return all found massages
 	 */
@@ -197,5 +191,24 @@ public class MassageAuthResource {
 	@UnitOfWork
 	public List<Massage> findAllByClient(@Auth User user) {
 		return massageDao.findAllByClient(user.getSubject());
+	}
+
+	/**
+	 * GETs the total time of upcoming Massages of a client
+	 *
+	 * @return the total time
+	 */
+	@GET
+	@Path("/client/time")
+	@PermitAll
+	@UnitOfWork
+	public long getMassageTime(@Auth User user) {
+		long massageTime = 0;
+		List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
+		for (Massage clientMassage : daoMassagesClient) {
+			massageTime += clientMassage.calculateDuration();
+		}
+
+		return massageTime;
 	}
 }

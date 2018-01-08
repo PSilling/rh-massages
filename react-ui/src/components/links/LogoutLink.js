@@ -29,7 +29,7 @@ class LogoutLink extends Component {
 
   render() {
     return(
-      <button type="button" className="btn btn-link navbar-btn" onClick={() => this.logout()}>
+      <button type="button" className="btn btn-link navbar-btn" onClick={this.logout}>
         <span className="glyphicon glyphicon-log-out"></span>&nbsp;
           { _t.translate('Logout') }
       </button>

@@ -152,21 +152,17 @@ public class MassageDAOTest {
 		});
 
 		Massage massageById = massageDAO.findById((long) 1);
-		List<Massage> massagesByDate = massageDAO.findAllByDate((new Date(1000)));
-		List<Massage> massagesByEndDate = massageDAO.findAllByEnding((new Date(1001)));
+		List<Massage> oldMassages = massageDAO.findAllOld("Masseuse", 2);
 		List<Massage> massagesByMasseuse = massageDAO.findAllByMasseuse("First Masseuse");
-		List<Massage> massagesByClient = massageDAO.findAllByClient("Client");
-		List<Massage> massagesByContact = massageDAO.findAllByContact("Contact");
-		List<Massage> massagesByFacility = massageDAO.findAllByFacility(facility);
+		List<Massage> futureMassagesByClient = massageDAO.findAllByClient("Client");
+		List<Massage> futureMassagesByFacility = massageDAO.findAllByFacility(facility, "Masseuse", -1);
 		List<Massage> massages = massageDAO.findAll();
 
 		assertEquals(massage1, massageById);
-		assertEquals(massage2, massagesByDate.get(0));
-		assertEquals(1, massagesByEndDate.size());
+		assertEquals(2, oldMassages.size());
 		assertEquals(1, massagesByMasseuse.size());
-		assertEquals(1, massagesByClient.size());
-		assertEquals(1, massagesByContact.size());
-		assertEquals(2, massagesByFacility.size());
+		assertEquals(0, futureMassagesByClient.size());
+		assertEquals(0, futureMassagesByFacility.size());
 		assertEquals(2, massages.size());
 	}
 }

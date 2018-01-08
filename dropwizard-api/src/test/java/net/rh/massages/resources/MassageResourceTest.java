@@ -95,8 +95,8 @@ public class MassageResourceTest {
 
 		when(massageDao.findAll()).thenReturn(massages);
 		when(massageDao.findById((long) 1)).thenReturn(massage);
-		when(massageDao.findById((long) 2)).thenReturn(newMassage);
 		when(massageDao.findById((long) 0)).thenReturn(newMassage);
+		when(massageDao.findById((long) 2)).thenReturn(newMassage);
 
 		doAnswer(new Answer<Massage>() {
 
@@ -168,7 +168,8 @@ public class MassageResourceTest {
 		assertEquals(newMassage, massages.get(1));
 
 		// Tests the removal
-		response = RULE.target("/massages/2").request().header("Authorization", "Bearer TOKEN").delete();
+		response = RULE.target("/massages").queryParam("ids", 2).request().header("Authorization", "Bearer TOKEN")
+				.delete();
 		massages = fetchAll();
 
 		assertNotNull(response);
