@@ -181,7 +181,7 @@ const myLocalize = new Localize({
       "cs": "Název"
     },
     "Unauthorized": {
-      "cs": "Unauthorized"
+      "cs": "Neautorizováno"
     },
     "Assigned": {
       "cs": "Zapsáno"
@@ -191,6 +191,18 @@ const myLocalize = new Localize({
     },
     "View as panels": {
       "cs": "Zobrazit jako panely"
+    },
+    "only free massages": {
+      "cs": "pouze volné masáže"
+    },
+    "Per page": {
+      "cs": "Na stránku"
+    },
+    "From": {
+      "cs": "Od"
+    },
+    "To": {
+      "cs": "Do"
     },
 
     // actions

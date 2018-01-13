@@ -1,7 +1,12 @@
-import moment from 'moment';
+// react imports
+import React from 'react';
 
-import _t from './Translations';
+// module imports
+import moment from 'moment';
 import { NotificationManager } from 'react-notifications';
+
+// util imports
+import _t from './Translations';
 import Auth from './Auth';
 
 var Util = function() { };
@@ -207,6 +212,25 @@ Util.moveCursorToEnd = (event) => {
   event.target.value = value;
 }
 
+/**
+ * Returns a highlighted taxed based on an added search query (highlights the first occurrence).
+ *
+ * @param text text to be highlighted
+ * @param query search query string
+ */
+Util.highlightInText = (text, query) => {
+  var searchIndex = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .indexOf(query.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase());
+  if (searchIndex === -1) {
+    return text;
+  } else {
+    var textStart = text.substring(0, searchIndex),
+        firstOccurrence = text.substring(searchIndex, searchIndex + query.length),
+        textRest = text.substring(searchIndex + query.length);
+    return <span>{textStart}<strong>{firstOccurrence}</strong>{textRest}</span>;
+  }
+}
+
 Util.FACILITIES_URL = "api/facilities/"; // url of facilities endpoint
 Util.MASSAGES_URL = "api/massages/"; // url of massages endpoint
 Util.LOGOUT_URL = "api/logout/"; // url of logout endpoint
@@ -214,6 +238,5 @@ Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in millise
 Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
 Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes
 Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per client
-Util.MASSAGES_PER_PAGE = 12; // number of Massages shown per page
 
 export default Util

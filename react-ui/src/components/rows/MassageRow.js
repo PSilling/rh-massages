@@ -26,6 +26,7 @@ class MassageRow extends Component {
   shouldComponentUpdate(nextProps) {
     return (this.props.checked !== nextProps.checked
       || this.props.assignDisabled !== nextProps.assignDisabled
+      || this.props.search !== nextProps.search
       || this.props.massage.id !== nextProps.massage.id
       || this.props.massage.masseuse !== nextProps.massage.masseuse
       || this.props.massage.client !== nextProps.massage.client
@@ -45,7 +46,7 @@ class MassageRow extends Component {
         <td>
           {moment(this.props.massage.date).format("HH:mm") + "–" + moment(this.props.massage.ending).format("HH:mm")}
         </td>
-        <td>{this.props.massage.masseuse}</td>
+        <td>{Util.highlightInText(this.props.massage.masseuse, this.props.search)}</td>
         {Util.isEmpty(this.props.massage.client) ?
           <td className="success">
             { _t.translate('Free') }
@@ -59,8 +60,12 @@ class MassageRow extends Component {
             }
           </td> :
           <td className={ Auth.getSub() === this.props.massage.client ? "warning" : "danger" }>
-            { Auth.getSub() === this.props.massage.client ? _t.translate('Assigned') :
-              Util.isEmpty(this.props.massage.contact) ? _t.translate('Full') : _t.translate('Full') + " – " + this.props.massage.contact}
+            { Auth.getSub() === this.props.massage.client ?
+              Util.isEmpty(this.props.massage.contact) ? _t.translate('Assigned')
+                : Util.highlightInText(this.props.massage.contact, this.props.search) :
+              Util.isEmpty(this.props.massage.contact) ? _t.translate('Full')
+                : Util.highlightInText(this.props.massage.contact, this.props.search)
+            }
 
             { Auth.getSub() === this.props.massage.client ? <CancelButton onCancel={this.props.onCancel}
               disabled={(moment(this.props.massage.date).diff(moment(), 'minutes') <= Util.CANCELLATION_LIMIT) && !Auth.isAdmin()} /> : '' }
@@ -90,6 +95,7 @@ MassageRow.propTypes = {
   massage: PropTypes.object.isRequired, // the Massage for this row
   assignDisabled: PropTypes.bool, // whether assingment button should be disabled
   checked: PropTypes.bool, // whether the checkbox is checked
+  search: PropTypes.string, // search string to be highlighted
   onCheck: PropTypes.func.isRequired, // function called on checkbox value change
   onAssign: PropTypes.func.isRequired, // function called on Massage assignment
   onEventAssign: PropTypes.func.isRequired, // function called on Massage assignment with calendar event

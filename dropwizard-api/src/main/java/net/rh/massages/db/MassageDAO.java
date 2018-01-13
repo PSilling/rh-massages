@@ -16,6 +16,8 @@
  *******************************************************************************/
 package net.rh.massages.db;
 
+import java.text.Normalizer;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -87,24 +89,47 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	/**
 	 * Creates a new Session that finds all Massages in the database that have
 	 * already passed. The list is searched with the included search pattern and
-	 * ordered by date and doesn't include upcoming Massages.
+	 * ordered by date and doesn't include upcoming Massages. Search is accent and
+	 * case insensitive.
 	 *
 	 * @param search value of the search pattern
+	 * @param free true if only unassigned Massages should be found
+	 * @param from limits results to be after the given Date
+	 * @param to limits results to be before the given Date
 	 * @param limit highest possible number of results; for -1 all results are
 	 *            returned
 	 * @return list of all found Massages
 	 */
-	public List<Massage> findAllOld(String search, int limit) {
-		if (search == null || search == "") {
-			search = "%";
-		} else {
-			search = "%" + search.toLowerCase() + "%";
+	public List<Massage> searchOld(String search, boolean free, Date from, Date to, int limit) {
+		List<Massage> massages;
+		if (from == null) {
+			from = new Date(0);
 		}
-		if (limit == -1) {
-			return list(namedQuery("Massage.findAllOld").setParameter("search", search));
-		} else {
-			return list(namedQuery("Massage.findAllOld").setParameter("search", search).setMaxResults(limit));
+		if (to == null) {
+			to = new Date();
 		}
+
+		massages = list(namedQuery("Massage.findAllOld").setParameter("free", free).setParameter("from", from)
+				.setParameter("to", to));
+
+		// search in the results given by the query (enables case and accent insensitive
+		// comparison)
+		if (search != null && search != "") {
+			search = convertToCIAI(search);
+			for (int i = 0; i < massages.size(); i++) {
+				if (!convertToCIAI((massages.get(i).getMasseuse() + massages.get(i).getFacility().getName()
+						+ massages.get(i).getContact())).contains(search)) {
+					massages.remove(massages.get(i));
+					i--;
+				}
+			}
+		}
+
+		if (limit != -1 && limit < massages.size()) {
+			massages.subList(limit, massages.size());
+		}
+
+		return massages;
 	}
 
 	/**
@@ -131,26 +156,48 @@ public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on their
-	 * Facility. The list is ordered by date and doesn't include old Massages.
+	 * Facility. The list is searched with the included search pattern and ordered
+	 * by date and doesn't include old Massages. Search is accent and case
+	 * insensitive.
 	 *
 	 * @param facility Facility of the Massages the are to be found
 	 * @param search value of the search pattern; for -1 all results are returned
+	 * @param free true if only unassigned Massages should be found
+	 * @param from limits results to be after the given Date
+	 * @param to limits results to be before the given Date
 	 * @param limit highest possible number of results
 	 * @return list of all found massages
 	 */
-	public List<Massage> findAllByFacility(Facility facility, String search, int limit) {
-		if (search == null || search == "") {
-			search = "%";
-		} else {
-			search = "%" + search.toLowerCase() + "%";
+	public List<Massage> searchNewByFacility(Facility facility, String search, boolean free, Date from, Date to,
+			int limit) {
+		List<Massage> massages;
+		if (from == null) {
+			from = new Date();
 		}
-		if (limit == -1) {
-			return list(namedQuery("Massage.findAllByFacility").setParameter("facility", facility)
-					.setParameter("search", search));
-		} else {
-			return list(namedQuery("Massage.findAllByFacility").setParameter("facility", facility)
-					.setParameter("search", search).setMaxResults(limit));
+		if (to == null) {
+			to = new Date(from.getTime() + 86400000); // a day later
 		}
+
+		massages = list(namedQuery("Massage.findNewByFacility").setParameter("facility", facility)
+				.setParameter("free", free).setParameter("from", from).setParameter("to", to));
+
+		// search in the results given by the query (enables case and accent insensitive
+		// comparison)
+		if (search != null && search != "") {
+			search = convertToCIAI(search);
+			for (int i = 0; i < massages.size(); i++) {
+				if (!convertToCIAI((massages.get(i).getMasseuse() + massages.get(i).getContact())).contains(search)) {
+					massages.remove(massages.get(i));
+					i--;
+				}
+			}
+		}
+
+		if (limit != -1 && limit < massages.size()) {
+			massages.subList(limit, massages.size());
+		}
+
+		return massages;
 	}
 
 	/**
@@ -160,5 +207,16 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 */
 	public void delete(Massage massage) {
 		currentSession().delete(massage);
+	}
+
+	/**
+	 * Makes a string case and accent insensitive
+	 *
+	 * @param string string to be converted
+	 * @return the string converted to be CI and AI
+	 */
+	public String convertToCIAI(String string) {
+		return Normalizer.normalize(string, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+				.toLowerCase();
 	}
 }

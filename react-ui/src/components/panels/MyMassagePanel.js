@@ -47,7 +47,7 @@ class MassagePanel extends Component {
     return (
       <div>
         <div className="col-md-3">
-          <div className={"panel panel-" + this.props.type} style={{ 'height': '13em' }}>
+          <div className={"panel panel-" + this.props.type} style={{ 'height': '15em' }}>
             <div className="panel-heading">
               {moment(this.props.massage.date).format("dd DD. MM.") + _t.translate(' in ') + this.props.massage.facility.name}
               <button type="button" className="close" aria-label="Close"

@@ -175,6 +175,9 @@ public class MassageResource {
 	 * GETs all Massages that are after the current time
 	 *
 	 * @param search value of the text to be searched for
+	 * @param free whether only unassigned Massages should be shown
+	 * @param from limits results to be after the Date in milliseconds
+	 * @param to limits results to be after the Date in milliseconds
 	 * @param limit highest possible number of results
 	 * @return list of all old Massages
 	 */
@@ -182,9 +185,22 @@ public class MassageResource {
 	@Path("/old")
 	@PermitAll
 	@UnitOfWork
-	public List<Massage> fetchOld(@QueryParam("search") String search,
+	public List<Massage> fetchOld(@QueryParam("search") String search, @QueryParam("free") boolean free,
+			@Min(-1) @DefaultValue("-1") @QueryParam("from") LongParam from,
+			@Min(-1) @DefaultValue("-1") @QueryParam("to") LongParam to,
 			@Min(-1) @DefaultValue("-1") @QueryParam("limit") IntParam limit) {
-		return massageDao.findAllOld(search, limit.get());
+
+		// Dates default to null if -1 is supplied
+		Date fromDate = null;
+		Date toDate = null;
+		if (from.get() != -1) {
+			fromDate = new Date(from.get());
+		}
+		if (to.get() != -1) {
+			toDate = new Date(to.get());
+		}
+
+		return massageDao.searchOld(search, free, fromDate, toDate, limit.get());
 	}
 
 	/**

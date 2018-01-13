@@ -16,6 +16,7 @@
  *******************************************************************************/
 package net.rh.massages.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -175,6 +176,9 @@ public class FacilityResource {
 	 *
 	 * @param id facility id
 	 * @param search value of the text to be searched for
+	 * @param free whether only unassigned Massages should be shown
+	 * @param from limits results to be after the Date in milliseconds
+	 * @param to limits results to be after the Date in milliseconds
 	 * @param limit highest possible number of results
 	 * @exception WebApplicationException if the id could not be found
 	 * @return list of all found massages
@@ -184,11 +188,24 @@ public class FacilityResource {
 	@PermitAll
 	@UnitOfWork
 	public List<Massage> getMassages(@PathParam("id") LongParam id, @QueryParam("search") String search,
+			@QueryParam("free") boolean free, @Min(-1) @DefaultValue("-1") @QueryParam("from") LongParam from,
+			@Min(-1) @DefaultValue("-1") @QueryParam("to") LongParam to,
 			@Min(-1) @DefaultValue("-1") @QueryParam("limit") IntParam limit) {
 		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
-		return massageDao.findAllByFacility(facilityDao.findById(id.get()), search, limit.get());
+		// Dates default to null if -1 is supplied
+		Date fromDate = null;
+		Date toDate = null;
+		if (from.get() != -1) {
+			fromDate = new Date(from.get());
+		}
+		if (to.get() != -1) {
+			toDate = new Date(to.get());
+		}
+
+		return massageDao.searchNewByFacility(facilityDao.findById(id.get()), search, free, fromDate, toDate,
+				limit.get());
 	}
 }

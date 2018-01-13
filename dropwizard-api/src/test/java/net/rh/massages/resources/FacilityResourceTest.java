@@ -114,7 +114,7 @@ public class FacilityResourceTest {
 		List<Massage> massages = new ArrayList<>();
 		massages.add(massage);
 
-		when(massageDao.findAllByFacility(facility, "%", -1)).thenReturn(massages);
+		when(massageDao.searchNewByFacility(facility, "%", false, null, null, -1)).thenReturn(massages);
 	}
 
 	/**

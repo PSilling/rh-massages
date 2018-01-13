@@ -5,8 +5,11 @@ import React, { Component } from 'react';
 import ArchiveMassageRow from '../components/rows/ArchiveMassageRow';
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
 import Pager from '../components/util/Pager';
-import SearchField from '../components/util/SearchField';
+import MassageFilter from '../components/util/MassageFilter';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
+
+// module imports
+import moment from 'moment';
 
 // util imports
 import Auth from '../util/Auth';
@@ -18,7 +21,9 @@ import Util from '../util/Util';
  */
 class ArchiveList extends Component {
 
-  state = {massages: [], index: 0, page: 1, search: ""}
+  state = {massages: [], index: 0, page: 1, search: "", freeOnly: false,
+            from: moment().subtract(1, 'years').format("YYYY-MM-DD"),
+            to: moment().format("YYYY-MM-DD"), perPage: 12}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -30,10 +35,14 @@ class ArchiveList extends Component {
   }
 
   getMassages = (unlimited = false) => {
-    Util.get(Util.MASSAGES_URL + "old?search=" + this.state.search
-      + "&limit=" + (unlimited ? -1 : ((this.state.page * Util.MASSAGES_PER_PAGE) + 1)), (json) => {
+    Util.get(Util.MASSAGES_URL
+      + "old?search=" + this.state.search
+      + "&free=" + this.state.freeOnly
+      + "&from=" + moment(this.state.from).unix() * 1000
+      + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000
+      + "&limit=" + (unlimited ? -1 : ((this.state.page * this.state.perPage) + 1)), (json) => {
       this.setState({massages: json});
-      let pages = Math.ceil(json.length / Util.MASSAGES_PER_PAGE);
+      let pages = Math.ceil(json.length / this.state.perPage);
       if (unlimited) {
         this.setState({page: pages});
       } else if (this.state.page > pages) {
@@ -71,8 +80,37 @@ class ArchiveList extends Component {
     }
   }
 
+  changePerPage = (event) => {
+    if (Util.isEmpty(event.target.value) || parseInt(event.target.value, 10) < 5
+        || parseInt(event.target.value, 10) > 55) {
+      return;
+    }
+    this.setState({perPage: parseInt(event.target.value, 10)});
+  }
+
   changeSearch = (event) => {
     this.setState({search: event.target.value});
+  }
+
+  changeFreeOnly = (event) => {
+    this.setState({freeOnly: event.target.checked});
+    setTimeout(() => this.getMassages(), 3);
+  }
+
+  changeFrom = (event) => {
+    if (Util.isEmpty(event.target.value)
+      || moment(event.target.value).isAfter(moment(this.state.to))) {
+      return;
+    }
+    this.setState({from: event.target.value});
+  }
+
+  changeTo = (event) => {
+    if (Util.isEmpty(event.target.value)
+      || moment(event.target.value).isBefore(moment(this.state.from))) {
+      return;
+    }
+    this.setState({to: event.target.value});
   }
 
   changeTabIndex = (index) => {
@@ -92,7 +130,10 @@ class ArchiveList extends Component {
         <h1>
           { _t.translate('Massages Archive') }
         </h1>
-        <SearchField value={this.state.search} onChange={this.changeSearch} />
+        <MassageFilter checked={this.state.freeOnly} onCheck={this.changeFreeOnly}
+          value={this.state.search} onSearchChange={this.changeSearch}
+          from={this.state.from} onFromChange={this.changeFrom}
+          to={this.state.to} onToChange={this.changeTo} />
         <table className="table table-hover table-responsive table-striped table-condensed">
           <thead>
             <tr>
@@ -111,9 +152,9 @@ class ArchiveList extends Component {
           </thead>
           {this.state.massages.length > 0 ?
             <tbody>
-              {this.state.massages.slice(0, this.state.page * Util.MASSAGES_PER_PAGE)
+              {this.state.massages.slice(0, this.state.page * this.state.perPage)
                 .map((item, index) => (
-                <ArchiveMassageRow key={item.id} massage={item}
+                <ArchiveMassageRow key={item.id} massage={item} search={this.state.search}
                   onDelete={() => this.deleteMassage(item.id)} />
               ))}
             </tbody> :
@@ -127,8 +168,9 @@ class ArchiveList extends Component {
           }
         </table>
         {this.state.massages.length > 0 ?
-          <Pager massages={this.state.massages.length} page={this.state.page}
-            onChange={(page) => this.changePage(page)} /> : ''
+          <Pager massages={this.state.massages.length}
+            perPage={this.state.perPage} onPerPageChange={this.changePerPage}
+            page={this.state.page} onPageChange={(page) => this.changePage(page)} /> : ''
         }
       </div>
     );

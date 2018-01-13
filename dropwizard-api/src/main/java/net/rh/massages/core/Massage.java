@@ -44,10 +44,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
-		@NamedQuery(name = "Massage.findAllOld", query = "SELECT massage FROM Massage massage WHERE massage.date < CURRENT_TIMESTAMP() AND (LOWER(massage.masseuse) LIKE :search OR LOWER(massage.facility.name) LIKE :search OR LOWER(massage.contact) LIKE :search) ORDER BY massage.date DESC"),
+		@NamedQuery(name = "Massage.findAllOld", query = "SELECT massage FROM Massage massage WHERE (massage.date < CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date DESC"),
 		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
 		@NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client AND massage.ending > CURRENT_TIMESTAMP() ORDER BY massage.date ASC"),
-		@NamedQuery(name = "Massage.findAllByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND massage.ending > CURRENT_TIMESTAMP() AND (LOWER(massage.masseuse) LIKE :search OR LOWER(massage.contact) LIKE :search) ORDER BY massage.date ASC") })
+		@NamedQuery(name = "Massage.findNewByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND (massage.ending > CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date ASC") })
 public class Massage {
 
 	@Id

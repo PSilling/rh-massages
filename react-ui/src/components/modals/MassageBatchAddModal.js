@@ -390,11 +390,11 @@ class MassageBatchAddModal extends Component {
                       </div>
 
                       <div className="col-md-4">
-                      <label htmlFor="weeksInput">{ _t.translate('Number of repetitions (weekly)') }</label>
-                      <input id="weeksInput" value={this.state.rules[this.state.index].weeks} onChange={this.changeWeeks}
-                        className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
-                        type="number" min="1" max="54" placeholder={ _t.translate('Number of repetitions') }
-                      />
+                        <label htmlFor="weeksInput">{ _t.translate('Number of repetitions (weekly)') }</label>
+                        <input id="weeksInput" value={this.state.rules[this.state.index].weeks} onChange={this.changeWeeks}
+                          className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
+                          type="number" min="1" max="54" placeholder={ _t.translate('Number of repetitions') }
+                        />
                       </div>
                     </div>
                   </div>

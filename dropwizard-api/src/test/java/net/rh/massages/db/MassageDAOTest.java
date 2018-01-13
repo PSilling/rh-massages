@@ -152,10 +152,11 @@ public class MassageDAOTest {
 		});
 
 		Massage massageById = massageDAO.findById((long) 1);
-		List<Massage> oldMassages = massageDAO.findAllOld("Masseuse", 2);
+		List<Massage> oldMassages = massageDAO.searchOld("Masseuse", false, null, null, 2);
 		List<Massage> massagesByMasseuse = massageDAO.findAllByMasseuse("First Masseuse");
 		List<Massage> futureMassagesByClient = massageDAO.findAllByClient("Client");
-		List<Massage> futureMassagesByFacility = massageDAO.findAllByFacility(facility, "Masseuse", -1);
+		List<Massage> futureMassagesByFacility = massageDAO.searchNewByFacility(facility, "Masseuse", false, null, null,
+				-1);
 		List<Massage> massages = massageDAO.findAll();
 
 		assertEquals(massage1, massageById);
