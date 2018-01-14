@@ -292,6 +292,9 @@ const myLocalize = new Localize({
     "Masseuse is required!": {
       "cs": "Jméno masérky je vyžadováno!"
     },
+    "At least one repeat day is required!": {
+      "cs": "Alespoň jeden opakovací den je vyžadován!"
+    },
     "Search": {
       "cs": "Vyhledávání"
     },

@@ -190,6 +190,10 @@ class MassageBatchAddModal extends Component {
         Util.notify("error", _t.translate('Masseuse is required!'), _t.translate('Rule #') + (i + 1));
         return;
       }
+      if (this.state.rules[i].days.length === 0) {
+        Util.notify("error", _t.translate('At least one repeat day is required!'), _t.translate('Rule #') + (i + 1));
+        return;
+      }
     }
 
     for (i = 0; i < this.state.rules.length; i++) {
