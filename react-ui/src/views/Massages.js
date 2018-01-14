@@ -12,6 +12,7 @@ import Pager from '../components/navs/Pager';
 import MassageFilter from '../components/util/MassageFilter';
 import Tab from '../components/navs/Tab';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
+import '../styles/components/loader.css';
 
 // module imports
 import moment from 'moment';
@@ -27,8 +28,8 @@ import Util from '../util/Util';
 class FacilitiesTabs extends Component {
 
   state = {facilities: [], massages: [], masseuses: [], selected: [], index: 0, page: 1,
-            editId: -1, massageMinutes: 0,  modalActive: false, copyModalActive: false,
-            batchEditModalActive: false, batchAddModalActive: false,
+            editId: -1, massageMinutes: 0, loading: true,  modalActive: false,
+            copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
             search: "", freeOnly: false, from: moment().format("YYYY-MM-DD"),
             to: moment().add(1, 'months').format("YYYY-MM-DD"), perPage: 12, pages: 1}
 
@@ -59,7 +60,7 @@ class FacilitiesTabs extends Component {
         + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000
         + "&page=" + this.state.page
         + "&perPage=" + this.state.perPage, (json) => {
-          this.updateMassages(json.massages, json.totalCount, (json.clientTime / 60000));
+        this.updateMassages(json.massages, json.totalCount, (json.clientTime / 60000));
       });
     }
   }
@@ -84,8 +85,8 @@ class FacilitiesTabs extends Component {
     if (pages < 1) {
       pages = 1;
     }
-    this.setState({massages: massages, masseuses: masseuses,
-      massageMinutes: minutes, selected: selected, pages: pages,
+    this.setState({massages: massages, masseuses: masseuses, massageMinutes: minutes,
+      selected: selected, loading: false, pages: pages,
       page: this.state.page > pages ? pages : this.state.page
     });
   }
@@ -178,7 +179,7 @@ class FacilitiesTabs extends Component {
   }
 
   changeFreeOnly = (event) => {
-    this.setState({freeOnly: event.target.checked});
+    this.setState({freeOnly: event.target.checked, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
@@ -207,12 +208,12 @@ class FacilitiesTabs extends Component {
   }
 
   changePage = (page) => {
-    this.setState({page: page, selected: []});
+    this.setState({page: page, selected: [], loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
   changeTabIndex = (index) => {
-    this.setState({index: index, page: 1});
+    this.setState({index: index, page: 1, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
@@ -255,6 +256,7 @@ class FacilitiesTabs extends Component {
       <div>
         {this.state.facilities.length > 0 ?
           <div>
+            {this.state.loading ? <div className="loader pull-right"></div> : ''}
             <h1>
               { _t.translate('Massages in ') + this.state.facilities[this.state.index].name }
             </h1>

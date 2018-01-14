@@ -7,6 +7,7 @@ import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
 import Pager from '../components/navs/Pager';
 import MassageFilter from '../components/util/MassageFilter';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
+import '../styles/components/loader.css';
 
 // module imports
 import moment from 'moment';
@@ -21,7 +22,7 @@ import Util from '../util/Util';
  */
 class ArchiveList extends Component {
 
-  state = {massages: [], index: 0, page: 1, search: "", freeOnly: false,
+  state = {massages: [], index: 0, page: 1, search: "", freeOnly: false, loading: true,
             from: moment().subtract(1, 'years').format("YYYY-MM-DD"),
             to: moment().format("YYYY-MM-DD"), perPage: 12, pages: 1}
 
@@ -46,7 +47,7 @@ class ArchiveList extends Component {
       if (pages < 1) {
         pages = 1;
       }
-      this.setState({massages: json.massages, pages: pages,
+      this.setState({massages: json.massages, loading: false, pages: pages,
         page: this.state.page > pages ? pages : this.state.page});
     });
   }
@@ -72,7 +73,7 @@ class ArchiveList extends Component {
   }
 
   changePage = (page) => {
-    this.setState({page: page});
+    this.setState({page: page, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
@@ -89,7 +90,7 @@ class ArchiveList extends Component {
   }
 
   changeFreeOnly = (event) => {
-    this.setState({freeOnly: event.target.checked});
+    this.setState({freeOnly: event.target.checked, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
@@ -109,11 +110,6 @@ class ArchiveList extends Component {
     this.setState({to: event.target.value});
   }
 
-  changeTabIndex = (index) => {
-    this.setState({index: index, page: 1});
-    this.getMassages();
-  }
-
   render () {
     if (!Auth.isAdmin()) {
       return (
@@ -124,6 +120,7 @@ class ArchiveList extends Component {
     return (
       <div>
         <h1>
+          {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Massages Archive') }
         </h1>
         <MassageFilter checked={this.state.freeOnly} onCheck={this.changeFreeOnly}

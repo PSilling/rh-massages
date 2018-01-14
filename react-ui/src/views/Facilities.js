@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import FacilityModal from '../components/modals/FacilityModal';
 import FacilityRow from '../components/rows/FacilityRow';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
+import '../styles/components/loader.css';
 
 // util imports
 import Auth from '../util/Auth';
@@ -16,7 +17,7 @@ import Util from '../util/Util';
  */
 class FacilitiesTable extends Component {
 
-  state = {facilities: [], modalActive: false, editId: -1}
+  state = {facilities: [], modalActive: false, editId: -1, loading: true}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -30,7 +31,7 @@ class FacilitiesTable extends Component {
 
   getFacilities = () => {
     Util.get(Util.FACILITIES_URL, (json) => {
-      this.setState({facilities: json});
+      this.setState({facilities: json, loading: false});
     });
   }
 
@@ -52,6 +53,7 @@ class FacilitiesTable extends Component {
     return (
       <div>
         <h1>
+          {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Facilities') }
         </h1>
         <hr />

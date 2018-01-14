@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // component imports
 import MyMassagePanel from '../components/panels/MyMassagePanel';
+import '../styles/components/loader.css';
 
 // module imports
 import moment from 'moment';
@@ -18,7 +19,7 @@ import Util from '../util/Util';
  */
 class MassagesList extends Component {
 
-  state = {massages: []}
+  state = {massages: [], loading: true}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -31,7 +32,7 @@ class MassagesList extends Component {
 
   getMassages = () => {
     Util.get(Util.MASSAGES_URL + "client", (json) => {
-      this.setState({massages: json});
+      this.setState({massages: json, loading: false});
     });
   }
 
@@ -67,6 +68,7 @@ class MassagesList extends Component {
     return (
       <div>
         <h1>
+          {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('My Massages') }
         </h1>
         <hr />
