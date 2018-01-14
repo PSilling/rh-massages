@@ -4,13 +4,13 @@ Red Hat massages management site.
 
 ## CI
 
-[![Build Status](https://travis-ci.org/PSilling/rh-massages)](https://travis-ci.org/PSilling/rh-massages)
+[![Build Status](https://travis-ci.org/PSilling/rh-massages.svg?branch=master)](https://travis-ci.org/PSilling/rh-massages)
 
 ## Starting the application
 
 1. Run `mvn clean install` to build your application
-1. Populate DB schema with `java -jar target/Massages-1.1.3-SNAPSHOT.jar db config config.yml`
-1. Start the server application with `java -jar target/Massages-1.1.3-SNAPSHOT.jar server config.yml`
+1. Populate DB schema with `java -jar target/Massages-1.1.4-SNAPSHOT.jar db config config.yml`
+1. Start the server application with `java -jar target/Massages-1.1.4-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter `http://localhost:8080`
 
 ## DB environmental variables

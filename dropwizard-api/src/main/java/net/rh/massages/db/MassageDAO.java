@@ -18,7 +18,9 @@ package net.rh.massages.db;
 
 import java.text.Normalizer;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 
@@ -96,11 +98,14 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * @param free true if only unassigned Massages should be found
 	 * @param from limits results to be after the given Date
 	 * @param to limits results to be before the given Date
-	 * @param limit highest possible number of results; for -1 all results are
-	 *            returned
-	 * @return list of all found Massages
+	 * @param page current page number; for pages lower than 1 doesn't use
+	 *            pagination
+	 * @param perPage number of Massages to return per each page
+	 * @return map with list of all found Massages and their total count without
+	 *         limit
 	 */
-	public List<Massage> searchOld(String search, boolean free, Date from, Date to, int limit) {
+	public Map<String, Object> searchOld(String search, boolean free, Date from, Date to, int page, int perPage) {
+		Map<String, Object> response = new HashMap<>();
 		List<Massage> massages;
 		if (from == null) {
 			from = new Date(0);
@@ -125,11 +130,22 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			}
 		}
 
-		if (limit != -1 && limit < massages.size()) {
-			massages.subList(limit, massages.size());
+		response.put("totalCount", massages.size());
+		if (page > 0) {
+			if ((perPage * (page - 1)) >= massages.size()) {
+				page = (int) Math.ceil(massages.size() / ((double) perPage));
+				if (page < 1) {
+					page = 1;
+				}
+			}
+			massages.subList(0, (perPage * (page - 1))).clear();
+			if (perPage < massages.size()) {
+				massages.subList(perPage, massages.size()).clear();
+			}
 		}
+		response.put("massages", massages);
 
-		return massages;
+		return response;
 	}
 
 	/**
@@ -165,11 +181,15 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * @param free true if only unassigned Massages should be found
 	 * @param from limits results to be after the given Date
 	 * @param to limits results to be before the given Date
-	 * @param limit highest possible number of results
-	 * @return list of all found massages
+	 * @param page current page number; for pages lower than 1 doesn't use
+	 *            pagination
+	 * @param perPage number of Massages to return per each page
+	 * @return map with list of all found Massages and their total count without
+	 *         limit
 	 */
-	public List<Massage> searchNewByFacility(Facility facility, String search, boolean free, Date from, Date to,
-			int limit) {
+	public Map<String, Object> searchNewByFacility(Facility facility, String search, boolean free, Date from, Date to,
+			int page, int perPage) {
+		Map<String, Object> response = new HashMap<>();
 		List<Massage> massages;
 		if (from == null) {
 			from = new Date();
@@ -193,11 +213,22 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			}
 		}
 
-		if (limit != -1 && limit < massages.size()) {
-			massages.subList(limit, massages.size());
+		response.put("totalCount", massages.size());
+		if (page > 0) {
+			if ((perPage * (page - 1)) >= massages.size()) {
+				page = (int) Math.ceil(massages.size() / ((double) perPage));
+				if (page < 1) {
+					page = 1;
+				}
+			}
+			massages.subList(0, (perPage * (page - 1))).clear();
+			if (perPage < massages.size()) {
+				massages.subList(perPage, massages.size()).clear();
+			}
 		}
+		response.put("massages", massages);
 
-		return massages;
+		return response;
 	}
 
 	/**

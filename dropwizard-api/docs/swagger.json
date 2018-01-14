@@ -2,7 +2,7 @@
 {
     "swagger":"2.0",
     "info":{
-        "version":"1.1.2-SNAPSHOT",
+        "version":"1.1.4-SNAPSHOT",
         "title":"Massages"
     },
     "host":"localhost:8080",
@@ -200,12 +200,35 @@
                         "description":"facility id"
                     },
                     {
+                        "type":"boolean",
+                        "name":"free",
+                        "in":"query",
+                        "required":true,
+                        "description":"whether only unassigned Massages should be shown"
+                    },
+                    {
                         "type":"string",
-                        "name":"limit",
+                        "name":"from",
                         "in":"query",
                         "required":false,
-                        "description":"highest possible number of results",
+                        "description":"limits results to be after the Date in milliseconds",
                         "default":"-1"
+                    },
+                    {
+                        "type":"string",
+                        "name":"page",
+                        "in":"query",
+                        "required":false,
+                        "description":"current page number; for -1 doesn't use pagination",
+                        "default":"0"
+                    },
+                    {
+                        "type":"string",
+                        "name":"perPage",
+                        "in":"query",
+                        "required":false,
+                        "description":"number of Massages to return per each page",
+                        "default":"12"
                     },
                     {
                         "type":"string",
@@ -213,6 +236,22 @@
                         "in":"query",
                         "required":true,
                         "description":"value of the text to be searched for"
+                    },
+                    {
+                        "type":"string",
+                        "name":"to",
+                        "in":"query",
+                        "required":false,
+                        "description":"limits results to be after the Date in milliseconds",
+                        "default":"-1"
+                    },
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/User"
+                        }
                     }
                 ],
                 "responses":{
@@ -221,10 +260,7 @@
                         "headers":{
                         },
                         "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
-                            }
+                            "type":"object"
                         }
                     },
                     "404":{
@@ -458,37 +494,6 @@
                 }
             }
         },
-        "/massages/client/time":{
-            "get":{
-                "description":"GETs the total time of upcoming Massages of a client",
-                "consumes":[
-                    "application/json"
-                ],
-                "produces":[
-                    "application/json"
-                ],
-                "parameters":[
-                    {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/User"
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
-                        },
-                        "schema":{
-                            "type":"integer"
-                        }
-                    }
-                }
-            }
-        },
         "/massages/old":{
             "get":{
                 "description":"GETs all Massages that are after the current time",
@@ -500,12 +505,35 @@
                 ],
                 "parameters":[
                     {
+                        "type":"boolean",
+                        "name":"free",
+                        "in":"query",
+                        "required":true,
+                        "description":"whether only unassigned Massages should be shown"
+                    },
+                    {
                         "type":"string",
-                        "name":"limit",
+                        "name":"from",
                         "in":"query",
                         "required":false,
-                        "description":"highest possible number of results",
+                        "description":"limits results to be after the Date in milliseconds",
                         "default":"-1"
+                    },
+                    {
+                        "type":"string",
+                        "name":"page",
+                        "in":"query",
+                        "required":false,
+                        "description":"current page number; for -1 doesn't use pagination",
+                        "default":"0"
+                    },
+                    {
+                        "type":"string",
+                        "name":"perPage",
+                        "in":"query",
+                        "required":false,
+                        "description":"number of Massages to return per each page",
+                        "default":"12"
                     },
                     {
                         "type":"string",
@@ -513,6 +541,14 @@
                         "in":"query",
                         "required":true,
                         "description":"value of the text to be searched for"
+                    },
+                    {
+                        "type":"string",
+                        "name":"to",
+                        "in":"query",
+                        "required":false,
+                        "description":"limits results to be after the Date in milliseconds",
+                        "default":"-1"
                     }
                 ],
                 "responses":{
@@ -521,10 +557,7 @@
                         "headers":{
                         },
                         "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
-                            }
+                            "type":"object"
                         }
                     }
                 }

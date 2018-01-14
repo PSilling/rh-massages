@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -152,18 +153,18 @@ public class MassageDAOTest {
 		});
 
 		Massage massageById = massageDAO.findById((long) 1);
-		List<Massage> oldMassages = massageDAO.searchOld("Masseuse", false, null, null, 2);
+		Map<String, Object> oldMassages = massageDAO.searchOld("Masseuse", false, null, null, 1, 2);
 		List<Massage> massagesByMasseuse = massageDAO.findAllByMasseuse("First Masseuse");
 		List<Massage> futureMassagesByClient = massageDAO.findAllByClient("Client");
-		List<Massage> futureMassagesByFacility = massageDAO.searchNewByFacility(facility, "Masseuse", false, null, null,
-				-1);
+		Map<String, Object> futureMassagesByFacility = massageDAO.searchNewByFacility(facility, "Masseuse", false, null,
+				null, 0, 2);
 		List<Massage> massages = massageDAO.findAll();
 
 		assertEquals(massage1, massageById);
-		assertEquals(2, oldMassages.size());
+		assertEquals(2, oldMassages.get("totalCount"));
 		assertEquals(1, massagesByMasseuse.size());
 		assertEquals(0, futureMassagesByClient.size());
-		assertEquals(0, futureMassagesByFacility.size());
+		assertEquals(0, futureMassagesByFacility.get("totalCount"));
 		assertEquals(2, massages.size());
 	}
 }

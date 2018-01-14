@@ -18,6 +18,7 @@ package net.rh.massages.resources;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -40,9 +41,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.FacilityDAO;
@@ -179,7 +182,8 @@ public class FacilityResource {
 	 * @param free whether only unassigned Massages should be shown
 	 * @param from limits results to be after the Date in milliseconds
 	 * @param to limits results to be after the Date in milliseconds
-	 * @param limit highest possible number of results
+	 * @param page current page number; for -1 doesn't use pagination
+	 * @param perPage number of Massages to return per each page
 	 * @exception WebApplicationException if the id could not be found
 	 * @return list of all found massages
 	 */
@@ -187,10 +191,12 @@ public class FacilityResource {
 	@Path("/{id}/massages")
 	@PermitAll
 	@UnitOfWork
-	public List<Massage> getMassages(@PathParam("id") LongParam id, @QueryParam("search") String search,
+	public Map<String, Object> getMassages(@PathParam("id") LongParam id, @QueryParam("search") String search,
 			@QueryParam("free") boolean free, @Min(-1) @DefaultValue("-1") @QueryParam("from") LongParam from,
 			@Min(-1) @DefaultValue("-1") @QueryParam("to") LongParam to,
-			@Min(-1) @DefaultValue("-1") @QueryParam("limit") IntParam limit) {
+			@Min(0) @DefaultValue("0") @QueryParam("page") IntParam page,
+			@Min(1) @DefaultValue("12") @QueryParam("perPage") IntParam perPage, @Auth User user) {
+		Map<String, Object> response;
 		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
@@ -205,7 +211,16 @@ public class FacilityResource {
 			toDate = new Date(to.get());
 		}
 
-		return massageDao.searchNewByFacility(facilityDao.findById(id.get()), search, free, fromDate, toDate,
-				limit.get());
+		response = massageDao.searchNewByFacility(facilityDao.findById(id.get()), search, free, fromDate, toDate,
+				page.get(), perPage.get());
+
+		long massageTime = 0;
+		List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
+		for (Massage clientMassage : daoMassagesClient) {
+			massageTime += clientMassage.calculateDuration();
+		}
+		response.put("clientTime", massageTime);
+
+		return response;
 	}
 }

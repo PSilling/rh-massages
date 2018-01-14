@@ -8,7 +8,6 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.client.Entity;
@@ -33,7 +32,6 @@ import net.rh.massages.auth.TestAuthenticator;
 import net.rh.massages.auth.TestAuthorizer;
 import net.rh.massages.auth.TestUser;
 import net.rh.massages.core.Facility;
-import net.rh.massages.core.Massage;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 
@@ -53,8 +51,6 @@ public class FacilityResourceTest {
 
 	private final Facility facility = new Facility("Facility"); // test Facility
 	private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
-	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility); // test
-																													// Massage
 
 	/*
 	 * Creates a new static ResourceTestRule that tests a given resource. Uses
@@ -110,11 +106,6 @@ public class FacilityResourceTest {
 				return newFacility;
 			}
 		}).when(facilityDao).update(newFacility);
-
-		List<Massage> massages = new ArrayList<>();
-		massages.add(massage);
-
-		when(massageDao.searchNewByFacility(facility, "%", false, null, null, -1)).thenReturn(massages);
 	}
 
 	/**
@@ -202,21 +193,5 @@ public class FacilityResourceTest {
 		assertEquals(200, response.getStatus());
 		assertEquals(1, updatedFacility.getId());
 		assertEquals(newFacility.getName(), updatedFacility.getName());
-	}
-
-	/**
-	 * Creates a new Massage (used also in follow up MassageResource testing) and
-	 * tests whether fetch request for all Massages of a given Facility works as
-	 * intended
-	 */
-	@Test
-	public void getMassagesTest() {
-		List<Massage> massages = RULE.target("/facilities/1/massages").queryParam("search", "%").request()
-				.header("Authorization", "Bearer TOKEN").get(new GenericType<List<Massage>>() {
-				});
-
-		assertNotNull(massages);
-		assertEquals(1, massages.size());
-		assertEquals(massage, massages.get(0));
 	}
 }

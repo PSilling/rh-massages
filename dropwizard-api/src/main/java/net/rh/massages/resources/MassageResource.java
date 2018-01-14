@@ -19,6 +19,7 @@ package net.rh.massages.resources;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -178,17 +179,19 @@ public class MassageResource {
 	 * @param free whether only unassigned Massages should be shown
 	 * @param from limits results to be after the Date in milliseconds
 	 * @param to limits results to be after the Date in milliseconds
-	 * @param limit highest possible number of results
+	 * @param page current page number; for -1 doesn't use pagination
+	 * @param perPage number of Massages to return per each page
 	 * @return list of all old Massages
 	 */
 	@GET
 	@Path("/old")
 	@PermitAll
 	@UnitOfWork
-	public List<Massage> fetchOld(@QueryParam("search") String search, @QueryParam("free") boolean free,
+	public Map<String, Object> fetchOld(@QueryParam("search") String search, @QueryParam("free") boolean free,
 			@Min(-1) @DefaultValue("-1") @QueryParam("from") LongParam from,
 			@Min(-1) @DefaultValue("-1") @QueryParam("to") LongParam to,
-			@Min(-1) @DefaultValue("-1") @QueryParam("limit") IntParam limit) {
+			@Min(0) @DefaultValue("0") @QueryParam("page") IntParam page,
+			@Min(1) @DefaultValue("12") @QueryParam("perPage") IntParam perPage) {
 
 		// Dates default to null if -1 is supplied
 		Date fromDate = null;
@@ -200,7 +203,7 @@ public class MassageResource {
 			toDate = new Date(to.get());
 		}
 
-		return massageDao.searchOld(search, free, fromDate, toDate, limit.get());
+		return massageDao.searchOld(search, free, fromDate, toDate, page.get(), perPage.get());
 	}
 
 	/**

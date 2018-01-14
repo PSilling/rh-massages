@@ -192,23 +192,4 @@ public class MassageAuthResource {
 	public List<Massage> findAllByClient(@Auth User user) {
 		return massageDao.findAllByClient(user.getSubject());
 	}
-
-	/**
-	 * GETs the total time of upcoming Massages of a client
-	 *
-	 * @return the total time
-	 */
-	@GET
-	@Path("/client/time")
-	@PermitAll
-	@UnitOfWork
-	public long getMassageTime(@Auth User user) {
-		long massageTime = 0;
-		List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
-		for (Massage clientMassage : daoMassagesClient) {
-			massageTime += clientMassage.calculateDuration();
-		}
-
-		return massageTime;
-	}
 }

@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// component imports
+import Page from '../navs/Page';
+
 // util imports
 import Util from '../../util/Util';
 import _t from '../../util/Translations';
@@ -10,6 +13,29 @@ import _t from '../../util/Translations';
  * Custom pagination component.
  */
 class Pager extends Component {
+
+  renderPages = () => {
+    var pages = [];
+    for (var i = 1; i <= this.props.pages; i++) {
+      if (i < 4 || i > (this.props.pages - 3) || (i > (this.props.page - 5)
+        && i < (this.props.page + 5))) {
+        let number = i;
+        pages.push(
+          <Page active={i === this.props.page} number={i} key={i}
+            onClick={() => this.props.onPageChange(number)} />
+        );
+      } else if (i === 4 || i === (this.props.pages - 3)) {
+        pages.push(
+          <li className="disabled" key={i}>
+            <a>
+              {"…"}
+            </a>
+          </li>
+        );
+      }
+    }
+    return pages;
+  }
 
   render() {
     return(
@@ -27,23 +53,9 @@ class Pager extends Component {
         </div>
 
         <div className="text-center">
-          <button className="btn btn-link"
-            onClick={() => this.props.onPageChange(-1)}
-            disabled={this.props.page >= (this.props.massages / this.props.perPage)}>
-            { _t.translate('Show all') }
-          </button>
-          <button className="btn btn-link" onClick={() => this.props.onPageChange(this.props.page + 1)}
-            disabled={this.props.page >= (this.props.massages / this.props.perPage)}>
-            { _t.translate('More') }
-          </button>
-          <button className="btn btn-link" onClick={() => this.props.onPageChange(this.props.page - 1)}
-            disabled={this.props.page <= 1}>
-            { _t.translate('Less') }
-          </button>
-          <button className="btn btn-link" onClick={() => this.props.onPageChange(1)}
-            disabled={this.props.page <= 1}>
-            { _t.translate('Collapse all') }
-          </button>
+          <ul className="pagination" style={{ 'marginTop': '0px'}}>
+            {this.renderPages()}
+          </ul>
         </div>
       </div>
     );
@@ -53,9 +65,9 @@ class Pager extends Component {
 Pager.propTypes = {
   page: PropTypes.number, // current page number
   perPage: PropTypes.number, // number of Massages shown per each page
-  massages: PropTypes.number, // total number of Massages on the page
-  onPerPageChange: PropTypes.func, // function called on per page count change
-  onPageChange: PropTypes.func // function called on page change
+  pages: PropTypes.number, // total number of pages to show
+  onPageChange: PropTypes.func, // function called on page change
+  onPerPageChange: PropTypes.func // function called on per page count change
 };
 
 export default Pager

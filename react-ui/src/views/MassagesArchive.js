@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // component imports
 import ArchiveMassageRow from '../components/rows/ArchiveMassageRow';
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
-import Pager from '../components/util/Pager';
+import Pager from '../components/navs/Pager';
 import MassageFilter from '../components/util/MassageFilter';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 
@@ -23,7 +23,7 @@ class ArchiveList extends Component {
 
   state = {massages: [], index: 0, page: 1, search: "", freeOnly: false,
             from: moment().subtract(1, 'years').format("YYYY-MM-DD"),
-            to: moment().format("YYYY-MM-DD"), perPage: 12}
+            to: moment().format("YYYY-MM-DD"), perPage: 12, pages: 1}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -34,20 +34,20 @@ class ArchiveList extends Component {
     }, Util.AUTO_REFRESH_TIME);
   }
 
-  getMassages = (unlimited = false) => {
+  getMassages = () => {
     Util.get(Util.MASSAGES_URL
       + "old?search=" + this.state.search
       + "&free=" + this.state.freeOnly
       + "&from=" + moment(this.state.from).unix() * 1000
       + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000
-      + "&limit=" + (unlimited ? -1 : ((this.state.page * this.state.perPage) + 1)), (json) => {
-      this.setState({massages: json});
-      let pages = Math.ceil(json.length / this.state.perPage);
-      if (unlimited) {
-        this.setState({page: pages});
-      } else if (this.state.page > pages) {
-        this.setState({page: pages === 0 ? 1 : pages});
+      + "&page=" + this.state.page
+      + "&perPage=" + this.state.perPage, (json) => {
+      let pages = Math.ceil(json.totalCount / this.state.perPage);
+      if (pages < 1) {
+        pages = 1;
       }
+      this.setState({massages: json.massages, pages: pages,
+        page: this.state.page > pages ? pages : this.state.page});
     });
   }
 
@@ -72,12 +72,8 @@ class ArchiveList extends Component {
   }
 
   changePage = (page) => {
-    if (page === -1) {
-      this.getMassages(true);
-    } else {
-      this.setState({page: page});
-      this.getMassages();
-    }
+    this.setState({page: page});
+    setTimeout(() => this.getMassages(), 3);
   }
 
   changePerPage = (event) => {
@@ -152,8 +148,7 @@ class ArchiveList extends Component {
           </thead>
           {this.state.massages.length > 0 ?
             <tbody>
-              {this.state.massages.slice(0, this.state.page * this.state.perPage)
-                .map((item, index) => (
+              {this.state.massages.map((item, index) => (
                 <ArchiveMassageRow key={item.id} massage={item} search={this.state.search}
                   onDelete={() => this.deleteMassage(item.id)} />
               ))}
@@ -167,10 +162,9 @@ class ArchiveList extends Component {
             </tbody>
           }
         </table>
-        {this.state.massages.length > 0 ?
-          <Pager massages={this.state.massages.length}
-            perPage={this.state.perPage} onPerPageChange={this.changePerPage}
-            page={this.state.page} onPageChange={(page) => this.changePage(page)} /> : ''
+        {this.state.pages > 0 ?
+          <Pager pages={this.state.pages} perPage={this.state.perPage} page={this.state.page}
+            onPerPageChange={this.changePerPage} onPageChange={(page) => this.changePage(page)} /> : ''
         }
       </div>
     );

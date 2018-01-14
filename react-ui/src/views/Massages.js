@@ -8,7 +8,7 @@ import MassageRow from '../components/rows/MassageRow';
 import MassageCopyModal from '../components/modals/MassageCopyModal';
 import MassageBatchAddModal from '../components/modals/MassageBatchAddModal';
 import MassageBatchEditModal from '../components/modals/MassageBatchEditModal';
-import Pager from '../components/util/Pager';
+import Pager from '../components/navs/Pager';
 import MassageFilter from '../components/util/MassageFilter';
 import Tab from '../components/navs/Tab';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
@@ -30,7 +30,7 @@ class FacilitiesTabs extends Component {
             editId: -1, massageMinutes: 0,  modalActive: false, copyModalActive: false,
             batchEditModalActive: false, batchAddModalActive: false,
             search: "", freeOnly: false, from: moment().format("YYYY-MM-DD"),
-            to: moment().add(1, 'months').format("YYYY-MM-DD"), perPage: 12}
+            to: moment().add(1, 'months').format("YYYY-MM-DD"), perPage: 12, pages: 1}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -50,30 +50,27 @@ class FacilitiesTabs extends Component {
     });
   }
 
-  getMassages = (unlimited = false) => {
+  getMassages = () => {
     if (this.state.facilities.length > 0) {
       Util.get(Util.FACILITIES_URL + this.state.facilities[this.state.index].id
         + "/massages?search=" + this.state.search
         + "&free=" + this.state.freeOnly
         + "&from=" + moment(this.state.from).unix() * 1000
         + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000
-        + "&limit=" + (unlimited ? -1 : ((this.state.page * this.state.perPage) + 1)), (json) => {
-          this.updateMassages(json, unlimited);
+        + "&page=" + this.state.page
+        + "&perPage=" + this.state.perPage, (json) => {
+          this.updateMassages(json.massages, json.totalCount, (json.clientTime / 60000));
       });
     }
   }
 
-  updateMassages = (massages, unlimited) => {
+  updateMassages = (massages, count, minutes) => {
     var masseuses = [];
     for (var i = 0; i < massages.length; i++) {
       if (masseuses.indexOf(massages[i].masseuse) === -1) {
         masseuses.push(massages[i].masseuse);
       }
     }
-
-    Util.get(Util.MASSAGES_URL + "client/time", (json) => {
-        this.setState({massageMinutes: (json / 60000)});
-    });
 
     let selected = this.state.selected;
     for (i = 0; i < selected.length; i++) {
@@ -83,13 +80,14 @@ class FacilitiesTabs extends Component {
       }
     }
 
-    this.setState({massages: massages, selected: selected, masseuses: masseuses});
-    let pages = Math.ceil(massages.length / this.state.perPage);
-    if (unlimited) {
-      this.setState({page: pages});
-    } else if (this.state.page > pages) {
-      this.setState({page: pages === 0 ? 1 : pages});
+    let pages = Math.ceil(count / this.state.perPage);
+    if (pages < 1) {
+      pages = 1;
     }
+    this.setState({massages: massages, masseuses: masseuses,
+      massageMinutes: minutes, selected: selected, pages: pages,
+      page: this.state.page > pages ? pages : this.state.page
+    });
   }
 
   assignMassage = (massage) => {
@@ -168,8 +166,7 @@ class FacilitiesTabs extends Component {
   handleSelectAll = (event) => {
     var selected = [];
     if (event.target.checked) {
-      for (var i = 0; i < this.state.massages
-        .slice(0, this.state.page * this.state.perPage).length; i++) {
+      for (var i = 0; i < this.state.massages.length; i++) {
         selected.push(this.state.massages[i]);
       }
     }
@@ -177,7 +174,7 @@ class FacilitiesTabs extends Component {
   }
 
   changeSearch = (event) => {
-    this.setState({search: event.target.value});
+    this.setState({search: event.target.value, page: 1});
   }
 
   changeFreeOnly = (event) => {
@@ -210,20 +207,8 @@ class FacilitiesTabs extends Component {
   }
 
   changePage = (page) => {
-    if (page === -1) {
-      this.getMassages(true);
-    } else {
-      if (page < this.state.page) {
-        let selected = this.state.selected,
-            position = this.findInArrayById(selected, this.state.massages[page * this.state.perPage].id);
-        if (position !== -1) {
-          selected.splice(position, 1);
-          this.setState({selected: selected});
-        }
-      }
-      this.setState({page: page});
-      this.getMassages();
-    }
+    this.setState({page: page, selected: []});
+    setTimeout(() => this.getMassages(), 3);
   }
 
   changeTabIndex = (index) => {
@@ -294,14 +279,14 @@ class FacilitiesTabs extends Component {
                 />
                 <MassageCopyModal
                   active={this.state.copyModalActive}
-                  disabled={this.state.selected.length <= 0}
+                  disabled={this.state.selected.length === 0}
                   massages={this.state.selected}
                   getCallback={this.getMassages}
                   onToggle={(deselect) => this.toggleCopyModal(deselect)}
                 />
                 <MassageBatchEditModal
                   active={this.state.batchEditModalActive}
-                  disabled={this.state.selected.length <= 0}
+                  disabled={this.state.selected.length === 0}
                   massages={this.state.selected}
                   masseuses={this.state.masseuses}
                   getCallback={this.getMassages}
@@ -309,7 +294,7 @@ class FacilitiesTabs extends Component {
                 />
                 <BatchDeleteButton onDelete={this.deleteSelectedMassages}
                   label={ _t.translate('Delete selected') }
-                  disabled={this.state.selected.length <= 0} />
+                  disabled={this.state.selected.length === 0} />
               </div> : ''
             }
             <table className="table table-hover table-responsive table-striped table-condensed">
@@ -318,8 +303,8 @@ class FacilitiesTabs extends Component {
                   {Auth.isAdmin() ?
                     <th width="40px" className="text-center">
                       <input type="checkbox" onChange={this.handleSelectAll}
-                        checked={this.state.massages.slice(0, this.state.page * this.state.perPage).length
-                          === this.state.selected.length && this.state.selected.length > 0} />
+                        checked={this.state.massages.length === this.state.selected.length
+                          && this.state.selected.length > 0} />
                     </th> : <th className="hidden"></th>
                   }
                   <th>{ _t.translate('Date') }</th>
@@ -343,8 +328,7 @@ class FacilitiesTabs extends Component {
               </thead>
               {this.state.massages.length > 0 ?
                 <tbody>
-                  {this.state.massages.slice(0, this.state.page * this.state.perPage)
-                    .map((item, index) => (
+                  {this.state.massages.map((item, index) => (
                     <MassageRow key={item.id} massage={item} checked={this.findInArrayById(this.state.selected, item.id) !== -1}
                       assignDisabled={(this.state.massageMinutes + moment(item.ending)
                         .diff(moment(item.date), 'minutes')) > Util.MAX_MASSAGE_MINS}
@@ -367,10 +351,9 @@ class FacilitiesTabs extends Component {
                 </tbody>
               }
             </table>
-            {this.state.massages.length > 0 ?
-              <Pager massages={this.state.massages.length}
-                perPage={this.state.perPage} onPerPageChange={this.changePerPage}
-                page={this.state.page} onPageChange={(page) => this.changePage(page)} /> : ''
+            {this.state.pages > 0 ?
+              <Pager pages={this.state.pages} perPage={this.state.perPage} page={this.state.page}
+                onPerPageChange={this.changePerPage} onPageChange={(page) => this.changePage(page)} /> : ''
             }
           </div> :
           <div>
