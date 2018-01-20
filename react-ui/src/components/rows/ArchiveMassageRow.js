@@ -37,8 +37,8 @@ class ArchiveMassageRow extends Component {
             { _t.translate('Free') }
           </td> :
           <td className="danger">
-            {Util.isEmpty(this.props.massage.contact) ? _t.translate('Full')
-              : Util.highlightInText(this.props.massage.contact, this.props.search)}
+            {Util.isEmpty(this.props.massage.client) ? _t.translate('Full')
+              : Util.highlightInText(Util.getContactInfo(this.props.massage.client), this.props.search)}
           </td>
         }
         <td width="75px" className={Util.isEmpty(this.props.massage.client) ? "success" : "danger"}>

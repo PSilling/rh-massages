@@ -1,18 +1,18 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages.auth;
 
@@ -70,11 +70,38 @@ public class User extends AbstractUser {
 	}
 
 	/**
+	 * Gives out the first name of the Keycloak user.
+	 *
+	 * @return the desired name
+	 */
+	public String getFirstName() {
+		return securityContext.getToken().getGivenName();
+	}
+
+	/**
+	 * Gives out the surname of the Keycloak user.
+	 *
+	 * @return the desired surname
+	 */
+	public String getSurname() {
+		return securityContext.getToken().getFamilyName();
+	}
+
+	/**
 	 * Gives out the subject of the Keycloak user.
 	 *
 	 * @return the desired subject
 	 */
 	public String getSubject() {
 		return securityContext.getToken().getSubject();
+	}
+
+	/**
+	 * Gives out the email of the Keycloak user.
+	 *
+	 * @return the desired email
+	 */
+	public String getEmail() {
+		return securityContext.getToken().getEmail();
 	}
 }

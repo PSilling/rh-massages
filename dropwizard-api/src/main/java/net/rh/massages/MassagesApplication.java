@@ -42,11 +42,15 @@ import io.dropwizard.setup.Environment;
 import net.rh.massages.auth.KeycloakAuthenticator;
 import net.rh.massages.auth.User;
 import net.rh.massages.auth.UserAuthorizer;
+import net.rh.massages.configuration.MailClient;
+import net.rh.massages.core.Client;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
+import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 import net.rh.massages.health.MassagesHealthCheck;
+import net.rh.massages.resources.ClientResource;
 import net.rh.massages.resources.FacilityResource;
 import net.rh.massages.resources.LogoutResource;
 import net.rh.massages.resources.MassageAuthResource;
@@ -87,7 +91,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 * Hibernate bundle used by the application
 	 */
 	private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
-			Facility.class, Massage.class) {
+			Facility.class, Massage.class, Client.class) {
 
 		@Override
 		public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
@@ -149,13 +153,18 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	 */
 	@Override
 	public void run(final MassagesConfiguration configuration, final Environment environment) {
+		// Create a MailClient instance based on SmtpConfiguration
+		final MailClient mailClient = new MailClient(configuration.getSmtpConfiguration());
+
 		// Register resources with their DAOs
 		final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
 		final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
+		final ClientDAO clientDao = new ClientDAO(HIBERNATE.getSessionFactory());
 
-		environment.jersey().register(new FacilityResource(facilityDao, massageDao));
-		environment.jersey().register(new MassageResource(massageDao));
-		environment.jersey().register(new MassageAuthResource(massageDao));
+		environment.jersey().register(new FacilityResource(facilityDao, massageDao, clientDao));
+		environment.jersey().register(new MassageResource(massageDao, clientDao, mailClient));
+		environment.jersey().register(new MassageAuthResource(massageDao, clientDao, mailClient));
+		environment.jersey().register(new ClientResource(clientDao));
 		environment.jersey().register(new LogoutResource());
 
 		// Register ErrorPageErrorHandler so that the server routing is connected to

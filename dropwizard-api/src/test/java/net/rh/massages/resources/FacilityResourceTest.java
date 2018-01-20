@@ -32,6 +32,7 @@ import net.rh.massages.auth.TestAuthenticator;
 import net.rh.massages.auth.TestAuthorizer;
 import net.rh.massages.auth.TestUser;
 import net.rh.massages.core.Facility;
+import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 
@@ -48,6 +49,7 @@ public class FacilityResourceTest {
 
 	private static final FacilityDAO facilityDao = mock(FacilityDAO.class); // mock of FacilityDAO
 	private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
+	private static final ClientDAO clientDao = mock(ClientDAO.class); // mock of ClientDAO
 
 	private final Facility facility = new Facility("Facility"); // test Facility
 	private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
@@ -64,7 +66,7 @@ public class FacilityResourceTest {
 					.setPrefix("Bearer").buildAuthFilter()))
 			.addProvider(RolesAllowedDynamicFeature.class)
 			.addProvider(new AuthValueFactoryProvider.Binder<>(TestUser.class))
-			.addResource(new FacilityResource(facilityDao, massageDao)).build();
+			.addResource(new FacilityResource(facilityDao, massageDao, clientDao)).build();
 
 	/**
 	 * Configures mocks before each test.

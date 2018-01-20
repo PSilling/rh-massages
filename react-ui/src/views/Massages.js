@@ -96,8 +96,7 @@ class FacilitiesTabs extends Component {
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
-      client: Auth.getSub(),
-      contact: Auth.getContact(),
+      client: Auth.getClient(),
       facility: massage.facility
     }], this.getMassages);
   }
@@ -107,8 +106,7 @@ class FacilitiesTabs extends Component {
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
-      client: Auth.getSub(),
-      contact: Auth.getContact(),
+      client: Auth.getClient(),
       facility: massage.facility
     }], () => {
       Util.addToCalendar(massage);
@@ -122,7 +120,6 @@ class FacilitiesTabs extends Component {
       ending: massage.ending,
       masseuse: massage.masseuse,
       client: null,
-      contact: null,
       facility: massage.facility
     }], this.getMassages);
   }
@@ -213,7 +210,7 @@ class FacilitiesTabs extends Component {
   }
 
   changeTabIndex = (index) => {
-    this.setState({index: index, page: 1, loading: true});
+    this.setState({index: index, page: 1, pages: 1, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 

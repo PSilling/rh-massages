@@ -12,20 +12,20 @@ import Util from '../../util/Util';
 class LogoutLink extends Component {
 
   logout = () => {
-      fetch(Util.LOGOUT_URL, {
-        method: 'get',
-        headers: {
-          'Authorization': 'Bearer ' + Auth.getToken()
-        }
-      }).then(function(response) {
-        if (response.ok) {
-          Auth.keycloak.logout();
-        } else {
-          Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-            _t.translate('An error occured!'));
-        }
-      });
-    }
+    fetch(Util.LOGOUT_URL, {
+      method: 'get',
+      headers: {
+        'Authorization': 'Bearer ' + Auth.getToken()
+      }
+    }).then(function(response) {
+      if (response.ok) {
+        Auth.keycloak.logout();
+      } else {
+        Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
+          _t.translate('An error occured!'));
+      }
+    });
+  }
 
   render() {
     return(

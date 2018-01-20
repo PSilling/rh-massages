@@ -9,7 +9,7 @@
 
   <groupId>net.rh.massages</groupId>
   <artifactId>parent</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>1.2.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Red Hat Massages</name>
@@ -48,6 +48,8 @@
     <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
     <jaxrs-analyzer-maven-plugin.version>0.14</jaxrs-analyzer-maven-plugin.version>
     <jaxrs-analyzer-maven-plugin.version>0.14</jaxrs-analyzer-maven-plugin.version>
+    <simple-java-mail.version>4.4.5</simple-java-mail.version>
+    <commons-io.version>1.3.2</commons-io.version>
     <!-- /dropwizard-api versions -->
     
     <!-- react-ui versions -->

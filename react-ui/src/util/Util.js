@@ -231,8 +231,18 @@ Util.highlightInText = (text, query) => {
   }
 }
 
+/**
+ * Creates a new contact info String from a given client
+ *
+ * @param client client to get contact info for
+ */
+Util.getContactInfo = (client) => {
+    return (client.name + " " + client.surname + " (" + client.email + ")");
+}
+
 Util.FACILITIES_URL = "api/facilities/"; // url of facilities endpoint
 Util.MASSAGES_URL = "api/massages/"; // url of massages endpoint
+Util.CLIENTS_URL = "api/clients/"; // url of clients endpoint
 Util.LOGOUT_URL = "api/logout/"; // url of logout endpoint
 Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in milliseconds
 Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds

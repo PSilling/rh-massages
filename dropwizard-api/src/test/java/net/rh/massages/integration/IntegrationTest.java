@@ -76,8 +76,8 @@ public class IntegrationTest {
 	@Test(expected = NotAuthorizedException.class)
 	public void testAuth() {
 		final Facility facility = new Facility("Facility"); // test Facility
-		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility); // test
-																												// Massage
+		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
+																											// Massage
 		List<Massage> massages = new LinkedList<>();
 		massages.add(massage);
 

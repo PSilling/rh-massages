@@ -37,7 +37,10 @@ import javax.ws.rs.core.Response.Status;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import net.rh.massages.auth.User;
+import net.rh.massages.configuration.MailClient;
+import net.rh.massages.core.Client;
 import net.rh.massages.core.Massage;
+import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.MassageDAO;
 
 /**
@@ -54,17 +57,21 @@ import net.rh.massages.db.MassageDAO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MassageAuthResource {
 
-	private final MassageDAO massageDao; // massage data access object
-	private final long MAX_OFFSET = 1810000; // limit for user massage cancellation
-	private final long MASSAGE_LIMIT = 7202000; // limit for total user massage time
+	private final MassageDAO massageDao; // Massage data access object
+	private final ClientDAO clientDao; // Client data access object
+	private final MailClient mailClient; // Mailing client
+	private final long MAX_OFFSET = 1810000; // time limit for User Massage cancellation
+	private final long MASSAGE_LIMIT = 7202000; // time limit for total User Massage time
 
 	/**
-	 * Parameterized MassageResource constructor
-	 *
 	 * @param massageDao new MassageResource massageDao
+	 * @param clientDao new MassageResource clientDao
+	 * @param mailClient new MassageResource mailClient
 	 */
-	public MassageAuthResource(MassageDAO massageDao) {
+	public MassageAuthResource(MassageDAO massageDao, ClientDAO clientDao, MailClient mailClient) {
 		this.massageDao = massageDao;
+		this.clientDao = clientDao;
+		this.mailClient = mailClient;
 	}
 
 	/**
@@ -87,6 +94,12 @@ public class MassageAuthResource {
 		Response response = null;
 		boolean throwForbidden = false;
 		boolean throwNotFound = false;
+		Client daoClient = clientDao.findBySub(user.getSubject());
+
+		if (daoClient == null) {
+			throw new WebApplicationException(Status.FORBIDDEN);
+		}
+
 		for (int i = 0; i < ids.size(); i++) {
 			Massage daoMassage = massageDao.findById(Long.valueOf(ids.get(i)));
 			Massage massage = massages.get(i);
@@ -102,14 +115,18 @@ public class MassageAuthResource {
 				// user is forbidden to edit anything other than the client and even then the
 				// client has to be the user himself or a null
 				if (!daoMassage.equals(massage)
-						|| (!user.getSubject().equals(massage.getClient())
-								&& !user.getSubject().equals(daoMassage.getClient()))
-						|| (massage.getClient() != null && !massage.getClient().equals(user.getSubject()))
+						|| (!daoClient.equals(massage.getClient()) && !daoClient.equals(daoMassage.getClient()))
+						|| (massage.getClient() != null && !massage.getClient().equals(daoClient))
 						|| ((massage.getDate().before(new Date(new Date().getTime() + MAX_OFFSET)))
 								&& daoMassage.getClient() != null)) {
 					throwForbidden = true;
 					continue;
 				}
+			} else if (daoMassage.getClient() != null && massage.getClient() == null
+					&& !user.getSubject().equals(daoMassage.getClient().getSub())
+					&& daoMassage.getClient().isSubscribed()) {
+				mailClient.sendEmail(daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html",
+						null);
 			}
 
 			massage.checkDates();
@@ -122,7 +139,7 @@ public class MassageAuthResource {
 			// Facility
 			if (massage.getClient() != null) {
 				long massageTime = massage.calculateDuration();
-				List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
+				List<Massage> daoMassagesClient = massageDao.findAllByClient(massage.getClient());
 
 				if (daoMassagesClient.contains(daoMassage)) {
 					daoMassagesClient.remove(daoMassage);
@@ -181,7 +198,7 @@ public class MassageAuthResource {
 	}
 
 	/**
-	 * GETs all massages of a given client that haven't already passed
+	 * GETs all massages of a given Client that haven't already passed
 	 *
 	 * @return all found massages
 	 */
@@ -190,6 +207,6 @@ public class MassageAuthResource {
 	@PermitAll
 	@UnitOfWork
 	public List<Massage> findAllByClient(@Auth User user) {
-		return massageDao.findAllByClient(user.getSubject());
+		return massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
 	}
 }

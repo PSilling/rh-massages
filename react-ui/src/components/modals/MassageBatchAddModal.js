@@ -216,7 +216,6 @@ class MassageBatchAddModal extends Component {
             ending: this.getDate(true, i, j, k),
             masseuse: this.state.rules[i].masseuse,
             client: null,
-            contact: null,
             facility: {id: this.props.facilityId}
           });
         }
@@ -397,7 +396,7 @@ class MassageBatchAddModal extends Component {
                         <label htmlFor="weeksInput">{ _t.translate('Number of repetitions (weekly)') }</label>
                         <input id="weeksInput" value={this.state.rules[this.state.index].weeks} onChange={this.changeWeeks}
                           className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
-                          type="number" min="1" max="54" placeholder={ _t.translate('Number of repetitions') }
+                          autoFocus type="number" min="1" max="54" placeholder={ _t.translate('Number of repetitions') }
                         />
                       </div>
                     </div>

@@ -53,181 +53,130 @@ public class Massage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private long id; // id of the massage
+	private long id; // id of the Massage
 
 	@NotNull
-	private Date date; // date of the massage
+	private Date date; // date of the Massage
 
 	@NotNull
-	private Date ending; // ending of the massage
+	private Date ending; // ending of the Massage
 
 	@NotEmpty
-	private String masseuse; // masseuse that does the massage
+	private String masseuse; // masseuse that does the Massage
 
+	@ManyToOne
 	@Nullable
-	private String client; // ID of the client taking the massage
-
-	@Nullable
-	private String contact; // contact info of the client taking the massage
+	private Client client; // the Client taking the Massage
 
 	@ManyToOne
 	@NotNull
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Facility facility; // facility where the massage will be
+	private Facility facility; // Facility where the Massage will be stationed
 
-	/**
-	 * Massage constructor
-	 */
 	public Massage() {
 	}
 
 	/**
-	 * Massage parameterized constructor
-	 *
 	 * @param date new Massage date
 	 * @param ending new Massage ending
 	 * @param masseuse new Massage masseuse
 	 * @param client new Massage client
-	 * @param contact new Massage contact
 	 * @param facility new Massage facility
 	 */
-	public Massage(Date date, Date ending, String masseuse, String client, String contact, Facility facility) {
+	public Massage(Date date, Date ending, String masseuse, Client client, Facility facility) {
 		this.date = date;
 		this.ending = ending;
 		this.masseuse = masseuse;
 		this.client = client;
-		this.contact = contact;
 		this.facility = facility;
 	}
 
 	/**
-	 * Id getter
-	 *
-	 * @return current id
+	 * @return current value of Massage id
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * Id setter
-	 *
-	 * @param id new id
+	 * @param id new Massage ID to be set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * Date getter
-	 *
-	 * @return current date
+	 * @return current value of Massage date
 	 */
 	public Date getDate() {
 		return date;
 	}
 
 	/**
-	 * Date setter
-	 *
-	 * @param date new date
+	 * @param date new Massage Date to be set
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
 	/**
-	 * Ending getter
-	 *
-	 * @return current ending
+	 * @return current value of Massage ending
 	 */
 	public Date getEnding() {
 		return ending;
 	}
 
 	/**
-	 * Ending setter
-	 *
-	 * @param ending new ending
+	 * @param ending new Massage ending to be set
 	 */
 	public void setEnding(Date ending) {
 		this.ending = ending;
 	}
 
 	/**
-	 * Masseuse getter
-	 *
-	 * @return current masseuse
+	 * @return current value of Massage masseuse
 	 */
 	public String getMasseuse() {
 		return masseuse;
 	}
 
 	/**
-	 * Masseuse setter
-	 *
-	 * @param masseuse
+	 * @param masseuse new Massage masseuse to be set
 	 */
 	public void setMasseuse(String masseuse) {
 		this.masseuse = masseuse;
 	}
 
 	/**
-	 * Client getter
-	 *
-	 * @return current client
+	 * @return current value of Massage client
 	 */
-	public String getClient() {
+	public Client getClient() {
 		return client;
 	}
 
 	/**
-	 * Client setter
-	 *
-	 * @param client new client
+	 * @param client new Massage Client to be set
 	 */
-	public void setClient(String client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 
 	/**
-	 * Contact getter
-	 *
-	 * @return current contact
-	 */
-	public String getContact() {
-		return contact;
-	}
-
-	/**
-	 * Contact setter
-	 *
-	 * @param contact new contact
-	 */
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	/**
-	 * Facility getter
-	 *
-	 * @return current facility
+	 * @return current value of Massage facility
 	 */
 	public Facility getFacility() {
 		return facility;
 	}
 
 	/**
-	 * Facility setter
-	 *
-	 * @param facility new facility
+	 * @param facility new Massage Facility to be set
 	 */
 	public void setFacility(Facility facility) {
 		this.facility = facility;
 	}
 
 	/**
-	 * Returns the time difference between Massage ending and date
+	 * Calculates the time difference between Massage ending and date
 	 *
 	 * @return the difference in milliseconds
 	 */
@@ -236,7 +185,8 @@ public class Massage {
 	}
 
 	/**
-	 * Checks and possibly swaps date with ending if ending date is before date
+	 * Checks (and possibly also swaps) date with ending if ending date is before
+	 * date
 	 */
 	public void checkDates() {
 		if (date.after(ending)) {
@@ -261,7 +211,7 @@ public class Massage {
 	}
 
 	/**
-	 * Hashing method
+	 * Hashes the Massage based on id, date, ending, masseuse and facility
 	 */
 	@Override
 	public int hashCode() {
@@ -269,7 +219,7 @@ public class Massage {
 	}
 
 	/**
-	 * Equalization method
+	 * @return true if hashCode comparison matches both this and the given object
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -284,11 +234,12 @@ public class Massage {
 	}
 
 	/**
-	 * String conversion method
+	 * @return Client converted to a String with format Massage[id, date, ending,
+	 *         masseuse, clientSub, facility]
 	 */
 	@Override
 	public String toString() {
-		return String.format("Task[id=%s, date=%s, endDate=%s, masseuse=%s, contact=%s, facility=%s]", id, date, ending,
-				masseuse, contact, facility.toString());
+		return String.format("Massage[id=%s, date=%s, ending=%s, masseuse=%s, clientSub=%s, facility=%s]", id, date,
+				ending, masseuse, client.getSub(), facility.toString());
 	}
 }

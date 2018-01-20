@@ -11,14 +11,14 @@
     </prerequisites>
     
     <parent>
-    	<version>1.2.0-SNAPSHOT</version>
+    	<version>1.2.1-SNAPSHOT</version>
     	<artifactId>parent</artifactId>
     	<groupId>net.rh.massages</groupId>
     </parent>
 
     <groupId>net.rh.massages</groupId>
     <artifactId>Massages</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Massages</name>
@@ -70,54 +70,64 @@
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-client</artifactId>
         </dependency>
-	    <dependency>
-	      <groupId>io.dropwizard</groupId>
-	      <artifactId>dropwizard-testing</artifactId>
-	      <scope>test</scope>
-	    </dependency>
+		<dependency>
+		    <groupId>io.dropwizard</groupId>
+		    <artifactId>dropwizard-testing</artifactId>
+		    <scope>test</scope>
+		</dependency>
 		<dependency>
 		    <groupId>postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <version>${postgresql.version}</version>
 		</dependency>
-	    <dependency>
-	      <groupId>com.h2database</groupId>
-	      <artifactId>h2</artifactId>
-	      <scope>test</scope>
-	    </dependency>
-	    <dependency>
-	    	<groupId>net.minidev</groupId>
-	    	<artifactId>json-smart</artifactId>
-	    	<version>${json-smart.version}</version>
-	    	<scope>test</scope>
-	    </dependency>
-	    <dependency>
-	    	<groupId>de.ahus1.keycloak.dropwizard</groupId>
-	    	<artifactId>keycloak-dropwizard</artifactId>
-	    	<version>${keycloak-dropwizard.version}</version>
-	    </dependency>
-		 <dependency>
-		   <groupId>org.glassfish.jersey.test-framework.providers</groupId>
-		   <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
-		   <exclusions>
-		     <exclusion>
-		       <groupId>javax.servlet</groupId>
-		       <artifactId>javax.servlet-api</artifactId>
-		     </exclusion>
-		     <exclusion>
-		       <groupId>junit</groupId>
-		       <artifactId>junit</artifactId>
-		     </exclusion>
-		   </exclusions>
-		 </dependency>
-		 <dependency>
-		 	<groupId>org.mockito</groupId>
-		 	<artifactId>mockito-core</artifactId>
-		 </dependency>
-		 <dependency>
-		 	<groupId>io.dropwizard</groupId>
-		 	<artifactId>dropwizard-assets</artifactId>
-		 </dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>net.minidev</groupId>
+		    <artifactId>json-smart</artifactId>
+		    <version>${json-smart.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>de.ahus1.keycloak.dropwizard</groupId>
+		    <artifactId>keycloak-dropwizard</artifactId>
+		    <version>${keycloak-dropwizard.version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+		  <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+		  <exclusions>
+		    <exclusion>
+		      <groupId>javax.servlet</groupId>
+		      <artifactId>javax.servlet-api</artifactId>
+		    </exclusion>
+		    <exclusion>
+		      <groupId>junit</groupId>
+		      <artifactId>junit</artifactId>
+		    </exclusion>
+		  </exclusions>
+		</dependency>
+		<dependency>
+	 	    <groupId>org.mockito</groupId>
+	 	    <artifactId>mockito-core</artifactId>
+		</dependency>
+		<dependency>
+	 	    <groupId>io.dropwizard</groupId>
+	 	    <artifactId>dropwizard-assets</artifactId>
+		</dependency>
+		<dependency>
+	 	    <groupId>org.simplejavamail</groupId>
+	            <artifactId>simple-java-mail</artifactId>
+	            <version>${simple-java-mail.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
     </dependencies>
 
     <build>

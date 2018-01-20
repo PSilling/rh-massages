@@ -59,21 +59,16 @@ class MassageRow extends Component {
               </AssignButton>
             }
           </td> :
-          <td className={ Auth.getSub() === this.props.massage.client ? "warning" : "danger" }>
-            { Auth.getSub() === this.props.massage.client ?
-              Util.isEmpty(this.props.massage.contact) ? _t.translate('Assigned')
-                : Util.highlightInText(this.props.massage.contact, this.props.search) :
-              Util.isEmpty(this.props.massage.contact) ? _t.translate('Full')
-                : Util.highlightInText(this.props.massage.contact, this.props.search)
-            }
-
-            { Auth.getSub() === this.props.massage.client ? <CancelButton onCancel={this.props.onCancel}
+          <td className={ Auth.getSub() === this.props.massage.client.sub ? "warning" : "danger" }>
+            { Util.highlightInText(Util.getContactInfo(this.props.massage.client), this.props.search) }
+            { Auth.getSub() === this.props.massage.client.sub ? <CancelButton onCancel={this.props.onCancel}
               disabled={(moment(this.props.massage.date).diff(moment(), 'minutes') <= Util.CANCELLATION_LIMIT) && !Auth.isAdmin()} /> : '' }
-            { Auth.isAdmin() && Auth.getSub() !== this.props.massage.client ? <ForceCancelButton onCancel={this.props.onCancel} /> : '' }
+            { Auth.isAdmin() && Auth.getSub() !== this.props.massage.client.sub ? <ForceCancelButton onCancel={this.props.onCancel} /> : '' }
           </td>
         }
         <td width="55px">
-          <CalendarButton disabled={Auth.getSub() !== this.props.massage.client}
+          <CalendarButton disabled={Util.isEmpty(this.props.massage.client)
+            || Auth.getSub() !== this.props.massage.client.sub}
             onAdd={() => Util.addToCalendar(this.props.massage)} />
         </td>
         {Auth.isAdmin() ?

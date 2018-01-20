@@ -9,8 +9,8 @@ Red Hat massages management site.
 ## Starting the application
 
 1. Run `mvn clean install` to build your application
-1. Populate DB schema with `java -jar target/Massages-1.2.0-SNAPSHOT.jar db config config.yml`
-1. Start the server application with `java -jar target/Massages-1.2.0-SNAPSHOT.jar server config.yml`
+1. Populate DB schema with `java -jar target/Massages-1.2.1-SNAPSHOT.jar db config config.yml`
+1. Start the server application with `java -jar target/Massages-1.2.1-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter `http://localhost:8080`
 
 ## DB environmental variables
@@ -22,6 +22,17 @@ The application supports these environmental variables for its database:
 | RM_DB_USERNAME  | Database username             | postgres                                  |
 | RM_DB_PASSWORD  | Database password             | postgres                                  |
 | RM_DB_URL       | Database address              | jdbc:postgresql://localhost:5432/postgres |
+
+The application supports these environmental variables for its SMTP server:
+
+| VARIABLE        | MEANING                       | DEFAULT VALUE                             |
+| --------------- |------------------------------ | ----------------------------------------- |
+| SMTP_SERVER     | SMTP server name              | localhost                                 |
+| SMTP_PORT  	  | SMTP server port              | 587                                       |
+| SMTP_USERNAME   | SMTP username                 | –                                         |
+| SMTP_PASSWORD   | SMTP password                 | –                                         |
+| SMTP_FROM_EMAIL | SMTP sender email             | admin@massages.com                        |
+| SMTP_FROM_NAME  | SMTP sender name              | admin                                     |
 
 
 ## Keycloak setup

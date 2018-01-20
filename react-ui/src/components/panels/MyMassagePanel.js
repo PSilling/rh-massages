@@ -38,7 +38,6 @@ class MassagePanel extends Component {
       ending: this.props.massage.ending,
       masseuse: this.props.massage.masseuse,
       client: null,
-      contact: null,
       facility: this.props.massage.facility
     }], this.props.getCallback);
   }

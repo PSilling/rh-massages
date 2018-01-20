@@ -25,6 +25,7 @@ import java.util.Map;
 import org.hibernate.SessionFactory;
 
 import io.dropwizard.hibernate.AbstractDAO;
+import net.rh.massages.core.Client;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 
@@ -39,8 +40,6 @@ import net.rh.massages.core.Massage;
 public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
-	 * Parameterized MassageDAO constructor
-	 *
 	 * @param sessionFactory new MassageDAO SessionFactory
 	 */
 	public MassageDAO(SessionFactory sessionFactory) {
@@ -70,9 +69,9 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on its id
+	 * Creates a new Session that finds a Massage in the database based on its ID
 	 *
-	 * @param id id to be found
+	 * @param id ID to be found
 	 * @return the found Massage
 	 */
 	public Massage findById(Long id) {
@@ -84,6 +83,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 *
 	 * @return list of all Massages
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Massage> findAll() {
 		return list(namedQuery("Massage.findAll"));
 	}
@@ -104,6 +104,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * @return map with list of all found Massages and their total count without
 	 *         limit
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> searchOld(String search, boolean free, Date from, Date to, int page, int perPage) {
 		Map<String, Object> response = new HashMap<>();
 		List<Massage> massages;
@@ -121,9 +122,13 @@ public class MassageDAO extends AbstractDAO<Massage> {
 		// comparison)
 		if (search != null && search != "") {
 			search = convertToCIAI(search);
+			String searchString;
 			for (int i = 0; i < massages.size(); i++) {
-				if (!convertToCIAI((massages.get(i).getMasseuse() + massages.get(i).getFacility().getName()
-						+ massages.get(i).getContact())).contains(search)) {
+				searchString = massages.get(i).getMasseuse() + massages.get(i).getFacility().getName();
+				if (massages.get(i).getClient() != null) {
+					searchString += massages.get(i).getClient().createContact();
+				}
+				if (!convertToCIAI(searchString).contains(search)) {
 					massages.remove(massages.get(i));
 					i--;
 				}
@@ -155,18 +160,20 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * @param masseuse masseuse of the Massages that are to be found
 	 * @return list of all found Massages
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Massage> findAllByMasseuse(String masseuse) {
 		return list(namedQuery("Massage.findAllByMasseuse").setParameter("masseuse", masseuse));
 	}
 
 	/**
 	 * Creates a new Session that finds a Massage in the database based on their
-	 * User. The list is ordered by date and doesn't include old Massages.
+	 * Client user. The list is ordered by date and doesn't include old Massages.
 	 *
-	 * @param client client ID of the Massages the are to be found
+	 * @param client Client of the Massages the are to be found
 	 * @return list of all found Massages
 	 */
-	public List<Massage> findAllByClient(String client) {
+	@SuppressWarnings("unchecked")
+	public List<Massage> findAllByClient(Client client) {
 		return list(namedQuery("Massage.findAllByClient").setParameter("client", client));
 	}
 
@@ -187,6 +194,7 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	 * @return map with list of all found Massages and their total count without
 	 *         limit
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> searchNewByFacility(Facility facility, String search, boolean free, Date from, Date to,
 			int page, int perPage) {
 		Map<String, Object> response = new HashMap<>();
@@ -205,8 +213,13 @@ public class MassageDAO extends AbstractDAO<Massage> {
 		// comparison)
 		if (search != null && search != "") {
 			search = convertToCIAI(search);
+			String searchString;
 			for (int i = 0; i < massages.size(); i++) {
-				if (!convertToCIAI((massages.get(i).getMasseuse() + massages.get(i).getContact())).contains(search)) {
+				searchString = massages.get(i).getMasseuse();
+				if (massages.get(i).getClient() != null) {
+					searchString += massages.get(i).getClient().createContact();
+				}
+				if (!convertToCIAI(searchString).contains(search)) {
 					massages.remove(massages.get(i));
 					i--;
 				}

@@ -19,12 +19,13 @@ import Util from '../util/Util';
  */
 class MassagesList extends Component {
 
-  state = {massages: [], loading: true}
+  state = {massages: [], checked: false, loading: true}
 
   componentDidMount() {
     Util.clearAllIntervals();
 
     this.getMassages();
+    this.getSubscription();
     setInterval(() => {
       this.getMassages();
     }, Util.AUTO_REFRESH_TIME * 60);
@@ -33,6 +34,19 @@ class MassagesList extends Component {
   getMassages = () => {
     Util.get(Util.MASSAGES_URL + "client", (json) => {
       this.setState({massages: json, loading: false});
+    });
+  }
+
+  getSubscription = () => {
+    Util.get(Util.CLIENTS_URL + 'my/subscribed', (json) => {
+      this.setState({checked: json});
+    });
+  }
+
+  changeChecked = (event) => {
+    Auth.subscribed = event.target.checked;
+    Util.put(Util.CLIENTS_URL, Auth.getClient(), (json) => {
+      this.setState({checked: Auth.subscribed});
     });
   }
 
@@ -79,7 +93,15 @@ class MassagesList extends Component {
             <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Go to massages") }</Link>
           </h3>
         }
+        <div className="navbar navbar-fixed-bottom">
+          <div className="form-group text-center">
+            <label className="checkbox-inline">
+              <input type="checkbox" onChange={this.changeChecked} checked={this.state.checked} />
+              { _t.translate('Send me information about massages') }
+            </label>
+        </div>
       </div>
+    </div>
     );
   }
 }

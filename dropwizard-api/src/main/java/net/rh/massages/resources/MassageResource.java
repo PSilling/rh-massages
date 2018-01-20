@@ -44,7 +44,10 @@ import javax.ws.rs.core.UriBuilder;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.configuration.MailClient;
+import net.rh.massages.core.Client;
 import net.rh.massages.core.Massage;
+import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.MassageDAO;
 
 /**
@@ -60,15 +63,22 @@ import net.rh.massages.db.MassageDAO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MassageResource {
 
-	private final MassageDAO massageDao; // massage data access object
+	private final MassageDAO massageDao; // Massage data access object
+	private final ClientDAO clientDao; // Client data access object
+	private final MailClient mailClient; // Mailing client
+	private final int SEND_MAIL_LIMIT = 5; // number of simultaneously created Massages necessary for sending an email
 
 	/**
 	 * Parameterized MassageResource constructor
 	 *
 	 * @param massageDao new MassageResource massageDao
+	 * @param clientDao new MassageResource clientDao
+	 * @param mailClient new MassageResource mailClient
 	 */
-	public MassageResource(MassageDAO massageDao) {
+	public MassageResource(MassageDAO massageDao, ClientDAO clientDao, MailClient mailClient) {
 		this.massageDao = massageDao;
+		this.clientDao = clientDao;
+		this.mailClient = mailClient;
 	}
 
 	/**
@@ -141,6 +151,10 @@ public class MassageResource {
 			throw new WebApplicationException(Status.FORBIDDEN);
 		}
 
+		if (massages.size() >= SEND_MAIL_LIMIT) {
+			sendInformationEmail();
+		}
+
 		return response;
 	}
 
@@ -162,7 +176,12 @@ public class MassageResource {
 				continue;
 			}
 
-			massageDao.delete(massageDao.findById(Long.valueOf(id)));
+			Massage daoMassage = massageDao.findById(Long.valueOf(id));
+			if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
+				mailClient.sendEmail(daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html",
+						null);
+			}
+			massageDao.delete(daoMassage);
 		}
 
 		if (throwNotFound) {
@@ -223,5 +242,23 @@ public class MassageResource {
 		}
 
 		return massageDao.findById(id.get());
+	}
+
+	/**
+	 * Sends an email informing all subscribed users about new Massage availability.
+	 */
+	private void sendInformationEmail() {
+		String recipients = "";
+		List<Client> clients = clientDao.findAllSubscribed();
+
+		if (clients.isEmpty()) {
+			return;
+		}
+
+		for (Client client : clients) {
+			recipients += client.getEmail() + ",";
+		}
+
+		mailClient.sendEmail(recipients, "New Massages Available", "newMassages.html", null);
 	}
 }

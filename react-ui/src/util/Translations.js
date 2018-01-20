@@ -348,6 +348,9 @@ const myLocalize = new Localize({
     "Invalid import file.": {
       "cs": "Importovaný soubor je neplatný."
     },
+    "Send me information about massages": {
+      "cs": "Zasílejte mi informace o masážích"
+    },
 
     // moment localization
     "monday": {

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
+import net.rh.massages.configuration.SmtpConfiguration;
 
 /**
  * MassagesConfiguration configuration class of the project
@@ -44,6 +45,9 @@ public class MassagesConfiguration extends Configuration {
 	@NotNull
 	private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // application's Keycloak
 																						// configuration
+	@Valid
+	@NotNull
+	private SmtpConfiguration smtpConfiguration = new SmtpConfiguration(); // application's STMP client configuration
 
 	/**
 	 * DataSourceFactory setter
@@ -83,5 +87,25 @@ public class MassagesConfiguration extends Configuration {
 	@JsonProperty("keycloakConfiguration")
 	public AdapterConfig getKeycloakConfiguration() {
 		return keycloakConfiguration;
+	}
+
+	/**
+	 * SmtpConfiguration setter
+	 *
+	 * @param smtpConfiguration new smtpConfiguration value
+	 */
+	@JsonProperty("smtpConfiguration")
+	public void setSmtpConfiguration(SmtpConfiguration smtpConfiguration) {
+		this.smtpConfiguration = smtpConfiguration;
+	}
+
+	/**
+	 * SmtpConfiguration getter
+	 *
+	 * @return current smtpConfiguration
+	 */
+	@JsonProperty("smtpConfiguration")
+	public SmtpConfiguration getSmtpConfiguration() {
+		return smtpConfiguration;
 	}
 }

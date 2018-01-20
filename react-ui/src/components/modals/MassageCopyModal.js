@@ -50,12 +50,11 @@ class MassageCopyModal extends Component {
           ending: moment(this.props.massages[j].ending).add(this.state.step * i, 'days').toDate(),
           masseuse: this.props.massages[j].masseuse,
           client: null,
-          contact: null,
           facility: {id: this.props.massages[j].facility.id}
         });
       }
     }
-
+    console.log(postArray);
     Util.post(Util.MASSAGES_URL, postArray, () => {
       this.props.getCallback();
       this.props.onToggle(true);

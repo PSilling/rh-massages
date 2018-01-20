@@ -36,3 +36,11 @@ keycloakConfiguration:
   bearer-only: true
   credentials:
     secret: ${KC_CONFIG_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
+
+smtpConfiguration:
+  server: ${SMTP_SERVER:-localhost}
+  port: ${SMTP_PORT:-587}
+  username: ${SMTP_USERNAME}
+  password: ${SMTP_PASSWORD}
+  fromEmail: ${SMTP_FROM_EMAIL:-portal@massages.com}
+  fromName: ${SMTP_FROM_NAME:-admin}

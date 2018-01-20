@@ -57,16 +57,21 @@ class ArchiveList extends Component {
   }
 
   deleteAllMassages = () => {
-    Util.get(Util.MASSAGES_URL + "old?search=" + this.state.search, (json) => {
-      if (json.length === 0) {
+    Util.get(Util.MASSAGES_URL
+      + "old?search=" + this.state.search
+      + "&free=" + this.state.freeOnly
+      + "&from=" + moment(this.state.from).unix() * 1000
+      + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000, (json) => {
+      if (json.massages.length === 0) {
         return;
       }
       var idString = "?";
-      for (var i = 0; i < json.length; i++) {
+      for (var i = 0; i < json.massages.length; i++) {
         if (idString.length > 2000) {
-          break;
+          Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+          idString = "?";
         }
-        idString += "ids=" + json[i].id + "&";
+        idString += "ids=" + json.massages[i].id + "&";
       }
       Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
     });

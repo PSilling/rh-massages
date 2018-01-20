@@ -67,9 +67,9 @@ public class MassageResourceTest {
 
 	private final long MILLISECONDS = new Date().getTime(); // current time milliseconds
 	private final Facility facility = new Facility("Facility"); // test Facility
-	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, null, facility);
+	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility);
 	private final Massage newMassage = new Massage(new Date(MILLISECONDS + 10000), new Date(MILLISECONDS + 10001),
-			"Super Masseuse", null, null, facility);
+			"Super Masseuse", null, facility);
 
 	/*
 	 * Creates a new static ResourceTestRule that tests a given resource. Uses
@@ -83,7 +83,7 @@ public class MassageResourceTest {
 					.setPrefix("Bearer").buildAuthFilter()))
 			.addProvider(RolesAllowedDynamicFeature.class)
 			.addProvider(new AuthValueFactoryProvider.Binder<>(TestUser.class))
-			.addResource(new MassageResource(massageDao)).build();
+			.addResource(new MassageResource(massageDao, null, null)).build();
 
 	/**
 	 * Configures mocks before each test.

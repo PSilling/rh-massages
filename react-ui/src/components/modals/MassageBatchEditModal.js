@@ -115,7 +115,6 @@ class MassageBatchEditModal extends Component {
         ending: this.getDate(this.props.massages[i].ending),
         masseuse: (this.state.editMasseuse) ? this.state.masseuse : this.props.massages[i].masseuse,
         client: (this.state.removeClients) ? null : this.props.massages[i].client,
-        contact: (this.state.removeClients) ? null : this.props.massages[i].contact,
         facility: {id: this.props.massages[i].facility.id}
       });
     }

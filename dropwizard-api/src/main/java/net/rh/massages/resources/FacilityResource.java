@@ -48,6 +48,7 @@ import io.dropwizard.jersey.params.LongParam;
 import net.rh.massages.auth.User;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
+import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 
@@ -63,24 +64,25 @@ import net.rh.massages.db.MassageDAO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class FacilityResource {
 
-	private final FacilityDAO facilityDao; // facility data access object
-	private final MassageDAO massageDao; // massage data access object
+	private final FacilityDAO facilityDao; // Facility data access object
+	private final MassageDAO massageDao; // Massage data access object
+	private final ClientDAO clientDao; // Client data access object
 
 	/**
-	 * Parameterized FacilityResource constructor
-	 *
 	 * @param facilityDao new FacilityResource facilityDao
 	 * @param massageDao new FacilityResource massageDao
+	 * @param clientDao new MassageResource clientDao
 	 */
-	public FacilityResource(FacilityDAO facilityDao, MassageDAO massageDao) {
+	public FacilityResource(FacilityDAO facilityDao, MassageDAO massageDao, ClientDAO clientDao) {
 		this.facilityDao = facilityDao;
 		this.massageDao = massageDao;
+		this.clientDao = clientDao;
 	}
 
 	/**
-	 * GETs all facilities that can be found
+	 * GETs all Facilities that can be found
 	 *
-	 * @return list of all facilities
+	 * @return list of all Facilities
 	 */
 	@GET
 	@PermitAll
@@ -93,7 +95,7 @@ public class FacilityResource {
 	 * Accepts POST request with a new Facility
 	 *
 	 * @param facility Facility new Facility
-	 * @exception WebApplicationException if facility could not be found after
+	 * @exception WebApplicationException if Facility could not be found after
 	 *                creation
 	 * @return on creation response
 	 */
@@ -112,11 +114,11 @@ public class FacilityResource {
 	}
 
 	/**
-	 * GETs a facility based on its id
+	 * GETs a Facility based on its id
 	 *
-	 * @param id facility id
-	 * @exception WebApplicationException if the id could not be found
-	 * @return the desired facility
+	 * @param id Facility ID
+	 * @exception WebApplicationException if the ID could not be found
+	 * @return the desired Facility
 	 */
 	@GET
 	@Path("/{id}")
@@ -131,11 +133,11 @@ public class FacilityResource {
 	}
 
 	/**
-	 * Updates a facility given by id to a given value
+	 * Updates a Facility given by ID to a given value
 	 *
 	 * @param facility Facility updated Facility
-	 * @param id facility id
-	 * @exception WebApplicationException if the id could not be found
+	 * @param id Facility ID
+	 * @exception WebApplicationException if the ID could not be found
 	 * @return on update response
 	 */
 	@PUT
@@ -154,10 +156,10 @@ public class FacilityResource {
 	}
 
 	/**
-	 * DELETEs a facility given by id
+	 * DELETEs a Facility given by ID
 	 *
-	 * @param id facility id
-	 * @exception WebApplicationException if the id could not be found
+	 * @param id Facility ID
+	 * @exception WebApplicationException if the ID could not be found
 	 * @return on delete response
 	 */
 	@DELETE
@@ -215,7 +217,7 @@ public class FacilityResource {
 				page.get(), perPage.get());
 
 		long massageTime = 0;
-		List<Massage> daoMassagesClient = massageDao.findAllByClient(user.getSubject());
+		List<Massage> daoMassagesClient = massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
 		for (Massage clientMassage : daoMassagesClient) {
 			massageTime += clientMassage.calculateDuration();
 		}

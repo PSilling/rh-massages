@@ -80,7 +80,6 @@ class MassageModal extends Component {
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
       client: null,
-      contact: null,
       facility: {id: this.props.facilityId}
     }], () => {
       this.props.onToggle();
@@ -102,7 +101,6 @@ class MassageModal extends Component {
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
       client: this.props.massage.client,
-      contact: this.props.massage.contact,
       facility: this.props.massage.facility
     }], () => {
       this.props.onToggle();

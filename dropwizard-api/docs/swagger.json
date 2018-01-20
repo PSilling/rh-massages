@@ -2,7 +2,7 @@
 {
     "swagger":"2.0",
     "info":{
-        "version":"1.1.4-SNAPSHOT",
+        "version":"1.2.1-SNAPSHOT",
         "title":"Massages"
     },
     "host":"localhost:8080",
@@ -11,9 +11,116 @@
         "http"
     ],
     "paths":{
+        "/clients":{
+            "get":{
+                "description":"GETs all Clients that can be found",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"array",
+                            "items":{
+                                "$ref":"#/definitions/Client"
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "description":"Updates a Client to an updated value",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/Client"
+                        },
+                        "description":"updated Client"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "$ref":"#/definitions/Client"
+                        }
+                    },
+                    "204":{
+                        "description":"No Content",
+                        "headers":{
+                        }
+                    },
+                    "403":{
+                        "description":"Forbidden",
+                        "headers":{
+                        }
+                    },
+                    "404":{
+                        "description":"Not Found",
+                        "headers":{
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/my/subscribed":{
+            "get":{
+                "description":"GETs a Client subscription value. For new Users also creates their Client\n representation and returns true.",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters":[
+                    {
+                        "name":"body",
+                        "in":"body",
+                        "required":true,
+                        "schema":{
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "headers":{
+                        },
+                        "schema":{
+                            "type":"boolean"
+                        }
+                    },
+                    "500":{
+                        "description":"Internal Server Error",
+                        "headers":{
+                        }
+                    }
+                }
+            }
+        },
         "/facilities":{
             "get":{
-                "description":"GETs all facilities that can be found",
+                "description":"GETs all Facilities that can be found",
                 "consumes":[
                     "application/json"
                 ],
@@ -77,7 +184,7 @@
         },
         "/facilities/{id}":{
             "get":{
-                "description":"GETs a facility based on its id",
+                "description":"GETs a Facility based on its id",
                 "consumes":[
                     "application/json"
                 ],
@@ -90,7 +197,7 @@
                         "name":"id",
                         "in":"path",
                         "required":true,
-                        "description":"facility id"
+                        "description":"Facility ID"
                     }
                 ],
                 "responses":{
@@ -110,7 +217,7 @@
                 }
             },
             "put":{
-                "description":"Updates a facility given by id to a given value",
+                "description":"Updates a Facility given by ID to a given value",
                 "consumes":[
                     "application/json"
                 ],
@@ -123,7 +230,7 @@
                         "name":"id",
                         "in":"path",
                         "required":true,
-                        "description":"facility id"
+                        "description":"Facility ID"
                     },
                     {
                         "name":"body",
@@ -152,7 +259,7 @@
                 }
             },
             "delete":{
-                "description":"DELETEs a facility given by id",
+                "description":"DELETEs a Facility given by ID",
                 "consumes":[
                     "application/json"
                 ],
@@ -165,7 +272,7 @@
                         "name":"id",
                         "in":"path",
                         "required":true,
-                        "description":"facility id"
+                        "description":"Facility ID"
                     }
                 ],
                 "responses":{
@@ -462,7 +569,7 @@
         },
         "/massages/client":{
             "get":{
-                "description":"GETs all massages of a given client that haven't already passed",
+                "description":"GETs all massages of a given Client that haven't already passed",
                 "consumes":[
                     "application/json"
                 ],
@@ -600,6 +707,25 @@
         }
     },
     "definitions":{
+        "Client":{
+            "properties":{
+                "email":{
+                    "type":"string"
+                },
+                "name":{
+                    "type":"string"
+                },
+                "sub":{
+                    "type":"string"
+                },
+                "subscribed":{
+                    "type":"boolean"
+                },
+                "surname":{
+                    "type":"string"
+                }
+            }
+        },
         "Facility":{
             "properties":{
                 "id":{
@@ -613,10 +739,7 @@
         "Massage":{
             "properties":{
                 "client":{
-                    "type":"string"
-                },
-                "contact":{
-                    "type":"string"
+                    "$ref":"#/definitions/Client"
                 },
                 "date":{
                     "type":"object"
@@ -637,6 +760,12 @@
         },
         "User":{
             "properties":{
+                "email":{
+                    "type":"string"
+                },
+                "firstName":{
+                    "type":"string"
+                },
                 "name":{
                     "type":"string"
                 },
@@ -647,6 +776,9 @@
                     }
                 },
                 "subject":{
+                    "type":"string"
+                },
+                "surname":{
                     "type":"string"
                 }
             }

@@ -36,3 +36,10 @@ keycloakConfiguration:
   bearer-only: true
   credentials:
     secret: b4a1ee69-6441-49a0-b653-e2875234c0ef
+ 
+smtpConfiguration:
+  server: localhost
+  port: 587
+  fromEmail: admin@massages.com
+  fromName: admin
+  async: false
