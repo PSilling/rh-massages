@@ -34,35 +34,31 @@ import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 
 /**
- * MassageDAOTest Massage Data Access Object JUnit test class
+ * Massage Data Access Object JUnit test class.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class MassageDAOTest {
 
 	@Rule
 	public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class)
 			.addEntityClass(Massage.class).addEntityClass(Client.class).build(); // database mock
 
-	private FacilityDAO facilityDAO; // facility data access object
-	private MassageDAO massageDAO; // massage data access object
+	private FacilityDAO facilityDAO; // Facility data access object
+	private MassageDAO massageDAO; // Massage data access object
 
 	/**
-	 * Creates MassageDAO with current database Session
-	 *
-	 * @throws Exception
+	 * Creates {@link MassageDAO} with current database session.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		facilityDAO = new FacilityDAO(daoTestRule.getSessionFactory());
 		massageDAO = new MassageDAO(daoTestRule.getSessionFactory());
 	}
 
 	/**
-	 * Tests whether Massage creation works as intended.
+	 * Tests whether {@link Massage} creation works as intended.
 	 */
 	@Test
 	public void testCreate() {
@@ -79,7 +75,7 @@ public class MassageDAOTest {
 	}
 
 	/**
-	 * Tests whether Massage updating works as intended.
+	 * Tests whether {@link Massage} updating works as intended.
 	 */
 	@Test
 	public void testUpdate() {
@@ -111,7 +107,7 @@ public class MassageDAOTest {
 	}
 
 	/**
-	 * Tests whether Massage removal works as intended.
+	 * Tests whether {@link Massage} removal works as intended.
 	 */
 	@Test
 	public void testDelete() {
@@ -133,7 +129,7 @@ public class MassageDAOTest {
 	}
 
 	/**
-	 * Tests whether all MassageDAO finding methods are working as intended.
+	 * Tests whether all {@link MassageDAO} finding methods are working as intended.
 	 */
 	@Test
 	public void testFind() {

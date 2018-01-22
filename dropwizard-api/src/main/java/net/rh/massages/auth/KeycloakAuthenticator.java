@@ -1,18 +1,18 @@
 /*******************************************************************************
- *     Copyright (C) 2017  Petr Silling
+ * Copyright (C) 2017 Petr Silling
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
 package net.rh.massages.auth;
 
@@ -24,18 +24,15 @@ import de.ahus1.keycloak.dropwizard.AbstractKeycloakAuthenticator;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 
 /**
- * KeycloakAuthenticator Keycloak authenticator updated to work with new User
- * representation.
+ * Keycloak authenticator updated to work with new {@link User} representation.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class KeycloakAuthenticator extends AbstractKeycloakAuthenticator<User> {
 
 	/**
-	 * Parameterized KeycloakAuthenticator constructor
+	 * Constructor.
 	 *
 	 * @param configuration Keycloak configuration
 	 */
@@ -44,9 +41,9 @@ public class KeycloakAuthenticator extends AbstractKeycloakAuthenticator<User> {
 	}
 
 	/**
-	 * Authenticates a new Keycloak user
+	 * Authenticates a new Keycloak {@link User}.
 	 *
-	 * @return new authenticated User
+	 * @return the newly authenticated {@link User}
 	 */
 	@Override
 	protected User prepareAuthentication(KeycloakSecurityContext securityContext, HttpServletRequest request,

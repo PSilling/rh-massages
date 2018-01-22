@@ -24,27 +24,31 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
+import net.rh.massages.auth.User;
+
 /**
- * LogoutResource resource class for User logout
+ * Resource class for {@link User} logout.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 @Path("/logout")
 public class LogoutResource {
 
 	@Context
-	private HttpServletRequest request;
+	private HttpServletRequest request; // request context (with authorization)
 
+	/**
+	 * Constructor.
+	 */
 	public LogoutResource() {
 	}
 
 	/**
-	 * Logs out the User
+	 * Logs out the {@link User} from the application.
 	 *
-	 * @throws ServletException
-	 * @return a brief logged out message
+	 * @throws ServletException if logout fails
+	 * @return a brief logging out out information message
 	 */
 	@GET
 	@PermitAll

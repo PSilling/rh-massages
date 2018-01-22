@@ -9,11 +9,11 @@ Red Hat massages management site.
 ## Starting the application
 
 1. Run `mvn clean install` to build your application
-1. Populate DB schema with `java -jar target/Massages-1.2.1-SNAPSHOT.jar db config config.yml`
-1. Start the server application with `java -jar target/Massages-1.2.1-SNAPSHOT.jar server config.yml`
+1. Populate DB schema with `java -jar target/Massages-1.2.2-SNAPSHOT.jar db config config.yml`
+1. Start the server application with `java -jar target/Massages-1.2.2-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter `http://localhost:8080`
 
-## DB environmental variables
+## Environmental variables
 
 The application supports these environmental variables for its database:
 
@@ -31,7 +31,7 @@ The application supports these environmental variables for its SMTP server:
 | SMTP_PORT  	  | SMTP server port              | 587                                       |
 | SMTP_USERNAME   | SMTP username                 | –                                         |
 | SMTP_PASSWORD   | SMTP password                 | –                                         |
-| SMTP_FROM_EMAIL | SMTP sender email             | admin@massages.com                        |
+| SMTP_FROM_EMAIL | SMTP sender email             | portal@massages.com                       |
 | SMTP_FROM_NAME  | SMTP sender name              | admin                                     |
 
 

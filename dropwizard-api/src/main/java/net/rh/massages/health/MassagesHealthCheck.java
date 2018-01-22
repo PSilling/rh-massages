@@ -19,26 +19,32 @@ package net.rh.massages.health;
 import com.codahale.metrics.health.HealthCheck;
 
 import io.dropwizard.hibernate.UnitOfWork;
+import net.rh.massages.core.Facility;
 import net.rh.massages.db.FacilityDAO;
 
 /**
- * MassagesHealthCheck Health check of the application.
+ * Health check of the application. Is healthy when at least one
+ * {@link Facility} exists inside the database.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 public class MassagesHealthCheck extends HealthCheck {
 
-	private FacilityDAO facilityDAO; // facility data access object
+	private FacilityDAO facilityDAO; // Facility data access object
 
+	/**
+	 * Constructor.
+	 *
+	 * @param facilityDAO {@link FacilityDAO} to work with
+	 */
 	public MassagesHealthCheck(FacilityDAO facilityDAO) {
 		this.facilityDAO = facilityDAO;
 	}
 
 	/**
 	 * Checks whether the application is healthy by checking database connection and
-	 * by checking if there is at least one Facility.
+	 * by checking if there is at least one existing {@link Facility}.
 	 */
 	@UnitOfWork
 	@Override

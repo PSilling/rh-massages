@@ -30,13 +30,12 @@ import io.dropwizard.testing.junit.DAOTestRule;
 import net.rh.massages.core.Client;
 
 /**
- * ClientDAOTest Client Data Access Object JUnit test class
+ * Client Data Access Object JUnit test class.
  *
  * @author psilling
  * @since 1.2.1
  *
  */
-
 public class ClientDAOTest {
 
 	@Rule
@@ -45,17 +44,15 @@ public class ClientDAOTest {
 	private ClientDAO clientDao; // Client data access object
 
 	/**
-	 * Creates ClientDAO with test database Session
-	 *
-	 * @throws Exception
+	 * Creates {@link ClientDAO} with test database session.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		clientDao = new ClientDAO(daoTestRule.getSessionFactory());
 	}
 
 	/**
-	 * Tests whether Client creation works as intended.
+	 * Tests whether {@link Client} creation works as intended.
 	 */
 	@Test
 	public void testCreate() {
@@ -66,7 +63,7 @@ public class ClientDAOTest {
 	}
 
 	/**
-	 * Tests whether Client updating works as intended.
+	 * Tests whether {@link Client} updating works as intended.
 	 */
 	@Test
 	public void testUpdate() {
@@ -90,7 +87,7 @@ public class ClientDAOTest {
 	}
 
 	/**
-	 * Tests whether Client removal works as intended.
+	 * Tests whether {@link Client} removal works as intended.
 	 */
 	@Test
 	public void testDelete() {
@@ -108,7 +105,7 @@ public class ClientDAOTest {
 	}
 
 	/**
-	 * Tests whether all ClientDAO finding methods are working as intended.
+	 * Tests whether all {@link ClientDAO} finding methods are working as intended.
 	 */
 	@Test
 	public void testFind() {

@@ -53,12 +53,11 @@ import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 
 /**
- * FacilityResource Facility resource class
+ * Facility resource class.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 @Path("/facilities")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -69,9 +68,11 @@ public class FacilityResource {
 	private final ClientDAO clientDao; // Client data access object
 
 	/**
-	 * @param facilityDao new FacilityResource facilityDao
-	 * @param massageDao new FacilityResource massageDao
-	 * @param clientDao new MassageResource clientDao
+	 * Constructor.
+	 *
+	 * @param facilityDao {@link FacilityDAO} to work with
+	 * @param massageDao {@link MassageDAO} to work with
+	 * @param clientDao {@link ClientDAO} to work with
 	 */
 	public FacilityResource(FacilityDAO facilityDao, MassageDAO massageDao, ClientDAO clientDao) {
 		this.facilityDao = facilityDao;
@@ -80,9 +81,9 @@ public class FacilityResource {
 	}
 
 	/**
-	 * GETs all Facilities that can be found
+	 * GETs all {@link Facility}s that can be found.
 	 *
-	 * @return list of all Facilities
+	 * @return {@link List} of all {@link Facility}s
 	 */
 	@GET
 	@PermitAll
@@ -92,12 +93,12 @@ public class FacilityResource {
 	}
 
 	/**
-	 * Accepts POST request with a new Facility
+	 * Accepts POST request with a new {@link Facility}.
 	 *
-	 * @param facility Facility new Facility
-	 * @exception WebApplicationException if Facility could not be found after
-	 *                creation
-	 * @return on creation response
+	 * @param facility new {@link Facility} to be created
+	 * @exception WebApplicationException if {@link Facility} could not be found
+	 *                after creation
+	 * @return on creation {@link Response}
 	 */
 	@POST
 	@RolesAllowed("admin")
@@ -114,11 +115,11 @@ public class FacilityResource {
 	}
 
 	/**
-	 * GETs a Facility based on its id
+	 * GETs a {@link Facility} based on its ID.
 	 *
-	 * @param id Facility ID
+	 * @param id {@link Facility} ID
 	 * @exception WebApplicationException if the ID could not be found
-	 * @return the desired Facility
+	 * @return the desired {@link Facility}
 	 */
 	@GET
 	@Path("/{id}")
@@ -133,12 +134,12 @@ public class FacilityResource {
 	}
 
 	/**
-	 * Updates a Facility given by ID to a given value
+	 * Updates a {@link Facility} given by ID to a given value.
 	 *
-	 * @param facility Facility updated Facility
-	 * @param id Facility ID
+	 * @param facility an updated {@link Facility}
+	 * @param id {@link Facility} ID
 	 * @exception WebApplicationException if the ID could not be found
-	 * @return on update response
+	 * @return on update {@link Response}
 	 */
 	@PUT
 	@Path("/{id}")
@@ -156,11 +157,11 @@ public class FacilityResource {
 	}
 
 	/**
-	 * DELETEs a Facility given by ID
+	 * DELETEs a {@link Facility} given by ID.
 	 *
-	 * @param id Facility ID
+	 * @param id {@link Facility} ID
 	 * @exception WebApplicationException if the ID could not be found
-	 * @return on delete response
+	 * @return on delete {@link Response}
 	 */
 	@DELETE
 	@Path("/{id}")
@@ -177,17 +178,19 @@ public class FacilityResource {
 	}
 
 	/**
-	 * GETs all Massages of a Facility that haven't already passed based on its ID.
+	 * GETs all {@link Massage}s of a {@link Facility} that haven't already passed
+	 * based on {@link Facility} ID and query parameters.
 	 *
-	 * @param id facility id
-	 * @param search value of the text to be searched for
-	 * @param free whether only unassigned Massages should be shown
-	 * @param from limits results to be after the Date in milliseconds
-	 * @param to limits results to be after the Date in milliseconds
+	 * @param id {@link Facility} ID
+	 * @param search value of the {@link String} to be searched for
+	 * @param free whether only unassigned {@link Massage}s should be shown
+	 * @param from limits results to be after the {@link Date} in milliseconds
+	 * @param to limits results to be after the {@link Date} in milliseconds
 	 * @param page current page number; for -1 doesn't use pagination
-	 * @param perPage number of Massages to return per each page
-	 * @exception WebApplicationException if the id could not be found
-	 * @return list of all found massages
+	 * @param perPage number of {@link Massage}s to return per each page
+	 * @exception WebApplicationException if the ID could not be found
+	 * @return {@link Map} with all found {@link Massage}s, their total count and
+	 *         total client massage time
 	 */
 	@GET
 	@Path("/{id}/massages")
@@ -198,12 +201,13 @@ public class FacilityResource {
 			@Min(-1) @DefaultValue("-1") @QueryParam("to") LongParam to,
 			@Min(0) @DefaultValue("0") @QueryParam("page") IntParam page,
 			@Min(1) @DefaultValue("12") @QueryParam("perPage") IntParam perPage, @Auth User user) {
-		Map<String, Object> response;
+		Map<String, Object> response; // the response Map
+
 		if (facilityDao.findById(id.get()) == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
-		// Dates default to null if -1 is supplied
+		// Dates default to null if -1 is supplied.
 		Date fromDate = null;
 		Date toDate = null;
 		if (from.get() != -1) {
@@ -213,9 +217,11 @@ public class FacilityResource {
 			toDate = new Date(to.get());
 		}
 
+		// Add Massages and their total count to the response.
 		response = massageDao.searchNewByFacility(facilityDao.findById(id.get()), search, free, fromDate, toDate,
 				page.get(), perPage.get());
 
+		// Add total massage time to the response.
 		long massageTime = 0;
 		List<Massage> daoMassagesClient = massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
 		for (Massage clientMassage : daoMassagesClient) {

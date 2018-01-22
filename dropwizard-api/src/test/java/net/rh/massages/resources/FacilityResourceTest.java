@@ -31,20 +31,18 @@ import io.dropwizard.testing.junit.ResourceTestRule;
 import net.rh.massages.auth.TestAuthenticator;
 import net.rh.massages.auth.TestAuthorizer;
 import net.rh.massages.auth.TestUser;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Facility;
 import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.FacilityDAO;
 import net.rh.massages.db.MassageDAO;
 
 /**
- * FacilityResourceTest FacilityResource JUnit resource test for facilities
- * endpoint
+ * {@link FacilityResource} JUnit resource test for /facilities endpoint.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class FacilityResourceTest {
 
 	private static final FacilityDAO facilityDao = mock(FacilityDAO.class); // mock of FacilityDAO
@@ -54,10 +52,12 @@ public class FacilityResourceTest {
 	private final Facility facility = new Facility("Facility"); // test Facility
 	private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
 
-	/*
-	 * Creates a new static ResourceTestRule that tests a given resource. Uses
-	 * GrizzlyWebTestContainerFactory to deal with resource authentication.
+	/**
+	 * Creates a new static {@link ResourceTestRule} that tests a given resource.
+	 * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
+	 * authentication.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@ClassRule
 	public static final ResourceTestRule RULE = ResourceTestRule.builder()
 			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
@@ -65,7 +65,7 @@ public class FacilityResourceTest {
 					.setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
 					.setPrefix("Bearer").buildAuthFilter()))
 			.addProvider(RolesAllowedDynamicFeature.class)
-			.addProvider(new AuthValueFactoryProvider.Binder<>(TestUser.class))
+			.addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
 			.addResource(new FacilityResource(facilityDao, massageDao, clientDao)).build();
 
 	/**
@@ -120,9 +120,9 @@ public class FacilityResourceTest {
 	}
 
 	/**
-	 * Fetches all Facilities
+	 * Fetches all {@link Facility}s.
 	 *
-	 * @return list of all current Facilities
+	 * @return {@link List} of all current {@link Facility}s
 	 */
 	private List<Facility> fetchAll() {
 		return RULE.target("/facilities").request().header("Authorization", "Bearer TOKEN")
@@ -131,7 +131,7 @@ public class FacilityResourceTest {
 	}
 
 	/**
-	 * Tests whether fetch request for all Facilities works as intended
+	 * Tests whether fetch request for all {@link Facility}s works as intended.
 	 */
 	@Test
 	public void fetchTest() {
@@ -142,12 +142,12 @@ public class FacilityResourceTest {
 	}
 
 	/**
-	 * Tests whether creation and follow up removal of a new Facility work as
-	 * intended
+	 * Tests whether creation and follow up removal of a new {@link Facility} work
+	 * as intended.
 	 */
 	@Test
 	public void createDeleteTest() {
-		// Tests the creation
+		// Test the creation.
 		Response response = RULE.target("/facilities").request(MediaType.APPLICATION_JSON_TYPE)
 				.header("Authorization", "Bearer TOKEN").post(Entity.json(newFacility));
 		List<Facility> facilities = fetchAll();
@@ -158,7 +158,7 @@ public class FacilityResourceTest {
 		assertEquals(facility, facilities.get(0));
 		assertEquals(newFacility, facilities.get(1));
 
-		// Tests the removal
+		// Test the removal.
 		response = RULE.target("/facilities/2").request().header("Authorization", "Bearer TOKEN").delete();
 		facilities = fetchAll();
 
@@ -169,20 +169,19 @@ public class FacilityResourceTest {
 	}
 
 	/**
-	 * Tests whether fetch request for a given Facility works as intended
+	 * Tests whether fetch request for a given {@link Facility} works as intended.
 	 */
 	@Test
 	public void getByIdTest() {
 		Facility facility = RULE.target("/facilities/1").request().header("Authorization", "Bearer TOKEN")
 				.get(Facility.class);
-		;
 
 		assertNotNull(facility);
 		assertEquals(this.facility, facility);
 	}
 
 	/**
-	 * Tests whether update request for a given Facility works as intended
+	 * Tests whether update request for a given {@link Facility} works as intended.
 	 */
 	@Test
 	public void updateTest() {

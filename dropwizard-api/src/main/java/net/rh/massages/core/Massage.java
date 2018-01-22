@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Nullable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,12 +36,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Massage Massage representation class
+ * Massage representation class.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
@@ -53,16 +53,17 @@ public class Massage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private long id; // id of the Massage
+	private long id; // ID of the Massage
 
 	@NotNull
-	private Date date; // date of the Massage
+	private Date date; // start date of the Massage
 
 	@NotNull
-	private Date ending; // ending of the Massage
+	private Date ending; // ending date of the Massage
 
+	@Column(length = 64)
 	@NotEmpty
-	private String masseuse; // masseuse that does the Massage
+	private String masseuse; // masseur or masseuse that does the Massage
 
 	@ManyToOne
 	@Nullable
@@ -71,17 +72,22 @@ public class Massage {
 	@ManyToOne
 	@NotNull
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Facility facility; // Facility where the Massage will be stationed
+	private Facility facility; // Facility where the Massage is stationed
 
+	/**
+	 * Constructor.
+	 */
 	public Massage() {
 	}
 
 	/**
-	 * @param date new Massage date
-	 * @param ending new Massage ending
-	 * @param masseuse new Massage masseuse
-	 * @param client new Massage client
-	 * @param facility new Massage facility
+	 * Constructor.
+	 *
+	 * @param date start date of the Massage
+	 * @param ending ending date of the Massage
+	 * @param masseuse masseur or masseuse that does the Massage
+	 * @param client the {@link Client} taking the Massage
+	 * @param facility {@link Facility} where the Massage is stationed
 	 */
 	public Massage(Date date, Date ending, String masseuse, Client client, Facility facility) {
 		this.date = date;
@@ -92,91 +98,91 @@ public class Massage {
 	}
 
 	/**
-	 * @return current value of Massage id
+	 * @return current value of {@link Massage} ID
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id new Massage ID to be set
+	 * @param id new {@link Massage} ID to be set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return current value of Massage date
+	 * @return current value of {@link Massage} date
 	 */
 	public Date getDate() {
 		return date;
 	}
 
 	/**
-	 * @param date new Massage Date to be set
+	 * @param date new {@link Massage} date to be set
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
 	/**
-	 * @return current value of Massage ending
+	 * @return current value of {@link Massage} ending
 	 */
 	public Date getEnding() {
 		return ending;
 	}
 
 	/**
-	 * @param ending new Massage ending to be set
+	 * @param ending new {@link Massage} ending to be set
 	 */
 	public void setEnding(Date ending) {
 		this.ending = ending;
 	}
 
 	/**
-	 * @return current value of Massage masseuse
+	 * @return current value of {@link Massage} masseuse
 	 */
 	public String getMasseuse() {
 		return masseuse;
 	}
 
 	/**
-	 * @param masseuse new Massage masseuse to be set
+	 * @param masseuse new {@link Massage} masseuse to be set
 	 */
 	public void setMasseuse(String masseuse) {
 		this.masseuse = masseuse;
 	}
 
 	/**
-	 * @return current value of Massage client
+	 * @return current value of {@link Massage} {@link Client}
 	 */
 	public Client getClient() {
 		return client;
 	}
 
 	/**
-	 * @param client new Massage Client to be set
+	 * @param client new {@link Massage} {@link Client} to be set
 	 */
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
 	/**
-	 * @return current value of Massage facility
+	 * @return current value of {@link Massage} {@link Facility}
 	 */
 	public Facility getFacility() {
 		return facility;
 	}
 
 	/**
-	 * @param facility new Massage Facility to be set
+	 * @param facility new {@link Massage} {@link Facility} to be set
 	 */
 	public void setFacility(Facility facility) {
 		this.facility = facility;
 	}
 
 	/**
-	 * Calculates the time difference between Massage ending and date
+	 * Calculates the time difference between Massage ending and date.
 	 *
 	 * @return the difference in milliseconds
 	 */
@@ -186,7 +192,7 @@ public class Massage {
 
 	/**
 	 * Checks (and possibly also swaps) date with ending if ending date is before
-	 * date
+	 * date.
 	 */
 	public void checkDates() {
 		if (date.after(ending)) {
@@ -197,10 +203,10 @@ public class Massage {
 	}
 
 	/**
-	 * Compares date and ending with another Massage and checks if they collide with
-	 * each other
+	 * Compares date and ending with another {@link Massage} and checks whether they
+	 * collide with each other.
 	 *
-	 * @param massage Massage to compare dates with
+	 * @param massage {@link Massage} to compare dates with
 	 * @return true if collides, false otherwise
 	 */
 	public boolean datesCollide(Massage massage) {
@@ -211,7 +217,8 @@ public class Massage {
 	}
 
 	/**
-	 * Hashes the Massage based on id, date, ending, masseuse and facility
+	 * Hashes the {@link Massage} based on ID, date, ending, masseuse and
+	 * {@link Facility}
 	 */
 	@Override
 	public int hashCode() {
@@ -234,8 +241,8 @@ public class Massage {
 	}
 
 	/**
-	 * @return Client converted to a String with format Massage[id, date, ending,
-	 *         masseuse, clientSub, facility]
+	 * @return {@link Massage} converted to a String with format Massage[id, date,
+	 *         ending, masseuse, clientSub, facility]
 	 */
 	@Override
 	public String toString() {

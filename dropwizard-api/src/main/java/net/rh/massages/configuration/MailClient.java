@@ -31,12 +31,11 @@ import org.simplejavamail.mailer.Mailer;
 import org.simplejavamail.mailer.config.TransportStrategy;
 
 /**
- * MailClient SMTP mailing client
+ * A SMTP mailing client class.
  *
  * @author psilling
  * @since 1.2.1
  */
-
 public class MailClient {
 
 	private final Mailer mailer; // SMTP mailer client
@@ -44,7 +43,9 @@ public class MailClient {
 	private static Logger LOGGER = Logger.getLogger(MailClient.class.getName()); // class logger
 
 	/**
-	 * @param smtpConfiguration new MailClient smtpConfiguration
+	 * Constructor.
+	 *
+	 * @param smtpConfiguration the SMTP client {@link SmtpConfiguration}
 	 */
 	public MailClient(SmtpConfiguration smtpConfiguration) {
 		this.smtpConfiguration = smtpConfiguration;
@@ -53,9 +54,9 @@ public class MailClient {
 	}
 
 	/**
-	 * Sends an email to a given List of recipients.
+	 * Sends an email to a given recipients list.
 	 *
-	 * @param recipients of the email message separated by a comma
+	 * @param recipients recipients of the email message separated by a comma
 	 * @param subject message subject
 	 * @param template template file to be used
 	 * @param args arguments for template substitutions
@@ -65,6 +66,7 @@ public class MailClient {
 		StrSubstitutor sub = new StrSubstitutor(args);
 		subject = StringUtils.capitalize(sub.replace(subject));
 
+		// Create the email itself and then send it
 		Email email = new EmailBuilder().from(smtpConfiguration.getFromName(), smtpConfiguration.getFromEmail())
 				.to(recipients).subject(subject).textHTML(loadHtmlFromTemplate(template, subject, args, sub)).build();
 		mailer.sendMail(email, smtpConfiguration.isAsync());
@@ -72,7 +74,7 @@ public class MailClient {
 
 	/**
 	 * Loads HTML template from the model template file and injects the given
-	 * template with all given arguments
+	 * template with all given arguments.
 	 *
 	 * @param templateFile template file to be used
 	 * @param title message title

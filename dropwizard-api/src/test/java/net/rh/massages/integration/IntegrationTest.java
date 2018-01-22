@@ -16,17 +16,8 @@
  *******************************************************************************/
 package net.rh.massages.integration;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -36,32 +27,29 @@ import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import net.rh.massages.MassagesApplication;
 import net.rh.massages.MassagesConfiguration;
-import net.rh.massages.core.Facility;
-import net.rh.massages.core.Massage;
+import net.rh.massages.resources.LogoutResource;
 
 /**
- * IntegrationTest JUnit integration test that also checks whether authorization
- * is applied
+ * JUnit integration test that also checks whether authorization is applied to
+ * {@link LogoutResource}.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class IntegrationTest {
 
-	/*
-	 * Creates a new static DropwizardAppRule that starts the whole application in
-	 * the test environment.
+	/**
+	 * Creates a new static {@link DropwizardAppRule} that starts the whole
+	 * application in the test environment.
 	 */
 	@ClassRule
 	public static final DropwizardAppRule<MassagesConfiguration> RULE = new DropwizardAppRule<>(
 			MassagesApplication.class, ResourceHelpers.resourceFilePath("config-test.yml"));
 
 	/**
-	 * Prepares our testing database by migrating the configuration file.
+	 * Prepares our testing database by migrating the test configuration file.
 	 *
-	 * @throws Exception
+	 * @throws Exception when application run fails
 	 */
 	@BeforeClass
 	public static void migrateDb() throws Exception {
@@ -69,25 +57,12 @@ public class IntegrationTest {
 	}
 
 	/**
-	 * Tests whether endpoints using Auth annotation require authentication. Throws
-	 * non-severe DB errors as no Facility has been created inside of the DB
-	 * beforehand.
+	 * Tests whether {@link LogoutResource} endpoint requires authentication.
 	 */
 	@Test(expected = NotAuthorizedException.class)
-	public void testAuth() {
-		final Facility facility = new Facility("Facility"); // test Facility
-		final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
-																											// Massage
-		List<Massage> massages = new LinkedList<>();
-		massages.add(massage);
-
-		Response respone = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages")
-				.queryParam("ids", 1).request(MediaType.APPLICATION_JSON).put(Entity.json(massages));
-
-		assertEquals(401, respone.getStatus());
-
-		massages = RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/massages/client")
-				.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Massage>>() {
+	public void testLogoutAuth() {
+		RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/logout").request()
+				.get(new GenericType<String>() {
 				});
 	}
 }

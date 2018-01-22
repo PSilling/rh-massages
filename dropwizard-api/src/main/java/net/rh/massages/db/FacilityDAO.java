@@ -24,40 +24,38 @@ import io.dropwizard.hibernate.AbstractDAO;
 import net.rh.massages.core.Facility;
 
 /**
- * FacilityDAO Facility Data Access Object
+ * Facility database access class.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class FacilityDAO extends AbstractDAO<Facility> {
 
 	/**
-	 * Parameterized FacilityDAO constructor
+	 * Constructor.
 	 *
-	 * @param sessionFactory new FacilityDAO SessionFactory
+	 * @param sessionFactory {@link SessionFactory} to work with
 	 */
 	public FacilityDAO(SessionFactory sessionFactory) {
 		super(sessionFactory);
 	}
 
 	/**
-	 * Creates a new Session and adds a given Facility to the database
+	 * Creates a new session and adds a given {@link Facility} to the database.
 	 *
-	 * @param facility Facility to be created
-	 * @return the created Facility
+	 * @param facility {@link Facility} to be created
+	 * @return the created {@link Facility}
 	 */
 	public Facility create(Facility facility) {
 		return persist(facility);
 	}
 
 	/**
-	 * Clears the current Session and then updates a given Facility with a new
-	 * Session
+	 * Clears the current session and then updates a given {@link Facility} using a
+	 * new session.
 	 *
-	 * @param facility updated Facility
-	 * @return the updated Facility
+	 * @param facility updated {@link Facility}
+	 * @return the updated {@link Facility}
 	 */
 	public Facility update(Facility facility) {
 		currentSession().clear();
@@ -65,38 +63,42 @@ public class FacilityDAO extends AbstractDAO<Facility> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Facility in the database based on its id
+	 * Creates a new session that finds a {@link Facility} in the database based on
+	 * its ID.
 	 *
-	 * @param id id to be found
-	 * @return the found Facility
+	 * @param id ID to be found
+	 * @return the found {@link Facility}
 	 */
 	public Facility findById(Long id) {
 		return get(id);
 	}
 
 	/**
-	 * Creates a new Session that finds all Facilities in the database
+	 * Creates a new session that finds all {@link Facility}s in the database.
 	 *
-	 * @return list of all facilities
+	 * @return {@link List} of all found {@link Facility}s
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Facility> findAll() {
 		return list(namedQuery("Facility.findAll"));
 	}
 
 	/**
-	 * Creates a new Session that finds a Facility in the database based on its name
+	 * Creates a new session that finds a {@link Facility} in the database based on
+	 * its name.
 	 *
 	 * @param name name to be found
-	 * @return the found Facility
+	 * @return the found {@link Facility}
 	 */
+	@SuppressWarnings("unchecked")
 	public Facility findByName(String name) {
 		return uniqueResult(namedQuery("Facility.findByName").setParameter("name", name));
 	}
 
 	/**
-	 * Removes a given Facility from the current Session
+	 * Removes a given {@link Facility} from the current session.
 	 *
-	 * @param facility Facility to be removed
+	 * @param facility {@link Facility} to be removed
 	 */
 	public void delete(Facility facility) {
 		currentSession().delete(facility);

@@ -39,12 +39,11 @@ import net.rh.massages.core.Client;
 import net.rh.massages.db.ClientDAO;
 
 /**
- * ClientResource Client resource class
+ * Client resource class.
  *
  * @author psilling
  * @since 1.2.1
  */
-
 @Path("/clients")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -52,14 +51,19 @@ public class ClientResource {
 
 	private final ClientDAO clientDao; // Client data access object
 
+	/**
+	 * Constructor.
+	 *
+	 * @param clientDao {@link ClientDAO} to work with
+	 */
 	public ClientResource(ClientDAO clientDao) {
 		this.clientDao = clientDao;
 	}
 
 	/**
-	 * GETs all Clients that can be found
+	 * GETs all {@link Client}s that can be found.
 	 *
-	 * @return list of all Clients
+	 * @return {@link List} of all {@link Client}s
 	 */
 	@GET
 	@RolesAllowed("admin")
@@ -69,12 +73,13 @@ public class ClientResource {
 	}
 
 	/**
-	 * Updates a Client to an updated value
+	 * Updates a {@link Client} to an updated value.
 	 *
-	 * @param client updated Client
-	 * @exception WebApplicationException if the Client could not be found or User
-	 *                tries to change other Clients without admin role
-	 * @return on update response
+	 * @param client updated {@link Client}
+	 * @exception WebApplicationException if the {@link Client} could not be found
+	 *                or {@link User} tries to change other {@link Client}s without
+	 *                administrator rights
+	 * @return on update {@link Response}
 	 */
 	@PUT
 	@PermitAll
@@ -94,6 +99,7 @@ public class ClientResource {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 
+		// Update only if a change is detected.
 		if (!daoClient.equals(client)) {
 			clientDao.update(client);
 			return Response.ok(client).build();
@@ -103,11 +109,11 @@ public class ClientResource {
 	}
 
 	/**
-	 * GETs a Client subscription value. For new Users also creates their Client
-	 * representation and returns true.
+	 * GETs a {@link Client} subscription value. For new {@link User}s also creates
+	 * their {@link Client} representation and returns true.
 	 *
-	 * @exception WebApplicationException if the Client could not be found after
-	 *                creation
+	 * @exception WebApplicationException if the {@link Client} could not be found
+	 *                after creation
 	 * @return true if subscribed, false otherwise
 	 */
 	@GET
@@ -117,6 +123,7 @@ public class ClientResource {
 	public boolean getSubscription(@Auth User user) {
 		Client client = clientDao.findBySub(user.getSubject());
 
+		// Create a new Client the User doesn't have its Client representation instance.
 		if (client == null) {
 			client = new Client(user.getSubject(), user.getEmail(), user.getFirstName(), user.getSurname(), true);
 			clientDao.create(client);

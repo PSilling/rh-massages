@@ -4,14 +4,14 @@ import Keycloak from 'keycloak-js';
 // util imports
 import Util from './Util';
 
-var Auth = function() { };
+var Auth = function() {};
 
 Auth.keycloak = Keycloak();
 
 Auth.keycloak.onAuthSuccess = () => {
   Util.get(Util.CLIENTS_URL + 'my/subscribed', (json) => {
     Auth.subscribed = json;
-    Util.put(Util.CLIENTS_URL, Auth.getClient(), (json) => {
+    Util.put(Util.CLIENTS_URL, Auth.getClient(), () => {
     }, false);
   });
 }

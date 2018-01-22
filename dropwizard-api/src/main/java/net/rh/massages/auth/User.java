@@ -25,21 +25,19 @@ import de.ahus1.keycloak.dropwizard.AbstractUser;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 
 /**
- * User Custom authentication User representation with an added user subject
- * getter.
+ * Custom authentication user representation with added user information
+ * getters.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class User extends AbstractUser {
 
 	/**
-	 * Parameterized User constructor
+	 * Constructor.
 	 *
 	 * @param securityContext Keycloak authorization context
-	 * @param request user HTTP servlet request
+	 * @param request HTTP servlet request
 	 * @param keycloakConfiguration Keycloak configuration
 	 */
 	public User(KeycloakSecurityContext securityContext, HttpServletRequest request,
@@ -48,10 +46,10 @@ public class User extends AbstractUser {
 	}
 
 	/**
-	 * Checks whether the User has a given role.
+	 * Checks whether the {@link User} has a given role.
 	 *
 	 * @param role role to be checked
-	 * @throws ForbiddenException if the User doesn't have the required role
+	 * @throws ForbiddenException if the {@link User} doesn't have the required role
 	 */
 	public void checkUserInRole(String role) {
 		if (!getRoles().contains(role)) {

@@ -29,30 +29,27 @@ import io.dropwizard.db.DataSourceFactory;
 import net.rh.massages.configuration.SmtpConfiguration;
 
 /**
- * MassagesConfiguration configuration class of the project
+ * Main configuration class of the application.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 public class MassagesConfiguration extends Configuration {
 
 	@Valid
 	@NotNull
-	private DataSourceFactory database = new DataSourceFactory(); // application's database
+	private DataSourceFactory database = new DataSourceFactory(); // database factory
 
 	@Valid
 	@NotNull
-	private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // application's Keycloak
-																						// configuration
+	private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // Keycloak configuration
+
 	@Valid
 	@NotNull
-	private SmtpConfiguration smtpConfiguration = new SmtpConfiguration(); // application's STMP client configuration
+	private SmtpConfiguration smtpConfiguration = new SmtpConfiguration(); // STMP client configuration
 
 	/**
-	 * DataSourceFactory setter
-	 *
-	 * @param factory DataSourceFactory factory to be set
+	 * @param factory new database factory value to be set
 	 */
 	@JsonProperty("database")
 	public void setDataSourceFactory(DataSourceFactory factory) {
@@ -60,9 +57,7 @@ public class MassagesConfiguration extends Configuration {
 	}
 
 	/**
-	 * DataSourceFactory getter
-	 *
-	 * @return current DataSourceFactory
+	 * @return current value of database
 	 */
 	@JsonProperty("database")
 	public DataSourceFactory getDataSourceFactory() {
@@ -70,9 +65,7 @@ public class MassagesConfiguration extends Configuration {
 	}
 
 	/**
-	 * KeycloakConfiguration setter
-	 *
-	 * @param keycloakConfiguration new keycloakConfiguration value
+	 * @param keycloakConfiguration new keycloakConfiguration value to be set
 	 */
 	@JsonProperty("keycloakConfiguration")
 	public void setKeycloakConfiguration(KeycloakConfiguration keycloakConfiguration) {
@@ -80,9 +73,7 @@ public class MassagesConfiguration extends Configuration {
 	}
 
 	/**
-	 * KeycloakConfiguration getter
-	 *
-	 * @return current keycloakConfiguration
+	 * @return current value of keycloakConfiguration
 	 */
 	@JsonProperty("keycloakConfiguration")
 	public AdapterConfig getKeycloakConfiguration() {
@@ -90,9 +81,7 @@ public class MassagesConfiguration extends Configuration {
 	}
 
 	/**
-	 * SmtpConfiguration setter
-	 *
-	 * @param smtpConfiguration new smtpConfiguration value
+	 * @param smtpConfiguration new smtpConfiguration value to be set
 	 */
 	@JsonProperty("smtpConfiguration")
 	public void setSmtpConfiguration(SmtpConfiguration smtpConfiguration) {
@@ -100,9 +89,7 @@ public class MassagesConfiguration extends Configuration {
 	}
 
 	/**
-	 * SmtpConfiguration getter
-	 *
-	 * @return current smtpConfiguration
+	 * @return current value of smtpConfiguration
 	 */
 	@JsonProperty("smtpConfiguration")
 	public SmtpConfiguration getSmtpConfiguration() {

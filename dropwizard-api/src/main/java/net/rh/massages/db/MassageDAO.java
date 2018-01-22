@@ -30,38 +30,38 @@ import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 
 /**
- * MassageDAO Massage Data Access Object
+ * Massage database access class.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class MassageDAO extends AbstractDAO<Massage> {
 
 	/**
-	 * @param sessionFactory new MassageDAO SessionFactory
+	 * Constructor.
+	 *
+	 * @param sessionFactory {@link SessionFactory} to work with
 	 */
 	public MassageDAO(SessionFactory sessionFactory) {
 		super(sessionFactory);
 	}
 
 	/**
-	 * Creates a new Session and adds a given Massage to the database
+	 * Creates a new session and adds a given {@link Massage} to the database.
 	 *
-	 * @param massage Massage to be created
-	 * @return the created Massage
+	 * @param massage {@link Massage} to be created
+	 * @return the created {@link Massage}
 	 */
 	public Massage create(Massage massage) {
 		return persist(massage);
 	}
 
 	/**
-	 * Clears the current Session and then updates a given Massage with a new
-	 * Session
+	 * Clears the current session and then updates a given {@link Massage} with a
+	 * new session.
 	 *
-	 * @param massage updated Massage
-	 * @return the updated Massage
+	 * @param massage updated {@link Massage}
+	 * @return the updated {@link Massage}
 	 */
 	public Massage update(Massage massage) {
 		currentSession().clear();
@@ -69,19 +69,20 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on its ID
+	 * Creates a new session that finds a {@link Massage} in the database based on
+	 * its ID.
 	 *
 	 * @param id ID to be found
-	 * @return the found Massage
+	 * @return the found {@link Massage}
 	 */
 	public Massage findById(Long id) {
 		return get(id);
 	}
 
 	/**
-	 * Creates a new Session that finds all Massages in the database
+	 * Creates a new session that finds all {@link Massage}s in the database
 	 *
-	 * @return list of all Massages
+	 * @return {@link List} of all {@link Massage}s
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Massage> findAll() {
@@ -89,25 +90,27 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds all Massages in the database that have
-	 * already passed. The list is searched with the included search pattern and
-	 * ordered by date and doesn't include upcoming Massages. Search is accent and
-	 * case insensitive.
+	 * Creates a new session that finds all {@link Massage}s in the database that
+	 * have already passed. The list is searched with the included search pattern
+	 * and ordered by date and doesn't include any upcoming {@link Massage}s. Search
+	 * is accent and case insensitive.
 	 *
 	 * @param search value of the search pattern
-	 * @param free true if only unassigned Massages should be found
-	 * @param from limits results to be after the given Date
-	 * @param to limits results to be before the given Date
+	 * @param free true if only unassigned {@link Massage}s should be returned
+	 * @param from limits results to be after the given {@link Date}
+	 * @param to limits results to be before the given {@link Date}
 	 * @param page current page number; for pages lower than 1 doesn't use
-	 *            pagination
-	 * @param perPage number of Massages to return per each page
-	 * @return map with list of all found Massages and their total count without
-	 *         limit
+	 *            pagination and returns all results
+	 * @param perPage number of {@link Massage}s to return per each page
+	 * @return {@link Map} with {@link List} of all found {@link Massage}s and their
+	 *         total count without limitations
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> searchOld(String search, boolean free, Date from, Date to, int page, int perPage) {
-		Map<String, Object> response = new HashMap<>();
+		Map<String, Object> response = new HashMap<>(); // the result Map
 		List<Massage> massages;
+
+		// Correct possible null from and to values.
 		if (from == null) {
 			from = new Date(0);
 		}
@@ -115,19 +118,24 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			to = new Date();
 		}
 
+		// Get all fitting Massages from database without applying the search pattern.
 		massages = list(namedQuery("Massage.findAllOld").setParameter("free", free).setParameter("from", from)
 				.setParameter("to", to));
 
-		// search in the results given by the query (enables case and accent insensitive
-		// comparison)
+		// Search in the results given by the query (enables case and accent insensitive
+		// comparison not supported by Hibernate).
 		if (search != null && search != "") {
 			search = convertToCIAI(search);
 			String searchString;
 			for (int i = 0; i < massages.size(); i++) {
+				// Compare with the value of masseuse, Facility name and generated contact.
 				searchString = massages.get(i).getMasseuse() + massages.get(i).getFacility().getName();
 				if (massages.get(i).getClient() != null) {
 					searchString += massages.get(i).getClient().createContact();
 				}
+
+				// Remove from the List if the search pattern isn't contained in the comparison
+				// String.
 				if (!convertToCIAI(searchString).contains(search)) {
 					massages.remove(massages.get(i));
 					i--;
@@ -135,7 +143,12 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			}
 		}
 
+		// Add the total number of found Massages to the response Map for paging
+		// coordination.
 		response.put("totalCount", massages.size());
+
+		// Remove Massages that aren't on the given page number based on the number of
+		// Massages per page.
 		if (page > 0) {
 			if ((perPage * (page - 1)) >= massages.size()) {
 				page = (int) Math.ceil(massages.size() / ((double) perPage));
@@ -148,17 +161,19 @@ public class MassageDAO extends AbstractDAO<Massage> {
 				massages.subList(perPage, massages.size()).clear();
 			}
 		}
+
+		// Add resulting Massages to the response Map.
 		response.put("massages", massages);
 
 		return response;
 	}
 
 	/**
-	 * Creates a new Session that finds all Massages in the database based on their
-	 * masseuse
+	 * Creates a new session that finds all {@link Massage}s in the database based
+	 * on their masseuse.
 	 *
-	 * @param masseuse masseuse of the Massages that are to be found
-	 * @return list of all found Massages
+	 * @param masseuse masseuse of the {@link Massage}s that are to be found
+	 * @return {@link List} of all found {@link Massage}s
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Massage> findAllByMasseuse(String masseuse) {
@@ -166,11 +181,12 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on their
-	 * Client user. The list is ordered by date and doesn't include old Massages.
+	 * Creates a new session that finds a {@link Massage} in the database based on
+	 * their {@link Client}. The {@link List} is ordered by date and doesn't include
+	 * old {@link Massage}s.
 	 *
-	 * @param client Client of the Massages the are to be found
-	 * @return list of all found Massages
+	 * @param client {@link Client} of the {@link Massage}s the are to be found
+	 * @return {@link List} of all found {@link Massage}s
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Massage> findAllByClient(Client client) {
@@ -178,47 +194,54 @@ public class MassageDAO extends AbstractDAO<Massage> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Massage in the database based on their
-	 * Facility. The list is searched with the included search pattern and ordered
-	 * by date and doesn't include old Massages. Search is accent and case
-	 * insensitive.
+	 * Creates a new session that finds a {@link Massage} in the database based on
+	 * their {@link Facility}. The {@link List} is searched with the included search
+	 * pattern and ordered by date and doesn't include old {@link Massage}s. Search
+	 * is accent and case insensitive.
 	 *
-	 * @param facility Facility of the Massages the are to be found
+	 * @param facility {@link Facility} of the {@link Massage}s the are to be found
 	 * @param search value of the search pattern; for -1 all results are returned
-	 * @param free true if only unassigned Massages should be found
-	 * @param from limits results to be after the given Date
-	 * @param to limits results to be before the given Date
+	 * @param free true if only unassigned {@link Massage}s should be found
+	 * @param from limits results to be after the given {@link Date}
+	 * @param to limits results to be before the given {@link Date}
 	 * @param page current page number; for pages lower than 1 doesn't use
-	 *            pagination
-	 * @param perPage number of Massages to return per each page
-	 * @return map with list of all found Massages and their total count without
-	 *         limit
+	 *            pagination and returns all results
+	 * @param perPage number of {@link Massage}s to return per each page
+	 * @return {@link Map} with {@link List} of all found Massages and their total
+	 *         count without limitations
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> searchNewByFacility(Facility facility, String search, boolean free, Date from, Date to,
 			int page, int perPage) {
-		Map<String, Object> response = new HashMap<>();
+		Map<String, Object> response = new HashMap<>(); // the result Map
 		List<Massage> massages;
+
+		// Correct possible null from and to values.
 		if (from == null) {
 			from = new Date();
 		}
 		if (to == null) {
-			to = new Date(from.getTime() + 86400000); // a day later
+			to = new Date(from.getTime() + 86400000); // one day later
 		}
 
+		// Get all fitting Massages from database without applying the search pattern.
 		massages = list(namedQuery("Massage.findNewByFacility").setParameter("facility", facility)
 				.setParameter("free", free).setParameter("from", from).setParameter("to", to));
 
-		// search in the results given by the query (enables case and accent insensitive
-		// comparison)
+		// Search in the results given by the query (enables case and accent insensitive
+		// comparison not supported by Hibernate).
 		if (search != null && search != "") {
 			search = convertToCIAI(search);
 			String searchString;
 			for (int i = 0; i < massages.size(); i++) {
+				// Compare with the value of masseuse and generated contact.
 				searchString = massages.get(i).getMasseuse();
 				if (massages.get(i).getClient() != null) {
 					searchString += massages.get(i).getClient().createContact();
 				}
+
+				// Remove from the List if the search pattern isn't contained in the comparison
+				// String.
 				if (!convertToCIAI(searchString).contains(search)) {
 					massages.remove(massages.get(i));
 					i--;
@@ -226,7 +249,12 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			}
 		}
 
+		// Add the total number of found Massages to the response Map for paging
+		// coordination.
 		response.put("totalCount", massages.size());
+
+		// Remove Massages that aren't on the given page number based on the number of
+		// Massages per page.
 		if (page > 0) {
 			if ((perPage * (page - 1)) >= massages.size()) {
 				page = (int) Math.ceil(massages.size() / ((double) perPage));
@@ -238,28 +266,31 @@ public class MassageDAO extends AbstractDAO<Massage> {
 			if (perPage < massages.size()) {
 				massages.subList(perPage, massages.size()).clear();
 			}
+
 		}
+
+		// Add resulting Massages to the response Map.
 		response.put("massages", massages);
 
 		return response;
 	}
 
 	/**
-	 * Removes a given Massage from the current Session
+	 * Removes a given {@link Massage} from the current session.
 	 *
-	 * @param massage Massage to be removed
+	 * @param massage {@link Massage} to be removed
 	 */
 	public void delete(Massage massage) {
 		currentSession().delete(massage);
 	}
 
 	/**
-	 * Makes a string case and accent insensitive
+	 * Makes a {@link String} case and accent insensitive using {@link Normalizer}.
 	 *
-	 * @param string string to be converted
-	 * @return the string converted to be CI and AI
+	 * @param string {@link String} to be converted
+	 * @return the {@link String} converted to be CI and AI
 	 */
-	public String convertToCIAI(String string) {
+	private String convertToCIAI(String string) {
 		return Normalizer.normalize(string, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
 				.toLowerCase();
 	}

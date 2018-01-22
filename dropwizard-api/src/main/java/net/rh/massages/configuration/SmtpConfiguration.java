@@ -19,36 +19,40 @@ package net.rh.massages.configuration;
 import javax.validation.constraints.NotNull;
 
 /**
- * SmtpConfiguration configuration class for SMTP client
+ * Configuration class for the SMTP {@link MailClient}.
  *
  * @author psilling
  * @since 1.2.1
- *
  */
-
 public class SmtpConfiguration {
 
 	@NotNull
 	private String server; // SMTP server address
+
 	@NotNull
 	private int port; // SMTP connection port
 	private String username; // SMTP username
 	private String password; // SMTP password
 	private String fromEmail; // from which email address to send the emails
 	private String fromName; // from who to send the emails
-	private boolean async = true; // whether to send email asynchronously
+	private boolean async = true; // whether to send emails asynchronously
 
+	/**
+	 * Constructor.
+	 */
 	public SmtpConfiguration() {
 	}
 
 	/**
-	 * @param server new SmtpConfiguration server
-	 * @param port new SmtpConfiguration port
-	 * @param username new SmtpConfiguration username
-	 * @param password new SmtpConfiguration password
-	 * @param fromEmail new SmtpConfiguration fromEmail
-	 * @param fromName new SmtpConfiguration fromName
-	 * @param async new SmtpConfiguration async
+	 * Constructor.
+	 *
+	 * @param server SMTP server address
+	 * @param port SMTP connection port
+	 * @param username SMTP username
+	 * @param password SMTP password
+	 * @param fromEmail email address to send the emails from
+	 * @param fromName name of the sender of the emails
+	 * @param async whether to send emails asynchronously
 	 */
 	public SmtpConfiguration(String server, int port, String username, String password, String fromEmail,
 			String fromName, boolean async) {

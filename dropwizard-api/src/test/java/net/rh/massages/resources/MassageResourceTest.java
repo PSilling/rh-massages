@@ -49,32 +49,34 @@ import io.dropwizard.testing.junit.ResourceTestRule;
 import net.rh.massages.auth.TestAuthenticator;
 import net.rh.massages.auth.TestAuthorizer;
 import net.rh.massages.auth.TestUser;
+import net.rh.massages.auth.User;
 import net.rh.massages.core.Facility;
 import net.rh.massages.core.Massage;
 import net.rh.massages.db.MassageDAO;
 
 /**
- * MassageResourceTest MassageResource JUnit resource test for massages endpoint
+ * {@link MassageResource} JUnit resource test for /massages endpoint.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class MassageResourceTest {
 
 	private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
 
 	private final long MILLISECONDS = new Date().getTime(); // current time milliseconds
 	private final Facility facility = new Facility("Facility"); // test Facility
-	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility);
+	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
+																												// Massage
 	private final Massage newMassage = new Massage(new Date(MILLISECONDS + 10000), new Date(MILLISECONDS + 10001),
-			"Super Masseuse", null, facility);
+			"Super Masseuse", null, facility); // test Massage for creation and updating
 
-	/*
-	 * Creates a new static ResourceTestRule that tests a given resource. Uses
-	 * GrizzlyWebTestContainerFactory to deal with resource authentication.
+	/**
+	 * Creates a new static {@link ResourceTestRule} that tests a given resource.
+	 * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
+	 * authentication.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ClassRule
 	public static final ResourceTestRule RULE = ResourceTestRule.builder()
 			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
@@ -82,7 +84,7 @@ public class MassageResourceTest {
 					.setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
 					.setPrefix("Bearer").buildAuthFilter()))
 			.addProvider(RolesAllowedDynamicFeature.class)
-			.addProvider(new AuthValueFactoryProvider.Binder<>(TestUser.class))
+			.addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
 			.addResource(new MassageResource(massageDao, null, null)).build();
 
 	/**
@@ -126,9 +128,9 @@ public class MassageResourceTest {
 	}
 
 	/**
-	 * Fetches all Massages
+	 * Fetches all {@link Massage}s.
 	 *
-	 * @return list of all current Massages
+	 * @return {@link List} of all current {@link Massage}s
 	 */
 	private List<Massage> fetchAll() {
 		return RULE.target("/massages").request().header("Authorization", "Bearer TOKEN")
@@ -137,7 +139,7 @@ public class MassageResourceTest {
 	}
 
 	/**
-	 * Tests whether fetch request for all Massages works as intended
+	 * Tests whether fetch request for all {@link Massage}s works as intended.
 	 */
 	@Test
 	public void fetchTest() {
@@ -149,14 +151,15 @@ public class MassageResourceTest {
 	}
 
 	/**
-	 * Tests whether creation and follow up removal of a new Massage work as
-	 * intended
+	 * Tests whether creation and follow up removal of a new {@link Massage} work as
+	 * intended.
 	 */
 	@Test
 	public void createDeleteTest() {
 		List<Massage> massages = new LinkedList<>();
 		massages.add(newMassage);
-		// Tests the creation
+
+		// Test the creation
 		Response response = RULE.target("/massages").request(MediaType.APPLICATION_JSON_TYPE)
 				.header("Authorization", "Bearer TOKEN").post(Entity.json(massages));
 		massages = fetchAll();
@@ -167,7 +170,7 @@ public class MassageResourceTest {
 		assertEquals(massage, massages.get(0));
 		assertEquals(newMassage, massages.get(1));
 
-		// Tests the removal
+		// Test the removal
 		response = RULE.target("/massages").queryParam("ids", 2).request().header("Authorization", "Bearer TOKEN")
 				.delete();
 		massages = fetchAll();
@@ -179,7 +182,7 @@ public class MassageResourceTest {
 	}
 
 	/**
-	 * Tests whether fetch request for a given Massage works as intended
+	 * Test whether fetch request for a given {@link Massage} works as intended.
 	 */
 	@Test
 	public void getByIdTest() {

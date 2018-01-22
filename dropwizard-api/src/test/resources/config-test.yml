@@ -40,6 +40,6 @@ keycloakConfiguration:
 smtpConfiguration:
   server: localhost
   port: 587
-  fromEmail: admin@massages.com
+  fromEmail: portal@massages.com
   fromName: admin
   async: false

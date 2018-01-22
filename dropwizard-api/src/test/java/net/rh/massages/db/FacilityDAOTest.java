@@ -30,32 +30,28 @@ import io.dropwizard.testing.junit.DAOTestRule;
 import net.rh.massages.core.Facility;
 
 /**
- * FacilityDAOTest Facility Data Access Object JUnit test class
+ * Facility Data Access Object JUnit test class.
  *
  * @author psilling
  * @since 1.0.0
- *
  */
-
 public class FacilityDAOTest {
 
 	@Rule
 	public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class).build(); // database mock
 
-	private FacilityDAO facilityDAO; // facility data access object
+	private FacilityDAO facilityDAO; // Facility data access object
 
 	/**
-	 * Creates FacilityDAO with current database Session
-	 *
-	 * @throws Exception
+	 * Creates {@link FacilityDAO} with current database session.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		facilityDAO = new FacilityDAO(daoTestRule.getSessionFactory());
 	}
 
 	/**
-	 * Tests whether Facility creation works as intended.
+	 * Tests whether {@link Facility} creation works as intended.
 	 */
 	@Test
 	public void testCreate() {
@@ -66,7 +62,7 @@ public class FacilityDAOTest {
 	}
 
 	/**
-	 * Tests whether Facility updating works as intended.
+	 * Tests whether {@link Facility} updating works as intended.
 	 */
 	@Test
 	public void testUpdate() {
@@ -83,7 +79,7 @@ public class FacilityDAOTest {
 	}
 
 	/**
-	 * Tests whether Facility removal works as intended.
+	 * Tests whether {@link Facility} removal works as intended.
 	 */
 	@Test
 	public void testDelete() {
@@ -101,7 +97,8 @@ public class FacilityDAOTest {
 	}
 
 	/**
-	 * Tests whether all FacilityDAO finding methods are working as intended.
+	 * Tests whether all {@link FacilityDAO} finding methods are working as
+	 * intended.
 	 */
 	@Test
 	public void testFind() {

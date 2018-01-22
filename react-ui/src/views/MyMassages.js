@@ -45,7 +45,7 @@ class MassagesList extends Component {
 
   changeChecked = (event) => {
     Auth.subscribed = event.target.checked;
-    Util.put(Util.CLIENTS_URL, Auth.getClient(), (json) => {
+    Util.put(Util.CLIENTS_URL, Auth.getClient(), () => {
       this.setState({checked: Auth.subscribed});
     });
   }

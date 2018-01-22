@@ -31,12 +31,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Facility facility representation class
+ * Facility representation class.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 @Entity
 @Table(name = "Facilities")
 @NamedQueries({
@@ -47,65 +46,57 @@ public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private long id; // id of the facility
+	private long id; // ID of the Facility
 
-	@Column(name = "name", unique = true)
+	@Column(name = "name", unique = true, length = 64)
 	@NotEmpty
-	private String name; // name of the massage
+	private String name; // name of the Facility
 
 	/**
-	 * Facility constructor
+	 * Constructor.
 	 */
 	public Facility() {
 	}
 
 	/**
-	 * Parameterized Facility constructor
+	 * Constructor.
 	 *
-	 * @param name new Facility name
+	 * @param name name of the Facility
 	 */
 	public Facility(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Id getter
-	 *
-	 * @return current id
+	 * @return current value of {@link Facility} ID
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * Id setter
-	 *
-	 * @param id new id
+	 * @param id new {@link Facility} ID to be set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * Name getter
-	 *
-	 * @return current name
+	 * @return current value of {@link Facility} name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Name setter
-	 *
-	 * @param name new name
+	 * @param name new {@link Facility} name to be set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Hashing method
+	 * Hashes the {@link Facility} based on ID and name.
 	 */
 	@Override
 	public int hashCode() {
@@ -113,7 +104,7 @@ public class Facility {
 	}
 
 	/**
-	 * Equalization method
+	 * @return true if hashCode comparison matches both this and the given object
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -128,7 +119,8 @@ public class Facility {
 	}
 
 	/**
-	 * String conversion method
+	 * @return {@link Facility} converted to a String with format Facility[id=%s,
+	 *         name=%s]
 	 */
 	@Override
 	public String toString() {

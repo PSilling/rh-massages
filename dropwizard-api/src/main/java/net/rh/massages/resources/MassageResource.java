@@ -31,6 +31,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -41,9 +42,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import net.rh.massages.auth.User;
 import net.rh.massages.configuration.MailClient;
 import net.rh.massages.core.Client;
 import net.rh.massages.core.Massage;
@@ -51,13 +54,12 @@ import net.rh.massages.db.ClientDAO;
 import net.rh.massages.db.MassageDAO;
 
 /**
- * MassageResource Massage resource class
+ * Massage resource class.
  *
  * @author psilling
  * @since 1.0.0
  *
  */
-
 @Path("/massages")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -66,14 +68,16 @@ public class MassageResource {
 	private final MassageDAO massageDao; // Massage data access object
 	private final ClientDAO clientDao; // Client data access object
 	private final MailClient mailClient; // Mailing client
+	private final long MAX_OFFSET = 1810000; // time limit for User Massage cancellation
+	private final long MASSAGE_LIMIT = 7202000; // time limit for total User Massage time
 	private final int SEND_MAIL_LIMIT = 5; // number of simultaneously created Massages necessary for sending an email
 
 	/**
-	 * Parameterized MassageResource constructor
+	 * Constructor.
 	 *
-	 * @param massageDao new MassageResource massageDao
-	 * @param clientDao new MassageResource clientDao
-	 * @param mailClient new MassageResource mailClient
+	 * @param massageDao {@link MassageDAO} to work with
+	 * @param clientDao {@link ClientDAO} to work with
+	 * @param mailClient {@link MailClient} to use for messaging
 	 */
 	public MassageResource(MassageDAO massageDao, ClientDAO clientDao, MailClient mailClient) {
 		this.massageDao = massageDao;
@@ -82,9 +86,9 @@ public class MassageResource {
 	}
 
 	/**
-	 * GETs all massages that can be found
+	 * GETs all {@link Massage}s that can be found.
 	 *
-	 * @return list of all massages
+	 * @return {@link List} of all found {@link Massage}s
 	 */
 	@GET
 	@PermitAll
@@ -94,13 +98,14 @@ public class MassageResource {
 	}
 
 	/**
-	 * Accepts POST request with a new list of Massages
+	 * Accepts POST request with a new {@link List} of {@link Massage}s.
 	 *
-	 * @param massages list of Massages to create
-	 * @exception WebApplicationException if massage could not be found after
-	 *                creation or its ending is before now or when massage time
-	 *                collides with other massages with the same massuese
-	 * @return on creation response of last created Massage
+	 * @param massages {@link List} of {@link Massage}s to create
+	 * @exception WebApplicationException if {@link Massage} could not be found
+	 *                after creation or its ending is before now or when massage
+	 *                time collides with other {@link Massage}s with the same
+	 *                massuese
+	 * @return on creation {@link Response} of the last created {@link Massage}
 	 */
 	@POST
 	@RolesAllowed("admin")
@@ -109,31 +114,27 @@ public class MassageResource {
 		Response response = null;
 		boolean throwForbidden = false;
 		for (Massage massage : massages) {
+			// Validate Massage timing information.
 			massage.checkDates();
 			if (massage.getEnding().before(new Date())) {
 				throwForbidden = true;
 				continue;
 			}
 
-			// check for date collision for the given masseuse
+			// Check for Date collision for the given masseuse. Removes a colliding Massage
+			// only if is has no Client.
 			List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
-			List<Massage> massagesForRemoval = new LinkedList<>();
 
-			for (Massage masseuseMassage : daoMassages) {
-				if (massage.datesCollide(masseuseMassage)) {
-					// queue and then remove all colliding Massages for removal if they all have no
-					// client or cancel the request if a client is assigned to them
-					if (masseuseMassage.getClient() == null) {
-						massagesForRemoval.add(masseuseMassage);
+			for (int i = 0; i < daoMassages.size(); i++) {
+				if (massage.datesCollide(daoMassages.get(i))) {
+					if (daoMassages.get(i).getClient() == null) {
+						massageDao.delete(daoMassages.get(i));
+						i--;
 					} else {
 						response = Response.noContent().build();
 						continue;
 					}
 				}
-			}
-
-			for (Massage massageForRemoval : massagesForRemoval) {
-				massageDao.delete(massageForRemoval);
 			}
 
 			massageDao.create(massage);
@@ -151,6 +152,8 @@ public class MassageResource {
 			throw new WebApplicationException(Status.FORBIDDEN);
 		}
 
+		// Send an information email to subscribed Users if more than SEND_MAIL_LIMIT
+		// Massages get created
 		if (massages.size() >= SEND_MAIL_LIMIT) {
 			sendInformationEmail();
 		}
@@ -159,11 +162,139 @@ public class MassageResource {
 	}
 
 	/**
-	 * DELETEs Massages given by their id
+	 * Updates {@link Massage}s in a {@link List} given by IDs to a new value.
 	 *
-	 * @param ids set of Massage ids
-	 * @exception WebApplicationException if the id could not be found
-	 * @return on delete response
+	 * @param massages {@link List} of updated Massages
+	 * @param ids {@link List} of {@link Massage} IDs
+	 * @exception WebApplicationException if any of the IDs could not be found or
+	 *                when normal {@link User} tries to change a {@link Massage}
+	 *                that isn't assigned to him, change the {@link Massage} itself
+	 *                or even too late or when its ending is before now or when
+	 *                massage time collides with other {@link Massage}s with the
+	 *                same massuese
+	 * @return on update {@link Response} of last updated {@link Massage}
+	 */
+	@PUT
+	@PermitAll
+	@UnitOfWork
+	public Response update(@NotNull @Valid List<Massage> massages, @NotNull @QueryParam("ids") List<Integer> ids,
+			@Auth User user) {
+		Response response = null;
+		boolean throwForbidden = false;
+		boolean throwNotFound = false;
+		Client daoClient = clientDao.findBySub(user.getSubject()); // Client representation of the User
+
+		if (daoClient == null) {
+			throw new WebApplicationException(Status.FORBIDDEN);
+		}
+
+		for (int i = 0; i < ids.size(); i++) {
+			Massage daoMassage = massageDao.findById(Long.valueOf(ids.get(i)));
+			Massage massage = massages.get(i);
+
+			if (daoMassage == null) {
+				throwNotFound = true;
+				continue;
+			}
+
+			massage.setId(Long.valueOf(ids.get(i)));
+
+			// Forbid normal Users to edit anything other than the Client and even then the
+			// Client has to be the User himself or a null when it was himself. Normal User
+			// is also forbidden to cancel a Massage after MAX_OFFSET.
+			if (!user.getRoles().contains("admin")) {
+				if (!daoMassage.equals(massage)
+						|| (!daoClient.equals(massage.getClient()) && !daoClient.equals(daoMassage.getClient()))
+						|| (massage.getClient() != null && !massage.getClient().equals(daoClient))
+						|| ((massage.getDate().before(new Date(new Date().getTime() + MAX_OFFSET)))
+								&& daoMassage.getClient() != null)) {
+					throwForbidden = true;
+					continue;
+				}
+				// If an administrator cancels a Massage with a subscribed Client, send a
+				// notification email.
+			} else if (daoMassage.getClient() != null && massage.getClient() == null
+					&& !user.getSubject().equals(daoMassage.getClient().getSub())
+					&& daoMassage.getClient().isSubscribed()) {
+				mailClient.sendEmail(daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html",
+						null);
+			}
+
+			// Validate Massage timing information.
+			massage.checkDates();
+			if (massage.getEnding().before(new Date())) {
+				throwForbidden = true;
+				continue;
+			}
+
+			// Check whether the User (even an administrator) still has MASSAGE_LIMIT time
+			// available for the duration of the given Massage.
+			if (massage.getClient() != null) {
+				long massageTime = massage.calculateDuration();
+				List<Massage> daoMassagesClient = massageDao.findAllByClient(massage.getClient());
+
+				if (daoMassagesClient.contains(daoMassage)) {
+					daoMassagesClient.remove(daoMassage);
+				}
+
+				for (Massage clientMassage : daoMassagesClient) {
+					massageTime += clientMassage.calculateDuration();
+				}
+
+				if (massageTime > MASSAGE_LIMIT) {
+					throwForbidden = true;
+					continue;
+				}
+			}
+
+			// Check for Date collision for the given masseuse. Removes a colliding Massage
+			// only if is has no Client.
+			List<Massage> daoMassagesMasseuse = massageDao.findAllByMasseuse(massage.getMasseuse());
+			List<Massage> massagesForRemoval = new LinkedList<>();
+
+			// Remove the updated Massage from the List.
+			if (daoMassagesMasseuse.contains(daoMassage)) {
+				daoMassagesMasseuse.remove(daoMassage);
+			}
+
+			for (Massage masseuseMassage : daoMassagesMasseuse) {
+				if (massage.datesCollide(masseuseMassage)) {
+					if (masseuseMassage.getClient() == null) {
+						massagesForRemoval.add(masseuseMassage);
+					} else {
+						response = Response.noContent().build();
+						continue;
+					}
+				}
+			}
+
+			massageDao.update(massage);
+
+			// Remove the colliding Massages (after update to avoid session clearing).
+			for (Massage massageForRemoval : massagesForRemoval) {
+				massageDao.delete(massageForRemoval);
+			}
+
+			response = Response.ok(massage).build();
+		}
+
+		if (throwNotFound) {
+			throw new WebApplicationException(Status.NOT_FOUND);
+		}
+
+		if (throwForbidden) {
+			throw new WebApplicationException(Status.FORBIDDEN);
+		}
+
+		return response;
+	}
+
+	/**
+	 * DELETEs {@link Massage}s given by their IDs.
+	 *
+	 * @param ids {@link List} of {@link Massage} IDs
+	 * @exception WebApplicationException if any of the IDs could not be found
+	 * @return on delete {@link Response}
 	 */
 	@DELETE
 	@RolesAllowed("admin")
@@ -176,6 +307,8 @@ public class MassageResource {
 				continue;
 			}
 
+			// If a Massage with a subscribed Client is being deleted, send a notification
+			// email.
 			Massage daoMassage = massageDao.findById(Long.valueOf(id));
 			if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
 				mailClient.sendEmail(daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html",
@@ -192,15 +325,15 @@ public class MassageResource {
 	}
 
 	/**
-	 * GETs all Massages that are after the current time
+	 * GETs all {@link Massage}s that are dated after the current time.
 	 *
-	 * @param search value of the text to be searched for
-	 * @param free whether only unassigned Massages should be shown
-	 * @param from limits results to be after the Date in milliseconds
-	 * @param to limits results to be after the Date in milliseconds
+	 * @param search value of the {@link String} to be searched for
+	 * @param free whether only unassigned {@link Massage}s should be shown
+	 * @param from limits results to be after the {@link Date} in milliseconds
+	 * @param to limits results to be after the {@link Date} in milliseconds
 	 * @param page current page number; for -1 doesn't use pagination
-	 * @param perPage number of Massages to return per each page
-	 * @return list of all old Massages
+	 * @param perPage number of {@link Massage}s to return per each page
+	 * @return {@link Map} with all found {@link Massage}s and their total count
 	 */
 	@GET
 	@Path("/old")
@@ -212,7 +345,7 @@ public class MassageResource {
 			@Min(0) @DefaultValue("0") @QueryParam("page") IntParam page,
 			@Min(1) @DefaultValue("12") @QueryParam("perPage") IntParam perPage) {
 
-		// Dates default to null if -1 is supplied
+		// Dates default to null if -1 is supplied.
 		Date fromDate = null;
 		Date toDate = null;
 		if (from.get() != -1) {
@@ -226,11 +359,11 @@ public class MassageResource {
 	}
 
 	/**
-	 * GETs a massage based on its id
+	 * GETs a {@link Massage} based on its ID.
 	 *
-	 * @param id massage id
-	 * @exception WebApplicationException if the id could not be found
-	 * @return the desired massage
+	 * @param id {@link Massage} ID
+	 * @exception WebApplicationException if the ID could not be found
+	 * @return the desired {@link Massage}
 	 */
 	@GET
 	@Path("/{id}")
@@ -245,7 +378,22 @@ public class MassageResource {
 	}
 
 	/**
-	 * Sends an email informing all subscribed users about new Massage availability.
+	 * GETs all {@link Massage}s of a given {@link Client} that haven't already
+	 * passed.
+	 *
+	 * @return {@link List} of all found {@link Massage}s
+	 */
+	@GET
+	@Path("/client")
+	@PermitAll
+	@UnitOfWork
+	public List<Massage> findAllByClient(@Auth User user) {
+		return massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
+	}
+
+	/**
+	 * Sends an email informing all subscribed users about new {@link Massage}
+	 * availability.
 	 */
 	private void sendInformationEmail() {
 		String recipients = "";

@@ -24,37 +24,38 @@ import io.dropwizard.hibernate.AbstractDAO;
 import net.rh.massages.core.Client;
 
 /**
- * ClientDAO Client Data Access Object
+ * Client database access class.
  *
  * @author psilling
  * @since 1.2.1
- *
  */
-
 public class ClientDAO extends AbstractDAO<Client> {
 
 	/**
-	 * @param sessionFactory new ClientDAO SessionFactory
+	 * Constructor.
+	 *
+	 * @param sessionFactory {@link SessionFactory} to work with
 	 */
 	public ClientDAO(SessionFactory sessionFactory) {
 		super(sessionFactory);
 	}
 
 	/**
-	 * Creates a new Session and adds a given Client to the database
+	 * Creates a new session and adds a given {@link Client} to the database.
 	 *
-	 * @param client Client to be created
-	 * @return the created Client
+	 * @param client {@link Client} to be created
+	 * @return the created {@link Client}
 	 */
 	public Client create(Client client) {
 		return persist(client);
 	}
 
 	/**
-	 * Clears the current Session and then updates a given Client with a new Session
+	 * Clears the current session and then updates a given {@link Client} using a
+	 * new session.
 	 *
-	 * @param client updated Client
-	 * @return the updated Client
+	 * @param client updated {@link Client}
+	 * @return the updated {@link Client}
 	 */
 	public Client update(Client client) {
 		currentSession().clear();
@@ -62,19 +63,20 @@ public class ClientDAO extends AbstractDAO<Client> {
 	}
 
 	/**
-	 * Creates a new Session that finds a Client in the database based on subject
+	 * Creates a new session that finds a {@link Client} in the database based on
+	 * its subject.
 	 *
 	 * @param sub subject to be found
-	 * @return the found Client
+	 * @return the found {@link Client}
 	 */
 	public Client findBySub(String sub) {
 		return get(sub);
 	}
 
 	/**
-	 * Creates a new Session that finds all Clients in the database
+	 * Creates a new session that finds all {@link Client}s in the database.
 	 *
-	 * @return list of all Clients
+	 * @return {@link List} of all found {@link Client}s
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Client> findAll() {
@@ -82,9 +84,10 @@ public class ClientDAO extends AbstractDAO<Client> {
 	}
 
 	/**
-	 * Creates a new Session that finds all subscribed Clients in the database based
+	 * Creates a new session that finds all subscribed {@link Client}s in the
+	 * database.
 	 *
-	 * @return list of all found Clients
+	 * @return {@link List} of all found {@link Client}s
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Client> findAllSubscribed() {
@@ -92,9 +95,9 @@ public class ClientDAO extends AbstractDAO<Client> {
 	}
 
 	/**
-	 * Removes a given Client from the current Session
+	 * Removes a given {@link Client} from the current session.
 	 *
-	 * @param client Client to be removed
+	 * @param client {@link Client} to be removed
 	 */
 	public void delete(Client client) {
 		currentSession().delete(client);

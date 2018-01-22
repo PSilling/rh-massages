@@ -53,34 +53,31 @@ import net.rh.massages.health.MassagesHealthCheck;
 import net.rh.massages.resources.ClientResource;
 import net.rh.massages.resources.FacilityResource;
 import net.rh.massages.resources.LogoutResource;
-import net.rh.massages.resources.MassageAuthResource;
 import net.rh.massages.resources.MassageResource;
 
 /**
- * MassagesApplication main class of the project
+ * The main class of the Dropwizard application. For more information visit
+ * Dropwizard documentation.
  *
  * @author psilling
  * @since 1.0.0
  */
-
 public class MassagesApplication extends Application<MassagesConfiguration> {
 
 	public static final String NAME = "Red Hat Massages"; // current application name
 
 	/**
-	 * Main method of the application
+	 * Main method of the application.
 	 *
-	 * @param args
-	 * @throws Exception
+	 * @param args application arguments
+	 * @throws Exception generic exception
 	 */
 	public static void main(final String[] args) throws Exception {
 		new MassagesApplication().run(args);
 	}
 
 	/**
-	 * Returns the application name
-	 *
-	 * @return current application name
+	 * @return the name given to the application
 	 */
 	@Override
 	public String getName() {
@@ -88,9 +85,10 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	}
 
 	/**
-	 * Hibernate bundle used by the application
+	 * Hibernate bundle used by the application.
 	 */
 	private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
+			// Add our representation classes
 			Facility.class, Massage.class, Client.class) {
 
 		@Override
@@ -100,19 +98,23 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	};
 
 	/**
-	 * Initializes the Bootstrap bundle
+	 * Initializes the Bootstrap bundle.
 	 *
-	 * @param bootstrap the bundle
+	 * @param bootstrap Bootstrap bundle with application configuration
 	 */
 	@Override
 	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
+		// Add Hibernate
 		bootstrap.addBundle(HIBERNATE);
 
+		// Add client asset files
 		bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
 
+		// Enable environmental variables
 		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
 				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
 
+		// Add Migrations bundle
 		bootstrap.addBundle(new MigrationsBundle<MassagesConfiguration>() {
 
 			@Override
@@ -121,6 +123,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 			}
 		});
 
+		// Add Keycloak implementation
 		bootstrap.addBundle(new KeycloakBundle<MassagesConfiguration>() {
 
 			@Override
@@ -133,11 +136,13 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 				return User.class;
 			}
 
+			@SuppressWarnings("rawtypes")
 			@Override
 			protected Authorizer createAuthorizer() {
 				return new UserAuthorizer();
 			}
 
+			@SuppressWarnings("rawtypes")
 			@Override
 			protected Authenticator createAuthenticator(KeycloakConfiguration configuration) {
 				return new KeycloakAuthenticator(configuration);
@@ -146,10 +151,10 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 	}
 
 	/**
-	 * The application's run method
+	 * The application's run method.
 	 *
 	 * @param configuration configuration of the application
-	 * @param environment jersey environment of the application
+	 * @param environment Jersey environment of the application
 	 */
 	@Override
 	public void run(final MassagesConfiguration configuration, final Environment environment) {
@@ -163,7 +168,6 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 
 		environment.jersey().register(new FacilityResource(facilityDao, massageDao, clientDao));
 		environment.jersey().register(new MassageResource(massageDao, clientDao, mailClient));
-		environment.jersey().register(new MassageAuthResource(massageDao, clientDao, mailClient));
 		environment.jersey().register(new ClientResource(clientDao));
 		environment.jersey().register(new LogoutResource());
 

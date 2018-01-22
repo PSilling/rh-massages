@@ -29,12 +29,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 
 /**
- * Client client representation class
+ * Client representation class.
  *
  * @author psilling
  * @since 1.2.1
  */
-
 @Entity
 @Table(name = "Clients")
 @NamedQueries({
@@ -43,32 +42,40 @@ import org.hibernate.validator.constraints.Email;
 public class Client {
 
 	@Id
-	@Column(name = "sub", unique = true)
+	@Column(name = "sub", unique = true, length = 64)
 	@NotNull
 	private String sub; // subject of the Client
 
 	@Email
+	@Column(length = 64)
 	@NotNull
 	private String email; // email of the Client
 
+	@Column(length = 64)
 	@NotNull
 	private String name; // name of the Client
 
+	@Column(length = 64)
 	@NotNull
 	private String surname; // surname of the Client
 
 	@NotNull
 	private boolean subscribed; // whether the Client is subscribed to server messaging
 
+	/**
+	 * Constructor.
+	 */
 	public Client() {
 	}
 
 	/**
-	 * @param sub new Client sub
-	 * @param email new Client email
-	 * @param name new Client name
-	 * @param surname new Client surname
-	 * @param subscribed whether new Client is subscribed
+	 * Constructor.
+	 *
+	 * @param sub subject of the Client
+	 * @param email email of the Client
+	 * @param name name of the Client
+	 * @param surname surname of the Client
+	 * @param subscribed whether the Client is subscribed to server messaging
 	 */
 	public Client(String sub, String email, String name, String surname, boolean subscribed) {
 		this.sub = sub;
@@ -79,70 +86,70 @@ public class Client {
 	}
 
 	/**
-	 * @return current value of Client subject
+	 * @return current value of {@link Client} subject
 	 */
 	public String getSub() {
 		return sub;
 	}
 
 	/**
-	 * @param sub new Client subject to be set
+	 * @param sub new {@link Client} subject to be set
 	 */
 	public void setSub(String sub) {
 		this.sub = sub;
 	}
 
 	/**
-	 * @return current value of Client email
+	 * @return current value of {@link Client} email
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * @param email new Client email to be set
+	 * @param email new {@link Client} email to be set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * @return current value of Client name
+	 * @return current value of {@link Client} name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param name new Client name to be set
+	 * @param name new {@link Client} name to be set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return current value of Client surname
+	 * @return current value of {@link Client} surname
 	 */
 	public String getSurname() {
 		return surname;
 	}
 
 	/**
-	 * @param surname new Client surname to be set
+	 * @param surname new {@link Client} surname to be set
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
 	/**
-	 * @return current value of Client subscription
+	 * @return current value of {@link Client} subscription
 	 */
 	public boolean isSubscribed() {
 		return subscribed;
 	}
 
 	/**
-	 * @param subscribed new Client subscribed value to be set
+	 * @param subscribed new {@link Client} subscribed value to be set
 	 */
 	public void setSubscribed(boolean subscribed) {
 		this.subscribed = subscribed;
@@ -151,14 +158,15 @@ public class Client {
 	/**
 	 * Creates a new contact info String from name, surname and email.
 	 *
-	 * @return Client contact information
+	 * @return {@link Client} contact information
 	 */
 	public String createContact() {
 		return (name + " " + surname + " (" + email + ")");
 	}
 
 	/**
-	 * Hashes the Client based on sub, email, name, surname and subscription
+	 * Hashes the {@link Client} based on sub, email, name, surname and
+	 * subscription.
 	 */
 	@Override
 	public int hashCode() {
@@ -181,8 +189,8 @@ public class Client {
 	}
 
 	/**
-	 * @return Client converted to a String with format Client[subject, name,
-	 *         surname, email, subscribed]
+	 * @return {@link Client} converted to a String with format Client[subject,
+	 *         name, surname, email, subscribed]
 	 */
 	@Override
 	public String toString() {
