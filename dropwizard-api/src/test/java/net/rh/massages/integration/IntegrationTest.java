@@ -19,7 +19,6 @@ package net.rh.massages.integration;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.GenericType;
 
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -45,16 +44,6 @@ public class IntegrationTest {
 	@ClassRule
 	public static final DropwizardAppRule<MassagesConfiguration> RULE = new DropwizardAppRule<>(
 			MassagesApplication.class, ResourceHelpers.resourceFilePath("config-test.yml"));
-
-	/**
-	 * Prepares our testing database by migrating the test configuration file.
-	 *
-	 * @throws Exception when application run fails
-	 */
-	@BeforeClass
-	public static void migrateDb() throws Exception {
-		RULE.getApplication().run("db", "migrate", ResourceHelpers.resourceFilePath("config-test.yml"));
-	}
 
 	/**
 	 * Tests whether {@link LogoutResource} endpoint requires authentication.

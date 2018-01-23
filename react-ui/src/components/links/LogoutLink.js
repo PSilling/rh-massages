@@ -7,7 +7,7 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Link that redirects to Keycloak logout and the application after backend logout.
+ * Link that redirects to Keycloak logout and the application after server logout.
  */
 class LogoutLink extends Component {
 

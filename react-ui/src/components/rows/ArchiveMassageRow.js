@@ -13,7 +13,7 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Custom table row for archived Massages.
+ * Massage information row for Massages Archive view.
  */
 class ArchiveMassageRow extends Component {
 
@@ -52,9 +52,12 @@ class ArchiveMassageRow extends Component {
 }
 
 ArchiveMassageRow.propTypes = {
-  massage: PropTypes.object.isRequired, // the Massage for this row
-  search: PropTypes.string, // search string to be highlighted
-  onDelete: PropTypes.func.isRequired // function called on Massage delete
+  /** the Massage for this row */
+  massage: PropTypes.object.isRequired,
+  /** search string to be highlighted */
+  search: PropTypes.string,
+  /** function called on Massage delete */
+  onDelete: PropTypes.func.isRequired
 };
 
 export default ArchiveMassageRow

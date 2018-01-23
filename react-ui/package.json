@@ -1,6 +1,6 @@
 {
   "name": "react-ui",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "homepage": ".",
   "private": true,
   "dependencies": {
@@ -16,10 +16,14 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10"
   },
+  "devDependencies": {
+    "react-doc-generator": "^1.2.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docgen": "react-doc-generator ./src -o ./docs/README.md -i util,test -e index.js,registerServiceWorker.js"
   }
 }

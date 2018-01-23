@@ -9,7 +9,8 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 import _t from '../../util/Translations';
 
 /**
- * Custom cancel button component.
+ * A button used for Massage cancellation. Contains a ConfirmationModal to confirm
+ * the action.
  */
 class CancelButton extends Component {
 
@@ -42,8 +43,10 @@ class CancelButton extends Component {
 }
 
 CancelButton.propTypes = {
-  onCancel: PropTypes.func.isRequired, // function to be called on action confirmation
-  disabled: PropTypes.bool // whether the button should be disabled
+  /** function to be called on action confirmation */
+  onCancel: PropTypes.func.isRequired,
+  /** whether the button should be disabled */
+  disabled: PropTypes.bool
 };
 
 CancelButton.defaultProps = {

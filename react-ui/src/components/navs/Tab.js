@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Custom tab component.
+ * Single labeled Tab component used in navigation tabbing.
  */
 class Tab extends Component {
 
@@ -29,9 +29,12 @@ class Tab extends Component {
 }
 
 Tab.propTypes = {
-  active: PropTypes.bool, // whether the tab is the active one
-  label: PropTypes.string, // tab title
-  onClick: PropTypes.func // function called on tab click
+  /** whether the tab is the active one */
+  active: PropTypes.bool,
+  /** tab title label */
+  label: PropTypes.string,
+  /** function called on tab click */
+  onClick: PropTypes.func
 };
 
 Tab.defaultProps = {

@@ -9,7 +9,8 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 import _t from '../../util/Translations';
 
 /**
- * Custom delete button component.
+ * Icon only button used for element deletion. Contains a ConfirmationModal to confirm
+ * the action.
  */
 class DeleteButton extends Component {
 
@@ -42,7 +43,8 @@ class DeleteButton extends Component {
 }
 
 DeleteButton.propTypes = {
-  onDelete: PropTypes.func.isRequired, // function to be called on button click
+  /** function to be called on button click */
+  onDelete: PropTypes.func.isRequired
 };
 
 export default DeleteButton

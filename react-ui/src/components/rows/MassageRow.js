@@ -19,7 +19,7 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Custom table row for Massages
+ * Massage information row for Massages view.
  */
 class MassageRow extends Component {
 
@@ -87,16 +87,26 @@ class MassageRow extends Component {
 }
 
 MassageRow.propTypes = {
-  massage: PropTypes.object.isRequired, // the Massage for this row
-  assignDisabled: PropTypes.bool, // whether assingment button should be disabled
-  checked: PropTypes.bool, // whether the checkbox is checked
-  search: PropTypes.string, // search string to be highlighted
-  onCheck: PropTypes.func.isRequired, // function called on checkbox value change
-  onAssign: PropTypes.func.isRequired, // function called on Massage assignment
-  onEventAssign: PropTypes.func.isRequired, // function called on Massage assignment with calendar event
-  onCancel: PropTypes.func.isRequired, // function called on Massage cancellation
-  onEdit: PropTypes.func.isRequired, // function called on Massage edit
-  onDelete: PropTypes.func.isRequired // function called on Massage delete
+  /** the Massage for this row */
+  massage: PropTypes.object.isRequired,
+  /** whether assingment button should be disabled */
+  assignDisabled: PropTypes.bool,
+  /** whether the checkbox is checked */
+  checked: PropTypes.bool,
+  /** search string to be highlighted */
+  search: PropTypes.string,
+  /** function called on checkbox value change */
+  onCheck: PropTypes.func.isRequired,
+  /** function called on Massage assignment */
+  onAssign: PropTypes.func.isRequired,
+  /** function called on Massage assignment with calendar event */
+  onEventAssign: PropTypes.func.isRequired,
+  /** function called on Massage cancellation */
+  onCancel: PropTypes.func.isRequired,
+  /** function called on Massage edit */
+  onEdit: PropTypes.func.isRequired,
+  /** function called on Massage delete */
+  onDelete: PropTypes.func.isRequired
 };
 
 export default MassageRow

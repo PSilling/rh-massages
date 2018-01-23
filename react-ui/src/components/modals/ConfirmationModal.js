@@ -13,7 +13,7 @@ import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import _t from '../../util/Translations';
 
 /**
- * Custom confirmation modal component.
+ * Modal with a simple action confirmation message and ModalActions.
  */
 class ConfirmationModal extends Component {
 
@@ -43,9 +43,12 @@ class ConfirmationModal extends Component {
 }
 
 ConfirmationModal.propTypes = {
-  message: PropTypes.string.isRequired, // message in the Modal
-  onConfirm: PropTypes.func.isRequired, // callback function triggered on primary button click
-  onClose: PropTypes.func.isRequired, // callback function triggered on Modal closure
+  /** message in the Modal */
+  message: PropTypes.string.isRequired,
+  /** callback function triggered on primary button click */
+  onConfirm: PropTypes.func.isRequired,
+  /** callback function triggered on Modal close */
+  onClose: PropTypes.func.isRequired
 };
 
 export default ConfirmationModal

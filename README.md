@@ -9,13 +9,15 @@ Red Hat massages management site.
 ## Starting the application
 
 1. Run `mvn clean install` to build your application
-1. Populate DB schema with `java -jar target/Massages-1.2.2-SNAPSHOT.jar db config config.yml`
-1. Start the server application with `java -jar target/Massages-1.2.2-SNAPSHOT.jar server config.yml`
+1. Populate DB schema with `java -jar target/Massages-<VERSION>-SNAPSHOT.jar db config config.yml`
+1. Start the server application with `java -jar target/Massages-<VERSION>-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter `http://localhost:8080`
+
+Replace `<VERSION>` with the version of your build.
 
 ## Environmental variables
 
-The application supports these environmental variables for its database:
+The application supports these environmental variables for the database:
 
 | VARIABLE        | MEANING                       | DEFAULT VALUE                             |
 | --------------- |------------------------------ | ----------------------------------------- |
@@ -23,7 +25,16 @@ The application supports these environmental variables for its database:
 | RM_DB_PASSWORD  | Database password             | postgres                                  |
 | RM_DB_URL       | Database address              | jdbc:postgresql://localhost:5432/postgres |
 
-The application supports these environmental variables for its SMTP server:
+The application supports these environmental variables for server Keycloak configuration:
+
+| VARIABLE        | MEANING                       | DEFAULT VALUE                             |
+| --------------- |------------------------------ | ----------------------------------------- |
+| KC_REALM        | Keycloak realm name           | massages                                  |
+| KC_SERVER       | Keycloak server URL           | http://localhost:9090/auth                |
+| KC_RESOURCE     | Application resource name     | api-client                                |
+| KC_SECRET       | Keycloak secret               | b4a1ee69-6441-49a0-b653-e2875234c0ef      |
+
+The application supports these environmental variables for the SMTP server:
 
 | VARIABLE        | MEANING                       | DEFAULT VALUE                             |
 | --------------- |------------------------------ | ----------------------------------------- |
@@ -37,20 +48,15 @@ The application supports these environmental variables for its SMTP server:
 
 ## Keycloak setup
 
-The application requires this Keycloak setup to work properly:
+The application requires Keycloak server to be configured. For configuration you can use environmental variables (see above).
+Keycloak server client should connect to the server and should be set as `bearer-only`.
+Keycloak client client should connect to the UI and should be `public` with server URL (`http://localhost:8080/*`) `Redirect URI` mapping.
+Example Keycloak setup (uses defualt values) can be found [here](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-export.json).
 
-| ITEM            | VALUE                   |
-| --------------- |-------------------------|
-| Port            | 9090                    |
-| Realm           | Massages                |
-| Realm roles     | admin, user             |
-| Realm clients   | api-client, ui-client   |
-
-Client `api-client` should connect to the server (correct secret (variable `KC_CONFIG_SECRET`) needs to be suplied) and should be set as `bearer-only`.
-Client `ui-client` should connect to the ui and should be set as `public` with `http://localhost:8080/*` as its `Redirect URI`.
-Example Keycloak setup can be found [here](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-export.json).
+The client then requires a `keycloak.json` configuration file to be supplied in `react-ui/public` folder.
+Example client configuration file can be found [here](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-config.json). The file can also be extracted directly from Keycloak.
 
 ## Docker
 
-The application can be easily started using Docker with its [Dockerfile](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/Dockerfile).
+The application can be easily started using Docker using its [Dockerfile](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/Dockerfile).
 The container needs to be connected to a database to be usable, however.

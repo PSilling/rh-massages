@@ -9,7 +9,8 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 import _t from '../../util/Translations';
 
 /**
- * Custom assignment button component.
+ * A button used for Massage assignment. Contains a ConfirmationModal to confirm
+ * the assignment.
  */
 class AssignButton extends Component {
 
@@ -44,8 +45,10 @@ class AssignButton extends Component {
 }
 
 AssignButton.propTypes = {
-  onAssign: PropTypes.func.isRequired, // function to be called on button click
-  disabled: PropTypes.bool // whether the button should be disabled
+  /** function to be called on button click */
+  onAssign: PropTypes.func.isRequired,
+  /** whether the button should be disabled */
+  disabled: PropTypes.bool
 };
 
 AssignButton.defaultProps = {

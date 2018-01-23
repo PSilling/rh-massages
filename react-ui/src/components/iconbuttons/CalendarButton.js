@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Custom button component that handles event addition to Google Calendar.
+ * Icon only button that handles event addition to Google Calendar.
  */
 class CalendarButton extends Component {
 
@@ -23,8 +23,10 @@ class CalendarButton extends Component {
 }
 
 CalendarButton.propTypes = {
-  onAdd: PropTypes.func.isRequired, // function to be called on action confirmation
-  disabled: PropTypes.bool // whether the button should be disabled
+  /** function to be called on action confirmation */
+  onAdd: PropTypes.func.isRequired,
+  /** whether the button should be disabled */
+  disabled: PropTypes.bool
 };
 
 CalendarButton.defaultProps = {

@@ -6,3 +6,7 @@ Profile `mvn clean package -Pswagger` can then be run to rescan the JAX-RS resou
 # Keycloak example export
 
 You can import exemplary Keycloak settings (realm, clients and also roles) with [keycloak-export.json](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-export.json).
+
+# Keycloak example client configuration
+
+You can use [this](https://github.com/PSilling/rh-massages/blob/master/dropwizard-api/docs/keycloak-config.json) exemplary Keycloak client configuration.

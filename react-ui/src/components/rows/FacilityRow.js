@@ -7,7 +7,7 @@ import DeleteButton from '../iconbuttons/DeleteButton';
 import EditButton from '../iconbuttons/EditButton';
 
 /**
- * Custom table row for a facility.
+ * Facility information row for Facilities view.
  */
 class FacilityRow extends Component {
 
@@ -34,9 +34,12 @@ class FacilityRow extends Component {
 }
 
 FacilityRow.propTypes = {
-  facility: PropTypes.object.isRequired, // the facility for this row
-  onEdit: PropTypes.func.isRequired, // function called on Facility edit
-  onDelete: PropTypes.func.isRequired, // function called on Facility delete
+  /** the facility for this row */
+  facility: PropTypes.object.isRequired,
+  /** function called on Facility edit */
+  onEdit: PropTypes.func.isRequired,
+  /** function called on Facility delete */
+  onDelete: PropTypes.func.isRequired
 }
 
 export default FacilityRow

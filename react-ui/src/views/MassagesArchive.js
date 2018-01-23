@@ -18,9 +18,10 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Old massages table.
+ * Main view table component for Massage Archive management. Viewable only for administators.
+ * For archived Massages only their removal is supported.
  */
-class ArchiveList extends Component {
+class MassagesArchive extends Component {
 
   state = {massages: [], index: 0, page: 1, search: "", freeOnly: false, loading: true,
             from: moment().subtract(1, 'years').format("YYYY-MM-DD"),
@@ -56,6 +57,9 @@ class ArchiveList extends Component {
     Util.delete(Util.MASSAGES_URL + "?ids=" + id, this.getMassages);
   }
 
+  /**
+   * Removes all old Massages from the server.
+   */
   deleteAllMassages = () => {
     Util.get(Util.MASSAGES_URL
       + "old?search=" + this.state.search
@@ -172,11 +176,5 @@ class ArchiveList extends Component {
     );
   }
 }
-
-const MassagesArchive = () => (
-  <div>
-    <ArchiveList />
-  </div>
-);
 
 export default MassagesArchive

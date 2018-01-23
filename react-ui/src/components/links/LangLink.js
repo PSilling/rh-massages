@@ -5,16 +5,16 @@ import React, { Component } from 'react';
 import _t from '../../util/Translations';
 
 /**
- * Language changer.
+ * Link for language switching.
  */
 class LangLink extends Component {
 
   changeLanguage = () => {
-      var locale = localStorage.getItem("sh-locale") === 'en' ? 'cs' : 'en';
-      localStorage.setItem("sh-locale", locale);
-      _t.setLocale(locale);
-      window.location.reload();
-    }
+    var locale = localStorage.getItem("sh-locale") === 'en' ? 'cs' : 'en';
+    localStorage.setItem("sh-locale", locale);
+    _t.setLocale(locale);
+    window.location.reload();
+  }
 
   render() {
     return(

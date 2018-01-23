@@ -17,22 +17,23 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Custom modal for creating multiple Massages at once
+ * Input Modal for creating multiple rules of Massages at once.
  */
 class MassageBatchAddModal extends Component {
 
   state = {rules: [{
-              days: [],
-              weeks: "1",
-              masseuse: "",
-              startDate: moment().format("YYYY-MM-DD"),
-              startTime: "08:00",
-              massageDuration: "00:30",
-              massagesPerDay: "10",
-              normalPause: "00:10",
-              bigPause: "01:00",
-              bigPauseAfter: "5",
-            }], index: 0}
+            days: [],
+            weeks: "1",
+            masseuse: "",
+            startDate: moment().format("YYYY-MM-DD"),
+            startTime: "08:00",
+            massageDuration: "00:30",
+            massagesPerDay: "10",
+            normalPause: "00:10",
+            bigPause: "01:00",
+            bigPauseAfter: "5",
+          }], index: 0
+        }
 
   weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -164,6 +165,9 @@ class MassageBatchAddModal extends Component {
     return (parseInt(time.substring(0, 2) * 60, 10) + parseInt(time.substring(3, 5), 10));
   }
 
+  /**
+   * Calculates the date/ending based on day offset.
+   */
   getDate = (isEnding, index, day, count) => {
     var date = moment(this.state.rules[index].startDate).add(day, 'days').startOf('day'),
         startMinutes = this.getMinutes(this.state.rules[index].startTime),
@@ -180,7 +184,7 @@ class MassageBatchAddModal extends Component {
   }
 
   /**
-   * Handles the post request.
+   * Creates all Massages generated using the rules.
    */
   addMassages = () => {
     var postArray = [],
@@ -229,6 +233,10 @@ class MassageBatchAddModal extends Component {
     }
   }
 
+  /**
+   * Checks all rule values in the imported file. Any incorrectly supplied values
+   * are replaced by default rule values.
+   */
   handleImportedFile = (rules) => {
     if (!Array.isArray(rules) || rules.length === 0) {
         Util.notify("error", "", _t.translate("Invalid import file."));
@@ -280,6 +288,9 @@ class MassageBatchAddModal extends Component {
     return rules;
   }
 
+  /**
+   * Create a FileReader to read a given file to import rules.
+   */
   importRules = (event) => {
     if (typeof window.FileReader !== 'function') {
         Util.notify("error", "", _t.translate("FileReader API isn't supported by your browser."));
@@ -299,6 +310,10 @@ class MassageBatchAddModal extends Component {
     fileReader.readAsText(event.target.files[0]);
   }
 
+  /**
+   * Exports value of rules into massage_rules.json file for future importing.
+   * The file is automatically downloaded.
+   */
   exportRules = () => {
     var rulesJson = JSON.stringify(this.state.rules);
     var blob = new Blob([rulesJson], {type: "application/json"}),
@@ -496,11 +511,16 @@ class MassageBatchAddModal extends Component {
 }
 
 MassageBatchAddModal.propTypes = {
-  active: PropTypes.bool, // whether the dialog should be shown
-  facilityId: PropTypes.number.isRequired, // ID of the selected Facility
-  masseuses: PropTypes.arrayOf(PropTypes.string), // unique Massage masseuses of the given Facility
-  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
-  onToggle: PropTypes.func.isRequired // function called on modal toggle
+  /** whether the dialog should be shown */
+  active: PropTypes.bool,
+  /** ID of the selected Facility */
+  facilityId: PropTypes.number.isRequired,
+  /** unique Massage masseuses of the given Facility */
+  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** callback function for Massage list update */
+  getCallback: PropTypes.func.isRequired,
+  /** function called on modal toggle */
+  onToggle: PropTypes.func.isRequired
 };
 
 export default MassageBatchAddModal

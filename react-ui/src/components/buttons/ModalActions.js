@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Custom component rendering action buttons for modal footers.
+ * Footer buttons for Modal dialogs. Children components can be given to add more
+ * case specific elements.
  */
 class ModalActions extends Component {
 
@@ -28,10 +29,14 @@ class ModalActions extends Component {
 }
 
 ModalActions.propTypes = {
-  primaryLabel: PropTypes.string.isRequired, // primary button label
-  onProceed: PropTypes.func.isRequired, // callback function triggered on primary button click
-  onClose: PropTypes.func.isRequired, // callback function triggered on close button click
-  autoFocus: PropTypes.bool, // whether the primary button should be automatically focused
+  /** primary button label */
+  primaryLabel: PropTypes.string.isRequired,
+  /** callback function triggered on primary button click */
+  onProceed: PropTypes.func.isRequired,
+  /** callback function triggered on close button click */
+  onClose: PropTypes.func.isRequired,
+  /** whether the primary button should be automatically focused */
+  autoFocus: PropTypes.bool
 };
 
 ModalActions.defaultProps = {

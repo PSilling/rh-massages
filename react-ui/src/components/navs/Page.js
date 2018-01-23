@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Custom page component.
+ * A simgle number page for the Pager component.
  */
 class Page extends Component {
 
@@ -29,9 +29,12 @@ class Page extends Component {
 }
 
 Page.propTypes = {
-  active: PropTypes.bool, // whether the page is the active one
-  number: PropTypes.number, // page number
-  onClick: PropTypes.func // function called on page click
+  /** whether the page is the active one */
+  active: PropTypes.bool,
+  /** page number */
+  number: PropTypes.number,
+  /** function called on page click */
+  onClick: PropTypes.func
 };
 
 Page.defaultProps = {

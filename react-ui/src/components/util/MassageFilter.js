@@ -7,7 +7,8 @@ import Util from '../../util/Util';
 import _t from '../../util/Translations';
 
 /**
- * Custom Masssage filtering component (search input with status checkbox).
+ * Multiple Massage filtering elements (search field, from and to date inputs, free checkbox)
+ * used in Massage tables.
  */
 class MassageFilter extends Component {
 
@@ -56,14 +57,22 @@ class MassageFilter extends Component {
 }
 
 MassageFilter.propTypes = {
-  value: PropTypes.string, // current value of the search input
-  from: PropTypes.string, // current value of the from date input
-  to: PropTypes.string, // current value of the to date input
-  checked: PropTypes.bool, // whether the free Massages only checkbox should be checked
-  onCheck: PropTypes.func, // function called on free Massages only checkbox change
-  onFromChange: PropTypes.func, // function called on from date value change
-  onToChange: PropTypes.func, // function called on to date value change
-  onSearchChange: PropTypes.func // function called on search value change
+  /** current value of the search input */
+  value: PropTypes.string,
+  /** current value of the from date input */
+  from: PropTypes.string,
+  /** current value of the to date input */
+  to: PropTypes.string,
+  /** whether the free Massages only checkbox should be checked */
+  checked: PropTypes.bool,
+  /** function called on free Massages only checkbox change */
+  onCheck: PropTypes.func,
+  /** function called on from date value change */
+  onFromChange: PropTypes.func,
+  /** function called on to date value change */
+  onToChange: PropTypes.func,
+  /** function called on search value change */
+  onSearchChange: PropTypes.func
 };
 
 export default MassageFilter

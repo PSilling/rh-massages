@@ -23,9 +23,10 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Tabbed facilities with their massage lists.
+ * Main view table component for Massage management. Normal users can only view,
+ * assign and cancel Massages. Supports batch CRUD operations.
  */
-class FacilitiesTabs extends Component {
+class Massages extends Component {
 
   state = {facilities: [], massages: [], masseuses: [], selected: [], index: 0, page: 1,
             editId: -1, massageMinutes: 0, loading: true,  modalActive: false,
@@ -92,7 +93,8 @@ class FacilitiesTabs extends Component {
   }
 
   assignMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + "?ids=" + massage.id, [{
+    Util.put(Util.MASSAGES_URL, [{
+      id: massage.id,
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
@@ -102,7 +104,8 @@ class FacilitiesTabs extends Component {
   }
 
   assignMassageWithEvent = (massage) => {
-    Util.put(Util.MASSAGES_URL + "?ids=" + massage.id, [{
+    Util.put(Util.MASSAGES_URL, [{
+      id: massage.id,
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
@@ -115,7 +118,8 @@ class FacilitiesTabs extends Component {
   }
 
   cancelMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL + "?ids=" + massage.id, [{
+    Util.put(Util.MASSAGES_URL, [{
+      id: massage.id,
       date: massage.date,
       ending: massage.ending,
       masseuse: massage.masseuse,
@@ -142,6 +146,9 @@ class FacilitiesTabs extends Component {
     });
   }
 
+  /**
+   * Searches an array for a given item ID.
+   */
   findInArrayById = (array, id) => {
     for (var i = 0; i < array.length; i++) {
       if (array[i].id === id) {
@@ -368,11 +375,5 @@ class FacilitiesTabs extends Component {
     );
   }
 }
-
-const Massages = () => (
-  <div>
-    <FacilitiesTabs />
-  </div>
-);
 
 export default Massages

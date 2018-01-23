@@ -13,9 +13,9 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Management table of fetched Facilities.
+ * Main view table component for Facility management. Viewable only for administators.
  */
-class FacilitiesTable extends Component {
+class Facilities extends Component {
 
   state = {facilities: [], modalActive: false, editId: -1, loading: true}
 
@@ -91,11 +91,5 @@ class FacilitiesTable extends Component {
     );
   }
 }
-
-const Facilities = () => (
-  <div>
-    <FacilitiesTable />
-  </div>
-);
 
 export default Facilities

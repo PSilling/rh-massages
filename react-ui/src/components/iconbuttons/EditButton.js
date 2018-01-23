@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Custom edit button component.
+ * Icon only button used for element editation.
  */
 class EditButton extends Component {
 
@@ -23,7 +23,8 @@ class EditButton extends Component {
 }
 
 EditButton.propTypes = {
-  onEdit: PropTypes.func.isRequired // function to be called on button click
+  /** function to be called on button click */
+  onEdit: PropTypes.func.isRequired
 };
 
 export default EditButton

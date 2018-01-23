@@ -15,9 +15,10 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Panel list of all assigned massages sorted by timestamps.
+ * Main view component for My Massages management. Uses Massage information panels
+ * for better user experience.
  */
-class MassagesList extends Component {
+class MyMassages extends Component {
 
   state = {massages: [], checked: false, loading: true}
 
@@ -50,6 +51,9 @@ class MassagesList extends Component {
     });
   }
 
+  /**
+   * Generates MyMassagePanels with their time information.
+   */
   createPanels = () => {
     var panels = [],
         i = 0,
@@ -105,11 +109,5 @@ class MassagesList extends Component {
     );
   }
 }
-
-const MyMassages = () => (
-  <div>
-    <MassagesList />
-  </div>
-);
 
 export default MyMassages

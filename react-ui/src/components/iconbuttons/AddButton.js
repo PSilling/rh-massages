@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Custom add button component.
+ * Icon only button used for element addition.
  */
 class AddButton extends Component {
 
@@ -23,7 +23,8 @@ class AddButton extends Component {
 }
 
 AddButton.propTypes = {
-  onAdd: PropTypes.func.isRequired // function to be called on button click
+  /** function to be called on button click */
+  onAdd: PropTypes.func.isRequired
 };
 
 export default AddButton

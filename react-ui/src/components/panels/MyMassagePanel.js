@@ -14,7 +14,7 @@ import Util from '../../util/Util';
 import _t from '../../util/Translations';
 
 /**
- * Custom panel component that contains Massage information.
+ * Massage information panel for My Massages view.
  */
 class MassagePanel extends Component {
 
@@ -33,7 +33,8 @@ class MassagePanel extends Component {
   }
 
   cancelMassage = () => {
-    Util.put(Util.MASSAGES_URL + "?ids=" + this.props.massage.id, [{
+    Util.put(Util.MASSAGES_URL, [{
+      id: this.props.massage.id,
       date: this.props.massage.date,
       ending: this.props.massage.ending,
       masseuse: this.props.massage.masseuse,
@@ -89,10 +90,14 @@ class MassagePanel extends Component {
 }
 
 MassagePanel.propTypes = {
-  type: PropTypes.string.isRequired, // type of the Bootstrap panel
-  massage: PropTypes.object.isRequired, // Massage to be printed inside the panel
-  getCallback: PropTypes.func, // update callback function called on Massage cancellation
-  disabled: PropTypes.bool // whether the removal button should be hidden or not
+  /** type of the Bootstrap panel */
+  type: PropTypes.string.isRequired,
+  /** Massage to be printed inside the panel */
+  massage: PropTypes.object.isRequired,
+  /** update callback function called on Massage cancellation */
+  getCallback: PropTypes.func,
+  /** whether the removal button should be hidden or not */
+  disabled: PropTypes.bool
 };
 
 MassagePanel.defaultProps = {

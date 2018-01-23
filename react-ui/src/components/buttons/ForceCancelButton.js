@@ -9,7 +9,8 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 import _t from '../../util/Translations';
 
 /**
- * Custom cancel button component for brute force cancel (canceling of an assigned massage).
+ * A button used for administrator forced Massage cancellation. Contains a ConfirmationModal
+ * to confirm the action.
  */
 class ForceCancelButton extends Component {
 
@@ -41,7 +42,8 @@ class ForceCancelButton extends Component {
 }
 
 ForceCancelButton.propTypes = {
-  onCancel: PropTypes.func.isRequired // function to be called on button click
+  /** function to be called on button click */
+  onCancel: PropTypes.func.isRequired
 };
 
 export default ForceCancelButton

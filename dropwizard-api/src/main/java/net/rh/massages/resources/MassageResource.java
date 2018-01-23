@@ -125,11 +125,10 @@ public class MassageResource {
 			// only if is has no Client.
 			List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
 
-			for (int i = 0; i < daoMassages.size(); i++) {
-				if (massage.datesCollide(daoMassages.get(i))) {
-					if (daoMassages.get(i).getClient() == null) {
-						massageDao.delete(daoMassages.get(i));
-						i--;
+			for (Massage daoMassage : daoMassages) {
+				if (massage.datesCollide(daoMassage)) {
+					if (daoMassage.getClient() == null) {
+						massageDao.delete(daoMassage);
 					} else {
 						response = Response.noContent().build();
 						continue;
@@ -162,10 +161,10 @@ public class MassageResource {
 	}
 
 	/**
-	 * Updates {@link Massage}s in a {@link List} given by IDs to a new value.
+	 * Updates {@link Massage}s in a {@link List}. Supplying ID in {@link Massage}s
+	 * is necessary.
 	 *
 	 * @param massages {@link List} of updated Massages
-	 * @param ids {@link List} of {@link Massage} IDs
 	 * @exception WebApplicationException if any of the IDs could not be found or
 	 *                when normal {@link User} tries to change a {@link Massage}
 	 *                that isn't assigned to him, change the {@link Massage} itself
@@ -177,8 +176,7 @@ public class MassageResource {
 	@PUT
 	@PermitAll
 	@UnitOfWork
-	public Response update(@NotNull @Valid List<Massage> massages, @NotNull @QueryParam("ids") List<Integer> ids,
-			@Auth User user) {
+	public Response update(@NotNull @Valid List<Massage> massages, @Auth User user) {
 		Response response = null;
 		boolean throwForbidden = false;
 		boolean throwNotFound = false;
@@ -188,16 +186,13 @@ public class MassageResource {
 			throw new WebApplicationException(Status.FORBIDDEN);
 		}
 
-		for (int i = 0; i < ids.size(); i++) {
-			Massage daoMassage = massageDao.findById(Long.valueOf(ids.get(i)));
-			Massage massage = massages.get(i);
+		for (Massage massage : massages) {
+			Massage daoMassage = massageDao.findById(massage.getId());
 
 			if (daoMassage == null) {
 				throwNotFound = true;
 				continue;
 			}
-
-			massage.setId(Long.valueOf(ids.get(i)));
 
 			// Forbid normal Users to edit anything other than the Client and even then the
 			// Client has to be the User himself or a null when it was himself. Normal User

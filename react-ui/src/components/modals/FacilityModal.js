@@ -15,15 +15,13 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Modal dialog for Facility management
+ * Input Modal for Facility management. Allows the change of Facility name.
+ * Based on given values can be used for both creating and editing of Facilities.
  */
 class FacilityModal extends Component {
 
   state = {name: ""}
 
-  /**
-   * Sets default input values on props change.
-   */
   componentWillReceiveProps(nextProps) {
     if (this.props === nextProps) return;
 
@@ -36,9 +34,6 @@ class FacilityModal extends Component {
     this.setState({name: event.target.value});
   }
 
-  /**
-   * Handles the post request.
-   */
   addFacility = () => {
     if (Util.isEmpty(this.state.name)) {
       Util.notify("error", "", _t.translate('Name is required!'));
@@ -52,9 +47,6 @@ class FacilityModal extends Component {
     });
   }
 
-  /**
-   * Handles the put request.
-   */
   editFacility = () => {
     if (Util.isEmpty(this.state.name)) {
       Util.notify("error", "", _t.translate('Name is required!'));
@@ -135,10 +127,14 @@ class FacilityModal extends Component {
 }
 
 FacilityModal.propTypes = {
-  active: PropTypes.bool.isRequired, // whether the dialog should be shown
-  facility: PropTypes.object, // Facility to be possibly edited or null when adding
-  getCallback: PropTypes.func.isRequired, // callback function for Facility list update
-  onToggle: PropTypes.func.isRequired // function called on modal toggle
+  /** whether the dialog should be shown */
+  active: PropTypes.bool.isRequired,
+  /** Facility to be possibly edited or null when adding */
+  facility: PropTypes.object,
+  /** callback function for Facility list update */
+  getCallback: PropTypes.func.isRequired,
+  /** function called on modal toggle */
+  onToggle: PropTypes.func.isRequired
 }
 
 export default FacilityModal

@@ -9,6 +9,8 @@ import Auth from './util/Auth';
 Auth.keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function (authenticated) {
   if (authenticated) {
       console.log('[KEYCLOAK] Authentication has been successful!');
+
+      // Render the application itself.
       ReactDOM.render(<App />, document.getElementById('root'));
       registerServiceWorker();
   } else {

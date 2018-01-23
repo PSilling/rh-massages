@@ -15,13 +15,14 @@ import moment from 'moment';
 import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
+/**
+ * Input Modal for Massage management. Allows the change of Massage date, duration and masseuse.
+ * Based on given values can be used for both creating and editing of Massages.
+ */
 class MassageModal extends Component {
 
   state = {date: moment().add(1, 'hours').format("YYYY-MM-DDTHH:mm"), time: "00:30", masseuse: ""}
 
-  /**
-   * Sets default input values on props change.
-   */
   componentWillReceiveProps(nextProps) {
     if (this.props === nextProps) return;
 
@@ -66,9 +67,6 @@ class MassageModal extends Component {
     return moment(date).add(minutes, 'minutes').toDate();
   }
 
-  /**
-   * Handles the post request.
-   */
   addMassage = () => {
     if (Util.isEmpty(this.state.masseuse)) {
       Util.notify("error", "", _t.translate('Masseuse is required!'));
@@ -87,16 +85,14 @@ class MassageModal extends Component {
     });
   }
 
-  /**
-   * Handles the put request.
-   */
   editMassage = () => {
     if (Util.isEmpty(this.state.masseuse)) {
       Util.notify("error", "", _t.translate('Masseuse is required!'));
       return;
     }
     var date = this.getStartingDate();
-    Util.put(Util.MASSAGES_URL + "?ids=" + this.props.massage.id, [{
+    Util.put(Util.MASSAGES_URL, [{
+      id: this.props.massage.id,
       date: moment(date).toDate(),
       ending: this.getEndingDate(date),
       masseuse: this.state.masseuse,
@@ -207,12 +203,18 @@ class MassageModal extends Component {
 }
 
 MassageModal.propTypes = {
-  active: PropTypes.bool.isRequired, // whether the dialog should be shown
-  massage: PropTypes.object, // Massage to be possibly edited or null when adding
-  facilityId: PropTypes.number, // ID of the selected Facility
-  masseuses: PropTypes.arrayOf(PropTypes.string), // unique Massage masseuses of the given Facility
-  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
-  onToggle: PropTypes.func.isRequired // function called on modal toggle
+  /** whether the dialog should be shown */
+  active: PropTypes.bool.isRequired,
+  /** Massage to be possibly edited or null when adding */
+  massage: PropTypes.object,
+  /** ID of the selected Facility */
+  facilityId: PropTypes.number,
+  /** unique Massage masseuses of the given Facility */
+  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** callback function for Massage list update */
+  getCallback: PropTypes.func.isRequired,
+  /** function called on modal toggle */
+  onToggle: PropTypes.func.isRequired
 }
 
 export default MassageModal

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Custom button component with title.
+ * A default styled button component with a given label. Used primarily for
+ * batch operation buttons.
  */
 class BatchButton extends Component {
 
@@ -20,9 +21,12 @@ class BatchButton extends Component {
 }
 
 BatchButton.propTypes = {
-  onClick: PropTypes.func.isRequired, // function to be called on button click
-  label: PropTypes.string, // button label
-  disabled: PropTypes.bool // whether the button should be disabled
+  /** function to be called on button click */
+  onClick: PropTypes.func.isRequired,
+   /** button label */
+  label: PropTypes.string,
+  /** whether the button should be disabled */
+  disabled: PropTypes.bool
 };
 
 BatchButton.defaultProps = {

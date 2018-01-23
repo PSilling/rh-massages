@@ -1,22 +1,12 @@
 database:
-  # the name of your JDBC driver
   driverClass: org.postgresql.Driver
-
-  # the username
   user: ${RM_DB_USERNAME:-postgres}
-
-  # the password
   password: ${RM_DB_USERNAME:-postgres}
-
-  # the JDBC URL
   url: ${RM_DB_URL:-jdbc:postgresql://localhost:5432/postgres}
-  
-  # any properties specific to your JDBC driver:
   properties:
     charSet: UTF-8
+    hibernate.hbm2ddl.auto: validate
     hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-  
-  # the SQL query to run when validating a connection's liveness
   validationQuery: "SELECT 1"
 
 server:
@@ -29,13 +19,13 @@ server:
         port: 8081
 
 keycloakConfiguration:
-  realm: massages
-  auth-server-url: http://localhost:9090/auth
+  realm: ${KC_REALM:-massages}
+  auth-server-url: ${KC_SERVER:-http://localhost:9090/auth}
   ssl-required: none
-  resource: api-client
+  resource: ${KC_RESOURCE:-api-client}
   bearer-only: true
   credentials:
-    secret: ${KC_CONFIG_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
+    secret: ${KC_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
 
 smtpConfiguration:
   server: ${SMTP_SERVER:-localhost}

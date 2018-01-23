@@ -16,7 +16,7 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Custom modal for editing multiple Massages at once
+ * Input Modal for editing multiple rules of Massages at once.
  */
 class MassageBatchEditModal extends Component {
 
@@ -74,6 +74,9 @@ class MassageBatchEditModal extends Component {
     this.setState({time: event.target.value});
   }
 
+  /**
+   * Get date value based on a given offset and state time.
+   */
   getDate = (date) => {
     var minutes = parseInt(this.state.days, 10) * 1440 + parseInt(this.state.time.substring(0, 2) * 60, 10)
       + parseInt(this.state.time.substring(3, 5), 10);
@@ -90,11 +93,10 @@ class MassageBatchEditModal extends Component {
   }
 
   /**
-   * Handles the put request.
+   * Edits all Massages based on supplied state values.
    */
   editMassages = () => {
-    var idString = "?",
-        putArray = [],
+    var putArray = [],
         informed = false;
     for (var i = 0; i < this.props.massages.length; i++) {
       if (this.getDate(this.props.massages[i].date) === -1 || this.getDate(this.props.massages[i].ending) === -1) {
@@ -106,11 +108,8 @@ class MassageBatchEditModal extends Component {
         }
         continue;
       }
-      if (idString.length > 2000) {
-        break;
-      }
-      idString += "ids=" + this.props.massages[i].id + "&";
       putArray.push({
+        id: this.props.massages[i].id,
         date: this.getDate(this.props.massages[i].date),
         ending: this.getDate(this.props.massages[i].ending),
         masseuse: (this.state.editMasseuse) ? this.state.masseuse : this.props.massages[i].masseuse,
@@ -119,7 +118,7 @@ class MassageBatchEditModal extends Component {
       });
     }
     if (putArray.length > 0) {
-      Util.put(Util.MASSAGES_URL + idString, putArray, () => {
+      Util.put(Util.MASSAGES_URL, putArray, () => {
         this.props.getCallback();
         this.props.onToggle(true);
       });
@@ -239,12 +238,18 @@ class MassageBatchEditModal extends Component {
 }
 
 MassageBatchEditModal.propTypes = {
-  active: PropTypes.bool, // whether the dialog should be shown
-  disabled: PropTypes.bool, // whether the trigger button should be disabled or not
-  massages: PropTypes.arrayOf(PropTypes.object).isRequired, // Massages to be copied
-  masseuses: PropTypes.arrayOf(PropTypes.string), // unique Massage masseuses of the given Facility
-  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
-  onToggle: PropTypes.func.isRequired // function called on modal toggle
+  /** whether the dialog should be shown */
+  active: PropTypes.bool,
+  /** whether the trigger button should be disabled or not */
+  disabled: PropTypes.bool,
+  /** Massages to be copied */
+  massages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** unique Massage masseuses of the given Facility */
+  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** callback function for Massage list update */
+  getCallback: PropTypes.func.isRequired,
+  /** function called on modal toggle */
+  onToggle: PropTypes.func.isRequired
 };
 
 export default MassageBatchEditModal

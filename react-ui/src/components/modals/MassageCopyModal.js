@@ -16,7 +16,7 @@ import _t from '../../util/Translations';
 import Util from '../../util/Util';
 
 /**
- * Custom modal for copying multiple Massages at once
+ * Modal dialog that enables generation of Massage copies at a selected time interval.
  */
 class MassageCopyModal extends Component {
 
@@ -39,7 +39,7 @@ class MassageCopyModal extends Component {
   }
 
   /**
-   * Handles the post request.
+   * Creates all generated copies of the given Massages.
    */
   addMassages = () => {
     var postArray = [];
@@ -54,7 +54,6 @@ class MassageCopyModal extends Component {
         });
       }
     }
-    console.log(postArray);
     Util.post(Util.MASSAGES_URL, postArray, () => {
       this.props.getCallback();
       this.props.onToggle(true);
@@ -129,11 +128,16 @@ class MassageCopyModal extends Component {
 }
 
 MassageCopyModal.propTypes = {
-  active: PropTypes.bool, // whether the dialog should be shown
-  disabled: PropTypes.bool, // whether the trigger button should be disabled or not
-  massages: PropTypes.arrayOf(PropTypes.object).isRequired, // Massages to be copied
-  getCallback: PropTypes.func.isRequired, // callback function for Massage list update
-  onToggle: PropTypes.func.isRequired // function called on modal toggle
+  /** whether the dialog should be shown */
+  active: PropTypes.bool,
+  /** whether the trigger button should be disabled or not */
+  disabled: PropTypes.bool,
+  /** Massages to be copied */
+  massages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** callback function for Massage list update */
+  getCallback: PropTypes.func.isRequired,
+  /** function called on modal toggle */
+  onToggle: PropTypes.func.isRequired
 };
 
 export default MassageCopyModal

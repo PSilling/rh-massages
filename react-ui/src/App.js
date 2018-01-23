@@ -22,7 +22,7 @@ import 'react-notifications/lib/notifications.css';
 import Auth from './util/Auth';
 import _t from './util/Translations';
 
-// Bootstrap customization import
+// Bootstrap customization file import
 import './styles/main/bootstrap.min.css';
 
 // moment.js localization
@@ -31,7 +31,7 @@ moment.updateLocale('en', {
 });
 
 /**
- * '404' page - displayed when no route is matched
+ * 404 page displayed when no route is matched.
  */
 const NoMatch = ({ location }) => (
   <div className='text-center'>
@@ -84,7 +84,9 @@ const NavWithLinks = withRouter(({ location }) => (
   </nav>
 ))
 
-// main application component
+/**
+ * Main application component. Contains the Router, NotificationContainer and Navbar.
+ */
 class App extends Component {
 
   render() {

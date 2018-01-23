@@ -12,17 +12,17 @@ import Auth from './Auth';
 var Util = function() { };
 
 /**
- * Checks whether an object is null, undefined or an empty string
+ * Checks whether an Object is null, undefined or an empty string.
  *
- * @param  object to check
- * @return boolean
+ * @param  object Object to check
+ * @return true if empty, false otherwise
  */
 Util.isEmpty = function(object) {
   return (object === null) || (typeof object === 'undefined') || (object === '');
 }
 
 /**
- * Creates a new notification.
+ * Creates a new notification message. Supports types info, success, warning and error.
  *
  * @param type            notification type
  * @param message         notification message
@@ -114,6 +114,7 @@ Util.post = (url, data, update, notify = true) => {
 
 /**
  * Edits an element at a given endpoint.
+ *
  * @param url             defined endpoint
  * @param data            data to send
  * @param update          callback function to update the resources
@@ -148,6 +149,7 @@ Util.put = (url, data, update, notify = true) => {
 
 /**
  * Deletes an element at a given endpoint.
+ *
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
@@ -178,7 +180,7 @@ Util.delete = (url, update, notify = true) => {
 }
 
 /**
- * Stops all active intervals.
+ * Clears all active intervals in the client.
  */
 Util.clearAllIntervals = () => {
   var maxIntervalId = setTimeout(function() {
@@ -189,9 +191,9 @@ Util.clearAllIntervals = () => {
 }
 
 /**
- * Adds a massage event to Google Calendar (opens a new tab).
+ * Adds a massage event to Google Calendar (in a new tab).
  *
- * @param massage the massage to be added to the calendar
+ * @param massage the Massage to be added to the calendar
  */
 Util.addToCalendar = (massage) => {
   var url = "https://www.google.com/calendar/render?action=TEMPLATE";
@@ -204,7 +206,7 @@ Util.addToCalendar = (massage) => {
 }
 
 /**
- * Moves cursor in an input to the end of event value.
+ * Moves cursor in an input field to the end of event value.
  */
 Util.moveCursorToEnd = (event) => {
   var value = event.target.value;
@@ -213,10 +215,10 @@ Util.moveCursorToEnd = (event) => {
 }
 
 /**
- * Returns a highlighted taxed based on an added search query (highlights the first occurrence).
+ * Returns a highlighted text based on an search query (highlights the first occurrence only).
  *
- * @param text text to be highlighted
- * @param query search query string
+ * @param text      text to be highlighted
+ * @param query     search query String
  */
 Util.highlightInText = (text, query) => {
   var searchIndex = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
@@ -232,21 +234,21 @@ Util.highlightInText = (text, query) => {
 }
 
 /**
- * Creates a new contact info String from a given client
+ * Creates a new contact info String from a given Client.
  *
- * @param client client to get contact info for
+ * @param client Client to get contact info for
  */
 Util.getContactInfo = (client) => {
     return (client.name + " " + client.surname + " (" + client.email + ")");
 }
 
-Util.FACILITIES_URL = "http://localhost:8080/api/facilities/"; // url of facilities endpoint
-Util.MASSAGES_URL = "http://localhost:8080/api/massages/"; // url of massages endpoint
-Util.CLIENTS_URL = "http://localhost:8080/api/clients/"; // url of clients endpoint
-Util.LOGOUT_URL = "http://localhost:8080/api/logout/"; // url of logout endpoint
+Util.FACILITIES_URL = "api/facilities/"; // url of /facilities endpoint
+Util.MASSAGES_URL = "api/massages/"; // url of /massages endpoint
+Util.CLIENTS_URL = "api/clients/"; // url of /clients endpoint
+Util.LOGOUT_URL = "api/logout/"; // url of /logout endpoint
 Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in milliseconds
 Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
 Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes
-Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per client
+Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per Client
 
 export default Util

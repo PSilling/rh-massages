@@ -10,10 +10,13 @@ import Util from '../../util/Util';
 import _t from '../../util/Translations';
 
 /**
- * Custom pagination component.
+ * Pagination stack for given Massages.
  */
 class Pager extends Component {
 
+  /**
+   * Creates the Page components. For a large number of pages omits those too distant.
+   */
   renderPages = () => {
     var pages = [];
     for (var i = 1; i <= this.props.pages; i++) {
@@ -63,11 +66,16 @@ class Pager extends Component {
 }
 
 Pager.propTypes = {
-  page: PropTypes.number, // current page number
-  perPage: PropTypes.number, // number of Massages shown per each page
-  pages: PropTypes.number, // total number of pages to show
-  onPageChange: PropTypes.func, // function called on page change
-  onPerPageChange: PropTypes.func // function called on per page count change
+  /** current page number */
+  page: PropTypes.number,
+  /** number of Massages shown per each page */
+  perPage: PropTypes.number,
+  /** total number of pages to show */
+  pages: PropTypes.number,
+  /** function called on page change */
+  onPageChange: PropTypes.func,
+  /** function called on per page count change */
+  onPerPageChange: PropTypes.func
 };
 
 export default Pager

@@ -1,5 +1,9 @@
 var Localize = require('localize');
 
+/**
+ * Based on current localization token returns
+ * input String in the selected language.
+ */
 const myLocalize = new Localize({
     // view names
     "Facilities": {

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Message shown to unauthorized users.
+ * Simple title message shown to unauthorized users.
  */
 class UnauthorizedMessage extends Component {
 
@@ -26,7 +26,8 @@ class UnauthorizedMessage extends Component {
 }
 
 UnauthorizedMessage.propTypes = {
-  title: PropTypes.string // title shown above unauthorized notification
+  /** title shown above unauthorized notification */
+  title: PropTypes.string
 };
 
 export default UnauthorizedMessage

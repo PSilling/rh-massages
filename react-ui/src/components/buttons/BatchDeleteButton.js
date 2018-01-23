@@ -9,7 +9,8 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 import _t from '../../util/Translations';
 
 /**
- * Custom delete button component with title.
+ * A button used for batch Massage deletion. Contains a ConfirmationModal to confirm
+ * the action.
  */
 class BatchDeleteButton extends Component {
 
@@ -42,9 +43,12 @@ class BatchDeleteButton extends Component {
 }
 
 BatchDeleteButton.propTypes = {
-  onDelete: PropTypes.func.isRequired, // function to be called on action confirmation
-  label: PropTypes.string, // button label
-  disabled: PropTypes.bool // whether the button should be disabled
+   /** function to be called on action confirmation */
+  onDelete: PropTypes.func.isRequired,
+  /** button label */
+  label: PropTypes.string,
+  /** whether the button should be disabled */
+  disabled: PropTypes.bool
 };
 
 BatchDeleteButton.defaultProps = {
