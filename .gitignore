@@ -6,3 +6,6 @@
 # production and build files
 **/build/
 **/target/
+
+# Keycloak configuration json
+**/keycloak.json

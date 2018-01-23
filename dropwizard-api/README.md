@@ -1,4 +1,4 @@
-# Dropwizard-api
+# Dropwizard-API
 
 Backend of Red Hat Massages management site.
 
@@ -10,6 +10,7 @@ Backend of Red Hat Massages management site.
 1. To check that your application is running enter url `http://localhost:8080`
 
 Replace `<VERSION>` with the version of your build.
+
 If you really want to build the server separately however, you need to remove the UI client from the dependencies.
 
 ## Health Check

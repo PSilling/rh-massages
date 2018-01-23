@@ -1,4 +1,4 @@
-# React-ui
+# React-UI
 
 Frontend of Red Hat Massages management site.
 The UI was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
@@ -14,5 +14,5 @@ If you really want to run the client separately however, you need to correctly f
 ## Updating documentation
 
 React documentation generation script is supported by the UI.
-You can run `npm run docgen` to generate a new documentation README.md inside the docs folder.
+You can run `npm run docgen` to generate a new documentation [README.md](https://github.com/PSilling/rh-massages/blob/master/react-ui/docs/README.md) inside the docs folder.
 For non-React files see their respective documenation inside the file.

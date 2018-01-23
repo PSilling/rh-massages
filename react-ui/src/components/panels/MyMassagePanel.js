@@ -16,7 +16,7 @@ import _t from '../../util/Translations';
 /**
  * Massage information panel for My Massages view.
  */
-class MassagePanel extends Component {
+class MyMassagePanel extends Component {
 
   state = {active: false}
 
@@ -89,7 +89,7 @@ class MassagePanel extends Component {
   }
 }
 
-MassagePanel.propTypes = {
+MyMassagePanel.propTypes = {
   /** type of the Bootstrap panel */
   type: PropTypes.string.isRequired,
   /** Massage to be printed inside the panel */
@@ -100,9 +100,9 @@ MassagePanel.propTypes = {
   disabled: PropTypes.bool
 };
 
-MassagePanel.defaultProps = {
+MyMassagePanel.defaultProps = {
   type: "default",
   disabled: true
 };
 
-export default MassagePanel
+export default MyMassagePanel
