@@ -11,14 +11,14 @@
     </prerequisites>
     
     <parent>
-    	<version>1.2.3-SNAPSHOT</version>
+    	<version>1.2.4</version>
     	<artifactId>parent</artifactId>
     	<groupId>net.rh.massages</groupId>
     </parent>
 
     <groupId>net.rh.massages</groupId>
     <artifactId>Massages</artifactId>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.4</version>
     <packaging>jar</packaging>
 
     <name>Massages</name>

@@ -294,17 +294,17 @@ public class MassageResource {
 	@DELETE
 	@RolesAllowed("admin")
 	@UnitOfWork
-	public Response delete(@NotNull @QueryParam("ids") List<Integer> ids) {
+	public Response delete(@NotNull @QueryParam("ids") List<Long> ids) {
 		boolean throwNotFound = false;
-		for (int id : ids) {
-			if (massageDao.findById(Long.valueOf(id)) == null) {
+		for (long id : ids) {
+			if (massageDao.findById(id) == null) {
 				throwNotFound = true;
 				continue;
 			}
 
 			// If a Massage with a subscribed Client is being deleted, send a notification
 			// email.
-			Massage daoMassage = massageDao.findById(Long.valueOf(id));
+			Massage daoMassage = massageDao.findById(id);
 			if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
 				mailClient.sendEmail(daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html",
 						null);

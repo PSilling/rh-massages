@@ -20,7 +20,7 @@ class Pager extends Component {
   renderPages = () => {
     var pages = [];
     for (var i = 1; i <= this.props.pages; i++) {
-      if (i < 4 || i > (this.props.pages - 3) || (i > (this.props.page - 5)
+      if (this.props.pages < 15 || i < 4 || i > (this.props.pages - 3) || (i > (this.props.page - 5)
         && i < (this.props.page + 5))) {
         let number = i;
         pages.push(
