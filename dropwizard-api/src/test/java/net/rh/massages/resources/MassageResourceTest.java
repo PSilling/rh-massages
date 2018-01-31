@@ -62,134 +62,134 @@ import net.rh.massages.db.MassageDAO;
  */
 public class MassageResourceTest {
 
-	private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
+    private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
 
-	private final long MILLISECONDS = new Date().getTime(); // current time milliseconds
-	private final Facility facility = new Facility("Facility"); // test Facility
-	private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
-																												// Massage
-	private final Massage newMassage = new Massage(new Date(MILLISECONDS + 10000), new Date(MILLISECONDS + 10001),
-			"Super Masseuse", null, facility); // test Massage for creation and updating
+    private final long MILLISECONDS = new Date().getTime(); // current time milliseconds
+    private final Facility facility = new Facility("Facility"); // test Facility
+    private final Massage massage = new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
+    // Massage
+    private final Massage newMassage = new Massage(new Date(MILLISECONDS + 10000), new Date(MILLISECONDS + 10001),
+            "Super Masseuse", null, facility); // test Massage for creation and updating
 
-	/**
-	 * Creates a new static {@link ResourceTestRule} that tests a given resource.
-	 * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
-	 * authentication.
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@ClassRule
-	public static final ResourceTestRule RULE = ResourceTestRule.builder()
-			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
-			.addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
-					.setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
-					.setPrefix("Bearer").buildAuthFilter()))
-			.addProvider(RolesAllowedDynamicFeature.class)
-			.addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
-			.addResource(new MassageResource(massageDao, null, null)).build();
+    /**
+     * Creates a new static {@link ResourceTestRule} that tests a given resource.
+     * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
+     * authentication.
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @ClassRule
+    public static final ResourceTestRule RULE = ResourceTestRule.builder()
+            .setTestContainerFactory(new GrizzlyWebTestContainerFactory())
+            .addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
+                    .setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
+                    .setPrefix("Bearer").buildAuthFilter()))
+            .addProvider(RolesAllowedDynamicFeature.class)
+            .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
+            .addResource(new MassageResource(massageDao, null, null)).build();
 
-	/**
-	 * Configures mocks before each test.
-	 */
-	@Before
-	public void setup() {
-		List<Massage> massages = new ArrayList<>();
-		massages.add(massage);
+    /**
+     * Configures mocks before each test.
+     */
+    @Before
+    public void setup() {
+        List<Massage> massages = new ArrayList<>();
+        massages.add(massage);
 
-		when(massageDao.findAll()).thenReturn(massages);
-		when(massageDao.findById((long) 1)).thenReturn(massage);
-		when(massageDao.findById((long) 0)).thenReturn(newMassage);
-		when(massageDao.findById((long) 2)).thenReturn(newMassage);
+        when(massageDao.findAll()).thenReturn(massages);
+        when(massageDao.findById((long) 1)).thenReturn(massage);
+        when(massageDao.findById((long) 0)).thenReturn(newMassage);
+        when(massageDao.findById((long) 2)).thenReturn(newMassage);
 
-		doAnswer(new Answer<Massage>() {
+        doAnswer(new Answer<Massage>() {
 
-			@Override
-			public Massage answer(final InvocationOnMock invocation) throws Throwable {
-				massages.add(newMassage);
-				return newMassage;
-			}
-		}).when(massageDao).create(newMassage);
+            @Override
+            public Massage answer(final InvocationOnMock invocation) throws Throwable {
+                massages.add(newMassage);
+                return newMassage;
+            }
+        }).when(massageDao).create(newMassage);
 
-		doAnswer(new Answer<Void>() {
+        doAnswer(new Answer<Void>() {
 
-			@Override
-			public Void answer(final InvocationOnMock invocation) throws Throwable {
-				massages.remove(newMassage);
-				return null;
-			}
-		}).when(massageDao).delete(newMassage);
-	}
+            @Override
+            public Void answer(final InvocationOnMock invocation) throws Throwable {
+                massages.remove(newMassage);
+                return null;
+            }
+        }).when(massageDao).delete(newMassage);
+    }
 
-	/**
-	 * Resets mocks after each test.
-	 */
-	@After
-	public void tearDown() {
-		reset(massageDao);
-	}
+    /**
+     * Resets mocks after each test.
+     */
+    @After
+    public void tearDown() {
+        reset(massageDao);
+    }
 
-	/**
-	 * Fetches all {@link Massage}s.
-	 *
-	 * @return {@link List} of all current {@link Massage}s
-	 */
-	private List<Massage> fetchAll() {
-		return RULE.target("/massages").request().header("Authorization", "Bearer TOKEN")
-				.get(new GenericType<List<Massage>>() {
-				});
-	}
+    /**
+     * Fetches all {@link Massage}s.
+     *
+     * @return {@link List} of all current {@link Massage}s
+     */
+    private List<Massage> fetchAll() {
+        return RULE.target("/massages").request().header("Authorization", "Bearer TOKEN")
+                .get(new GenericType<List<Massage>>() {
+                });
+    }
 
-	/**
-	 * Tests whether fetch request for all {@link Massage}s works as intended.
-	 */
-	@Test
-	public void fetchTest() {
-		List<Massage> massages = fetchAll();
+    /**
+     * Tests whether fetch request for all {@link Massage}s works as intended.
+     */
+    @Test
+    public void fetchTest() {
+        List<Massage> massages = fetchAll();
 
-		assertNotNull(massages);
-		assertEquals(1, massages.size());
-		assertEquals(massage, massages.get(0));
-	}
+        assertNotNull(massages);
+        assertEquals(1, massages.size());
+        assertEquals(massage, massages.get(0));
+    }
 
-	/**
-	 * Tests whether creation and follow up removal of a new {@link Massage} work as
-	 * intended.
-	 */
-	@Test
-	public void createDeleteTest() {
-		List<Massage> massages = new LinkedList<>();
-		massages.add(newMassage);
+    /**
+     * Tests whether creation and follow up removal of a new {@link Massage} work as
+     * intended.
+     */
+    @Test
+    public void createDeleteTest() {
+        List<Massage> massages = new LinkedList<>();
+        massages.add(newMassage);
 
-		// Test the creation
-		Response response = RULE.target("/massages").request(MediaType.APPLICATION_JSON_TYPE)
-				.header("Authorization", "Bearer TOKEN").post(Entity.json(massages));
-		massages = fetchAll();
+        // Test the creation
+        Response response = RULE.target("/massages").request(MediaType.APPLICATION_JSON_TYPE)
+                .header("Authorization", "Bearer TOKEN").post(Entity.json(massages));
+        massages = fetchAll();
 
-		assertNotNull(response);
-		assertEquals(201, response.getStatus());
-		assertEquals(2, massages.size());
-		assertEquals(massage, massages.get(0));
-		assertEquals(newMassage, massages.get(1));
+        assertNotNull(response);
+        assertEquals(200, response.getStatus());
+        assertEquals(2, massages.size());
+        assertEquals(massage, massages.get(0));
+        assertEquals(newMassage, massages.get(1));
 
-		// Test the removal
-		response = RULE.target("/massages").queryParam("ids", 2).request().header("Authorization", "Bearer TOKEN")
-				.delete();
-		massages = fetchAll();
+        // Test the removal
+        response = RULE.target("/massages").queryParam("ids", 2).request().header("Authorization", "Bearer TOKEN")
+                .delete();
+        massages = fetchAll();
 
-		assertNotNull(response);
-		assertEquals(204, response.getStatus());
-		assertEquals(1, massages.size());
-		assertEquals(massage, massages.get(0));
-	}
+        assertNotNull(response);
+        assertEquals(204, response.getStatus());
+        assertEquals(1, massages.size());
+        assertEquals(massage, massages.get(0));
+    }
 
-	/**
-	 * Test whether fetch request for a given {@link Massage} works as intended.
-	 */
-	@Test
-	public void getByIdTest() {
-		Massage massage = RULE.target("/massages/1").request().header("Authorization", "Bearer TOKEN")
-				.get(Massage.class);
+    /**
+     * Test whether fetch request for a given {@link Massage} works as intended.
+     */
+    @Test
+    public void getByIdTest() {
+        Massage massage = RULE.target("/massages/1").request().header("Authorization", "Bearer TOKEN")
+                .get(Massage.class);
 
-		assertNotNull(massage);
-		assertEquals(this.massage, massage);
-	}
+        assertNotNull(massage);
+        assertEquals(this.massage, massage);
+    }
 }
