@@ -38,71 +38,71 @@ import org.simplejavamail.mailer.config.TransportStrategy;
  */
 public class MailClient {
 
-	private final Mailer mailer; // SMTP mailer client
-	private final SmtpConfiguration smtpConfiguration; // SMTP configuration
-	private static Logger LOGGER = Logger.getLogger(MailClient.class.getName()); // class logger
+    private final Mailer mailer; // SMTP mailer client
+    private final SmtpConfiguration smtpConfiguration; // SMTP configuration
+    private static Logger LOGGER = Logger.getLogger(MailClient.class.getName()); // class logger
 
-	/**
-	 * Constructor.
-	 *
-	 * @param smtpConfiguration the SMTP client {@link SmtpConfiguration}
-	 */
-	public MailClient(SmtpConfiguration smtpConfiguration) {
-		this.smtpConfiguration = smtpConfiguration;
-		mailer = new Mailer(smtpConfiguration.getServer(), smtpConfiguration.getPort(), smtpConfiguration.getUsername(),
-				smtpConfiguration.getPassword(), TransportStrategy.SMTP_TLS);
-	}
+    /**
+     * Constructor.
+     *
+     * @param smtpConfiguration the SMTP client {@link SmtpConfiguration}
+     */
+    public MailClient(SmtpConfiguration smtpConfiguration) {
+        this.smtpConfiguration = smtpConfiguration;
+        mailer = new Mailer(smtpConfiguration.getServer(), smtpConfiguration.getPort(), smtpConfiguration.getUsername(),
+                smtpConfiguration.getPassword(), TransportStrategy.SMTP_TLS);
+    }
 
-	/**
-	 * Sends an email to a given recipients list.
-	 *
-	 * @param recipients recipients of the email message separated by a comma
-	 * @param subject message subject
-	 * @param template template file to be used
-	 * @param args arguments for template substitutions
-	 */
-	public void sendEmail(String recipients, String subject, String template, Map<String, ? extends Object> args) {
-		// Inject arguments into the subject
-		StrSubstitutor sub = new StrSubstitutor(args);
-		subject = StringUtils.capitalize(sub.replace(subject));
+    /**
+     * Sends an email to a given recipients list.
+     *
+     * @param recipients recipients of the email message separated by a comma
+     * @param subject message subject
+     * @param template template file to be used
+     * @param args arguments for template substitutions
+     */
+    public void sendEmail(String recipients, String subject, String template, Map<String, ? extends Object> args) {
+        // Inject arguments into the subject
+        StrSubstitutor sub = new StrSubstitutor(args);
+        subject = StringUtils.capitalize(sub.replace(subject));
 
-		// Create the email itself and then send it
-		Email email = new EmailBuilder().from(smtpConfiguration.getFromName(), smtpConfiguration.getFromEmail())
-				.to(recipients).subject(subject).textHTML(loadHtmlFromTemplate(template, subject, args, sub)).build();
-		mailer.sendMail(email, smtpConfiguration.isAsync());
-	}
+        // Create the email itself and then send it
+        Email email = new EmailBuilder().from(smtpConfiguration.getFromName(), smtpConfiguration.getFromEmail())
+                .to(recipients).subject(subject).textHTML(loadHtmlFromTemplate(template, subject, args, sub)).build();
+        mailer.sendMail(email, smtpConfiguration.isAsync());
+    }
 
-	/**
-	 * Loads HTML template from the model template file and injects the given
-	 * template with all given arguments.
-	 *
-	 * @param templateFile template file to be used
-	 * @param title message title
-	 * @param args arguments for template substitutions
-	 * @param sub message subject with template arguments
-	 * @return the created HTML String
-	 */
-	private String loadHtmlFromTemplate(String templateFile, String title, Map<String, ? extends Object> args,
-			StrSubstitutor sub) {
-		String html = "";
-		try {
-			// Load the templates
-			String genericTemplate = IOUtils
-					.toString(MailClient.class.getResourceAsStream("/templates/modelEmail.html"), "UTF-8");
-			String template = IOUtils.toString(MailClient.class.getResourceAsStream("/templates/" + templateFile),
-					"UTF-8");
+    /**
+     * Loads HTML template from the model template file and injects the given
+     * template with all given arguments.
+     *
+     * @param templateFile template file to be used
+     * @param title message title
+     * @param args arguments for template substitutions
+     * @param sub message subject with template arguments
+     * @return the created HTML String
+     */
+    private String loadHtmlFromTemplate(String templateFile, String title, Map<String, ? extends Object> args,
+            StrSubstitutor sub) {
+        String html = "";
+        try {
+            // Load the templates
+            String genericTemplate = IOUtils
+                    .toString(MailClient.class.getResourceAsStream("/templates/modelEmail.html"), "UTF-8");
+            String template = IOUtils.toString(MailClient.class.getResourceAsStream("/templates/" + templateFile),
+                    "UTF-8");
 
-			// Inject template arguments
-			template = sub.replace(template);
-			Map<String, String> arguments = new HashMap<>();
-			arguments.put("title", title);
-			arguments.put("body", template);
+            // Inject template arguments
+            template = sub.replace(template);
+            Map<String, String> arguments = new HashMap<>();
+            arguments.put("title", title);
+            arguments.put("body", template);
 
-			StrSubstitutor modelSub = new StrSubstitutor(arguments);
-			html = modelSub.replace(genericTemplate);
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Error occured while processing the email template", e);
-		}
-		return html;
-	}
+            StrSubstitutor modelSub = new StrSubstitutor(arguments);
+            html = modelSub.replace(genericTemplate);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error occured while processing the email template", e);
+        }
+        return html;
+    }
 }

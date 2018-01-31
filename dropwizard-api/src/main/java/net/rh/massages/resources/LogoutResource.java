@@ -35,28 +35,28 @@ import net.rh.massages.auth.User;
 @Path("/logout")
 public class LogoutResource {
 
-	@Context
-	private HttpServletRequest request; // request context (with authorization)
+    @Context
+    private HttpServletRequest request; // request context (with authorization)
 
-	/**
-	 * Constructor.
-	 */
-	public LogoutResource() {
-	}
+    /**
+     * Constructor.
+     */
+    public LogoutResource() {
+    }
 
-	/**
-	 * Logs out the {@link User} from the application.
-	 *
-	 * @throws ServletException if logout fails
-	 * @return a brief logging out out information message
-	 */
-	@GET
-	@PermitAll
-	public String logout(@Context SecurityContext context) throws ServletException {
-		if (context.getUserPrincipal() != null) {
-			request.logout();
-		}
-		return "You have been successfully logged out.";
-	}
+    /**
+     * Logs out the {@link User} from the application.
+     *
+     * @throws ServletException if logout fails
+     * @return a brief logging out out information message
+     */
+    @GET
+    @PermitAll
+    public String logout(@Context SecurityContext context) throws ServletException {
+        if (context.getUserPrincipal() != null) {
+            request.logout();
+        }
+        return "You have been successfully logged out.";
+    }
 
 }

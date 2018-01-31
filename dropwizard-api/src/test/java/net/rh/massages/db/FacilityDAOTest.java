@@ -37,84 +37,84 @@ import net.rh.massages.core.Facility;
  */
 public class FacilityDAOTest {
 
-	@Rule
-	public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class).build(); // database mock
+    @Rule
+    public DAOTestRule daoTestRule = DAOTestRule.newBuilder().addEntityClass(Facility.class).build(); // database mock
 
-	private FacilityDAO facilityDAO; // Facility data access object
+    private FacilityDAO facilityDAO; // Facility data access object
 
-	/**
-	 * Creates {@link FacilityDAO} with current database session.
-	 */
-	@Before
-	public void setUp() {
-		facilityDAO = new FacilityDAO(daoTestRule.getSessionFactory());
-	}
+    /**
+     * Creates {@link FacilityDAO} with current database session.
+     */
+    @Before
+    public void setUp() {
+        facilityDAO = new FacilityDAO(daoTestRule.getSessionFactory());
+    }
 
-	/**
-	 * Tests whether {@link Facility} creation works as intended.
-	 */
-	@Test
-	public void testCreate() {
-		final Facility facility = new Facility("Big Facility");
-		final Facility createdFacility = daoTestRule.inTransaction(() -> facilityDAO.create(facility));
+    /**
+     * Tests whether {@link Facility} creation works as intended.
+     */
+    @Test
+    public void testCreate() {
+        final Facility facility = new Facility("Big Facility");
+        final Facility createdFacility = daoTestRule.inTransaction(() -> facilityDAO.create(facility));
 
-		assertEquals(facility, createdFacility);
-	}
+        assertEquals(facility, createdFacility);
+    }
 
-	/**
-	 * Tests whether {@link Facility} updating works as intended.
-	 */
-	@Test
-	public void testUpdate() {
-		Facility facility = new Facility("Big Facility");
-		final Facility updatedFacility = daoTestRule.inTransaction(() -> {
-			facilityDAO.create(facility);
-			facility.setName("Updated Facility");
-			return facilityDAO.update(facility);
-		});
+    /**
+     * Tests whether {@link Facility} updating works as intended.
+     */
+    @Test
+    public void testUpdate() {
+        Facility facility = new Facility("Big Facility");
+        final Facility updatedFacility = daoTestRule.inTransaction(() -> {
+            facilityDAO.create(facility);
+            facility.setName("Updated Facility");
+            return facilityDAO.update(facility);
+        });
 
-		assertEquals(1, updatedFacility.getId());
-		assertEquals("Updated Facility", updatedFacility.getName());
-		assertEquals(facility, updatedFacility);
-	}
+        assertEquals(1, updatedFacility.getId());
+        assertEquals("Updated Facility", updatedFacility.getName());
+        assertEquals(facility, updatedFacility);
+    }
 
-	/**
-	 * Tests whether {@link Facility} removal works as intended.
-	 */
-	@Test
-	public void testDelete() {
-		final Facility facility = new Facility("Big Facility");
-		Facility removedFacility = daoTestRule.inTransaction(() -> {
-			Facility deletedFacility = facilityDAO.create(facility);
-			facilityDAO.delete(facility);
-			return deletedFacility;
-		});
+    /**
+     * Tests whether {@link Facility} removal works as intended.
+     */
+    @Test
+    public void testDelete() {
+        final Facility facility = new Facility("Big Facility");
+        Facility removedFacility = daoTestRule.inTransaction(() -> {
+            Facility deletedFacility = facilityDAO.create(facility);
+            facilityDAO.delete(facility);
+            return deletedFacility;
+        });
 
-		List<Facility> facilities = facilityDAO.findAll();
+        List<Facility> facilities = facilityDAO.findAll();
 
-		assertNotNull(removedFacility);
-		assertFalse(facilities.contains(facility));
-	}
+        assertNotNull(removedFacility);
+        assertFalse(facilities.contains(facility));
+    }
 
-	/**
-	 * Tests whether all {@link FacilityDAO} finding methods are working as
-	 * intended.
-	 */
-	@Test
-	public void testFind() {
-		final Facility facility1 = new Facility("First Facility");
-		final Facility facility2 = new Facility("Second Facility");
-		daoTestRule.inTransaction(() -> {
-			facilityDAO.create(facility1);
-			facilityDAO.create(facility2);
-		});
+    /**
+     * Tests whether all {@link FacilityDAO} finding methods are working as
+     * intended.
+     */
+    @Test
+    public void testFind() {
+        final Facility facility1 = new Facility("First Facility");
+        final Facility facility2 = new Facility("Second Facility");
+        daoTestRule.inTransaction(() -> {
+            facilityDAO.create(facility1);
+            facilityDAO.create(facility2);
+        });
 
-		Facility facilityById = facilityDAO.findById((long) 1);
-		Facility facilityByName = facilityDAO.findByName("Second Facility");
-		List<Facility> facilities = facilityDAO.findAll();
+        Facility facilityById = facilityDAO.findById((long) 1);
+        Facility facilityByName = facilityDAO.findByName("Second Facility");
+        List<Facility> facilities = facilityDAO.findAll();
 
-		assertEquals(facility1, facilityById);
-		assertEquals(facility2, facilityByName);
-		assertEquals(2, facilities.size());
-	}
+        assertEquals(facility1, facilityById);
+        assertEquals(facility2, facilityByName);
+        assertEquals(2, facilities.size());
+    }
 }

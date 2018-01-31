@@ -37,164 +37,164 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 @Table(name = "Clients")
 @NamedQueries({
-		@NamedQuery(name = "Client.findAll", query = "SELECT client FROM Client client ORDER BY client.surname ASC"),
-		@NamedQuery(name = "Client.findAllSubscribed", query = "SELECT client FROM Client client WHERE client.subscribed = true") })
+        @NamedQuery(name = "Client.findAll", query = "SELECT client FROM Client client ORDER BY client.surname ASC"),
+        @NamedQuery(name = "Client.findAllSubscribed", query = "SELECT client FROM Client client WHERE client.subscribed = true") })
 public class Client {
 
-	@Id
-	@Column(name = "sub", unique = true, length = 64)
-	@NotNull
-	private String sub; // subject of the Client
+    @Id
+    @Column(name = "sub", unique = true, length = 64)
+    @NotNull
+    private String sub; // subject of the Client
 
-	@Email
-	@Column(length = 64)
-	@NotNull
-	private String email; // email of the Client
+    @Email
+    @Column(length = 64)
+    @NotNull
+    private String email; // email of the Client
 
-	@Column(length = 64)
-	@NotNull
-	private String name; // name of the Client
+    @Column(length = 64)
+    @NotNull
+    private String name; // name of the Client
 
-	@Column(length = 64)
-	@NotNull
-	private String surname; // surname of the Client
+    @Column(length = 64)
+    @NotNull
+    private String surname; // surname of the Client
 
-	@NotNull
-	private boolean subscribed; // whether the Client is subscribed to server messaging
+    @NotNull
+    private boolean subscribed; // whether the Client is subscribed to server messaging
 
-	/**
-	 * Constructor.
-	 */
-	public Client() {
-	}
+    /**
+     * Constructor.
+     */
+    public Client() {
+    }
 
-	/**
-	 * Constructor.
-	 *
-	 * @param sub subject of the Client
-	 * @param email email of the Client
-	 * @param name name of the Client
-	 * @param surname surname of the Client
-	 * @param subscribed whether the Client is subscribed to server messaging
-	 */
-	public Client(String sub, String email, String name, String surname, boolean subscribed) {
-		this.sub = sub;
-		this.email = email;
-		this.name = name;
-		this.surname = surname;
-		this.subscribed = subscribed;
-	}
+    /**
+     * Constructor.
+     *
+     * @param sub subject of the Client
+     * @param email email of the Client
+     * @param name name of the Client
+     * @param surname surname of the Client
+     * @param subscribed whether the Client is subscribed to server messaging
+     */
+    public Client(String sub, String email, String name, String surname, boolean subscribed) {
+        this.sub = sub;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.subscribed = subscribed;
+    }
 
-	/**
-	 * @return current value of {@link Client} subject
-	 */
-	public String getSub() {
-		return sub;
-	}
+    /**
+     * @return current value of {@link Client} subject
+     */
+    public String getSub() {
+        return sub;
+    }
 
-	/**
-	 * @param sub new {@link Client} subject to be set
-	 */
-	public void setSub(String sub) {
-		this.sub = sub;
-	}
+    /**
+     * @param sub new {@link Client} subject to be set
+     */
+    public void setSub(String sub) {
+        this.sub = sub;
+    }
 
-	/**
-	 * @return current value of {@link Client} email
-	 */
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @return current value of {@link Client} email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	/**
-	 * @param email new {@link Client} email to be set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @param email new {@link Client} email to be set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	/**
-	 * @return current value of {@link Client} name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return current value of {@link Client} name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @param name new {@link Client} name to be set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param name new {@link Client} name to be set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @return current value of {@link Client} surname
-	 */
-	public String getSurname() {
-		return surname;
-	}
+    /**
+     * @return current value of {@link Client} surname
+     */
+    public String getSurname() {
+        return surname;
+    }
 
-	/**
-	 * @param surname new {@link Client} surname to be set
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    /**
+     * @param surname new {@link Client} surname to be set
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	/**
-	 * @return current value of {@link Client} subscription
-	 */
-	public boolean isSubscribed() {
-		return subscribed;
-	}
+    /**
+     * @return current value of {@link Client} subscription
+     */
+    public boolean isSubscribed() {
+        return subscribed;
+    }
 
-	/**
-	 * @param subscribed new {@link Client} subscribed value to be set
-	 */
-	public void setSubscribed(boolean subscribed) {
-		this.subscribed = subscribed;
-	}
+    /**
+     * @param subscribed new {@link Client} subscribed value to be set
+     */
+    public void setSubscribed(boolean subscribed) {
+        this.subscribed = subscribed;
+    }
 
-	/**
-	 * Creates a new contact info String from name, surname and email.
-	 *
-	 * @return {@link Client} contact information
-	 */
-	public String createContact() {
-		return (name + " " + surname + " (" + email + ")");
-	}
+    /**
+     * Creates a new contact info String from name, surname and email.
+     *
+     * @return {@link Client} contact information
+     */
+    public String createContact() {
+        return (name + " " + surname + " (" + email + ")");
+    }
 
-	/**
-	 * Hashes the {@link Client} based on sub, email, name, surname and
-	 * subscription.
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(sub, email, name, surname, subscribed);
-	}
+    /**
+     * Hashes the {@link Client} based on sub, email, name, surname and
+     * subscription.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(sub, email, name, surname, subscribed);
+    }
 
-	/**
-	 * @return true if hashCode comparison matches both this and the given object
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if ((obj == null) || (getClass() != obj.getClass())) {
-			return false;
-		}
+    /**
+     * @return true if hashCode comparison matches both this and the given object
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj == null) || (getClass() != obj.getClass())) {
+            return false;
+        }
 
-		return Integer.compare(hashCode(), obj.hashCode()) == 0;
-	}
+        return Integer.compare(hashCode(), obj.hashCode()) == 0;
+    }
 
-	/**
-	 * @return {@link Client} converted to a String with format Client[subject,
-	 *         name, surname, email, subscribed]
-	 */
-	@Override
-	public String toString() {
-		return String.format("Client[subject=%s, name=%s, surname=%s, email=%s, subscribed=%s]", sub, name, surname,
-				email, subscribed);
-	}
+    /**
+     * @return {@link Client} converted to a String with format Client[subject,
+     *         name, surname, email, subscribed]
+     */
+    @Override
+    public String toString() {
+        return String.format("Client[subject=%s, name=%s, surname=%s, email=%s, subscribed=%s]", sub, name, surname,
+                email, subscribed);
+    }
 }

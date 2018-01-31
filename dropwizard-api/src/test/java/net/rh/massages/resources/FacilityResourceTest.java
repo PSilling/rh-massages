@@ -45,154 +45,154 @@ import net.rh.massages.db.MassageDAO;
  */
 public class FacilityResourceTest {
 
-	private static final FacilityDAO facilityDao = mock(FacilityDAO.class); // mock of FacilityDAO
-	private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
-	private static final ClientDAO clientDao = mock(ClientDAO.class); // mock of ClientDAO
+    private static final FacilityDAO facilityDao = mock(FacilityDAO.class); // mock of FacilityDAO
+    private static final MassageDAO massageDao = mock(MassageDAO.class); // mock of MassageDAO
+    private static final ClientDAO clientDao = mock(ClientDAO.class); // mock of ClientDAO
 
-	private final Facility facility = new Facility("Facility"); // test Facility
-	private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
+    private final Facility facility = new Facility("Facility"); // test Facility
+    private final Facility newFacility = new Facility("New Facility"); // test Facility for creation and update
 
-	/**
-	 * Creates a new static {@link ResourceTestRule} that tests a given resource.
-	 * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
-	 * authentication.
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@ClassRule
-	public static final ResourceTestRule RULE = ResourceTestRule.builder()
-			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
-			.addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
-					.setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
-					.setPrefix("Bearer").buildAuthFilter()))
-			.addProvider(RolesAllowedDynamicFeature.class)
-			.addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
-			.addResource(new FacilityResource(facilityDao, massageDao, clientDao)).build();
+    /**
+     * Creates a new static {@link ResourceTestRule} that tests a given resource.
+     * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
+     * authentication.
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @ClassRule
+    public static final ResourceTestRule RULE = ResourceTestRule.builder()
+            .setTestContainerFactory(new GrizzlyWebTestContainerFactory())
+            .addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
+                    .setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
+                    .setPrefix("Bearer").buildAuthFilter()))
+            .addProvider(RolesAllowedDynamicFeature.class)
+            .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
+            .addResource(new FacilityResource(facilityDao, massageDao, clientDao)).build();
 
-	/**
-	 * Configures mocks before each test.
-	 */
-	@Before
-	public void setup() {
-		List<Facility> facilities = new ArrayList<>();
-		facilities.add(facility);
+    /**
+     * Configures mocks before each test.
+     */
+    @Before
+    public void setup() {
+        List<Facility> facilities = new ArrayList<>();
+        facilities.add(facility);
 
-		when(facilityDao.findAll()).thenReturn(facilities);
-		when(facilityDao.findById((long) 1)).thenReturn(facility);
-		when(facilityDao.findById((long) 2)).thenReturn(newFacility);
-		when(facilityDao.findByName(newFacility.getName())).thenReturn(newFacility);
+        when(facilityDao.findAll()).thenReturn(facilities);
+        when(facilityDao.findById((long) 1)).thenReturn(facility);
+        when(facilityDao.findById((long) 2)).thenReturn(newFacility);
+        when(facilityDao.findByName(newFacility.getName())).thenReturn(newFacility);
 
-		doAnswer(new Answer<Facility>() {
+        doAnswer(new Answer<Facility>() {
 
-			@Override
-			public Facility answer(final InvocationOnMock invocation) throws Throwable {
-				facilities.add(newFacility);
-				return newFacility;
-			}
-		}).when(facilityDao).create(newFacility);
+            @Override
+            public Facility answer(final InvocationOnMock invocation) throws Throwable {
+                facilities.add(newFacility);
+                return newFacility;
+            }
+        }).when(facilityDao).create(newFacility);
 
-		doAnswer(new Answer<Void>() {
+        doAnswer(new Answer<Void>() {
 
-			@Override
-			public Void answer(final InvocationOnMock invocation) throws Throwable {
-				facilities.remove(newFacility);
-				return null;
-			}
-		}).when(facilityDao).delete(newFacility);
+            @Override
+            public Void answer(final InvocationOnMock invocation) throws Throwable {
+                facilities.remove(newFacility);
+                return null;
+            }
+        }).when(facilityDao).delete(newFacility);
 
-		doAnswer(new Answer<Facility>() {
+        doAnswer(new Answer<Facility>() {
 
-			@Override
-			public Facility answer(final InvocationOnMock invocation) throws Throwable {
-				facilities.remove(facility);
-				facilities.add(newFacility);
-				return newFacility;
-			}
-		}).when(facilityDao).update(newFacility);
-	}
+            @Override
+            public Facility answer(final InvocationOnMock invocation) throws Throwable {
+                facilities.remove(facility);
+                facilities.add(newFacility);
+                return newFacility;
+            }
+        }).when(facilityDao).update(newFacility);
+    }
 
-	/**
-	 * Resets mocks after each test.
-	 */
-	@After
-	public void tearDown() {
-		reset(facilityDao);
-		reset(massageDao);
-	}
+    /**
+     * Resets mocks after each test.
+     */
+    @After
+    public void tearDown() {
+        reset(facilityDao);
+        reset(massageDao);
+    }
 
-	/**
-	 * Fetches all {@link Facility}s.
-	 *
-	 * @return {@link List} of all current {@link Facility}s
-	 */
-	private List<Facility> fetchAll() {
-		return RULE.target("/facilities").request().header("Authorization", "Bearer TOKEN")
-				.get(new GenericType<List<Facility>>() {
-				});
-	}
+    /**
+     * Fetches all {@link Facility}s.
+     *
+     * @return {@link List} of all current {@link Facility}s
+     */
+    private List<Facility> fetchAll() {
+        return RULE.target("/facilities").request().header("Authorization", "Bearer TOKEN")
+                .get(new GenericType<List<Facility>>() {
+                });
+    }
 
-	/**
-	 * Tests whether fetch request for all {@link Facility}s works as intended.
-	 */
-	@Test
-	public void fetchTest() {
-		List<Facility> facilities = fetchAll();
+    /**
+     * Tests whether fetch request for all {@link Facility}s works as intended.
+     */
+    @Test
+    public void fetchTest() {
+        List<Facility> facilities = fetchAll();
 
-		assertNotNull(facilities);
-		assertEquals(1, facilities.size());
-	}
+        assertNotNull(facilities);
+        assertEquals(1, facilities.size());
+    }
 
-	/**
-	 * Tests whether creation and follow up removal of a new {@link Facility} work
-	 * as intended.
-	 */
-	@Test
-	public void createDeleteTest() {
-		// Test the creation.
-		Response response = RULE.target("/facilities").request(MediaType.APPLICATION_JSON_TYPE)
-				.header("Authorization", "Bearer TOKEN").post(Entity.json(newFacility));
-		List<Facility> facilities = fetchAll();
+    /**
+     * Tests whether creation and follow up removal of a new {@link Facility} work
+     * as intended.
+     */
+    @Test
+    public void createDeleteTest() {
+        // Test the creation.
+        Response response = RULE.target("/facilities").request(MediaType.APPLICATION_JSON_TYPE)
+                .header("Authorization", "Bearer TOKEN").post(Entity.json(newFacility));
+        List<Facility> facilities = fetchAll();
 
-		assertNotNull(response);
-		assertEquals(201, response.getStatus());
-		assertEquals(2, facilities.size());
-		assertEquals(facility, facilities.get(0));
-		assertEquals(newFacility, facilities.get(1));
+        assertNotNull(response);
+        assertEquals(201, response.getStatus());
+        assertEquals(2, facilities.size());
+        assertEquals(facility, facilities.get(0));
+        assertEquals(newFacility, facilities.get(1));
 
-		// Test the removal.
-		response = RULE.target("/facilities/2").request().header("Authorization", "Bearer TOKEN").delete();
-		facilities = fetchAll();
+        // Test the removal.
+        response = RULE.target("/facilities/2").request().header("Authorization", "Bearer TOKEN").delete();
+        facilities = fetchAll();
 
-		assertNotNull(response);
-		assertEquals(204, response.getStatus());
-		assertEquals(1, facilities.size());
-		assertEquals(facility, facilities.get(0));
-	}
+        assertNotNull(response);
+        assertEquals(204, response.getStatus());
+        assertEquals(1, facilities.size());
+        assertEquals(facility, facilities.get(0));
+    }
 
-	/**
-	 * Tests whether fetch request for a given {@link Facility} works as intended.
-	 */
-	@Test
-	public void getByIdTest() {
-		Facility facility = RULE.target("/facilities/1").request().header("Authorization", "Bearer TOKEN")
-				.get(Facility.class);
+    /**
+     * Tests whether fetch request for a given {@link Facility} works as intended.
+     */
+    @Test
+    public void getByIdTest() {
+        Facility facility = RULE.target("/facilities/1").request().header("Authorization", "Bearer TOKEN")
+                .get(Facility.class);
 
-		assertNotNull(facility);
-		assertEquals(this.facility, facility);
-	}
+        assertNotNull(facility);
+        assertEquals(this.facility, facility);
+    }
 
-	/**
-	 * Tests whether update request for a given {@link Facility} works as intended.
-	 */
-	@Test
-	public void updateTest() {
-		Response response = RULE.target("/facilities/1").request(MediaType.APPLICATION_JSON_TYPE)
-				.header("Authorization", "Bearer TOKEN").put(Entity.json(newFacility));
-		Facility updatedFacility = response.readEntity(Facility.class);
+    /**
+     * Tests whether update request for a given {@link Facility} works as intended.
+     */
+    @Test
+    public void updateTest() {
+        Response response = RULE.target("/facilities/1").request(MediaType.APPLICATION_JSON_TYPE)
+                .header("Authorization", "Bearer TOKEN").put(Entity.json(newFacility));
+        Facility updatedFacility = response.readEntity(Facility.class);
 
-		assertNotNull(response);
-		assertNotNull(updatedFacility);
-		assertEquals(200, response.getStatus());
-		assertEquals(1, updatedFacility.getId());
-		assertEquals(newFacility.getName(), updatedFacility.getName());
-	}
+        assertNotNull(response);
+        assertNotNull(updatedFacility);
+        assertEquals(200, response.getStatus());
+        assertEquals(1, updatedFacility.getId());
+        assertEquals(newFacility.getName(), updatedFacility.getName());
+    }
 }

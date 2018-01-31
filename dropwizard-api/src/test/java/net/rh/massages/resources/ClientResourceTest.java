@@ -37,55 +37,55 @@ import net.rh.massages.db.ClientDAO;
  */
 public class ClientResourceTest {
 
-	private static final ClientDAO clientDao = mock(ClientDAO.class); // mock of ClientDAO
+    private static final ClientDAO clientDao = mock(ClientDAO.class); // mock of ClientDAO
 
-	private final Client client = new Client("Subject", "example@email.com", "FName", "SName", true); // test Client
+    private final Client client = new Client("Subject", "example@email.com", "FName", "SName", true); // test Client
 
-	/**
-	 * Creates a new static {@link ResourceTestRule} that tests a given resource.
-	 * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
-	 * authentication.
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@ClassRule
-	public static final ResourceTestRule RULE = ResourceTestRule.builder()
-			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
-			.addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
-					.setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
-					.setPrefix("Bearer").buildAuthFilter()))
-			.addProvider(RolesAllowedDynamicFeature.class)
-			.addProvider(new AuthValueFactoryProvider.Binder<>(User.class)).addResource(new ClientResource(clientDao))
-			.build();
+    /**
+     * Creates a new static {@link ResourceTestRule} that tests a given resource.
+     * Uses {@link GrizzlyWebTestContainerFactory} to deal with resource
+     * authentication.
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @ClassRule
+    public static final ResourceTestRule RULE = ResourceTestRule.builder()
+            .setTestContainerFactory(new GrizzlyWebTestContainerFactory())
+            .addProvider(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<TestUser>()
+                    .setAuthenticator(new TestAuthenticator()).setAuthorizer(new TestAuthorizer()).setRealm("SECRET")
+                    .setPrefix("Bearer").buildAuthFilter()))
+            .addProvider(RolesAllowedDynamicFeature.class)
+            .addProvider(new AuthValueFactoryProvider.Binder<>(User.class)).addResource(new ClientResource(clientDao))
+            .build();
 
-	/**
-	 * Configures mocks before each test.
-	 */
-	@Before
-	public void setup() {
-		List<Client> clients = new ArrayList<>();
-		clients.add(client);
+    /**
+     * Configures mocks before each test.
+     */
+    @Before
+    public void setup() {
+        List<Client> clients = new ArrayList<>();
+        clients.add(client);
 
-		when(clientDao.findAll()).thenReturn(clients);
-	}
+        when(clientDao.findAll()).thenReturn(clients);
+    }
 
-	/**
-	 * Resets mocks after each test.
-	 */
-	@After
-	public void tearDown() {
-		reset(clientDao);
-	}
+    /**
+     * Resets mocks after each test.
+     */
+    @After
+    public void tearDown() {
+        reset(clientDao);
+    }
 
-	/**
-	 * Tests whether fetch request for all {@link Client}s works as intended.
-	 */
-	@Test
-	public void fetchTest() {
-		List<Client> clients = RULE.target("/clients").request().header("Authorization", "Bearer TOKEN")
-				.get(new GenericType<List<Client>>() {
-				});
+    /**
+     * Tests whether fetch request for all {@link Client}s works as intended.
+     */
+    @Test
+    public void fetchTest() {
+        List<Client> clients = RULE.target("/clients").request().header("Authorization", "Bearer TOKEN")
+                .get(new GenericType<List<Client>>() {
+                });
 
-		assertNotNull(clients);
-		assertEquals(1, clients.size());
-	}
+        assertNotNull(clients);
+        assertEquals(1, clients.size());
+    }
 }

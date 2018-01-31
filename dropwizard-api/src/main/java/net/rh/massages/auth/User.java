@@ -33,73 +33,73 @@ import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
  */
 public class User extends AbstractUser {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param securityContext Keycloak authorization context
-	 * @param request HTTP servlet request
-	 * @param keycloakConfiguration Keycloak configuration
-	 */
-	public User(KeycloakSecurityContext securityContext, HttpServletRequest request,
-			KeycloakConfiguration keycloakConfiguration) {
-		super(request, securityContext, keycloakConfiguration);
-	}
+    /**
+     * Constructor.
+     *
+     * @param securityContext Keycloak authorization context
+     * @param request HTTP servlet request
+     * @param keycloakConfiguration Keycloak configuration
+     */
+    public User(KeycloakSecurityContext securityContext, HttpServletRequest request,
+            KeycloakConfiguration keycloakConfiguration) {
+        super(request, securityContext, keycloakConfiguration);
+    }
 
-	/**
-	 * Checks whether the {@link User} has a given role.
-	 *
-	 * @param role role to be checked
-	 * @throws ForbiddenException if the {@link User} doesn't have the required role
-	 */
-	public void checkUserInRole(String role) {
-		if (!getRoles().contains(role)) {
-			throw new ForbiddenException();
-		}
-	}
+    /**
+     * Checks whether the {@link User} has a given role.
+     *
+     * @param role role to be checked
+     * @throws ForbiddenException if the {@link User} doesn't have the required role
+     */
+    public void checkUserInRole(String role) {
+        if (!getRoles().contains(role)) {
+            throw new ForbiddenException();
+        }
+    }
 
-	/**
-	 * Gives out the name of the Keycloak user.
-	 *
-	 * @return the desired name
-	 */
-	@Override
-	public String getName() {
-		return securityContext.getToken().getName();
-	}
+    /**
+     * Gives out the name of the Keycloak user.
+     *
+     * @return the desired name
+     */
+    @Override
+    public String getName() {
+        return securityContext.getToken().getName();
+    }
 
-	/**
-	 * Gives out the first name of the Keycloak user.
-	 *
-	 * @return the desired name
-	 */
-	public String getFirstName() {
-		return securityContext.getToken().getGivenName();
-	}
+    /**
+     * Gives out the first name of the Keycloak user.
+     *
+     * @return the desired name
+     */
+    public String getFirstName() {
+        return securityContext.getToken().getGivenName();
+    }
 
-	/**
-	 * Gives out the surname of the Keycloak user.
-	 *
-	 * @return the desired surname
-	 */
-	public String getSurname() {
-		return securityContext.getToken().getFamilyName();
-	}
+    /**
+     * Gives out the surname of the Keycloak user.
+     *
+     * @return the desired surname
+     */
+    public String getSurname() {
+        return securityContext.getToken().getFamilyName();
+    }
 
-	/**
-	 * Gives out the subject of the Keycloak user.
-	 *
-	 * @return the desired subject
-	 */
-	public String getSubject() {
-		return securityContext.getToken().getSubject();
-	}
+    /**
+     * Gives out the subject of the Keycloak user.
+     *
+     * @return the desired subject
+     */
+    public String getSubject() {
+        return securityContext.getToken().getSubject();
+    }
 
-	/**
-	 * Gives out the email of the Keycloak user.
-	 *
-	 * @return the desired email
-	 */
-	public String getEmail() {
-		return securityContext.getToken().getEmail();
-	}
+    /**
+     * Gives out the email of the Keycloak user.
+     *
+     * @return the desired email
+     */
+    public String getEmail() {
+        return securityContext.getToken().getEmail();
+    }
 }

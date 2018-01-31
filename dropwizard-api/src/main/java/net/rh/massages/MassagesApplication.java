@@ -64,133 +64,133 @@ import net.rh.massages.resources.MassageResource;
  */
 public class MassagesApplication extends Application<MassagesConfiguration> {
 
-	public static final String NAME = "Red Hat Massages"; // current application name
+    public static final String NAME = "Red Hat Massages"; // current application name
 
-	/**
-	 * Main method of the application.
-	 *
-	 * @param args application arguments
-	 * @throws Exception generic exception
-	 */
-	public static void main(final String[] args) throws Exception {
-		new MassagesApplication().run(args);
-	}
+    /**
+     * Main method of the application.
+     *
+     * @param args application arguments
+     * @throws Exception generic exception
+     */
+    public static void main(final String[] args) throws Exception {
+        new MassagesApplication().run(args);
+    }
 
-	/**
-	 * @return the name given to the application
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * @return the name given to the application
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
-	/**
-	 * Hibernate bundle used by the application.
-	 */
-	private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
-			// Add our representation classes
-			Facility.class, Massage.class, Client.class) {
+    /**
+     * Hibernate bundle used by the application.
+     */
+    private final HibernateBundle<MassagesConfiguration> HIBERNATE = new HibernateBundle<MassagesConfiguration>(
+            // Add our representation classes
+            Facility.class, Massage.class, Client.class) {
 
-		@Override
-		public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
-			return configuration.getDataSourceFactory();
-		}
-	};
+        @Override
+        public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
+            return configuration.getDataSourceFactory();
+        }
+    };
 
-	/**
-	 * Initializes the Bootstrap bundle.
-	 *
-	 * @param bootstrap Bootstrap bundle with application configuration
-	 */
-	@Override
-	public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
-		// Add Hibernate
-		bootstrap.addBundle(HIBERNATE);
+    /**
+     * Initializes the Bootstrap bundle.
+     *
+     * @param bootstrap Bootstrap bundle with application configuration
+     */
+    @Override
+    public void initialize(final Bootstrap<MassagesConfiguration> bootstrap) {
+        // Add Hibernate
+        bootstrap.addBundle(HIBERNATE);
 
-		// Add client asset files
-		bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
+        // Add client asset files
+        bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
 
-		// Enable environmental variables
-		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
-				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
+        // Enable environmental variables
+        bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
+                bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
 
-		// Add Migrations bundle
-		bootstrap.addBundle(new MigrationsBundle<MassagesConfiguration>() {
+        // Add Migrations bundle
+        bootstrap.addBundle(new MigrationsBundle<MassagesConfiguration>() {
 
-			@Override
-			public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
-				return configuration.getDataSourceFactory();
-			}
-		});
+            @Override
+            public DataSourceFactory getDataSourceFactory(MassagesConfiguration configuration) {
+                return configuration.getDataSourceFactory();
+            }
+        });
 
-		// Add Keycloak implementation
-		bootstrap.addBundle(new KeycloakBundle<MassagesConfiguration>() {
+        // Add Keycloak implementation
+        bootstrap.addBundle(new KeycloakBundle<MassagesConfiguration>() {
 
-			@Override
-			protected KeycloakConfiguration getKeycloakConfiguration(MassagesConfiguration configuration) {
-				return (KeycloakConfiguration) configuration.getKeycloakConfiguration();
-			}
+            @Override
+            protected KeycloakConfiguration getKeycloakConfiguration(MassagesConfiguration configuration) {
+                return (KeycloakConfiguration) configuration.getKeycloakConfiguration();
+            }
 
-			@Override
-			protected Class<? extends Principal> getUserClass() {
-				return User.class;
-			}
+            @Override
+            protected Class<? extends Principal> getUserClass() {
+                return User.class;
+            }
 
-			@SuppressWarnings("rawtypes")
-			@Override
-			protected Authorizer createAuthorizer() {
-				return new UserAuthorizer();
-			}
+            @SuppressWarnings("rawtypes")
+            @Override
+            protected Authorizer createAuthorizer() {
+                return new UserAuthorizer();
+            }
 
-			@SuppressWarnings("rawtypes")
-			@Override
-			protected Authenticator createAuthenticator(KeycloakConfiguration configuration) {
-				return new KeycloakAuthenticator(configuration);
-			}
-		});
-	}
+            @SuppressWarnings("rawtypes")
+            @Override
+            protected Authenticator createAuthenticator(KeycloakConfiguration configuration) {
+                return new KeycloakAuthenticator(configuration);
+            }
+        });
+    }
 
-	/**
-	 * The application's run method.
-	 *
-	 * @param configuration configuration of the application
-	 * @param environment Jersey environment of the application
-	 */
-	@Override
-	public void run(final MassagesConfiguration configuration, final Environment environment) {
-		// Create a MailClient instance based on SmtpConfiguration
-		final MailClient mailClient = new MailClient(configuration.getSmtpConfiguration());
+    /**
+     * The application's run method.
+     *
+     * @param configuration configuration of the application
+     * @param environment Jersey environment of the application
+     */
+    @Override
+    public void run(final MassagesConfiguration configuration, final Environment environment) {
+        // Create a MailClient instance based on SmtpConfiguration
+        final MailClient mailClient = new MailClient(configuration.getSmtpConfiguration());
 
-		// Register resources with their DAOs
-		final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
-		final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
-		final ClientDAO clientDao = new ClientDAO(HIBERNATE.getSessionFactory());
+        // Register resources with their DAOs
+        final FacilityDAO facilityDao = new FacilityDAO(HIBERNATE.getSessionFactory());
+        final MassageDAO massageDao = new MassageDAO(HIBERNATE.getSessionFactory());
+        final ClientDAO clientDao = new ClientDAO(HIBERNATE.getSessionFactory());
 
-		environment.jersey().register(new FacilityResource(facilityDao, massageDao, clientDao));
-		environment.jersey().register(new MassageResource(massageDao, clientDao, mailClient));
-		environment.jersey().register(new ClientResource(clientDao));
-		environment.jersey().register(new LogoutResource());
+        environment.jersey().register(new FacilityResource(facilityDao, massageDao, clientDao));
+        environment.jersey().register(new MassageResource(massageDao, clientDao, mailClient));
+        environment.jersey().register(new ClientResource(clientDao));
+        environment.jersey().register(new LogoutResource());
 
-		// Register ErrorPageErrorHandler so that the server routing is connected to
-		// React routing
-		final ErrorPageErrorHandler epeh = new ErrorPageErrorHandler();
-		epeh.addErrorPage(404, "/index.html");
-		environment.getApplicationContext().setErrorHandler(epeh);
+        // Register ErrorPageErrorHandler so that the server routing is connected to
+        // React routing
+        final ErrorPageErrorHandler epeh = new ErrorPageErrorHandler();
+        epeh.addErrorPage(404, "/index.html");
+        environment.getApplicationContext().setErrorHandler(epeh);
 
-		// Register health check
-		MassagesHealthCheck health = new UnitOfWorkAwareProxyFactory(HIBERNATE).create(MassagesHealthCheck.class,
-				FacilityDAO.class, facilityDao);
-		environment.healthChecks().register("massages", health);
+        // Register health check
+        MassagesHealthCheck health = new UnitOfWorkAwareProxyFactory(HIBERNATE).create(MassagesHealthCheck.class,
+                FacilityDAO.class, facilityDao);
+        environment.healthChecks().register("massages", health);
 
-		// Register CORS filter
-		final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+        // Register CORS filter
+        final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 
-		// Configure CORS parameters
-		cors.setInitParameter("allowedOrigins", "*");
-		cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin,Authorization");
-		cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+        // Configure CORS parameters
+        cors.setInitParameter("allowedOrigins", "*");
+        cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin,Authorization");
+        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
 
-		// Add URL mapping
-		cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-	}
+        // Add URL mapping
+        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+    }
 }

@@ -26,12 +26,12 @@ import java.security.Principal;
  */
 public class TestUser implements Principal {
 
-	/**
-	 * @return tested user name
-	 */
-	@Override
-	public String getName() {
-		return "good-guy";
-	}
+    /**
+     * @return tested user name
+     */
+    @Override
+    public String getName() {
+        return "good-guy";
+    }
 
 }

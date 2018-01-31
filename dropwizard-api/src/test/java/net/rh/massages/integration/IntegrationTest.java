@@ -37,21 +37,21 @@ import net.rh.massages.resources.LogoutResource;
  */
 public class IntegrationTest {
 
-	/**
-	 * Creates a new static {@link DropwizardAppRule} that starts the whole
-	 * application in the test environment.
-	 */
-	@ClassRule
-	public static final DropwizardAppRule<MassagesConfiguration> RULE = new DropwizardAppRule<>(
-			MassagesApplication.class, ResourceHelpers.resourceFilePath("config-test.yml"));
+    /**
+     * Creates a new static {@link DropwizardAppRule} that starts the whole
+     * application in the test environment.
+     */
+    @ClassRule
+    public static final DropwizardAppRule<MassagesConfiguration> RULE = new DropwizardAppRule<>(
+            MassagesApplication.class, ResourceHelpers.resourceFilePath("config-test.yml"));
 
-	/**
-	 * Tests whether {@link LogoutResource} endpoint requires authentication.
-	 */
-	@Test(expected = NotAuthorizedException.class)
-	public void testLogoutAuth() {
-		RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/logout").request()
-				.get(new GenericType<String>() {
-				});
-	}
+    /**
+     * Tests whether {@link LogoutResource} endpoint requires authentication.
+     */
+    @Test(expected = NotAuthorizedException.class)
+    public void testLogoutAuth() {
+        RULE.client().target("http://localhost:" + RULE.getLocalPort() + "/api/logout").request()
+                .get(new GenericType<String>() {
+                });
+    }
 }

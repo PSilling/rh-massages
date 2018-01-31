@@ -28,20 +28,20 @@ import io.dropwizard.auth.Authorizer;
  */
 public class UserAuthorizer implements Authorizer<User> {
 
-	/**
-	 * Authorizes a User to an action depending on his role.
-	 *
-	 * @param user the {@link User} to be authorized
-	 * @param role the role that is required for the authorization
-	 * @return true if the {@link User} is authorized, false otherwise
-	 */
-	@Override
-	public boolean authorize(User user, String role) {
-		try {
-			user.checkUserInRole(role);
-			return true;
-		} catch (ForbiddenException e) {
-			return false;
-		}
-	}
+    /**
+     * Authorizes a User to an action depending on his role.
+     *
+     * @param user the {@link User} to be authorized
+     * @param role the role that is required for the authorization
+     * @return true if the {@link User} is authorized, false otherwise
+     */
+    @Override
+    public boolean authorize(User user, String role) {
+        try {
+            user.checkUserInRole(role);
+            return true;
+        } catch (ForbiddenException e) {
+            return false;
+        }
+    }
 }

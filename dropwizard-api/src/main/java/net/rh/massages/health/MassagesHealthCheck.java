@@ -31,27 +31,27 @@ import net.rh.massages.db.FacilityDAO;
  */
 public class MassagesHealthCheck extends HealthCheck {
 
-	private FacilityDAO facilityDAO; // Facility data access object
+    private FacilityDAO facilityDAO; // Facility data access object
 
-	/**
-	 * Constructor.
-	 *
-	 * @param facilityDAO {@link FacilityDAO} to work with
-	 */
-	public MassagesHealthCheck(FacilityDAO facilityDAO) {
-		this.facilityDAO = facilityDAO;
-	}
+    /**
+     * Constructor.
+     *
+     * @param facilityDAO {@link FacilityDAO} to work with
+     */
+    public MassagesHealthCheck(FacilityDAO facilityDAO) {
+        this.facilityDAO = facilityDAO;
+    }
 
-	/**
-	 * Checks whether the application is healthy by checking database connection and
-	 * by checking if there is at least one existing {@link Facility}.
-	 */
-	@UnitOfWork
-	@Override
-	protected Result check() throws Exception {
-		if (facilityDAO.findAll().isEmpty()) {
-			return Result.unhealthy("The application is unhealthy. No Facility found in the database.");
-		}
-		return Result.healthy();
-	}
+    /**
+     * Checks whether the application is healthy by checking database connection and
+     * by checking if there is at least one existing {@link Facility}.
+     */
+    @UnitOfWork
+    @Override
+    protected Result check() throws Exception {
+        if (facilityDAO.findAll().isEmpty()) {
+            return Result.unhealthy("The application is unhealthy. No Facility found in the database.");
+        }
+        return Result.healthy();
+    }
 }

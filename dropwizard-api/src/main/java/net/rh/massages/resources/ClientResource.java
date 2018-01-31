@@ -49,91 +49,91 @@ import net.rh.massages.db.ClientDAO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClientResource {
 
-	private final ClientDAO clientDao; // Client data access object
+    private final ClientDAO clientDao; // Client data access object
 
-	/**
-	 * Constructor.
-	 *
-	 * @param clientDao {@link ClientDAO} to work with
-	 */
-	public ClientResource(ClientDAO clientDao) {
-		this.clientDao = clientDao;
-	}
+    /**
+     * Constructor.
+     *
+     * @param clientDao {@link ClientDAO} to work with
+     */
+    public ClientResource(ClientDAO clientDao) {
+        this.clientDao = clientDao;
+    }
 
-	/**
-	 * GETs all {@link Client}s that can be found.
-	 *
-	 * @return {@link List} of all {@link Client}s
-	 */
-	@GET
-	@RolesAllowed("admin")
-	@UnitOfWork
-	public List<Client> fetch() {
-		return clientDao.findAll();
-	}
+    /**
+     * GETs all {@link Client}s that can be found.
+     *
+     * @return {@link List} of all {@link Client}s
+     */
+    @GET
+    @RolesAllowed("admin")
+    @UnitOfWork
+    public List<Client> fetch() {
+        return clientDao.findAll();
+    }
 
-	/**
-	 * Updates a {@link Client} to an updated value.
-	 *
-	 * @param client updated {@link Client}
-	 * @exception WebApplicationException if the {@link Client} could not be found
-	 *                or {@link User} tries to change other {@link Client}s without
-	 *                administrator rights
-	 * @return on update {@link Response}
-	 */
-	@PUT
-	@PermitAll
-	@UnitOfWork
-	public Response update(@NotNull @Valid Client client, @Auth User user) {
-		if (client.getSub() == null) {
-			client.setSub(user.getSubject());
-		}
+    /**
+     * Updates a {@link Client} to an updated value.
+     *
+     * @param client updated {@link Client}
+     * @exception WebApplicationException if the {@link Client} could not be found
+     *                or {@link User} tries to change other {@link Client}s without
+     *                administrator rights
+     * @return on update {@link Response}
+     */
+    @PUT
+    @PermitAll
+    @UnitOfWork
+    public Response update(@NotNull @Valid Client client, @Auth User user) {
+        if (client.getSub() == null) {
+            client.setSub(user.getSubject());
+        }
 
-		Client daoClient = clientDao.findBySub(client.getSub());
+        Client daoClient = clientDao.findBySub(client.getSub());
 
-		if (!user.getRoles().contains("admin") && !user.getSubject().equals(client.getSub())) {
-			throw new WebApplicationException(Status.FORBIDDEN);
-		}
+        if (!user.getRoles().contains("admin") && !user.getSubject().equals(client.getSub())) {
+            throw new WebApplicationException(Status.FORBIDDEN);
+        }
 
-		if (daoClient == null) {
-			throw new WebApplicationException(Status.NOT_FOUND);
-		}
+        if (daoClient == null) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
 
-		// Update only if a change is detected.
-		if (!daoClient.equals(client)) {
-			clientDao.update(client);
-			return Response.ok(client).build();
-		} else {
-			return Response.noContent().build();
-		}
-	}
+        // Update only if a change is detected.
+        if (!daoClient.equals(client)) {
+            clientDao.update(client);
+            return Response.ok(client).build();
+        } else {
+            return Response.noContent().build();
+        }
+    }
 
-	/**
-	 * GETs a {@link Client} subscription value. For new {@link User}s also creates
-	 * their {@link Client} representation and returns true.
-	 *
-	 * @exception WebApplicationException if the {@link Client} could not be found
-	 *                after creation
-	 * @return true if subscribed, false otherwise
-	 */
-	@GET
-	@Path("/my/subscribed")
-	@PermitAll
-	@UnitOfWork
-	public boolean getSubscription(@Auth User user) {
-		Client client = clientDao.findBySub(user.getSubject());
+    /**
+     * GETs a {@link Client} subscription value. For new {@link User}s also creates
+     * their {@link Client} representation and returns true.
+     *
+     * @exception WebApplicationException if the {@link Client} could not be found
+     *                after creation
+     * @return true if subscribed, false otherwise
+     */
+    @GET
+    @Path("/my/subscribed")
+    @PermitAll
+    @UnitOfWork
+    public boolean getSubscription(@Auth User user) {
+        Client client = clientDao.findBySub(user.getSubject());
 
-		// Create a new Client the User doesn't have its Client representation instance.
-		if (client == null) {
-			client = new Client(user.getSubject(), user.getEmail(), user.getFirstName(), user.getSurname(), true);
-			clientDao.create(client);
+        // Create a new Client the User doesn't have its Client representation instance.
+        if (client == null) {
+            client = new Client(user.getSubject(), user.getEmail(), user.getFirstName(), user.getSurname(), true);
+            clientDao.create(client);
 
-			if (clientDao.findBySub(user.getSubject()) == null) {
-				throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
-			}
-		}
+            if (clientDao.findBySub(user.getSubject()) == null) {
+                throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+            }
+        }
 
-		return client.isSubscribed();
-	}
+        return client.isSubscribed();
+    }
 
 }

@@ -31,75 +31,75 @@ import net.rh.massages.core.Client;
  */
 public class ClientDAO extends AbstractDAO<Client> {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param sessionFactory {@link SessionFactory} to work with
-	 */
-	public ClientDAO(SessionFactory sessionFactory) {
-		super(sessionFactory);
-	}
+    /**
+     * Constructor.
+     *
+     * @param sessionFactory {@link SessionFactory} to work with
+     */
+    public ClientDAO(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
 
-	/**
-	 * Creates a new session and adds a given {@link Client} to the database.
-	 *
-	 * @param client {@link Client} to be created
-	 * @return the created {@link Client}
-	 */
-	public Client create(Client client) {
-		return persist(client);
-	}
+    /**
+     * Creates a new session and adds a given {@link Client} to the database.
+     *
+     * @param client {@link Client} to be created
+     * @return the created {@link Client}
+     */
+    public Client create(Client client) {
+        return persist(client);
+    }
 
-	/**
-	 * Clears the current session and then updates a given {@link Client} using a
-	 * new session.
-	 *
-	 * @param client updated {@link Client}
-	 * @return the updated {@link Client}
-	 */
-	public Client update(Client client) {
-		currentSession().clear();
-		return persist(client);
-	}
+    /**
+     * Clears the current session and then updates a given {@link Client} using a
+     * new session.
+     *
+     * @param client updated {@link Client}
+     * @return the updated {@link Client}
+     */
+    public Client update(Client client) {
+        currentSession().clear();
+        return persist(client);
+    }
 
-	/**
-	 * Creates a new session that finds a {@link Client} in the database based on
-	 * its subject.
-	 *
-	 * @param sub subject to be found
-	 * @return the found {@link Client}
-	 */
-	public Client findBySub(String sub) {
-		return get(sub);
-	}
+    /**
+     * Creates a new session that finds a {@link Client} in the database based on
+     * its subject.
+     *
+     * @param sub subject to be found
+     * @return the found {@link Client}
+     */
+    public Client findBySub(String sub) {
+        return get(sub);
+    }
 
-	/**
-	 * Creates a new session that finds all {@link Client}s in the database.
-	 *
-	 * @return {@link List} of all found {@link Client}s
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Client> findAll() {
-		return list(namedQuery("Client.findAll"));
-	}
+    /**
+     * Creates a new session that finds all {@link Client}s in the database.
+     *
+     * @return {@link List} of all found {@link Client}s
+     */
+    @SuppressWarnings("unchecked")
+    public List<Client> findAll() {
+        return list(namedQuery("Client.findAll"));
+    }
 
-	/**
-	 * Creates a new session that finds all subscribed {@link Client}s in the
-	 * database.
-	 *
-	 * @return {@link List} of all found {@link Client}s
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Client> findAllSubscribed() {
-		return list(namedQuery("Client.findAllSubscribed"));
-	}
+    /**
+     * Creates a new session that finds all subscribed {@link Client}s in the
+     * database.
+     *
+     * @return {@link List} of all found {@link Client}s
+     */
+    @SuppressWarnings("unchecked")
+    public List<Client> findAllSubscribed() {
+        return list(namedQuery("Client.findAllSubscribed"));
+    }
 
-	/**
-	 * Removes a given {@link Client} from the current session.
-	 *
-	 * @param client {@link Client} to be removed
-	 */
-	public void delete(Client client) {
-		currentSession().delete(client);
-	}
+    /**
+     * Removes a given {@link Client} from the current session.
+     *
+     * @param client {@link Client} to be removed
+     */
+    public void delete(Client client) {
+        currentSession().delete(client);
+    }
 }

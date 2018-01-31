@@ -31,23 +31,23 @@ import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
  */
 public class KeycloakAuthenticator extends AbstractKeycloakAuthenticator<User> {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param configuration Keycloak configuration
-	 */
-	public KeycloakAuthenticator(KeycloakConfiguration configuration) {
-		super(configuration);
-	}
+    /**
+     * Constructor.
+     *
+     * @param configuration Keycloak configuration
+     */
+    public KeycloakAuthenticator(KeycloakConfiguration configuration) {
+        super(configuration);
+    }
 
-	/**
-	 * Authenticates a new Keycloak {@link User}.
-	 *
-	 * @return the newly authenticated {@link User}
-	 */
-	@Override
-	protected User prepareAuthentication(KeycloakSecurityContext securityContext, HttpServletRequest request,
-			KeycloakConfiguration configuration) {
-		return new User(securityContext, request, configuration);
-	}
+    /**
+     * Authenticates a new Keycloak {@link User}.
+     *
+     * @return the newly authenticated {@link User}
+     */
+    @Override
+    protected User prepareAuthentication(KeycloakSecurityContext securityContext, HttpServletRequest request,
+            KeycloakConfiguration configuration) {
+        return new User(securityContext, request, configuration);
+    }
 }

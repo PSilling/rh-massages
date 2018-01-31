@@ -44,209 +44,209 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "Massages")
 @NamedQueries({ @NamedQuery(name = "Massage.findAll", query = "SELECT massage FROM Massage massage"),
-		@NamedQuery(name = "Massage.findAllOld", query = "SELECT massage FROM Massage massage WHERE (massage.date < CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date DESC"),
-		@NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
-		@NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client AND massage.ending > CURRENT_TIMESTAMP() ORDER BY massage.date ASC"),
-		@NamedQuery(name = "Massage.findNewByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND (massage.ending > CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date ASC") })
+        @NamedQuery(name = "Massage.findAllOld", query = "SELECT massage FROM Massage massage WHERE (massage.date < CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date DESC"),
+        @NamedQuery(name = "Massage.findAllByMasseuse", query = "SELECT massage FROM Massage massage WHERE massage.masseuse = :masseuse"),
+        @NamedQuery(name = "Massage.findAllByClient", query = "SELECT massage FROM Massage massage WHERE massage.client = :client AND massage.ending > CURRENT_TIMESTAMP() ORDER BY massage.date ASC"),
+        @NamedQuery(name = "Massage.findNewByFacility", query = "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND (massage.ending > CURRENT_TIMESTAMP() AND massage.ending >= :from AND massage.date <= :to) AND (massage.client IS NULL OR :free = false) ORDER BY massage.date ASC") })
 public class Massage {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private long id; // ID of the Massage
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private long id; // ID of the Massage
 
-	@NotNull
-	private Date date; // start date of the Massage
+    @NotNull
+    private Date date; // start date of the Massage
 
-	@NotNull
-	private Date ending; // ending date of the Massage
+    @NotNull
+    private Date ending; // ending date of the Massage
 
-	@Column(length = 64)
-	@NotEmpty
-	private String masseuse; // masseur or masseuse that does the Massage
+    @Column(length = 64)
+    @NotEmpty
+    private String masseuse; // masseur or masseuse that does the Massage
 
-	@ManyToOne
-	@Nullable
-	private Client client; // the Client taking the Massage
+    @ManyToOne
+    @Nullable
+    private Client client; // the Client taking the Massage
 
-	@ManyToOne
-	@NotNull
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Facility facility; // Facility where the Massage is stationed
+    @ManyToOne
+    @NotNull
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Facility facility; // Facility where the Massage is stationed
 
-	/**
-	 * Constructor.
-	 */
-	public Massage() {
-	}
+    /**
+     * Constructor.
+     */
+    public Massage() {
+    }
 
-	/**
-	 * Constructor.
-	 *
-	 * @param date start date of the Massage
-	 * @param ending ending date of the Massage
-	 * @param masseuse masseur or masseuse that does the Massage
-	 * @param client the {@link Client} taking the Massage
-	 * @param facility {@link Facility} where the Massage is stationed
-	 */
-	public Massage(Date date, Date ending, String masseuse, Client client, Facility facility) {
-		this.date = date;
-		this.ending = ending;
-		this.masseuse = masseuse;
-		this.client = client;
-		this.facility = facility;
-	}
+    /**
+     * Constructor.
+     *
+     * @param date start date of the Massage
+     * @param ending ending date of the Massage
+     * @param masseuse masseur or masseuse that does the Massage
+     * @param client the {@link Client} taking the Massage
+     * @param facility {@link Facility} where the Massage is stationed
+     */
+    public Massage(Date date, Date ending, String masseuse, Client client, Facility facility) {
+        this.date = date;
+        this.ending = ending;
+        this.masseuse = masseuse;
+        this.client = client;
+        this.facility = facility;
+    }
 
-	/**
-	 * @return current value of {@link Massage} ID
-	 */
-	public long getId() {
-		return id;
-	}
+    /**
+     * @return current value of {@link Massage} ID
+     */
+    public long getId() {
+        return id;
+    }
 
-	/**
-	 * @param id new {@link Massage} ID to be set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * @param id new {@link Massage} ID to be set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return current value of {@link Massage} date
-	 */
-	public Date getDate() {
-		return date;
-	}
+    /**
+     * @return current value of {@link Massage} date
+     */
+    public Date getDate() {
+        return date;
+    }
 
-	/**
-	 * @param date new {@link Massage} date to be set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    /**
+     * @param date new {@link Massage} date to be set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	/**
-	 * @return current value of {@link Massage} ending
-	 */
-	public Date getEnding() {
-		return ending;
-	}
+    /**
+     * @return current value of {@link Massage} ending
+     */
+    public Date getEnding() {
+        return ending;
+    }
 
-	/**
-	 * @param ending new {@link Massage} ending to be set
-	 */
-	public void setEnding(Date ending) {
-		this.ending = ending;
-	}
+    /**
+     * @param ending new {@link Massage} ending to be set
+     */
+    public void setEnding(Date ending) {
+        this.ending = ending;
+    }
 
-	/**
-	 * @return current value of {@link Massage} masseuse
-	 */
-	public String getMasseuse() {
-		return masseuse;
-	}
+    /**
+     * @return current value of {@link Massage} masseuse
+     */
+    public String getMasseuse() {
+        return masseuse;
+    }
 
-	/**
-	 * @param masseuse new {@link Massage} masseuse to be set
-	 */
-	public void setMasseuse(String masseuse) {
-		this.masseuse = masseuse;
-	}
+    /**
+     * @param masseuse new {@link Massage} masseuse to be set
+     */
+    public void setMasseuse(String masseuse) {
+        this.masseuse = masseuse;
+    }
 
-	/**
-	 * @return current value of {@link Massage} {@link Client}
-	 */
-	public Client getClient() {
-		return client;
-	}
+    /**
+     * @return current value of {@link Massage} {@link Client}
+     */
+    public Client getClient() {
+        return client;
+    }
 
-	/**
-	 * @param client new {@link Massage} {@link Client} to be set
-	 */
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    /**
+     * @param client new {@link Massage} {@link Client} to be set
+     */
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-	/**
-	 * @return current value of {@link Massage} {@link Facility}
-	 */
-	public Facility getFacility() {
-		return facility;
-	}
+    /**
+     * @return current value of {@link Massage} {@link Facility}
+     */
+    public Facility getFacility() {
+        return facility;
+    }
 
-	/**
-	 * @param facility new {@link Massage} {@link Facility} to be set
-	 */
-	public void setFacility(Facility facility) {
-		this.facility = facility;
-	}
+    /**
+     * @param facility new {@link Massage} {@link Facility} to be set
+     */
+    public void setFacility(Facility facility) {
+        this.facility = facility;
+    }
 
-	/**
-	 * Calculates the time difference between Massage ending and date.
-	 *
-	 * @return the difference in milliseconds
-	 */
-	public long calculateDuration() {
-		return ending.getTime() - date.getTime();
-	}
+    /**
+     * Calculates the time difference between Massage ending and date.
+     *
+     * @return the difference in milliseconds
+     */
+    public long calculateDuration() {
+        return ending.getTime() - date.getTime();
+    }
 
-	/**
-	 * Checks (and possibly also swaps) date with ending if ending date is before
-	 * date.
-	 */
-	public void checkDates() {
-		if (date.after(ending)) {
-			Date dateHolder = date;
-			date = ending;
-			ending = dateHolder;
-		}
-	}
+    /**
+     * Checks (and possibly also swaps) date with ending if ending date is before
+     * date.
+     */
+    public void checkDates() {
+        if (date.after(ending)) {
+            Date dateHolder = date;
+            date = ending;
+            ending = dateHolder;
+        }
+    }
 
-	/**
-	 * Compares date and ending with another {@link Massage} and checks whether they
-	 * collide with each other.
-	 *
-	 * @param massage {@link Massage} to compare dates with
-	 * @return true if collides, false otherwise
-	 */
-	public boolean datesCollide(Massage massage) {
-		if (date.compareTo(massage.getEnding()) <= 0 && ending.compareTo(massage.getDate()) >= 0) {
-			return true;
-		}
-		return false;
-	}
+    /**
+     * Compares date and ending with another {@link Massage} and checks whether they
+     * collide with each other.
+     *
+     * @param massage {@link Massage} to compare dates with
+     * @return true if collides, false otherwise
+     */
+    public boolean datesCollide(Massage massage) {
+        if (date.compareTo(massage.getEnding()) <= 0 && ending.compareTo(massage.getDate()) >= 0) {
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Hashes the {@link Massage} based on ID, date, ending, masseuse and
-	 * {@link Facility}
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, date, ending, masseuse, facility.toString());
-	}
+    /**
+     * Hashes the {@link Massage} based on ID, date, ending, masseuse and
+     * {@link Facility}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, ending, masseuse, facility.toString());
+    }
 
-	/**
-	 * @return true if hashCode comparison matches both this and the given object
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if ((obj == null) || (getClass() != obj.getClass())) {
-			return false;
-		}
+    /**
+     * @return true if hashCode comparison matches both this and the given object
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj == null) || (getClass() != obj.getClass())) {
+            return false;
+        }
 
-		return Integer.compare(hashCode(), obj.hashCode()) == 0;
-	}
+        return Integer.compare(hashCode(), obj.hashCode()) == 0;
+    }
 
-	/**
-	 * @return {@link Massage} converted to a String with format Massage[id, date,
-	 *         ending, masseuse, clientSub, facility]
-	 */
-	@Override
-	public String toString() {
-		return String.format("Massage[id=%s, date=%s, ending=%s, masseuse=%s, clientSub=%s, facility=%s]", id, date,
-				ending, masseuse, client.getSub(), facility.toString());
-	}
+    /**
+     * @return {@link Massage} converted to a String with format Massage[id, date,
+     *         ending, masseuse, clientSub, facility]
+     */
+    @Override
+    public String toString() {
+        return String.format("Massage[id=%s, date=%s, ending=%s, masseuse=%s, clientSub=%s, facility=%s]", id, date,
+                ending, masseuse, client.getSub(), facility.toString());
+    }
 }

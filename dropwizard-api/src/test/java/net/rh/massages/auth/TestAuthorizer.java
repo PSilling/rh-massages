@@ -26,20 +26,20 @@ import io.dropwizard.auth.Authorizer;
  */
 public class TestAuthorizer implements Authorizer<TestUser> {
 
-	/**
-	 * Authorize a {@link TestUser} based on name.
-	 *
-	 * @param user the {@link TestUser} to be authorized
-	 * @param role the role that is required for the authorization (has no meaning
-	 *            for the test)
-	 * @return true if the {@link TestUser} is authorized, false otherwise
-	 */
-	@Override
-	public boolean authorize(TestUser user, String role) {
-		if (user.getName().equals("good-guy")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Authorize a {@link TestUser} based on name.
+     *
+     * @param user the {@link TestUser} to be authorized
+     * @param role the role that is required for the authorization (has no meaning
+     *            for the test)
+     * @return true if the {@link TestUser} is authorized, false otherwise
+     */
+    @Override
+    public boolean authorize(TestUser user, String role) {
+        if (user.getName().equals("good-guy")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

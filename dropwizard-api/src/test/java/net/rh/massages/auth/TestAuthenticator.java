@@ -30,18 +30,18 @@ import io.dropwizard.auth.Authenticator;
  */
 public class TestAuthenticator<P extends Principal> implements Authenticator<String, TestUser> {
 
-	/**
-	 * Authenticate a {@link TestUser} based on credentials.
-	 *
-	 * @param credentials user credentials
-	 * @return {@link Optional} value of {@link TestUser}
-	 */
-	@Override
-	public Optional<TestUser> authenticate(String credentials) throws AuthenticationException {
-		if (credentials != null) {
-			return Optional.ofNullable(new TestUser());
-		} else {
-			return Optional.empty();
-		}
-	}
+    /**
+     * Authenticate a {@link TestUser} based on credentials.
+     *
+     * @param credentials user credentials
+     * @return {@link Optional} value of {@link TestUser}
+     */
+    @Override
+    public Optional<TestUser> authenticate(String credentials) throws AuthenticationException {
+        if (credentials != null) {
+            return Optional.ofNullable(new TestUser());
+        } else {
+            return Optional.empty();
+        }
+    }
 }

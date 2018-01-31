@@ -36,63 +36,63 @@ import net.rh.massages.configuration.SmtpConfiguration;
  */
 public class MassagesConfiguration extends Configuration {
 
-	@Valid
-	@NotNull
-	private DataSourceFactory database = new DataSourceFactory(); // database factory
+    @Valid
+    @NotNull
+    private DataSourceFactory database = new DataSourceFactory(); // database factory
 
-	@Valid
-	@NotNull
-	private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // Keycloak configuration
+    @Valid
+    @NotNull
+    private KeycloakConfiguration keycloakConfiguration = new KeycloakConfiguration(); // Keycloak configuration
 
-	@Valid
-	@NotNull
-	private SmtpConfiguration smtpConfiguration = new SmtpConfiguration(); // STMP client configuration
+    @Valid
+    @NotNull
+    private SmtpConfiguration smtpConfiguration = new SmtpConfiguration(); // STMP client configuration
 
-	/**
-	 * @param factory new database factory value to be set
-	 */
-	@JsonProperty("database")
-	public void setDataSourceFactory(DataSourceFactory factory) {
-		database = factory;
-	}
+    /**
+     * @param factory new database factory value to be set
+     */
+    @JsonProperty("database")
+    public void setDataSourceFactory(DataSourceFactory factory) {
+        database = factory;
+    }
 
-	/**
-	 * @return current value of database
-	 */
-	@JsonProperty("database")
-	public DataSourceFactory getDataSourceFactory() {
-		return database;
-	}
+    /**
+     * @return current value of database
+     */
+    @JsonProperty("database")
+    public DataSourceFactory getDataSourceFactory() {
+        return database;
+    }
 
-	/**
-	 * @param keycloakConfiguration new keycloakConfiguration value to be set
-	 */
-	@JsonProperty("keycloakConfiguration")
-	public void setKeycloakConfiguration(KeycloakConfiguration keycloakConfiguration) {
-		this.keycloakConfiguration = keycloakConfiguration;
-	}
+    /**
+     * @param keycloakConfiguration new keycloakConfiguration value to be set
+     */
+    @JsonProperty("keycloakConfiguration")
+    public void setKeycloakConfiguration(KeycloakConfiguration keycloakConfiguration) {
+        this.keycloakConfiguration = keycloakConfiguration;
+    }
 
-	/**
-	 * @return current value of keycloakConfiguration
-	 */
-	@JsonProperty("keycloakConfiguration")
-	public AdapterConfig getKeycloakConfiguration() {
-		return keycloakConfiguration;
-	}
+    /**
+     * @return current value of keycloakConfiguration
+     */
+    @JsonProperty("keycloakConfiguration")
+    public AdapterConfig getKeycloakConfiguration() {
+        return keycloakConfiguration;
+    }
 
-	/**
-	 * @param smtpConfiguration new smtpConfiguration value to be set
-	 */
-	@JsonProperty("smtpConfiguration")
-	public void setSmtpConfiguration(SmtpConfiguration smtpConfiguration) {
-		this.smtpConfiguration = smtpConfiguration;
-	}
+    /**
+     * @param smtpConfiguration new smtpConfiguration value to be set
+     */
+    @JsonProperty("smtpConfiguration")
+    public void setSmtpConfiguration(SmtpConfiguration smtpConfiguration) {
+        this.smtpConfiguration = smtpConfiguration;
+    }
 
-	/**
-	 * @return current value of smtpConfiguration
-	 */
-	@JsonProperty("smtpConfiguration")
-	public SmtpConfiguration getSmtpConfiguration() {
-		return smtpConfiguration;
-	}
+    /**
+     * @return current value of smtpConfiguration
+     */
+    @JsonProperty("smtpConfiguration")
+    public SmtpConfiguration getSmtpConfiguration() {
+        return smtpConfiguration;
+    }
 }
