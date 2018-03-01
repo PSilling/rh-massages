@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:jre-8-alpine
 MAINTAINER PSilling
 
 ADD /dropwizard-api/src/main/resources/docker/start.sh //
@@ -8,4 +8,4 @@ ADD /dropwizard-api/config.yml //
 ENTRYPOINT ["sh", "start.sh"]
 CMD ["start"]
 
-EXPOSE 8080 8081
+EXPOSE 8080 8081..
