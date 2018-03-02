@@ -25,8 +25,8 @@
                 "strategy": {
                     "sourceStrategy": {
                         "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "maven:3.5.2-jdk-8"
+                            "kind": "ImageStream",
+                            "name": "s2i-java"
                         },
                         "runtimeArtifacts": [
                             {
@@ -35,7 +35,7 @@
                             }
                         ],
                         "runtimeImage": {
-                            "kind": "ImageStreamTag",
+                            "kind": "DockerImage",
                             "name": "openjdk:8-jre"
                         }
                     },
