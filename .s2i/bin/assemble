@@ -43,3 +43,4 @@ if [ -z "$result_file" ]; then
   exit 1
 fi
 mv $result_file app.jar
+cp dropwizard-api/config.yml config.yml
