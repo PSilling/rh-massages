@@ -1,0 +1,45 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 's2i-java8-maven' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+if [[ "$1" == "-h" ]]; then
+  # If the 's2i-java8-maven' assemble script is executed with '-h' flag,
+  # print the usage.
+  exec /usr/libexec/s2i/usage
+fi
+
+# Restore artifacts from the previous build (if they exist).
+echo "---> Restoring build artifacts..."
+if [ "$(ls -A /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring found build artifacts..."
+  cp -Rf /tmp/artifacts/. ./
+fi
+
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. ./
+
+echo "---> Building application from source..."
+MAVEN_ARGS=${MAVEN_ARGS:-"install"}
+echo "--> # MAVEN_ARGS = $MAVEN_ARGS"
+if [ -f "mvnw" ]; then
+  echo "---> Building application with maven wrapper..."
+  ./mvnw $MAVEN_ARGS
+else
+  echo "---> Building application with installed maven..."
+  mvn $MAVEN_ARGS
+fi
+
+ARTIFACT_PATH=${ARTIFACT_PATH:-target}
+echo "--> # ARTIFACT_PATH = $ARTIFACT_PATH"
+echo "---> Rename artifact $ARTIFACT_PATH"
+result_file=$ARTIFACT_PATH
+if [ -z "$result_file" ]; then
+  echo "---> Build file could not be found"
+  exit 1
+fi
+mv $result_file app.jar
