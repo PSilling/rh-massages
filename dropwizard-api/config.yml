@@ -24,6 +24,7 @@ keycloakConfiguration:
   ssl-required: none
   resource: ${KC_RESOURCE:-api-client}
   bearer-only: true
+  enable-cors: true
   credentials:
     secret: ${KC_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
 
