@@ -1,0 +1,7 @@
+{
+  "realm": "Massages",
+  "auth-server-url": "http://keycloak-keycloak.cloudapps.api-qe.eng.rdu2.redhat.com/auth",
+  "ssl-required": "none",
+  "resource": "ui-client",
+  "public-client": true
+}
