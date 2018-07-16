@@ -191,7 +191,7 @@ Util.clearAllIntervals = () => {
 }
 
 /**
- * Adds a massage event to Google Calendar (in a new tab).
+ * Generates a Google Calendar link for a given massage event.
  *
  * @param massage the Massage to be added to the calendar
  */
@@ -201,8 +201,7 @@ Util.addToCalendar = (massage) => {
   url += "&dates=" + moment.utc(massage.date).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "/" + moment.utc(massage.ending).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "&details=" + _t.translate('Masseur/Masseuse') + ' ' + massage.masseuse;
-
-  window.open(url,"_blank");
+  return url;
 }
 
 /**

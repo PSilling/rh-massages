@@ -13,18 +13,26 @@ class CalendarButton extends Component {
   render() {
     return (
       <span>
-        <button disabled={this.props.disabled} style={{ 'color': '#000' }}  type="button"
-          className="btn btn-link" onClick={this.props.onAdd} title={ _t.translate("Add to Google Calendar") }>
-          <span className="glyphicon glyphicon-calendar"></span>
-        </button>
+        {this.props.disabled ?
+          <button disabled style={{ 'color': '#000' }}  type="button"
+            className="btn btn-link" title={ _t.translate("Add to Google Calendar") }>
+            <span className="glyphicon glyphicon-calendar"></span>
+          </button> :
+          <a href={this.props.link} target="_blank" tabIndex="-1">
+            <button style={{ 'color': '#000' }}  type="button"
+              className="btn btn-link" title={ _t.translate("Add to Google Calendar") }>
+              <span className="glyphicon glyphicon-calendar"></span>
+            </button>
+          </a>
+        }
       </span>
     );
   }
 }
 
 CalendarButton.propTypes = {
-  /** function to be called on action confirmation */
-  onAdd: PropTypes.func.isRequired,
+  /** calendar link to redirect to */
+  link: PropTypes.string.isRequired,
   /** whether the button should be disabled */
   disabled: PropTypes.bool
 };

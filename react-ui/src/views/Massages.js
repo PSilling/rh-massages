@@ -103,20 +103,6 @@ class Massages extends Component {
     }], this.getMassages);
   }
 
-  assignMassageWithEvent = (massage) => {
-    Util.put(Util.MASSAGES_URL, [{
-      id: massage.id,
-      date: massage.date,
-      ending: massage.ending,
-      masseuse: massage.masseuse,
-      client: Auth.getClient(),
-      facility: massage.facility
-    }], () => {
-      Util.addToCalendar(massage);
-      this.getMassages();
-    });
-  }
-
   cancelMassage = (massage) => {
     Util.put(Util.MASSAGES_URL, [{
       id: massage.id,
@@ -341,7 +327,6 @@ class Massages extends Component {
                       search={this.state.search}
                       onCheck={(event) => this.handleMassageSelect(event, item)}
                       onAssign={() => this.assignMassage(item)}
-                      onEventAssign={() => this.assignMassageWithEvent(item)}
                       onCancel={() => this.cancelMassage(item)}
                       onDelete={() => this.deleteMassage(item.id)}
                       onEdit={() => this.toggleModal(index)}

@@ -52,10 +52,12 @@ class MassageRow extends Component {
             { _t.translate('Free') }
             {moment(this.props.massage.date).isBefore(moment()) ? '' :
               <AssignButton onAssign={this.props.onAssign} disabled={this.props.assignDisabled}>
-                <button type="button" className="btn btn-primary"
-                  onClick={this.props.onEventAssign} style={{ 'marginRight': '5px' }}>
-                  { _t.translate('Proceed and add to calendar') }
-                </button>
+                <a href={Util.addToCalendar(this.props.massage)} target="_blank" tabIndex="-1">
+                  <button type="button" className="btn btn-primary"
+                    onClick={this.props.onAssign} style={{ 'marginRight': '5px' }}>
+                    { _t.translate('Proceed and add to calendar') }
+                  </button>
+                </a>
               </AssignButton>
             }
           </td> :
@@ -69,7 +71,7 @@ class MassageRow extends Component {
         <td width="55px">
           <CalendarButton disabled={Util.isEmpty(this.props.massage.client)
             || Auth.getSub() !== this.props.massage.client.sub}
-            onAdd={() => Util.addToCalendar(this.props.massage)} />
+            link={Util.addToCalendar(this.props.massage)} />
         </td>
         {Auth.isAdmin() ?
           <td width="105px">
@@ -99,8 +101,6 @@ MassageRow.propTypes = {
   onCheck: PropTypes.func.isRequired,
   /** function called on Massage assignment */
   onAssign: PropTypes.func.isRequired,
-  /** function called on Massage assignment with calendar event */
-  onEventAssign: PropTypes.func.isRequired,
   /** function called on Massage cancellation */
   onCancel: PropTypes.func.isRequired,
   /** function called on Massage edit */

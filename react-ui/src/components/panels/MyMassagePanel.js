@@ -69,7 +69,7 @@ class MyMassagePanel extends Component {
               </p>
               <p style={{ 'marginTop': '-8px' }}>
                 {_t.translate('Event') + ":"}
-                <CalendarButton onAdd={() => Util.addToCalendar(this.props.massage)} />
+                <CalendarButton link={Util.addToCalendar(this.props.massage)} />
               </p>
             </div>
           </div>
