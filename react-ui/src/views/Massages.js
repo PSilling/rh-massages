@@ -53,7 +53,7 @@ class Massages extends Component {
   }
 
   getMassages = () => {
-    if (this.state.facilities.length > 0) {
+    if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
       Util.get(Util.FACILITIES_URL + this.state.facilities[this.state.index].id
         + "/massages?search=" + this.state.search
         + "&free=" + this.state.freeOnly
