@@ -31,8 +31,8 @@ class Massages extends Component {
   state = {facilities: [], massages: [], masseuses: [], selected: [], index: 0, page: 1,
             editId: -1, massageMinutes: 0, loading: true,  modalActive: false,
             copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
-            search: "", freeOnly: false, from: moment().format("YYYY-MM-DD"),
-            to: moment().add(1, 'months').format("YYYY-MM-DD"), perPage: 12, pages: 1}
+            search: "", freeOnly: false, from: moment(),
+            to: moment().add(1, 'months'), perPage: 12, pages: 1}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -195,20 +195,20 @@ class Massages extends Component {
     this.setState({perPage: parseInt(event.target.value, 10)});
   }
 
-  changeFrom = (event) => {
-    if (Util.isEmpty(event.target.value)
-      || moment(event.target.value).isAfter(moment(this.state.to))) {
+  changeFrom = (date) => {
+    if (typeof date === 'string'
+      || date.isAfter(this.state.to)) {
       return;
     }
-    this.setState({from: event.target.value});
+    this.setState({from: date});
   }
 
-  changeTo = (event) => {
-    if (Util.isEmpty(event.target.value)
-      || moment(event.target.value).isBefore(moment(this.state.from))) {
+  changeTo = (date) => {
+    if (typeof date === 'string'
+      || date.isBefore(this.state.from)) {
       return;
     }
-    this.setState({to: event.target.value});
+    this.setState({to: date});
   }
 
   changePage = (page) => {

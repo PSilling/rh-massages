@@ -8,6 +8,7 @@ import AddButton from '../iconbuttons/AddButton';
 import ModalActions from '../buttons/ModalActions';
 
 // module imports
+import Datetime from 'react-datetime';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import moment from 'moment';
 
@@ -21,16 +22,18 @@ import Util from '../../util/Util';
  */
 class MassageModal extends Component {
 
-  state = {date: moment().add(1, 'hours').format("YYYY-MM-DDTHH:mm"), time: "00:30", masseuse: ""}
+  state = {date: null, time: null, masseuse: ""}
+
+  yesterday = moment().subtract(1, "day")
 
   componentWillReceiveProps(nextProps) {
     if (this.props === nextProps) return;
 
     this.setState({
-      date: (nextProps.massage === null) ? moment().add(1, 'hours').format("YYYY-MM-DDTHH:mm") :
-        moment(nextProps.massage.date).format("YYYY-MM-DDTHH:mm"),
-      time: (nextProps.massage === null) ? "00:30" :
-        moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))).format("HH:mm"),
+      date: (nextProps.massage === null) ? moment().add(1, 'hours') :
+        moment(nextProps.massage.date),
+      time: (nextProps.massage === null) ? moment("00:30", "HH:mm") :
+        moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))),
       masseuse: (nextProps.massage === null) ? "" : nextProps.massage.masseuse
     });
   }
@@ -39,32 +42,28 @@ class MassageModal extends Component {
     this.setState({masseuse: event.target.value});
   }
 
-  changeDate = (event) => {
-    if (Util.isEmpty(event.target.value) || moment(event.target.value).isBefore(moment().startOf('minute'))) {
+  changeDate = (date) => {
+    if (typeof date === 'string') {
       return;
     }
-    this.setState({date: event.target.value});
+    this.setState({date: date.isBefore(moment().startOf('minute')) ? moment() : date});
   }
 
-  changeTime = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeTime = (time) => {
+    if (typeof time === 'string') {
       return;
     }
-    this.setState({time: event.target.value});
+    this.setState({time: time});
   }
 
   getStartingDate = () => {
-    if (moment(this.state.date).isBefore(moment().startOf('minute'))) {
-      this.setState({date: moment().startOf('minute').format("YYYY-MM-DDTHH:mm")});
-      return moment().startOf('minute').toDate();
+    var minDate = moment().startOf('minute');
+    if (this.state.date.isBefore(minDate)) {
+      this.setState({date: minDate});
+      return minDate;
     } else {
-      return moment(this.state.date).toDate();
+      return moment(this.state.date);
     }
-  }
-
-  getEndingDate = (date) => {
-    var minutes = parseInt(this.state.time.substring(0, 2) * 60, 10) + parseInt(this.state.time.substring(3, 5), 10);
-    return moment(date).add(minutes, 'minutes').toDate();
   }
 
   addMassage = () => {
@@ -74,8 +73,8 @@ class MassageModal extends Component {
     }
     var date = this.getStartingDate();
     Util.post(Util.MASSAGES_URL, [{
-      date: moment(date).toDate(),
-      ending: this.getEndingDate(date),
+      date: date.toDate(),
+      ending: date.add(this.state.time.get('hour'), 'hours').add(this.state.time.get('minute'), 'minutes').toDate(),
       masseuse: this.state.masseuse,
       client: null,
       facility: {id: this.props.facilityId}
@@ -93,8 +92,8 @@ class MassageModal extends Component {
     var date = this.getStartingDate();
     Util.put(Util.MASSAGES_URL, [{
       id: this.props.massage.id,
-      date: moment(date).toDate(),
-      ending: this.getEndingDate(date),
+      date: date.toDate(),
+      ending: date.add(this.state.time.get('hour'), 'hours').add(this.state.time.get('minute'), 'minutes').toDate(),
       masseuse: this.state.masseuse,
       client: this.props.massage.client,
       facility: this.props.massage.facility
@@ -160,9 +159,12 @@ class MassageModal extends Component {
                 <label htmlFor="durationInput">{ _t.translate('Duration') }</label>
                 <div className="row">
                   <div className="col-md-3">
-                    <input id="durationInput" value={this.state.time} onChange={this.changeTime}
-                      className="form-control" onKeyPress={this.handleInputKeyPress}
-                      type="time" placeholder={ _t.translate('Duration') }
+                    <Datetime value={this.state.time} onChange={this.changeTime} dateFormat={false}
+                      inputProps={{
+                        id: "durationInput",
+                        placeholder: _t.translate('Duration'),
+                        onKeyPress: this.handleInputKeyPress
+                      }}
                     />
                   </div>
                 </div>
@@ -171,11 +173,14 @@ class MassageModal extends Component {
               <div className="form-group col-md-12">
                 <label htmlFor="dateInput">{ _t.translate('Massage time') }</label>
                 <div className="row">
-                  <div className="col-md-5">
-                    <input id="dateInput" value={this.state.date} onChange={this.changeDate}
-                      className="form-control" onKeyPress={this.handleInputKeyPress}
-                      type="datetime-local" min={moment().format("YYYY-MM-DD")}
-                      placeholder={ _t.translate('Massage time') }
+                  <div className="col-md-4">
+                    <Datetime value={this.state.date} onChange={this.changeDate}
+                      isValidDate={(current) => { return current.isAfter(this.yesterday) }}
+                      inputProps={{
+                        id: "dateInput",
+                        placeholder: _t.translate('Massage time'),
+                        onKeyPress: this.handleInputKeyPress
+                      }}
                     />
                   </div>
                 </div>

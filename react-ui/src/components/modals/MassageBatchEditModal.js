@@ -8,6 +8,7 @@ import BatchButton from '../buttons/BatchButton';
 import ModalActions from '../buttons/ModalActions';
 
 // module imports
+import Datetime from 'react-datetime';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import moment from 'moment';
 
@@ -21,7 +22,7 @@ import Util from '../../util/Util';
 class MassageBatchEditModal extends Component {
 
   state = {editMasseuse: false, editDate: 1, removeClients: false,
-            masseuse: "", days: "1", time: "00:00"}
+            masseuse: "", days: "1", time: moment("00:00", "HH:mm")}
 
    componentWillReceiveProps(nextProps) {
      if (this.props === nextProps) return;
@@ -36,18 +37,14 @@ class MassageBatchEditModal extends Component {
   }
 
   changeEditDate = (event, dateCheckbox) => {
-    if (event.target.checked) {
-      if (dateCheckbox) {
+    if (dateCheckbox) {
+      if (event.target.checked) {
         this.setState({editDate: 1});
       } else {
-        this.setState({editDate: -1});
-      }
-    } else {
-      if (dateCheckbox) {
         this.setState({editDate: 0});
-      } else {
-        this.setState({editDate: 1});
       }
+    } else if (event.target.checked) {
+      this.setState({editDate: event.target.value});
     }
   }
 
@@ -67,19 +64,19 @@ class MassageBatchEditModal extends Component {
     this.setState({days: event.target.value});
   }
 
-  changeTime = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeTime = (time) => {
+    if (typeof time === 'string') {
       return;
     }
-    this.setState({time: event.target.value});
+    this.setState({time: time});
   }
 
   /**
    * Get date value based on a given offset and state time.
    */
   getDate = (date) => {
-    var minutes = parseInt(this.state.days, 10) * 1440 + parseInt(this.state.time.substring(0, 2) * 60, 10)
-      + parseInt(this.state.time.substring(3, 5), 10);
+    var minutes = (parseInt(this.state.days, 10) * 1440) +
+      (this.state.time.get('hour') * 60) + this.state.time.get('minute');
     if (this.state.editDate < 0) {
       if (moment(date).subtract(minutes, 'minutes').isBefore(moment().startOf('minute'))) {
         return -1;
@@ -99,7 +96,7 @@ class MassageBatchEditModal extends Component {
     var putArray = [],
         informed = false;
     for (var i = 0; i < this.props.massages.length; i++) {
-      if (this.getDate(this.props.massages[i].date) === -1 || this.getDate(this.props.massages[i].ending) === -1) {
+      if (this.getDate(this.props.massages[i].date) === -1) {
         if (!informed) {
           Util.notify("warning",
             _t.translate('Not all massages were edited as in some cases the new date would have been before now.'),
@@ -194,21 +191,31 @@ class MassageBatchEditModal extends Component {
                   </div>
 
                   <div className="col-md-3">
-                    <input value={this.state.time} onChange={this.changeTime}
-                      className="form-control" onKeyPress={this.handleInputKeyPress}
-                      type="time" placeholder={ _t.translate('Duration change') }
-                      disabled={this.state.editDate === 0 ? true : false}
+                    <Datetime value={this.state.time} onChange={this.changeTime} dateFormat={false}
+                      inputProps={{
+                        placeholder: _t.translate('Duration change'),
+                        onKeyPress: this.handleInputKeyPress,
+                        disabled: (this.state.editDate === 0 ? true : false)
+                      }}
                     />
                   </div>
 
                   <div className="col-md-4" style={{ 'marginTop': '5px' }}>
-                    <label className="checkbox-inline">
-                      <input type="checkbox" onChange={(event) => this.changeEditDate(event, false)}
+                    <label className="radio-inline">
+                      <input type="radio" onChange={(event) => this.changeEditDate(event, false)} value={1}
+                        checked={this.state.editDate > 0 ? true : false} onKeyPress={this.handleInputKeyPress}
+                        disabled={this.state.editDate === 0 ? true : false}
+                        style={{ 'marginRight': '5px' }}
+                      />
+                      <strong>{ _t.translate('Later') }</strong>
+                    </label>
+                    <label className="radio-inline">
+                      <input type="radio" onChange={(event) => this.changeEditDate(event, false)} value={-1}
                         checked={this.state.editDate < 0 ? true : false} onKeyPress={this.handleInputKeyPress}
                         disabled={this.state.editDate === 0 ? true : false}
                         style={{ 'marginRight': '5px' }}
                       />
-                      <strong>{ _t.translate('...earlier') }</strong>
+                      <strong>{ _t.translate('Earlier') }</strong>
                     </label>
                   </div>
                 </div>

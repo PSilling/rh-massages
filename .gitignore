@@ -1,11 +1,11 @@
-# Eclipse files
+# production, build and IDE files
+**/build/
+**/target/
 **/.classpath
 **/.project
 **/.settings/
-
-# production and build files
-**/build/
-**/target/
+**/.idea/
+**/package-lock.json
 
 # Keycloak configuration json
 **/keycloak.json

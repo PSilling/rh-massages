@@ -9,6 +9,7 @@ import ModalActions from '../buttons/ModalActions';
 import Tab from '../navs/Tab';
 
 // module imports
+import Datetime from 'react-datetime';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import moment from 'moment';
 
@@ -25,17 +26,19 @@ class MassageBatchAddModal extends Component {
             days: [],
             weeks: "1",
             masseuse: "",
-            startDate: moment().format("YYYY-MM-DD"),
-            startTime: "08:00",
-            massageDuration: "00:30",
+            startDate: moment(),
+            startTime: moment("08:00", "HH:mm"),
+            massageDuration: moment("00:30", "HH:mm"),
             massagesPerDay: "10",
-            normalPause: "00:10",
-            bigPause: "01:00",
+            normalPause: moment("00:10", "HH:mm"),
+            bigPause: moment("01:00", "HH:mm"),
             bigPauseAfter: "5",
           }], index: 0
         }
 
-  weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+  yesterday = moment().subtract(1, "day")
 
   changeDays = (event, day) => {
     var rules = this.state.rules,
@@ -49,49 +52,49 @@ class MassageBatchAddModal extends Component {
     this.setState({rules: rules});
   }
 
-  changeStartDate = (event) => {
-    if (Util.isEmpty(event.target.value)
-      || moment(event.target.value).isBefore(moment().startOf('minute').subtract(1, 'days'))) {
+  changeStartDate = (date) => {
+    if (typeof date === 'string') {
       return;
     }
     var rules = this.state.rules;
-    rules[this.state.index].startDate = event.target.value;
+    rules[this.state.index].startDate =
+      date.isBefore(moment().startOf('minute').subtract(1, 'days')) ? moment() : date;
     this.setState({rules: rules});
   }
 
-  changeStartTime = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeStartTime = (time) => {
+    if (typeof time === 'string') {
       return;
     }
     var rules = this.state.rules;
-    rules[this.state.index].startTime = event.target.value;
+    rules[this.state.index].startTime = time;
     this.setState({rules: rules});
   }
 
-  changeNormalPause = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeNormalPause = (duration) => {
+    if (typeof duration === 'string') {
       return;
     }
     var rules = this.state.rules;
-    rules[this.state.index].normalPause = event.target.value;
+    rules[this.state.index].normalPause = duration;
     this.setState({rules: rules});
   }
 
-  changeBigPause = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeBigPause = (duration) => {
+    if (typeof duration === 'string') {
       return;
     }
     var rules = this.state.rules;
-    rules[this.state.index].bigPause = event.target.value;
+    rules[this.state.index].bigPause = duration;
     this.setState({rules: rules});
   }
 
-  changeMassageDuration = (event) => {
-    if (Util.isEmpty(event.target.value)) {
+  changeMassageDuration = (duration) => {
+    if (typeof duration === 'string') {
       return;
     }
     var rules = this.state.rules;
-    rules[this.state.index].massageDuration = event.target.value;
+    rules[this.state.index].massageDuration = duration;
     this.setState({rules: rules});
   }
 
@@ -143,12 +146,12 @@ class MassageBatchAddModal extends Component {
     rules.push({days: [],
                 weeks: "1",
                 masseuse: "",
-                startDate: moment().format("YYYY-MM-DD"),
-                startTime: "08:00",
-                massageDuration: "00:30",
+                startDate: moment(),
+                startTime: moment("08:00", "HH:mm"),
+                massageDuration: moment("00:30", "HH:mm"),
                 massagesPerDay: "10",
-                normalPause: "00:10",
-                bigPause: "01:00",
+                normalPause: moment("00:10", "HH:mm"),
+                bigPause: moment("01:00", "HH:mm"),
                 bigPauseAfter: "5",
               });
     this.setState({rules: rules, index: (rules.length - 1)});
@@ -161,8 +164,8 @@ class MassageBatchAddModal extends Component {
       index: this.state.index > (rules.length - 1) ? (rules.length - 1) : this.state.index});
   }
 
-  getMinutes(time) {
-    return (parseInt(time.substring(0, 2) * 60, 10) + parseInt(time.substring(3, 5), 10));
+  getMinutes(from) {
+    return (60 * from.get('hour', 'hours') + from.get('minute', 'minutes'));
   }
 
   /**
@@ -180,7 +183,7 @@ class MassageBatchAddModal extends Component {
     if (isEnding) {
       minutes += massageMinutes;
     }
-    return moment(date).add(minutes, 'minutes').toDate();
+    return moment(date).add(minutes, 'minutes');
   }
 
   /**
@@ -206,7 +209,7 @@ class MassageBatchAddModal extends Component {
           continue;
         }
         for (var k = 0; k < this.state.rules[i].massagesPerDay; k++) {
-          if (moment(this.getDate(false, i, j, k)).isBefore(moment())) {
+          if (this.getDate(false, i, j, k).isBefore(moment())) {
             if (!informed) {
               Util.notify("warning",
                 _t.translate('Not all massages were edited as in some cases the new date would have been before now.'),
@@ -216,8 +219,8 @@ class MassageBatchAddModal extends Component {
             continue;
           }
           postArray.push({
-            date: this.getDate(false, i, j, k),
-            ending: this.getDate(true, i, j, k),
+            date: this.getDate(false, i, j, k).toDate(),
+            ending: this.getDate(true, i, j, k).toDate(),
             masseuse: this.state.rules[i].masseuse,
             client: null,
             facility: {id: this.props.facilityId}
@@ -256,26 +259,33 @@ class MassageBatchAddModal extends Component {
         }
         if (Util.isEmpty(rules[i].startDate)
             || moment(rules[i].startDate).isBefore(moment().startOf('minute').subtract(1, 'days'))) {
-          rules[i].startDate = moment().format("YYYY-MM-DD");
+          rules[i].startDate = moment();
+        } else {
+          rules[i].startDate = moment(rules[i].startDate);
         }
         if (Util.isEmpty(rules[i].startTime)) {
-          rules[i].startTime = "08:00";
+          rules[i].startTime = moment("08:00", "HH:mm");
+        } else {
+          rules[i].startTime = moment(rules[i].startTime);
         }
         if (Util.isEmpty(rules[i].massageDuration)) {
-          rules[i].massageDuration = "00:30";
+          rules[i].massageDuration = moment("00:30", "HH:mm");
+        } else {
+          rules[i].massageDuration = moment(rules[i].massageDuration);
         }
         if (Util.isEmpty(rules[i].massagesPerDay) || parseInt(rules[i].massagesPerDay, 10) < 1
             || parseInt(rules[i].massagesPerDay, 10) > 100) {
           rules[i].massagesPerDay = "10";
         }
         if (Util.isEmpty(rules[i].normalPause)) {
-          rules[i].normalPause = "00:10";
+          rules[i].normalPause = moment("00:10", "HH:mm");
+        } else {
+          rules[i].normalPause = moment(rules[i].normalPause);
         }
         if (Util.isEmpty(rules[i].bigPause)) {
-          rules[i].bigPause = "01:00";
-        }
-        if (Util.isEmpty(rules[i].bigPause)) {
-          rules[i].bigPause = "01:00";
+          rules[i].bigPause = moment("01:00", "HH:mm");
+        } else {
+          rules[i].bigPause = moment(rules[i].bigPause);
         }
         if (Util.isEmpty(rules[i].bigPauseAfter) || parseInt(rules[i].bigPauseAfter, 10) < 1
             || parseInt(rules[i].bigPauseAfter, 10) > 100) {
@@ -401,9 +411,13 @@ class MassageBatchAddModal extends Component {
                     <div className="row">
                       <div className="col-md-4">
                         <label htmlFor="startDateInput">{ _t.translate('Rule applies after') }</label>
-                        <input id="startDateInput" value={this.state.rules[this.state.index].startDate}
-                          onChange={this.changeStartDate} className="form-control" onKeyPress={this.handleInputKeyPress}
-                          type="date" min={moment().format("YYYY-MM-DD")} placeholder={ _t.translate('Date') }
+                        <Datetime value={this.state.rules[this.state.index].startDate} onChange={this.changeStartDate}
+                          timeFormat={false} isValidDate={(current) => { return current.isAfter(this.yesterday) }}
+                          inputProps={{
+                            id: "startDateInput",
+                            placeholder: _t.translate('Date'),
+                            onKeyPress: this.handleInputKeyPress
+                          }}
                         />
                       </div>
 
@@ -436,17 +450,25 @@ class MassageBatchAddModal extends Component {
                     <div className="row">
                       <div className="col-md-3">
                         <label htmlFor="startTimeInput">{ _t.translate('Shift start') }</label>
-                        <input id="startTimeInput" value={this.state.rules[this.state.index].startTime}
-                          className="form-control" onKeyPress={this.handleInputKeyPress} type="time"
-                          onChange={this.changeStartTime} placeholder={ _t.translate('Shift start') }
+                        <Datetime value={this.state.rules[this.state.index].startTime} onChange={this.changeStartTime}
+                          dateFormat={false}
+                          inputProps={{
+                            id: "startTimeInput",
+                            placeholder: _t.translate('Shift start'),
+                            onKeyPress: this.handleInputKeyPress
+                          }}
                         />
                       </div>
 
                       <div className="col-md-3">
                         <label htmlFor="massageDurationInput">{ _t.translate('Duration') }</label>
-                        <input id="massageDurationInput" value={this.state.rules[this.state.index].massageDuration}
-                          className="form-control" onKeyPress={this.handleInputKeyPress} type="time"
-                          onChange={this.changeMassageDuration} placeholder={ _t.translate('Duration') }
+                        <Datetime value={this.state.rules[this.state.index].massageDuration} onChange={this.changeMassageDuration}
+                          dateFormat={false}
+                          inputProps={{
+                            id: "massageDurationInput",
+                            placeholder: _t.translate('Duration'),
+                            onKeyPress: this.handleInputKeyPress
+                          }}
                         />
                       </div>
 
@@ -466,26 +488,34 @@ class MassageBatchAddModal extends Component {
                     <div className="row">
                       <div className="col-md-3">
                         <label htmlFor="normalPauseInput">{ _t.translate('Normal break') }</label>
-                        <input id="normalPauseInput" value={this.state.rules[this.state.index].normalPause}
-                          onChange={this.changeNormalPause} className="form-control" type="time"
-                          onKeyPress={this.handleInputKeyPress} placeholder={ _t.translate('Normal break') }
+                        <Datetime value={this.state.rules[this.state.index].normalPause} onChange={this.changeNormalPause}
+                          dateFormat={false}
+                          inputProps={{
+                            id: "normalPauseInput",
+                            placeholder: _t.translate('Normal break'),
+                            onKeyPress: this.handleInputKeyPress
+                          }}
                         />
                       </div>
 
                       <div className="col-md-3">
                         <label htmlFor="bigPauseInput">{ _t.translate('Lunch break') }</label>
-                        <input id="bigPauseInput" value={this.state.rules[this.state.index].bigPause}
-                          onChange={this.changeBigPause} onKeyPress={this.handleInputKeyPress} type="time"
-                          className="form-control" placeholder={ _t.translate('Lunch break') }
+                        <Datetime value={this.state.rules[this.state.index].bigPause} onChange={this.changeBigPause}
+                          dateFormat={false}
+                          inputProps={{
+                            id: "bigPauseInput",
+                            placeholder: _t.translate('Lunch break'),
+                            onKeyPress: this.handleInputKeyPress
+                          }}
                         />
                       </div>
 
                       <div className="col-md-3">
-                        <label htmlFor="pauseAfterInput">{ _t.translate('Lunch break after') }</label>
+                        <label htmlFor="pauseAfterInput">{ _t.translate('Lunch after') }</label>
                         <input id="pauseAfterInput" value={this.state.rules[this.state.index].bigPauseAfter}
                           onChange={this.changeBigPauseAfter} onKeyPress={this.handleInputKeyPress}
                           className="form-control" onFocus={Util.moveCursorToEnd} type="number" min="1"
-                          max={this.state.rules[this.state.index].massagesPerDay} placeholder={ _t.translate('Lunch break after') }
+                          max={this.state.rules[this.state.index].massagesPerDay} placeholder={ _t.translate('Lunch after') }
                         />
                         <label htmlFor="pauseAfterInput">{ _t.translate('...massages') }</label>
                       </div>

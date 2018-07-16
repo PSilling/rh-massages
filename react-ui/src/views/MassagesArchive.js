@@ -24,8 +24,8 @@ import Util from '../util/Util';
 class MassagesArchive extends Component {
 
   state = {massages: [], index: 0, page: 1, search: "", freeOnly: false, loading: true,
-            from: moment().subtract(1, 'years').format("YYYY-MM-DD"),
-            to: moment().format("YYYY-MM-DD"), perPage: 12, pages: 1}
+            from: moment().subtract(1, 'years'),
+            to: moment(), perPage: 12, pages: 1}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -103,20 +103,20 @@ class MassagesArchive extends Component {
     setTimeout(() => this.getMassages(), 3);
   }
 
-  changeFrom = (event) => {
-    if (Util.isEmpty(event.target.value)
-      || moment(event.target.value).isAfter(moment(this.state.to))) {
+  changeFrom = (date) => {
+    if (typeof date === 'string'
+      || date.isAfter(this.state.to)) {
       return;
     }
-    this.setState({from: event.target.value});
+    this.setState({from: date});
   }
 
-  changeTo = (event) => {
-    if (Util.isEmpty(event.target.value)
-      || moment(event.target.value).isBefore(moment(this.state.from))) {
+  changeTo = (date) => {
+    if (typeof date === 'string'
+      || date.isBefore(this.state.from)) {
       return;
     }
-    this.setState({to: event.target.value});
+    this.setState({to: date});
   }
 
   render () {

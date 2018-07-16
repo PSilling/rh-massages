@@ -74,8 +74,11 @@ const myLocalize = new Localize({
     "Change masseur/masseuse": {
       "cs": "Změnit maséra/masérku"
     },
-    "...earlier": {
-      "cs": "...dříve"
+    "Later": {
+      "cs": "Později"
+    },
+    "Earlier": {
+      "cs": "Dříve"
     },
     "Shift massage date (day and time)": {
       "cs": "Posunout datum masáže (den a čas)"
@@ -113,8 +116,8 @@ const myLocalize = new Localize({
     "Lunch break": {
       "cs": "Obědová přestávka"
     },
-    "Lunch break after": {
-      "cs": "Obědová přestávka po"
+    "Lunch after": {
+      "cs": "Oběd po"
     },
     "...massages": {
       "cs": "...masážích"
@@ -201,12 +204,6 @@ const myLocalize = new Localize({
     },
     "Per page": {
       "cs": "Na stránku"
-    },
-    "From": {
-      "cs": "Od"
-    },
-    "To": {
-      "cs": "Do"
     },
 
     // actions
@@ -378,8 +375,20 @@ const myLocalize = new Localize({
     "sunday": {
       "cs": "neděli"
     },
+    "January_February_March_April_May_June_July_August_September_October_November_December": {
+      "cs": "Leden_Únor_Březen_Duben_Květen_Červen_Červenec_Srpen_Září_Říjen_Listopad_Prosinec"
+    },
+    "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec": {
+      "cs": "Led_Úno_Bře_Dub_Kvě_Čer_Čvc_Srp_Zář_Říj_Lis_Pro"
+    },
     "Su_Mo_Tu_We_Th_Fr_Sa": {
       "cs": "Ne_Po_Út_St_Čt_Pá_So"
+    },
+    "hh:mm A": {
+      "cs": "HH:mm"
+    },
+    "DD/MM/YYYY": {
+      "cs": "DD. MM. YYYY"
     }
 });
 

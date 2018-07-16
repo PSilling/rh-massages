@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// module imports
+import Datetime from 'react-datetime';
+
 // util imports
 import Util from '../../util/Util';
 import _t from '../../util/Translations';
@@ -27,10 +30,8 @@ class MassageFilter extends Component {
 
         <div className="form-group col-md-5">
           <div className="col-md-5 col-md-offset-1">
-            <input id="fromInput" value={this.props.from}
-              onChange={this.props.onFromChange} className="form-control"
-              type="date" placeholder={ _t.translate('From') }
-            />
+          <Datetime id="fromInput" value={this.props.from}
+            onChange={this.props.onFromChange} timeFormat={false} />
           </div>
 
           <div className="col-md-1" style={{ 'marginTop': '6px' }}>
@@ -38,10 +39,8 @@ class MassageFilter extends Component {
           </div>
 
           <div className="col-md-5">
-            <input id="toInput" value={this.props.to}
-              onChange={this.props.onToChange} className="form-control"
-              type="date" placeholder={ _t.translate('To') }
-            />
+            <Datetime id="toInput" value={this.props.to}
+              onChange={this.props.onToChange} timeFormat={false} />
           </div>
         </div>
 
@@ -59,10 +58,16 @@ class MassageFilter extends Component {
 MassageFilter.propTypes = {
   /** current value of the search input */
   value: PropTypes.string,
-  /** current value of the from date input */
-  from: PropTypes.string,
-  /** current value of the to date input */
-  to: PropTypes.string,
+  /** current value of the from date input (string if invalid) */
+  from: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  /** current value of the to date input (string if invalid) */
+  to: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   /** whether the free Massages only checkbox should be checked */
   checked: PropTypes.bool,
   /** function called on free Massages only checkbox change */

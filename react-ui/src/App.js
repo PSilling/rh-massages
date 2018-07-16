@@ -17,6 +17,7 @@ import LogoutLink from './components/links/LogoutLink';
 import moment from 'moment';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import 'react-datetime/css/react-datetime.css';
 
 // util imports
 import Auth from './util/Auth';
@@ -27,7 +28,13 @@ import './styles/main/bootstrap.min.css';
 
 // moment.js localization
 moment.updateLocale('en', {
-  weekdaysMin : _t.translate('Su_Mo_Tu_We_Th_Fr_Sa').split('_')
+  months : _t.translate('January_February_March_April_May_June_July_August_September_October_November_December').split('_'),
+  monthsShort : _t.translate('Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec').split('_'),
+  weekdaysMin : _t.translate('Su_Mo_Tu_We_Th_Fr_Sa').split('_'),
+  longDateFormat : {
+        LT : _t.translate('hh:mm A'),
+        L : _t.translate('DD/MM/YYYY')
+    }
 });
 
 /**
