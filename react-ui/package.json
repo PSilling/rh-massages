@@ -4,17 +4,17 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "keycloak-js": "^3.4.0",
+    "keycloak-js": "^4.1.0",
     "localize": "^0.4.7",
     "moment": "^2.18.1",
     "prop-types": "^15.6.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-modal-dialog": "^4.0.7",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-modal-dialog": "Dean177/react-modal-dialog#support\/bump-react",
     "react-notifications": "^1.4.3",
-    "react-paginate": "^4.4.3",
+    "react-paginate": "^5.2.3",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.1.4"
   },
   "devDependencies": {
     "react-doc-generator": "^1.2.5"

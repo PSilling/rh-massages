@@ -34,7 +34,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- dropwizard-api versions -->
     <dropwizard.version>1.1.4</dropwizard.version>
-    <postgresql.version>9.0-801.jdbc4</postgresql.version>
+    <postgresql.version>42.2.2</postgresql.version>
     <json-smart.version>2.3</json-smart.version>
     <keycloak-dropwizard.version>1.0.0</keycloak-dropwizard.version>
     <maven-shade-plugin.version>2.4.1</maven-shade-plugin.version>
