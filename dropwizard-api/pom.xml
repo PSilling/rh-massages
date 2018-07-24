@@ -123,11 +123,11 @@
 	            <artifactId>simple-java-mail</artifactId>
 	            <version>${simple-java-mail.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -208,36 +208,54 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>${maven-checkstyle-plugin.version}</version>
+            <dependencies>
+                <dependency>
+                    <groupId>com.puppycrawl.tools</groupId>
+                    <artifactId>checkstyle</artifactId>
+                    <version>${checkstyle.version}</version>
+                </dependency>
+            </dependencies>
+            <executions>
+                <execution>
+                    <id>validate</id>
+                    <phase>validate</phase>
+                    <configuration>
+                        <configLocation>./dropwizard-api/docs/checkstyle.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>com.sebastian-daschner</groupId>
+            <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+            <version>${jaxrs-analyzer-maven-plugin.version}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>analyze-jaxrs</goal>
+                    </goals>
+                    <phase>package</phase>
+                    <configuration>
+                        <backend>swagger</backend>
+                        <deployedDomain>localhost:8080</deployedDomain>
+                        <resourcesDir>../docs</resourcesDir>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
     </build>
-    
-    <profiles>
-	    <profile>
-	      <id>swagger</id>
-	      <build>
-	        <plugins>
-	          <plugin>
-	            <groupId>com.sebastian-daschner</groupId>
-	            <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
-    			<version>${jaxrs-analyzer-maven-plugin.version}</version>
-	            <executions>
-	              <execution>
-	                <goals>
-	                  <goal>analyze-jaxrs</goal>
-	                </goals>
-	                <phase>package</phase>
-	                <configuration>
-	                  <backend>swagger</backend>
-	                  <deployedDomain>localhost:8080</deployedDomain>
-	                  <resourcesDir>../docs</resourcesDir>
-	                </configuration>
-	              </execution>
-	            </executions>
-	          </plugin>
-	        </plugins>
-	      </build>
-	    </profile>
-    </profiles>
 
     <reporting>
         <plugins>

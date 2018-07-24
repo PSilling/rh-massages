@@ -1,768 +1,768 @@
 
 {
-    "swagger":"2.0",
-    "info":{
-        "version":"1.3.0",
-        "title":"Massages"
+    "swagger": "2.0",
+    "info": {
+        "version": "1.3.0",
+        "title": "Massages"
     },
-    "host":"localhost:8080",
-    "basePath":"/",
-    "schemes":[
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
         "http"
     ],
-    "paths":{
-        "/clients":{
-            "get":{
-                "description":"GETs all {@link Client}s that can be found.",
-                "consumes":[
+    "paths": {
+        "/clients": {
+            "get": {
+                "description": "GETs all {@link Client}s that can be found.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Client"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
                             }
                         }
                     }
                 }
             },
-            "put":{
-                "description":"Updates a {@link Client} to an updated value.",
-                "consumes":[
+            "put": {
+                "description": "Updates a {@link Client} to an updated value.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/Client"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Client"
                         },
-                        "description":"updated {@link Client}"
+                        "description": "updated {@link Client}"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "$ref":"#/definitions/Client"
+                        "schema": {
+                            "$ref": "#/definitions/Client"
                         }
                     },
-                    "204":{
-                        "description":"No Content",
-                        "headers":{
+                    "204": {
+                        "description": "No Content",
+                        "headers": {
                         }
                     },
-                    "403":{
-                        "description":"Forbidden",
-                        "headers":{
+                    "403": {
+                        "description": "Forbidden",
+                        "headers": {
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/clients/my/subscribed":{
-            "get":{
-                "description":"GETs a {@link Client} subscription value. For new {@link User}s also creates\n their {@link Client} representation and returns true.",
-                "consumes":[
+        "/clients/my/subscribed": {
+            "get": {
+                "description": "GETs a {@link Client} subscription value. For new {@link User}s also creates\n their {@link Client} representation and returns true.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/User"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
                         }
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"boolean"
+                        "schema": {
+                            "type": "boolean"
                         }
                     },
-                    "500":{
-                        "description":"Internal Server Error",
-                        "headers":{
+                    "500": {
+                        "description": "Internal Server Error",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/facilities":{
-            "get":{
-                "description":"GETs all {@link Facility}s that can be found.",
-                "consumes":[
+        "/facilities": {
+            "get": {
+                "description": "GETs all {@link Facility}s that can be found.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Facility"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Facility"
                             }
                         }
                     }
                 }
             },
-            "post":{
-                "description":"Accepts POST request with a new {@link Facility}.",
-                "consumes":[
+            "post": {
+                "description": "Accepts POST request with a new {@link Facility}.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/Facility"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Facility"
                         },
-                        "description":"new {@link Facility} to be created"
+                        "description": "new {@link Facility} to be created"
                     }
                 ],
-                "responses":{
-                    "201":{
-                        "description":"Created",
-                        "headers":{
-                            "Location":{
-                                "type":"string"
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "headers": {
+                            "Location": {
+                                "type": "string"
                             }
                         },
-                        "schema":{
-                            "$ref":"#/definitions/Facility"
+                        "schema": {
+                            "$ref": "#/definitions/Facility"
                         }
                     },
-                    "500":{
-                        "description":"Internal Server Error",
-                        "headers":{
+                    "500": {
+                        "description": "Internal Server Error",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/facilities/{id}":{
-            "get":{
-                "description":"GETs a {@link Facility} based on its ID.",
-                "consumes":[
+        "/facilities/{id}": {
+            "get": {
+                "description": "GETs a {@link Facility} based on its ID.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"{@link Facility} ID"
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Facility} ID"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "$ref":"#/definitions/Facility"
+                        "schema": {
+                            "$ref": "#/definitions/Facility"
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             },
-            "put":{
-                "description":"Updates a {@link Facility} given by ID to a given value.",
-                "consumes":[
+            "put": {
+                "description": "Updates a {@link Facility} given by ID to a given value.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"{@link Facility} ID"
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Facility} ID"
                     },
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/Facility"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Facility"
                         },
-                        "description":"an updated {@link Facility}"
+                        "description": "an updated {@link Facility}"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "$ref":"#/definitions/Facility"
+                        "schema": {
+                            "$ref": "#/definitions/Facility"
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             },
-            "delete":{
-                "description":"DELETEs a {@link Facility} given by ID.",
-                "consumes":[
+            "delete": {
+                "description": "DELETEs a {@link Facility} given by ID.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"{@link Facility} ID"
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Facility} ID"
                     }
                 ],
-                "responses":{
-                    "204":{
-                        "description":"No Content",
-                        "headers":{
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "headers": {
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
-                        }
-                    }
-                }
-            }
-        },
-        "/facilities/{id}/massages":{
-            "get":{
-                "description":"GETs all {@link Massage}s of a {@link Facility} that haven't already passed\n based on {@link Facility} ID and query parameters.",
-                "consumes":[
-                    "application/json"
-                ],
-                "produces":[
-                    "application/json"
-                ],
-                "parameters":[
-                    {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"{@link Facility} ID"
-                    },
-                    {
-                        "type":"boolean",
-                        "name":"free",
-                        "in":"query",
-                        "required":true,
-                        "description":"whether only unassigned {@link Massage}s should be shown"
-                    },
-                    {
-                        "type":"string",
-                        "name":"from",
-                        "in":"query",
-                        "required":false,
-                        "description":"limits results to be after the {@link Date} in milliseconds",
-                        "default":"-1"
-                    },
-                    {
-                        "type":"string",
-                        "name":"page",
-                        "in":"query",
-                        "required":false,
-                        "description":"current page number; for -1 doesn't use pagination",
-                        "default":"0"
-                    },
-                    {
-                        "type":"string",
-                        "name":"perPage",
-                        "in":"query",
-                        "required":false,
-                        "description":"number of {@link Massage}s to return per each page",
-                        "default":"12"
-                    },
-                    {
-                        "type":"string",
-                        "name":"search",
-                        "in":"query",
-                        "required":true,
-                        "description":"value of the {@link String} to be searched for"
-                    },
-                    {
-                        "type":"string",
-                        "name":"to",
-                        "in":"query",
-                        "required":false,
-                        "description":"limits results to be after the {@link Date} in milliseconds",
-                        "default":"-1"
-                    },
-                    {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/User"
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
-                        },
-                        "schema":{
-                            "type":"object"
-                        }
-                    },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/logout":{
-            "get":{
-                "description":"Logs out the {@link User} from the application.",
-                "consumes":[
+        "/facilities/{id}/massages": {
+            "get": {
+                "description": "GETs all {@link Massage}s of a {@link Facility} that haven't already passed\n based on {@link Facility} ID and query parameters.",
+                "consumes": [
+                    "application/json"
                 ],
-                "produces":[
+                "produces": [
+                    "application/json"
                 ],
-                "parameters":[
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Facility} ID"
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "free",
+                        "in": "query",
+                        "required": true,
+                        "description": "whether only unassigned {@link Massage}s should be shown"
+                    },
+                    {
+                        "type": "string",
+                        "name": "from",
+                        "in": "query",
+                        "required": false,
+                        "description": "limits results to be after the {@link Date} in milliseconds",
+                        "default": "-1"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "current page number; for -1 doesn't use pagination",
+                        "default": "0"
+                    },
+                    {
+                        "type": "string",
+                        "name": "perPage",
+                        "in": "query",
+                        "required": false,
+                        "description": "number of {@link Massage}s to return per each page",
+                        "default": "12"
+                    },
+                    {
+                        "type": "string",
+                        "name": "search",
+                        "in": "query",
+                        "required": true,
+                        "description": "value of the {@link String} to be searched for"
+                    },
+                    {
+                        "type": "string",
+                        "name": "to",
+                        "in": "query",
+                        "required": false,
+                        "description": "limits results to be after the {@link Date} in milliseconds",
+                        "default": "-1"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"string"
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/massages":{
-            "get":{
-                "description":"GETs all {@link Massage}s that can be found.",
-                "consumes":[
-                    "application/json"
+        "/logout": {
+            "get": {
+                "description": "Logs out the {@link User} from the application.",
+                "consumes": [
                 ],
-                "produces":[
-                    "application/json"
+                "produces": [
                 ],
-                "parameters":[
+                "parameters": [
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/massages": {
+            "get": {
+                "description": "GETs all {@link Massage}s that can be found.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         }
                     }
                 }
             },
-            "put":{
-                "description":"Updates {@link Massage}s in a {@link List}. Supplying ID in {@link Massage}s\n is necessary.",
-                "consumes":[
+            "put": {
+                "description": "Updates {@link Massage}s in a {@link List}. Supplying ID in {@link Massage}s\n is necessary.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         },
-                        "description":"{@link List} of updated {@link Massage}s"
+                        "description": "{@link List} of updated {@link Massage}s"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         }
                     },
-                    "403":{
-                        "description":"Forbidden",
-                        "headers":{
+                    "403": {
+                        "description": "Forbidden",
+                        "headers": {
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             },
-            "post":{
-                "description":"Accepts POST request with a new {@link List} of {@link Massage}s.",
-                "consumes":[
+            "post": {
+                "description": "Accepts POST request with a new {@link List} of {@link Massage}s.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         },
-                        "description":"{@link List} of {@link Massage}s to create"
+                        "description": "{@link List} of {@link Massage}s to create"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         }
                     },
-                    "403":{
-                        "description":"Forbidden",
-                        "headers":{
+                    "403": {
+                        "description": "Forbidden",
+                        "headers": {
                         }
                     },
-                    "500":{
-                        "description":"Internal Server Error",
-                        "headers":{
+                    "500": {
+                        "description": "Internal Server Error",
+                        "headers": {
                         }
                     }
                 }
             },
-            "delete":{
-                "description":"DELETEs {@link Massage}s given by their IDs.",
-                "consumes":[
+            "delete": {
+                "description": "DELETEs {@link Massage}s given by their IDs.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"array",
-                        "items":{
-                            "type":"integer"
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
                         },
-                        "name":"ids",
-                        "in":"query",
-                        "required":true,
-                        "description":"{@link List} of {@link Massage} IDs"
+                        "name": "ids",
+                        "in": "query",
+                        "required": true,
+                        "description": "{@link List} of {@link Massage} IDs"
                     }
                 ],
-                "responses":{
-                    "204":{
-                        "description":"No Content",
-                        "headers":{
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "headers": {
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             }
         },
-        "/massages/client":{
-            "get":{
-                "description":"GETs all {@link Massage}s of a given {@link Client} that haven't already\n passed.",
-                "consumes":[
+        "/massages/client": {
+            "get": {
+                "description": "GETs all {@link Massage}s of a given {@link Client} that haven't already\n passed.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"body",
-                        "in":"body",
-                        "required":true,
-                        "schema":{
-                            "$ref":"#/definitions/User"
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
                         }
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/definitions/Massage"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Massage"
                             }
                         }
                     }
                 }
             }
         },
-        "/massages/old":{
-            "get":{
-                "description":"GETs all {@link Massage}s that are dated after the current time.",
-                "consumes":[
+        "/massages/old": {
+            "get": {
+                "description": "GETs all {@link Massage}s that are dated after the current time.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"boolean",
-                        "name":"free",
-                        "in":"query",
-                        "required":true,
-                        "description":"whether only unassigned {@link Massage}s should be shown"
+                        "type": "boolean",
+                        "name": "free",
+                        "in": "query",
+                        "required": true,
+                        "description": "whether only unassigned {@link Massage}s should be shown"
                     },
                     {
-                        "type":"string",
-                        "name":"from",
-                        "in":"query",
-                        "required":false,
-                        "description":"limits results to be after the {@link Date} in milliseconds",
-                        "default":"-1"
+                        "type": "string",
+                        "name": "from",
+                        "in": "query",
+                        "required": false,
+                        "description": "limits results to be after the {@link Date} in milliseconds",
+                        "default": "-1"
                     },
                     {
-                        "type":"string",
-                        "name":"page",
-                        "in":"query",
-                        "required":false,
-                        "description":"current page number; for -1 doesn't use pagination",
-                        "default":"0"
+                        "type": "string",
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "current page number; for -1 doesn't use pagination",
+                        "default": "0"
                     },
                     {
-                        "type":"string",
-                        "name":"perPage",
-                        "in":"query",
-                        "required":false,
-                        "description":"number of {@link Massage}s to return per each page",
-                        "default":"12"
+                        "type": "string",
+                        "name": "perPage",
+                        "in": "query",
+                        "required": false,
+                        "description": "number of {@link Massage}s to return per each page",
+                        "default": "12"
                     },
                     {
-                        "type":"string",
-                        "name":"search",
-                        "in":"query",
-                        "required":true,
-                        "description":"value of the {@link String} to be searched for"
+                        "type": "string",
+                        "name": "search",
+                        "in": "query",
+                        "required": true,
+                        "description": "value of the {@link String} to be searched for"
                     },
                     {
-                        "type":"string",
-                        "name":"to",
-                        "in":"query",
-                        "required":false,
-                        "description":"limits results to be after the {@link Date} in milliseconds",
-                        "default":"-1"
+                        "type": "string",
+                        "name": "to",
+                        "in": "query",
+                        "required": false,
+                        "description": "limits results to be after the {@link Date} in milliseconds",
+                        "default": "-1"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "type":"object"
+                        "schema": {
+                            "type": "object"
                         }
                     }
                 }
             }
         },
-        "/massages/{id}":{
-            "get":{
-                "description":"GETs a {@link Massage} based on its ID.",
-                "consumes":[
+        "/massages/{id}": {
+            "get": {
+                "description": "GETs a {@link Massage} based on its ID.",
+                "consumes": [
                     "application/json"
                 ],
-                "produces":[
+                "produces": [
                     "application/json"
                 ],
-                "parameters":[
+                "parameters": [
                     {
-                        "type":"string",
-                        "name":"id",
-                        "in":"path",
-                        "required":true,
-                        "description":"{@link Massage} ID"
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Massage} ID"
                     }
                 ],
-                "responses":{
-                    "200":{
-                        "description":"OK",
-                        "headers":{
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
                         },
-                        "schema":{
-                            "$ref":"#/definitions/Massage"
+                        "schema": {
+                            "$ref": "#/definitions/Massage"
                         }
                     },
-                    "404":{
-                        "description":"Not Found",
-                        "headers":{
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }
             }
         }
     },
-    "definitions":{
-        "Client":{
-            "properties":{
-                "email":{
-                    "type":"string"
+    "definitions": {
+        "Client": {
+            "properties": {
+                "email": {
+                    "type": "string"
                 },
-                "name":{
-                    "type":"string"
+                "name": {
+                    "type": "string"
                 },
-                "sub":{
-                    "type":"string"
+                "sub": {
+                    "type": "string"
                 },
-                "subscribed":{
-                    "type":"boolean"
+                "subscribed": {
+                    "type": "boolean"
                 },
-                "surname":{
-                    "type":"string"
+                "surname": {
+                    "type": "string"
                 }
             }
         },
-        "Facility":{
-            "properties":{
-                "id":{
-                    "type":"integer"
+        "Facility": {
+            "properties": {
+                "id": {
+                    "type": "integer"
                 },
-                "name":{
-                    "type":"string"
+                "name": {
+                    "type": "string"
                 }
             }
         },
-        "Massage":{
-            "properties":{
-                "client":{
-                    "$ref":"#/definitions/Client"
+        "Massage": {
+            "properties": {
+                "client": {
+                    "$ref": "#/definitions/Client"
                 },
-                "date":{
-                    "type":"object"
+                "date": {
+                    "type": "object"
                 },
-                "ending":{
-                    "type":"object"
+                "ending": {
+                    "type": "object"
                 },
-                "facility":{
-                    "$ref":"#/definitions/Facility"
+                "facility": {
+                    "$ref": "#/definitions/Facility"
                 },
-                "id":{
-                    "type":"integer"
+                "id": {
+                    "type": "integer"
                 },
-                "masseuse":{
-                    "type":"string"
+                "masseuse": {
+                    "type": "string"
                 }
             }
         },
-        "User":{
-            "properties":{
-                "email":{
-                    "type":"string"
+        "User": {
+            "properties": {
+                "email": {
+                    "type": "string"
                 },
-                "firstName":{
-                    "type":"string"
+                "firstName": {
+                    "type": "string"
                 },
-                "name":{
-                    "type":"string"
+                "name": {
+                    "type": "string"
                 },
-                "roles":{
-                    "type":"array",
-                    "items":{
-                        "type":"string"
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
                     }
                 },
-                "subject":{
-                    "type":"string"
+                "subject": {
+                    "type": "string"
                 },
-                "surname":{
-                    "type":"string"
+                "surname": {
+                    "type": "string"
                 }
             }
         }
