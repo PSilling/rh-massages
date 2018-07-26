@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * A simgle number page for the Pager component.
+ * A single number page for the Pager component.
  */
 class Page extends Component {
 

@@ -266,7 +266,7 @@ const myLocalize = new Localize({
     "Your request has ended unsuccessfully.": {
       "cs": "Váš požadavek skončil neúspěšně."
     },
-    "An error occured!": {
+    "An error occurred!": {
       "cs": "Nastala chyba!"
     },
     "Warning": {

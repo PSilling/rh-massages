@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import _t from '../../util/Translations';
 
 /**
- * Icon only button used for element editation.
+ * Icon only button used for element editing.
  */
 class EditButton extends Component {
 

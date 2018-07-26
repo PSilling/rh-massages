@@ -6,7 +6,7 @@ import Util from './Util';
 
 /**
  * Keycloak authorization holder. Functions called on Auth work with the Keycloak
- * conncetion variable.
+ * connection variable.
  */
 var Auth = function() {};
 

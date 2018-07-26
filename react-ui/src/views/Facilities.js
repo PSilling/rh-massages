@@ -13,7 +13,7 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Main view table component for Facility management. Viewable only for administators.
+ * Main view table component for Facility management. Viewable only for administrators.
  */
 class Facilities extends Component {
 

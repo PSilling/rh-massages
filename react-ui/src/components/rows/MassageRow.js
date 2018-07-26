@@ -91,7 +91,7 @@ class MassageRow extends Component {
 MassageRow.propTypes = {
   /** the Massage for this row */
   massage: PropTypes.object.isRequired,
-  /** whether assingment button should be disabled */
+  /** whether assignment button should be disabled */
   assignDisabled: PropTypes.bool,
   /** whether the checkbox is checked */
   checked: PropTypes.bool,

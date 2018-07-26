@@ -66,7 +66,7 @@ Util.get = (url, update) => {
         return response.json();
       } else {
         Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
-          _t.translate('An error occured!'));
+          _t.translate('An error occurred!'));
       }
     }).then(function(json) {
       update(json);

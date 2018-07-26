@@ -5,15 +5,11 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    
-    <prerequisites>
-        <maven>3.0.0</maven>
-    </prerequisites>
-    
+
     <parent>
-    	<version>1.3.0</version>
-    	<artifactId>parent</artifactId>
-    	<groupId>net.rh.massages</groupId>
+        <version>1.3.0</version>
+        <artifactId>parent</artifactId>
+        <groupId>net.rh.massages</groupId>
     </parent>
 
     <groupId>net.rh.massages</groupId>
@@ -70,61 +66,61 @@
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-client</artifactId>
         </dependency>
-		<dependency>
-		    <groupId>io.dropwizard</groupId>
-		    <artifactId>dropwizard-testing</artifactId>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>${postgresql.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>net.minidev</groupId>
-		    <artifactId>json-smart</artifactId>
-		    <version>${json-smart.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>de.ahus1.keycloak.dropwizard</groupId>
-		    <artifactId>keycloak-dropwizard</artifactId>
-		    <version>${keycloak-dropwizard.version}</version>
-		</dependency>
-		<dependency>
-		  <groupId>org.glassfish.jersey.test-framework.providers</groupId>
-		  <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
-		  <exclusions>
-		    <exclusion>
-		      <groupId>javax.servlet</groupId>
-		      <artifactId>javax.servlet-api</artifactId>
-		    </exclusion>
-		    <exclusion>
-		      <groupId>junit</groupId>
-		      <artifactId>junit</artifactId>
-		    </exclusion>
-		  </exclusions>
-		</dependency>
-		<dependency>
-	 	    <groupId>org.mockito</groupId>
-	 	    <artifactId>mockito-core</artifactId>
-		</dependency>
-		<dependency>
-	 	    <groupId>io.dropwizard</groupId>
-	 	    <artifactId>dropwizard-assets</artifactId>
-		</dependency>
-		<dependency>
-	 	    <groupId>org.simplejavamail</groupId>
-	            <artifactId>simple-java-mail</artifactId>
-	            <version>${simple-java-mail.version}</version>
-		</dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-testing</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>${json-smart.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.ahus1.keycloak.dropwizard</groupId>
+            <artifactId>keycloak-dropwizard</artifactId>
+            <version>${keycloak-dropwizard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-assets</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+            <version>${simple-java-mail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
@@ -133,13 +129,35 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>${maven.version}</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven-shade-plugin.version}</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>${mainClass}</mainClass>
                         </transformer>
                     </transformers>
@@ -209,51 +227,50 @@
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven-checkstyle-plugin.version}</version>
-            <dependencies>
-                <dependency>
-                    <groupId>com.puppycrawl.tools</groupId>
-                    <artifactId>checkstyle</artifactId>
-                    <version>${checkstyle.version}</version>
-                </dependency>
-            </dependencies>
-            <executions>
-                <execution>
-                    <id>validate</id>
-                    <phase>validate</phase>
-                    <configuration>
-                        <configLocation>./dropwizard-api/docs/checkstyle.xml</configLocation>
-                        <encoding>UTF-8</encoding>
-                        <consoleOutput>true</consoleOutput>
-                        <failsOnError>true</failsOnError>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-        <plugin>
-            <groupId>com.sebastian-daschner</groupId>
-            <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
-            <version>${jaxrs-analyzer-maven-plugin.version}</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>analyze-jaxrs</goal>
-                    </goals>
-                    <phase>package</phase>
-                    <configuration>
-                        <backend>swagger</backend>
-                        <deployedDomain>localhost:8080</deployedDomain>
-                        <resourcesDir>../docs</resourcesDir>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>./dropwizard-api/docs/checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.sebastian-daschner</groupId>
+                <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+                <version>${jaxrs-analyzer-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-jaxrs</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <backend>swagger</backend>
+                            <deployedDomain>localhost:8080</deployedDomain>
+                            <resourcesDir>../docs</resourcesDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -263,7 +280,6 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>${maven-project-info-reports-plugin.version}</version>
                 <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
                 </configuration>
             </plugin>

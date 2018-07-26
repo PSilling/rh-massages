@@ -84,7 +84,7 @@
         },
         "/clients/my/subscribed": {
             "get": {
-                "description": "GETs a {@link Client} subscription value. For new {@link User}s also creates\n their {@link Client} representation and returns true.",
+                "description": "GETs a {@link Client} subscription value. For new {@link User}s also creates their {@link\n Client} representation and returns true.",
                 "consumes": [
                     "application/json"
                 ],
@@ -98,7 +98,8 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/User"
-                        }
+                        },
+                        "description": "authenticated {@link User}"
                     }
                 ],
                 "responses": {
@@ -259,7 +260,7 @@
                 }
             },
             "delete": {
-                "description": "DELETEs a {@link Facility} given by ID.",
+                "description": "Deletes a {@link Facility} given by ID.",
                 "consumes": [
                     "application/json"
                 ],
@@ -291,7 +292,7 @@
         },
         "/facilities/{id}/massages": {
             "get": {
-                "description": "GETs all {@link Massage}s of a {@link Facility} that haven't already passed\n based on {@link Facility} ID and query parameters.",
+                "description": "GETs all {@link Massage}s of a {@link Facility} that haven't already passed based on {@link\n Facility} ID and query parameters.",
                 "consumes": [
                     "application/json"
                 ],
@@ -358,7 +359,8 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/User"
-                        }
+                        },
+                        "description": "authenticated {@link User}"
                     }
                 ],
                 "responses": {
@@ -425,7 +427,7 @@
                 }
             },
             "put": {
-                "description": "Updates {@link Massage}s in a {@link List}. Supplying ID in {@link Massage}s\n is necessary.",
+                "description": "Updates {@link Massage}s in a {@link List}. Supplying ID in {@link Massage}s is necessary.",
                 "consumes": [
                     "application/json"
                 ],
@@ -517,7 +519,7 @@
                 }
             },
             "delete": {
-                "description": "DELETEs {@link Massage}s given by their IDs.",
+                "description": "Deletes {@link Massage}s given by their IDs.",
                 "consumes": [
                     "application/json"
                 ],
@@ -552,7 +554,7 @@
         },
         "/massages/client": {
             "get": {
-                "description": "GETs all {@link Massage}s of a given {@link Client} that haven't already\n passed.",
+                "description": "GETs all {@link Massage}s of a given {@link Client} that haven't already passed.",
                 "consumes": [
                     "application/json"
                 ],
@@ -566,7 +568,8 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/User"
-                        }
+                        },
+                        "description": "authenticated {@link User}"
                     }
                 ],
                 "responses": {

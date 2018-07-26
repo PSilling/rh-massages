@@ -18,7 +18,7 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Main view table component for Massage Archive management. Viewable only for administators.
+ * Main view table component for Massage Archive management. Viewable only for administrators.
  * For archived Massages only their removal is supported.
  */
 class MassagesArchive extends Component {
