@@ -51,7 +51,7 @@ class MyMassagePanel extends Component {
             <div className="panel-heading">
               {moment(this.props.massage.date).format("dd DD. MM.") + _t.translate(' in ') + this.props.massage.facility.name}
               <button type="button" className="close" aria-label="Close"
-                onClick={this.handleToggle} title={ _t.translate('Cancel') }>
+                onClick={this.handleToggle} title={ _t.translate('Unassign me') }>
                 {this.props.disabled ?
                   '' : <span aria-hidden="true">&times;</span>}
               </button>
@@ -76,7 +76,7 @@ class MyMassagePanel extends Component {
         </div>
         {this.state.active ?
           <ConfirmationModal
-            message={ _t.translate('Are you sure you want to cancel this massage?') }
+            message={ _t.translate('Are you sure you want to unassign yourself from this massage?') }
             onClose={this.handleToggle}
             onConfirm={() => {
               this.handleToggle();

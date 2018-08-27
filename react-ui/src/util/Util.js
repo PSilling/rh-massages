@@ -197,10 +197,12 @@ Util.clearAllIntervals = () => {
  */
 Util.addToCalendar = (massage) => {
   var url = "https://www.google.com/calendar/render?action=TEMPLATE";
-  url += "&text=" + _t.translate('Massage in facility') + ' ' + massage.facility.name;
+  url += "&text=" + _t.translate('Massage') + ' (' + massage.masseuse + ", " + massage.facility.name + ")";
   url += "&dates=" + moment.utc(massage.date).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "/" + moment.utc(massage.ending).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
-  url += "&details=" + _t.translate('Masseur/Masseuse') + ' ' + massage.masseuse;
+  url += "&location=Red%20Hat%20Czech%20" + massage.facility.name;
+  url += "&details=" + _t.translate('Facility') + ': ' + massage.facility.name;
+  url += "%0A" + _t.translate('Masseur/Masseuse') + ': ' + massage.masseuse;
   return url;
 }
 
@@ -239,6 +241,21 @@ Util.highlightInText = (text, query) => {
  */
 Util.getContactInfo = (client) => {
     return (client.name + " " + client.surname + " (" + client.email + ")");
+}
+
+/**
+ * Searches an array for a given item ID.
+ *
+ * @param array array to search in
+ * @param id id to search for
+ */
+Util.findInArrayById = (array, id) => {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].id === id) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 Util.FACILITIES_URL = "api/facilities/"; // url of /facilities endpoint

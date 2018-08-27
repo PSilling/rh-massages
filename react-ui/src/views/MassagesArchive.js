@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
+import ArchiveFilter from '../components/util/ArchiveFilter';
 import ArchiveMassageRow from '../components/rows/ArchiveMassageRow';
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
 import Pager from '../components/navs/Pager';
-import MassageFilter from '../components/util/MassageFilter';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 import '../styles/components/loader.css';
 
@@ -132,7 +132,7 @@ class MassagesArchive extends Component {
           {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Massages Archive') }
         </h1>
-        <MassageFilter checked={this.state.freeOnly} onCheck={this.changeFreeOnly}
+        <ArchiveFilter checked={this.state.freeOnly} onCheck={this.changeFreeOnly}
           value={this.state.search} onSearchChange={this.changeSearch}
           from={this.state.from} onFromChange={this.changeFrom}
           to={this.state.to} onToChange={this.changeTo} />

@@ -184,7 +184,7 @@ public class FacilityResource {
    * @param free    whether only unassigned {@link Massage}s should be shown
    * @param from    limits results to be after the {@link Date} in milliseconds
    * @param to      limits results to be after the {@link Date} in milliseconds
-   * @param page    current page number; for -1 doesn't use pagination
+   * @param page    current page number; for 0 doesn't use pagination
    * @param perPage number of {@link Massage}s to return per each page
    * @param user    authenticated {@link User}
    * @return {@link Map} with all found {@link Massage}s, their total count and total client massage

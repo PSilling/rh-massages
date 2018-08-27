@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 
 // component imports
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
+import CalendarPanel from '../components/panels/CalendarPanel';
 import MassageModal from '../components/modals/MassageModal';
-import MassageRow from '../components/rows/MassageRow';
 import MassageCopyModal from '../components/modals/MassageCopyModal';
 import MassageBatchAddModal from '../components/modals/MassageBatchAddModal';
 import MassageBatchEditModal from '../components/modals/MassageBatchEditModal';
-import Pager from '../components/navs/Pager';
 import MassageFilter from '../components/util/MassageFilter';
 import Tab from '../components/navs/Tab';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
@@ -23,16 +22,16 @@ import _t from '../util/Translations';
 import Util from '../util/Util';
 
 /**
- * Main view table component for Massage management. Normal users can only view,
+ * Main view calendar component for Massage management. Normal users can only view,
  * assign and cancel Massages. Supports batch CRUD operations.
  */
 class Massages extends Component {
 
-  state = {facilities: [], massages: [], masseuses: [], selected: [], index: 0, page: 1,
-            editId: -1, massageMinutes: 0, loading: true,  modalActive: false,
+  state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: false,
+            editMassage: null, massageMinutes: 0, loading: true,  modalActive: false,
             copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
-            search: "", freeOnly: false, from: moment(),
-            to: moment().add(1, 'months'), perPage: 12, pages: 1}
+            events: [], search: "", freeOnly: false, from: moment(),
+            to: moment().add(1, 'months')}
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -58,17 +57,26 @@ class Massages extends Component {
         + "/massages?search=" + this.state.search
         + "&free=" + this.state.freeOnly
         + "&from=" + moment(this.state.from).unix() * 1000
-        + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000
-        + "&page=" + this.state.page
-        + "&perPage=" + this.state.perPage, (json) => {
-        this.updateMassages(json.massages, json.totalCount, (json.clientTime / 60000));
+        + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000, (json) => {
+        this.updateEvents(json.massages, json.totalCount, (json.clientTime / 60000));
       });
     }
   }
 
-  updateMassages = (massages, count, minutes) => {
-    var masseuses = [];
+  updateEvents = (massages, count, minutes) => {
+    var events = [],
+        masseuses = [],
+        color;
     for (var i = 0; i < massages.length; i++) {
+      if (Util.isEmpty(massages[i].client)) {
+        color = "#2fad2f"; // Bootsrap warning color (buttons)
+      } else if (Auth.getSub() === massages[i].client.sub) {
+        color = "#ee9d2a"; // Bootsrap warning color (buttons)
+      } else {
+        color = "#d10a14"; // Bootsrap danger color (buttons)
+      }
+      events.push({massage: massages[i], bgColor: color});
+
       if (masseuses.indexOf(massages[i].masseuse) === -1) {
         masseuses.push(massages[i].masseuse);
       }
@@ -76,20 +84,14 @@ class Massages extends Component {
 
     let selected = this.state.selected;
     for (i = 0; i < selected.length; i++) {
-      if (this.findInArrayById(massages, selected[i].id) === -1) {
+      if (Util.findInArrayById(massages, selected[i].id) === -1) {
         selected.splice(i, 1);
         i--;
       }
     }
 
-    let pages = Math.ceil(count / this.state.perPage);
-    if (pages < 1) {
-      pages = 1;
-    }
-    this.setState({massages: massages, masseuses: masseuses, massageMinutes: minutes,
-      selected: selected, loading: false, pages: pages,
-      page: this.state.page > pages ? pages : this.state.page
-    });
+    this.setState({events: events, masseuses: masseuses, massageMinutes: minutes,
+      selected: selected, loading: false});
   }
 
   assignMassage = (massage) => {
@@ -132,40 +134,24 @@ class Massages extends Component {
     });
   }
 
-  /**
-   * Searches an array for a given item ID.
-   */
-  findInArrayById = (array, id) => {
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === id) {
-        return i;
-      }
+  handleEventSelect = (event) => {
+    if (event === null) {
+      this.setState({selected: []});
+      return;
     }
-    return -1;
-  }
 
-  handleMassageSelect = (event, massage) => {
-    var selected = this.state.selected;
-    if (event.target.checked) {
-      selected.push(massage);
+    var selected = this.state.selected,
+        index = Util.findInArrayById(selected, event.massage.id);
+    if (index !== -1) {
+      selected.splice(index, 1);
     } else {
-      selected.splice(this.findInArrayById(selected, massage.id), 1);
-    }
-    this.setState({selected: selected});
-  }
-
-  handleSelectAll = (event) => {
-    var selected = [];
-    if (event.target.checked) {
-      for (var i = 0; i < this.state.massages.length; i++) {
-        selected.push(this.state.massages[i]);
-      }
+      selected.push(event.massage);
     }
     this.setState({selected: selected});
   }
 
   changeSearch = (event) => {
-    this.setState({search: event.target.value, page: 1});
+    this.setState({search: event.target.value});
   }
 
   changeFreeOnly = (event) => {
@@ -173,42 +159,54 @@ class Massages extends Component {
     setTimeout(() => this.getMassages(), 3);
   }
 
-  changePerPage = (event) => {
-    if (Util.isEmpty(event.target.value) || parseInt(event.target.value, 10) < 5
-        || parseInt(event.target.value, 10) > 55) {
-      return;
-    }
-    this.setState({perPage: parseInt(event.target.value, 10)});
+  changeSelectEvents = (event) => {
+    this.setState({selected: [], selectEvents: event.target.checked});
   }
 
-  changeFrom = (date) => {
-    if (typeof date === 'string'
-      || date.isAfter(this.state.to)) {
-      return;
+  changeTimeRange = (moment, view) => {
+    if (view === 'month') {
+      this.setState({
+        from: moment.clone().startOf('month').subtract(37, 'days'),
+        to: moment.endOf('month').add(37, 'days'),
+        loading: true, selected: []
+      });
+    } else {
+      this.setState({
+        from: moment.clone().startOf('isoWeek').subtract(7, 'days'),
+        to: moment.endOf('isoWeek').add(5, 'days'),
+        loading: true, selected: []
+      });
     }
-    this.setState({from: date});
-  }
-
-  changeTo = (date) => {
-    if (typeof date === 'string'
-      || date.isBefore(this.state.from)) {
-      return;
-    }
-    this.setState({to: date});
-  }
-
-  changePage = (page) => {
-    this.setState({page: page, selected: [], loading: true});
-    setTimeout(() => this.getMassages(), 3);
   }
 
   changeTabIndex = (index) => {
-    this.setState({index: index, page: 1, pages: 1, loading: true});
+    this.setState({index: index, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
-  toggleModal = (id) => {
-    this.setState({modalActive: !this.state.modalActive, editId: id});
+  toggleModal = (massage) => {
+    this.setState({modalActive: !this.state.modalActive, editMassage: massage});
+  }
+
+  toggleModalWithTime = (slot) => {
+    if (moment(slot.start).isBefore(moment())) {
+      Util.notify("warning", _t.translate('Cannot create a new massage in the past.'),
+        _t.translate('Warning'));
+      return;
+    }
+
+    var exampleMassage = {
+      generated: true,
+      date: slot.start,
+      ending: slot.end,
+      masseuse: "",
+      client: null,
+      facility: {id: this.state.facilities[this.state.index].id}
+    };
+    setTimeout(() => this.setState({
+      modalActive: !this.state.modalActive,
+      editMassage: exampleMassage
+    }), 1);
   }
 
   toggleCopyModal = (deselect) => {
@@ -256,96 +254,67 @@ class Massages extends Component {
                   onClick={() => this.changeTabIndex(index)} />
               ))}
             </ul>
-            <MassageFilter checked={this.state.freeOnly} onCheck={this.changeFreeOnly}
-              value={this.state.search} onSearchChange={this.changeSearch}
-              from={this.state.from} onFromChange={this.changeFrom}
-              to={this.state.to} onToChange={this.changeTo} />
+            <MassageFilter
+              free={this.state.freeOnly}
+              onFreeCheck={this.changeFreeOnly}
+              select={this.state.selectEvents}
+              onSelectCheck={this.changeSelectEvents}
+              filter={this.state.search}
+              onFilterChange={this.changeSearch} />
             {Auth.isAdmin() ?
-              <div className="pull-right">
-                <MassageBatchAddModal
-                  active={this.state.batchAddModalActive}
-                  masseuses={this.state.masseuses}
-                  facilityId={this.state.facilities[this.state.index].id}
-                  getCallback={this.getMassages}
-                  onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
-                />
-                <MassageCopyModal
-                  active={this.state.copyModalActive}
-                  disabled={this.state.selected.length === 0}
-                  massages={this.state.selected}
-                  getCallback={this.getMassages}
-                  onToggle={(deselect) => this.toggleCopyModal(deselect)}
-                />
-                <MassageBatchEditModal
-                  active={this.state.batchEditModalActive}
-                  disabled={this.state.selected.length === 0}
-                  massages={this.state.selected}
-                  masseuses={this.state.masseuses}
-                  getCallback={this.getMassages}
-                  onToggle={(deselect) => this.toggleBatchEditModal(deselect)}
-                />
-                <BatchDeleteButton onDelete={this.deleteSelectedMassages}
-                  label={ _t.translate('Delete selected') }
-                  disabled={this.state.selected.length === 0} />
+              <div className="row" style={{'marginBottom': '15px'}}>
+                <div className="col-md-6">
+                  <MassageCopyModal
+                    active={this.state.copyModalActive}
+                    disabled={this.state.selected.length === 0}
+                    massages={this.state.selected}
+                    getCallback={this.getMassages}
+                    onToggle={(deselect) => this.toggleCopyModal(deselect)}
+                  />
+                  <MassageBatchEditModal
+                    active={this.state.batchEditModalActive}
+                    disabled={this.state.selected.length === 0}
+                    massages={this.state.selected}
+                    masseuses={this.state.masseuses}
+                    getCallback={this.getMassages}
+                    onToggle={(deselect) => this.toggleBatchEditModal(deselect)}
+                  />
+                  <BatchDeleteButton onDelete={this.deleteSelectedMassages}
+                    label={ _t.translate('Delete selected') }
+                    disabled={this.state.selected.length === 0} />
+                  </div>
+                  <div className="col-md-6 text-right">
+                    <MassageBatchAddModal
+                      active={this.state.batchAddModalActive}
+                      masseuses={this.state.masseuses}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
+                    />
+                    <MassageModal
+                      active={this.state.modalActive}
+                      massage={this.state.editMassage}
+                      masseuses={this.state.masseuses}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={() => this.toggleModal(null)}
+                    />
+                  </div>
               </div> : ''
             }
-            <table className="table table-hover table-responsive table-striped table-condensed">
-              <thead>
-                <tr>
-                  {Auth.isAdmin() ?
-                    <th width="40px" className="text-center">
-                      <input type="checkbox" onChange={this.handleSelectAll}
-                        checked={this.state.massages.length === this.state.selected.length
-                          && this.state.selected.length > 0} />
-                    </th> : <th className="hidden"></th>
-                  }
-                  <th>{ _t.translate('Date') }</th>
-                  <th>{ _t.translate('Time') }</th>
-                  <th>{ _t.translate('Masseur/Masseuse') }</th>
-                  <th width="40%">{ _t.translate('Status') }</th>
-                  <th>{ _t.translate('Event') }</th>
-                  {Auth.isAdmin() ?
-                    <th>
-                      <MassageModal
-                        active={this.state.modalActive}
-                        massage={this.state.editId === -1 ? null : this.state.massages[this.state.editId]}
-                        masseuses={this.state.masseuses}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        getCallback={this.getMassages}
-                        onToggle={() => this.toggleModal(-1)}
-                      />
-                    </th> : <th className="hidden"></th>
-                  }
-                </tr>
-              </thead>
-              {this.state.massages.length > 0 ?
-                <tbody>
-                  {this.state.massages.map((item, index) => (
-                    <MassageRow key={item.id} massage={item} checked={this.findInArrayById(this.state.selected, item.id) !== -1}
-                      assignDisabled={(this.state.massageMinutes + moment(item.ending)
-                        .diff(moment(item.date), 'minutes')) > Util.MAX_MASSAGE_MINS}
-                      search={this.state.search}
-                      onCheck={(event) => this.handleMassageSelect(event, item)}
-                      onAssign={() => this.assignMassage(item)}
-                      onCancel={() => this.cancelMassage(item)}
-                      onDelete={() => this.deleteMassage(item.id)}
-                      onEdit={() => this.toggleModal(index)}
-                    />
-                  ))}
-                </tbody> :
-                <tbody>
-                  <tr>
-                    <th colSpan="7">
-                      { _t.translate('None') }
-                    </th>
-                  </tr>
-                </tbody>
-              }
-            </table>
-            {this.state.pages > 0 ?
-              <Pager pages={this.state.pages} perPage={this.state.perPage} page={this.state.page}
-                onPerPageChange={this.changePerPage} onPageChange={(page) => this.changePage(page)} /> : ''
-            }
+            <CalendarPanel
+              events={this.state.events}
+              selectEvents={this.state.selectEvents}
+              selected={this.state.selected}
+              massageMinutes={this.state.massageMinutes}
+              onAssign={this.assignMassage}
+              onCancel={this.cancelMassage}
+              onAdd={this.toggleModalWithTime}
+              onEdit={this.toggleModal}
+              onDelete={this.deleteMassage}
+              onDateChange={this.changeTimeRange}
+              onSelect={this.handleEventSelect}
+            />
           </div> :
           <div>
             <h1>

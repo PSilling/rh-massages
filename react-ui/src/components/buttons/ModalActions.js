@@ -15,10 +15,12 @@ class ModalActions extends Component {
     return (
       <div className="pull-right">
         {this.props.children}
-        <button type="button" className="btn btn-primary" onClick={this.props.onProceed}
-          style={{ 'marginRight': '5px' }} autoFocus={this.props.autoFocus}>
-          {this.props.primaryLabel}
-        </button>
+        {this.props.primaryLabel === "none" ? '' :
+          <button type="button" className="btn btn-primary" onClick={this.props.onProceed} title={this.props.title}
+            style={{ 'marginRight': '5px' }} autoFocus={this.props.autoFocus} disabled={this.props.disabled}>
+            {this.props.primaryLabel}
+          </button>
+        }
         <button type="button" className="btn btn-default"
           onClick={this.props.onClose}>
           { _t.translate('Dismiss') }
@@ -36,12 +38,18 @@ ModalActions.propTypes = {
   /** callback function triggered on close button click */
   onClose: PropTypes.func.isRequired,
   /** whether the primary button should be automatically focused */
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  /** whether the primary button should be disabled */
+  disabled: PropTypes.bool,
+  /** primary button title */
+  title: PropTypes.string
 };
 
 ModalActions.defaultProps = {
   primaryLabel: _t.translate('Proceed'),
-  autoFocus: false
+  autoFocus: false,
+  disabled: false,
+  title: ""
 };
 
 export default ModalActions

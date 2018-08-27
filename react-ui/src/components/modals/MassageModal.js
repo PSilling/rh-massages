@@ -105,7 +105,7 @@ class MassageModal extends Component {
 
   handleModalKeyPress = (event) => {
     if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
-      if (this.props.massage === null) {
+      if (this.props.massage === null || this.props.massage.generated) {
         this.addMassage();
       } else {
         this.editMassage();
@@ -115,7 +115,7 @@ class MassageModal extends Component {
 
   handleInputKeyPress = (event) => {
     if (event.key === 'Enter') {
-      if (this.props.massage === null) {
+      if (this.props.massage === null || this.props.massage.generated) {
         this.addMassage();
       } else {
         this.editMassage();
@@ -125,7 +125,7 @@ class MassageModal extends Component {
 
   render() {
     return(
-      <div className='pull-right'>
+      <span>
         <AddButton onAdd={this.props.onToggle} />
 
         {this.props.active ?
@@ -136,7 +136,7 @@ class MassageModal extends Component {
                 this.modalDialog = dialog;
               }}>
               <h2>
-                {this.props.massage === null ?
+                {this.props.massage === null || this.props.massage.generated ?
                   _t.translate('New Massage') : _t.translate('Edit Massage')
                 }
               </h2>
@@ -185,7 +185,7 @@ class MassageModal extends Component {
                   </div>
                 </div>
               </div>
-              {this.props.massage === null ?
+              {this.props.massage === null || this.props.massage.generated ?
                 <ModalActions
                   primaryLabel={ _t.translate('Add') }
                   onProceed={this.addMassage}
@@ -202,7 +202,7 @@ class MassageModal extends Component {
             </ModalDialog>
           </ModalContainer> : ''
         }
-      </div>
+      </span>
     );
   }
 }

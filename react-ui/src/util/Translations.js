@@ -98,6 +98,9 @@ const myLocalize = new Localize({
     "Maximal simultaneous massage time per user would be exceeded": {
       "cs": "Maximální čas masáží na uživatele najednou by byl přesažen"
     },
+    "Assigns this massage and opens a predefined Google event editor in a new tab": {
+      "cs": "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce"
+    },
     "Too late to cancel this massage": {
       "cs": "Příliš pozdě na zrušení této masáže"
     },
@@ -155,6 +158,15 @@ const myLocalize = new Localize({
     "Collapse all": {
       "cs": "Sbalit vše"
     },
+    "Details": {
+      "cs": "Podrobnosti"
+    },
+    "Information": {
+      "cs": "Informace"
+    },
+    "Editation": {
+      "cs": "Editace"
+    },
 
     // table items
     "Date": {
@@ -171,9 +183,6 @@ const myLocalize = new Localize({
     },
     "Status": {
       "cs": "Status"
-    },
-    "Event": {
-      "cs": "Event"
     },
     "Add to Google Calendar": {
       "cs": "Přidat do Google kalendáře"
@@ -204,6 +213,12 @@ const myLocalize = new Localize({
     },
     "Per page": {
       "cs": "Na stránku"
+    },
+    "Client": {
+      "cs": "Klient"
+    },
+    "minutes": {
+      "cs": "minut"
     },
 
     // actions
@@ -249,11 +264,14 @@ const myLocalize = new Localize({
     "Proceed": {
       "cs": "Pokračovat"
     },
-    "Proceed and add to calendar": {
-      "cs": "Pokračovat a přidat do kalendáře"
+    "Assign and add to calendar": {
+      "cs": "Zapsat a přidat do kalendáře"
     },
     "Assign me": {
       "cs": "Zapsat se"
+    },
+    "Unassign me": {
+      "cs": "Odepsat se"
     },
     "Copy selected": {
       "cs": "Kopírovat vybrané"
@@ -265,6 +283,9 @@ const myLocalize = new Localize({
     },
     "Your request has ended unsuccessfully.": {
       "cs": "Váš požadavek skončil neúspěšně."
+    },
+    "Cannot create a new massage in the past.": {
+      "cs": "Nelze vytvořit novou masáž v minulosti."
     },
     "An error occurred!": {
       "cs": "Nastala chyba!"
@@ -297,7 +318,10 @@ const myLocalize = new Localize({
       "cs": "Alespoň jeden opakovací den je vyžadován!"
     },
     "Search": {
-      "cs": "Vyhledávání"
+      "cs": "Hledat"
+    },
+    "Filtering": {
+      "cs": "Filtrování"
     },
     "Today": {
       "cs": "Dnes"
@@ -314,6 +338,12 @@ const myLocalize = new Localize({
     "Next month": {
       "cs": "Další měsíc"
     },
+    "Next": {
+      "cs": "Další"
+    },
+    "Previous": {
+      "cs": "Předchozí"
+    },
     "Later than next week": {
       "cs": "Později než další týden"
     },
@@ -322,6 +352,24 @@ const myLocalize = new Localize({
     },
     " in ": {
       "cs": " v "
+    },
+    "Unassigned": {
+      "cs": "Nepřiřazeno"
+    },
+    "select events": {
+      "cs": "vybírat události"
+    },
+    "Legend:": {
+      "cs": "Legenda:"
+    },
+    "Free massage": {
+      "cs": "Volná masáž"
+    },
+    "Your massage": {
+      "cs": "Vaše masáž"
+    },
+    "Assigned massage": {
+      "cs": "Přiřazená masáž"
     },
 
     // text messages
@@ -334,14 +382,14 @@ const myLocalize = new Localize({
     "Are you sure you want to assign yourself to this massage?": {
       "cs": "Jste si jisti, že se chcete zapsat na tuto masáž?"
     },
-    "Are you sure you want to cancel this massage?": {
-      "cs": "Jste si jisti, že chcete zrušit tuto masáž?"
+    "Are you sure you want to unassign yourself from this massage?": {
+      "cs": "Jste si jisti, že chcete se chcete odepsat z této masáže?"
     },
-    "Are you sure you want to cancel a massage that is already assigned?": {
-      "cs": "Jste si jisti, že chcete zrušit masáž, která je již zapsaná?"
+    "Are you sure you want to unassign a massage that is already assigned to someone else?": {
+      "cs": "Jste si jisti, že chcete odepsat masáž, kterou již má někdo další zapsanou?"
     },
-    "Massage in facility": {
-      "cs": "Masáž v budově"
+    "Massage": {
+      "cs": "Masáž"
     },
     "FileReader API isn't supported by your browser.": {
       "cs": "FileReader API není vaším prohlížeči podporované."
@@ -351,6 +399,9 @@ const myLocalize = new Localize({
     },
     "Send me information about massages": {
       "cs": "Zasílejte mi informace o masážích"
+    },
+    "An error occured!": {
+      "cs": "Došlo k chybě!"
     },
 
     // moment localization
@@ -381,6 +432,12 @@ const myLocalize = new Localize({
     "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec": {
       "cs": "Led_Úno_Bře_Dub_Kvě_Čer_Čvc_Srp_Zář_Říj_Lis_Pro"
     },
+    "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday": {
+      "cs": "Neděle_Pondělí_Úterý_Středa_Čtvrtek_Pátek_Sobota"
+    },
+    "Sun_Mon_Tue_Wed_Thu_Fri_Sat": {
+      "cs": "Ne_Po_Út_St_Čt_Pá_So"
+    },
     "Su_Mo_Tu_We_Th_Fr_Sa": {
       "cs": "Ne_Po_Út_St_Čt_Pá_So"
     },
@@ -389,6 +446,26 @@ const myLocalize = new Localize({
     },
     "DD/MM/YYYY": {
       "cs": "DD. MM. YYYY"
+    },
+    "7": {
+      "cs": "1"
+    },
+
+    // calendar localization
+    "All day": {
+      "cs": "Celý den"
+    },
+    "Month": {
+      "cs": "Měsíc"
+    },
+    "Week": {
+      "cs": "Týden"
+    },
+    "Event": {
+      "cs": "Událost"
+    },
+    "Show more": {
+      "cs": "Zobrazit další"
     }
 });
 
