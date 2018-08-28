@@ -22,7 +22,8 @@ BigCalendar.momentLocalizer(moment);
  */
 class CalendarPanel extends Component {
 
-  state = {active: false, action: "", selectedEvent: null, label: "", overtime: false, date: new Date(), view: 'work_week'}
+  state = {active: false, action: "", selectedEvent: null, label: "", overtime: false,
+            date: new Date(), view: this.props.allowEditation ? 'work_week' : 'month'}
 
   localization = {
     allDay: _t.translate('All day'),
@@ -48,26 +49,35 @@ class CalendarPanel extends Component {
   onSelectEvent = (event) => {
     if (this.props.selectEvents) {
       this.props.onSelect(event);
+    } else if (this.props.allowEditation) {
+      this.configureModalActions(event);
     } else {
-      if (Util.isEmpty(event.massage.client)) {
-        if ((this.props.massageMinutes + moment(event.massage.ending)
-        .diff(moment(event.massage.date), 'minutes')) > Util.MAX_MASSAGE_MINS) {
-          this.setState({active: true, action: "none", selectedEvent: event,
-            label: _t.translate('Assign me'), overtime: true});
-        } else {
-          this.setState({active: true, action: "assign", selectedEvent: event,
-            label: _t.translate('Assign me'), overtime: false});
-        }
-      } else if (Auth.getSub() === event.massage.client.sub) {
-        this.setState({active: true, action: "cancel", selectedEvent: event,
-          label: _t.translate('Unassign me'), overtime: false});
-      } else if (Auth.isAdmin()) {
-        this.setState({active: true, action: "cancel", selectedEvent: event,
-          label: _t.translate('Force cancel'), overtime: false});
-      } else {
+      this.setState({active: true, action: "none", label: "none", selectedEvent: event});
+    }
+  }
+
+  /**
+   * Configures MassageEventModal buttons based on event client assignment status.
+   */
+  configureModalActions = (event) => {
+    if (Util.isEmpty(event.massage.client)) {
+      if ((this.props.massageMinutes + moment(event.massage.ending)
+      .diff(moment(event.massage.date), 'minutes')) > Util.MAX_MASSAGE_MINS) {
         this.setState({active: true, action: "none", selectedEvent: event,
-          label: "none", overtime: false});
+          label: _t.translate('Assign me'), overtime: true});
+      } else {
+        this.setState({active: true, action: "assign", selectedEvent: event,
+          label: _t.translate('Assign me'), overtime: false});
       }
+    } else if (Auth.getSub() === event.massage.client.sub) {
+      this.setState({active: true, action: "cancel", selectedEvent: event,
+        label: _t.translate('Unassign me'), overtime: false});
+    } else if (Auth.isAdmin()) {
+      this.setState({active: true, action: "cancel", selectedEvent: event,
+        label: _t.translate('Force cancel'), overtime: false});
+    } else {
+      this.setState({active: true, action: "none", selectedEvent: event,
+        label: "none", overtime: false});
     }
   }
 
@@ -84,6 +94,14 @@ class CalendarPanel extends Component {
   deleteEvent = () => {
     this.props.onDelete(this.state.selectedEvent.massage.id);
     this.setState({active: false});
+  }
+
+  generateTitle = (event) => {
+    if (this.props.allowEditation) {
+      return event.massage.masseuse;
+    } else {
+      return (event.massage.facility.name + ': ' + event.massage.masseuse);
+    }
   }
 
   handleToggle = () => {
@@ -130,10 +148,10 @@ class CalendarPanel extends Component {
           timeslots={1}
           eventPropGetter={this.eventStyler}
           onSelectEvent={this.onSelectEvent}
-          titleAccessor={(event) => { return event.massage.masseuse }}
+          titleAccessor={this.generateTitle}
           startAccessor={(event) => { return new Date(event.massage.date) }}
           endAccessor={(event) => { return new Date(event.massage.ending) }}
-          selectable={Auth.isAdmin() && this.state.view === 'work_week'}
+          selectable={Auth.isAdmin() && this.props.allowEditation && this.state.view === 'work_week'}
           onSelectSlot={this.props.onAdd}
           min={new Date("2018-01-01T07:30:00")}
           max={new Date("2018-01-01T16:00:00")}
@@ -147,9 +165,11 @@ class CalendarPanel extends Component {
             <span style={{ backgroundColor: "#2fad2f", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               { _t.translate("Free massage") }
             </span>
-            <span style={{ backgroundColor: "#ee9d2a", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
-              { _t.translate("My massage") }
-            </span>
+            {this.props.allowEditation ?
+              <span style={{ backgroundColor: "#ee9d2a", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
+                { _t.translate("My massage") }
+              </span> : ''
+            }
             <span style={{ backgroundColor: "#d10a14", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               { _t.translate("Assigned massage") }
             </span>
@@ -161,6 +181,7 @@ class CalendarPanel extends Component {
             event={this.state.selectedEvent}
             label={this.state.label}
             disabled={this.state.overtime}
+            allowEditation={this.props.allowEditation}
             onClose={this.handleToggle}
             onEdit={this.editEvent}
             onDelete={this.deleteEvent}
@@ -195,22 +216,28 @@ CalendarPanel.propTypes = {
   selected: PropTypes.arrayOf(PropTypes.object).isRequired,
   /** whether multi event selection should be activated */
   selectEvents: PropTypes.bool.isRequired,
+  /** whether non-delete administration should be enabled (false if archive) */
+  allowEditation: PropTypes.bool.isRequired,
   /** number of currently used Massage time in minutes */
-  massageMinutes: PropTypes.number.isRequired,
+  massageMinutes: PropTypes.number,
   /** function called on event assignment */
-  onAssign: PropTypes.func.isRequired,
+  onAssign: PropTypes.func,
   /** function called on event cancellation */
-  onCancel: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
   /** function called on selected slot event addition */
-  onAdd: PropTypes.func.isRequired,
+  onAdd: PropTypes.func,
   /** function called on event editation */
-  onEdit: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
   /** function called on event deletion */
   onDelete: PropTypes.func.isRequired,
   /** function called on view change */
   onDateChange: PropTypes.func.isRequired,
   /** function called on event selection */
   onSelect: PropTypes.func.isRequired
-};
+}
+
+CalendarPanel.defaultProps = {
+    allowEditation: true
+}
 
 export default CalendarPanel

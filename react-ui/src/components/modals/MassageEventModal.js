@@ -49,7 +49,7 @@ class MassageEventModal extends Component {
             { _t.translate('Details') }
             {Auth.isAdmin() ?
               <div className="pull-right">
-                <EditButton onEdit={this.props.onEdit} />
+                {this.props.allowEditation ? <EditButton onEdit={this.props.onEdit} /> : ''}
                 <DeleteButton onDelete={this.props.onDelete} />
               </div> : ''
             }
@@ -70,7 +70,7 @@ class MassageEventModal extends Component {
                     </p>
                   </dd> :
                   <dd style={this.definitionStyle}>
-                    <p className={this.props.event.massage.client.sub === Auth.getSub() ? 'text-warning' : 'text-danger'}>
+                    <p className={this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub() ? 'text-warning' : 'text-danger'}>
                       <strong>{this.props.event.massage.client.email}</strong>
                     </p>
                   </dd>
@@ -127,14 +127,20 @@ MassageEventModal.propTypes = {
   label: PropTypes.string.isRequired,
   /** whether the primary button should be disabled */
   disabled: PropTypes.bool.isRequired,
+  /** whether non-delete administration should be enabled (false if archive) */
+  allowEditation: PropTypes.bool,
   /** function called on primary label action */
   onConfirm: PropTypes.func.isRequired,
   /** function called on modal dismissal */
   onClose: PropTypes.func.isRequired,
   /** function called on edit button action */
-  onEdit: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
   /** function called on delete button action */
   onDelete: PropTypes.func.isRequired
+}
+
+MassageEventModal.defaultProps = {
+    allowEditation: true
 }
 
 export default MassageEventModal

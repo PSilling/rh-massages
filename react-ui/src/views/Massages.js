@@ -30,8 +30,9 @@ class Massages extends Component {
   state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: false,
             editMassage: null, massageMinutes: 0, loading: true,  modalActive: false,
             copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
-            events: [], search: "", freeOnly: false, from: moment(),
-            to: moment().add(1, 'months')}
+            events: [], search: "", freeOnly: false,
+            from: moment().startOf('isoWeek').subtract(7, 'days'),
+            to: moment().endOf('isoWeek').add(5, 'days')}
 
   componentDidMount() {
     Util.clearAllIntervals();

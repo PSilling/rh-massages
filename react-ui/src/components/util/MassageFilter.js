@@ -26,7 +26,7 @@ class MassageFilter extends Component {
           </div>
         </div>
 
-        {Auth.isAdmin() && this.props.enableSelect ?
+        {Auth.isAdmin() ?
           <div>
             <div className="form-group col-md-4 text-right" style={{ 'marginTop': '6px' }}>
               <label className="checkbox-inline">
@@ -59,18 +59,12 @@ MassageFilter.propTypes = {
   select: PropTypes.bool,
   /** whether the free Massages only checkbox should be checked */
   free: PropTypes.bool,
-  /** whether the select checkbox should be disabled */
-  enableSelect: PropTypes.bool,
   /** function called on select events checkbox change */
   onSelectCheck: PropTypes.func,
   /** function called on free Massages only checkbox change */
   onFreeCheck: PropTypes.func,
   /** function called on filter value change */
   onFilterChange: PropTypes.func
-};
-
-MassageFilter.defaultProps = {
-  enableSelect: true
 };
 
 export default MassageFilter
