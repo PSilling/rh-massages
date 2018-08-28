@@ -21,6 +21,9 @@ const myLocalize = new Localize({
     "Massages Archive": {
       "cs": "Archiv masáží"
     },
+    "Settings": {
+      "cs": "Nastavení"
+    },
 
     // other titles
     "New Massage": {
@@ -166,6 +169,24 @@ const myLocalize = new Localize({
     },
     "Editation": {
       "cs": "Editace"
+    },
+    "User settings": {
+      "cs": "Uživatelská nastavení"
+    },
+    "About": {
+      "cs": "O portálu"
+    },
+    "Visit our ": {
+      "cs": "Navštivte náš "
+    },
+    " and our ": {
+      "cs": "a naši "
+    },
+    "Report issues ": {
+      "cs": "Hlaste chyby "
+    },
+    "here": {
+      "cs": "zde"
     },
 
     // table items
@@ -362,11 +383,14 @@ const myLocalize = new Localize({
     "Legend:": {
       "cs": "Legenda:"
     },
+    "Massage": {
+      "cs": "Masáž"
+    },
     "Free massage": {
       "cs": "Volná masáž"
     },
-    "Your massage": {
-      "cs": "Vaše masáž"
+    "My massage": {
+      "cs": "Moje masáž"
     },
     "Assigned massage": {
       "cs": "Přiřazená masáž"
@@ -388,20 +412,23 @@ const myLocalize = new Localize({
     "Are you sure you want to unassign a massage that is already assigned to someone else?": {
       "cs": "Jste si jisti, že chcete odepsat masáž, kterou již má někdo další zapsanou?"
     },
-    "Massage": {
-      "cs": "Masáž"
-    },
     "FileReader API isn't supported by your browser.": {
       "cs": "FileReader API není vaším prohlížeči podporované."
     },
     "Invalid import file.": {
       "cs": "Importovaný soubor je neplatný."
     },
-    "Send me information about massages": {
-      "cs": "Zasílejte mi informace o masážích"
-    },
     "An error occured!": {
       "cs": "Došlo k chybě!"
+    },
+    "I want to recieve information about ": {
+      "cs": "Chci dostávat informace o "
+    },
+    "massage changes": {
+      "cs": "změnách masáží"
+    },
+    "Scheduling of new and cancellation of assigned massages": {
+      "cs": "Rozpis nových a zrušení připsaných masáží"
     },
 
     // moment localization

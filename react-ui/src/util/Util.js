@@ -197,12 +197,11 @@ Util.clearAllIntervals = () => {
  */
 Util.addToCalendar = (massage) => {
   var url = "https://www.google.com/calendar/render?action=TEMPLATE";
-  url += "&text=" + _t.translate('Massage') + ' (' + massage.masseuse + ", " + massage.facility.name + ")";
+  url += "&text=" + _t.translate('Massage');
   url += "&dates=" + moment.utc(massage.date).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "/" + moment.utc(massage.ending).format("YYYYMMDDTHHmmssZ").replace("+00:00", "Z");
   url += "&location=Red%20Hat%20Czech%20" + massage.facility.name;
-  url += "&details=" + _t.translate('Facility') + ': ' + massage.facility.name;
-  url += "%0A" + _t.translate('Masseur/Masseuse') + ': ' + massage.masseuse;
+  url += "&details=" + _t.translate('Masseur/Masseuse') + ': ' + massage.masseuse;
   return url;
 }
 
@@ -262,6 +261,7 @@ Util.FACILITIES_URL = "api/facilities/"; // url of /facilities endpoint
 Util.MASSAGES_URL = "api/massages/"; // url of /massages endpoint
 Util.CLIENTS_URL = "api/clients/"; // url of /clients endpoint
 Util.LOGOUT_URL = "api/logout/"; // url of /logout endpoint
+Util.GITHUB_URL = "https://github.com/PSilling/rh-massages/"; // GitHub project url
 Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in milliseconds
 Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
 Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes

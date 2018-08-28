@@ -148,7 +148,7 @@ class CalendarPanel extends Component {
               { _t.translate("Free massage") }
             </span>
             <span style={{ backgroundColor: "#ee9d2a", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
-              { _t.translate("Your massage") }
+              { _t.translate("My massage") }
             </span>
             <span style={{ backgroundColor: "#d10a14", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               { _t.translate("Assigned massage") }

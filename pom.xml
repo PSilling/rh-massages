@@ -5,67 +5,67 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.rh.massages</groupId>
-  <artifactId>parent</artifactId>
-  <version>1.3.1</version>
-  <packaging>pom</packaging>
+    <groupId>net.rh.massages</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.3.2</version>
+    <packaging>pom</packaging>
 
-  <name>Red Hat Massages</name>
+    <name>Red Hat Massages</name>
 
-  <licenses>
-    <license>
-      <name>GNU General Public License, Version 3</name>
-      <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
-      <distribution>manual</distribution>
-      <comments>A free, copyleft license for software and other kinds of works</comments>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>manual</distribution>
+            <comments>A free, copyleft license for software and other kinds of works</comments>
+        </license>
+    </licenses>
 
-  <url>www.rh-massages.net</url>	
-  <inceptionYear>2017</inceptionYear>
-  <scm>
-    <url>https://github.com/PSilling/rh-massages</url>
-  </scm>
+    <url>www.rh-massages.net</url>
+    <inceptionYear>2017</inceptionYear>
+    <scm>
+        <url>https://github.com/PSilling/rh-massages</url>
+    </scm>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- dropwizard-api versions -->
-    <maven.version>3.0.0</maven.version>
-    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
-    <dropwizard.version>1.1.4</dropwizard.version>
-    <postgresql.version>42.2.2</postgresql.version>
-    <json-smart.version>2.3</json-smart.version>
-    <keycloak-dropwizard.version>1.0.0</keycloak-dropwizard.version>
-    <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
-    <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
-    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-    <maven-compiler-plugin.configuration.source>1.8</maven-compiler-plugin.configuration.source>
-    <maven-compiler-plugin.configuration.target>1.8</maven-compiler-plugin.configuration.target>
-    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-    <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
-    <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
-    <jaxrs-analyzer-maven-plugin.version>0.16</jaxrs-analyzer-maven-plugin.version>
-    <simple-java-mail.version>4.4.5</simple-java-mail.version>
-    <commons-io.version>2.6</commons-io.version>
-    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-    <checkstyle.version>8.11</checkstyle.version>
-    <!-- /dropwizard-api versions -->
-    
-    <!-- react-ui versions -->
-    <node.version>v8.11.3</node.version>
-    <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
-    <!-- /react-ui versions -->
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- dropwizard-api versions -->
+        <maven.version>3.0.0</maven.version>
+        <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+        <dropwizard.version>1.1.4</dropwizard.version>
+        <postgresql.version>42.2.2</postgresql.version>
+        <json-smart.version>2.3</json-smart.version>
+        <keycloak-dropwizard.version>1.0.0</keycloak-dropwizard.version>
+        <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.configuration.source>1.8</maven-compiler-plugin.configuration.source>
+        <maven-compiler-plugin.configuration.target>1.8</maven-compiler-plugin.configuration.target>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+        <jaxrs-analyzer-maven-plugin.version>0.16</jaxrs-analyzer-maven-plugin.version>
+        <simple-java-mail.version>4.4.5</simple-java-mail.version>
+        <commons-io.version>2.6</commons-io.version>
+        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <checkstyle.version>8.11</checkstyle.version>
+        <!-- /dropwizard-api versions -->
 
-  <modules>
-    <module>dropwizard-api</module>
-    <module>react-ui</module>
-  </modules>
+        <!-- react-ui versions -->
+        <node.version>v8.11.3</node.version>
+        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <!-- /react-ui versions -->
+    </properties>
 
-  <issueManagement>
-    <url>https://github.com/PSilling/rh-massages/issues</url>
-  </issueManagement>
+    <modules>
+        <module>dropwizard-api</module>
+        <module>react-ui</module>
+    </modules>
+
+    <issueManagement>
+        <url>https://github.com/PSilling/rh-massages/issues</url>
+    </issueManagement>
 </project>

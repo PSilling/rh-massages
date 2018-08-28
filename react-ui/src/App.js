@@ -7,6 +7,7 @@ import Facilities from './views/Facilities.js';
 import Massages from './views/Massages.js';
 import MassagesArchive from './views/MassagesArchive.js';
 import MyMassages from './views/MyMassages.js';
+import Settings from './views/Settings.js';
 
 // component imports
 import ProfileLink from './components/links/ProfileLink';
@@ -81,6 +82,10 @@ const NavWithLinks = withRouter(({ location }) => (
           <li className={location.pathname === "/massages-archive" ? "active" : ""}>
             <Link to="/massages-archive">{ _t.translate("Massages Archive") }</Link>
           </li> : '' }
+        { Auth.isAuthenticated() ?
+          <li className={location.pathname === "/settings" ? "active" : ""}>
+            <Link to="/settings">{ _t.translate("Settings") }</Link>
+          </li> : '' }
       </ul>
       <ul className="nav navbar-nav navbar-right">
         <li>
@@ -120,6 +125,7 @@ class App extends Component {
               <Route exact path="/my-massages" component={MyMassages}/>
               <Route exact path="/facilities" component={Facilities}/>
               <Route exact path="/massages-archive" component={MassagesArchive}/>
+              <Route exact path="/settings" component={Settings}/>
               <Route component={NoMatch}/>
             </Switch>
           </div>
