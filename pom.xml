@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.rh.massages</groupId>
+    <groupId>cz.redhat</groupId>
     <artifactId>parent</artifactId>
     <version>1.3.2</version>
     <packaging>pom</packaging>
@@ -23,7 +23,7 @@
         </license>
     </licenses>
 
-    <url>www.rh-massages.net</url>
+    <url>www.massages.redhat.cz</url>
     <inceptionYear>2017</inceptionYear>
     <scm>
         <url>https://github.com/PSilling/rh-massages</url>
