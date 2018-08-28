@@ -371,9 +371,6 @@ const myLocalize = new Localize({
     "Later than next month": {
       "cs": "Později než další měsíc"
     },
-    " in ": {
-      "cs": " v "
-    },
     "Unassigned": {
       "cs": "Nepřiřazeno"
     },

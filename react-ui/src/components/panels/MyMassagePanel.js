@@ -49,7 +49,7 @@ class MyMassagePanel extends Component {
         <div className="col-md-3">
           <div className={"panel panel-" + this.props.type} style={{ 'height': '15em' }}>
             <div className="panel-heading">
-              {moment(this.props.massage.date).format("dd DD. MM.") + _t.translate(' in ') + this.props.massage.facility.name}
+              {moment(this.props.massage.date).format("ddd L")}
               <button type="button" className="close" aria-label="Close"
                 onClick={this.handleToggle} title={ _t.translate('Unassign me') }>
                 {this.props.disabled ?
