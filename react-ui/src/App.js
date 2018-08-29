@@ -61,7 +61,7 @@ const NoMatch = ({ location }) => (
 
 // navigation bar with view links
 const NavWithLinks = withRouter(({ location }) => (
-  <nav className="navbar navbar-default">
+  <nav className="navbar navbar-default no-print">
     <div className="container-fluid">
       <div className="navbar-header">
         { Auth.isAuthenticated() ? <Link className="navbar-brand" to="/">{ _t.translate("Massages") }</Link> : '' }

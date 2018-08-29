@@ -350,7 +350,7 @@ class MassageBatchAddModal extends Component {
 
   render() {
     return (
-      <span style={{ 'marginRight': '5px' }}>
+      <span style={{ 'marginRight': '5px', 'marginLeft': '5px' }}>
         <BatchButton onClick={() => this.props.onToggle(false)} label={ _t.translate('Batch addition') } />
 
         {this.props.active ?

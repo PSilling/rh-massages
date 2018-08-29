@@ -41,7 +41,7 @@ class MassagesArchive extends Component {
       + "old?search=" + this.state.search
       + "&free=" + this.state.freeOnly
       + "&from=" + moment(this.state.from).unix() * 1000
-      + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000, (json) => {
+      + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
       this.updateEvents(json.massages);
     });
   }

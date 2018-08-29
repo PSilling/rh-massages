@@ -8,6 +8,7 @@ import MassageModal from '../components/modals/MassageModal';
 import MassageCopyModal from '../components/modals/MassageCopyModal';
 import MassageBatchAddModal from '../components/modals/MassageBatchAddModal';
 import MassageBatchEditModal from '../components/modals/MassageBatchEditModal';
+import PrintModal from '../components/modals/PrintModal';
 import MassageFilter from '../components/util/MassageFilter';
 import Tab from '../components/navs/Tab';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
@@ -30,7 +31,7 @@ class Massages extends Component {
   state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: false,
             editMassage: null, massageMinutes: 0, loading: true,  modalActive: false,
             copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
-            events: [], search: "", freeOnly: false,
+            events: [], search: "", freeOnly: false, printMassages: null, selectedDate: moment(),
             from: moment().startOf('isoWeek').subtract(7, 'days'),
             to: moment().endOf('isoWeek').add(5, 'days')}
 
@@ -58,7 +59,7 @@ class Massages extends Component {
         + "/massages?search=" + this.state.search
         + "&free=" + this.state.freeOnly
         + "&from=" + moment(this.state.from).unix() * 1000
-        + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000, (json) => {
+        + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
         this.updateEvents(json.massages, json.totalCount, (json.clientTime / 60000));
       });
     }
@@ -168,14 +169,14 @@ class Massages extends Component {
     if (view === 'month') {
       this.setState({
         from: moment.clone().startOf('month').subtract(37, 'days'),
-        to: moment.endOf('month').add(37, 'days'),
-        loading: true, selected: []
+        to: moment.clone().endOf('month').add(37, 'days'),
+        loading: true, selected: [], selectedDate: moment
       });
     } else {
       this.setState({
         from: moment.clone().startOf('isoWeek').subtract(7, 'days'),
-        to: moment.endOf('isoWeek').add(5, 'days'),
-        loading: true, selected: []
+        to: moment.clone().endOf('isoWeek').add(5, 'days'),
+        loading: true, selected: [], selectedDate: moment
       });
     }
     setTimeout(() => this.getMassages(), 3);
@@ -184,6 +185,41 @@ class Massages extends Component {
   changeTabIndex = (index) => {
     this.setState({index: index, loading: true});
     setTimeout(() => this.getMassages(), 3);
+  }
+
+  setPrintMassages = (massages) => {
+    this.setState({printMassages: massages});
+  }
+
+  createPrintRows = () => {
+    var rows = [];
+    if (this.state.printMassages.length === 0) {
+      rows.push(
+        <tr key="info">
+          <td colSpan="4">{ _t.translate('None') }</td>
+        </tr>
+      );
+    } else {
+      for (var i = 0; i < this.state.printMassages.length; i++) {
+        rows.push(
+          <tr key={i}>
+            <td>
+              {moment(this.state.printMassages[i].date).format('L')}
+            </td>
+            <td>
+              {moment(this.state.printMassages[i].date).format("HH:mm") + "–" + moment(this.state.printMassages[i].ending).format("HH:mm")}
+            </td>
+            <td>
+              {this.state.printMassages[i].masseuse}
+            </td>
+            <td>
+              { Util.isEmpty(this.state.printMassages[i].client) ? _t.translate('Free') : Util.getContactInfo(this.state.printMassages[i].client)}
+            </td>
+          </tr>
+        );
+      }
+    }
+    return rows;
   }
 
   toggleModal = (massage) => {
@@ -244,88 +280,126 @@ class Massages extends Component {
 
     return (
       <div>
-        {this.state.facilities.length > 0 ?
-          <div>
-            {this.state.loading ? <div className="loader pull-right"></div> : ''}
-            <h1>
-              { _t.translate('Massages in ') + this.state.facilities[this.state.index].name }
-            </h1>
-            <ul className="nav nav-tabs" style={{ 'marginBottom': '15px' }}>
-              {this.state.facilities.map((item, index) => (
-                <Tab active={index === this.state.index} label={item.name} key={item.id}
-                  onClick={() => this.changeTabIndex(index)} />
-              ))}
-            </ul>
-            <MassageFilter
-              free={this.state.freeOnly}
-              onFreeCheck={this.changeFreeOnly}
-              select={this.state.selectEvents}
-              onSelectCheck={this.changeSelectEvents}
-              filter={this.state.search}
-              onFilterChange={this.changeSearch} />
-            {Auth.isAdmin() ?
-              <div className="row" style={{'marginBottom': '15px'}}>
-                <div className="col-md-6">
-                  <MassageCopyModal
-                    active={this.state.copyModalActive}
-                    disabled={this.state.selected.length === 0}
-                    massages={this.state.selected}
-                    getCallback={this.getMassages}
-                    onToggle={(deselect) => this.toggleCopyModal(deselect)}
-                  />
-                  <MassageBatchEditModal
-                    active={this.state.batchEditModalActive}
-                    disabled={this.state.selected.length === 0}
-                    massages={this.state.selected}
-                    masseuses={this.state.masseuses}
-                    getCallback={this.getMassages}
-                    onToggle={(deselect) => this.toggleBatchEditModal(deselect)}
-                  />
-                  <BatchDeleteButton onDelete={this.deleteSelectedMassages}
-                    label={ _t.translate('Delete selected') }
-                    disabled={this.state.selected.length === 0} />
-                  </div>
-                  <div className="col-md-6 text-right">
-                    <MassageBatchAddModal
-                      active={this.state.batchAddModalActive}
+        <div className="no-print">
+          {this.state.facilities.length > 0 ?
+            <div>
+              {this.state.loading ? <div className="loader pull-right"></div> : ''}
+              <h1>
+                { _t.translate('Massages in ') + this.state.facilities[this.state.index].name }
+              </h1>
+              <ul className="nav nav-tabs" style={{ 'marginBottom': '15px' }}>
+                {this.state.facilities.map((item, index) => (
+                  <Tab active={index === this.state.index} label={item.name} key={item.id}
+                    onClick={() => this.changeTabIndex(index)} />
+                ))}
+              </ul>
+              <MassageFilter
+                free={this.state.freeOnly}
+                onFreeCheck={this.changeFreeOnly}
+                select={this.state.selectEvents}
+                onSelectCheck={this.changeSelectEvents}
+                filter={this.state.search}
+                onFilterChange={this.changeSearch} />
+              {Auth.isAdmin() ?
+                <div className="row" style={{'marginBottom': '15px'}}>
+                  <div className="col-md-6">
+                    <MassageCopyModal
+                      active={this.state.copyModalActive}
+                      disabled={this.state.selected.length === 0}
+                      massages={this.state.selected}
+                      getCallback={this.getMassages}
+                      onToggle={(deselect) => this.toggleCopyModal(deselect)}
+                    />
+                    <MassageBatchEditModal
+                      active={this.state.batchEditModalActive}
+                      disabled={this.state.selected.length === 0}
+                      massages={this.state.selected}
+                      masseuses={this.state.masseuses}
+                      getCallback={this.getMassages}
+                      onToggle={(deselect) => this.toggleBatchEditModal(deselect)}
+                    />
+                    <BatchDeleteButton onDelete={this.deleteSelectedMassages}
+                      label={ _t.translate('Delete selected') }
+                      disabled={this.state.selected.length === 0} />
+                    </div>
+                    <div className="col-md-6 text-right">
+                      <PrintModal
+                        masseuses={this.state.masseuses}
+                        facilityId={this.state.facilities[this.state.index].id}
+                        date={this.state.selectedDate}
+                        onPrint={this.setPrintMassages}
+                      />
+                      <MassageBatchAddModal
+                        active={this.state.batchAddModalActive}
+                        masseuses={this.state.masseuses}
+                        facilityId={this.state.facilities[this.state.index].id}
+                        getCallback={this.getMassages}
+                        onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
+                      />
+                      <MassageModal
+                        active={this.state.modalActive}
+                        massage={this.state.editMassage}
+                        masseuses={this.state.masseuses}
+                        facilityId={this.state.facilities[this.state.index].id}
+                        getCallback={this.getMassages}
+                        onToggle={() => this.toggleModal(null)}
+                      />
+                    </div>
+                </div> :
+                <div className="row" style={{'marginBottom': '15px'}}>
+                  <div className="col-md-12 text-right">
+                    <PrintModal
                       masseuses={this.state.masseuses}
                       facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
-                      onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
-                    />
-                    <MassageModal
-                      active={this.state.modalActive}
-                      massage={this.state.editMassage}
-                      masseuses={this.state.masseuses}
-                      facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
-                      onToggle={() => this.toggleModal(null)}
+                      date={this.state.selectedDate}
+                      onPrint={this.setPrintMassages}
                     />
                   </div>
-              </div> : ''
-            }
-            <CalendarPanel
-              events={this.state.events}
-              selectEvents={this.state.selectEvents}
-              selected={this.state.selected}
-              massageMinutes={this.state.massageMinutes}
-              onAssign={this.assignMassage}
-              onCancel={this.cancelMassage}
-              onAdd={this.toggleModalWithTime}
-              onEdit={this.toggleModal}
-              onDelete={this.deleteMassage}
-              onDateChange={this.changeTimeRange}
-              onSelect={this.handleEventSelect}
-            />
-          </div> :
-          <div>
+                </div>
+              }
+              <CalendarPanel
+                events={this.state.events}
+                selectEvents={this.state.selectEvents}
+                selected={this.state.selected}
+                massageMinutes={this.state.massageMinutes}
+                onAssign={this.assignMassage}
+                onCancel={this.cancelMassage}
+                onAdd={this.toggleModalWithTime}
+                onEdit={this.toggleModal}
+                onDelete={this.deleteMassage}
+                onDateChange={this.changeTimeRange}
+                onSelect={this.handleEventSelect}
+              />
+            </div> :
+            <div>
+              <h1>
+                { _t.translate('Massages') }
+              </h1>
+              <h3>
+                { _t.translate('None') }
+              </h3>
+            </div>
+          }
+        </div>
+        {this.state.printMassages !== null ?
+          <div className="print-only">
             <h1>
-              { _t.translate('Massages') }
+              { _t.translate('Schedule') }
             </h1>
-            <h3>
-              { _t.translate('None') }
-            </h3>
-          </div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>{ _t.translate('Date') }</th>
+                  <th>{ _t.translate('Time') }</th>
+                  <th>{ _t.translate('Masseur/Masseuse') }</th>
+                  <th width="40%">{ _t.translate('Client') }</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.createPrintRows()}
+              </tbody>
+            </table>
+          </div> : ''
         }
       </div>
     );

@@ -24,6 +24,9 @@ const myLocalize = new Localize({
     "Settings": {
       "cs": "Nastavení"
     },
+    "Schedule": {
+      "cs": "Rozpis"
+    },
 
     // other titles
     "New Massage": {
@@ -241,6 +244,24 @@ const myLocalize = new Localize({
     "minutes": {
       "cs": "minut"
     },
+    "Time range": {
+      "cs": "Časové rozpětí"
+    },
+    "just today": {
+      "cs": "jen dnes"
+    },
+    "this week": {
+      "cs": "tento týden"
+    },
+    "this month": {
+      "cs": "tento měsíc"
+    },
+    "chosen month": {
+      "cs": "zvolený měsíc"
+    },
+    "custom:": {
+      "cs": "vlastní:"
+    },
 
     // actions
     "Delete": {
@@ -296,6 +317,12 @@ const myLocalize = new Localize({
     },
     "Copy selected": {
       "cs": "Kopírovat vybrané"
+    },
+    "Print": {
+      "cs": "Vytisknout"
+    },
+    "Print settings": {
+      "cs": "Nastavení tisku"
     },
 
     // notification messages
@@ -391,6 +418,9 @@ const myLocalize = new Localize({
     },
     "Assigned massage": {
       "cs": "Přiřazená masáž"
+    },
+    "Masseuse, masseur or client name": {
+      "cs": "Jméno masérky, maséra anebo klienta"
     },
 
     // text messages
