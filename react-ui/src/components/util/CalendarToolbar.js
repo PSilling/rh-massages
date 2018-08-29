@@ -16,7 +16,7 @@ class CalendarToolbar extends Component {
         <div className="row">
           <div className="col-md-1">
             <button type="button" className="btn btn-default" title={ _t.translate("Previous") }
-              onClick={this.props.leftAction}>
+              onClick={this.props.leftAction} disabled={this.props.leftDisabled}>
               <span className="glyphicon glyphicon-chevron-left"></span>
             </button>
           </div>
@@ -37,7 +37,7 @@ class CalendarToolbar extends Component {
 
           <div className="col-md-1 text-right">
             <button type="button" className="btn btn-default" title={ _t.translate("Next") }
-              onClick={this.props.rightAction}>
+              onClick={this.props.rightAction} disabled={this.props.rightDisabled}>
               <span className="glyphicon glyphicon-chevron-right"></span>
             </button>
           </div>
@@ -58,6 +58,10 @@ CalendarToolbar.propTypes = {
   month: PropTypes.string,
   /** whether month is the currently selected view */
   monthActive: PropTypes.bool.isRequired,
+  /** whether the left chevron button should be disabled */
+  leftDisabled: PropTypes.bool.isRequired,
+  /** whether the right chevron button should be disabled */
+  rightDisabled: PropTypes.bool.isRequired,
   /** function called on left chevron button click */
   leftAction: PropTypes.func.isRequired,
   /** function called on right chevron button click */

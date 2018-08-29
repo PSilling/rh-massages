@@ -110,6 +110,7 @@ class CalendarPanel extends Component {
 
   changeView = (view) => {
     this.setState({view: view});
+    this.props.onDateChange(moment(this.state.date), view);
   }
 
   changeDate = (left) => {
@@ -123,6 +124,7 @@ class CalendarPanel extends Component {
     }
 
     this.setState({date: dateAsMoment.toDate()});
+    this.props.onDateChange(dateAsMoment, this.state.view);
   }
 
   render() {
@@ -132,6 +134,8 @@ class CalendarPanel extends Component {
           month={this.state.view === "month" ? moment(this.state.date).format("MMMM YYYY") :
             moment(this.state.date).subtract(2, 'days').format("MMMM YYYY")}
           monthActive={this.state.view === "month"}
+          leftDisabled={this.props.allowEditation && moment(this.state.date).isBefore(moment())}
+          rightDisabled={!this.props.allowEditation && moment(this.state.date).add(1, "day").isAfter(moment())}
           leftAction={() => this.changeDate(true)}
           rightAction={() => this.changeDate(false)}
           onViewChange={this.changeView}

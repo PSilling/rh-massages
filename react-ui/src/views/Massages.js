@@ -178,6 +178,7 @@ class Massages extends Component {
         loading: true, selected: []
       });
     }
+    setTimeout(() => this.getMassages(), 3);
   }
 
   changeTabIndex = (index) => {
