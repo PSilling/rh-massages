@@ -35,7 +35,7 @@ class Settings extends Component {
     Auth.subscribed = event.target.checked;
     Util.put(Util.CLIENTS_URL, Auth.getClient(), () => {
       this.setState({notify: Auth.subscribed});
-    });
+    }, false);
   }
 
   render () {

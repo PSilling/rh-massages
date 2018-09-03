@@ -68,6 +68,9 @@ Util.get = (url, update) => {
         Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
           _t.translate('An error occurred!'));
       }
+    }).catch(function(error) {
+      Util.notify("error", error.toString(),
+        _t.translate('An error occurred!'));
     }).then(function(json) {
       update(json);
     });
@@ -99,8 +102,8 @@ Util.post = (url, data, update, notify = true) => {
       if (response.ok) {
         if (notify) {
           Util.notify("success", "", _t.translate('Your request has been successful.'));
-          update();
         }
+        update();
       } else {
         Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
           _t.translate('An error occured!'));
@@ -134,8 +137,8 @@ Util.put = (url, data, update, notify = true) => {
       if (response.ok) {
         if (notify) {
           Util.notify("success", "", _t.translate('Your request has been successful.'));
-          update();
         }
+        update();
       } else {
         Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
           _t.translate('An error occured!'));
@@ -166,8 +169,8 @@ Util.delete = (url, update, notify = true) => {
       if (response.ok) {
         if (notify) {
           Util.notify("success", "", _t.translate('Your request has been successful.'));
-          update();
         }
+        update();
       } else {
         Util.notify("error", _t.translate('Your request has ended unsuccessfully.'),
           _t.translate('An error occured!'));

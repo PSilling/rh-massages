@@ -42,7 +42,9 @@ class MassagesArchive extends Component {
       + "&free=" + this.state.freeOnly
       + "&from=" + moment(this.state.from).unix() * 1000
       + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
-      this.updateEvents(json.massages);
+      if (json !== undefined) {
+        this.updateEvents(json.massages);
+      }
     });
   }
 

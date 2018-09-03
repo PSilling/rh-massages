@@ -71,7 +71,7 @@ class Facilities extends Component {
               </th>
             </tr>
           </thead>
-          {this.state.facilities.length > 0 ?
+          {this.state.facilities !== undefined && this.state.facilities.length > 0 ?
             <tbody>
               {this.state.facilities.map((item, index) => (
                 <FacilityRow key={item.id} facility={item} onEdit={() => this.toggleModal(index)}

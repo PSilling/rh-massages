@@ -76,7 +76,7 @@ class MyMassages extends Component {
           { _t.translate('My Massages') }
         </h1>
         <hr />
-        {this.state.massages.length > 0 ?
+        {this.state.massages !== undefined && this.state.massages.length > 0 ?
           this.createPanels()
         : <h3>
             { _t.translate('None') + " – "}
