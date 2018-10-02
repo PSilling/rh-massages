@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content correctly 1`] = `
+<div>
+  <h1>
+    
+    Moje masáže
+  </h1>
+  <hr />
+  <h3>
+    Žádné – 
+    <a
+      href="/"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "#595959",
+        }
+      }
+    >
+      Jít na masáže
+    </a>
+  </h3>
+</div>
+`;

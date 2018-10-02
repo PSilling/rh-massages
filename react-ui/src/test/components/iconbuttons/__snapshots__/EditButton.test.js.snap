@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<span>
+  <button
+    className="btn btn-link"
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "#000",
+      }
+    }
+    title="Upravit"
+    type="button"
+  >
+    <span
+      className="glyphicon glyphicon-pencil"
+    />
+  </button>
+</span>
+`;

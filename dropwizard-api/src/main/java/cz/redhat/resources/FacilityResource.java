@@ -17,6 +17,7 @@ package cz.redhat.resources;
 
 import cz.redhat.auth.User;
 import cz.redhat.core.Facility;
+import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
 import cz.redhat.db.FacilityDao;
 import cz.redhat.db.MassageDao;
@@ -47,7 +48,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-import cz.redhat.core.Massage;
 
 /**
  * Facility resource class.

@@ -15,15 +15,15 @@
 
 package cz.redhat.db;
 
+import cz.redhat.core.Client;
 import cz.redhat.core.Facility;
+import cz.redhat.core.Massage;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.text.Normalizer;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import cz.redhat.core.Client;
-import cz.redhat.core.Massage;
 import org.hibernate.SessionFactory;
 
 /**

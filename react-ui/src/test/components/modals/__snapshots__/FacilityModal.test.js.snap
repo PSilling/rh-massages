@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inside content with correct props 1`] = `
+<div
+  className="pull-right"
+>
+  <span>
+    <button
+      className="btn btn-default"
+      onClick={[Function]}
+      title="Přidat"
+      type="button"
+    >
+      <span
+        className="glyphicon glyphicon-plus"
+      />
+    </button>
+  </span>
+  <div>
+    <h2>
+      Nová budova
+    </h2>
+    <hr />
+    <div
+      className="form-group col-md-12"
+    >
+      <label
+        htmlFor="facilityInput"
+      >
+        Název
+      </label>
+      <input
+        autoFocus={true}
+        className="form-control"
+        id="facilityInput"
+        maxLength="64"
+        onChange={[Function]}
+        onFocus={undefined}
+        onKeyPress={[Function]}
+        placeholder="Název"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="pull-right"
+    >
+      <button
+        autoFocus={false}
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "5px",
+          }
+        }
+        title=""
+        type="button"
+      >
+        Přidat
+      </button>
+      <button
+        className="btn btn-default"
+        onClick={[Function]}
+        type="button"
+      >
+        Zrušit
+      </button>
+    </div>
+  </div>
+</div>
+`;

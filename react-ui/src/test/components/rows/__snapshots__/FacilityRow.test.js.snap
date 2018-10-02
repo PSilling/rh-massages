@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<tr>
+  <td>
+    test
+  </td>
+  <td
+    width="105px"
+  >
+    <span
+      className="pull-right"
+    >
+      <span
+        style={
+          Object {
+            "marginRight": "5px",
+          }
+        }
+      >
+        <span>
+          <button
+            className="btn btn-link"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "#000",
+              }
+            }
+            title="Upravit"
+            type="button"
+          >
+            <span
+              className="glyphicon glyphicon-pencil"
+            />
+          </button>
+        </span>
+      </span>
+      <span>
+        <button
+          className="btn btn-link"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#000",
+            }
+          }
+          title="Smazat"
+          type="button"
+        >
+          <span
+            className="glyphicon glyphicon-remove"
+          />
+        </button>
+        
+      </span>
+    </span>
+  </td>
+</tr>
+`;

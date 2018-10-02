@@ -235,9 +235,6 @@ const myLocalize = new Localize({
     "only free massages": {
       "cs": "pouze volné masáže"
     },
-    "Per page": {
-      "cs": "Na stránku"
-    },
     "Client": {
       "cs": "Klient"
     },

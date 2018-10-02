@@ -17,6 +17,8 @@ package cz.redhat.resources;
 
 import cz.redhat.auth.User;
 import cz.redhat.configuration.MailClient;
+import cz.redhat.core.Client;
+import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
 import cz.redhat.db.MassageDao;
 import io.dropwizard.auth.Auth;
@@ -46,8 +48,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import cz.redhat.core.Client;
-import cz.redhat.core.Massage;
 
 /**
  * Massage resource class.

@@ -32,12 +32,13 @@ class CalendarButton extends Component {
 
 CalendarButton.propTypes = {
   /** calendar link to redirect to */
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   /** whether the button should be disabled */
   disabled: PropTypes.bool
 };
 
 CalendarButton.defaultProps = {
+  link: "",
   disabled: false
 };
 

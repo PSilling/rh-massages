@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inside content with correct props 1`] = `
+<div>
+  <h3>
+    Potvrzení akce
+  </h3>
+  <p>
+    test
+  </p>
+  <div
+    className="pull-right"
+  >
+    <button
+      autoFocus={true}
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      title=""
+      type="button"
+    >
+      Pokračovat
+    </button>
+    <button
+      className="btn btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      Zrušit
+    </button>
+  </div>
+</div>
+`;

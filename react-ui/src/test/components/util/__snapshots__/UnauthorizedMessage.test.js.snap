@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<div>
+  <h1>
+    test
+  </h1>
+  <hr />
+  <h2>
+    Neautorizováno
+  </h2>
+</div>
+`;

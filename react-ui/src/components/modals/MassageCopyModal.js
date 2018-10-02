@@ -72,6 +72,47 @@ class MassageCopyModal extends Component {
     }
   }
 
+  renderInsides = () => {
+    return (
+      <div>
+        <h2>
+          { _t.translate('Copy Massages') }
+        </h2>
+        <hr />
+        <div className="form-group col-md-12">
+          <label htmlFor="valueInput">{ _t.translate('Number of repetitions') }</label>
+          <div className="row">
+            <div className="col-md-4">
+              <input id="valueInput" value={this.state.count} onChange={this.changeCount}
+                className="form-control" onKeyPress={this.handleInputKeyPress}
+                autoFocus onFocus={Util.moveCursorToEnd} type="number" min="1"
+                max="54" placeholder={ _t.translate('Number of repetitions') }
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group col-md-12">
+          <label htmlFor="stepInput">{ _t.translate('Day step per repetition') }</label>
+          <div className="row">
+            <div className="col-md-4">
+              <input id="stepInput" value={this.state.step} onChange={this.changeStep}
+                className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
+                type="number" min="1" max="365" placeholder={ _t.translate('Day step per repetition') }
+              />
+            </div>
+          </div>
+        </div>
+        <ModalActions
+          primaryLabel={ _t.translate('Copy') }
+          onProceed={this.addMassages}
+          onClose={() => this.props.onToggle(false)}
+          autoFocus={false}
+        />
+      </div>
+    )
+  }
+
   render() {
     return (
       <span style={{ 'marginRight': '5px' }}>
@@ -79,48 +120,17 @@ class MassageCopyModal extends Component {
           label={ _t.translate('Copy selected') } />
 
         {this.props.active ?
-          <ModalContainer onClose={() => this.props.onToggle(false)}>
-            <ModalDialog onClose={() => this.props.onToggle(false)} width="50%" style={{ 'outline': 'none' }}
-              tabIndex="1" onKeyPress={this.handleModalKeyPress}
-              ref={(dialog) => {
-                this.modalDialog = dialog;
-              }}>
-              <h2>
-                { _t.translate('Copy Massages') }
-              </h2>
-              <hr />
-              <div className="form-group col-md-12">
-                <label htmlFor="valueInput">{ _t.translate('Number of repetitions') }</label>
-                <div className="row">
-                  <div className="col-md-4">
-                    <input id="valueInput" value={this.state.count} onChange={this.changeCount}
-                      className="form-control" onKeyPress={this.handleInputKeyPress}
-                      autoFocus onFocus={Util.moveCursorToEnd} type="number" min="1"
-                      max="54" placeholder={ _t.translate('Number of repetitions') }
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-group col-md-12">
-                <label htmlFor="stepInput">{ _t.translate('Day step per repetition') }</label>
-                <div className="row">
-                  <div className="col-md-4">
-                    <input id="stepInput" value={this.state.step} onChange={this.changeStep}
-                      className="form-control" onKeyPress={this.handleInputKeyPress} onFocus={Util.moveCursorToEnd}
-                      type="number" min="1" max="365" placeholder={ _t.translate('Day step per repetition') }
-                    />
-                  </div>
-                </div>
-              </div>
-              <ModalActions
-                primaryLabel={ _t.translate('Copy') }
-                onProceed={this.addMassages}
-                onClose={() => this.props.onToggle(false)}
-                autoFocus={false}
-              />
-            </ModalDialog>
-          </ModalContainer> : ''
+          this.props.withPortal ?
+            <ModalContainer onClose={() => this.props.onToggle(false)}>
+              <ModalDialog onClose={() => this.props.onToggle(false)} width="50%" style={{ 'outline': 'none' }}
+                tabIndex="1" onKeyPress={this.handleModalKeyPress}
+                ref={(dialog) => {
+                  this.modalDialog = dialog;
+                }}>
+                {this.renderInsides()}
+              </ModalDialog>
+            </ModalContainer> :
+            this.renderInsides() : ''
         }
       </span>
     )
@@ -137,7 +147,14 @@ MassageCopyModal.propTypes = {
   /** callback function for Massage list update */
   getCallback: PropTypes.func.isRequired,
   /** function called on modal toggle */
-  onToggle: PropTypes.func.isRequired
+  onToggle: PropTypes.func.isRequired,
+  /** whether ModalContainer should be used; useful for testing to avoid portals */
+  withPortal: PropTypes.bool
+};
+
+MassageCopyModal.defaultProps = {
+  disabled: false,
+  withPortal: true
 };
 
 export default MassageCopyModal

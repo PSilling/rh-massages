@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders admin content with correct props 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-md-8"
+  >
+    <div
+      className="input-group"
+      style={
+        Object {
+          "marginBottom": "15px",
+        }
+      }
+    >
+      <span
+        className="input-group-addon"
+      >
+        <span
+          className="glyphicon glyphicon-search"
+        />
+      </span>
+      <input
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Filtrování"
+        type="search"
+        value="test"
+      />
+    </div>
+  </div>
+  <div>
+    <div
+      className="form-group col-md-4 text-right"
+      style={
+        Object {
+          "marginTop": "6px",
+        }
+      }
+    >
+      <label
+        className="checkbox-inline"
+      >
+        <input
+          checked={true}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <strong>
+          pouze volné masáže
+        </strong>
+      </label>
+      <label
+        className="checkbox-inline"
+      >
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <strong>
+          vybírat události
+        </strong>
+      </label>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changes button content when disabled 1`] = `
+<span>
+  <button
+    className="btn btn-link"
+    disabled={true}
+    style={
+      Object {
+        "color": "#000",
+      }
+    }
+    title="Přidat do Google kalendáře"
+    type="button"
+  >
+    <span
+      className="glyphicon glyphicon-calendar"
+    />
+  </button>
+</span>
+`;
+
+exports[`renders content with correct props 1`] = `
+<span>
+  <a
+    href="test"
+    tabIndex="-1"
+    target="_blank"
+  >
+    <button
+      className="btn btn-link"
+      style={
+        Object {
+          "color": "#000",
+        }
+      }
+      title="Přidat do Google kalendáře"
+      type="button"
+    >
+      <span
+        className="glyphicon glyphicon-calendar"
+      />
+    </button>
+  </a>
+</span>
+`;

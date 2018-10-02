@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-1"
+    >
+      <button
+        className="btn btn-default"
+        disabled={false}
+        onClick={[Function]}
+        title="Předchozí"
+        type="button"
+      >
+        <span
+          className="glyphicon glyphicon-chevron-left"
+        />
+      </button>
+    </div>
+    <div
+      className="col-md-10 text-center"
+    >
+      <div
+        className="btn-group"
+      >
+        <button
+          className="btn btn-default"
+          onClick={[Function]}
+          type="button"
+        >
+          Týden
+        </button>
+        <button
+          className="btn btn-default active"
+          onClick={[Function]}
+          type="button"
+        >
+          Měsíc
+        </button>
+      </div>
+    </div>
+    <div
+      className="col-md-1 text-right"
+    >
+      <button
+        className="btn btn-default"
+        disabled={true}
+        onClick={[Function]}
+        title="Další"
+        type="button"
+      >
+        <span
+          className="glyphicon glyphicon-chevron-right"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    className="text-center"
+    style={
+      Object {
+        "marginBottom": "5px",
+        "marginTop": "5px",
+      }
+    }
+  >
+    <strong>
+      test
+    </strong>
+  </div>
+</div>
+`;

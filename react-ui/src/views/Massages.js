@@ -60,12 +60,15 @@ class Massages extends Component {
         + "&free=" + this.state.freeOnly
         + "&from=" + moment(this.state.from).unix() * 1000
         + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
-        this.updateEvents(json.massages, json.totalCount, (json.clientTime / 60000));
+        if (json !== undefined && json.massages !== undefined
+             && json.clientTime !== undefined) {
+          this.updateEvents(json.massages, (json.clientTime / 60000));
+        }
       });
     }
   }
 
-  updateEvents = (massages, count, minutes) => {
+  updateEvents = (massages, minutes) => {
     var events = [],
         masseuses = [],
         color;

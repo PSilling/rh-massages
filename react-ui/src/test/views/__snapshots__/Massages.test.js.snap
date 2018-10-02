@@ -1,0 +1,2313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Massages />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="no-print"
+>
+          <div>
+                    <div
+                              className="loader pull-right"
+                    />
+                    <h1>
+                              Masáže v test
+                    </h1>
+                    <ul
+                              className="nav nav-tabs"
+                              style={
+                                        Object {
+                                                  "marginBottom": "15px",
+                                                }
+                              }
+                    >
+                              <Tab
+                                        active={true}
+                                        label="test"
+                                        onClick={[Function]}
+                              />
+                    </ul>
+                    <MassageFilter
+                              filter=""
+                              free={false}
+                              onFilterChange={[Function]}
+                              onFreeCheck={[Function]}
+                              onSelectCheck={[Function]}
+                              select={false}
+                    />
+                    <div
+                              className="row"
+                              style={
+                                        Object {
+                                                  "marginBottom": "15px",
+                                                }
+                              }
+                    >
+                              <div
+                                        className="col-md-6"
+                              >
+                                        <MassageCopyModal
+                                                  active={false}
+                                                  disabled={true}
+                                                  getCallback={[Function]}
+                                                  massages={Array []}
+                                                  onToggle={[Function]}
+                                                  withPortal={true}
+                                        />
+                                        <MassageBatchEditModal
+                                                  active={false}
+                                                  disabled={true}
+                                                  getCallback={[Function]}
+                                                  massages={Array []}
+                                                  masseuses={Array []}
+                                                  onToggle={[Function]}
+                                                  withPortal={true}
+                                        />
+                                        <BatchDeleteButton
+                                                  disabled={true}
+                                                  label="Smazat vybrané"
+                                                  onDelete={[Function]}
+                                        />
+                              </div>
+                              <div
+                                        className="col-md-6 text-right"
+                              >
+                                        <PrintModal
+                                                  date={null}
+                                                  facilityId={1}
+                                                  masseuses={Array []}
+                                                  onPrint={[Function]}
+                                                  withPortal={true}
+                                        />
+                                        <MassageBatchAddModal
+                                                  active={false}
+                                                  facilityId={1}
+                                                  getCallback={[Function]}
+                                                  masseuses={Array []}
+                                                  onToggle={[Function]}
+                                                  withPortal={true}
+                                        />
+                                        <MassageModal
+                                                  active={false}
+                                                  facilityId={1}
+                                                  getCallback={[Function]}
+                                                  massage={null}
+                                                  masseuses={Array []}
+                                                  onToggle={[Function]}
+                                                  withPortal={true}
+                                        />
+                              </div>
+                    </div>
+                    <CalendarPanel
+                              allowEditation={true}
+                              events={Array []}
+                              massageMinutes={0}
+                              onAdd={[Function]}
+                              onAssign={[Function]}
+                              onCancel={[Function]}
+                              onDateChange={[Function]}
+                              onDelete={[Function]}
+                              onEdit={[Function]}
+                              onSelect={[Function]}
+                              selectEvents={false}
+                              selected={Array []}
+                    />
+          </div>
+</div>,
+        "",
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div>
+            <div
+                        className="loader pull-right"
+            />
+            <h1>
+                        Masáže v test
+            </h1>
+            <ul
+                        className="nav nav-tabs"
+                        style={
+                                    Object {
+                                                "marginBottom": "15px",
+                                              }
+                        }
+            >
+                        <Tab
+                                    active={true}
+                                    label="test"
+                                    onClick={[Function]}
+                        />
+            </ul>
+            <MassageFilter
+                        filter=""
+                        free={false}
+                        onFilterChange={[Function]}
+                        onFreeCheck={[Function]}
+                        onSelectCheck={[Function]}
+                        select={false}
+            />
+            <div
+                        className="row"
+                        style={
+                                    Object {
+                                                "marginBottom": "15px",
+                                              }
+                        }
+            >
+                        <div
+                                    className="col-md-6"
+                        >
+                                    <MassageCopyModal
+                                                active={false}
+                                                disabled={true}
+                                                getCallback={[Function]}
+                                                massages={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                    />
+                                    <MassageBatchEditModal
+                                                active={false}
+                                                disabled={true}
+                                                getCallback={[Function]}
+                                                massages={Array []}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                    />
+                                    <BatchDeleteButton
+                                                disabled={true}
+                                                label="Smazat vybrané"
+                                                onDelete={[Function]}
+                                    />
+                        </div>
+                        <div
+                                    className="col-md-6 text-right"
+                        >
+                                    <PrintModal
+                                                date={null}
+                                                facilityId={1}
+                                                masseuses={Array []}
+                                                onPrint={[Function]}
+                                                withPortal={true}
+                                    />
+                                    <MassageBatchAddModal
+                                                active={false}
+                                                facilityId={1}
+                                                getCallback={[Function]}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                    />
+                                    <MassageModal
+                                                active={false}
+                                                facilityId={1}
+                                                getCallback={[Function]}
+                                                massage={null}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                    />
+                        </div>
+            </div>
+            <CalendarPanel
+                        allowEditation={true}
+                        events={Array []}
+                        massageMinutes={0}
+                        onAdd={[Function]}
+                        onAssign={[Function]}
+                        onCancel={[Function]}
+                        onDateChange={[Function]}
+                        onDelete={[Function]}
+                        onEdit={[Function]}
+                        onSelect={[Function]}
+                        selectEvents={false}
+                        selected={Array []}
+            />
+</div>,
+          "className": "no-print",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="loader pull-right"
+/>,
+              <h1>
+                Masáže v test
+</h1>,
+              <ul
+                className="nav nav-tabs"
+                style={
+                                Object {
+                                                "marginBottom": "15px",
+                                              }
+                }
+>
+                <Tab
+                                active={true}
+                                label="test"
+                                onClick={[Function]}
+                />
+</ul>,
+              <MassageFilter
+                filter=""
+                free={false}
+                onFilterChange={[Function]}
+                onFreeCheck={[Function]}
+                onSelectCheck={[Function]}
+                select={false}
+/>,
+              <div
+                className="row"
+                style={
+                                Object {
+                                                "marginBottom": "15px",
+                                              }
+                }
+>
+                <div
+                                className="col-md-6"
+                >
+                                <MassageCopyModal
+                                                active={false}
+                                                disabled={true}
+                                                getCallback={[Function]}
+                                                massages={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                />
+                                <MassageBatchEditModal
+                                                active={false}
+                                                disabled={true}
+                                                getCallback={[Function]}
+                                                massages={Array []}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                />
+                                <BatchDeleteButton
+                                                disabled={true}
+                                                label="Smazat vybrané"
+                                                onDelete={[Function]}
+                                />
+                </div>
+                <div
+                                className="col-md-6 text-right"
+                >
+                                <PrintModal
+                                                date={null}
+                                                facilityId={1}
+                                                masseuses={Array []}
+                                                onPrint={[Function]}
+                                                withPortal={true}
+                                />
+                                <MassageBatchAddModal
+                                                active={false}
+                                                facilityId={1}
+                                                getCallback={[Function]}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                />
+                                <MassageModal
+                                                active={false}
+                                                facilityId={1}
+                                                getCallback={[Function]}
+                                                massage={null}
+                                                masseuses={Array []}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                />
+                </div>
+</div>,
+              <CalendarPanel
+                allowEditation={true}
+                events={Array []}
+                massageMinutes={0}
+                onAdd={[Function]}
+                onAssign={[Function]}
+                onCancel={[Function]}
+                onDateChange={[Function]}
+                onDelete={[Function]}
+                onEdit={[Function]}
+                onSelect={[Function]}
+                selectEvents={false}
+                selected={Array []}
+/>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "loader pull-right",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Masáže v test",
+              },
+              "ref": null,
+              "rendered": "Masáže v test",
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Tab
+                    active={true}
+                    label="test"
+                    onClick={[Function]}
+/>,
+                ],
+                "className": "nav nav-tabs",
+                "style": Object {
+                  "marginBottom": "15px",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": true,
+                    "label": "test",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "ul",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "filter": "",
+                "free": false,
+                "onFilterChange": [Function],
+                "onFreeCheck": [Function],
+                "onSelectCheck": [Function],
+                "select": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="col-md-6"
+>
+                    <MassageCopyModal
+                                        active={false}
+                                        disabled={true}
+                                        getCallback={[Function]}
+                                        massages={Array []}
+                                        onToggle={[Function]}
+                                        withPortal={true}
+                    />
+                    <MassageBatchEditModal
+                                        active={false}
+                                        disabled={true}
+                                        getCallback={[Function]}
+                                        massages={Array []}
+                                        masseuses={Array []}
+                                        onToggle={[Function]}
+                                        withPortal={true}
+                    />
+                    <BatchDeleteButton
+                                        disabled={true}
+                                        label="Smazat vybrané"
+                                        onDelete={[Function]}
+                    />
+</div>,
+                  <div
+                    className="col-md-6 text-right"
+>
+                    <PrintModal
+                                        date={null}
+                                        facilityId={1}
+                                        masseuses={Array []}
+                                        onPrint={[Function]}
+                                        withPortal={true}
+                    />
+                    <MassageBatchAddModal
+                                        active={false}
+                                        facilityId={1}
+                                        getCallback={[Function]}
+                                        masseuses={Array []}
+                                        onToggle={[Function]}
+                                        withPortal={true}
+                    />
+                    <MassageModal
+                                        active={false}
+                                        facilityId={1}
+                                        getCallback={[Function]}
+                                        massage={null}
+                                        masseuses={Array []}
+                                        onToggle={[Function]}
+                                        withPortal={true}
+                    />
+</div>,
+                ],
+                "className": "row",
+                "style": Object {
+                  "marginBottom": "15px",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <MassageCopyModal
+                        active={false}
+                        disabled={true}
+                        getCallback={[Function]}
+                        massages={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+/>,
+                      <MassageBatchEditModal
+                        active={false}
+                        disabled={true}
+                        getCallback={[Function]}
+                        massages={Array []}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+/>,
+                      <BatchDeleteButton
+                        disabled={true}
+                        label="Smazat vybrané"
+                        onDelete={[Function]}
+/>,
+                    ],
+                    "className": "col-md-6",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "disabled": true,
+                        "getCallback": [Function],
+                        "massages": Array [],
+                        "onToggle": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "disabled": true,
+                        "getCallback": [Function],
+                        "massages": Array [],
+                        "masseuses": Array [],
+                        "onToggle": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "disabled": true,
+                        "label": "Smazat vybrané",
+                        "onDelete": [Function],
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <PrintModal
+                        date={null}
+                        facilityId={1}
+                        masseuses={Array []}
+                        onPrint={[Function]}
+                        withPortal={true}
+/>,
+                      <MassageBatchAddModal
+                        active={false}
+                        facilityId={1}
+                        getCallback={[Function]}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+/>,
+                      <MassageModal
+                        active={false}
+                        facilityId={1}
+                        getCallback={[Function]}
+                        massage={null}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+/>,
+                    ],
+                    "className": "col-md-6 text-right",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "date": null,
+                        "facilityId": 1,
+                        "masseuses": Array [],
+                        "onPrint": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "facilityId": 1,
+                        "getCallback": [Function],
+                        "masseuses": Array [],
+                        "onToggle": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "facilityId": 1,
+                        "getCallback": [Function],
+                        "massage": null,
+                        "masseuses": Array [],
+                        "onToggle": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowEditation": true,
+                "events": Array [],
+                "massageMinutes": 0,
+                "onAdd": [Function],
+                "onAssign": [Function],
+                "onCancel": [Function],
+                "onDateChange": [Function],
+                "onDelete": [Function],
+                "onEdit": [Function],
+                "onSelect": [Function],
+                "selectEvents": false,
+                "selected": Array [],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      "",
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="no-print"
+>
+            <div>
+                        <div
+                                    className="loader pull-right"
+                        />
+                        <h1>
+                                    Masáže v test
+                        </h1>
+                        <ul
+                                    className="nav nav-tabs"
+                                    style={
+                                                Object {
+                                                            "marginBottom": "15px",
+                                                          }
+                                    }
+                        >
+                                    <Tab
+                                                active={true}
+                                                label="test"
+                                                onClick={[Function]}
+                                    />
+                        </ul>
+                        <MassageFilter
+                                    filter=""
+                                    free={false}
+                                    onFilterChange={[Function]}
+                                    onFreeCheck={[Function]}
+                                    onSelectCheck={[Function]}
+                                    select={false}
+                        />
+                        <div
+                                    className="row"
+                                    style={
+                                                Object {
+                                                            "marginBottom": "15px",
+                                                          }
+                                    }
+                        >
+                                    <div
+                                                className="col-md-6"
+                                    >
+                                                <MassageCopyModal
+                                                            active={false}
+                                                            disabled={true}
+                                                            getCallback={[Function]}
+                                                            massages={Array []}
+                                                            onToggle={[Function]}
+                                                            withPortal={true}
+                                                />
+                                                <MassageBatchEditModal
+                                                            active={false}
+                                                            disabled={true}
+                                                            getCallback={[Function]}
+                                                            massages={Array []}
+                                                            masseuses={Array []}
+                                                            onToggle={[Function]}
+                                                            withPortal={true}
+                                                />
+                                                <BatchDeleteButton
+                                                            disabled={true}
+                                                            label="Smazat vybrané"
+                                                            onDelete={[Function]}
+                                                />
+                                    </div>
+                                    <div
+                                                className="col-md-6 text-right"
+                                    >
+                                                <PrintModal
+                                                            date={null}
+                                                            facilityId={1}
+                                                            masseuses={Array []}
+                                                            onPrint={[Function]}
+                                                            withPortal={true}
+                                                />
+                                                <MassageBatchAddModal
+                                                            active={false}
+                                                            facilityId={1}
+                                                            getCallback={[Function]}
+                                                            masseuses={Array []}
+                                                            onToggle={[Function]}
+                                                            withPortal={true}
+                                                />
+                                                <MassageModal
+                                                            active={false}
+                                                            facilityId={1}
+                                                            getCallback={[Function]}
+                                                            massage={null}
+                                                            masseuses={Array []}
+                                                            onToggle={[Function]}
+                                                            withPortal={true}
+                                                />
+                                    </div>
+                        </div>
+                        <CalendarPanel
+                                    allowEditation={true}
+                                    events={Array []}
+                                    massageMinutes={0}
+                                    onAdd={[Function]}
+                                    onAssign={[Function]}
+                                    onCancel={[Function]}
+                                    onDateChange={[Function]}
+                                    onDelete={[Function]}
+                                    onEdit={[Function]}
+                                    onSelect={[Function]}
+                                    selectEvents={false}
+                                    selected={Array []}
+                        />
+            </div>
+</div>,
+          "",
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div>
+              <div
+                            className="loader pull-right"
+              />
+              <h1>
+                            Masáže v test
+              </h1>
+              <ul
+                            className="nav nav-tabs"
+                            style={
+                                          Object {
+                                                        "marginBottom": "15px",
+                                                      }
+                            }
+              >
+                            <Tab
+                                          active={true}
+                                          label="test"
+                                          onClick={[Function]}
+                            />
+              </ul>
+              <MassageFilter
+                            filter=""
+                            free={false}
+                            onFilterChange={[Function]}
+                            onFreeCheck={[Function]}
+                            onSelectCheck={[Function]}
+                            select={false}
+              />
+              <div
+                            className="row"
+                            style={
+                                          Object {
+                                                        "marginBottom": "15px",
+                                                      }
+                            }
+              >
+                            <div
+                                          className="col-md-6"
+                            >
+                                          <MassageCopyModal
+                                                        active={false}
+                                                        disabled={true}
+                                                        getCallback={[Function]}
+                                                        massages={Array []}
+                                                        onToggle={[Function]}
+                                                        withPortal={true}
+                                          />
+                                          <MassageBatchEditModal
+                                                        active={false}
+                                                        disabled={true}
+                                                        getCallback={[Function]}
+                                                        massages={Array []}
+                                                        masseuses={Array []}
+                                                        onToggle={[Function]}
+                                                        withPortal={true}
+                                          />
+                                          <BatchDeleteButton
+                                                        disabled={true}
+                                                        label="Smazat vybrané"
+                                                        onDelete={[Function]}
+                                          />
+                            </div>
+                            <div
+                                          className="col-md-6 text-right"
+                            >
+                                          <PrintModal
+                                                        date={null}
+                                                        facilityId={1}
+                                                        masseuses={Array []}
+                                                        onPrint={[Function]}
+                                                        withPortal={true}
+                                          />
+                                          <MassageBatchAddModal
+                                                        active={false}
+                                                        facilityId={1}
+                                                        getCallback={[Function]}
+                                                        masseuses={Array []}
+                                                        onToggle={[Function]}
+                                                        withPortal={true}
+                                          />
+                                          <MassageModal
+                                                        active={false}
+                                                        facilityId={1}
+                                                        getCallback={[Function]}
+                                                        massage={null}
+                                                        masseuses={Array []}
+                                                        onToggle={[Function]}
+                                                        withPortal={true}
+                                          />
+                            </div>
+              </div>
+              <CalendarPanel
+                            allowEditation={true}
+                            events={Array []}
+                            massageMinutes={0}
+                            onAdd={[Function]}
+                            onAssign={[Function]}
+                            onCancel={[Function]}
+                            onDateChange={[Function]}
+                            onDelete={[Function]}
+                            onEdit={[Function]}
+                            onSelect={[Function]}
+                            selectEvents={false}
+                            selected={Array []}
+              />
+</div>,
+            "className": "no-print",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="loader pull-right"
+/>,
+                <h1>
+                  Masáže v test
+</h1>,
+                <ul
+                  className="nav nav-tabs"
+                  style={
+                                    Object {
+                                                      "marginBottom": "15px",
+                                                    }
+                  }
+>
+                  <Tab
+                                    active={true}
+                                    label="test"
+                                    onClick={[Function]}
+                  />
+</ul>,
+                <MassageFilter
+                  filter=""
+                  free={false}
+                  onFilterChange={[Function]}
+                  onFreeCheck={[Function]}
+                  onSelectCheck={[Function]}
+                  select={false}
+/>,
+                <div
+                  className="row"
+                  style={
+                                    Object {
+                                                      "marginBottom": "15px",
+                                                    }
+                  }
+>
+                  <div
+                                    className="col-md-6"
+                  >
+                                    <MassageCopyModal
+                                                      active={false}
+                                                      disabled={true}
+                                                      getCallback={[Function]}
+                                                      massages={Array []}
+                                                      onToggle={[Function]}
+                                                      withPortal={true}
+                                    />
+                                    <MassageBatchEditModal
+                                                      active={false}
+                                                      disabled={true}
+                                                      getCallback={[Function]}
+                                                      massages={Array []}
+                                                      masseuses={Array []}
+                                                      onToggle={[Function]}
+                                                      withPortal={true}
+                                    />
+                                    <BatchDeleteButton
+                                                      disabled={true}
+                                                      label="Smazat vybrané"
+                                                      onDelete={[Function]}
+                                    />
+                  </div>
+                  <div
+                                    className="col-md-6 text-right"
+                  >
+                                    <PrintModal
+                                                      date={null}
+                                                      facilityId={1}
+                                                      masseuses={Array []}
+                                                      onPrint={[Function]}
+                                                      withPortal={true}
+                                    />
+                                    <MassageBatchAddModal
+                                                      active={false}
+                                                      facilityId={1}
+                                                      getCallback={[Function]}
+                                                      masseuses={Array []}
+                                                      onToggle={[Function]}
+                                                      withPortal={true}
+                                    />
+                                    <MassageModal
+                                                      active={false}
+                                                      facilityId={1}
+                                                      getCallback={[Function]}
+                                                      massage={null}
+                                                      masseuses={Array []}
+                                                      onToggle={[Function]}
+                                                      withPortal={true}
+                                    />
+                  </div>
+</div>,
+                <CalendarPanel
+                  allowEditation={true}
+                  events={Array []}
+                  massageMinutes={0}
+                  onAdd={[Function]}
+                  onAssign={[Function]}
+                  onCancel={[Function]}
+                  onDateChange={[Function]}
+                  onDelete={[Function]}
+                  onEdit={[Function]}
+                  onSelect={[Function]}
+                  selectEvents={false}
+                  selected={Array []}
+/>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "loader pull-right",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Masáže v test",
+                },
+                "ref": null,
+                "rendered": "Masáže v test",
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <Tab
+                      active={true}
+                      label="test"
+                      onClick={[Function]}
+/>,
+                  ],
+                  "className": "nav nav-tabs",
+                  "style": Object {
+                    "marginBottom": "15px",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "1",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": true,
+                      "label": "test",
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "ul",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "filter": "",
+                  "free": false,
+                  "onFilterChange": [Function],
+                  "onFreeCheck": [Function],
+                  "onSelectCheck": [Function],
+                  "select": false,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="col-md-6"
+>
+                      <MassageCopyModal
+                                            active={false}
+                                            disabled={true}
+                                            getCallback={[Function]}
+                                            massages={Array []}
+                                            onToggle={[Function]}
+                                            withPortal={true}
+                      />
+                      <MassageBatchEditModal
+                                            active={false}
+                                            disabled={true}
+                                            getCallback={[Function]}
+                                            massages={Array []}
+                                            masseuses={Array []}
+                                            onToggle={[Function]}
+                                            withPortal={true}
+                      />
+                      <BatchDeleteButton
+                                            disabled={true}
+                                            label="Smazat vybrané"
+                                            onDelete={[Function]}
+                      />
+</div>,
+                    <div
+                      className="col-md-6 text-right"
+>
+                      <PrintModal
+                                            date={null}
+                                            facilityId={1}
+                                            masseuses={Array []}
+                                            onPrint={[Function]}
+                                            withPortal={true}
+                      />
+                      <MassageBatchAddModal
+                                            active={false}
+                                            facilityId={1}
+                                            getCallback={[Function]}
+                                            masseuses={Array []}
+                                            onToggle={[Function]}
+                                            withPortal={true}
+                      />
+                      <MassageModal
+                                            active={false}
+                                            facilityId={1}
+                                            getCallback={[Function]}
+                                            massage={null}
+                                            masseuses={Array []}
+                                            onToggle={[Function]}
+                                            withPortal={true}
+                      />
+</div>,
+                  ],
+                  "className": "row",
+                  "style": Object {
+                    "marginBottom": "15px",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <MassageCopyModal
+                          active={false}
+                          disabled={true}
+                          getCallback={[Function]}
+                          massages={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+/>,
+                        <MassageBatchEditModal
+                          active={false}
+                          disabled={true}
+                          getCallback={[Function]}
+                          massages={Array []}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+/>,
+                        <BatchDeleteButton
+                          disabled={true}
+                          label="Smazat vybrané"
+                          onDelete={[Function]}
+/>,
+                      ],
+                      "className": "col-md-6",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "active": false,
+                          "disabled": true,
+                          "getCallback": [Function],
+                          "massages": Array [],
+                          "onToggle": [Function],
+                          "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "active": false,
+                          "disabled": true,
+                          "getCallback": [Function],
+                          "massages": Array [],
+                          "masseuses": Array [],
+                          "onToggle": [Function],
+                          "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "disabled": true,
+                          "label": "Smazat vybrané",
+                          "onDelete": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <PrintModal
+                          date={null}
+                          facilityId={1}
+                          masseuses={Array []}
+                          onPrint={[Function]}
+                          withPortal={true}
+/>,
+                        <MassageBatchAddModal
+                          active={false}
+                          facilityId={1}
+                          getCallback={[Function]}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+/>,
+                        <MassageModal
+                          active={false}
+                          facilityId={1}
+                          getCallback={[Function]}
+                          massage={null}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+/>,
+                      ],
+                      "className": "col-md-6 text-right",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "date": null,
+                          "facilityId": 1,
+                          "masseuses": Array [],
+                          "onPrint": [Function],
+                          "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "active": false,
+                          "facilityId": 1,
+                          "getCallback": [Function],
+                          "masseuses": Array [],
+                          "onToggle": [Function],
+                          "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "active": false,
+                          "facilityId": 1,
+                          "getCallback": [Function],
+                          "massage": null,
+                          "masseuses": Array [],
+                          "onToggle": [Function],
+                          "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "allowEditation": true,
+                  "events": Array [],
+                  "massageMinutes": 0,
+                  "onAdd": [Function],
+                  "onAssign": [Function],
+                  "onCancel": [Function],
+                  "onDateChange": [Function],
+                  "onDelete": [Function],
+                  "onEdit": [Function],
+                  "onSelect": [Function],
+                  "selectEvents": false,
+                  "selected": Array [],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "",
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`renders print content correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Massages />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="no-print"
+>
+          <div>
+                    <h1>
+                              Masáže
+                    </h1>
+                    <h3>
+                              Žádné
+                    </h3>
+          </div>
+</div>,
+        <div
+          className="print-only"
+>
+          <h1>
+                    Rozpis
+          </h1>
+          <table
+                    className="table"
+          >
+                    <thead>
+                              <tr>
+                                        <th>
+                                                  Datum
+                                        </th>
+                                        <th>
+                                                  Čas
+                                        </th>
+                                        <th>
+                                                  Masér/Masérka
+                                        </th>
+                                        <th
+                                                  width="40%"
+                                        >
+                                                  Klient
+                                        </th>
+                              </tr>
+                    </thead>
+                    <tbody>
+                              <tr>
+                                        <td>
+                                                  01/01/1970
+                                        </td>
+                                        <td>
+                                                  01:00–01:00
+                                        </td>
+                                        <td />
+                                        <td>
+                                                  Volno
+                                        </td>
+                              </tr>
+                    </tbody>
+          </table>
+</div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div>
+            <h1>
+                        Masáže
+            </h1>
+            <h3>
+                        Žádné
+            </h3>
+</div>,
+          "className": "no-print",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h1>
+                Masáže
+</h1>,
+              <h3>
+                Žádné
+</h3>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Masáže",
+              },
+              "ref": null,
+              "rendered": "Masáže",
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Žádné",
+              },
+              "ref": null,
+              "rendered": "Žádné",
+              "type": "h3",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h1>
+              Rozpis
+</h1>,
+            <table
+              className="table"
+>
+              <thead>
+                            <tr>
+                                          <th>
+                                                        Datum
+                                          </th>
+                                          <th>
+                                                        Čas
+                                          </th>
+                                          <th>
+                                                        Masér/Masérka
+                                          </th>
+                                          <th
+                                                        width="40%"
+                                          >
+                                                        Klient
+                                          </th>
+                            </tr>
+              </thead>
+              <tbody>
+                            <tr>
+                                          <td>
+                                                        01/01/1970
+                                          </td>
+                                          <td>
+                                                        01:00–01:00
+                                          </td>
+                                          <td />
+                                          <td>
+                                                        Volno
+                                          </td>
+                            </tr>
+              </tbody>
+</table>,
+          ],
+          "className": "print-only",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Rozpis",
+            },
+            "ref": null,
+            "rendered": "Rozpis",
+            "type": "h1",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <thead>
+                  <tr>
+                                    <th>
+                                                      Datum
+                                    </th>
+                                    <th>
+                                                      Čas
+                                    </th>
+                                    <th>
+                                                      Masér/Masérka
+                                    </th>
+                                    <th
+                                                      width="40%"
+                                    >
+                                                      Klient
+                                    </th>
+                  </tr>
+</thead>,
+                <tbody>
+                  <tr>
+                                    <td>
+                                                      01/01/1970
+                                    </td>
+                                    <td>
+                                                      01:00–01:00
+                                    </td>
+                                    <td />
+                                    <td>
+                                                      Volno
+                                    </td>
+                  </tr>
+</tbody>,
+              ],
+              "className": "table",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <tr>
+                    <th>
+                                        Datum
+                    </th>
+                    <th>
+                                        Čas
+                    </th>
+                    <th>
+                                        Masér/Masérka
+                    </th>
+                    <th
+                                        width="40%"
+                    >
+                                        Klient
+                    </th>
+</tr>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <th>
+                        Datum
+</th>,
+                      <th>
+                        Čas
+</th>,
+                      <th>
+                        Masér/Masérka
+</th>,
+                      <th
+                        width="40%"
+>
+                        Klient
+</th>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Datum",
+                      },
+                      "ref": null,
+                      "rendered": "Datum",
+                      "type": "th",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Čas",
+                      },
+                      "ref": null,
+                      "rendered": "Čas",
+                      "type": "th",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Masér/Masérka",
+                      },
+                      "ref": null,
+                      "rendered": "Masér/Masérka",
+                      "type": "th",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Klient",
+                        "width": "40%",
+                      },
+                      "ref": null,
+                      "rendered": "Klient",
+                      "type": "th",
+                    },
+                  ],
+                  "type": "tr",
+                },
+                "type": "thead",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <tr>
+                      <td>
+                                            01/01/1970
+                      </td>
+                      <td>
+                                            01:00–01:00
+                      </td>
+                      <td />
+                      <td>
+                                            Volno
+                      </td>
+</tr>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "0",
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          01/01/1970
+</td>,
+                        <td>
+                          01:00–01:00
+</td>,
+                        <td />,
+                        <td>
+                          Volno
+</td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "01/01/1970",
+                        },
+                        "ref": null,
+                        "rendered": "01/01/1970",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "01:00–01:00",
+                        },
+                        "ref": null,
+                        "rendered": "01:00–01:00",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": undefined,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Volno",
+                        },
+                        "ref": null,
+                        "rendered": "Volno",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                ],
+                "type": "tbody",
+              },
+            ],
+            "type": "table",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="no-print"
+>
+            <div>
+                        <h1>
+                                    Masáže
+                        </h1>
+                        <h3>
+                                    Žádné
+                        </h3>
+            </div>
+</div>,
+          <div
+            className="print-only"
+>
+            <h1>
+                        Rozpis
+            </h1>
+            <table
+                        className="table"
+            >
+                        <thead>
+                                    <tr>
+                                                <th>
+                                                            Datum
+                                                </th>
+                                                <th>
+                                                            Čas
+                                                </th>
+                                                <th>
+                                                            Masér/Masérka
+                                                </th>
+                                                <th
+                                                            width="40%"
+                                                >
+                                                            Klient
+                                                </th>
+                                    </tr>
+                        </thead>
+                        <tbody>
+                                    <tr>
+                                                <td>
+                                                            01/01/1970
+                                                </td>
+                                                <td>
+                                                            01:00–01:00
+                                                </td>
+                                                <td />
+                                                <td>
+                                                            Volno
+                                                </td>
+                                    </tr>
+                        </tbody>
+            </table>
+</div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div>
+              <h1>
+                            Masáže
+              </h1>
+              <h3>
+                            Žádné
+              </h3>
+</div>,
+            "className": "no-print",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h1>
+                  Masáže
+</h1>,
+                <h3>
+                  Žádné
+</h3>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Masáže",
+                },
+                "ref": null,
+                "rendered": "Masáže",
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Žádné",
+                },
+                "ref": null,
+                "rendered": "Žádné",
+                "type": "h3",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h1>
+                Rozpis
+</h1>,
+              <table
+                className="table"
+>
+                <thead>
+                                <tr>
+                                                <th>
+                                                                Datum
+                                                </th>
+                                                <th>
+                                                                Čas
+                                                </th>
+                                                <th>
+                                                                Masér/Masérka
+                                                </th>
+                                                <th
+                                                                width="40%"
+                                                >
+                                                                Klient
+                                                </th>
+                                </tr>
+                </thead>
+                <tbody>
+                                <tr>
+                                                <td>
+                                                                01/01/1970
+                                                </td>
+                                                <td>
+                                                                01:00–01:00
+                                                </td>
+                                                <td />
+                                                <td>
+                                                                Volno
+                                                </td>
+                                </tr>
+                </tbody>
+</table>,
+            ],
+            "className": "print-only",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Rozpis",
+              },
+              "ref": null,
+              "rendered": "Rozpis",
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <thead>
+                    <tr>
+                                        <th>
+                                                            Datum
+                                        </th>
+                                        <th>
+                                                            Čas
+                                        </th>
+                                        <th>
+                                                            Masér/Masérka
+                                        </th>
+                                        <th
+                                                            width="40%"
+                                        >
+                                                            Klient
+                                        </th>
+                    </tr>
+</thead>,
+                  <tbody>
+                    <tr>
+                                        <td>
+                                                            01/01/1970
+                                        </td>
+                                        <td>
+                                                            01:00–01:00
+                                        </td>
+                                        <td />
+                                        <td>
+                                                            Volno
+                                        </td>
+                    </tr>
+</tbody>,
+                ],
+                "className": "table",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <tr>
+                      <th>
+                                            Datum
+                      </th>
+                      <th>
+                                            Čas
+                      </th>
+                      <th>
+                                            Masér/Masérka
+                      </th>
+                      <th
+                                            width="40%"
+                      >
+                                            Klient
+                      </th>
+</tr>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <th>
+                          Datum
+</th>,
+                        <th>
+                          Čas
+</th>,
+                        <th>
+                          Masér/Masérka
+</th>,
+                        <th
+                          width="40%"
+>
+                          Klient
+</th>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Datum",
+                        },
+                        "ref": null,
+                        "rendered": "Datum",
+                        "type": "th",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Čas",
+                        },
+                        "ref": null,
+                        "rendered": "Čas",
+                        "type": "th",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Masér/Masérka",
+                        },
+                        "ref": null,
+                        "rendered": "Masér/Masérka",
+                        "type": "th",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Klient",
+                          "width": "40%",
+                        },
+                        "ref": null,
+                        "rendered": "Klient",
+                        "type": "th",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  "type": "thead",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <tr>
+                        <td>
+                                                01/01/1970
+                        </td>
+                        <td>
+                                                01:00–01:00
+                        </td>
+                        <td />
+                        <td>
+                                                Volno
+                        </td>
+</tr>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "0",
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            01/01/1970
+</td>,
+                          <td>
+                            01:00–01:00
+</td>,
+                          <td />,
+                          <td>
+                            Volno
+</td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "01/01/1970",
+                          },
+                          "ref": null,
+                          "rendered": "01/01/1970",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "01:00–01:00",
+                          },
+                          "ref": null,
+                          "rendered": "01:00–01:00",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": undefined,
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Volno",
+                          },
+                          "ref": null,
+                          "rendered": "Volno",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                  ],
+                  "type": "tbody",
+                },
+              ],
+              "type": "table",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

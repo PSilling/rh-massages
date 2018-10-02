@@ -13,6 +13,7 @@ import Settings from './views/Settings.js';
 import ProfileLink from './components/links/ProfileLink';
 import LangLink from './components/links/LangLink';
 import LogoutLink from './components/links/LogoutLink';
+import UnauthorizedMessage from './components/util/UnauthorizedMessage';
 
 // module imports
 import moment from 'moment';
@@ -54,27 +55,25 @@ const NoMatch = ({ location }) => (
       <code>Error 404:</code> { _t.translate("page doesn't exist:") } <code>{location.pathname}</code>
     </h3>
     <h3 style={{ 'marginTop': '30px' }}>
-      { Auth.isAuthenticated() ? <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Back to main page") }</Link> : '' }
+      <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Back to main page") }</Link>
     </h3>
   </div>
 )
 
 // navigation bar with view links
-const NavWithLinks = withRouter(({ location }) => (
+export const NavWithLinks = withRouter(({ location }) => (
   <nav className="navbar navbar-default no-print">
     <div className="container-fluid">
       <div className="navbar-header">
-        { Auth.isAuthenticated() ? <Link className="navbar-brand" to="/">{ _t.translate("Massages") }</Link> : '' }
+        <Link className="navbar-brand" to="/">{ _t.translate("Massages") }</Link>
       </div>
       <ul className="nav navbar-nav">
-        { Auth.isAuthenticated() ?
-          <li className={location.pathname === "/my-massages" ? "active" : ""}>
-            <Link to="/my-massages">{ _t.translate("My Massages") }</Link>
-          </li> : '' }
-        { Auth.isAuthenticated() ?
-          <li className={location.pathname === "/" ? "active" : ""}>
-            <Link to="/">{ _t.translate("Massages") }</Link>
-          </li> : '' }
+        <li className={location.pathname === "/my-massages" ? "active" : ""}>
+          <Link to="/my-massages">{ _t.translate("My Massages") }</Link>
+        </li>
+        <li className={location.pathname === "/" ? "active" : ""}>
+          <Link to="/">{ _t.translate("Massages") }</Link>
+        </li>
         { Auth.isAdmin() ?
           <li className={location.pathname === "/facilities" ? "active" : ""}>
             <Link to="/facilities">{ _t.translate("Facilities") }</Link>
@@ -83,10 +82,9 @@ const NavWithLinks = withRouter(({ location }) => (
           <li className={location.pathname === "/massages-archive" ? "active" : ""}>
             <Link to="/massages-archive">{ _t.translate("Massages Archive") }</Link>
           </li> : '' }
-        { Auth.isAuthenticated() ?
-          <li className={location.pathname === "/settings" ? "active" : ""}>
-            <Link to="/settings">{ _t.translate("Settings") }</Link>
-          </li> : '' }
+        <li className={location.pathname === "/settings" ? "active" : ""}>
+          <Link to="/settings">{ _t.translate("Settings") }</Link>
+        </li>
       </ul>
       <ul className="nav navbar-nav navbar-right">
         <li>
@@ -110,7 +108,9 @@ class App extends Component {
 
   render() {
     if (!Auth.isAuthenticated()) {
-      Auth.authenticate();
+      return (
+        <UnauthorizedMessage title={ _t.translate('Massages') } />
+      );
     }
 
     return (

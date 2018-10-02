@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<div>
+  <div
+    className="col-md-3"
+  >
+    <div
+      className="panel panel-default"
+      style={
+        Object {
+          "height": "15em",
+        }
+      }
+    >
+      <div
+        className="panel-heading"
+      >
+        Thu 01/01/1970
+        <button
+          aria-label="Close"
+          className="close"
+          onClick={[Function]}
+          title="Odepsat se"
+          type="button"
+        >
+          
+        </button>
+      </div>
+      <div
+        className="panel-body"
+      >
+        <p>
+          Budova: test
+        </p>
+        <p>
+          Masér/Masérka: undefined
+        </p>
+        <p>
+          Čas: 01:00–01:00
+        </p>
+        <p
+          style={
+            Object {
+              "marginTop": "-8px",
+            }
+          }
+        >
+          Událost:
+          <span>
+            <a
+              href=""
+              tabIndex="-1"
+              target="_blank"
+            >
+              <button
+                className="btn btn-link"
+                style={
+                  Object {
+                    "color": "#000",
+                  }
+                }
+                title="Přidat do Google kalendáře"
+                type="button"
+              >
+                <span
+                  className="glyphicon glyphicon-calendar"
+                />
+              </button>
+            </a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+`;

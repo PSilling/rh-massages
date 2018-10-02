@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<div
+  className="pull-right"
+>
+  <button
+    type="button"
+  />
+  <button
+    autoFocus={false}
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": "5px",
+      }
+    }
+    title=""
+    type="button"
+  >
+    Pokračovat
+  </button>
+  <button
+    className="btn btn-default"
+    onClick={[Function]}
+    type="button"
+  >
+    Zrušit
+  </button>
+</div>
+`;

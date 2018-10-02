@@ -16,12 +16,12 @@
 package cz.redhat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import cz.redhat.configuration.SmtpConfiguration;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import cz.redhat.configuration.SmtpConfiguration;
 import org.keycloak.representations.adapters.config.AdapterConfig;
 
 /**

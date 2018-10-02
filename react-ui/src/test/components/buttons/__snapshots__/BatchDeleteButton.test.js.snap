@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<span>
+  <button
+    className="btn btn-default"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    test
+  </button>
+</span>
+`;

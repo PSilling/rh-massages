@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content correctly 1`] = `
+<div>
+  <h1>
+    
+    Nastavení
+  </h1>
+  <hr />
+  <h3>
+    Uživatelská nastavení
+  </h3>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="checkbox-inline"
+        >
+          <input
+            checked={Array []}
+            onChange={[Function]}
+            type="checkbox"
+          />
+          Chci dostávat informace o 
+          <abbr
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+            title="Rozpis nových a zrušení připsaných masáží"
+          >
+            změnách masáží
+          </abbr>
+        </label>
+      </div>
+    </div>
+  </div>
+  <h3>
+    O portálu
+  </h3>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
+    >
+      Navštivte náš 
+      <a
+        href={undefined}
+        target="_blank"
+      >
+        GitHub
+      </a>
+       
+      <del>
+        a naši 
+        <a
+          href="undefinedwiki"
+          target="_blank"
+        >
+          wiki
+        </a>
+      </del>
+      ! (WIP)
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
+    >
+      Hlaste chyby 
+      <a
+        href="undefinedissues"
+        target="_blank"
+      >
+        zde
+      </a>
+      .
+    </div>
+  </div>
+</div>
+`;

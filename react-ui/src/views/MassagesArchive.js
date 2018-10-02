@@ -42,7 +42,7 @@ class MassagesArchive extends Component {
       + "&free=" + this.state.freeOnly
       + "&from=" + moment(this.state.from).unix() * 1000
       + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
-      if (json !== undefined) {
+      if (json !== undefined && json.massages !== undefined) {
         this.updateEvents(json.massages);
       }
     });
@@ -99,7 +99,8 @@ class MassagesArchive extends Component {
       + "&free=" + this.state.freeOnly
       + "&from=" + moment(this.state.from).unix() * 1000
       + "&to=" + moment(this.state.to).add(1, 'days').unix() * 1000, (json) => {
-      if (json.massages.length === 0) {
+      if (json === undefined || json.massages === undefined
+        || json.massages.length === 0) {
         return;
       }
       var idString = "?";

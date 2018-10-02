@@ -80,46 +80,56 @@ class FacilityModal extends Component {
     }
   }
 
+  renderInsides = () => {
+    return (
+      <div>
+        <h2>
+          {this.props.facility === null ?
+            _t.translate('New Facility') : _t.translate('Edit Facility')
+          }
+        </h2>
+        <hr />
+        <div className="form-group col-md-12">
+          <label htmlFor="facilityInput">{ _t.translate('Name') }</label>
+          <input id="facilityInput" value={this.state.name} onChange={this.changeName}
+            className="form-control" autoFocus onFocus={Util.moveCursorToEnd}
+            onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
+            placeholder={ _t.translate('Name') }
+          />
+        </div>
+        {this.props.facility === null ?
+          <ModalActions
+            primaryLabel={ _t.translate('Add') }
+            onProceed={this.addFacility}
+            onClose={this.props.onToggle}
+          /> :
+          <ModalActions
+            primaryLabel={ _t.translate('Edit') }
+            onProceed={this.editFacility}
+            onClose={this.props.onToggle}
+          />
+        }
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className='pull-right'>
         <AddButton onAdd={this.props.onToggle} />
 
         {this.props.active ?
-          <ModalContainer onClose={this.props.onToggle}>
-            <ModalDialog onClose={this.props.onToggle} width="50%" style={{ 'outline': 'none' }}
-              tabIndex="1" onKeyPress={this.handleModalKeyPress}
-              ref={(dialog) => {
-                this.modalDialog = dialog;
-              }}>
-              <h2>
-                {this.props.facility === null ?
-                  _t.translate('New Facility') : _t.translate('Edit Facility')
-                }
-              </h2>
-              <hr />
-              <div className="form-group col-md-12">
-                <label htmlFor="facilityInput">{ _t.translate('Name') }</label>
-                <input id="facilityInput" value={this.state.name} onChange={this.changeName}
-                  className="form-control" autoFocus onFocus={Util.moveCursorToEnd}
-                  onKeyPress={this.handleInputKeyPress} type="text" maxLength="64"
-                  placeholder={ _t.translate('Name') }
-                />
-              </div>
-              {this.props.facility === null ?
-                <ModalActions
-                  primaryLabel={ _t.translate('Add') }
-                  onProceed={this.addFacility}
-                  onClose={this.props.onToggle}
-                /> :
-                <ModalActions
-                  primaryLabel={ _t.translate('Edit') }
-                  onProceed={this.editFacility}
-                  onClose={this.props.onToggle}
-                />
-              }
-            </ModalDialog>
-          </ModalContainer> : ''
+          this.props.withPortal ?
+            <ModalContainer onClose={this.props.onToggle}>
+              <ModalDialog onClose={this.props.onToggle} width="50%" style={{ 'outline': 'none' }}
+                tabIndex="1" onKeyPress={this.handleModalKeyPress}
+                ref={(dialog) => {
+                  this.modalDialog = dialog;
+                }}>
+                {this.renderInsides()}
+              </ModalDialog>
+            </ModalContainer> :
+            this.renderInsides() : ''
         }
       </div>
     )
@@ -134,7 +144,13 @@ FacilityModal.propTypes = {
   /** callback function for Facility list update */
   getCallback: PropTypes.func.isRequired,
   /** function called on modal toggle */
-  onToggle: PropTypes.func.isRequired
-}
+  onToggle: PropTypes.func.isRequired,
+  /** whether ModalContainer should be used; useful for testing to avoid portals */
+  withPortal: PropTypes.bool
+};
+
+FacilityModal.defaultProps = {
+  withPortal: true
+};
 
 export default FacilityModal

@@ -15,9 +15,9 @@
 
 package cz.redhat.db;
 
+import cz.redhat.core.Client;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
-import cz.redhat.core.Client;
 import org.hibernate.SessionFactory;
 
 /**

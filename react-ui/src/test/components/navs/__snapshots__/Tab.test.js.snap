@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<li
+  className=""
+>
+  <a
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "#888",
+        "cursor": "pointer",
+        "fontSize": "16px",
+      }
+    }
+  >
+    test
+  </a>
+</li>
+`;

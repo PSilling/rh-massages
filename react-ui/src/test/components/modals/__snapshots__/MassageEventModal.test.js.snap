@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inside content with correct props 1`] = `
+<div>
+  <h2>
+    Podrobnosti
+    <div
+      className="pull-right"
+    >
+      <span>
+        <button
+          className="btn btn-link"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#000",
+            }
+          }
+          title="Upravit"
+          type="button"
+        >
+          <span
+            className="glyphicon glyphicon-pencil"
+          />
+        </button>
+      </span>
+      <span>
+        <button
+          className="btn btn-link"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#000",
+            }
+          }
+          title="Smazat"
+          type="button"
+        >
+          <span
+            className="glyphicon glyphicon-remove"
+          />
+        </button>
+        
+      </span>
+    </div>
+  </h2>
+  <hr />
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-4"
+    >
+      <dl>
+        <dt>
+          Budova
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        >
+          test
+        </dd>
+        <dt>
+          Čas
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        >
+          01:00–01:00
+        </dd>
+        <dt>
+          Klient
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        >
+          <p
+            className="text-success"
+          >
+            <strong>
+              Volno
+            </strong>
+          </p>
+        </dd>
+      </dl>
+    </div>
+    <div
+      className="col-md-4"
+    >
+      <dl>
+        <dt>
+          Masér/Masérka
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        />
+        <dt>
+          Délka trvání
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        >
+          0.016666666666666666 minut
+        </dd>
+      </dl>
+    </div>
+    <div
+      className="col-md-4"
+    >
+      <dl>
+        <dt>
+          Datum
+        </dt>
+        <dd
+          style={
+            Object {
+              "marginBottom": "0.75em",
+            }
+          }
+        >
+          01/01/1970
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div
+    className="pull-right"
+  >
+    <a
+      href="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
+      tabIndex="-1"
+      target="_blank"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "5px",
+          }
+        }
+        title="Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce"
+        type="button"
+      >
+        Zapsat a přidat do kalendáře
+      </button>
+    </a>
+    <button
+      autoFocus={false}
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      title=""
+      type="button"
+    >
+      Zapsat se
+    </button>
+    <button
+      className="btn btn-default"
+      onClick={[Function]}
+      type="button"
+    >
+      Zrušit
+    </button>
+  </div>
+</div>
+`;

@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders admin content correctly 1`] = `
+<div>
+  <div
+    className="notification-container notification-container-empty"
+  >
+    <span />
+  </div>
+  <nav
+    className="navbar navbar-default no-print"
+  >
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="navbar-header"
+      >
+        <a
+          className="navbar-brand"
+          href="/"
+          onClick={[Function]}
+        >
+          Masáže
+        </a>
+      </div>
+      <ul
+        className="nav navbar-nav"
+      >
+        <li
+          className=""
+        >
+          <a
+            href="/my-massages"
+            onClick={[Function]}
+          >
+            Moje masáže
+          </a>
+        </li>
+        <li
+          className="active"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            Masáže
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/facilities"
+            onClick={[Function]}
+          >
+            Budovy
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/massages-archive"
+            onClick={[Function]}
+          >
+            Archiv masáží
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/settings"
+            onClick={[Function]}
+          >
+            Nastavení
+          </a>
+        </li>
+      </ul>
+      <ul
+        className="nav navbar-nav navbar-right"
+      >
+        <li>
+          <button
+            className="btn btn-link navbar-btn"
+            onClick={[Function]}
+            title="Zobrazit Keycloak profil"
+            type="button"
+          >
+            <span
+              className="glyphicon glyphicon-user"
+            />
+             
+            Profil
+          </button>
+        </li>
+        <li>
+          <button
+            className="btn btn-link navbar-btn"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="glyphicon glyphicon-log-out"
+            />
+             
+            Odhlásit
+          </button>
+        </li>
+        <li>
+          <button
+            className="btn btn-link navbar-btn"
+            onClick={[Function]}
+            title="Změnit jazyk na angličtinu"
+            type="button"
+          >
+            <span
+              className="glyphicon glyphicon-globe"
+            />
+             
+            EN
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div
+    className="container"
+  >
+    <div>
+      <div
+        className="no-print"
+      >
+        <div>
+          <h1>
+            Masáže
+          </h1>
+          <h3>
+            Žádné
+          </h3>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders unauthorized content correctly 1`] = `
+<div>
+  <h1>
+    Masáže
+  </h1>
+  <hr />
+  <h2>
+    Neautorizováno
+  </h2>
+</div>
+`;
