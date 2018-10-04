@@ -2,6 +2,29 @@
 
 exports[`renders content correctly 1`] = `
 <div>
+  <div
+    className="alert alert-info alert-dismissible"
+    style={
+      Object {
+        "marginBottom": "15px",
+      }
+    }
+  >
+    <button
+      aria-label="Close"
+      className="close"
+      onClick={[Function]}
+      title="Zavřít"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+      >
+        ×
+      </span>
+    </button>
+    Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
+  </div>
   <h1>
     
     Nastavení

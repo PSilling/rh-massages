@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 
 // component imports
+import BatchButton from '../components/buttons/BatchButton';
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
 import CalendarPanel from '../components/panels/CalendarPanel';
-import MassageFilter from '../components/util/MassageFilter';
+import InfoAlert from '../components/util/InfoAlert';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 import '../styles/components/loader.css';
 
@@ -22,10 +23,11 @@ import Util from '../util/Util';
  */
 class MassagesArchive extends Component {
 
-  state = {events: [], index: 0, search: "", freeOnly: false,
-              loading: true, selected: [], selectEvents: false,
+  state = {events: [], loading: true, selected: [], selectEvents: Auth.isAdmin(),
               from: moment().startOf('month').subtract(37, 'days'),
               to: moment().endOf('month').add(37, 'days')}
+
+  alertMessage = _t.translate('On this page you can view finished, archived massages.')
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -38,9 +40,7 @@ class MassagesArchive extends Component {
 
   getMassages = () => {
     Util.get(Util.MASSAGES_URL
-      + "old?search=" + this.state.search
-      + "&free=" + this.state.freeOnly
-      + "&from=" + moment(this.state.from).unix() * 1000
+      + "old?from=" + moment(this.state.from).unix() * 1000
       + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
       if (json !== undefined && json.massages !== undefined) {
         this.updateEvents(json.massages);
@@ -135,13 +135,8 @@ class MassagesArchive extends Component {
     this.setState({search: event.target.value});
   }
 
-  changeFreeOnly = (event) => {
-    this.setState({freeOnly: event.target.checked, loading: true});
-    setTimeout(() => this.getMassages(), 3);
-  }
-
   changeSelectEvents = (event) => {
-    this.setState({selected: [], selectEvents: event.target.checked});
+    this.setState({selected: [], selectEvents: !this.state.selectEvents});
   }
 
   changeTimeRange = (moment, view) => {
@@ -160,6 +155,11 @@ class MassagesArchive extends Component {
     }
   }
 
+  closeAlert = () => {
+    localStorage.setItem('closeArchiveAlert', true);
+    this.setState({loading: this.state.loading});
+  }
+
   render () {
     if (!Auth.isAdmin()) {
       return (
@@ -169,20 +169,25 @@ class MassagesArchive extends Component {
 
     return (
       <div>
+        {!localStorage.getItem('closeArchiveAlert') ?
+          <InfoAlert onClose={this.closeAlert}>
+            {this.alertMessage}
+          </InfoAlert> : ''
+        }
         <h1>
           {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Massages Archive') }
         </h1>
         <hr />
-        <MassageFilter
-          free={this.state.freeOnly}
-          onFreeCheck={this.changeFreeOnly}
-          select={this.state.selectEvents}
-          onSelectCheck={this.changeSelectEvents}
-          filter={this.state.search}
-          onFilterChange={this.changeSearch} />
         <div className="row" style={{'marginBottom': '15px'}}>
-          <div className="col-md-12 text-right">
+          <div className="col-md-6">
+            <BatchButton
+              label={ _t.translate('Select') }
+              onClick={this.changeSelectEvents}
+              active={this.state.selectEvents}
+            />
+          </div>
+          <div className="col-md-6 text-right">
             <BatchDeleteButton onDelete={this.deleteSelectedMassages}
               label={ _t.translate('Delete selected') }
               disabled={this.state.selected.length === 0} />

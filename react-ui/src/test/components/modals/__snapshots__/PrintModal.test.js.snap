@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders inside content with correct props and functionality 1`] = `
-<span>
+<span
+  style={
+    Object {
+      "marginRight": "5px",
+    }
+  }
+>
   <span>
     <button
       className="btn btn-default"

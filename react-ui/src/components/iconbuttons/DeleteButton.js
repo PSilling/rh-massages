@@ -25,7 +25,7 @@ class DeleteButton extends Component {
       <span>
         <button style={{ 'color': '#000' }} type="button" className="btn btn-link"
           onClick={this.handleToggle} title={ _t.translate("Delete") }>
-          <span className="glyphicon glyphicon-remove"></span>
+          <span className="glyphicon glyphicon-trash"></span>
         </button>
         {this.state.active ?
           <ConfirmationModal

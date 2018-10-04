@@ -31,7 +31,7 @@ test('renders admin content correctly', () => {
       settingsLink = testInstance.findByProps({ to: "/settings" }),
       treeJSON = testRenderer.toJSON();
 
-  expect(Auth.isAdmin).toHaveBeenCalledTimes(2);
+  expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(3);
   expect(links).toHaveLength(6);
   expect(massagesLinks).toHaveLength(2);
@@ -69,7 +69,7 @@ test('hides non-admin Links correctly', () => {
 
   let links = testInstance.findAllByType(Link);
 
-  expect(Auth.isAdmin).toHaveBeenCalledTimes(2);
+  expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(2);
   expect(links).toHaveLength(4);
 });

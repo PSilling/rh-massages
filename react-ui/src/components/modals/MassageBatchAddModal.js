@@ -36,7 +36,7 @@ class MassageBatchAddModal extends Component {
           }], index: 0
         }
 
-  weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  weekdays = _t.translate('Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday').split('_')
 
   yesterday = moment().subtract(1, "day")
 
@@ -228,6 +228,7 @@ class MassageBatchAddModal extends Component {
         }
       }
     }
+    console.log(postArray);
     if (postArray.length > 0) {
       Util.post(Util.MASSAGES_URL, postArray, () => {
         this.props.getCallback();
@@ -392,7 +393,7 @@ class MassageBatchAddModal extends Component {
                       onKeyPress={this.handleInputKeyPress}
                       checked={this.state.rules[this.state.index].days.indexOf(item) > -1}
                     />
-                    <strong>{ _t.translate(item.toLowerCase()) }</strong>
+                    <strong>{item.toLowerCase()}</strong>
                   </label>
                 ))}
               </div>
@@ -530,7 +531,7 @@ class MassageBatchAddModal extends Component {
   render() {
     return (
       <span style={{ 'marginRight': '5px', 'marginLeft': '5px' }}>
-        <BatchButton onClick={() => this.props.onToggle(false)} label={ _t.translate('Batch addition') } />
+        <BatchButton onClick={() => this.props.onToggle(false)} label={ _t.translate('Add more') } />
 
         {this.props.active ?
           this.props.withPortal ?

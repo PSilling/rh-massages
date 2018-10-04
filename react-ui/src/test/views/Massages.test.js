@@ -3,12 +3,10 @@ import React from 'react';
 
 // test imports
 import Massages from '../../views/Massages';
+import BatchButton from '../../components/buttons/BatchButton';
 import BatchDeleteButton from '../../components/buttons/BatchDeleteButton';
 import CalendarPanel from '../../components/panels/CalendarPanel';
 import MassageBatchAddModal from '../../components/modals/MassageBatchAddModal';
-import MassageBatchEditModal from '../../components/modals/MassageBatchEditModal';
-import MassageCopyModal from '../../components/modals/MassageCopyModal';
-import MassageFilter from '../../components/util/MassageFilter';
 import MassageModal from '../../components/modals/MassageModal';
 import PrintModal from '../../components/modals/PrintModal';
 import Tab from '../../components/navs/Tab';
@@ -81,10 +79,8 @@ test('properly changes state variables', () => {
   expect(wrapper.instance().state.massages).toBe(testMassages);
   wrapper.instance().setState({ facilities: testFacilities });
 
-  let filter = wrapper.find(MassageFilter),
-      tabs = wrapper.find(Tab),
-      copyModal = wrapper.find(MassageCopyModal),
-      editModal = wrapper.find(MassageBatchEditModal),
+  let tabs = wrapper.find(Tab),
+      batchButtons = wrapper.find(BatchButton),
       deleteButton = wrapper.find(BatchDeleteButton),
       printModal = wrapper.find(PrintModal),
       addModal = wrapper.find(MassageBatchAddModal),
@@ -97,13 +93,6 @@ test('properly changes state variables', () => {
   expect(wrapper.instance().state.massageMinutes).toBe(0);
   expect(wrapper.instance().state.loading).toBe(false);
 
-  filter.props().onFreeCheck({ target: { checked: true } });
-  expect(wrapper.instance().state.freeOnly).toBe(true);
-  filter.props().onSelectCheck({ target: { checked: true } });
-  expect(wrapper.instance().state.selectEvents).toBe(true);
-  filter.props().onFilterChange({ target: { value: "test" } });
-  expect(wrapper.instance().state.search).toBe("test");
-
   expect(tabs.length).toBe(1);
   expect(tabs.get(0).props.active).toBe(true);
   expect(tabs.get(0).props.label).toBe(testFacilities[0].name);
@@ -111,22 +100,21 @@ test('properly changes state variables', () => {
   expect(wrapper.instance().state.index).toBe(0);
   expect(wrapper.instance().state.loading).toBe(true);
 
-  expect(wrapper.instance().state.copyModalActive).toBe(false);
-  expect(wrapper.instance().state.batchEditModalActive).toBe(false);
+  expect(batchButtons.get(0).props.active).toBe(true);
+  batchButtons.get(0).props.onClick();
+  expect(wrapper.instance().state.selectEvents).toBe(false);
+  expect(batchButtons.get(1).props.active).toBe(false);
+  batchButtons.get(1).props.onClick();
+  expect(wrapper.instance().state.freeOnly).toBe(true);
+
   expect(wrapper.instance().state.batchAddModalActive).toBe(false);
   expect(wrapper.instance().state.modalActive).toBe(false);
-  expect(copyModal.props().active).toBe(false);
   expect(deleteButton.props().disabled).toBe(true);
-  expect(editModal.props().massages).toEqual([]);
   expect(printModal.props().masseuses).toEqual([]);
   expect(addModal.props().facilityId).toBe(testFacilities[0].id);
   expect(massageModal.props().getCallback).toBe(wrapper.instance().getMassages);
-  copyModal.props().onToggle();
-  editModal.props().onToggle();
   addModal.props().onToggle();
   massageModal.props().onToggle();
-  expect(wrapper.instance().state.copyModalActive).toBe(true);
-  expect(wrapper.instance().state.batchEditModalActive).toBe(true);
   expect(wrapper.instance().state.batchAddModalActive).toBe(true);
   expect(wrapper.instance().state.modalActive).toBe(true);
   printModal.props().onPrint(testMassages);

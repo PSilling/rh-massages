@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 // component imports
+import InfoAlert from '../components/util/InfoAlert';
 import '../styles/components/loader.css';
 
 // util imports
@@ -15,6 +16,8 @@ import Util from '../util/Util';
 class Settings extends Component {
 
   state = {notify: false, loading: true}
+
+  alertMessage = _t.translate('On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.')
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -38,9 +41,19 @@ class Settings extends Component {
     }, false);
   }
 
+  closeAlert = () => {
+    localStorage.setItem('closeSettingsAlert', true);
+    this.setState({loading: this.state.loading});
+  }
+
   render () {
     return (
       <div>
+        {!localStorage.getItem('closeSettingsAlert') ?
+          <InfoAlert onClose={this.closeAlert}>
+            {this.alertMessage}
+          </InfoAlert> : ''
+        }
         <h1>
           {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Settings') }

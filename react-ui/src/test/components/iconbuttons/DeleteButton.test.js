@@ -14,7 +14,7 @@ test('renders content with correct props', () => {
         testInstance = testRenderer.root;
 
   let button = testInstance.findByType('button'),
-      icon = testInstance.findByProps({ className: "glyphicon glyphicon-remove" });
+      icon = testInstance.findByProps({ className: "glyphicon glyphicon-trash" });
 
   button.props.onClick();
 

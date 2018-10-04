@@ -49,7 +49,7 @@ exports[`renders content with correct props 1`] = `
           type="button"
         >
           <span
-            className="glyphicon glyphicon-remove"
+            className="glyphicon glyphicon-trash"
           />
         </button>
         

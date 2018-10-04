@@ -172,7 +172,7 @@ class PrintModal extends Component {
 
   render() {
     return (
-      <span>
+      <span style={{ 'marginRight': '5px' }}>
         <BatchButton label={ _t.translate('Print') } onClick={this.toggleModal} />
 
         {this.state.active ?

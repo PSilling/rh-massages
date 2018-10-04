@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // component imports
 import FacilityModal from '../components/modals/FacilityModal';
 import FacilityRow from '../components/rows/FacilityRow';
+import InfoAlert from '../components/util/InfoAlert';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 import '../styles/components/loader.css';
 
@@ -18,6 +19,8 @@ import Util from '../util/Util';
 class Facilities extends Component {
 
   state = {facilities: [], modalActive: false, editId: -1, loading: true}
+
+  alertMessage = _t.translate('On this page you can manage facilities in which massages take place.')
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -39,6 +42,11 @@ class Facilities extends Component {
     Util.delete(Util.FACILITIES_URL + id, this.getFacilities);
   }
 
+  closeAlert = () => {
+    localStorage.setItem('closeFacilitiesAlert', true);
+    this.setState({loading: this.state.loading});
+  }
+
   toggleModal = (id) => {
     this.setState({modalActive: !this.state.modalActive, editId: id});
   }
@@ -52,6 +60,11 @@ class Facilities extends Component {
 
     return (
       <div>
+        {!localStorage.getItem('closeFacilitiesAlert') ?
+          <InfoAlert onClose={this.closeAlert}>
+            {this.alertMessage}
+          </InfoAlert> : ''
+        }
         <h1>
           {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('Facilities') }

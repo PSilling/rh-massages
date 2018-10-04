@@ -3,9 +3,9 @@ import React from 'react';
 
 // test imports
 import MassagesArchive from '../../views/MassagesArchive';
+import BatchButton from '../../components/buttons/BatchButton';
 import BatchDeleteButton from '../../components/buttons/BatchDeleteButton';
 import CalendarPanel from '../../components/panels/CalendarPanel';
-import MassageFilter from '../../components/util/MassageFilter';
 import moment from 'moment';
 import Util from '../../util/Util';
 
@@ -35,8 +35,8 @@ test('properly changes state variables', () => {
         }],
         wrapper = shallow(<MassagesArchive />);
 
-  let filter = wrapper.find(MassageFilter),
-      buttons = wrapper.find(BatchDeleteButton),
+  let selectButton = wrapper.find(BatchButton),
+      deleteButtons = wrapper.find(BatchDeleteButton),
       panel = wrapper.find(CalendarPanel);
 
   wrapper.instance().setState({ loading: true });
@@ -44,17 +44,14 @@ test('properly changes state variables', () => {
   expect(wrapper.instance().state.events[0].massage).toBe(testMassages[0]);
   expect(wrapper.instance().state.loading).toBe(false);
 
-  filter.props().onFreeCheck({ target: { checked: true } });
-  expect(wrapper.instance().state.freeOnly).toBe(true);
-  filter.props().onSelectCheck({ target: { checked: true } });
-  expect(wrapper.instance().state.selectEvents).toBe(true);
-  filter.props().onFilterChange({ target: { value: "test" } });
-  expect(wrapper.instance().state.search).toBe("test");
+  expect(selectButton.props().active).toBe(true);
+  selectButton.props().onClick();
+  expect(wrapper.instance().state.selectEvents).toBe(false);
 
-  expect(buttons.get(0).props.disabled).toBe(true);
-  buttons.get(0).props.onDelete();
+  expect(deleteButtons.get(0).props.disabled).toBe(true);
+  deleteButtons.get(0).props.onDelete();
   expect(Util.delete).toHaveBeenCalledTimes(1);
-  buttons.get(1).props.onDelete();
+  deleteButtons.get(1).props.onDelete();
   expect(Util.get).toHaveBeenCalledTimes(4);
   expect(Util.delete).toHaveBeenCalledTimes(1);
   expect(panel.props().selected).toEqual([]);

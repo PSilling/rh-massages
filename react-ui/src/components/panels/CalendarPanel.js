@@ -157,8 +157,8 @@ class CalendarPanel extends Component {
           endAccessor={(event) => { return new Date(event.massage.ending) }}
           selectable={Auth.isAdmin() && this.props.allowEditation && this.state.view === 'work_week'}
           onSelectSlot={this.props.onAdd}
-          min={new Date("2018-01-01T07:30:00")}
-          max={new Date("2018-01-01T16:00:00")}
+          min={new Date("2018-01-01T08:30:00")}
+          max={new Date("2018-01-01T18:00:00")}
           popup={true}
           toolbar={false}
         />

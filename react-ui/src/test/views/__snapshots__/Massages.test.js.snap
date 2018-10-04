@@ -17,6 +17,11 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
+        <InfoAlert
+          onClose={[Function]}
+>
+          Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
+</InfoAlert>,
         <div
           className="no-print"
 >
@@ -41,14 +46,6 @@ ShallowWrapper {
                                         onClick={[Function]}
                               />
                     </ul>
-                    <MassageFilter
-                              filter=""
-                              free={false}
-                              onFilterChange={[Function]}
-                              onFreeCheck={[Function]}
-                              onSelectCheck={[Function]}
-                              select={false}
-                    />
                     <div
                               className="row"
                               style={
@@ -60,27 +57,25 @@ ShallowWrapper {
                               <div
                                         className="col-md-6"
                               >
-                                        <MassageCopyModal
+                                        <span
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "5px",
+                                                                    }
+                                                  }
+                                        >
+                                                  <BatchButton
+                                                            active={true}
+                                                            disabled={false}
+                                                            label="Vybírat"
+                                                            onClick={[Function]}
+                                                  />
+                                        </span>
+                                        <BatchButton
                                                   active={false}
-                                                  disabled={true}
-                                                  getCallback={[Function]}
-                                                  massages={Array []}
-                                                  onToggle={[Function]}
-                                                  withPortal={true}
-                                        />
-                                        <MassageBatchEditModal
-                                                  active={false}
-                                                  disabled={true}
-                                                  getCallback={[Function]}
-                                                  massages={Array []}
-                                                  masseuses={Array []}
-                                                  onToggle={[Function]}
-                                                  withPortal={true}
-                                        />
-                                        <BatchDeleteButton
-                                                  disabled={true}
-                                                  label="Smazat vybrané"
-                                                  onDelete={[Function]}
+                                                  disabled={false}
+                                                  label="Jen volné"
+                                                  onClick={[Function]}
                                         />
                               </div>
                               <div
@@ -92,6 +87,11 @@ ShallowWrapper {
                                                   masseuses={Array []}
                                                   onPrint={[Function]}
                                                   withPortal={true}
+                                        />
+                                        <BatchDeleteButton
+                                                  disabled={true}
+                                                  label="Smazat vybrané"
+                                                  onDelete={[Function]}
                                         />
                                         <MassageBatchAddModal
                                                   active={false}
@@ -123,7 +123,7 @@ ShallowWrapper {
                               onDelete={[Function]}
                               onEdit={[Function]}
                               onSelect={[Function]}
-                              selectEvents={false}
+                              selectEvents={true}
                               selected={Array []}
                     />
           </div>
@@ -133,6 +133,18 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+          "onClose": [Function],
+        },
+        "ref": null,
+        "rendered": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -159,14 +171,6 @@ ShallowWrapper {
                                     onClick={[Function]}
                         />
             </ul>
-            <MassageFilter
-                        filter=""
-                        free={false}
-                        onFilterChange={[Function]}
-                        onFreeCheck={[Function]}
-                        onSelectCheck={[Function]}
-                        select={false}
-            />
             <div
                         className="row"
                         style={
@@ -178,27 +182,25 @@ ShallowWrapper {
                         <div
                                     className="col-md-6"
                         >
-                                    <MassageCopyModal
+                                    <span
+                                                style={
+                                                            Object {
+                                                                        "marginRight": "5px",
+                                                                      }
+                                                }
+                                    >
+                                                <BatchButton
+                                                            active={true}
+                                                            disabled={false}
+                                                            label="Vybírat"
+                                                            onClick={[Function]}
+                                                />
+                                    </span>
+                                    <BatchButton
                                                 active={false}
-                                                disabled={true}
-                                                getCallback={[Function]}
-                                                massages={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
-                                    />
-                                    <MassageBatchEditModal
-                                                active={false}
-                                                disabled={true}
-                                                getCallback={[Function]}
-                                                massages={Array []}
-                                                masseuses={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
-                                    />
-                                    <BatchDeleteButton
-                                                disabled={true}
-                                                label="Smazat vybrané"
-                                                onDelete={[Function]}
+                                                disabled={false}
+                                                label="Jen volné"
+                                                onClick={[Function]}
                                     />
                         </div>
                         <div
@@ -210,6 +212,11 @@ ShallowWrapper {
                                                 masseuses={Array []}
                                                 onPrint={[Function]}
                                                 withPortal={true}
+                                    />
+                                    <BatchDeleteButton
+                                                disabled={true}
+                                                label="Smazat vybrané"
+                                                onDelete={[Function]}
                                     />
                                     <MassageBatchAddModal
                                                 active={false}
@@ -241,7 +248,7 @@ ShallowWrapper {
                         onDelete={[Function]}
                         onEdit={[Function]}
                         onSelect={[Function]}
-                        selectEvents={false}
+                        selectEvents={true}
                         selected={Array []}
             />
 </div>,
@@ -274,14 +281,6 @@ ShallowWrapper {
                                 onClick={[Function]}
                 />
 </ul>,
-              <MassageFilter
-                filter=""
-                free={false}
-                onFilterChange={[Function]}
-                onFreeCheck={[Function]}
-                onSelectCheck={[Function]}
-                select={false}
-/>,
               <div
                 className="row"
                 style={
@@ -293,27 +292,25 @@ ShallowWrapper {
                 <div
                                 className="col-md-6"
                 >
-                                <MassageCopyModal
+                                <span
+                                                style={
+                                                                Object {
+                                                                                "marginRight": "5px",
+                                                                              }
+                                                }
+                                >
+                                                <BatchButton
+                                                                active={true}
+                                                                disabled={false}
+                                                                label="Vybírat"
+                                                                onClick={[Function]}
+                                                />
+                                </span>
+                                <BatchButton
                                                 active={false}
-                                                disabled={true}
-                                                getCallback={[Function]}
-                                                massages={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
-                                />
-                                <MassageBatchEditModal
-                                                active={false}
-                                                disabled={true}
-                                                getCallback={[Function]}
-                                                massages={Array []}
-                                                masseuses={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
-                                />
-                                <BatchDeleteButton
-                                                disabled={true}
-                                                label="Smazat vybrané"
-                                                onDelete={[Function]}
+                                                disabled={false}
+                                                label="Jen volné"
+                                                onClick={[Function]}
                                 />
                 </div>
                 <div
@@ -325,6 +322,11 @@ ShallowWrapper {
                                                 masseuses={Array []}
                                                 onPrint={[Function]}
                                                 withPortal={true}
+                                />
+                                <BatchDeleteButton
+                                                disabled={true}
+                                                label="Smazat vybrané"
+                                                onDelete={[Function]}
                                 />
                                 <MassageBatchAddModal
                                                 active={false}
@@ -356,7 +358,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
-                selectEvents={false}
+                selectEvents={true}
                 selected={Array []}
 />,
             ],
@@ -423,49 +425,31 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "filter": "",
-                "free": false,
-                "onFilterChange": [Function],
-                "onFreeCheck": [Function],
-                "onSelectCheck": [Function],
-                "select": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
               "nodeType": "host",
               "props": Object {
                 "children": Array [
                   <div
                     className="col-md-6"
 >
-                    <MassageCopyModal
+                    <span
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "5px",
+                                                                              }
+                                        }
+                    >
+                                        <BatchButton
+                                                            active={true}
+                                                            disabled={false}
+                                                            label="Vybírat"
+                                                            onClick={[Function]}
+                                        />
+                    </span>
+                    <BatchButton
                                         active={false}
-                                        disabled={true}
-                                        getCallback={[Function]}
-                                        massages={Array []}
-                                        onToggle={[Function]}
-                                        withPortal={true}
-                    />
-                    <MassageBatchEditModal
-                                        active={false}
-                                        disabled={true}
-                                        getCallback={[Function]}
-                                        massages={Array []}
-                                        masseuses={Array []}
-                                        onToggle={[Function]}
-                                        withPortal={true}
-                    />
-                    <BatchDeleteButton
-                                        disabled={true}
-                                        label="Smazat vybrané"
-                                        onDelete={[Function]}
+                                        disabled={false}
+                                        label="Jen volné"
+                                        onClick={[Function]}
                     />
 </div>,
                   <div
@@ -477,6 +461,11 @@ ShallowWrapper {
                                         masseuses={Array []}
                                         onPrint={[Function]}
                                         withPortal={true}
+                    />
+                    <BatchDeleteButton
+                                        disabled={true}
+                                        label="Smazat vybrané"
+                                        onDelete={[Function]}
                     />
                     <MassageBatchAddModal
                                         active={false}
@@ -510,27 +499,25 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      <MassageCopyModal
+                      <span
+                        style={
+                                                Object {
+                                                                        "marginRight": "5px",
+                                                                      }
+                        }
+>
+                        <BatchButton
+                                                active={true}
+                                                disabled={false}
+                                                label="Vybírat"
+                                                onClick={[Function]}
+                        />
+</span>,
+                      <BatchButton
                         active={false}
-                        disabled={true}
-                        getCallback={[Function]}
-                        massages={Array []}
-                        onToggle={[Function]}
-                        withPortal={true}
-/>,
-                      <MassageBatchEditModal
-                        active={false}
-                        disabled={true}
-                        getCallback={[Function]}
-                        massages={Array []}
-                        masseuses={Array []}
-                        onToggle={[Function]}
-                        withPortal={true}
-/>,
-                      <BatchDeleteButton
-                        disabled={true}
-                        label="Smazat vybrané"
-                        onDelete={[Function]}
+                        disabled={false}
+                        label="Jen volné"
+                        onClick={[Function]}
 />,
                     ],
                     "className": "col-md-6",
@@ -540,18 +527,34 @@ ShallowWrapper {
                     Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "active": false,
-                        "disabled": true,
-                        "getCallback": [Function],
-                        "massages": Array [],
-                        "onToggle": [Function],
-                        "withPortal": true,
+                        "children": <BatchButton
+                          active={true}
+                          disabled={false}
+                          label="Vybírat"
+                          onClick={[Function]}
+/>,
+                        "style": Object {
+                          "marginRight": "5px",
+                        },
                       },
                       "ref": null,
-                      "rendered": null,
-                      "type": [Function],
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "active": true,
+                          "disabled": false,
+                          "label": "Vybírat",
+                          "onClick": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": "span",
                     },
                     Object {
                       "instance": null,
@@ -559,25 +562,9 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
-                        "disabled": true,
-                        "getCallback": [Function],
-                        "massages": Array [],
-                        "masseuses": Array [],
-                        "onToggle": [Function],
-                        "withPortal": true,
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "disabled": true,
-                        "label": "Smazat vybrané",
-                        "onDelete": [Function],
+                        "disabled": false,
+                        "label": "Jen volné",
+                        "onClick": [Function],
                       },
                       "ref": null,
                       "rendered": null,
@@ -598,6 +585,11 @@ ShallowWrapper {
                         masseuses={Array []}
                         onPrint={[Function]}
                         withPortal={true}
+/>,
+                      <BatchDeleteButton
+                        disabled={true}
+                        label="Smazat vybrané"
+                        onDelete={[Function]}
 />,
                       <MassageBatchAddModal
                         active={false}
@@ -631,6 +623,19 @@ ShallowWrapper {
                         "masseuses": Array [],
                         "onPrint": [Function],
                         "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "disabled": true,
+                        "label": "Smazat vybrané",
+                        "onDelete": [Function],
                       },
                       "ref": null,
                       "rendered": null,
@@ -690,7 +695,7 @@ ShallowWrapper {
                 "onDelete": [Function],
                 "onEdit": [Function],
                 "onSelect": [Function],
-                "selectEvents": false,
+                "selectEvents": true,
                 "selected": Array [],
               },
               "ref": null,
@@ -713,6 +718,11 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <InfoAlert
+            onClose={[Function]}
+>
+            Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
+</InfoAlert>,
           <div
             className="no-print"
 >
@@ -737,14 +747,6 @@ ShallowWrapper {
                                                 onClick={[Function]}
                                     />
                         </ul>
-                        <MassageFilter
-                                    filter=""
-                                    free={false}
-                                    onFilterChange={[Function]}
-                                    onFreeCheck={[Function]}
-                                    onSelectCheck={[Function]}
-                                    select={false}
-                        />
                         <div
                                     className="row"
                                     style={
@@ -756,27 +758,25 @@ ShallowWrapper {
                                     <div
                                                 className="col-md-6"
                                     >
-                                                <MassageCopyModal
+                                                <span
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "5px",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <BatchButton
+                                                                        active={true}
+                                                                        disabled={false}
+                                                                        label="Vybírat"
+                                                                        onClick={[Function]}
+                                                            />
+                                                </span>
+                                                <BatchButton
                                                             active={false}
-                                                            disabled={true}
-                                                            getCallback={[Function]}
-                                                            massages={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                />
-                                                <MassageBatchEditModal
-                                                            active={false}
-                                                            disabled={true}
-                                                            getCallback={[Function]}
-                                                            massages={Array []}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                />
-                                                <BatchDeleteButton
-                                                            disabled={true}
-                                                            label="Smazat vybrané"
-                                                            onDelete={[Function]}
+                                                            disabled={false}
+                                                            label="Jen volné"
+                                                            onClick={[Function]}
                                                 />
                                     </div>
                                     <div
@@ -788,6 +788,11 @@ ShallowWrapper {
                                                             masseuses={Array []}
                                                             onPrint={[Function]}
                                                             withPortal={true}
+                                                />
+                                                <BatchDeleteButton
+                                                            disabled={true}
+                                                            label="Smazat vybrané"
+                                                            onDelete={[Function]}
                                                 />
                                                 <MassageBatchAddModal
                                                             active={false}
@@ -819,7 +824,7 @@ ShallowWrapper {
                                     onDelete={[Function]}
                                     onEdit={[Function]}
                                     onSelect={[Function]}
-                                    selectEvents={false}
+                                    selectEvents={true}
                                     selected={Array []}
                         />
             </div>
@@ -829,6 +834,18 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+            "onClose": [Function],
+          },
+          "ref": null,
+          "rendered": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -855,14 +872,6 @@ ShallowWrapper {
                                           onClick={[Function]}
                             />
               </ul>
-              <MassageFilter
-                            filter=""
-                            free={false}
-                            onFilterChange={[Function]}
-                            onFreeCheck={[Function]}
-                            onSelectCheck={[Function]}
-                            select={false}
-              />
               <div
                             className="row"
                             style={
@@ -874,27 +883,25 @@ ShallowWrapper {
                             <div
                                           className="col-md-6"
                             >
-                                          <MassageCopyModal
+                                          <span
+                                                        style={
+                                                                      Object {
+                                                                                    "marginRight": "5px",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <BatchButton
+                                                                      active={true}
+                                                                      disabled={false}
+                                                                      label="Vybírat"
+                                                                      onClick={[Function]}
+                                                        />
+                                          </span>
+                                          <BatchButton
                                                         active={false}
-                                                        disabled={true}
-                                                        getCallback={[Function]}
-                                                        massages={Array []}
-                                                        onToggle={[Function]}
-                                                        withPortal={true}
-                                          />
-                                          <MassageBatchEditModal
-                                                        active={false}
-                                                        disabled={true}
-                                                        getCallback={[Function]}
-                                                        massages={Array []}
-                                                        masseuses={Array []}
-                                                        onToggle={[Function]}
-                                                        withPortal={true}
-                                          />
-                                          <BatchDeleteButton
-                                                        disabled={true}
-                                                        label="Smazat vybrané"
-                                                        onDelete={[Function]}
+                                                        disabled={false}
+                                                        label="Jen volné"
+                                                        onClick={[Function]}
                                           />
                             </div>
                             <div
@@ -906,6 +913,11 @@ ShallowWrapper {
                                                         masseuses={Array []}
                                                         onPrint={[Function]}
                                                         withPortal={true}
+                                          />
+                                          <BatchDeleteButton
+                                                        disabled={true}
+                                                        label="Smazat vybrané"
+                                                        onDelete={[Function]}
                                           />
                                           <MassageBatchAddModal
                                                         active={false}
@@ -937,7 +949,7 @@ ShallowWrapper {
                             onDelete={[Function]}
                             onEdit={[Function]}
                             onSelect={[Function]}
-                            selectEvents={false}
+                            selectEvents={true}
                             selected={Array []}
               />
 </div>,
@@ -970,14 +982,6 @@ ShallowWrapper {
                                     onClick={[Function]}
                   />
 </ul>,
-                <MassageFilter
-                  filter=""
-                  free={false}
-                  onFilterChange={[Function]}
-                  onFreeCheck={[Function]}
-                  onSelectCheck={[Function]}
-                  select={false}
-/>,
                 <div
                   className="row"
                   style={
@@ -989,27 +993,25 @@ ShallowWrapper {
                   <div
                                     className="col-md-6"
                   >
-                                    <MassageCopyModal
+                                    <span
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "5px",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <BatchButton
+                                                                        active={true}
+                                                                        disabled={false}
+                                                                        label="Vybírat"
+                                                                        onClick={[Function]}
+                                                      />
+                                    </span>
+                                    <BatchButton
                                                       active={false}
-                                                      disabled={true}
-                                                      getCallback={[Function]}
-                                                      massages={Array []}
-                                                      onToggle={[Function]}
-                                                      withPortal={true}
-                                    />
-                                    <MassageBatchEditModal
-                                                      active={false}
-                                                      disabled={true}
-                                                      getCallback={[Function]}
-                                                      massages={Array []}
-                                                      masseuses={Array []}
-                                                      onToggle={[Function]}
-                                                      withPortal={true}
-                                    />
-                                    <BatchDeleteButton
-                                                      disabled={true}
-                                                      label="Smazat vybrané"
-                                                      onDelete={[Function]}
+                                                      disabled={false}
+                                                      label="Jen volné"
+                                                      onClick={[Function]}
                                     />
                   </div>
                   <div
@@ -1021,6 +1023,11 @@ ShallowWrapper {
                                                       masseuses={Array []}
                                                       onPrint={[Function]}
                                                       withPortal={true}
+                                    />
+                                    <BatchDeleteButton
+                                                      disabled={true}
+                                                      label="Smazat vybrané"
+                                                      onDelete={[Function]}
                                     />
                                     <MassageBatchAddModal
                                                       active={false}
@@ -1052,7 +1059,7 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onEdit={[Function]}
                   onSelect={[Function]}
-                  selectEvents={false}
+                  selectEvents={true}
                   selected={Array []}
 />,
               ],
@@ -1119,49 +1126,31 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "filter": "",
-                  "free": false,
-                  "onFilterChange": [Function],
-                  "onFreeCheck": [Function],
-                  "onSelectCheck": [Function],
-                  "select": false,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
                     <div
                       className="col-md-6"
 >
-                      <MassageCopyModal
+                      <span
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "5px",
+                                                                                      }
+                                            }
+                      >
+                                            <BatchButton
+                                                                  active={true}
+                                                                  disabled={false}
+                                                                  label="Vybírat"
+                                                                  onClick={[Function]}
+                                            />
+                      </span>
+                      <BatchButton
                                             active={false}
-                                            disabled={true}
-                                            getCallback={[Function]}
-                                            massages={Array []}
-                                            onToggle={[Function]}
-                                            withPortal={true}
-                      />
-                      <MassageBatchEditModal
-                                            active={false}
-                                            disabled={true}
-                                            getCallback={[Function]}
-                                            massages={Array []}
-                                            masseuses={Array []}
-                                            onToggle={[Function]}
-                                            withPortal={true}
-                      />
-                      <BatchDeleteButton
-                                            disabled={true}
-                                            label="Smazat vybrané"
-                                            onDelete={[Function]}
+                                            disabled={false}
+                                            label="Jen volné"
+                                            onClick={[Function]}
                       />
 </div>,
                     <div
@@ -1173,6 +1162,11 @@ ShallowWrapper {
                                             masseuses={Array []}
                                             onPrint={[Function]}
                                             withPortal={true}
+                      />
+                      <BatchDeleteButton
+                                            disabled={true}
+                                            label="Smazat vybrané"
+                                            onDelete={[Function]}
                       />
                       <MassageBatchAddModal
                                             active={false}
@@ -1206,27 +1200,25 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        <MassageCopyModal
+                        <span
+                          style={
+                                                    Object {
+                                                                              "marginRight": "5px",
+                                                                            }
+                          }
+>
+                          <BatchButton
+                                                    active={true}
+                                                    disabled={false}
+                                                    label="Vybírat"
+                                                    onClick={[Function]}
+                          />
+</span>,
+                        <BatchButton
                           active={false}
-                          disabled={true}
-                          getCallback={[Function]}
-                          massages={Array []}
-                          onToggle={[Function]}
-                          withPortal={true}
-/>,
-                        <MassageBatchEditModal
-                          active={false}
-                          disabled={true}
-                          getCallback={[Function]}
-                          massages={Array []}
-                          masseuses={Array []}
-                          onToggle={[Function]}
-                          withPortal={true}
-/>,
-                        <BatchDeleteButton
-                          disabled={true}
-                          label="Smazat vybrané"
-                          onDelete={[Function]}
+                          disabled={false}
+                          label="Jen volné"
+                          onClick={[Function]}
 />,
                       ],
                       "className": "col-md-6",
@@ -1236,18 +1228,34 @@ ShallowWrapper {
                       Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "host",
                         "props": Object {
-                          "active": false,
-                          "disabled": true,
-                          "getCallback": [Function],
-                          "massages": Array [],
-                          "onToggle": [Function],
-                          "withPortal": true,
+                          "children": <BatchButton
+                            active={true}
+                            disabled={false}
+                            label="Vybírat"
+                            onClick={[Function]}
+/>,
+                          "style": Object {
+                            "marginRight": "5px",
+                          },
                         },
                         "ref": null,
-                        "rendered": null,
-                        "type": [Function],
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "active": true,
+                            "disabled": false,
+                            "label": "Vybírat",
+                            "onClick": [Function],
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        "type": "span",
                       },
                       Object {
                         "instance": null,
@@ -1255,25 +1263,9 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "active": false,
-                          "disabled": true,
-                          "getCallback": [Function],
-                          "massages": Array [],
-                          "masseuses": Array [],
-                          "onToggle": [Function],
-                          "withPortal": true,
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "disabled": true,
-                          "label": "Smazat vybrané",
-                          "onDelete": [Function],
+                          "disabled": false,
+                          "label": "Jen volné",
+                          "onClick": [Function],
                         },
                         "ref": null,
                         "rendered": null,
@@ -1294,6 +1286,11 @@ ShallowWrapper {
                           masseuses={Array []}
                           onPrint={[Function]}
                           withPortal={true}
+/>,
+                        <BatchDeleteButton
+                          disabled={true}
+                          label="Smazat vybrané"
+                          onDelete={[Function]}
 />,
                         <MassageBatchAddModal
                           active={false}
@@ -1327,6 +1324,19 @@ ShallowWrapper {
                           "masseuses": Array [],
                           "onPrint": [Function],
                           "withPortal": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "disabled": true,
+                          "label": "Smazat vybrané",
+                          "onDelete": [Function],
                         },
                         "ref": null,
                         "rendered": null,
@@ -1386,7 +1396,7 @@ ShallowWrapper {
                   "onDelete": [Function],
                   "onEdit": [Function],
                   "onSelect": [Function],
-                  "selectEvents": false,
+                  "selectEvents": true,
                   "selected": Array [],
                 },
                 "ref": null,
@@ -1442,6 +1452,11 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
+        <InfoAlert
+          onClose={[Function]}
+>
+          Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
+</InfoAlert>,
         <div
           className="no-print"
 >
@@ -1501,6 +1516,18 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+          "onClose": [Function],
+        },
+        "ref": null,
+        "rendered": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -1869,6 +1896,11 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <InfoAlert
+            onClose={[Function]}
+>
+            Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
+</InfoAlert>,
           <div
             className="no-print"
 >
@@ -1928,6 +1960,18 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+            "onClose": [Function],
+          },
+          "ref": null,
+          "rendered": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.",
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,

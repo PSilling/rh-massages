@@ -232,8 +232,11 @@ const myLocalize = new Localize({
     "View as panels": {
       "cs": "Zobrazit jako panely"
     },
-    "only free massages": {
-      "cs": "pouze volné masáže"
+    "Just free": {
+      "cs": "Jen volné"
+    },
+    "Select": {
+      "cs": "Vybírat"
     },
     "Client": {
       "cs": "Klient"
@@ -282,8 +285,8 @@ const myLocalize = new Localize({
     "Create": {
       "cs": "Vytvořit"
     },
-    "Batch addition": {
-      "cs": "Dávkové přidání"
+    "Add more": {
+      "cs": "Přidat další"
     },
     "Copy": {
       "cs": "Zkopírovat"
@@ -296,6 +299,9 @@ const myLocalize = new Localize({
     },
     "Dismiss": {
       "cs": "Zrušit"
+    },
+    "Close": {
+      "cs": "Zavřít"
     },
     "Now": {
       "cs": "Nyní"
@@ -456,27 +462,6 @@ const myLocalize = new Localize({
     },
 
     // moment localization
-    "monday": {
-      "cs": "pondělí"
-    },
-    "tuesday": {
-      "cs": "úterý"
-    },
-    "wednesday": {
-      "cs": "středu"
-    },
-    "thursday": {
-      "cs": "čtvrtek"
-    },
-    "friday": {
-      "cs": "pátek"
-    },
-    "saturday": {
-      "cs": "sobotu"
-    },
-    "sunday": {
-      "cs": "neděli"
-    },
     "January_February_March_April_May_June_July_August_September_October_November_December": {
       "cs": "Leden_Únor_Březen_Duben_Květen_Červen_Červenec_Srpen_Září_Říjen_Listopad_Prosinec"
     },
@@ -485,6 +470,9 @@ const myLocalize = new Localize({
     },
     "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday": {
       "cs": "Neděle_Pondělí_Úterý_Středa_Čtvrtek_Pátek_Sobota"
+    },
+    "Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday": {
+      "cs": "Pondělí_Úterý_Středa_Čtvrtek_Pátek_Sobota_Neděle"
     },
     "Sun_Mon_Tue_Wed_Thu_Fri_Sat": {
       "cs": "Ne_Po_Út_St_Čt_Pá_So"
@@ -517,6 +505,23 @@ const myLocalize = new Localize({
     },
     "Show more": {
       "cs": "Zobrazit další"
+    },
+
+    // alert messages
+    "On this page you can view all upcoming massages. To view details about or register a massage click on the appropriate event in the calendar below.": {
+      "cs": "Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže."
+    },
+    "On this page you can view all your assigned massages. Using the calendar button you can generate a Google Event for the given massage.": {
+      "cs": "Na této stránce můžete vidět své zapsané masáže. Použitím tlačítka kalendáře lze podle dané masáže vygenerovat Google událost."
+    },
+    "On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.": {
+      "cs": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu."
+    },
+    "On this page you can manage facilities in which massages take place.": {
+      "cs": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže."
+    },
+    "On this page you can view finished, archived massages.": {
+      "cs": "Na této stránce můžete prohlížet dokončené, archivované masáže."
     }
 });
 

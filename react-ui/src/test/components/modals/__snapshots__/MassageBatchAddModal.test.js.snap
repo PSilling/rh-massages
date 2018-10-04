@@ -16,7 +16,7 @@ exports[`renders inside content with correct props 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Dávkové přidání
+      Přidat další
     </button>
   </span>
   <div>
@@ -160,7 +160,7 @@ exports[`renders inside content with correct props 1`] = `
               type="checkbox"
             />
             <strong>
-              středu
+              středa
             </strong>
           </label>
           <label
@@ -199,7 +199,7 @@ exports[`renders inside content with correct props 1`] = `
               type="checkbox"
             />
             <strong>
-              sobotu
+              sobota
             </strong>
           </label>
           <label
@@ -212,7 +212,7 @@ exports[`renders inside content with correct props 1`] = `
               type="checkbox"
             />
             <strong>
-              neděli
+              neděle
             </strong>
           </label>
         </div>

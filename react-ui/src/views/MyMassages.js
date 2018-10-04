@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 // component imports
+import InfoAlert from '../components/util/InfoAlert';
 import MyMassagePanel from '../components/panels/MyMassagePanel';
 import '../styles/components/loader.css';
 
@@ -22,6 +23,8 @@ class MyMassages extends Component {
 
   state = {massages: [], loading: true}
 
+  alertMessage = _t.translate('On this page you can view all your assigned massages. Using the calendar button you can generate a Google Event for the given massage.')
+
   componentDidMount() {
     Util.clearAllIntervals();
 
@@ -35,6 +38,11 @@ class MyMassages extends Component {
     Util.get(Util.MASSAGES_URL + "client", (json) => {
       this.setState({massages: json, loading: false});
     });
+  }
+
+  closeAlert = () => {
+    localStorage.setItem('closeMyMassagesAlert', true);
+    this.setState({loading: this.state.loading});
   }
 
   /**
@@ -71,6 +79,11 @@ class MyMassages extends Component {
   render() {
     return (
       <div>
+        {!localStorage.getItem('closeMyMassagesAlert') ?
+          <InfoAlert onClose={this.closeAlert}>
+            {this.alertMessage}
+          </InfoAlert> : ''
+        }
         <h1>
           {this.state.loading ? <div className="loader pull-right"></div> : ''}
           { _t.translate('My Massages') }

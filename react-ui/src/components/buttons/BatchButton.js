@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 
 /**
  * A default styled button component with a given label. Used primarily for
- * batch operation buttons.
+ * batch operation buttons but can be used for any label-only button.
  */
 class BatchButton extends Component {
 
   render() {
     return (
       <span>
-        <button type="button" className="btn btn-default" onClick={this.props.onClick}
-          disabled={this.props.disabled}>
+        <button type="button" className={"btn btn-default" + (this.props.active ? " active" : "")}
+          onClick={this.props.onClick} disabled={this.props.disabled}>
           {this.props.label}
         </button>
       </span>
@@ -26,11 +26,14 @@ BatchButton.propTypes = {
    /** button label */
   label: PropTypes.string,
   /** whether the button should be disabled */
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  /** whether the button should be displayed as active */
+  active: PropTypes.bool
 };
 
 BatchButton.defaultProps = {
-  disabled: false
+  disabled: false,
+  active: false
 };
 
 export default BatchButton

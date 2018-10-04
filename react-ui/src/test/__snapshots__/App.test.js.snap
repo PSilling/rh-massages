@@ -130,6 +130,29 @@ exports[`renders admin content correctly 1`] = `
   >
     <div>
       <div
+        className="alert alert-info alert-dismissible"
+        style={
+          Object {
+            "marginBottom": "15px",
+          }
+        }
+      >
+        <button
+          aria-label="Close"
+          className="close"
+          onClick={[Function]}
+          title="Zavřít"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ×
+          </span>
+        </button>
+        Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
+      </div>
+      <div
         className="no-print"
       >
         <div>

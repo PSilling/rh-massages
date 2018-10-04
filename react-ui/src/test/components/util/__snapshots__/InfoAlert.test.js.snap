@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+<div
+  className="alert alert-info alert-dismissible"
+  style={
+    Object {
+      "marginBottom": "15px",
+    }
+  }
+>
+  <button
+    aria-label="Close"
+    className="close"
+    onClick={[Function]}
+    title="Zavřít"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+    >
+      ×
+    </span>
+  </button>
+</div>
+`;

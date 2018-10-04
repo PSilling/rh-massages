@@ -2,14 +2,13 @@
 import React, { Component } from 'react';
 
 // component imports
+import BatchButton from '../components/buttons/BatchButton';
 import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
 import CalendarPanel from '../components/panels/CalendarPanel';
+import InfoAlert from '../components/util/InfoAlert';
 import MassageModal from '../components/modals/MassageModal';
-import MassageCopyModal from '../components/modals/MassageCopyModal';
 import MassageBatchAddModal from '../components/modals/MassageBatchAddModal';
-import MassageBatchEditModal from '../components/modals/MassageBatchEditModal';
 import PrintModal from '../components/modals/PrintModal';
-import MassageFilter from '../components/util/MassageFilter';
 import Tab from '../components/navs/Tab';
 import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
 import '../styles/components/loader.css';
@@ -28,20 +27,20 @@ import Util from '../util/Util';
  */
 class Massages extends Component {
 
-  state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: false,
-            editMassage: null, massageMinutes: 0, loading: true,  modalActive: false,
-            copyModalActive: false, batchEditModalActive: false, batchAddModalActive: false,
-            events: [], search: "", freeOnly: false, printMassages: null, selectedDate: moment(),
+  state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: Auth.isAdmin(),
+            editMassage: null, massageMinutes: 0, loading: true,  modalActive: false, batchAddModalActive: false,
+            events: [], freeOnly: false, printMassages: null, selectedDate: moment(),
             from: moment().startOf('isoWeek').subtract(7, 'days'),
             to: moment().endOf('isoWeek').add(5, 'days')}
+
+  alertMessage = _t.translate('On this page you can view all upcoming massages. To view details about or register a massage click on the appropriate event in the calendar below.')
 
   componentDidMount() {
     Util.clearAllIntervals();
 
     this.getFacilities();
     setInterval(() => {
-      if (this.state.modalActive || this.state.copyModalActive || this.state.batchEditModalActive
-           || this.state.batchAddModalActive) return;
+      if (this.state.modalActive || this.state.batchAddModalActive) return;
       this.getMassages();
     }, Util.AUTO_REFRESH_TIME);
   }
@@ -56,8 +55,7 @@ class Massages extends Component {
   getMassages = () => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
       Util.get(Util.FACILITIES_URL + this.state.facilities[this.state.index].id
-        + "/massages?search=" + this.state.search
-        + "&free=" + this.state.freeOnly
+        + "/massages?free=" + this.state.freeOnly
         + "&from=" + moment(this.state.from).unix() * 1000
         + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
         if (json !== undefined && json.massages !== undefined
@@ -155,17 +153,13 @@ class Massages extends Component {
     this.setState({selected: selected});
   }
 
-  changeSearch = (event) => {
-    this.setState({search: event.target.value});
-  }
-
   changeFreeOnly = (event) => {
-    this.setState({freeOnly: event.target.checked, loading: true});
+    this.setState({freeOnly: !this.state.freeOnly, loading: true});
     setTimeout(() => this.getMassages(), 3);
   }
 
   changeSelectEvents = (event) => {
-    this.setState({selected: [], selectEvents: event.target.checked});
+    this.setState({selected: [], selectEvents: !this.state.selectEvents});
   }
 
   changeTimeRange = (moment, view) => {
@@ -225,6 +219,11 @@ class Massages extends Component {
     return rows;
   }
 
+  closeAlert = () => {
+    localStorage.setItem('closeMassagesAlert', true);
+    this.setState({loading: this.state.loading});
+  }
+
   toggleModal = (massage) => {
     this.setState({modalActive: !this.state.modalActive, editMassage: massage});
   }
@@ -250,22 +249,6 @@ class Massages extends Component {
     }), 1);
   }
 
-  toggleCopyModal = (deselect) => {
-    if (deselect) {
-      this.setState({selected: [], copyModalActive: !this.state.copyModalActive});
-    } else {
-      this.setState({copyModalActive: !this.state.copyModalActive});
-    }
-  }
-
-  toggleBatchEditModal = (deselect) => {
-    if (deselect) {
-      this.setState({selected: [], batchEditModalActive: !this.state.batchEditModalActive});
-    } else {
-      this.setState({batchEditModalActive: !this.state.batchEditModalActive});
-    }
-  }
-
   toggleBatchAddModal = (deselect) => {
     if (deselect) {
       this.setState({selected: [], batchAddModalActive: !this.state.batchAddModalActive});
@@ -280,9 +263,14 @@ class Massages extends Component {
         <UnauthorizedMessage title={ _t.translate('Massages') } />
       );
     }
-
+    
     return (
       <div>
+        {!localStorage.getItem('closeMassagesAlert') ?
+          <InfoAlert onClose={this.closeAlert}>
+            {this.alertMessage}
+          </InfoAlert> : ''
+        }
         <div className="no-print">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ?
             <div>
@@ -296,61 +284,58 @@ class Massages extends Component {
                     onClick={() => this.changeTabIndex(index)} />
                 ))}
               </ul>
-              <MassageFilter
-                free={this.state.freeOnly}
-                onFreeCheck={this.changeFreeOnly}
-                select={this.state.selectEvents}
-                onSelectCheck={this.changeSelectEvents}
-                filter={this.state.search}
-                onFilterChange={this.changeSearch} />
               {Auth.isAdmin() ?
                 <div className="row" style={{'marginBottom': '15px'}}>
                   <div className="col-md-6">
-                    <MassageCopyModal
-                      active={this.state.copyModalActive}
-                      disabled={this.state.selected.length === 0}
-                      massages={this.state.selected}
-                      getCallback={this.getMassages}
-                      onToggle={(deselect) => this.toggleCopyModal(deselect)}
+                    <span style={{ 'marginRight': '5px' }}>
+                      <BatchButton
+                        label={ _t.translate('Select') }
+                        onClick={this.changeSelectEvents}
+                        active={this.state.selectEvents}
+                      />
+                    </span>
+                    <BatchButton
+                      label={ _t.translate('Just free') }
+                      onClick={this.changeFreeOnly}
+                      active={this.state.freeOnly}
                     />
-                    <MassageBatchEditModal
-                      active={this.state.batchEditModalActive}
-                      disabled={this.state.selected.length === 0}
-                      massages={this.state.selected}
+                  </div>
+                  <div className="col-md-6 text-right">
+                    <PrintModal
                       masseuses={this.state.masseuses}
-                      getCallback={this.getMassages}
-                      onToggle={(deselect) => this.toggleBatchEditModal(deselect)}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      date={this.state.selectedDate}
+                      onPrint={this.setPrintMassages}
                     />
                     <BatchDeleteButton onDelete={this.deleteSelectedMassages}
                       label={ _t.translate('Delete selected') }
                       disabled={this.state.selected.length === 0} />
-                    </div>
-                    <div className="col-md-6 text-right">
-                      <PrintModal
-                        masseuses={this.state.masseuses}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        date={this.state.selectedDate}
-                        onPrint={this.setPrintMassages}
-                      />
-                      <MassageBatchAddModal
-                        active={this.state.batchAddModalActive}
-                        masseuses={this.state.masseuses}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        getCallback={this.getMassages}
-                        onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
-                      />
-                      <MassageModal
-                        active={this.state.modalActive}
-                        massage={this.state.editMassage}
-                        masseuses={this.state.masseuses}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        getCallback={this.getMassages}
-                        onToggle={() => this.toggleModal(null)}
-                      />
-                    </div>
+                    <MassageBatchAddModal
+                      active={this.state.batchAddModalActive}
+                      masseuses={this.state.masseuses}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
+                    />
+                    <MassageModal
+                      active={this.state.modalActive}
+                      massage={this.state.editMassage}
+                      masseuses={this.state.masseuses}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={() => this.toggleModal(null)}
+                    />
+                  </div>
                 </div> :
                 <div className="row" style={{'marginBottom': '15px'}}>
-                  <div className="col-md-12 text-right">
+                  <div className="col-md-6">
+                    <BatchButton
+                      label={ _t.translate('Just free') }
+                      onClick={this.changeFreeOnly}
+                      active={this.state.freeOnly}
+                    />
+                  </div>
+                  <div className="col-md-6 text-right">
                     <PrintModal
                       masseuses={this.state.masseuses}
                       facilityId={this.state.facilities[this.state.index].id}
