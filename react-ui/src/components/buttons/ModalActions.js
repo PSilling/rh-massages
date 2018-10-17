@@ -1,55 +1,63 @@
 // react imports
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // util imports
-import _t from '../../util/Translations';
+import _t from "../../util/Translations";
 
 /**
  * Footer buttons for Modal dialogs. Children components can be given to add more
  * case specific elements.
  */
-class ModalActions extends Component {
-
-  render() {
-    return (
-      <div className="pull-right">
-        {this.props.children}
-        {this.props.primaryLabel === "none" ? '' :
-          <button type="button" className="btn btn-primary" onClick={this.props.onProceed} title={this.props.title}
-            style={{ 'marginRight': '5px' }} autoFocus={this.props.autoFocus} disabled={this.props.disabled}>
-            {this.props.primaryLabel}
-          </button>
-        }
-        <button type="button" className="btn btn-default"
-          onClick={this.props.onClose}>
-          { _t.translate('Dismiss') }
+const ModalActions = function ModalActions(props) {
+  return (
+    <div className="pull-right">
+      {props.children}
+      {props.primaryLabel === "none" ? (
+        ""
+      ) : (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={props.onProceed}
+          title={props.title}
+          style={{ marginRight: "5px" }}
+          autoFocus={props.autoFocus}
+          disabled={props.disabled}
+        >
+          {props.primaryLabel}
         </button>
-      </div>
-    );
-  }
-}
+      )}
+      <button type="button" className="btn btn-default" onClick={props.onClose}>
+        {_t.translate("Dismiss")}
+      </button>
+    </div>
+  );
+};
 
 ModalActions.propTypes = {
-  /** primary button label */
-  primaryLabel: PropTypes.string.isRequired,
-  /** callback function triggered on primary button click */
-  onProceed: PropTypes.func.isRequired,
   /** callback function triggered on close button click */
   onClose: PropTypes.func.isRequired,
+  /** callback function triggered on primary button click */
+  onProceed: PropTypes.func.isRequired,
   /** whether the primary button should be automatically focused */
   autoFocus: PropTypes.bool,
+  /** extra elements to be provided before the two buttons */
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   /** whether the primary button should be disabled */
   disabled: PropTypes.bool,
+  /** primary button label to be displayed */
+  primaryLabel: PropTypes.string,
   /** primary button title */
   title: PropTypes.string
 };
 
 ModalActions.defaultProps = {
-  primaryLabel: _t.translate('Proceed'),
   autoFocus: false,
+  children: null,
   disabled: false,
+  primaryLabel: _t.translate("Proceed"),
   title: ""
 };
 
-export default ModalActions
+export default ModalActions;

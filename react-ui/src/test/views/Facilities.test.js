@@ -1,42 +1,43 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import Facilities from '../../views/Facilities';
-import FacilityModal from '../../components/modals/FacilityModal';
-import FacilityRow from '../../components/rows/FacilityRow';
-import Util from '../../util/Util';
+import Facilities from "../../views/Facilities";
+import FacilityModal from "../../components/modals/FacilityModal";
+import FacilityRow from "../../components/rows/FacilityRow";
+import Util from "../../util/Util";
 
 // test mocks
-jest.mock('../../util/Auth');
-jest.mock('../../util/Util');
+jest.mock("../../util/Auth");
+jest.mock("../../util/Util");
 
 afterAll(() => {
   jest.resetAllMocks();
 });
 
-test('renders content correctly', () => {
-  const testFacilities = [{ id: 1, name: "test" }],
-        testRenderer = TestRenderer.create(<Facilities />),
-        testInstance = testRenderer.root;
-
+test("renders content correctly", () => {
+  const testFacilities = [{ id: 1, name: "test" }];
+  const testRenderer = TestRenderer.create(<Facilities />);
+  const testInstance = testRenderer.root;
   testInstance.instance.setState({ facilities: testFacilities });
+  const treeJSON = testRenderer.toJSON();
 
-  let table = testInstance.findByType('table'),
-      treeJSON = testRenderer.toJSON();
+  testInstance.findByType("table");
 
   expect(treeJSON).toMatchSnapshot();
 });
 
-test('properly changes state variables', () => {
-  Util.delete = jest.fn((url, update, notify = true) => { update(); });
-  const testFacilities = [{ id: 1, name: "test" }],
-        testRenderer = TestRenderer.create(<Facilities />),
-        testInstance = testRenderer.root;
+test("properly changes state variables", () => {
+  Util.delete = jest.fn((url, update) => {
+    update();
+  });
+  const testFacilities = [{ id: 1, name: "test" }];
+  const testRenderer = TestRenderer.create(<Facilities />);
+  const testInstance = testRenderer.root;
+  const modal = testInstance.findByType(FacilityModal);
 
-  let modal = testInstance.findByType(FacilityModal),
-      rows = testInstance.findAllByType(FacilityRow);
+  let rows = testInstance.findAllByType(FacilityRow);
 
   expect(rows.length).toBe(0);
   testInstance.instance.setState({ loading: true, facilities: testFacilities });

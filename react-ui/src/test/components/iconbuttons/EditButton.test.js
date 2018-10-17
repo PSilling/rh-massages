@@ -1,20 +1,18 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import EditButton from '../../../components/iconbuttons/EditButton';
+import EditButton from "../../../components/iconbuttons/EditButton";
 
-test('renders content with correct props', () => {
-  const testFunction = jest.fn(),
-        testRenderer = TestRenderer.create(
-          <EditButton onEdit={testFunction} />
-        ),
-        testInstance = testRenderer.root;
+test("renders content with correct props", () => {
+  const testFunction = jest.fn();
+  const testRenderer = TestRenderer.create(<EditButton onEdit={testFunction} />);
+  const testInstance = testRenderer.root;
+  const button = testInstance.findByType("button");
+  const treeJSON = testRenderer.toJSON();
 
-  let button = testInstance.findByType('button'),
-      icon = testInstance.findByProps({ className: "glyphicon glyphicon-pencil" }),
-      treeJSON = testRenderer.toJSON();
+  testInstance.findByProps({ className: "glyphicon glyphicon-pencil" });
 
   expect(testFunction).not.toHaveBeenCalled();
 

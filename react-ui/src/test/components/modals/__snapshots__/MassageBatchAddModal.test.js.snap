@@ -27,6 +27,7 @@ exports[`renders inside content with correct props 1`] = `
       >
         <label
           className="btn btn-default"
+          htmlFor="fileImport"
           style={
             Object {
               "marginRight": "5px",
@@ -34,17 +35,18 @@ exports[`renders inside content with correct props 1`] = `
           }
         >
           Importovat vzory
-          <input
-            accept=".json"
-            onChange={[Function]}
-            style={
-              Object {
-                "display": "none",
-              }
-            }
-            type="file"
-          />
         </label>
+        <input
+          accept=".json"
+          id="fileImport"
+          onChange={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          type="file"
+        />
         <span>
           <button
             className="btn btn-default"
@@ -120,15 +122,17 @@ exports[`renders inside content with correct props 1`] = `
             </button>
           </span>
         </div>
-        <label>
+        <strong>
           Opakovat v
-        </label>
+        </strong>
         <div>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayPondělí"
           >
             <input
               checked={false}
+              id="weekdayPondělí"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -139,9 +143,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayÚterý"
           >
             <input
               checked={false}
+              id="weekdayÚterý"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -152,9 +158,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayStředa"
           >
             <input
               checked={false}
+              id="weekdayStředa"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -165,9 +173,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayČtvrtek"
           >
             <input
               checked={false}
+              id="weekdayČtvrtek"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -178,9 +188,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayPátek"
           >
             <input
               checked={false}
+              id="weekdayPátek"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -191,9 +203,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdaySobota"
           >
             <input
               checked={false}
+              id="weekdaySobota"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -204,9 +218,11 @@ exports[`renders inside content with correct props 1`] = `
           </label>
           <label
             className="checkbox-inline"
+            htmlFor="weekdayNeděle"
           >
             <input
               checked={false}
+              id="weekdayNeděle"
               onChange={[Function]}
               onKeyPress={[Function]}
               type="checkbox"
@@ -1244,11 +1260,7 @@ exports[`renders inside content with correct props 1`] = `
               type="number"
               value="5"
             />
-            <label
-              htmlFor="pauseAfterInput"
-            >
-              ...masážích
-            </label>
+            ...masážích
           </div>
         </div>
       </div>

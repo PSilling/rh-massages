@@ -1,20 +1,17 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import Tab from '../../../components/navs/Tab';
+import Tab from "../../../components/navs/Tab";
 
-test('renders content with correct props', () => {
-  const testFunction = jest.fn(),
-        testRenderer = TestRenderer.create(
-          <Tab label="test" onClick={testFunction} />
-        ),
-        testInstance = testRenderer.root;
-
-  let list = testInstance.findByType('li'),
-      link = testInstance.findByType('a'),
-      treeJSON = testRenderer.toJSON();
+test("renders content with correct props", () => {
+  const testFunction = jest.fn();
+  const testRenderer = TestRenderer.create(<Tab label="test" onClick={testFunction} />);
+  const testInstance = testRenderer.root;
+  const list = testInstance.findByType("li");
+  const link = testInstance.findByType("a");
+  const treeJSON = testRenderer.toJSON();
 
   expect(testFunction).not.toHaveBeenCalled();
 
@@ -27,14 +24,11 @@ test('renders content with correct props', () => {
   expect(treeJSON).toMatchSnapshot();
 });
 
-test('activates Tab based on activation prop', () => {
-  const testRenderer = TestRenderer.create(
-          <Tab active label="active" />
-        ),
-        testInstance = testRenderer.root;
-
-  let list = testInstance.findByType('li'),
-      link = testInstance.findByType('a');
+test("activates Tab based on activation prop", () => {
+  const testRenderer = TestRenderer.create(<Tab active label="active" />);
+  const testInstance = testRenderer.root;
+  const list = testInstance.findByType("li");
+  const link = testInstance.findByType("a");
 
   expect(list.props.className).toBe("active");
   expect(link.props.children).toEqual("active");

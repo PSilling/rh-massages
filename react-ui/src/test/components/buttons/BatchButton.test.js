@@ -1,19 +1,16 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import BatchButton from '../../../components/buttons/BatchButton';
+import BatchButton from "../../../components/buttons/BatchButton";
 
-test('renders content with correct props', () => {
-  const testFunction = jest.fn(),
-        testRenderer = TestRenderer.create(
-          <BatchButton onClick={testFunction} label="test" />
-        ),
-        testInstance = testRenderer.root;
-
-  let button = testInstance.findByType('button'),
-      treeJSON = testRenderer.toJSON();
+test("renders content with correct props", () => {
+  const testFunction = jest.fn();
+  const testRenderer = TestRenderer.create(<BatchButton onClick={testFunction} label="test" />);
+  const testInstance = testRenderer.root;
+  const button = testInstance.findByType("button");
+  const treeJSON = testRenderer.toJSON();
 
   expect(testFunction).not.toHaveBeenCalled();
 

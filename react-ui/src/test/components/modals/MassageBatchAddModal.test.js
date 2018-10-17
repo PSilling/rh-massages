@@ -1,31 +1,36 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import BatchButton from '../../../components/buttons/BatchButton';
-import MassageBatchAddModal from '../../../components/modals/MassageBatchAddModal';
-import ModalActions from '../../../components/buttons/ModalActions';
-import Tab from '../../../components/navs/Tab';
+import BatchButton from "../../../components/buttons/BatchButton";
+import MassageBatchAddModal from "../../../components/modals/MassageBatchAddModal";
+import ModalActions from "../../../components/buttons/ModalActions";
+import Tab from "../../../components/navs/Tab";
 
 beforeAll(() => {
   Date.now = jest.fn(() => 0);
 });
 
-test('renders inside content with correct props', () => {
-  const testGetFunction = jest.fn(),
-        testToggleFunction = jest.fn(),
-        testMasseuses = ["test"],
-        testRenderer = TestRenderer.create(
-          <MassageBatchAddModal active facilityId={1} masseuses={testMasseuses}
-            getCallback={testGetFunction} onToggle={testToggleFunction} withPortal={false} />
-        ),
-        testInstance = testRenderer.root;
-
-  let buttons = testInstance.findAllByType(BatchButton),
-      actions = testInstance.findByType(ModalActions),
-      datalistOption = testInstance.findByType('option'),
-      treeJSON = testRenderer.toJSON();
+test("renders inside content with correct props", () => {
+  const testGetFunction = jest.fn();
+  const testToggleFunction = jest.fn();
+  const testMasseuses = ["test"];
+  const testRenderer = TestRenderer.create(
+    <MassageBatchAddModal
+      active
+      facilityId={1}
+      masseuses={testMasseuses}
+      getCallback={testGetFunction}
+      onToggle={testToggleFunction}
+      withPortal={false}
+    />
+  );
+  const testInstance = testRenderer.root;
+  const buttons = testInstance.findAllByType(BatchButton);
+  const actions = testInstance.findByType(ModalActions);
+  const datalistOption = testInstance.findByType("option");
+  const treeJSON = testRenderer.toJSON();
 
   expect(testToggleFunction).not.toHaveBeenCalled();
 
@@ -47,21 +52,25 @@ test('renders inside content with correct props', () => {
   expect(treeJSON).toMatchSnapshot();
 });
 
-test('user is able to properly manage the number of rules', () => {
-  const testGetFunction = jest.fn(),
-        testToggleFunction = jest.fn(),
-        testMasseuses = ["test"],
-        testRenderer = TestRenderer.create(
-          <MassageBatchAddModal active facilityId={1} masseuses={testMasseuses}
-            getCallback={testGetFunction} onToggle={testToggleFunction} withPortal={false} />
-        ),
-        testInstance = testRenderer.root;
-
-  let buttons = testInstance.findAllByType(BatchButton);
-
+test("user is able to properly manage the number of rules", () => {
+  const testGetFunction = jest.fn();
+  const testToggleFunction = jest.fn();
+  const testMasseuses = ["test"];
+  const testRenderer = TestRenderer.create(
+    <MassageBatchAddModal
+      active
+      facilityId={1}
+      masseuses={testMasseuses}
+      getCallback={testGetFunction}
+      onToggle={testToggleFunction}
+      withPortal={false}
+    />
+  );
+  const testInstance = testRenderer.root;
+  const buttons = testInstance.findAllByType(BatchButton);
   expect(testInstance.instance.state.rules.length).toBe(1);
 
-  for (var i = 0; i < 4; i++) {
+  for (let i = 0; i < 4; i++) {
     buttons[2].props.onClick();
   }
   let tabs = testInstance.findAllByType(Tab);
@@ -72,7 +81,7 @@ test('user is able to properly manage the number of rules', () => {
   expect(buttons[3].props.disabled).toBe(false);
   expect(tabs.length).toBe(5);
 
-  for (var i = 0; i < 4; i++) {
+  for (let i = 0; i < 4; i++) {
     buttons[3].props.onClick();
   }
   tabs = testInstance.findAllByType(Tab);

@@ -22,5 +22,6 @@ exports[`renders content with correct props 1`] = `
       ×
     </span>
   </button>
+  test
 </div>
 `;

@@ -1,29 +1,30 @@
 // react imports
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
-// component imports
-import InfoAlert from '../components/util/InfoAlert';
-import MyMassagePanel from '../components/panels/MyMassagePanel';
-import '../styles/components/loader.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 // module imports
-import moment from 'moment';
+import moment from "moment";
+
+// component imports
+import InfoAlert from "../components/util/InfoAlert";
+import MyMassagePanel from "../components/panels/MyMassagePanel";
+import "../styles/components/loader.css";
 
 // util imports
-import Auth from '../util/Auth';
-import _t from '../util/Translations';
-import Util from '../util/Util';
+import Auth from "../util/Auth";
+import _t from "../util/Translations";
+import Util from "../util/Util";
 
 /**
  * Main view component for My Massages management. Uses Massage information panels
  * for better user experience.
  */
 class MyMassages extends Component {
+  state = { massages: [], loading: true };
 
-  state = {massages: [], loading: true}
-
-  alertMessage = _t.translate('On this page you can view all your assigned massages. Using the calendar button you can generate a Google Event for the given massage.')
+  alertMessage =
+    _t.translate("On this page you can view all your assigned massages. ") +
+    _t.translate("Using the calendar button you can generate a Google Event for the given massage.");
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -35,70 +36,90 @@ class MyMassages extends Component {
   }
 
   getMassages = () => {
-    Util.get(Util.MASSAGES_URL + "client", (json) => {
-      this.setState({massages: json, loading: false});
+    Util.get(`${Util.MASSAGES_URL}client`, json => {
+      this.setState({ massages: json, loading: false });
     });
-  }
+  };
 
   closeAlert = () => {
-    localStorage.setItem('closeMyMassagesAlert', true);
-    this.setState({loading: this.state.loading});
-  }
+    localStorage.setItem("closeMyMassagesAlert", true);
+    this.setState(prevState => ({ loading: prevState.loading }));
+  };
 
   /**
    * Generates MyMassagePanels with their time information.
    */
   createPanels = () => {
-    var panels = [],
-        i = 0,
-        addHeader = true,
-        headerTypes = ['Today', 'This week', 'Next week', 'Later than next week'],
-        startOfTypes = ['day', 'week', 'week', 'year'];
-    for (var timeType = 0; timeType < 4; timeType++) {
+    const panels = [];
+
+    let i = 0;
+
+    let addHeader = true;
+
+    const headerTypes = ["Today", "This week", "Next week", "Later than next week"];
+
+    const startOfTypes = ["day", "week", "week", "year"];
+    for (let timeType = 0; timeType < 4; timeType++) {
       for (i; i < this.state.massages.length; i++) {
-        if (timeType !== 3 && !moment(this.state.massages[i].date).startOf(startOfTypes[timeType])
-        .isSame(moment().add(timeType === 2 ? 7 : 0, 'days').startOf(startOfTypes[timeType]))) {
+        if (
+          timeType !== 3 &&
+          !moment(this.state.massages[i].date)
+            .startOf(startOfTypes[timeType])
+            .isSame(
+              moment()
+                .add(timeType === 2 ? 7 : 0, "days")
+                .startOf(startOfTypes[timeType])
+            )
+        ) {
           addHeader = true;
           break;
         }
         if (addHeader) {
-          panels.push(<h1 key={headerTypes[timeType]}>{ _t.translate(headerTypes[timeType]) }</h1>);
+          panels.push(<h1 key={headerTypes[timeType]}>{_t.translate(headerTypes[timeType])}</h1>);
           addHeader = false;
         }
-        let tooLate = (moment(this.state.massages[i].date).diff(moment(), 'minutes') <= Util.CANCELLATION_LIMIT);
+        const tooLate = moment(this.state.massages[i].date).diff(moment(), "minutes") <= Util.CANCELLATION_LIMIT;
         panels.push(
-          <MyMassagePanel key={this.state.massages[i].id} type={tooLate ? "warning" : "info"} massage={this.state.massages[i]}
-            getCallback={this.getMassages} disabled={tooLate && !Auth.isAdmin()} />
+          <MyMassagePanel
+            key={this.state.massages[i].id}
+            type={tooLate ? "warning" : "info"}
+            massage={this.state.massages[i]}
+            getCallback={this.getMassages}
+            disabled={tooLate && !Auth.isAdmin()}
+          />
         );
       }
-      panels.push(<div key={"row" + timeType} className="row"></div>);
+      panels.push(<div key={`row${timeType}`} className="row" />);
     }
     return panels;
-  }
+  };
 
   render() {
     return (
       <div>
-        {!localStorage.getItem('closeMyMassagesAlert') ?
-          <InfoAlert onClose={this.closeAlert}>
-            {this.alertMessage}
-          </InfoAlert> : ''
-        }
+        {!localStorage.getItem("closeMyMassagesAlert") ? (
+          <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
+        ) : (
+          ""
+        )}
         <h1>
-          {this.state.loading ? <div className="loader pull-right"></div> : ''}
-          { _t.translate('My Massages') }
+          {this.state.loading ? <div className="loader pull-right" /> : ""}
+          {_t.translate("My Massages")}
         </h1>
         <hr />
-        {this.state.massages !== undefined && this.state.massages.length > 0 ?
+        {this.state.massages !== undefined && this.state.massages.length > 0 ? (
           this.createPanels()
-        : <h3>
-            { _t.translate('None') + " – "}
-            <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Go to massages") }</Link>
+        ) : (
+          <h3>
+            {`${_t.translate("None")} – `}
+            <Link style={{ color: "#595959" }} to="/">
+              {_t.translate("Go to massages")}
+            </Link>
           </h3>
-        }
+        )}
       </div>
     );
   }
 }
 
-export default MyMassages
+export default MyMassages;

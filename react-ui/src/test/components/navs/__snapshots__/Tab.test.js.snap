@@ -6,6 +6,8 @@ exports[`renders content with correct props 1`] = `
 >
   <a
     onClick={[Function]}
+    onKeyPress={[Function]}
+    role="menuitem"
     style={
       Object {
         "color": "#888",
@@ -13,6 +15,7 @@ exports[`renders content with correct props 1`] = `
         "fontSize": "16px",
       }
     }
+    tabIndex="-1"
   >
     test
   </a>

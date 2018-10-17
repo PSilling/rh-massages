@@ -1,39 +1,57 @@
 // react imports
-import React, { Component } from 'react';
-
-// component imports
-import BatchButton from '../components/buttons/BatchButton';
-import BatchDeleteButton from '../components/buttons/BatchDeleteButton';
-import CalendarPanel from '../components/panels/CalendarPanel';
-import InfoAlert from '../components/util/InfoAlert';
-import MassageModal from '../components/modals/MassageModal';
-import MassageBatchAddModal from '../components/modals/MassageBatchAddModal';
-import PrintModal from '../components/modals/PrintModal';
-import Tab from '../components/navs/Tab';
-import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
-import '../styles/components/loader.css';
+import React, { Component } from "react";
 
 // module imports
-import moment from 'moment';
+import moment from "moment";
+
+// component imports
+import BatchButton from "../components/buttons/BatchButton";
+import BatchDeleteButton from "../components/buttons/BatchDeleteButton";
+import CalendarPanel from "../components/panels/CalendarPanel";
+import InfoAlert from "../components/util/InfoAlert";
+import MassageModal from "../components/modals/MassageModal";
+import MassageBatchAddModal from "../components/modals/MassageBatchAddModal";
+import PrintModal from "../components/modals/PrintModal";
+import Tab from "../components/navs/Tab";
+import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
+import "../styles/components/loader.css";
 
 // util imports
-import Auth from '../util/Auth';
-import _t from '../util/Translations';
-import Util from '../util/Util';
+import Auth from "../util/Auth";
+import _t from "../util/Translations";
+import Util from "../util/Util";
 
 /**
  * Main view calendar component for Massage management. Normal users can only view,
  * assign and cancel Massages. Supports batch CRUD operations.
  */
 class Massages extends Component {
+  state = {
+    facilities: [],
+    masseuses: [],
+    selected: [],
+    index: 0,
+    selectEvents: Auth.isAdmin(),
+    editMassage: null,
+    massageMinutes: 0,
+    loading: true,
+    modalActive: false,
+    batchAddModalActive: false,
+    events: [],
+    freeOnly: false,
+    printMassages: null,
+    selectedDate: moment(),
+    from: moment()
+      .startOf("isoWeek")
+      .subtract(7, "days"),
+    to: moment()
+      .endOf("isoWeek")
+      .add(5, "days")
+  };
 
-  state = {facilities: [], masseuses: [], selected: [], index: 0, selectEvents: Auth.isAdmin(),
-            editMassage: null, massageMinutes: 0, loading: true,  modalActive: false, batchAddModalActive: false,
-            events: [], freeOnly: false, printMassages: null, selectedDate: moment(),
-            from: moment().startOf('isoWeek').subtract(7, 'days'),
-            to: moment().endOf('isoWeek').add(5, 'days')}
-
-  alertMessage = _t.translate('On this page you can view all upcoming massages. To view details about or register a massage click on the appropriate event in the calendar below.')
+  alertMessage =
+    _t.translate("On this page you can view all upcoming massages. ") +
+    _t.translate("To view details about or register a massage click on the appropriate event in the calendar below.");
 
   componentDidMount() {
     Util.clearAllIntervals();
@@ -46,31 +64,34 @@ class Massages extends Component {
   }
 
   getFacilities = () => {
-    Util.get(Util.FACILITIES_URL, (json) => {
-      this.setState({facilities: json});
+    Util.get(Util.FACILITIES_URL, json => {
+      this.setState({ facilities: json });
       this.getMassages();
     });
-  }
+  };
 
   getMassages = () => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
-      Util.get(Util.FACILITIES_URL + this.state.facilities[this.state.index].id
-        + "/massages?free=" + this.state.freeOnly
-        + "&from=" + moment(this.state.from).unix() * 1000
-        + "&to=" + moment(this.state.to).unix() * 1000, (json) => {
-        if (json !== undefined && json.massages !== undefined
-             && json.clientTime !== undefined) {
-          this.updateEvents(json.massages, (json.clientTime / 60000));
+      Util.get(
+        `${Util.FACILITIES_URL + this.state.facilities[this.state.index].id}/massages?free=${
+          this.state.freeOnly
+        }&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
+        json => {
+          if (json !== undefined && json.massages !== undefined && json.clientTime !== undefined) {
+            this.updateEvents(json.massages, json.clientTime / 60000);
+          }
         }
-      });
+      );
     }
-  }
+  };
 
   updateEvents = (massages, minutes) => {
-    var events = [],
-        masseuses = [],
-        color;
-    for (var i = 0; i < massages.length; i++) {
+    const events = [];
+
+    const masseuses = [];
+
+    let color;
+    for (let i = 0; i < massages.length; i++) {
       if (Util.isEmpty(massages[i].client)) {
         color = "#2fad2f"; // Bootsrap warning color (buttons)
       } else if (Auth.getSub() === massages[i].client.sub) {
@@ -78,224 +99,261 @@ class Massages extends Component {
       } else {
         color = "#d10a14"; // Bootsrap danger color (buttons)
       }
-      events.push({massage: massages[i], bgColor: color});
+      events.push({ massage: massages[i], bgColor: color });
 
       if (masseuses.indexOf(massages[i].masseuse) === -1) {
         masseuses.push(massages[i].masseuse);
       }
     }
 
-    let selected = this.state.selected;
-    for (i = 0; i < selected.length; i++) {
-      if (Util.findInArrayById(massages, selected[i].id) === -1) {
-        selected.splice(i, 1);
-        i--;
+    this.setState(prevState => {
+      const selected = [...prevState.selected];
+      for (let i = 0; i < selected.length; i++) {
+        if (Util.findInArrayById(massages, selected[i].id) === -1) {
+          selected.splice(i, 1);
+          i--;
+        }
       }
-    }
 
-    this.setState({events: events, masseuses: masseuses, massageMinutes: minutes,
-      selected: selected, loading: false});
-  }
+      return {
+        events,
+        masseuses,
+        massageMinutes: minutes,
+        selected,
+        loading: false
+      };
+    });
+  };
 
-  assignMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL, [{
-      id: massage.id,
-      date: massage.date,
-      ending: massage.ending,
-      masseuse: massage.masseuse,
-      client: Auth.getClient(),
-      facility: massage.facility
-    }], this.getMassages);
-  }
+  assignMassage = massage => {
+    Util.put(
+      Util.MASSAGES_URL,
+      [
+        {
+          id: massage.id,
+          date: massage.date,
+          ending: massage.ending,
+          masseuse: massage.masseuse,
+          client: Auth.getClient(),
+          facility: massage.facility
+        }
+      ],
+      this.getMassages
+    );
+  };
 
-  cancelMassage = (massage) => {
-    Util.put(Util.MASSAGES_URL, [{
-      id: massage.id,
-      date: massage.date,
-      ending: massage.ending,
-      masseuse: massage.masseuse,
-      client: null,
-      facility: massage.facility
-    }], this.getMassages);
-  }
+  cancelMassage = massage => {
+    Util.put(
+      Util.MASSAGES_URL,
+      [
+        {
+          id: massage.id,
+          date: massage.date,
+          ending: massage.ending,
+          masseuse: massage.masseuse,
+          client: null,
+          facility: massage.facility
+        }
+      ],
+      this.getMassages
+    );
+  };
 
-  deleteMassage = (id) => {
-    Util.delete(Util.MASSAGES_URL + "?ids=" + id, this.getMassages);
-  }
+  deleteMassage = id => {
+    Util.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
+  };
 
   deleteSelectedMassages = () => {
-    var idString = "?";
-    for (var i = 0; i < this.state.selected.length; i++) {
+    let idString = "?";
+    for (let i = 0; i < this.state.selected.length; i++) {
       if (idString.length > 2000) {
         break;
       }
-      idString += "ids=" + this.state.selected[i].id + "&";
+      idString += `ids=${this.state.selected[i].id}&`;
     }
     Util.delete(Util.MASSAGES_URL + idString, () => {
-      this.setState({selected: []});
+      this.setState({ selected: [] });
       this.getMassages();
     });
-  }
+  };
 
-  handleEventSelect = (event) => {
+  handleEventSelect = event => {
     if (event === null) {
-      this.setState({selected: []});
+      this.setState({ selected: [] });
       return;
     }
 
-    var selected = this.state.selected,
-        index = Util.findInArrayById(selected, event.massage.id);
-    if (index !== -1) {
-      selected.splice(index, 1);
-    } else {
-      selected.push(event.massage);
-    }
-    this.setState({selected: selected});
-  }
+    this.setState(prevState => {
+      const selected = [...prevState.selected];
 
-  changeFreeOnly = (event) => {
-    this.setState({freeOnly: !this.state.freeOnly, loading: true});
+      const index = Util.findInArrayById(selected, event.massage.id);
+      if (index !== -1) {
+        selected.splice(index, 1);
+      } else {
+        selected.push(event.massage);
+      }
+      return { selected };
+    });
+  };
+
+  changeFreeOnly = () => {
+    this.setState(prevState => ({ freeOnly: !prevState.freeOnly, loading: true }));
     setTimeout(() => this.getMassages(), 3);
-  }
+  };
 
-  changeSelectEvents = (event) => {
-    this.setState({selected: [], selectEvents: !this.state.selectEvents});
-  }
+  changeSelectEvents = () => {
+    this.setState(prevState => ({ selected: [], selectEvents: !prevState.selectEvents }));
+  };
 
-  changeTimeRange = (moment, view) => {
-    if (view === 'month') {
+  changeTimeRange = (date, view) => {
+    if (view === "month") {
       this.setState({
-        from: moment.clone().startOf('month').subtract(37, 'days'),
-        to: moment.clone().endOf('month').add(37, 'days'),
-        loading: true, selected: [], selectedDate: moment
+        from: moment(date)
+          .startOf("month")
+          .subtract(37, "days"),
+        to: moment(date)
+          .endOf("month")
+          .add(37, "days"),
+        loading: true,
+        selected: [],
+        selectedDate: moment(date)
       });
     } else {
       this.setState({
-        from: moment.clone().startOf('isoWeek').subtract(7, 'days'),
-        to: moment.clone().endOf('isoWeek').add(5, 'days'),
-        loading: true, selected: [], selectedDate: moment
+        from: moment(date)
+          .startOf("isoWeek")
+          .subtract(7, "days"),
+        to: moment(date)
+          .endOf("isoWeek")
+          .add(5, "days"),
+        loading: true,
+        selected: [],
+        selectedDate: moment(date)
       });
     }
     setTimeout(() => this.getMassages(), 3);
-  }
+  };
 
-  changeTabIndex = (index) => {
-    this.setState({index: index, loading: true});
+  changeTabIndex = index => {
+    this.setState({ index, loading: true });
     setTimeout(() => this.getMassages(), 3);
-  }
+  };
 
-  setPrintMassages = (massages) => {
-    this.setState({printMassages: massages});
-  }
+  setPrintMassages = massages => {
+    this.setState({ printMassages: massages });
+  };
 
   createPrintRows = () => {
-    var rows = [];
+    const rows = [];
     if (this.state.printMassages.length === 0) {
       rows.push(
         <tr key="info">
-          <td colSpan="4">{ _t.translate('None') }</td>
+          <td colSpan="4">{_t.translate("None")}</td>
         </tr>
       );
     } else {
-      for (var i = 0; i < this.state.printMassages.length; i++) {
+      for (let i = 0; i < this.state.printMassages.length; i++) {
         rows.push(
           <tr key={i}>
+            <td>{moment(this.state.printMassages[i].date).format("L")}</td>
             <td>
-              {moment(this.state.printMassages[i].date).format('L')}
+              {`${moment(this.state.printMassages[i].date).format("HH:mm")}–${moment(
+                this.state.printMassages[i].ending
+              ).format("HH:mm")}`}
             </td>
+            <td>{this.state.printMassages[i].masseuse}</td>
             <td>
-              {moment(this.state.printMassages[i].date).format("HH:mm") + "–" + moment(this.state.printMassages[i].ending).format("HH:mm")}
-            </td>
-            <td>
-              {this.state.printMassages[i].masseuse}
-            </td>
-            <td>
-              { Util.isEmpty(this.state.printMassages[i].client) ? _t.translate('Free') : Util.getContactInfo(this.state.printMassages[i].client)}
+              {Util.isEmpty(this.state.printMassages[i].client)
+                ? _t.translate("Free")
+                : Util.getContactInfo(this.state.printMassages[i].client)}
             </td>
           </tr>
         );
       }
     }
     return rows;
-  }
+  };
 
   closeAlert = () => {
-    localStorage.setItem('closeMassagesAlert', true);
-    this.setState({loading: this.state.loading});
-  }
+    localStorage.setItem("closeMassagesAlert", true);
+    this.setState(prevState => ({ loading: prevState.loading }));
+  };
 
-  toggleModal = (massage) => {
-    this.setState({modalActive: !this.state.modalActive, editMassage: massage});
-  }
+  toggleModal = massage => {
+    this.setState(prevState => ({ modalActive: !prevState.modalActive, editMassage: massage }));
+  };
 
-  toggleModalWithTime = (slot) => {
+  toggleModalWithTime = slot => {
     if (moment(slot.start).isBefore(moment())) {
-      Util.notify("warning", _t.translate('Cannot create a new massage in the past.'),
-        _t.translate('Warning'));
+      Util.notify("warning", _t.translate("Cannot create a new massage in the past."), _t.translate("Warning"));
       return;
     }
 
-    var exampleMassage = {
+    const exampleMassage = {
       generated: true,
       date: slot.start,
       ending: slot.end,
       masseuse: "",
       client: null,
-      facility: {id: this.state.facilities[this.state.index].id}
+      facility: { id: this.state.facilities[this.state.index].id }
     };
-    setTimeout(() => this.setState({
-      modalActive: !this.state.modalActive,
-      editMassage: exampleMassage
-    }), 1);
-  }
+    setTimeout(
+      () =>
+        this.setState(prevState => ({
+          modalActive: !prevState.modalActive,
+          editMassage: exampleMassage
+        })),
+      1
+    );
+  };
 
-  toggleBatchAddModal = (deselect) => {
+  toggleBatchAddModal = deselect => {
     if (deselect) {
-      this.setState({selected: [], batchAddModalActive: !this.state.batchAddModalActive});
+      this.setState(prevState => ({ selected: [], batchAddModalActive: !prevState.batchAddModalActive }));
     } else {
-      this.setState({batchAddModalActive: !this.state.batchAddModalActive});
+      this.setState(prevState => ({ batchAddModalActive: !prevState.batchAddModalActive }));
     }
-  }
+  };
 
-  render () {
+  render() {
     if (!Auth.isAuthenticated()) {
-      return (
-        <UnauthorizedMessage title={ _t.translate('Massages') } />
-      );
+      return <UnauthorizedMessage title={_t.translate("Massages")} />;
     }
-    
+
     return (
       <div>
-        {!localStorage.getItem('closeMassagesAlert') ?
-          <InfoAlert onClose={this.closeAlert}>
-            {this.alertMessage}
-          </InfoAlert> : ''
-        }
+        {!localStorage.getItem("closeMassagesAlert") ? (
+          <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
+        ) : (
+          ""
+        )}
         <div className="no-print">
-          {this.state.facilities !== undefined && this.state.facilities.length > 0 ?
+          {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              {this.state.loading ? <div className="loader pull-right"></div> : ''}
-              <h1>
-                { _t.translate('Massages in ') + this.state.facilities[this.state.index].name }
-              </h1>
-              <ul className="nav nav-tabs" style={{ 'marginBottom': '15px' }}>
+              {this.state.loading ? <div className="loader pull-right" /> : ""}
+              <h1>{_t.translate("Massages in ") + this.state.facilities[this.state.index].name}</h1>
+              <ul className="nav nav-tabs" style={{ marginBottom: "15px" }}>
                 {this.state.facilities.map((item, index) => (
-                  <Tab active={index === this.state.index} label={item.name} key={item.id}
-                    onClick={() => this.changeTabIndex(index)} />
+                  <Tab
+                    active={index === this.state.index}
+                    label={item.name}
+                    key={item.id}
+                    onClick={() => this.changeTabIndex(index)}
+                  />
                 ))}
               </ul>
-              {Auth.isAdmin() ?
-                <div className="row" style={{'marginBottom': '15px'}}>
+              {Auth.isAdmin() ? (
+                <div className="row" style={{ marginBottom: "15px" }}>
                   <div className="col-md-6">
-                    <span style={{ 'marginRight': '5px' }}>
+                    <span style={{ marginRight: "5px" }}>
                       <BatchButton
-                        label={ _t.translate('Select') }
+                        label={_t.translate("Select")}
                         onClick={this.changeSelectEvents}
                         active={this.state.selectEvents}
                       />
                     </span>
                     <BatchButton
-                      label={ _t.translate('Just free') }
+                      label={_t.translate("Just free")}
                       onClick={this.changeFreeOnly}
                       active={this.state.freeOnly}
                     />
@@ -307,15 +365,17 @@ class Massages extends Component {
                       date={this.state.selectedDate}
                       onPrint={this.setPrintMassages}
                     />
-                    <BatchDeleteButton onDelete={this.deleteSelectedMassages}
-                      label={ _t.translate('Delete selected') }
-                      disabled={this.state.selected.length === 0} />
+                    <BatchDeleteButton
+                      onDelete={this.deleteSelectedMassages}
+                      label={_t.translate("Delete selected")}
+                      disabled={this.state.selected.length === 0}
+                    />
                     <MassageBatchAddModal
                       active={this.state.batchAddModalActive}
                       masseuses={this.state.masseuses}
                       facilityId={this.state.facilities[this.state.index].id}
                       getCallback={this.getMassages}
-                      onToggle={(deselect) => this.toggleBatchAddModal(deselect)}
+                      onToggle={deselect => this.toggleBatchAddModal(deselect)}
                     />
                     <MassageModal
                       active={this.state.modalActive}
@@ -326,11 +386,12 @@ class Massages extends Component {
                       onToggle={() => this.toggleModal(null)}
                     />
                   </div>
-                </div> :
-                <div className="row" style={{'marginBottom': '15px'}}>
+                </div>
+              ) : (
+                <div className="row" style={{ marginBottom: "15px" }}>
                   <div className="col-md-6">
                     <BatchButton
-                      label={ _t.translate('Just free') }
+                      label={_t.translate("Just free")}
                       onClick={this.changeFreeOnly}
                       active={this.state.freeOnly}
                     />
@@ -344,7 +405,7 @@ class Massages extends Component {
                     />
                   </div>
                 </div>
-              }
+              )}
               <CalendarPanel
                 events={this.state.events}
                 selectEvents={this.state.selectEvents}
@@ -358,40 +419,35 @@ class Massages extends Component {
                 onDateChange={this.changeTimeRange}
                 onSelect={this.handleEventSelect}
               />
-            </div> :
-            <div>
-              <h1>
-                { _t.translate('Massages') }
-              </h1>
-              <h3>
-                { _t.translate('None') }
-              </h3>
             </div>
-          }
+          ) : (
+            <div>
+              <h1>{_t.translate("Massages")}</h1>
+              <h3>{_t.translate("None")}</h3>
+            </div>
+          )}
         </div>
-        {this.state.printMassages !== null ?
+        {this.state.printMassages !== null ? (
           <div className="print-only">
-            <h1>
-              { _t.translate('Schedule') }
-            </h1>
+            <h1>{_t.translate("Schedule")}</h1>
             <table className="table">
               <thead>
                 <tr>
-                  <th>{ _t.translate('Date') }</th>
-                  <th>{ _t.translate('Time') }</th>
-                  <th>{ _t.translate('Masseur/Masseuse') }</th>
-                  <th width="40%">{ _t.translate('Client') }</th>
+                  <th>{_t.translate("Date")}</th>
+                  <th>{_t.translate("Time")}</th>
+                  <th>{_t.translate("Masseur/Masseuse")}</th>
+                  <th width="40%">{_t.translate("Client")}</th>
                 </tr>
               </thead>
-              <tbody>
-                {this.createPrintRows()}
-              </tbody>
+              <tbody>{this.createPrintRows()}</tbody>
             </table>
-          </div> : ''
-        }
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
 }
 
-export default Massages
+export default Massages;

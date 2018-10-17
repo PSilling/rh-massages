@@ -1,35 +1,33 @@
 // react imports
-import React from 'react';
-import { Router, Link } from 'react-router-dom';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import { Link } from "react-router-dom";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import App, { NavWithLinks } from '../App';
-import Auth from '../util/Auth';
-import UnauthorizedMessage from '../components/util/UnauthorizedMessage';
-import _t from '../util/Translations';
+import App from "../App";
+import Auth from "../util/Auth";
+import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
+import _t from "../util/Translations";
 
 // test mocks
-jest.mock('../util/Auth');
-jest.mock('../util/Util');
+jest.mock("../util/Auth");
+jest.mock("../util/Util");
 
 afterEach(() => {
   jest.resetAllMocks();
 });
 
-test('renders admin content correctly', () => {
-  const testRenderer = TestRenderer.create(<App />),
-        testInstance = testRenderer.root;
-
-  let router = testInstance.findByType(Router),
-      links = testInstance.findAllByType(Link),
-      rightBar = testInstance.findByProps({ className: "nav navbar-nav navbar-right" }),
-      massagesLinks = testInstance.findAllByProps({ to: "/" }),
-      myMassageLink = testInstance.findByProps({ to: "/my-massages" }),
-      facilitiesLink = testInstance.findByProps({ to: "/facilities" }),
-      massagesArchiveLink = testInstance.findByProps({ to: "/massages-archive" }),
-      settingsLink = testInstance.findByProps({ to: "/settings" }),
-      treeJSON = testRenderer.toJSON();
+test("renders admin content correctly", () => {
+  const testRenderer = TestRenderer.create(<App />);
+  const testInstance = testRenderer.root;
+  const links = testInstance.findAllByType(Link);
+  const rightBar = testInstance.findByProps({ className: "nav navbar-nav navbar-right" });
+  const massagesLinks = testInstance.findAllByProps({ to: "/" });
+  const myMassageLink = testInstance.findByProps({ to: "/my-massages" });
+  const facilitiesLink = testInstance.findByProps({ to: "/facilities" });
+  const massagesArchiveLink = testInstance.findByProps({ to: "/massages-archive" });
+  const settingsLink = testInstance.findByProps({ to: "/settings" });
+  const treeJSON = testRenderer.toJSON();
 
   expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(3);
@@ -45,29 +43,27 @@ test('renders admin content correctly', () => {
   expect(treeJSON).toMatchSnapshot();
 });
 
-test('renders unauthorized content correctly', () => {
+test("renders unauthorized content correctly", () => {
   Auth.isAuthenticated = jest.fn().mockImplementation(() => false);
 
-  const testRenderer = TestRenderer.create(<App />),
-        testInstance = testRenderer.root;
-
-  let message = testInstance.findByType(UnauthorizedMessage),
-      treeJSON = testRenderer.toJSON();
+  const testRenderer = TestRenderer.create(<App />);
+  const testInstance = testRenderer.root;
+  const message = testInstance.findByType(UnauthorizedMessage);
+  const treeJSON = testRenderer.toJSON();
 
   expect(Auth.isAdmin).not.toHaveBeenCalled();
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(1);
-  expect(message.props.title).toBe(_t.translate('Massages'));
+  expect(message.props.title).toBe(_t.translate("Massages"));
   expect(treeJSON).toMatchSnapshot();
 });
 
-test('hides non-admin Links correctly', () => {
+test("hides non-admin Links correctly", () => {
   Auth.isAuthenticated = jest.fn().mockImplementation(() => true);
   Auth.isAdmin = jest.fn().mockImplementation(() => false);
 
-  const testRenderer = TestRenderer.create(<App />),
-        testInstance = testRenderer.root;
-
-  let links = testInstance.findAllByType(Link);
+  const testRenderer = TestRenderer.create(<App />);
+  const testInstance = testRenderer.root;
+  const links = testInstance.findAllByType(Link);
 
   expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(2);

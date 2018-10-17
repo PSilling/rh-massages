@@ -1,17 +1,18 @@
-import raf from './polyfillMock';
-import { mount, render, shallow, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+/* eslint-disable */
+import raf from "./polyfillMock";
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+/* eslint-enable */
 
 configure({ adapter: new Adapter() });
 
 class LocalStorageMock {
-
   constructor() {
-    this.store = { };
+    this.store = {};
   }
 
   clear() {
-    this.store = { };
+    this.store = {};
   }
 
   getItem(key) {
@@ -27,5 +28,4 @@ class LocalStorageMock {
   }
 }
 
-global.localStorage = new LocalStorageMock;
-global.shallow = shallow;
+global.localStorage = new LocalStorageMock();

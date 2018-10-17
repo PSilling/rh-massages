@@ -1,48 +1,51 @@
 // react imports
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, withRouter } from 'react-router-dom';
-
-// view imports
-import Facilities from './views/Facilities.js';
-import Massages from './views/Massages.js';
-import MassagesArchive from './views/MassagesArchive.js';
-import MyMassages from './views/MyMassages.js';
-import Settings from './views/Settings.js';
-
-// component imports
-import ProfileLink from './components/links/ProfileLink';
-import LangLink from './components/links/LangLink';
-import LogoutLink from './components/links/LogoutLink';
-import UnauthorizedMessage from './components/util/UnauthorizedMessage';
+import React from "react";
+import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // module imports
-import moment from 'moment';
-import { NotificationContainer } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import 'react-datetime/css/react-datetime.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import './styles/components/react-big-calendar.css';
+import moment from "moment";
+import { NotificationContainer } from "react-notifications";
+import "react-notifications/lib/notifications.css";
+import "react-datetime/css/react-datetime.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./styles/components/react-big-calendar.css";
+
+// view imports
+import Facilities from "./views/Facilities";
+import Massages from "./views/Massages";
+import MassagesArchive from "./views/MassagesArchive";
+import MyMassages from "./views/MyMassages";
+import Settings from "./views/Settings";
+
+// component imports
+import ProfileLink from "./components/links/ProfileLink";
+import LangLink from "./components/links/LangLink";
+import LogoutLink from "./components/links/LogoutLink";
+import UnauthorizedMessage from "./components/util/UnauthorizedMessage";
 
 // util imports
-import Auth from './util/Auth';
-import _t from './util/Translations';
+import Auth from "./util/Auth";
+import _t from "./util/Translations";
 
 // Bootstrap customization file import
-import './styles/main/bootstrap.min.css';
+import "./styles/main/bootstrap.min.css";
 
 // moment.js localization
-moment.updateLocale('en', {
-  months : _t.translate('January_February_March_April_May_June_July_August_September_October_November_December').split('_'),
-  monthsShort : _t.translate('Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec').split('_'),
-  weekdays : _t.translate('Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday').split('_'),
-  weekdaysShort : _t.translate('Sun_Mon_Tue_Wed_Thu_Fri_Sat').split('_'),
-  weekdaysMin : _t.translate('Su_Mo_Tu_We_Th_Fr_Sa').split('_'),
-  longDateFormat : {
-        LT : _t.translate('hh:mm A'),
-        L : _t.translate('DD/MM/YYYY')
-    },
+moment.updateLocale("en", {
+  months: _t
+    .translate("January_February_March_April_May_June_July_August_September_October_November_December")
+    .split("_"),
+  monthsShort: _t.translate("Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec").split("_"),
+  weekdays: _t.translate("Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday").split("_"),
+  weekdaysShort: _t.translate("Sun_Mon_Tue_Wed_Thu_Fri_Sat").split("_"),
+  weekdaysMin: _t.translate("Su_Mo_Tu_We_Th_Fr_Sa").split("_"),
+  longDateFormat: {
+    LT: _t.translate("hh:mm A"),
+    L: _t.translate("DD/MM/YYYY")
+  },
   week: {
-    dow: _t.translate('7')
+    dow: _t.translate("7")
   }
 });
 
@@ -50,40 +53,52 @@ moment.updateLocale('en', {
  * 404 page displayed when no route is matched.
  */
 const NoMatch = ({ location }) => (
-  <div className='text-center'>
+  <div className="text-center">
     <h3>
-      <code>Error 404:</code> { _t.translate("page doesn't exist:") } <code>{location.pathname}</code>
+      <code>Error 404:</code>
+      {_t.translate(" page doesn't exist: ")}
+      <code>{location.pathname}</code>
     </h3>
-    <h3 style={{ 'marginTop': '30px' }}>
-      <Link style={{ 'color': '#595959' }} to="/">{ _t.translate("Back to main page") }</Link>
+    <h3 style={{ marginTop: "30px" }}>
+      <Link style={{ color: "#595959" }} to="/">
+        {_t.translate("Back to main page")}
+      </Link>
     </h3>
   </div>
-)
+);
 
 // navigation bar with view links
 export const NavWithLinks = withRouter(({ location }) => (
   <nav className="navbar navbar-default no-print">
     <div className="container-fluid">
       <div className="navbar-header">
-        <Link className="navbar-brand" to="/">{ _t.translate("Massages") }</Link>
+        <Link className="navbar-brand" to="/">
+          {_t.translate("Massages")}
+        </Link>
       </div>
       <ul className="nav navbar-nav">
         <li className={location.pathname === "/my-massages" ? "active" : ""}>
-          <Link to="/my-massages">{ _t.translate("My Massages") }</Link>
+          <Link to="/my-massages">{_t.translate("My Massages")}</Link>
         </li>
         <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/">{ _t.translate("Massages") }</Link>
+          <Link to="/">{_t.translate("Massages")}</Link>
         </li>
-        { Auth.isAdmin() ?
+        {Auth.isAdmin() ? (
           <li className={location.pathname === "/facilities" ? "active" : ""}>
-            <Link to="/facilities">{ _t.translate("Facilities") }</Link>
-          </li> : '' }
-        { Auth.isAdmin() ?
+            <Link to="/facilities">{_t.translate("Facilities")}</Link>
+          </li>
+        ) : (
+          ""
+        )}
+        {Auth.isAdmin() ? (
           <li className={location.pathname === "/massages-archive" ? "active" : ""}>
-            <Link to="/massages-archive">{ _t.translate("Massages Archive") }</Link>
-          </li> : '' }
+            <Link to="/massages-archive">{_t.translate("Massages Archive")}</Link>
+          </li>
+        ) : (
+          ""
+        )}
         <li className={location.pathname === "/settings" ? "active" : ""}>
-          <Link to="/settings">{ _t.translate("Settings") }</Link>
+          <Link to="/settings">{_t.translate("Settings")}</Link>
         </li>
       </ul>
       <ul className="nav navbar-nav navbar-right">
@@ -99,41 +114,43 @@ export const NavWithLinks = withRouter(({ location }) => (
       </ul>
     </div>
   </nav>
-))
+));
 
 /**
  * Main application component. Contains the Router, NotificationContainer and Navbar.
  */
-class App extends Component {
-
-  render() {
-    if (!Auth.isAuthenticated()) {
-      return (
-        <UnauthorizedMessage title={ _t.translate('Massages') } />
-      );
-    }
-
-    return (
-      <Router>
-        <div>
-          <NotificationContainer/>
-
-          <NavWithLinks />
-
-          <div className='container'>
-            <Switch>
-              <Route exact path="/" component={Massages}/>
-              <Route exact path="/my-massages" component={MyMassages}/>
-              <Route exact path="/facilities" component={Facilities}/>
-              <Route exact path="/massages-archive" component={MassagesArchive}/>
-              <Route exact path="/settings" component={Settings}/>
-              <Route component={NoMatch}/>
-            </Switch>
-          </div>
-        </div>
-      </Router>
-    );
+const App = function App() {
+  if (!Auth.isAuthenticated()) {
+    return <UnauthorizedMessage title={_t.translate("Massages")} />;
   }
-}
 
-export default App
+  return (
+    <Router>
+      <div>
+        <NotificationContainer />
+
+        <NavWithLinks />
+
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Massages} />
+            <Route exact path="/my-massages" component={MyMassages} />
+            <Route exact path="/facilities" component={Facilities} />
+            <Route exact path="/massages-archive" component={MassagesArchive} />
+            <Route exact path="/settings" component={Settings} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </div>
+    </Router>
+  );
+};
+
+NoMatch.propTypes = {
+  /** current router location */
+  location: PropTypes.shape({
+    pathname: PropTypes.string
+  }).isRequired
+};
+
+export default App;

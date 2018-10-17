@@ -54,7 +54,6 @@ exports[`renders content correctly 1`] = `
                 />
               </button>
             </span>
-            
           </div>
         </th>
       </tr>

@@ -1,24 +1,21 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import BatchDeleteButton from '../../../components/buttons/BatchDeleteButton';
-import ConfirmationModal from '../../../components/modals/ConfirmationModal';
+import BatchDeleteButton from "../../../components/buttons/BatchDeleteButton";
+import ConfirmationModal from "../../../components/modals/ConfirmationModal";
 
-test('renders content with correct props', () => {
-  const testFunction = jest.fn(),
-        testRenderer = TestRenderer.create(
-          <BatchDeleteButton onDelete={testFunction} label="test" />
-        ),
-        testInstance = testRenderer.root;
-
-  let button = testInstance.findByType('button');
+test("renders content with correct props", () => {
+  const testFunction = jest.fn();
+  const testRenderer = TestRenderer.create(<BatchDeleteButton onDelete={testFunction} label="test" />);
+  const testInstance = testRenderer.root;
+  const button = testInstance.findByType("button");
 
   button.props.onClick();
 
-  let dialog = testInstance.findByType(ConfirmationModal),
-      treeJSON = testRenderer.toJSON();
+  const dialog = testInstance.findByType(ConfirmationModal);
+  const treeJSON = testRenderer.toJSON();
 
   expect(testFunction).not.toHaveBeenCalled();
 

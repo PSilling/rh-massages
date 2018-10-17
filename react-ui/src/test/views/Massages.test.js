@@ -1,32 +1,33 @@
 // react imports
-import React from 'react';
+import React from "react";
 
 // test imports
-import Massages from '../../views/Massages';
-import BatchButton from '../../components/buttons/BatchButton';
-import BatchDeleteButton from '../../components/buttons/BatchDeleteButton';
-import CalendarPanel from '../../components/panels/CalendarPanel';
-import MassageBatchAddModal from '../../components/modals/MassageBatchAddModal';
-import MassageModal from '../../components/modals/MassageModal';
-import PrintModal from '../../components/modals/PrintModal';
-import Tab from '../../components/navs/Tab';
-import moment from 'moment';
-import Util from '../../util/Util';
+import { shallow } from "enzyme";
+import moment from "moment";
+import Massages from "../../views/Massages";
+import BatchButton from "../../components/buttons/BatchButton";
+import BatchDeleteButton from "../../components/buttons/BatchDeleteButton";
+import CalendarPanel from "../../components/panels/CalendarPanel";
+import MassageBatchAddModal from "../../components/modals/MassageBatchAddModal";
+import MassageModal from "../../components/modals/MassageModal";
+import PrintModal from "../../components/modals/PrintModal";
+import Tab from "../../components/navs/Tab";
+import Util from "../../util/Util";
 
 // test mocks
-jest.mock('../../util/Auth');
-jest.mock('../../util/Util');
+jest.mock("../../util/Auth");
+jest.mock("../../util/Util");
 
 afterAll(() => {
   jest.resetAllMocks();
 });
 
-var dateNow = Date.now;
+const dateNow = Date.now;
 
-test('renders content correctly', () => {
+test("renders content correctly", () => {
   Date.now = jest.fn();
-  const testFacilities = [{ id: 1, name: "test" }],
-        wrapper = shallow(<Massages />);
+  const testFacilities = [{ id: 1, name: "test" }];
+  const wrapper = shallow(<Massages />);
 
   expect(wrapper.find(Tab).length).toBe(0);
   wrapper.instance().setState({ facilities: testFacilities });
@@ -35,41 +36,47 @@ test('renders content correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('renders print content correctly', () => {
+test("renders print content correctly", () => {
   Date.now = jest.fn();
-  const testMassages = [{
-          id: 1,
-          date: new Date(0),
-          ending: new Date(1000),
-          client: null,
-          facility: { id: 1, name: "test" }
-        }],
-        wrapper = shallow(<Massages />);
+  const testMassages = [
+    {
+      id: 1,
+      date: new Date(0),
+      ending: new Date(1000),
+      client: null,
+      facility: { id: 1, name: "test" }
+    }
+  ];
+  const wrapper = shallow(<Massages />);
 
-  expect(wrapper.find('.print-only').length).toBe(0);
+  expect(wrapper.find(".print-only").length).toBe(0);
   wrapper.instance().setState({ printMassages: testMassages });
-  expect(wrapper.find('.print-only').length).toBe(1);
+  expect(wrapper.find(".print-only").length).toBe(1);
 
   expect(wrapper).toMatchSnapshot();
 });
 
-test('properly changes state variables', () => {
+test("properly changes state variables", () => {
   Date.now = dateNow;
-  Util.delete = jest.fn((url, update, notify = true) => { update(); });
-  const testMoment = moment().add(1, 'days'),
-        testFacilities = [{ id: 1, name: "test" }],
-        testMassages = [{
-          id: 1,
-          date: new Date(0),
-          ending: new Date(1000),
-          client: null,
-          facility: { id: 1, name: "test" }
-        }],
-        testEvent = {
-          bgColor: "white",
-          massage : testMassages[0]
-        },
-        wrapper = shallow(<Massages />);
+  Util.delete = jest.fn((url, update) => {
+    update();
+  });
+  const testMoment = moment().add(1, "days");
+  const testFacilities = [{ id: 1, name: "test" }];
+  const testMassages = [
+    {
+      id: 1,
+      date: new Date(0),
+      ending: new Date(1000),
+      client: null,
+      facility: { id: 1, name: "test" }
+    }
+  ];
+  const testEvent = {
+    bgColor: "white",
+    massage: testMassages[0]
+  };
+  const wrapper = shallow(<Massages />);
 
   expect(Util.get).toHaveBeenCalledTimes(3);
   wrapper.instance().setState({ facilities: testFacilities, massages: testMassages });
@@ -79,13 +86,13 @@ test('properly changes state variables', () => {
   expect(wrapper.instance().state.massages).toBe(testMassages);
   wrapper.instance().setState({ facilities: testFacilities });
 
-  let tabs = wrapper.find(Tab),
-      batchButtons = wrapper.find(BatchButton),
-      deleteButton = wrapper.find(BatchDeleteButton),
-      printModal = wrapper.find(PrintModal),
-      addModal = wrapper.find(MassageBatchAddModal),
-      massageModal = wrapper.find(MassageModal),
-      panel = wrapper.find(CalendarPanel);
+  const tabs = wrapper.find(Tab);
+  const batchButtons = wrapper.find(BatchButton);
+  const deleteButton = wrapper.find(BatchDeleteButton);
+  const printModal = wrapper.find(PrintModal);
+  const addModal = wrapper.find(MassageBatchAddModal);
+  const massageModal = wrapper.find(MassageModal);
+  const panel = wrapper.find(CalendarPanel);
 
   wrapper.instance().setState({ loading: true });
   wrapper.instance().updateEvents(testMassages, 0);
@@ -138,20 +145,27 @@ test('properly changes state variables', () => {
   panel.props().onSelect(null);
   expect(wrapper.instance().state.selected).toEqual([]);
 
-  panel.props().onDateChange(testMoment.clone(), 'month');
+  panel.props().onDateChange(testMoment.clone(), "month");
   expect(wrapper.instance().state.from).toEqual(
-    testMoment.clone().startOf('month').subtract(37, 'days')
+    testMoment
+      .clone()
+      .startOf("month")
+      .subtract(37, "days")
   );
   expect(wrapper.instance().state.to).toEqual(
-    testMoment.clone().endOf('month').add(37, 'days')
+    testMoment
+      .clone()
+      .endOf("month")
+      .add(37, "days")
   );
-  panel.props().onDateChange(testMoment.clone(), '');
+  panel.props().onDateChange(testMoment.clone(), "");
   expect(wrapper.instance().state.from).toEqual(
-    testMoment.clone().startOf('isoWeek').subtract(7, 'days')
+    testMoment
+      .clone()
+      .startOf("isoWeek")
+      .subtract(7, "days")
   );
-  expect(wrapper.instance().state.to).toEqual(
-    testMoment.endOf('isoWeek').add(5, 'days')
-  );
+  expect(wrapper.instance().state.to).toEqual(testMoment.endOf("isoWeek").add(5, "days"));
   expect(wrapper.instance().state.loading).toBe(true);
   expect(wrapper.instance().state.selected).toEqual([]);
 });

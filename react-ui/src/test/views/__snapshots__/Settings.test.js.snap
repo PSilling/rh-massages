@@ -44,9 +44,11 @@ exports[`renders content correctly 1`] = `
       >
         <label
           className="checkbox-inline"
+          htmlFor="notifyInput"
         >
           <input
             checked={Array []}
+            id="notifyInput"
             onChange={[Function]}
             type="checkbox"
           />
@@ -77,6 +79,7 @@ exports[`renders content correctly 1`] = `
       Navštivte náš 
       <a
         href={undefined}
+        rel="noreferrer noopener"
         target="_blank"
       >
         GitHub
@@ -86,6 +89,7 @@ exports[`renders content correctly 1`] = `
         a naši 
         <a
           href="undefinedwiki"
+          rel="noreferrer noopener"
           target="_blank"
         >
           wiki
@@ -103,6 +107,7 @@ exports[`renders content correctly 1`] = `
       Hlaste chyby 
       <a
         href="undefinedissues"
+        rel="noreferrer noopener"
         target="_blank"
       >
         zde

@@ -24,6 +24,7 @@ exports[`renders content with correct props 1`] = `
 <span>
   <a
     href="test"
+    rel="noopener noreferrer"
     tabIndex="-1"
     target="_blank"
   >

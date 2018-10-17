@@ -1,32 +1,32 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import CalendarToolbar from '../../../components/util/CalendarToolbar';
+import CalendarToolbar from "../../../components/util/CalendarToolbar";
 
-test('renders content with correct props', () => {
-  const testLeftFunction = jest.fn(),
-        testRightFunction = jest.fn(),
-        testViewFunction = jest.fn((string) => { return string; }),
-        testRenderer = TestRenderer.create(
-          <CalendarToolbar
-            month="test"
-            monthActive={true}
-            leftDisabled={false}
-            rightDisabled={true}
-            leftAction={testLeftFunction}
-            rightAction={testRightFunction}
-            onViewChange={testViewFunction}
-          />
-        ),
-        testInstance = testRenderer.root;
+test("renders content with correct props", () => {
+  const testLeftFunction = jest.fn();
+  const testRightFunction = jest.fn();
+  const testViewFunction = jest.fn(string => string);
+  const testRenderer = TestRenderer.create(
+    <CalendarToolbar
+      month="test"
+      monthActive
+      leftDisabled={false}
+      rightDisabled
+      leftAction={testLeftFunction}
+      rightAction={testRightFunction}
+      onViewChange={testViewFunction}
+    />
+  );
+  const testInstance = testRenderer.root;
+  const buttons = testInstance.findAllByType("button");
+  const month = testInstance.findByType("strong");
+  const treeJSON = testRenderer.toJSON();
 
-  let buttons = testInstance.findAllByType('button'),
-      iconLeft = testInstance.findByProps({ className: "glyphicon glyphicon-chevron-left" }),
-      iconRight = testInstance.findByProps({ className: "glyphicon glyphicon-chevron-right" }),
-      month = testInstance.findByType('strong'),
-      treeJSON = testRenderer.toJSON();
+  testInstance.findByProps({ className: "glyphicon glyphicon-chevron-left" });
+  testInstance.findByProps({ className: "glyphicon glyphicon-chevron-right" });
 
   expect(buttons[0].props.onClick).toBe(testLeftFunction);
   expect(buttons[0].props.disabled).toBe(false);

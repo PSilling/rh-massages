@@ -26,7 +26,9 @@ exports[`renders inside content with correct props and functionality 1`] = `
     <div
       className="col-md-12"
     >
-      <label>
+      <label
+        htmlFor="just today"
+      >
         Časové rozpětí
       </label>
       <div
@@ -38,9 +40,11 @@ exports[`renders inside content with correct props and functionality 1`] = `
       >
         <label
           className="radio-inline"
+          htmlFor="just today"
         >
           <input
             checked={true}
+            id="just today"
             onChange={[Function]}
             onKeyPress={[Function]}
             type="radio"
@@ -49,9 +53,11 @@ exports[`renders inside content with correct props and functionality 1`] = `
         </label>
         <label
           className="radio-inline"
+          htmlFor="this week"
         >
           <input
             checked={false}
+            id="this week"
             onChange={[Function]}
             onKeyPress={[Function]}
             type="radio"
@@ -60,9 +66,11 @@ exports[`renders inside content with correct props and functionality 1`] = `
         </label>
         <label
           className="radio-inline"
+          htmlFor="this month"
         >
           <input
             checked={false}
+            id="this month"
             onChange={[Function]}
             onKeyPress={[Function]}
             type="radio"
@@ -71,9 +79,11 @@ exports[`renders inside content with correct props and functionality 1`] = `
         </label>
         <label
           className="radio-inline"
+          htmlFor="chosen month"
         >
           <input
             checked={false}
+            id="chosen month"
             onChange={[Function]}
             onKeyPress={[Function]}
             type="radio"
@@ -82,9 +92,11 @@ exports[`renders inside content with correct props and functionality 1`] = `
         </label>
         <label
           className="radio-inline"
+          htmlFor="custom:"
         >
           <input
             checked={false}
+            id="custom:"
             onChange={[Function]}
             onKeyPress={[Function]}
             type="radio"
@@ -508,11 +520,9 @@ exports[`renders inside content with correct props and functionality 1`] = `
             }
           }
         >
-          <label
-            htmlFor="toInput"
-          >
+          <strong>
             –
-          </label>
+          </strong>
         </div>
         <div
           className="col-md-3"

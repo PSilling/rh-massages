@@ -1,17 +1,17 @@
 // react imports
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
+import React from "react";
+import TestRenderer from "react-test-renderer";
 
 // test imports
-import ProfileLink from '../../../components/links/ProfileLink';
+import ProfileLink from "../../../components/links/ProfileLink";
 
-test('renders content correctly', () => {
-  const testRenderer = TestRenderer.create(<ProfileLink />),
-        testInstance = testRenderer.root;
+test("renders content correctly", () => {
+  const testRenderer = TestRenderer.create(<ProfileLink />);
+  const testInstance = testRenderer.root;
+  const button = testInstance.findByType("button");
+  const treeJSON = testRenderer.toJSON();
 
-  let button = testInstance.findByType('button'),
-      icon = testInstance.findByProps({ className: "glyphicon glyphicon-user" }),
-      treeJSON = testRenderer.toJSON();
+  testInstance.findByProps({ className: "glyphicon glyphicon-user" });
 
   testInstance.instance.viewProfile = jest.fn();
   testRenderer.update(<ProfileLink />);

@@ -148,6 +148,7 @@ exports[`renders inside content with correct props 1`] = `
   >
     <a
       href="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
+      rel="noreferrer noopener"
       tabIndex="-1"
       target="_blank"
     >

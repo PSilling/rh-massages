@@ -4,6 +4,7 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
+    "inline-style-prefixer": "3.0.8",
     "keycloak-js": "^4.1.0",
     "localize": "^0.4.7",
     "moment": "^2.18.1",
@@ -15,14 +16,23 @@
     "react-modal-dialog": "Dean177/react-modal-dialog#support/bump-react",
     "react-notifications": "^1.4.3",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.1.4",
-    "inline-style-prefixer": "3.0.8"
+    "react-scripts": "1.1.4"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "enzyme": "^3.5.0",
     "enzyme-adapter-react-16": "^1.3.1",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
     "jest": "^23.5.0",
+    "prettier": "^1.14.3",
     "react-doc-generator": "^1.2.5",
+    "react-router": "^4.3.1",
     "react-test-renderer": "^16.4.2"
   },
   "scripts": {
@@ -30,6 +40,63 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --setupFiles=./src/test/setup.js",
     "eject": "react-scripts eject",
-    "docgen": "react-doc-generator ./src -o ./docs/README.md -i util,test -e index.js,registerServiceWorker.js"
+    "docgen": "react-doc-generator ./src -o ./docs/README.md -i util,test -e index.js,registerServiceWorker.js",
+    "lint": "eslint src",
+    "format": "eslint src --fix"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "extends": [
+      "airbnb",
+      "plugin:prettier/recommended"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+      "react/destructuring-assignment": [
+        "<enabled>",
+        "never"
+      ],
+      "jsx-a11y/no-autofocus": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "jsx-a11y/label-has-for": [
+        2,
+        {
+          "required": {
+            "every": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "no-plusplus": 0,
+      "react/no-find-dom-node": 0,
+      "react/no-array-index-key": 0,
+      "no-param-reassign": [
+        2,
+        {
+          "props": false
+        }
+      ],
+      "max-len": [
+        2,
+        120,
+        4
+      ],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    }
   }
 }
