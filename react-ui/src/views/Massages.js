@@ -2,11 +2,12 @@
 import React, { Component } from "react";
 
 // module imports
+import { Row, Col, Nav, Table } from "reactstrap";
 import moment from "moment";
 
 // component imports
-import BatchButton from "../components/buttons/BatchButton";
-import BatchDeleteButton from "../components/buttons/BatchDeleteButton";
+import TooltipButton from "../components/buttons/TooltipButton";
+import ConfirmationButton from "../components/buttons/ConfirmationButton";
 import CalendarPanel from "../components/panels/CalendarPanel";
 import InfoAlert from "../components/util/InfoAlert";
 import MassageModal from "../components/modals/MassageModal";
@@ -87,7 +88,6 @@ class Massages extends Component {
 
   updateEvents = (massages, minutes) => {
     const events = [];
-
     const masseuses = [];
 
     let color;
@@ -322,17 +322,15 @@ class Massages extends Component {
 
     return (
       <div>
-        {!localStorage.getItem("closeMassagesAlert") ? (
+        {!localStorage.getItem("closeMassagesAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
-        ) : (
-          ""
         )}
-        <div className="no-print">
+        <div className="my-3 no-print">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              {this.state.loading ? <div className="loader pull-right" /> : ""}
+              {this.state.loading && <div className="loader float-right" />}
               <h1>{_t.translate("Massages in ") + this.state.facilities[this.state.index].name}</h1>
-              <ul className="nav nav-tabs" style={{ marginBottom: "15px" }}>
+              <Nav tabs className="mb-3">
                 {this.state.facilities.map((item, index) => (
                   <Tab
                     active={index === this.state.index}
@@ -341,71 +339,61 @@ class Massages extends Component {
                     onClick={() => this.changeTabIndex(index)}
                   />
                 ))}
-              </ul>
-              {Auth.isAdmin() ? (
-                <div className="row" style={{ marginBottom: "15px" }}>
-                  <div className="col-md-6">
-                    <span style={{ marginRight: "5px" }}>
-                      <BatchButton
-                        label={_t.translate("Select")}
-                        onClick={this.changeSelectEvents}
-                        active={this.state.selectEvents}
+              </Nav>
+              <Row>
+                <Col md="6">
+                  {Auth.isAdmin() && (
+                    <TooltipButton
+                      className="mr-2"
+                      label={_t.translate("Select")}
+                      onClick={this.changeSelectEvents}
+                      active={this.state.selectEvents}
+                      tooltip={_t.translate("Select multiple massages for batch operations")}
+                    />
+                  )}
+                  <TooltipButton
+                    label={_t.translate("Just free")}
+                    onClick={this.changeFreeOnly}
+                    active={this.state.freeOnly}
+                    tooltip={_t.translate("Display only free (green) massages")}
+                  />
+                </Col>
+                <Col md="6" className="text-right">
+                  <PrintModal
+                    className="mr-2"
+                    masseuses={this.state.masseuses}
+                    facilityId={this.state.facilities[this.state.index].id}
+                    date={this.state.selectedDate}
+                    onPrint={this.setPrintMassages}
+                  />
+                  {Auth.isAdmin() && (
+                    <span>
+                      <ConfirmationButton
+                        onConfirm={this.deleteSelectedMassages}
+                        label={_t.translate("Delete selected")}
+                        disabled={this.state.selected.length === 0}
+                        tooltip={_t.translate("Delete selected massages")}
+                      />
+                      <MassageBatchAddModal
+                        className="mx-2"
+                        active={this.state.batchAddModalActive}
+                        masseuses={this.state.masseuses}
+                        facilityId={this.state.facilities[this.state.index].id}
+                        getCallback={this.getMassages}
+                        onToggle={deselect => this.toggleBatchAddModal(deselect)}
+                      />
+                      <MassageModal
+                        active={this.state.modalActive}
+                        massage={this.state.editMassage}
+                        masseuses={this.state.masseuses}
+                        facilityId={this.state.facilities[this.state.index].id}
+                        getCallback={this.getMassages}
+                        onToggle={() => this.toggleModal(null)}
                       />
                     </span>
-                    <BatchButton
-                      label={_t.translate("Just free")}
-                      onClick={this.changeFreeOnly}
-                      active={this.state.freeOnly}
-                    />
-                  </div>
-                  <div className="col-md-6 text-right">
-                    <PrintModal
-                      masseuses={this.state.masseuses}
-                      facilityId={this.state.facilities[this.state.index].id}
-                      date={this.state.selectedDate}
-                      onPrint={this.setPrintMassages}
-                    />
-                    <BatchDeleteButton
-                      onDelete={this.deleteSelectedMassages}
-                      label={_t.translate("Delete selected")}
-                      disabled={this.state.selected.length === 0}
-                    />
-                    <MassageBatchAddModal
-                      active={this.state.batchAddModalActive}
-                      masseuses={this.state.masseuses}
-                      facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
-                      onToggle={deselect => this.toggleBatchAddModal(deselect)}
-                    />
-                    <MassageModal
-                      active={this.state.modalActive}
-                      massage={this.state.editMassage}
-                      masseuses={this.state.masseuses}
-                      facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
-                      onToggle={() => this.toggleModal(null)}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="row" style={{ marginBottom: "15px" }}>
-                  <div className="col-md-6">
-                    <BatchButton
-                      label={_t.translate("Just free")}
-                      onClick={this.changeFreeOnly}
-                      active={this.state.freeOnly}
-                    />
-                  </div>
-                  <div className="col-md-6 text-right">
-                    <PrintModal
-                      masseuses={this.state.masseuses}
-                      facilityId={this.state.facilities[this.state.index].id}
-                      date={this.state.selectedDate}
-                      onPrint={this.setPrintMassages}
-                    />
-                  </div>
-                </div>
-              )}
+                  )}
+                </Col>
+              </Row>
               <CalendarPanel
                 events={this.state.events}
                 selectEvents={this.state.selectEvents}
@@ -423,27 +411,27 @@ class Massages extends Component {
           ) : (
             <div>
               <h1>{_t.translate("Massages")}</h1>
-              <h3>{_t.translate("None")}</h3>
+              <hr />
             </div>
           )}
         </div>
-        {this.state.printMassages !== null ? (
+        {this.state.printMassages !== null && (
           <div className="print-only">
             <h1>{_t.translate("Schedule")}</h1>
-            <table className="table">
+            <Table>
               <thead>
                 <tr>
-                  <th>{_t.translate("Date")}</th>
-                  <th>{_t.translate("Time")}</th>
-                  <th>{_t.translate("Masseur/Masseuse")}</th>
-                  <th width="40%">{_t.translate("Client")}</th>
+                  <th scope="col">{_t.translate("Date")}</th>
+                  <th scope="col">{_t.translate("Time")}</th>
+                  <th scope="col">{_t.translate("Masseur/Masseuse")}</th>
+                  <th scope="col" width="40%">
+                    {_t.translate("Client")}
+                  </th>
                 </tr>
               </thead>
               <tbody>{this.createPrintRows()}</tbody>
-            </table>
+            </Table>
           </div>
-        ) : (
-          ""
         )}
       </div>
     );

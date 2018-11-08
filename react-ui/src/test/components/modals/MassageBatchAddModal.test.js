@@ -1,12 +1,13 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
-import BatchButton from "../../../components/buttons/BatchButton";
+import LabeledInput from "../../../components/formitems/LabeledInput";
 import MassageBatchAddModal from "../../../components/modals/MassageBatchAddModal";
 import ModalActions from "../../../components/buttons/ModalActions";
 import Tab from "../../../components/navs/Tab";
+import TooltipButton from "../../../components/buttons/TooltipButton";
 
 beforeAll(() => {
   Date.now = jest.fn(() => 0);
@@ -16,7 +17,7 @@ test("renders inside content with correct props", () => {
   const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
   const testMasseuses = ["test"];
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <MassageBatchAddModal
       active
       facilityId={1}
@@ -26,37 +27,35 @@ test("renders inside content with correct props", () => {
       withPortal={false}
     />
   );
-  const testInstance = testRenderer.root;
-  const buttons = testInstance.findAllByType(BatchButton);
-  const actions = testInstance.findByType(ModalActions);
-  const datalistOption = testInstance.findByType("option");
-  const treeJSON = testRenderer.toJSON();
+  const buttons = wrapper.find(TooltipButton);
+  const actions = wrapper.find(ModalActions);
+  const inputs = wrapper.find(LabeledInput);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
 
-  buttons[0].props.onClick();
+  buttons.get(0).props.onClick();
 
   expect(testToggleFunction).toHaveBeenLastCalledWith(false);
 
-  actions.props.onClose();
+  actions.props().onClose();
 
   expect(testToggleFunction).toHaveBeenLastCalledWith(false);
   expect(testToggleFunction).toHaveBeenCalledTimes(2);
   expect(testGetFunction).not.toHaveBeenCalled();
 
-  actions.props.onProceed();
+  actions.props().onProceed();
 
   expect(testToggleFunction).toHaveBeenCalledTimes(2);
   expect(testGetFunction).not.toHaveBeenCalled();
-  expect(datalistOption.props.value).toBe("test");
-  expect(treeJSON).toMatchSnapshot();
+  expect(inputs.get(0).props.options).toBe(testMasseuses);
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("user is able to properly manage the number of rules", () => {
   const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
   const testMasseuses = ["test"];
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <MassageBatchAddModal
       active
       facilityId={1}
@@ -66,29 +65,27 @@ test("user is able to properly manage the number of rules", () => {
       withPortal={false}
     />
   );
-  const testInstance = testRenderer.root;
-  const buttons = testInstance.findAllByType(BatchButton);
-  expect(testInstance.instance.state.rules.length).toBe(1);
+  let tabs = wrapper.find(Tab);
+  expect(wrapper.instance().state.rules.length).toBe(1);
 
   for (let i = 0; i < 4; i++) {
-    buttons[2].props.onClick();
+    tabs.get(1).props.onClick();
   }
-  let tabs = testInstance.findAllByType(Tab);
 
-  expect(testInstance.instance.state.rules.length).toBe(5);
-  expect(testInstance.instance.state.index).toBe(4);
-  expect(buttons[2].props.disabled).toBe(true);
-  expect(buttons[3].props.disabled).toBe(false);
+  expect(wrapper.instance().state.rules.length).toBe(5);
+  expect(wrapper.instance().state.index).toBe(4);
+
+  tabs = wrapper.find(Tab);
   expect(tabs.length).toBe(5);
+  expect(tabs.get(4).label).not.toEqual("+");
 
   for (let i = 0; i < 4; i++) {
-    buttons[3].props.onClick();
+    tabs.get(4 - i).props.onRemoveClick();
   }
-  tabs = testInstance.findAllByType(Tab);
+  tabs = wrapper.find(Tab);
 
-  expect(testInstance.instance.state.rules.length).toBe(1);
-  expect(testInstance.instance.state.index).toBe(0);
-  expect(buttons[2].props.disabled).toBe(false);
-  expect(buttons[3].props.disabled).toBe(true);
-  expect(tabs.length).toBe(1);
+  expect(wrapper.instance().state.rules.length).toBe(1);
+  expect(wrapper.instance().state.index).toBe(0);
+  expect(tabs.get(1).props.label).toEqual("+");
+  expect(tabs.length).toBe(2);
 });

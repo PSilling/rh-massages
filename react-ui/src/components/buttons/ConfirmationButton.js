@@ -4,15 +4,15 @@ import PropTypes from "prop-types";
 
 // component imports
 import ConfirmationModal from "../modals/ConfirmationModal";
+import TooltipButton from "./TooltipButton";
 
 // util imports
 import _t from "../../util/Translations";
 
 /**
- * A button used for batch Massage deletion. Contains a ConfirmationModal to confirm
- * the action.
+ * A TooltipButton with a ConfirmationModal beside it.
  */
-class BatchDeleteButton extends Component {
+class ConfirmationButton extends Component {
   state = { active: false };
 
   handleToggle = () => {
@@ -20,18 +20,17 @@ class BatchDeleteButton extends Component {
   };
 
   render() {
+    const { onConfirm, dialogMessage, ...rest } = this.props;
     return (
       <span>
-        <button type="button" className="btn btn-default" onClick={this.handleToggle} disabled={this.props.disabled}>
-          {this.props.label}
-        </button>
+        <TooltipButton {...rest} onClick={this.handleToggle} />
         {this.state.active && (
           <ConfirmationModal
-            message={_t.translate("Are you sure? This action cannot be reverted.")}
+            message={this.props.dialogMessage}
             onClose={this.handleToggle}
             onConfirm={() => {
               this.handleToggle();
-              this.props.onDelete();
+              this.props.onConfirm();
             }}
           />
         )}
@@ -40,18 +39,24 @@ class BatchDeleteButton extends Component {
   }
 }
 
-BatchDeleteButton.propTypes = {
+ConfirmationButton.propTypes = {
   /** function to be called on action confirmation */
-  onDelete: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  /** message disabled in the ConfirmationModal */
+  dialogMessage: PropTypes.string,
   /** whether the button should be disabled */
   disabled: PropTypes.bool,
   /** button label to be displayed */
-  label: PropTypes.string
+  label: PropTypes.string,
+  /** tooltip shown over the button */
+  tooltip: PropTypes.string
 };
 
-BatchDeleteButton.defaultProps = {
+ConfirmationButton.defaultProps = {
+  dialogMessage: _t.translate("Are you sure? This action cannot be reverted."),
   disabled: false,
-  label: "Delete"
+  label: "Delete",
+  tooltip: "Delete"
 };
 
-export default BatchDeleteButton;
+export default ConfirmationButton;

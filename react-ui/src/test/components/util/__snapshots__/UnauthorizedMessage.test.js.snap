@@ -2,12 +2,12 @@
 
 exports[`renders content with correct props 1`] = `
 <div>
-  <h1>
-    test
-  </h1>
-  <hr />
   <h2>
-    Neautorizováno
+    test
   </h2>
+  <hr />
+  <h3>
+    Neautorizováno
+  </h3>
 </div>
 `;

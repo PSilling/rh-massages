@@ -1,121 +1,618 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders content correctly 1`] = `
-<div>
-  <div
-    className="alert alert-info alert-dismissible"
-    style={
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Facilities />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <InfoAlert
+          onClose={[Function]}
+>
+          Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
+</InfoAlert>,
+        <h1>
+          Budovy
+</h1>,
+        <hr />,
+        <Table
+          hover={true}
+          responsive={true}
+          responsiveTag="div"
+          size="sm"
+          striped={true}
+          tag="table"
+>
+          <thead>
+                    <tr>
+                              <th
+                                        scope="col"
+                              >
+                                        Název
+                              </th>
+                              <th
+                                        scope="col"
+                              >
+                                        <FacilityModal
+                                                  active={false}
+                                                  facility={null}
+                                                  getCallback={[Function]}
+                                                  onToggle={[Function]}
+                                                  withPortal={true}
+                                        />
+                              </th>
+                    </tr>
+          </thead>
+          <tbody>
+                    <FacilityRow
+                              facility={
+                                        Object {
+                                                  "id": 1,
+                                                  "name": "test",
+                                                }
+                              }
+                              onDelete={[Function]}
+                              onEdit={[Function]}
+                    />
+          </tbody>
+</Table>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
       Object {
-        "marginBottom": "15px",
-      }
-    }
-  >
-    <button
-      aria-label="Close"
-      className="close"
-      onClick={[Function]}
-      title="Zavřít"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-      >
-        ×
-      </span>
-    </button>
-    Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
-  </div>
-  <h1>
-    
-    Budovy
-  </h1>
-  <hr />
-  <table
-    className="table table-hover table-responsive table-striped table-condensed"
-  >
-    <thead>
-      <tr>
-        <th>
-          Název
-        </th>
-        <th>
-          <div
-            className="pull-right"
-          >
-            <span>
-              <button
-                className="btn btn-default"
-                onClick={[Function]}
-                title="Přidat"
-                type="button"
-              >
-                <span
-                  className="glyphicon glyphicon-plus"
-                />
-              </button>
-            </span>
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          test
-        </td>
-        <td
-          width="105px"
-        >
-          <span
-            className="pull-right"
-          >
-            <span
-              style={
-                Object {
-                  "marginRight": "5px",
-                }
-              }
-            >
-              <span>
-                <button
-                  className="btn btn-link"
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "color": "#000",
-                    }
-                  }
-                  title="Upravit"
-                  type="button"
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+          "onClose": [Function],
+        },
+        "ref": null,
+        "rendered": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            false,
+            "Budovy",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          false,
+          "Budovy",
+        ],
+        "type": "h1",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "hr",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <thead>
+              <tr>
+                            <th
+                                          scope="col"
+                            >
+                                          Název
+                            </th>
+                            <th
+                                          scope="col"
+                            >
+                                          <FacilityModal
+                                                        active={false}
+                                                        facility={null}
+                                                        getCallback={[Function]}
+                                                        onToggle={[Function]}
+                                                        withPortal={true}
+                                          />
+                            </th>
+              </tr>
+</thead>,
+            <tbody>
+              <FacilityRow
+                            facility={
+                                          Object {
+                                                        "id": 1,
+                                                        "name": "test",
+                                                      }
+                            }
+                            onDelete={[Function]}
+                            onEdit={[Function]}
+              />
+</tbody>,
+          ],
+          "hover": true,
+          "responsive": true,
+          "responsiveTag": "div",
+          "size": "sm",
+          "striped": true,
+          "tag": "table",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <tr>
+                <th
+                                scope="col"
                 >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-              </span>
-            </span>
-            <span>
-              <button
-                className="btn btn-link"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "color": "#000",
+                                Název
+                </th>
+                <th
+                                scope="col"
+                >
+                                <FacilityModal
+                                                active={false}
+                                                facility={null}
+                                                getCallback={[Function]}
+                                                onToggle={[Function]}
+                                                withPortal={true}
+                                />
+                </th>
+</tr>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <th
+                    scope="col"
+>
+                    Název
+</th>,
+                  <th
+                    scope="col"
+>
+                    <FacilityModal
+                                        active={false}
+                                        facility={null}
+                                        getCallback={[Function]}
+                                        onToggle={[Function]}
+                                        withPortal={true}
+                    />
+</th>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Název",
+                    "scope": "col",
+                  },
+                  "ref": null,
+                  "rendered": "Název",
+                  "type": "th",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <FacilityModal
+                      active={false}
+                      facility={null}
+                      getCallback={[Function]}
+                      onToggle={[Function]}
+                      withPortal={true}
+/>,
+                    "scope": "col",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "facility": null,
+                      "getCallback": [Function],
+                      "onToggle": [Function],
+                      "withPortal": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "th",
+                },
+              ],
+              "type": "tr",
+            },
+            "type": "thead",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <FacilityRow
+                  facility={
+                                    Object {
+                                                      "id": 1,
+                                                      "name": "test",
+                                                    }
                   }
-                }
-                title="Smazat"
-                type="button"
-              >
-                <span
-                  className="glyphicon glyphicon-trash"
+                  onDelete={[Function]}
+                  onEdit={[Function]}
+/>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "class",
+                "props": Object {
+                  "facility": Object {
+                    "id": 1,
+                    "name": "test",
+                  },
+                  "onDelete": [Function],
+                  "onEdit": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": "tbody",
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <InfoAlert
+            onClose={[Function]}
+>
+            Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
+</InfoAlert>,
+          <h1>
+            Budovy
+</h1>,
+          <hr />,
+          <Table
+            hover={true}
+            responsive={true}
+            responsiveTag="div"
+            size="sm"
+            striped={true}
+            tag="table"
+>
+            <thead>
+                        <tr>
+                                    <th
+                                                scope="col"
+                                    >
+                                                Název
+                                    </th>
+                                    <th
+                                                scope="col"
+                                    >
+                                                <FacilityModal
+                                                            active={false}
+                                                            facility={null}
+                                                            getCallback={[Function]}
+                                                            onToggle={[Function]}
+                                                            withPortal={true}
+                                                />
+                                    </th>
+                        </tr>
+            </thead>
+            <tbody>
+                        <FacilityRow
+                                    facility={
+                                                Object {
+                                                            "id": 1,
+                                                            "name": "test",
+                                                          }
+                                    }
+                                    onDelete={[Function]}
+                                    onEdit={[Function]}
+                        />
+            </tbody>
+</Table>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+            "onClose": [Function],
+          },
+          "ref": null,
+          "rendered": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              false,
+              "Budovy",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            false,
+            "Budovy",
+          ],
+          "type": "h1",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "hr",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <thead>
+                <tr>
+                                <th
+                                                scope="col"
+                                >
+                                                Název
+                                </th>
+                                <th
+                                                scope="col"
+                                >
+                                                <FacilityModal
+                                                                active={false}
+                                                                facility={null}
+                                                                getCallback={[Function]}
+                                                                onToggle={[Function]}
+                                                                withPortal={true}
+                                                />
+                                </th>
+                </tr>
+</thead>,
+              <tbody>
+                <FacilityRow
+                                facility={
+                                                Object {
+                                                                "id": 1,
+                                                                "name": "test",
+                                                              }
+                                }
+                                onDelete={[Function]}
+                                onEdit={[Function]}
                 />
-              </button>
-              
-            </span>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</tbody>,
+            ],
+            "hover": true,
+            "responsive": true,
+            "responsiveTag": "div",
+            "size": "sm",
+            "striped": true,
+            "tag": "table",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <tr>
+                  <th
+                                    scope="col"
+                  >
+                                    Název
+                  </th>
+                  <th
+                                    scope="col"
+                  >
+                                    <FacilityModal
+                                                      active={false}
+                                                      facility={null}
+                                                      getCallback={[Function]}
+                                                      onToggle={[Function]}
+                                                      withPortal={true}
+                                    />
+                  </th>
+</tr>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <th
+                      scope="col"
+>
+                      Název
+</th>,
+                    <th
+                      scope="col"
+>
+                      <FacilityModal
+                                            active={false}
+                                            facility={null}
+                                            getCallback={[Function]}
+                                            onToggle={[Function]}
+                                            withPortal={true}
+                      />
+</th>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Název",
+                      "scope": "col",
+                    },
+                    "ref": null,
+                    "rendered": "Název",
+                    "type": "th",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <FacilityModal
+                        active={false}
+                        facility={null}
+                        getCallback={[Function]}
+                        onToggle={[Function]}
+                        withPortal={true}
+/>,
+                      "scope": "col",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "facility": null,
+                        "getCallback": [Function],
+                        "onToggle": [Function],
+                        "withPortal": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "th",
+                  },
+                ],
+                "type": "tr",
+              },
+              "type": "thead",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <FacilityRow
+                    facility={
+                                        Object {
+                                                            "id": 1,
+                                                            "name": "test",
+                                                          }
+                    }
+                    onDelete={[Function]}
+                    onEdit={[Function]}
+/>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "class",
+                  "props": Object {
+                    "facility": Object {
+                      "id": 1,
+                      "name": "test",
+                    },
+                    "onDelete": [Function],
+                    "onEdit": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "tbody",
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

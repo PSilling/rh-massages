@@ -1,16 +1,16 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
-import Datetime from "react-datetime";
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
+import { Row, Col, Modal, ModalBody } from "reactstrap";
 import moment from "moment";
 
 // component imports
-import AddButton from "../iconbuttons/AddButton";
+import LabeledDatetime from "../formitems/LabeledDatetime";
+import LabeledInput from "../formitems/LabeledInput";
 import ModalActions from "../buttons/ModalActions";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
@@ -21,7 +21,7 @@ import Util from "../../util/Util";
  * Based on given values can be used for both creating and editing of Massages.
  */
 class MassageModal extends Component {
-  state = { date: null, time: null, masseuse: "" };
+  state = { date: moment().add(1, "hours"), time: moment("00:30", "HH:mm"), masseuse: "" };
 
   yesterday = moment().subtract(1, "day");
 
@@ -120,8 +120,8 @@ class MassageModal extends Component {
     );
   };
 
-  handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
+  handleKeyPress = event => {
+    if (event.key === "Enter" && document.activeElement.tabIndex === -1) {
       if (this.props.massage === null || this.props.massage.generated) {
         this.addMassage();
       } else {
@@ -130,127 +130,93 @@ class MassageModal extends Component {
     }
   };
 
-  handleInputKeyPress = event => {
-    if (event.key === "Enter") {
-      if (this.props.massage === null || this.props.massage.generated) {
-        this.addMassage();
-      } else {
-        this.editMassage();
-      }
+  handleEnterPress = () => {
+    if (this.props.massage === null || this.props.massage.generated) {
+      this.addMassage();
+    } else {
+      this.editMassage();
     }
   };
 
-  renderInsides = () => (
-    <div>
-      <h2>
-        {this.props.massage === null || this.props.massage.generated
-          ? _t.translate("New Massage")
-          : _t.translate("Edit Massage")}
-      </h2>
-      <hr />
-      <div className="form-group col-md-12">
-        <label htmlFor="masseuseInput">{_t.translate("Masseur/Masseuse")}</label>
-        <input
-          id="masseuseInput"
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>
+            {this.props.massage === null || this.props.massage.generated
+              ? _t.translate("New Massage")
+              : _t.translate("Edit Massage")}
+          </h3>
+          <hr />
+        </Col>
+      </Row>
+
+      <Row>
+        <LabeledInput
+          label={_t.translate("Masseur/Masseuse")}
           value={this.state.masseuse}
           onChange={this.changeMasseuse}
-          className="form-control"
-          autoFocus
-          onFocus={Util.moveCursorToEnd}
-          onKeyPress={this.handleInputKeyPress}
+          onEnterPress={this.handleEnterPress}
+          tooltip={_t.translate("The name of the masseur or massuese providing this massage")}
           type="text"
           maxLength="64"
-          placeholder={_t.translate("Masseur/Masseuse")}
-          list="masseuses"
+          options={this.props.masseuses}
         />
-        <datalist id="masseuses">
-          {this.props.masseuses.map(item => (
-            <option key={item} value={item} />
-          ))}
-        </datalist>
-      </div>
+      </Row>
 
-      <div className="form-group col-md-12">
-        <label htmlFor="durationInput">{_t.translate("Duration")}</label>
-        <div className="row">
-          <div className="col-md-3">
-            <Datetime
-              value={this.state.time}
-              onChange={this.changeTime}
-              dateFormat={false}
-              inputProps={{
-                id: "durationInput",
-                placeholder: _t.translate("Duration"),
-                onKeyPress: this.handleInputKeyPress
-              }}
-            />
-          </div>
-        </div>
-      </div>
+      <Row>
+        <LabeledDatetime
+          size="3"
+          label={_t.translate("Duration")}
+          value={this.state.time}
+          onChange={this.changeTime}
+          onEnterPress={this.handleEnterPress}
+          tooltip={_t.translate("How long should the massage be")}
+          dateFormat={false}
+        />
+      </Row>
 
-      <div className="form-group col-md-12">
-        <label htmlFor="dateInput">{_t.translate("Massage time")}</label>
-        <div className="row">
-          <div className="col-md-4">
-            <Datetime
-              value={this.state.date}
-              onChange={this.changeDate}
-              isValidDate={current => current.isAfter(this.yesterday)}
-              inputProps={{
-                id: "dateInput",
-                placeholder: _t.translate("Massage time"),
-                onKeyPress: this.handleInputKeyPress
-              }}
-            />
-          </div>
-        </div>
-      </div>
+      <Row>
+        <LabeledDatetime
+          size="4"
+          label={_t.translate("Massage time")}
+          value={this.state.date}
+          onChange={this.changeDate}
+          onEnterPress={this.handleEnterPress}
+          tooltip={_t.translate("When should the massage be provided")}
+          isValidDate={current => current.isAfter(this.yesterday)}
+        />
+      </Row>
+
       {this.props.massage === null || this.props.massage.generated ? (
-        <ModalActions
-          primaryLabel={_t.translate("Add")}
-          onProceed={this.addMassage}
-          onClose={this.props.onToggle}
-          autoFocus={false}
-        />
+        <ModalActions primaryLabel={_t.translate("Add")} onProceed={this.addMassage} onClose={this.props.onToggle} />
       ) : (
-        <ModalActions
-          primaryLabel={_t.translate("Edit")}
-          onProceed={this.editMassage}
-          onClose={this.props.onToggle}
-          autoFocus={false}
-        />
+        <ModalActions primaryLabel={_t.translate("Edit")} onProceed={this.editMassage} onClose={this.props.onToggle} />
       )}
-    </div>
+    </ModalBody>
   );
 
-  renderModal = () => {
-    if (this.props.withPortal) {
-      return (
-        <ModalContainer onClose={this.props.onToggle}>
-          <ModalDialog
-            onClose={this.props.onToggle}
-            width="50%"
-            style={{ outline: "none" }}
-            tabIndex="-1"
-            onKeyPress={this.handleModalKeyPress}
-            ref={dialog => {
-              this.modalDialog = dialog;
-            }}
-          >
-            {this.renderInsides()}
-          </ModalDialog>
-        </ModalContainer>
-      );
-    }
-    return this.renderInsides();
-  };
+  createModal = () =>
+    this.props.withPortal ? (
+      <Modal size="lg" isOpen toggle={this.props.onToggle} tabIndex="-1" onKeyPress={this.handleKeyPress}>
+        {this.createInsides()}
+      </Modal>
+    ) : (
+      this.createInsides()
+    );
 
   render() {
     return (
       <span>
-        <AddButton onAdd={this.props.onToggle} />
+        <TooltipIconButton
+          icon="plus"
+          onClick={this.props.onToggle}
+          tooltip={_t.translate("Create a new massage")}
+          size="md"
+          style={{}}
+        />
 
-        {this.props.active && this.renderModal()}
+        {this.props.active && this.createModal()}
       </span>
     );
   }

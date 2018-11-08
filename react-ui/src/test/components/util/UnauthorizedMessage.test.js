@@ -9,8 +9,8 @@ import _t from "../../../util/Translations";
 test("renders content with correct props", () => {
   const testRenderer = TestRenderer.create(<UnauthorizedMessage title="test" />);
   const testInstance = testRenderer.root;
-  const header = testInstance.findByType("h1");
-  const message = testInstance.findByType("h2");
+  const header = testInstance.findByType("h2");
+  const message = testInstance.findByType("h3");
   const treeJSON = testRenderer.toJSON();
 
   expect(header.props.children).toEqual("test");

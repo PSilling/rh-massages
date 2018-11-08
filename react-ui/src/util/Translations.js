@@ -35,6 +35,12 @@ const myLocalize = new Localize({
   "Create Massages": {
     cs: "Vytvořit masáže"
   },
+  "Create a new facility": {
+    cs: "Vytvořit novou budovu"
+  },
+  "Create a new massage": {
+    cs: "Vytvořit novou masáž"
+  },
   "Edit Massage": {
     cs: "Upravit masáž"
   },
@@ -125,11 +131,8 @@ const myLocalize = new Localize({
   "Lunch break": {
     cs: "Obědová přestávka"
   },
-  "Lunch after": {
-    cs: "Oběd po"
-  },
-  "...massages": {
-    cs: "...masážích"
+  "Massages before lunch": {
+    cs: "Masáží před obědem"
   },
   "Number of massages per day": {
     cs: "Počet masáží denně"
@@ -146,11 +149,11 @@ const myLocalize = new Localize({
   "Rule applies after": {
     cs: "Vzor platí od"
   },
-  "Import rules": {
-    cs: "Importovat vzory"
+  Import: {
+    cs: "Importovat"
   },
-  "Export rules": {
-    cs: "Exportovat vzory"
+  Export: {
+    cs: "Exportovat"
   },
   More: {
     cs: "Více"
@@ -347,8 +350,8 @@ const myLocalize = new Localize({
   "Not all massages were edited as in some cases the new date would have been before now.": {
     cs: "Ne všechny masáže byly změněny, protože v některých případech by byl nový termín před nynějškem."
   },
-  "page doesn't exist:": {
-    cs: "stránka neexistuje:"
+  " (page doesn't exist): ": {
+    cs: " (stránka neexistuje): "
   },
   "Back to main page": {
     cs: "Zpět na hlavní stránku"
@@ -390,7 +393,7 @@ const myLocalize = new Localize({
     cs: "Další měsíc"
   },
   Next: {
-    cs: "Další"
+    cs: "Nadcházející"
   },
   Previous: {
     cs: "Předchozí"
@@ -461,6 +464,110 @@ const myLocalize = new Localize({
     cs: "Rozpis nových a zrušení připsaných masáží"
   },
 
+  // tooltips
+  "View per week": {
+    cs: "Zobrazit po týdnech"
+  },
+  "View per month": {
+    cs: "Zobrazit po měsících"
+  },
+  "How the facility should be called": {
+    cs: "Jak by se tato budova měla jmenovat"
+  },
+  "The name of the masseur or massuese providing this massage": {
+    cs: "Jméno maséra anebo masérky, který/á vykonává tuto masáž"
+  },
+  "How long should the massage be": {
+    cs: "Jak dlouhá by měla masáž být"
+  },
+  "When should the massage be provided": {
+    cs: "Kdy by se měla masáž konat"
+  },
+  "Create multiple massages at once": {
+    cs: "Vytvořit více masáží najednou"
+  },
+  "Import previously downloaded rules": {
+    cs: "Importovat dříve stažená pravidla"
+  },
+  "Download a configuration file that you can use to import these rules at a later date": {
+    cs: "Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+  },
+  "Add a new creation macro": {
+    cs: "Přidat nový vzor"
+  },
+  "Remove this creation macro": {
+    cs: "Odstranit tento vzor"
+  },
+  "The date after which the defined massages should be created": {
+    cs: "Datum, po kterém by se měly začít tvořit definované masáže"
+  },
+  "The number of weeks (after the start date) this rule should be applied to": {
+    cs: "Počet týdnů (po startovním datu), po který by měl platit tento vzor"
+  },
+  "The name of the masseur or massuese providing this rule's massages": {
+    cs: "Jméno maséra anebo masérky, který/á by měl/a vykonávat maséže tohoto vzoru"
+  },
+  "Information about the massages that should be created": {
+    cs: "Informace o masážích, které sa mají vytvořit"
+  },
+  "The time after which massages will start to be created each day": {
+    cs: "Čas, po kterém se každý den začnou vytvářet požadované masáže"
+  },
+  "How long should each of the created massages be": {
+    cs: "Jak dlouho by měly vytvořené masáže trvat"
+  },
+  "How many massages should be created per day": {
+    cs: "Kolik masáží by se mělo denně vytvořit"
+  },
+  "Information about breaks between individual massages": {
+    cs: "Informace o přestávkách mezi jednotlivými masážemi"
+  },
+  "Length of the default break after each massage (not included the prelunch massage)": {
+    cs: "Délka základní přestávky po každé masáži (mimo předobědovou)"
+  },
+  "Length of the lunch break": {
+    cs: "Délka obědové přestávky"
+  },
+  "Number of massages before the lunch break": {
+    cs: "Počet masáží před obědovou přestávkou"
+  },
+  "Unassign from this massage": {
+    cs: "Odepsat se z této masáže"
+  },
+  "Show massage schedule print options": {
+    cs: "Ukázat možnosti tisku rozpisu masáží"
+  },
+  "Delete selected massages": {
+    cs: "Smazat vybrané masáže"
+  },
+  "Clear the massage history": {
+    cs: "Vyčistit historii masáží"
+  },
+  "Select multiple massages for batch operations": {
+    cs: "Výběr více masáží pro hromadné operace"
+  },
+  "Display only free (green) massages": {
+    cs: "Zobrazit pouze volné (zelené) masáže"
+  },
+  "The days on which the defined massages should be created": {
+    cs: "Dny, ve kterých by měly být požadované masáže vytvářeny"
+  },
+  "Masseuse, masseur or client name to use as a massages filter": {
+    cs: "Masérka, masér anebo klient pro filtrování masáží"
+  },
+  "": {
+    cs: ""
+  },
+  "": {
+    cs: ""
+  },
+  "": {
+    cs: ""
+  },
+  "": {
+    cs: ""
+  },
+
   // moment localization
   January_February_March_April_May_June_July_August_September_October_November_December: {
     cs: "Leden_Únor_Březen_Duben_Květen_Červen_Červenec_Srpen_Září_Říjen_Listopad_Prosinec"
@@ -472,7 +579,7 @@ const myLocalize = new Localize({
     cs: "Neděle_Pondělí_Úterý_Středa_Čtvrtek_Pátek_Sobota"
   },
   Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday: {
-    cs: "Pondělí_Úterý_Středa_Čtvrtek_Pátek_Sobota_Neděle"
+    cs: "Pondělí_Úterý_Středu_Čtvrtek_Pátek_Sobotu_Neděli"
   },
   Sun_Mon_Tue_Wed_Thu_Fri_Sat: {
     cs: "Ne_Po_Út_St_Čt_Pá_So"

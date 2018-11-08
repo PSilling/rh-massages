@@ -1,13 +1,13 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
 import Auth from "../../../util/Auth";
-import DeleteButton from "../../../components/iconbuttons/DeleteButton";
-import EditButton from "../../../components/iconbuttons/EditButton";
+import ConfirmationIconButton from "../../../components/iconbuttons/ConfirmationIconButton";
 import MassageEventModal from "../../../components/modals/MassageEventModal";
 import ModalActions from "../../../components/buttons/ModalActions";
+import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
 import _t from "../../../util/Translations";
 
 // test mocks
@@ -32,7 +32,7 @@ test("renders inside content with correct props", () => {
       facility: { id: 1, name: "test" }
     }
   };
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <MassageEventModal
       event={testEvent}
       label={_t.translate("Assign me")}
@@ -43,24 +43,19 @@ test("renders inside content with correct props", () => {
       withPortal={false}
     />
   );
-  const testInstance = testRenderer.root;
-  const editButton = testInstance.findByType(EditButton);
-  const deleteButton = testInstance.findByType(DeleteButton);
-  const actions = testInstance.findByType(ModalActions);
-  const definitions = testInstance.findAllByType("dd");
-  const treeJSON = testRenderer.toJSON();
+  const editButton = wrapper.find(TooltipIconButton);
+  const deleteButton = wrapper.find(ConfirmationIconButton);
+  const actions = wrapper.find(ModalActions);
+  const definitions = wrapper.find("dd");
 
-  testInstance.findByProps({ className: "text-success" });
-
-  expect(editButton.props.onEdit).toBe(testEditFunction);
-  expect(deleteButton.props.onDelete).toBe(testDeleteFunction);
-  expect(actions.props.children).not.toEqual("");
-  expect(actions.props.title).toBe("");
-  expect(actions.props.disabled).toBe(false);
-  expect(actions.props.onProceed).toBe(testConfirmFunction);
-  expect(actions.props.onClose).toBe(testCloseFunction);
-  expect(definitions[0].props.children).toEqual(testEvent.massage.facility.name);
-  expect(treeJSON).toMatchSnapshot();
+  expect(editButton.props().onClick).toBe(testEditFunction);
+  expect(deleteButton.props().onConfirm).toBe(testDeleteFunction);
+  expect(actions.props().children).not.toEqual("");
+  expect(actions.props().disabled).toBe(false);
+  expect(actions.props().onProceed).toBe(testConfirmFunction);
+  expect(actions.props().onClose).toBe(testCloseFunction);
+  expect(definitions.get(0).props.children).toEqual(testEvent.massage.facility.name);
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("applies correct non-editation mode changes", () => {
@@ -76,7 +71,7 @@ test("applies correct non-editation mode changes", () => {
       facility: { id: 1, name: "test" }
     }
   };
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <MassageEventModal
       event={testEvent}
       label="test"
@@ -85,10 +80,7 @@ test("applies correct non-editation mode changes", () => {
       withPortal={false}
     />
   );
-  const testInstance = testRenderer.root;
-  const editButtons = testInstance.findAllByType(EditButton);
-
-  testInstance.findByProps({ className: "text-danger" });
+  const editButtons = wrapper.find(TooltipIconButton);
 
   expect(editButtons.length).toBe(0);
 });
@@ -109,7 +101,7 @@ test("hides non-admin buttons properly", () => {
       facility: { id: 1, name: "test" }
     }
   };
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <MassageEventModal
       event={testEvent}
       label="test"
@@ -118,9 +110,8 @@ test("hides non-admin buttons properly", () => {
       withPortal={false}
     />
   );
-  const testInstance = testRenderer.root;
-  const editButtons = testInstance.findAllByType(EditButton);
-  const deleteButtons = testInstance.findAllByType(DeleteButton);
+  const editButtons = wrapper.find(TooltipIconButton);
+  const deleteButtons = wrapper.find(ConfirmationIconButton);
 
   expect(editButtons.length).toBe(0);
   expect(deleteButtons.length).toBe(0);

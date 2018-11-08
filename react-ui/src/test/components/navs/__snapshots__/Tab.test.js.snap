@@ -2,20 +2,17 @@
 
 exports[`renders content with correct props 1`] = `
 <li
-  className=""
+  className="nav-item"
 >
   <a
+    className="nav-link"
     onClick={[Function]}
-    onKeyPress={[Function]}
-    role="menuitem"
     style={
       Object {
         "color": "#888",
         "cursor": "pointer",
-        "fontSize": "16px",
       }
     }
-    tabIndex="-1"
   >
     test
   </a>

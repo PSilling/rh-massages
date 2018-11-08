@@ -9,7 +9,7 @@ const put = jest.fn((url, data, update) => {
 });
 const notify = jest.fn();
 const clearAllIntervals = jest.fn();
-const addToCalendar = jest.fn();
+const getEventLink = jest.fn();
 
 const isEmpty = jest.fn(object => object === null || typeof object === "undefined" || object === "");
 
@@ -22,13 +22,24 @@ const findInArrayById = jest.fn((array, id) => {
   return -1;
 });
 
+let tooltipCount = 0;
+const getTooltipTargets = jest.fn(count => {
+  const targets = [];
+  for (let i = 0; i < count; i++) {
+    targets.push(`Tooltip${tooltipCount++}`);
+  }
+  return targets;
+});
+
 module.exports = {
   get,
   post,
   put,
   notify,
   clearAllIntervals,
-  addToCalendar,
+  getEventLink,
   isEmpty,
-  findInArrayById
+  findInArrayById,
+  tooltipCount,
+  getTooltipTargets
 };

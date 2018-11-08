@@ -1,26 +1,24 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
-import DeleteButton from "../../../components/iconbuttons/DeleteButton";
-import EditButton from "../../../components/iconbuttons/EditButton";
+import ConfirmationIconButton from "../../../components/iconbuttons/ConfirmationIconButton";
 import FacilityRow from "../../../components/rows/FacilityRow";
+import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
 
 test("renders content with correct props", () => {
   const testEditFunction = jest.fn();
   const testDeleteFunction = jest.fn();
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <FacilityRow facility={{ name: "test" }} onEdit={testEditFunction} onDelete={testDeleteFunction} />
   );
-  const testInstance = testRenderer.root;
-  const cells = testInstance.findAllByType("td");
-  const editButton = testInstance.findByType(EditButton);
-  const deleteButton = testInstance.findByType(DeleteButton);
-  const treeJSON = testRenderer.toJSON();
+  const cells = wrapper.find("td");
+  const editButton = wrapper.find(TooltipIconButton);
+  const deleteButton = wrapper.find(ConfirmationIconButton);
 
-  expect(cells[0].props.children).toEqual("test");
-  expect(editButton.props.onEdit).toBe(testEditFunction);
-  expect(deleteButton.props.onDelete).toBe(testDeleteFunction);
-  expect(treeJSON).toMatchSnapshot();
+  expect(cells.get(0).props.children).toEqual("test");
+  expect(editButton.props().onClick).toBe(testEditFunction);
+  expect(deleteButton.props().onConfirm).toBe(testDeleteFunction);
+  expect(wrapper).toMatchSnapshot();
 });

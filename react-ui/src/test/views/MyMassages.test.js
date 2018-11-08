@@ -1,8 +1,7 @@
 // react imports
 import React from "react";
-import { MemoryRouter } from "react-router";
 import { Link } from "react-router-dom";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
 import MyMassages from "../../views/MyMassages";
@@ -17,17 +16,11 @@ afterAll(() => {
 });
 
 test("renders content correctly", () => {
-  const testRenderer = TestRenderer.create(
-    <MemoryRouter>
-      <MyMassages />
-    </MemoryRouter>
-  );
-  const testInstance = testRenderer.root;
-  const treeJSON = testRenderer.toJSON();
+  const wrapper = shallow(<MyMassages />);
+  const link = wrapper.find(Link);
 
-  testInstance.findByType(Link);
-
-  expect(treeJSON).toMatchSnapshot();
+  expect(link.length).toBe(1);
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("properly changes state variables", () => {
@@ -40,34 +33,26 @@ test("properly changes state variables", () => {
       facility: { id: 1, name: "test" }
     }
   ];
-  const testRenderer = TestRenderer.create(
-    <MemoryRouter>
-      <MyMassages />
-    </MemoryRouter>
-  );
-  const testInstance = testRenderer.root;
+  const wrapper = shallow(<MyMassages />);
 
   testMassages[0].ending.setHours(testMassages[0].ending.getHours() + 1);
-  const view = testInstance.findByType(MyMassages);
-
-  let panels = testInstance.findAllByType(MyMassagePanel);
+  let panels = wrapper.find(MyMassagePanel);
 
   expect(panels.length).toBe(0);
-  view.instance.setState({ loading: true, massages: testMassages });
-  view.instance.getMassages();
-  expect(view.instance.state.massages).toEqual([]);
-  expect(view.instance.state.loading).toBe(false);
+  wrapper.instance().setState({ loading: true, massages: testMassages });
+  wrapper.instance().getMassages();
+  expect(wrapper.instance().state.massages).toEqual([]);
+  expect(wrapper.instance().state.loading).toBe(false);
 
-  view.instance.setState({ massages: testMassages });
-  const headers = testInstance.findAllByType("h1");
-  panels = testInstance.findAllByType(MyMassagePanel);
-  expect(headers.length).toBe(2);
-  expect(headers[1].props.children).toEqual(_t.translate("Today"));
+  wrapper.instance().setState({ massages: testMassages });
+  const header = wrapper.find("h2");
+  panels = wrapper.find(MyMassagePanel);
+  expect(header.props().children).toEqual(_t.translate("Today"));
   expect(panels.length).toBe(1);
-  expect(panels[0].props.type).toBe("info");
-  expect(panels[0].props.massage).toBe(testMassages[0]);
-  expect(panels[0].props.disabled).toBe(false);
+  expect(panels.get(0).props.type).toBe("info");
+  expect(panels.get(0).props.massage).toBe(testMassages[0]);
+  expect(panels.get(0).props.disabled).toBe(false);
 
-  panels[0].props.getCallback();
-  expect(view.instance.state.massages).toEqual([]);
+  panels.get(0).props.getCallback();
+  expect(wrapper.instance().state.massages).toEqual([]);
 });

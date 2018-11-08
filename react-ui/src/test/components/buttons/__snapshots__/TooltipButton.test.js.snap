@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TooltipButton
+    active={false}
+    disabled={false}
+    label="test"
+    onClick={[Function]}
+    tooltip="tooltip"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Button
+          active={false}
+          color="secondary"
+          disabled={false}
+          id="Tooltip1"
+          onClick={[Function]}
+          outline={true}
+          tag="button"
+>
+          test
+</Button>,
+        <Tooltip
+          autohide={true}
+          delay={
+                    Object {
+                              "hide": 250,
+                              "show": 0,
+                            }
+          }
+          hideArrow={false}
+          isOpen={false}
+          placement="top"
+          placementPrefix="bs-tooltip"
+          target="Tooltip1"
+          toggle={[Function]}
+          trigger="hover"
+>
+          tooltip
+</Tooltip>,
+      ],
+      "className": "no-print",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": "test",
+          "color": "secondary",
+          "disabled": false,
+          "id": "Tooltip1",
+          "onClick": [Function],
+          "outline": true,
+          "tag": "button",
+        },
+        "ref": null,
+        "rendered": "test",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "autohide": true,
+          "children": "tooltip",
+          "delay": Object {
+            "hide": 250,
+            "show": 0,
+          },
+          "hideArrow": false,
+          "isOpen": false,
+          "placement": "top",
+          "placementPrefix": "bs-tooltip",
+          "target": "Tooltip1",
+          "toggle": [Function],
+          "trigger": "hover",
+        },
+        "ref": null,
+        "rendered": "tooltip",
+        "type": [Function],
+      },
+    ],
+    "type": "span",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Button
+            active={false}
+            color="secondary"
+            disabled={false}
+            id="Tooltip1"
+            onClick={[Function]}
+            outline={true}
+            tag="button"
+>
+            test
+</Button>,
+          <Tooltip
+            autohide={true}
+            delay={
+                        Object {
+                                    "hide": 250,
+                                    "show": 0,
+                                  }
+            }
+            hideArrow={false}
+            isOpen={false}
+            placement="top"
+            placementPrefix="bs-tooltip"
+            target="Tooltip1"
+            toggle={[Function]}
+            trigger="hover"
+>
+            tooltip
+</Tooltip>,
+        ],
+        "className": "no-print",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": "test",
+            "color": "secondary",
+            "disabled": false,
+            "id": "Tooltip1",
+            "onClick": [Function],
+            "outline": true,
+            "tag": "button",
+          },
+          "ref": null,
+          "rendered": "test",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "autohide": true,
+            "children": "tooltip",
+            "delay": Object {
+              "hide": 250,
+              "show": 0,
+            },
+            "hideArrow": false,
+            "isOpen": false,
+            "placement": "top",
+            "placementPrefix": "bs-tooltip",
+            "target": "Tooltip1",
+            "toggle": [Function],
+            "trigger": "hover",
+          },
+          "ref": null,
+          "rendered": "tooltip",
+          "type": [Function],
+        },
+      ],
+      "type": "span",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

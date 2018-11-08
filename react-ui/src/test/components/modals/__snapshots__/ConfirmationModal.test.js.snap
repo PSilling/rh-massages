@@ -1,38 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders inside content with correct props 1`] = `
-<div>
-  <h3>
-    Potvrzení akce
-  </h3>
-  <p>
-    test
-  </p>
+<div
+  className="modal-body"
+>
   <div
-    className="pull-right"
+    className="row"
   >
-    <button
-      autoFocus={true}
-      className="btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      style={
-        Object {
-          "marginRight": "5px",
-        }
-      }
-      title=""
-      type="button"
+    <div
+      className="col-md-12"
     >
-      Pokračovat
-    </button>
-    <button
-      className="btn btn-default"
-      onClick={[Function]}
-      type="button"
+      <h3>
+        Potvrzení akce
+      </h3>
+      <hr />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
     >
-      Zrušit
-    </button>
+      test
+    </div>
+  </div>
+  <div
+    className="text-right row"
+  >
+    <div
+      className="col-md-12"
+    >
+      <hr />
+      <button
+        aria-label={null}
+        className="mr-2 btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Pokračovat
+      </button>
+      <button
+        aria-label={null}
+        className="btn btn-secondary"
+        onClick={[Function]}
+        type="button"
+      >
+        Zrušit
+      </button>
+    </div>
   </div>
 </div>
 `;

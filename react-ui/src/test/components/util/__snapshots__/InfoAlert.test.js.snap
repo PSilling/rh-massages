@@ -2,26 +2,25 @@
 
 exports[`renders content with correct props 1`] = `
 <div
-  className="alert alert-info alert-dismissible"
-  style={
-    Object {
-      "marginBottom": "15px",
-    }
-  }
+  className="no-print my-3"
 >
-  <button
-    aria-label="Close"
-    className="close"
-    onClick={[Function]}
-    title="Zavřít"
-    type="button"
+  <div
+    className="alert alert-info alert-dismissible fade"
+    role="alert"
   >
-    <span
-      aria-hidden="true"
+    <button
+      aria-label="Close"
+      className="close"
+      onClick={[Function]}
+      type="button"
     >
-      ×
-    </span>
-  </button>
-  test
+      <span
+        aria-hidden="true"
+      >
+        ×
+      </span>
+    </button>
+    test
+  </div>
 </div>
 `;

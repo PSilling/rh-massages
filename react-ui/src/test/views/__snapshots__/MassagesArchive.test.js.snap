@@ -24,52 +24,66 @@ ShallowWrapper {
 </InfoAlert>,
         <h1>
           <div
-                    className="loader pull-right"
+                    className="loader float-right"
           />
           Archiv masáží
 </h1>,
         <hr />,
-        <div
-          className="row"
-          style={
-                    Object {
-                              "marginBottom": "15px",
-                            }
-          }
+        <Row
+          tag="div"
 >
-          <div
-                    className="col-md-6"
+          <Col
+                    md="6"
+                    tag="div"
+                    widths={
+                              Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                    }
           >
-                    <BatchButton
+                    <TooltipButton
                               active={true}
                               disabled={false}
                               label="Vybírat"
                               onClick={[Function]}
+                              tooltip="Výběr více masáží pro hromadné operace"
                     />
-          </div>
-          <div
-                    className="col-md-6 text-right"
+          </Col>
+          <Col
+                    className="text-right"
+                    md="6"
+                    tag="div"
+                    widths={
+                              Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                    }
           >
-                    <BatchDeleteButton
+                    <ConfirmationButton
+                              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                               disabled={true}
                               label="Smazat vybrané"
-                              onDelete={[Function]}
+                              onConfirm={[Function]}
+                              tooltip="Smazat vybrané masáže"
                     />
-                    <span
-                              style={
-                                        Object {
-                                                  "marginLeft": "5px",
-                                                }
-                              }
-                    >
-                              <BatchDeleteButton
-                                        disabled={false}
-                                        label="Smazat vše"
-                                        onDelete={[Function]}
-                              />
-                    </span>
-          </div>
-</div>,
+                    <ConfirmationButton
+                              className="ml-2"
+                              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                              disabled={false}
+                              label="Smazat vše"
+                              onConfirm={[Function]}
+                              tooltip="Vyčistit historii masáží"
+                    />
+          </Col>
+</Row>,
         <CalendarPanel
           allowEditation={false}
           events={Array []}
@@ -85,6 +99,7 @@ ShallowWrapper {
           selected={Array []}
 />,
       ],
+      "className": "my-3",
     },
     "ref": null,
     "rendered": Array [
@@ -107,7 +122,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <div
-              className="loader pull-right"
+              className="loader float-right"
 />,
             "Archiv masáží",
           ],
@@ -119,7 +134,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "className": "loader pull-right",
+              "className": "loader float-right",
             },
             "ref": null,
             "rendered": null,
@@ -141,105 +156,137 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
           "children": Array [
-            <div
-              className="col-md-6"
+            <Col
+              md="6"
+              tag="div"
+              widths={
+                            Array [
+                                          "xs",
+                                          "sm",
+                                          "md",
+                                          "lg",
+                                          "xl",
+                                        ]
+              }
 >
-              <BatchButton
+              <TooltipButton
                             active={true}
                             disabled={false}
                             label="Vybírat"
                             onClick={[Function]}
+                            tooltip="Výběr více masáží pro hromadné operace"
               />
-</div>,
-            <div
-              className="col-md-6 text-right"
+</Col>,
+            <Col
+              className="text-right"
+              md="6"
+              tag="div"
+              widths={
+                            Array [
+                                          "xs",
+                                          "sm",
+                                          "md",
+                                          "lg",
+                                          "xl",
+                                        ]
+              }
 >
-              <BatchDeleteButton
+              <ConfirmationButton
+                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                             disabled={true}
                             label="Smazat vybrané"
-                            onDelete={[Function]}
+                            onConfirm={[Function]}
+                            tooltip="Smazat vybrané masáže"
               />
-              <span
-                            style={
-                                          Object {
-                                                        "marginLeft": "5px",
-                                                      }
-                            }
-              >
-                            <BatchDeleteButton
-                                          disabled={false}
-                                          label="Smazat vše"
-                                          onDelete={[Function]}
-                            />
-              </span>
-</div>,
+              <ConfirmationButton
+                            className="ml-2"
+                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                            disabled={false}
+                            label="Smazat vše"
+                            onConfirm={[Function]}
+                            tooltip="Vyčistit historii masáží"
+              />
+</Col>,
           ],
-          "className": "row",
-          "style": Object {
-            "marginBottom": "15px",
-          },
+          "tag": "div",
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
-              "children": <BatchButton
+              "children": <TooltipButton
                 active={true}
                 disabled={false}
                 label="Vybírat"
                 onClick={[Function]}
+                tooltip="Výběr více masáží pro hromadné operace"
 />,
-              "className": "col-md-6",
+              "md": "6",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
                 "active": true,
                 "disabled": false,
                 "label": "Vybírat",
                 "onClick": [Function],
+                "tooltip": "Výběr více masáží pro hromadné operace",
               },
               "ref": null,
               "rendered": null,
               "type": [Function],
             },
-            "type": "div",
+            "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "children": Array [
-                <BatchDeleteButton
+                <ConfirmationButton
+                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                   disabled={true}
                   label="Smazat vybrané"
-                  onDelete={[Function]}
+                  onConfirm={[Function]}
+                  tooltip="Smazat vybrané masáže"
 />,
-                <span
-                  style={
-                                    Object {
-                                                      "marginLeft": "5px",
-                                                    }
-                  }
->
-                  <BatchDeleteButton
-                                    disabled={false}
-                                    label="Smazat vše"
-                                    onDelete={[Function]}
-                  />
-</span>,
+                <ConfirmationButton
+                  className="ml-2"
+                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  disabled={false}
+                  label="Smazat vše"
+                  onConfirm={[Function]}
+                  tooltip="Vyčistit historii masáží"
+/>,
               ],
-              "className": "col-md-6 text-right",
+              "className": "text-right",
+              "md": "6",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
             },
             "ref": null,
             "rendered": Array [
@@ -248,9 +295,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
                   "disabled": true,
                   "label": "Smazat vybrané",
-                  "onDelete": [Function],
+                  "onConfirm": [Function],
+                  "tooltip": "Smazat vybrané masáže",
                 },
                 "ref": null,
                 "rendered": null,
@@ -259,38 +308,24 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "class",
                 "props": Object {
-                  "children": <BatchDeleteButton
-                    disabled={false}
-                    label="Smazat vše"
-                    onDelete={[Function]}
-/>,
-                  "style": Object {
-                    "marginLeft": "5px",
-                  },
+                  "className": "ml-2",
+                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                  "disabled": false,
+                  "label": "Smazat vše",
+                  "onConfirm": [Function],
+                  "tooltip": "Vyčistit historii masáží",
                 },
                 "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "disabled": false,
-                    "label": "Smazat vše",
-                    "onDelete": [Function],
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": "span",
+                "rendered": null,
+                "type": [Function],
               },
             ],
-            "type": "div",
+            "type": [Function],
           },
         ],
-        "type": "div",
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -331,52 +366,66 @@ ShallowWrapper {
 </InfoAlert>,
           <h1>
             <div
-                        className="loader pull-right"
+                        className="loader float-right"
             />
             Archiv masáží
 </h1>,
           <hr />,
-          <div
-            className="row"
-            style={
-                        Object {
-                                    "marginBottom": "15px",
-                                  }
-            }
+          <Row
+            tag="div"
 >
-            <div
-                        className="col-md-6"
+            <Col
+                        md="6"
+                        tag="div"
+                        widths={
+                                    Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                        }
             >
-                        <BatchButton
+                        <TooltipButton
                                     active={true}
                                     disabled={false}
                                     label="Vybírat"
                                     onClick={[Function]}
+                                    tooltip="Výběr více masáží pro hromadné operace"
                         />
-            </div>
-            <div
-                        className="col-md-6 text-right"
+            </Col>
+            <Col
+                        className="text-right"
+                        md="6"
+                        tag="div"
+                        widths={
+                                    Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                        }
             >
-                        <BatchDeleteButton
+                        <ConfirmationButton
+                                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                                     disabled={true}
                                     label="Smazat vybrané"
-                                    onDelete={[Function]}
+                                    onConfirm={[Function]}
+                                    tooltip="Smazat vybrané masáže"
                         />
-                        <span
-                                    style={
-                                                Object {
-                                                            "marginLeft": "5px",
-                                                          }
-                                    }
-                        >
-                                    <BatchDeleteButton
-                                                disabled={false}
-                                                label="Smazat vše"
-                                                onDelete={[Function]}
-                                    />
-                        </span>
-            </div>
-</div>,
+                        <ConfirmationButton
+                                    className="ml-2"
+                                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                                    disabled={false}
+                                    label="Smazat vše"
+                                    onConfirm={[Function]}
+                                    tooltip="Vyčistit historii masáží"
+                        />
+            </Col>
+</Row>,
           <CalendarPanel
             allowEditation={false}
             events={Array []}
@@ -392,6 +441,7 @@ ShallowWrapper {
             selected={Array []}
 />,
         ],
+        "className": "my-3",
       },
       "ref": null,
       "rendered": Array [
@@ -414,7 +464,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <div
-                className="loader pull-right"
+                className="loader float-right"
 />,
               "Archiv masáží",
             ],
@@ -426,7 +476,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "className": "loader pull-right",
+                "className": "loader float-right",
               },
               "ref": null,
               "rendered": null,
@@ -448,105 +498,137 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
             "children": Array [
-              <div
-                className="col-md-6"
+              <Col
+                md="6"
+                tag="div"
+                widths={
+                                Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                }
 >
-                <BatchButton
+                <TooltipButton
                                 active={true}
                                 disabled={false}
                                 label="Vybírat"
                                 onClick={[Function]}
+                                tooltip="Výběr více masáží pro hromadné operace"
                 />
-</div>,
-              <div
-                className="col-md-6 text-right"
+</Col>,
+              <Col
+                className="text-right"
+                md="6"
+                tag="div"
+                widths={
+                                Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                }
 >
-                <BatchDeleteButton
+                <ConfirmationButton
+                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                                 disabled={true}
                                 label="Smazat vybrané"
-                                onDelete={[Function]}
+                                onConfirm={[Function]}
+                                tooltip="Smazat vybrané masáže"
                 />
-                <span
-                                style={
-                                                Object {
-                                                                "marginLeft": "5px",
-                                                              }
-                                }
-                >
-                                <BatchDeleteButton
-                                                disabled={false}
-                                                label="Smazat vše"
-                                                onDelete={[Function]}
-                                />
-                </span>
-</div>,
+                <ConfirmationButton
+                                className="ml-2"
+                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                                disabled={false}
+                                label="Smazat vše"
+                                onConfirm={[Function]}
+                                tooltip="Vyčistit historii masáží"
+                />
+</Col>,
             ],
-            "className": "row",
-            "style": Object {
-              "marginBottom": "15px",
-            },
+            "tag": "div",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": <BatchButton
+                "children": <TooltipButton
                   active={true}
                   disabled={false}
                   label="Vybírat"
                   onClick={[Function]}
+                  tooltip="Výběr více masáží pro hromadné operace"
 />,
-                "className": "col-md-6",
+                "md": "6",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
                   "active": true,
                   "disabled": false,
                   "label": "Vybírat",
                   "onClick": [Function],
+                  "tooltip": "Výběr více masáží pro hromadné operace",
                 },
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
               },
-              "type": "div",
+              "type": [Function],
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "children": Array [
-                  <BatchDeleteButton
+                  <ConfirmationButton
+                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                     disabled={true}
                     label="Smazat vybrané"
-                    onDelete={[Function]}
+                    onConfirm={[Function]}
+                    tooltip="Smazat vybrané masáže"
 />,
-                  <span
-                    style={
-                                        Object {
-                                                            "marginLeft": "5px",
-                                                          }
-                    }
->
-                    <BatchDeleteButton
-                                        disabled={false}
-                                        label="Smazat vše"
-                                        onDelete={[Function]}
-                    />
-</span>,
+                  <ConfirmationButton
+                    className="ml-2"
+                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    disabled={false}
+                    label="Smazat vše"
+                    onConfirm={[Function]}
+                    tooltip="Vyčistit historii masáží"
+/>,
                 ],
-                "className": "col-md-6 text-right",
+                "className": "text-right",
+                "md": "6",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
               },
               "ref": null,
               "rendered": Array [
@@ -555,9 +637,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
                     "disabled": true,
                     "label": "Smazat vybrané",
-                    "onDelete": [Function],
+                    "onConfirm": [Function],
+                    "tooltip": "Smazat vybrané masáže",
                   },
                   "ref": null,
                   "rendered": null,
@@ -566,38 +650,24 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": <BatchDeleteButton
-                      disabled={false}
-                      label="Smazat vše"
-                      onDelete={[Function]}
-/>,
-                    "style": Object {
-                      "marginLeft": "5px",
-                    },
+                    "className": "ml-2",
+                    "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                    "disabled": false,
+                    "label": "Smazat vše",
+                    "onConfirm": [Function],
+                    "tooltip": "Vyčistit historii masáží",
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "disabled": false,
-                      "label": "Smazat vše",
-                      "onDelete": [Function],
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": "span",
+                  "rendered": null,
+                  "type": [Function],
                 },
               ],
-              "type": "div",
+              "type": [Function],
             },
           ],
-          "type": "div",
+          "type": [Function],
         },
         Object {
           "instance": null,

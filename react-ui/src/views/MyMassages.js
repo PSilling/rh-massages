@@ -51,14 +51,11 @@ class MyMassages extends Component {
    */
   createPanels = () => {
     const panels = [];
-
     let i = 0;
-
     let addHeader = true;
-
     const headerTypes = ["Today", "This week", "Next week", "Later than next week"];
-
     const startOfTypes = ["day", "week", "week", "year"];
+
     for (let timeType = 0; timeType < 4; timeType++) {
       for (i; i < this.state.massages.length; i++) {
         if (
@@ -75,7 +72,7 @@ class MyMassages extends Component {
           break;
         }
         if (addHeader) {
-          panels.push(<h1 key={headerTypes[timeType]}>{_t.translate(headerTypes[timeType])}</h1>);
+          panels.push(<h2 key={headerTypes[timeType]}>{_t.translate(headerTypes[timeType])}</h2>);
           addHeader = false;
         }
         const tooLate = moment(this.state.massages[i].date).diff(moment(), "minutes") <= Util.CANCELLATION_LIMIT;
@@ -89,21 +86,18 @@ class MyMassages extends Component {
           />
         );
       }
-      panels.push(<div key={`row${timeType}`} className="row" />);
     }
     return panels;
   };
 
   render() {
     return (
-      <div>
-        {!localStorage.getItem("closeMyMassagesAlert") ? (
+      <div className="my-3">
+        {!localStorage.getItem("closeMyMassagesAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
-        ) : (
-          ""
         )}
         <h1>
-          {this.state.loading ? <div className="loader pull-right" /> : ""}
+          {this.state.loading && <div className="loader float-right" />}
           {_t.translate("My Massages")}
         </h1>
         <hr />

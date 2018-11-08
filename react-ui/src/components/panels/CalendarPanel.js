@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
+import { Row, Col } from "reactstrap";
 import moment from "moment";
 import BigCalendar from "react-big-calendar";
 
@@ -167,70 +168,72 @@ class CalendarPanel extends Component {
 
   render() {
     return (
-      <div style={{ marginTop: "10px", marginBottom: "5vh" }}>
-        <CalendarToolbar
-          month={
-            this.state.view === "month"
-              ? moment(this.state.date).format("MMMM YYYY")
-              : moment(this.state.date)
-                  .subtract(2, "days")
-                  .format("MMMM YYYY")
-          }
-          monthActive={this.state.view === "month"}
-          leftDisabled={this.props.allowEditation && moment(this.state.date).isBefore(moment())}
-          rightDisabled={
-            !this.props.allowEditation &&
-            moment(this.state.date)
-              .add(1, "day")
-              .isAfter(moment())
-          }
-          leftAction={() => this.changeDate(true)}
-          rightAction={() => this.changeDate(false)}
-          onViewChange={this.changeView}
-        />
-        <BigCalendar
-          messages={this.localization}
-          date={this.state.date}
-          events={this.props.events}
-          onView={view => this.props.onDateChange(moment(this.state.date), view)}
-          onNavigate={this.onNavigate}
-          view={this.state.view}
-          views={["work_week", "month"]}
-          style={{ height: "85vh" }}
-          timeslots={1}
-          eventPropGetter={this.eventStyler}
-          onSelectEvent={this.onSelectEvent}
-          titleAccessor={this.generateTitle}
-          startAccessor={event => new Date(event.massage.date)}
-          endAccessor={event => new Date(event.massage.ending)}
-          selectable={Auth.isAdmin() && this.props.allowEditation && this.state.view === "work_week"}
-          onSelectSlot={this.props.onAdd}
-          min={new Date("2018-01-01T08:30:00")}
-          max={new Date("2018-01-01T18:00:00")}
-          popup
-          toolbar={false}
-        />
+      <div className="mb-3">
+        <Row>
+          <Col md="12">
+            <CalendarToolbar
+              month={
+                this.state.view === "month"
+                  ? moment(this.state.date).format("MMMM YYYY")
+                  : moment(this.state.date)
+                      .subtract(2, "days")
+                      .format("MMMM YYYY")
+              }
+              monthActive={this.state.view === "month"}
+              leftDisabled={this.props.allowEditation && moment(this.state.date).isBefore(moment())}
+              rightDisabled={
+                !this.props.allowEditation &&
+                moment(this.state.date)
+                  .add(1, "day")
+                  .isAfter(moment())
+              }
+              leftAction={() => this.changeDate(true)}
+              rightAction={() => this.changeDate(false)}
+              onViewChange={this.changeView}
+            />
+            <BigCalendar
+              messages={this.localization}
+              date={this.state.date}
+              events={this.props.events}
+              onView={view => this.props.onDateChange(moment(this.state.date), view)}
+              onNavigate={this.onNavigate}
+              view={this.state.view}
+              views={["work_week", "month"]}
+              style={{ height: "85vh" }}
+              timeslots={1}
+              eventPropGetter={this.eventStyler}
+              onSelectEvent={this.onSelectEvent}
+              titleAccessor={this.generateTitle}
+              startAccessor={event => new Date(event.massage.date)}
+              endAccessor={event => new Date(event.massage.ending)}
+              selectable={Auth.isAdmin() && this.props.allowEditation && this.state.view === "work_week"}
+              onSelectSlot={this.props.onAdd}
+              min={new Date("2018-01-01T08:30:00")}
+              max={new Date("2018-01-01T18:00:00")}
+              popup
+              toolbar={false}
+            />
+          </Col>
+        </Row>
 
-        <div className="row text-center" style={{ marginTop: "16px" }}>
-          <div className="col-md-12">
+        <Row className="text-center mt-3">
+          <Col md="12">
             <strong>{_t.translate("Legend:")}</strong>
             <span style={{ backgroundColor: "#2fad2f", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               {_t.translate("Free massage")}
             </span>
-            {this.props.allowEditation ? (
+            {this.props.allowEditation && (
               <span style={{ backgroundColor: "#ee9d2a", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
                 {_t.translate("My massage")}
               </span>
-            ) : (
-              ""
             )}
             <span style={{ backgroundColor: "#d10a14", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               {_t.translate("Assigned massage")}
             </span>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
-        {this.state.active ? (
+        {this.state.active && (
           <MassageEventModal
             event={this.state.selectedEvent}
             label={this.state.label}
@@ -256,8 +259,6 @@ class CalendarPanel extends Component {
               this.setState({ selectedEvent: null });
             }}
           />
-        ) : (
-          ""
         )}
       </div>
     );

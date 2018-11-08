@@ -1,70 +1,85 @@
 // react imports
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
+import { ButtonGroup, Button, Row, Col } from "reactstrap";
 import moment from "moment";
+
+// component imports
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
+import TooltipGroup from "./TooltipGroup";
 
 // util imports
 import _t from "../../util/Translations";
+import Util from "../../util/Util";
 
 /**
  * Navigation toolbar for event calendar.
  */
-const CalendarToolbar = function CalendarToolbar(props) {
-  return (
-    <div>
-      <div className="row">
-        <div className="col-md-1">
-          <button
-            type="button"
-            className="btn btn-default"
-            title={_t.translate("Previous")}
-            onClick={props.leftAction}
-            disabled={props.leftDisabled}
-          >
-            <span className="glyphicon glyphicon-chevron-left" />
-          </button>
-        </div>
+class CalendarToolbar extends Component {
+  tooltipTargets = Util.getTooltipTargets(2);
 
-        <div className="col-md-10 text-center">
-          <div className="btn-group">
-            <button
-              type="button"
-              className={`btn btn-default${!props.monthActive ? " active" : ""}`}
-              onClick={() => props.onViewChange("work_week")}
-            >
-              {_t.translate("Week")}
-            </button>
+  tooltipLabels = [_t.translate("View per week"), _t.translate("View per month")];
 
-            <button
-              type="button"
-              className={`btn btn-default${props.monthActive ? " active" : ""}`}
-              onClick={() => props.onViewChange("month")}
-            >
-              {_t.translate("Month")}
-            </button>
-          </div>
-        </div>
-
-        <div className="col-md-1 text-right">
-          <button
-            type="button"
-            className="btn btn-default"
-            title={_t.translate("Next")}
-            onClick={props.rightAction}
-            disabled={props.rightDisabled}
-          >
-            <span className="glyphicon glyphicon-chevron-right" />
-          </button>
-        </div>
+  render() {
+    return (
+      <div>
+        <Row>
+          <Col md="12" className="text-center">
+            <strong>{this.props.month}</strong>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col md="1">
+            <TooltipIconButton
+              icon="chevron-circle-left"
+              onClick={this.props.leftAction}
+              tooltip={`${_t.translate("Previous")} ${
+                this.props.monthActive ? _t.translate("Month").toLowerCase() : _t.translate("Week").toLowerCase()
+              }`}
+              disabled={this.props.leftDisabled}
+              size="md"
+            />
+          </Col>
+          <Col md="10" className="text-center">
+            <ButtonGroup>
+              <Button
+                id={this.tooltipTargets[0]}
+                className="ml-2"
+                active={!this.props.monthActive}
+                onClick={() => this.props.onViewChange("work_week")}
+                outline
+              >
+                {_t.translate("Week")}
+              </Button>
+              <Button
+                id={this.tooltipTargets[1]}
+                active={this.props.monthActive}
+                onClick={() => this.props.onViewChange("month")}
+                outline
+              >
+                {_t.translate("Month")}
+              </Button>
+            </ButtonGroup>
+            <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
+          </Col>
+          <Col md="1" className="text-right">
+            <TooltipIconButton
+              icon="chevron-circle-right"
+              onClick={this.props.rightAction}
+              tooltip={`${_t.translate("Next")} ${
+                this.props.monthActive ? _t.translate("Month").toLowerCase() : _t.translate("Week").toLowerCase()
+              }`}
+              disabled={this.props.rightDisabled}
+              size="md"
+            />
+          </Col>
+        </Row>
       </div>
-      <div className="text-center" style={{ marginBottom: "5px", marginTop: "5px" }}>
-        <strong>{props.month}</strong>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 CalendarToolbar.propTypes = {
   /** function called on left chevron button click */

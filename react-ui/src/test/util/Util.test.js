@@ -69,3 +69,11 @@ test("can find the correct array element index based on object id", () => {
   expect(Util.findInArrayById(array, 1)).toBe(0);
   expect(Util.findInArrayById(array, 2)).toBe(1);
 });
+
+test("generates correct tooltip targets", () => {
+  const testTargets = Util.getTooltipTargets(10);
+
+  expect(testTargets.length).toBe(10);
+  expect(testTargets[9]).toEqual("Tooltip10");
+  expect(Util.tooltipCount).toBe(11);
+});

@@ -1,15 +1,17 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
+import { Button } from "reactstrap";
 import CalendarToolbar from "../../../components/util/CalendarToolbar";
+import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
 
 test("renders content with correct props", () => {
   const testLeftFunction = jest.fn();
   const testRightFunction = jest.fn();
   const testViewFunction = jest.fn(string => string);
-  const testRenderer = TestRenderer.create(
+  const wrapper = shallow(
     <CalendarToolbar
       month="test"
       monthActive
@@ -20,22 +22,18 @@ test("renders content with correct props", () => {
       onViewChange={testViewFunction}
     />
   );
-  const testInstance = testRenderer.root;
-  const buttons = testInstance.findAllByType("button");
-  const month = testInstance.findByType("strong");
-  const treeJSON = testRenderer.toJSON();
+  const buttons = wrapper.find(Button);
+  const iconButtons = wrapper.find(TooltipIconButton);
+  const month = wrapper.find("strong");
 
-  testInstance.findByProps({ className: "glyphicon glyphicon-chevron-left" });
-  testInstance.findByProps({ className: "glyphicon glyphicon-chevron-right" });
-
-  expect(buttons[0].props.onClick).toBe(testLeftFunction);
-  expect(buttons[0].props.disabled).toBe(false);
-  expect(buttons[1].props.onClick()).toBe("work_week");
-  expect(buttons[1].props.className).toBe("btn btn-default");
-  expect(buttons[2].props.onClick()).toBe("month");
-  expect(buttons[2].props.className).toBe("btn btn-default active");
-  expect(buttons[3].props.onClick).toBe(testRightFunction);
-  expect(buttons[3].props.disabled).toBe(true);
-  expect(month.props.children).toEqual("test");
-  expect(treeJSON).toMatchSnapshot();
+  expect(iconButtons.get(0).props.onClick).toBe(testLeftFunction);
+  expect(iconButtons.get(0).props.disabled).toBe(false);
+  expect(buttons.get(0).props.onClick()).toBe("work_week");
+  expect(buttons.get(0).props.active).toBe(false);
+  expect(buttons.get(1).props.onClick()).toBe("month");
+  expect(buttons.get(1).props.active).toBe(true);
+  expect(iconButtons.get(1).props.onClick).toBe(testRightFunction);
+  expect(iconButtons.get(1).props.disabled).toBe(true);
+  expect(month.props().children).toEqual("test");
+  expect(wrapper).toMatchSnapshot();
 });

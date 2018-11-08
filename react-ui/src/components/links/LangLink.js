@@ -1,13 +1,25 @@
 // react imports
 import React, { Component } from "react";
 
+// module imports
+import { NavLink, Tooltip } from "reactstrap";
+
 // util imports
 import _t from "../../util/Translations";
+import Util from "../../util/Util";
 
 /**
  * Link for language switching.
  */
 class LangLink extends Component {
+  state = { tooltipActive: false };
+
+  tooltipTarget = Util.getTooltipTargets(1)[0];
+
+  toggleTooltip = () => {
+    this.setState(prevState => ({ tooltipActive: !prevState.tooltipActive }));
+  };
+
   changeLanguage = () => {
     const locale = localStorage.getItem("sh-locale") === "en" ? "cs" : "en";
     localStorage.setItem("sh-locale", locale);
@@ -17,16 +29,16 @@ class LangLink extends Component {
 
   render() {
     return (
-      <button
-        type="button"
-        className="btn btn-link navbar-btn"
-        onClick={this.changeLanguage}
-        title={_t.translate("Change language to czech")}
-      >
-        <span className="glyphicon glyphicon-globe" />
-        &nbsp;
-        {localStorage.getItem("sh-locale") === "en" ? "CZ" : "EN"}
-      </button>
+      <span>
+        <NavLink id={this.tooltipTarget} onClick={this.changeLanguage} style={{ cursor: "pointer" }}>
+          <span className="fas fa-globe-americas" />
+          &nbsp;
+          {localStorage.getItem("sh-locale") === "en" ? "CZ" : "EN"}
+        </NavLink>
+        <Tooltip isOpen={this.state.tooltipActive} target={this.tooltipTarget} toggle={this.toggleTooltip}>
+          {_t.translate("Change language to czech")}
+        </Tooltip>
+      </span>
     );
   }
 }

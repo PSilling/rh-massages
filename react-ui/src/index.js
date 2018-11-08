@@ -1,9 +1,14 @@
+// react imports
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/main/index.css";
+
+// component imports
 import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
+import "./styles/main/index.css";
+
+// util imports
 import Auth from "./util/Auth";
+import registerServiceWorker from "./registerServiceWorker";
 
 // The whole application needs to be authenticated with Keycloak adapter before access can be granted.
 Auth.keycloak

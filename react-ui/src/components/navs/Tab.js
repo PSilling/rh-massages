@@ -2,6 +2,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+// module imports
+import { NavItem, NavLink } from "reactstrap";
+
 /**
  * Single labeled Tab component used in navigation tabbing.
  */
@@ -11,28 +14,35 @@ class Tab extends Component {
   }
 
   handleKeyPress = event => {
-    if (event.charCode === 13) {
-      this.props.onClick();
+    if (event.key === "Enter") {
+      this.props.onRemoveClick();
     }
   };
 
   render() {
     return (
-      <li className={this.props.active ? "active" : ""}>
-        {this.props.active ? (
-          <a style={{ fontSize: "16px" }}>{this.props.label}</a>
-        ) : (
-          <a
-            style={{ cursor: "pointer", color: "#888", fontSize: "16px" }}
-            onClick={this.props.onClick}
-            onKeyPress={this.handleKeyPress}
-            role="menuitem"
-            tabIndex="-1"
-          >
-            {this.props.label}
-          </a>
-        )}
-      </li>
+      <NavItem>
+        <NavLink
+          style={this.props.active ? {} : { cursor: "pointer", color: "#888" }}
+          className={this.props.active ? "active" : ""}
+          onClick={this.props.active ? () => {} : this.props.onClick}
+        >
+          {this.props.label}
+          {this.props.onRemoveClick !== null &&
+            this.props.active && (
+              <span
+                className="ml-2"
+                style={{ cursor: "pointer" }}
+                role="button"
+                tabIndex="-2"
+                onClick={this.props.onRemoveClick}
+                onKeyPress={this.handleKeyPress}
+              >
+                &times;
+              </span>
+            )}
+        </NavLink>
+      </NavItem>
     );
   }
 }
@@ -43,13 +53,16 @@ Tab.propTypes = {
   /** tab title label */
   label: PropTypes.string,
   /** function called on tab click */
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  /** function called on remove button click */
+  onRemoveClick: PropTypes.func
 };
 
 Tab.defaultProps = {
   active: false,
   label: "Tab",
-  onClick: null
+  onClick: null,
+  onRemoveClick: null
 };
 
 export default Tab;

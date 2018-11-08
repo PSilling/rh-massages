@@ -3,6 +3,7 @@ import React from "react";
 import TestRenderer from "react-test-renderer";
 
 // test imports
+import { Col } from "reactstrap";
 import ConfirmationModal from "../../../components/modals/ConfirmationModal";
 import ModalActions from "../../../components/buttons/ModalActions";
 
@@ -14,7 +15,7 @@ test("renders inside content with correct props", () => {
   );
   const testInstance = testRenderer.root;
   const actions = testInstance.findByType(ModalActions);
-  const paragraph = testInstance.findByType("p");
+  const cols = testInstance.findAllByType(Col);
   const treeJSON = testRenderer.toJSON();
 
   expect(testConfirmFunction).not.toHaveBeenCalled();
@@ -27,6 +28,6 @@ test("renders inside content with correct props", () => {
   actions.props.onClose();
 
   expect(testCloseFunction).toHaveBeenCalledTimes(1);
-  expect(paragraph.props.children).toEqual("test");
+  expect(cols[1].props.children).toEqual("test");
   expect(treeJSON).toMatchSnapshot();
 });

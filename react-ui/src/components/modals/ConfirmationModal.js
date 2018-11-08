@@ -1,10 +1,9 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
+import { Col, Row, Modal, ModalBody } from "reactstrap";
 
 // component imports
 import ModalActions from "../buttons/ModalActions";
@@ -17,39 +16,35 @@ import _t from "../../util/Translations";
  */
 class ConfirmationModal extends Component {
   handleKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modal)) {
+    if (event.key === "Enter" && document.activeElement.tabIndex === -1) {
       this.props.onConfirm();
     }
   };
 
-  renderInsides = () => (
-    <div>
-      <h3>{_t.translate("Action confirmation")}</h3>
-      <p>{this.props.message}</p>
-      <ModalActions onProceed={this.props.onConfirm} onClose={this.props.onClose} autoFocus>
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>{_t.translate("Action confirmation")}</h3>
+          <hr />
+        </Col>
+      </Row>
+      <Row>
+        <Col md="12">{this.props.message}</Col>
+      </Row>
+      <ModalActions onProceed={this.props.onConfirm} onClose={this.props.onClose}>
         {this.props.children}
       </ModalActions>
-    </div>
+    </ModalBody>
   );
 
   render() {
     return this.props.withPortal ? (
-      <ModalContainer onClose={this.props.onClose}>
-        <ModalDialog
-          onClose={this.props.onClose}
-          width="40%"
-          style={{ outline: "none" }}
-          tabIndex="-1"
-          onKeyPress={this.handleKeyPress}
-          ref={dialog => {
-            this.modalDialog = dialog;
-          }}
-        >
-          {this.renderInsides()}
-        </ModalDialog>
-      </ModalContainer>
+      <Modal isOpen toggle={this.props.onClose} tabIndex="-1" onKeyPress={this.handleKeyPress}>
+        {this.createInsides()}
+      </Modal>
     ) : (
-      this.renderInsides()
+      this.createInsides()
     );
   }
 }

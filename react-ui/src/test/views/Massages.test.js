@@ -5,8 +5,8 @@ import React from "react";
 import { shallow } from "enzyme";
 import moment from "moment";
 import Massages from "../../views/Massages";
-import BatchButton from "../../components/buttons/BatchButton";
-import BatchDeleteButton from "../../components/buttons/BatchDeleteButton";
+import TooltipButton from "../../components/buttons/TooltipButton";
+import ConfirmationButton from "../../components/buttons/ConfirmationButton";
 import CalendarPanel from "../../components/panels/CalendarPanel";
 import MassageBatchAddModal from "../../components/modals/MassageBatchAddModal";
 import MassageModal from "../../components/modals/MassageModal";
@@ -87,8 +87,8 @@ test("properly changes state variables", () => {
   wrapper.instance().setState({ facilities: testFacilities });
 
   const tabs = wrapper.find(Tab);
-  const batchButtons = wrapper.find(BatchButton);
-  const deleteButton = wrapper.find(BatchDeleteButton);
+  const tooltipButtons = wrapper.find(TooltipButton);
+  const deleteButton = wrapper.find(ConfirmationButton);
   const printModal = wrapper.find(PrintModal);
   const addModal = wrapper.find(MassageBatchAddModal);
   const massageModal = wrapper.find(MassageModal);
@@ -107,11 +107,11 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.index).toBe(0);
   expect(wrapper.instance().state.loading).toBe(true);
 
-  expect(batchButtons.get(0).props.active).toBe(true);
-  batchButtons.get(0).props.onClick();
+  expect(tooltipButtons.get(0).props.active).toBe(true);
+  tooltipButtons.get(0).props.onClick();
   expect(wrapper.instance().state.selectEvents).toBe(false);
-  expect(batchButtons.get(1).props.active).toBe(false);
-  batchButtons.get(1).props.onClick();
+  expect(tooltipButtons.get(1).props.active).toBe(false);
+  tooltipButtons.get(1).props.onClick();
   expect(wrapper.instance().state.freeOnly).toBe(true);
 
   expect(wrapper.instance().state.batchAddModalActive).toBe(false);
@@ -128,7 +128,7 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.printMassages).toBe(testMassages);
   expect(wrapper.instance().createPrintRows().length).toBe(1);
 
-  deleteButton.props().onDelete();
+  deleteButton.props().onConfirm();
   expect(Util.delete).toHaveBeenCalledTimes(1);
   panel.props().onDelete(1);
   expect(Util.delete).toHaveBeenCalledTimes(2);

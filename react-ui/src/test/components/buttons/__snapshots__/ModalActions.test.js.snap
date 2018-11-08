@@ -2,32 +2,33 @@
 
 exports[`renders content with correct props 1`] = `
 <div
-  className="pull-right"
+  className="text-right row"
 >
-  <button
-    type="button"
-  />
-  <button
-    autoFocus={false}
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    style={
-      Object {
-        "marginRight": "5px",
-      }
-    }
-    title=""
-    type="button"
+  <div
+    className="col-md-12"
   >
-    Pokračovat
-  </button>
-  <button
-    className="btn btn-default"
-    onClick={[Function]}
-    type="button"
-  >
-    Zrušit
-  </button>
+    <hr />
+    <button
+      onClick={[Function]}
+      type="button"
+    />
+    <button
+      aria-label={null}
+      className="mr-2 btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Pokračovat
+    </button>
+    <button
+      aria-label={null}
+      className="btn btn-secondary"
+      onClick={[Function]}
+      type="button"
+    >
+      Zrušit
+    </button>
+  </div>
 </div>
 `;

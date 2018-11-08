@@ -1,14 +1,14 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
+import { Row, Col, Modal, ModalBody } from "reactstrap";
 
 // component imports
-import AddButton from "../iconbuttons/AddButton";
 import ModalActions from "../buttons/ModalActions";
+import LabeledInput from "../formitems/LabeledInput";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
@@ -67,8 +67,8 @@ class FacilityModal extends Component {
     );
   };
 
-  handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modal)) {
+  handleKeyPress = event => {
+    if (event.key === "Enter" && document.activeElement.tabIndex === -1) {
       if (this.props.facility === null) {
         this.addFacility();
       } else {
@@ -77,71 +77,49 @@ class FacilityModal extends Component {
     }
   };
 
-  handleInputKeyPress = event => {
-    if (event.charCode === 13) {
-      if (this.props.facility === null) {
-        this.addFacility();
-      } else {
-        this.editFacility();
-      }
-    }
-  };
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>{this.props.facility === null ? _t.translate("New Facility") : _t.translate("Edit Facility")}</h3>
+          <hr />
+        </Col>
+      </Row>
 
-  renderInsides = () => (
-    <div>
-      <h2>{this.props.facility === null ? _t.translate("New Facility") : _t.translate("Edit Facility")}</h2>
-      <hr />
-      <div className="form-group col-md-12">
-        <label htmlFor="facilityInput">{_t.translate("Name")}</label>
-        <input
-          id="facilityInput"
+      <Row>
+        <LabeledInput
+          label={_t.translate("Name")}
           value={this.state.name}
           onChange={this.changeName}
-          className="form-control"
-          autoFocus
-          onFocus={Util.moveCursorToEnd}
-          onKeyPress={this.handleInputKeyPress}
+          onEnterPress={this.props.facility === null ? this.addFacility : this.editFacility}
+          tooltip={_t.translate("How the facility should be called")}
           type="text"
           maxLength="64"
-          placeholder={_t.translate("Name")}
         />
-      </div>
+      </Row>
       {this.props.facility === null ? (
         <ModalActions primaryLabel={_t.translate("Add")} onProceed={this.addFacility} onClose={this.props.onToggle} />
       ) : (
         <ModalActions primaryLabel={_t.translate("Edit")} onProceed={this.editFacility} onClose={this.props.onToggle} />
       )}
-    </div>
+    </ModalBody>
   );
 
-  renderModal = () => {
-    if (this.props.withPortal) {
-      return (
-        <ModalContainer onClose={this.props.onToggle}>
-          <ModalDialog
-            onClose={this.props.onToggle}
-            width="50%"
-            style={{ outline: "none" }}
-            tabIndex="-1"
-            onKeyPress={this.handleModalKeyPress}
-            ref={dialog => {
-              this.modalDialog = dialog;
-            }}
-          >
-            {this.renderInsides()}
-          </ModalDialog>
-        </ModalContainer>
-      );
-    }
-    return this.renderInsides();
-  };
+  createModal = () =>
+    this.props.withPortal ? (
+      <Modal size="lg" isOpen toggle={this.props.onToggle} tabIndex="-1" onKeyPress={this.handleKeyPress}>
+        {this.createInsides()}
+      </Modal>
+    ) : (
+      this.createInsides()
+    );
 
   render() {
     return (
-      <div className="pull-right">
-        <AddButton onAdd={this.props.onToggle} />
+      <div className="float-right">
+        <TooltipIconButton icon="plus" onClick={this.props.onToggle} tooltip={_t.translate("Create a new facility")} />
 
-        {this.props.active && this.renderModal()}
+        {this.props.active && this.createModal()}
       </div>
     );
   }

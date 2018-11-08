@@ -12,6 +12,11 @@ import MassageEventModal from "../../../components/modals/MassageEventModal";
 // test mocks
 jest.mock("../../../util/Auth");
 
+beforeAll(() => {
+  Date.now = jest.fn(() => 0);
+});
+
+
 afterEach(() => {
   jest.resetAllMocks();
 });
@@ -76,7 +81,7 @@ test("renders content with correct props and funcionality", () => {
   const toolbar = wrapper.find(CalendarToolbar);
   const calendar = wrapper.find(BigCalendar);
 
-  expect(toolbar.props().leftDisabled).toBe(true);
+  expect(toolbar.props().leftDisabled).toBe(false);
   expect(toolbar.props().rightDisabled).toBe(false);
   wrapper.instance().changeDate(false);
   expect(testDateChangeFunction).toHaveBeenCalledTimes(1);

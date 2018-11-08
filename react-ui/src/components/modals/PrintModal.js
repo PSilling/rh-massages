@@ -1,16 +1,16 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
-import moment from "moment";
+import { Row, Col, Label, FormGroup, Input, Modal, ModalBody } from "reactstrap";
 import Datetime from "react-datetime";
+import moment from "moment";
 
 // component imports
-import BatchButton from "../buttons/BatchButton";
+import LabeledInput from "../formitems/LabeledInput";
 import ModalActions from "../buttons/ModalActions";
+import TooltipButton from "../buttons/TooltipButton";
 
 // util imports
 import _t from "../../util/Translations";
@@ -20,7 +20,13 @@ import Util from "../../util/Util";
  * Modal dialog with printing settings.
  */
 class PrintModal extends Component {
-  state = { active: false, checkedRadio: 0, filter: "", from: moment(), to: moment().add(1, "day") };
+  state = {
+    active: false,
+    checkedRadio: 0,
+    filter: "",
+    from: moment(),
+    to: moment().add(1, "day")
+  };
 
   radios = ["just today", "this week", "this month", "chosen month", "custom:"];
 
@@ -87,14 +93,8 @@ class PrintModal extends Component {
     this.setState({ to: date });
   };
 
-  handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
-      this.printMassages();
-    }
-  };
-
-  handleInputKeyPress = event => {
-    if (event.key === "Enter") {
+  handleKeyPress = event => {
+    if (event.key === "Enter" && document.activeElement.tabIndex === -1) {
       this.printMassages();
     }
   };
@@ -103,113 +103,107 @@ class PrintModal extends Component {
     this.setState(prevState => ({ active: !prevState.active }));
   };
 
-  renderInsides = () => (
-    <div>
-      <h2>{_t.translate("Print settings")}</h2>
-      <hr />
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>{_t.translate("Print settings")}</h3>
+          <hr />
+        </Col>
+      </Row>
 
-      <div className="col-md-12">
-        <label htmlFor={this.radios[0]}>{_t.translate("Time range")}</label>
-        <div style={{ marginBottom: "10px" }}>
-          {this.radios.map((item, index) => (
-            <label key={index} className="radio-inline" htmlFor={item}>
-              <input
-                id={item}
-                type="radio"
-                onChange={() => this.changeCheck(index)}
-                onKeyPress={this.handleInputKeyPress}
-                checked={this.state.checkedRadio === index}
-              />
-              {_t.translate(item)}
-            </label>
-          ))}
-        </div>
-      </div>
+      <Row>
+        <Col md="12">
+          <Label>{_t.translate("Time range")}</Label>
+        </Col>
+      </Row>
 
-      <div className="col-md-12">
-        <div className="form-group">
-          <div className="col-md-3">
-            <Datetime
-              id="fromInput"
-              value={this.state.from}
-              inputProps={{ disabled: this.state.checkedRadio !== 4 }}
-              onChange={this.changeFrom}
-              timeFormat={false}
-            />
-          </div>
-          <div className="col-md-1 text-center" style={{ marginTop: "6px" }}>
-            <strong>–</strong>
-          </div>
-          <div className="col-md-3">
-            <Datetime
-              id="toInput"
-              value={this.state.to}
-              inputProps={{ disabled: this.state.checkedRadio !== 4 }}
-              onChange={this.changeTo}
-              timeFormat={false}
-            />
-          </div>
-        </div>
-      </div>
+      <Row>
+        <Col md="12">
+          <FormGroup check inline>
+            <span>
+              {this.radios.map((item, index) => (
+                <Label key={index} for={item}>
+                  <Input
+                    id={item}
+                    type="radio"
+                    onChange={() => this.changeCheck(index)}
+                    onKeyPress={this.handleInputKeyPress}
+                    checked={this.state.checkedRadio === index}
+                  />
+                  <Label className="mr-2" for={item}>
+                    {_t.translate(item)}
+                  </Label>
+                </Label>
+              ))}
+            </span>
+          </FormGroup>
+        </Col>
+      </Row>
 
-      <div className="form-group col-md-12" style={{ marginTop: "10px" }}>
-        <label htmlFor="filterInput">{_t.translate("Filtering")}</label>
-        <input
-          id="filterInput"
+      <Row className="mb-3">
+        <Col md="3">
+          <Datetime
+            id="fromInput"
+            value={this.state.from}
+            inputProps={{ disabled: this.state.checkedRadio !== 4 }}
+            onChange={this.changeFrom}
+            timeFormat={false}
+          />
+        </Col>
+        <Col md="1" className="text-center mt-2">
+          <strong>–</strong>
+        </Col>
+        <Col md="3">
+          <Datetime
+            id="toInput"
+            value={this.state.to}
+            inputProps={{ disabled: this.state.checkedRadio !== 4 }}
+            onChange={this.changeTo}
+            timeFormat={false}
+          />
+        </Col>
+      </Row>
+
+      <Row>
+        <LabeledInput
+          size="8"
+          label={_t.translate("Filtering")}
           value={this.state.filter}
-          className="form-control"
           onChange={this.changeFilter}
+          onEnterPress={this.printMassages}
+          tooltip={_t.translate("Masseuse, masseur or client name to use as a massages filter")}
           type="text"
           maxLength="128"
-          onFocus={Util.moveCursorToEnd}
-          onKeyPress={this.handleInputKeyPress}
-          placeholder={_t.translate("Masseuse, masseur or client name")}
-          list="masseuses"
+          options={this.props.masseuses}
         />
-        <datalist id="masseuses">
-          {this.props.masseuses.map(item => (
-            <option key={item} value={item} />
-          ))}
-        </datalist>
-      </div>
+      </Row>
 
-      <ModalActions
-        primaryLabel={_t.translate("Print")}
-        onProceed={this.printMassages}
-        onClose={this.toggleModal}
-        autoFocus
-      />
-    </div>
+      <ModalActions primaryLabel={_t.translate("Print")} onProceed={this.printMassages} onClose={this.toggleModal} />
+    </ModalBody>
   );
 
-  renderModal = () => {
-    if (this.props.withPortal) {
-      return (
-        <ModalContainer onClose={this.toggleModal}>
-          <ModalDialog
-            onClose={this.toggleModal}
-            width="50%"
-            style={{ outline: "none" }}
-            tabIndex="-1"
-            onKeyPress={this.handleModalKeyPress}
-            ref={dialog => {
-              this.modalDialog = dialog;
-            }}
-          >
-            {this.renderInsides()}
-          </ModalDialog>
-        </ModalContainer>
-      );
-    }
-    return this.renderInsides();
-  };
+  createModal = () =>
+    this.props.withPortal ? (
+      <Modal size="lg" isOpen toggle={this.toggleModal} tabIndex="-1" onKeyPress={this.handleKeyPress}>
+        {this.createInsides()}
+      </Modal>
+    ) : (
+      this.createInsides()
+    );
 
   render() {
+    const { date, facilityId, onPrint, masseuses, withPortal, ...rest } = this.props;
     return (
-      <span style={{ marginRight: "5px" }}>
-        <BatchButton label={_t.translate("Print")} onClick={this.toggleModal} />
+      <span>
+        <TooltipButton
+          {...rest}
+          label={_t.translate("Print")}
+          tooltip={_t.translate("Show massage schedule print options")}
+          onClick={this.toggleModal}
+        />
 
-        {this.state.active && this.renderModal()}
+        {this.state.active && this.createModal()}
       </span>
     );
   }

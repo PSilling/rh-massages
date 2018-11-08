@@ -1,8 +1,9 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
+import { Table } from "reactstrap";
 import Facilities from "../../views/Facilities";
 import FacilityModal from "../../components/modals/FacilityModal";
 import FacilityRow from "../../components/rows/FacilityRow";
@@ -18,14 +19,12 @@ afterAll(() => {
 
 test("renders content correctly", () => {
   const testFacilities = [{ id: 1, name: "test" }];
-  const testRenderer = TestRenderer.create(<Facilities />);
-  const testInstance = testRenderer.root;
-  testInstance.instance.setState({ facilities: testFacilities });
-  const treeJSON = testRenderer.toJSON();
+  const wrapper = shallow(<Facilities />);
+  wrapper.instance().setState({ facilities: testFacilities });
+  const table = wrapper.find(Table);
 
-  testInstance.findByType("table");
-
-  expect(treeJSON).toMatchSnapshot();
+  expect(table.length).toBe(1);
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("properly changes state variables", () => {
@@ -33,33 +32,31 @@ test("properly changes state variables", () => {
     update();
   });
   const testFacilities = [{ id: 1, name: "test" }];
-  const testRenderer = TestRenderer.create(<Facilities />);
-  const testInstance = testRenderer.root;
-  const modal = testInstance.findByType(FacilityModal);
-
-  let rows = testInstance.findAllByType(FacilityRow);
+  const wrapper = shallow(<Facilities />);
+  const modal = wrapper.find(FacilityModal);
+  let rows = wrapper.find(FacilityRow);
 
   expect(rows.length).toBe(0);
-  testInstance.instance.setState({ loading: true, facilities: testFacilities });
-  testInstance.instance.getFacilities();
-  expect(testInstance.instance.state.facilities).toEqual([]);
-  expect(testInstance.instance.state.loading).toBe(false);
+  wrapper.instance().setState({ loading: true, facilities: testFacilities });
+  wrapper.instance().getFacilities();
+  expect(wrapper.instance().state.facilities).toEqual([]);
+  expect(wrapper.instance().state.loading).toBe(false);
 
-  testInstance.instance.setState({ facilities: testFacilities });
-  rows = testInstance.findAllByType(FacilityRow);
+  wrapper.instance().setState({ facilities: testFacilities });
+  rows = wrapper.find(FacilityRow);
   expect(rows.length).toBe(1);
 
-  expect(modal.props.getCallback).toBe(testInstance.instance.getFacilities);
-  expect(modal.props.active).toBe(false);
-  expect(modal.props.facility).toBe(null);
-  rows[0].props.onEdit();
-  expect(modal.props.active).toBe(true);
-  expect(modal.props.facility).toBe(testFacilities[0]);
-  modal.props.onToggle();
-  expect(modal.props.active).toBe(false);
-  expect(modal.props.facility).toBe(null);
+  expect(modal.props().getCallback).toBe(wrapper.instance().getFacilities);
+  expect(modal.props().active).toBe(false);
+  expect(modal.props().facility).toBe(null);
+  rows.get(0).props.onEdit();
+  expect(wrapper.instance().state.modalActive).toBe(true);
+  expect(wrapper.instance().state.editId).toBe(0);
+  modal.props().onToggle();
+  expect(wrapper.instance().state.modalActive).toBe(false);
+  expect(wrapper.instance().state.editId).toBe(-1);
 
-  rows[0].props.onDelete();
+  rows.get(0).props.onDelete();
   expect(Util.delete).toHaveBeenCalledTimes(1);
-  expect(testInstance.instance.state.facilities).toEqual([]);
+  expect(wrapper.instance().state.facilities).toEqual([]);
 });

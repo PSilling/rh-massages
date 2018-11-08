@@ -1,10 +1,9 @@
 // react imports
 import React from "react";
-import { Link } from "react-router-dom";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
-import App from "../App";
+import App, { NavWithLinks } from "../App";
 import Auth from "../util/Auth";
 import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import _t from "../util/Translations";
@@ -17,55 +16,24 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-test("renders admin content correctly", () => {
-  const testRenderer = TestRenderer.create(<App />);
-  const testInstance = testRenderer.root;
-  const links = testInstance.findAllByType(Link);
-  const rightBar = testInstance.findByProps({ className: "nav navbar-nav navbar-right" });
-  const massagesLinks = testInstance.findAllByProps({ to: "/" });
-  const myMassageLink = testInstance.findByProps({ to: "/my-massages" });
-  const facilitiesLink = testInstance.findByProps({ to: "/facilities" });
-  const massagesArchiveLink = testInstance.findByProps({ to: "/massages-archive" });
-  const settingsLink = testInstance.findByProps({ to: "/settings" });
-  const treeJSON = testRenderer.toJSON();
+test("renders authenticated user content correctly", () => {
+  const wrapper = shallow(<App />);
+  const nav = wrapper.find(NavWithLinks);
+  const container = wrapper.find({ className: "container" });
 
-  expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
-  expect(Auth.isAuthenticated).toHaveBeenCalledTimes(3);
-  expect(links).toHaveLength(6);
-  expect(massagesLinks).toHaveLength(2);
-  expect(massagesLinks[0].props.children).toBe(_t.translate("Massages"));
-  expect(massagesLinks[1].props.children).toBe(_t.translate("Massages"));
-  expect(myMassageLink.props.children).toBe(_t.translate("My Massages"));
-  expect(facilitiesLink.props.children).toBe(_t.translate("Facilities"));
-  expect(massagesArchiveLink.props.children).toBe(_t.translate("Massages Archive"));
-  expect(settingsLink.props.children).toBe(_t.translate("Settings"));
-  expect(rightBar.props.children).toHaveLength(3);
-  expect(treeJSON).toMatchSnapshot();
+  expect(nav.length).toBe(1);
+  expect(container.length).toBe(1);
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("renders unauthorized content correctly", () => {
   Auth.isAuthenticated = jest.fn().mockImplementation(() => false);
 
-  const testRenderer = TestRenderer.create(<App />);
-  const testInstance = testRenderer.root;
-  const message = testInstance.findByType(UnauthorizedMessage);
-  const treeJSON = testRenderer.toJSON();
+  const wrapper = shallow(<App />);
+  const message = wrapper.find(UnauthorizedMessage);
 
   expect(Auth.isAdmin).not.toHaveBeenCalled();
   expect(Auth.isAuthenticated).toHaveBeenCalledTimes(1);
-  expect(message.props.title).toBe(_t.translate("Massages"));
-  expect(treeJSON).toMatchSnapshot();
-});
-
-test("hides non-admin Links correctly", () => {
-  Auth.isAuthenticated = jest.fn().mockImplementation(() => true);
-  Auth.isAdmin = jest.fn().mockImplementation(() => false);
-
-  const testRenderer = TestRenderer.create(<App />);
-  const testInstance = testRenderer.root;
-  const links = testInstance.findAllByType(Link);
-
-  expect(Auth.isAdmin).toHaveBeenCalledTimes(3);
-  expect(Auth.isAuthenticated).toHaveBeenCalledTimes(2);
-  expect(links).toHaveLength(4);
+  expect(message.props().title).toBe(_t.translate("Massages"));
+  expect(wrapper).toMatchSnapshot();
 });

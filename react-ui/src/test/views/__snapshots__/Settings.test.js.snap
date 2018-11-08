@@ -1,119 +1,1514 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders content correctly 1`] = `
-<div>
-  <div
-    className="alert alert-info alert-dismissible"
-    style={
-      Object {
-        "marginBottom": "15px",
-      }
-    }
-  >
-    <button
-      aria-label="Close"
-      className="close"
-      onClick={[Function]}
-      title="Zavřít"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-      >
-        ×
-      </span>
-    </button>
-    Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
-  </div>
-  <h1>
-    
-    Nastavení
-  </h1>
-  <hr />
-  <h3>
-    Uživatelská nastavení
-  </h3>
-  <div
-    className="row"
-  >
-    <div
-      className="col-md-12"
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          className="checkbox-inline"
-          htmlFor="notifyInput"
-        >
-          <input
-            checked={Array []}
-            id="notifyInput"
-            onChange={[Function]}
-            type="checkbox"
-          />
-          Chci dostávat informace o 
-          <abbr
-            style={
-              Object {
-                "cursor": "pointer",
-              }
-            }
-            title="Rozpis nových a zrušení připsaných masáží"
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Settings />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <InfoAlert
+          onClose={[Function]}
+>
+          Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
+</InfoAlert>,
+        <h1>
+          Nastavení
+</h1>,
+        <hr />,
+        <h3>
+          Uživatelská nastavení
+</h3>,
+        <Row
+          tag="div"
+>
+          <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                              Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                    }
           >
-            změnách masáží
-          </abbr>
-        </label>
-      </div>
-    </div>
-  </div>
-  <h3>
-    O portálu
-  </h3>
-  <div
-    className="row"
-  >
-    <div
-      className="col-md-12"
-    >
-      Navštivte náš 
-      <a
-        href={undefined}
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        GitHub
-      </a>
-       
-      <del>
-        a naši 
-        <a
-          href="undefinedwiki"
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          wiki
-        </a>
-      </del>
-      ! (WIP)
-    </div>
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-md-12"
-    >
-      Hlaste chyby 
-      <a
-        href="undefinedissues"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        zde
-      </a>
-      .
-    </div>
-  </div>
-</div>
+                    <FormGroup
+                              check={true}
+                              inline={true}
+                              tag="div"
+                    >
+                              <Label
+                                        for="notifyInput"
+                                        tag="label"
+                                        widths={
+                                                  Array [
+                                                            "xs",
+                                                            "sm",
+                                                            "md",
+                                                            "lg",
+                                                            "xl",
+                                                          ]
+                                        }
+                              >
+                                        <Input
+                                                  checked={Array []}
+                                                  id="notifyInput"
+                                                  onChange={[Function]}
+                                                  type="checkbox"
+                                        />
+                                        Chci dostávat informace o 
+                                        <span
+                                                  id="Tooltip0"
+                                                  style={
+                                                            Object {
+                                                                      "borderBottom": "1px dotted",
+                                                                      "cursor": "pointer",
+                                                                    }
+                                                  }
+                                        >
+                                                  změnách masáží
+                                        </span>
+                              </Label>
+                    </FormGroup>
+                    <Tooltip
+                              autohide={true}
+                              delay={
+                                        Object {
+                                                  "hide": 250,
+                                                  "show": 0,
+                                                }
+                              }
+                              hideArrow={false}
+                              isOpen={false}
+                              placement="top"
+                              placementPrefix="bs-tooltip"
+                              target="Tooltip0"
+                              toggle={[Function]}
+                    >
+                              Rozpis nových a zrušení připsaných masáží
+                    </Tooltip>
+          </Col>
+</Row>,
+        <h3>
+          O portálu
+</h3>,
+        <Row
+          tag="div"
+>
+          <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                              Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                    }
+          >
+                    Navštivte náš 
+                    <a
+                              href={undefined}
+                              rel="noreferrer noopener"
+                              target="_blank"
+                    >
+                              GitHub
+                    </a>
+                     
+                    <del>
+                              a naši 
+                              <a
+                                        href="undefinedwiki"
+                                        rel="noreferrer noopener"
+                                        target="_blank"
+                              >
+                                        wiki
+                              </a>
+                    </del>
+                    ! (WIP)
+          </Col>
+</Row>,
+        <Row
+          tag="div"
+>
+          <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                              Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                    }
+          >
+                    Hlaste chyby 
+                    <a
+                              href="undefinedissues"
+                              rel="noreferrer noopener"
+                              target="_blank"
+                    >
+                              zde
+                    </a>
+                    .
+          </Col>
+</Row>,
+      ],
+      "className": "my-3",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+          "onClose": [Function],
+        },
+        "ref": null,
+        "rendered": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            false,
+            "Nastavení",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          false,
+          "Nastavení",
+        ],
+        "type": "h1",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "hr",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Uživatelská nastavení",
+        },
+        "ref": null,
+        "rendered": "Uživatelská nastavení",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <Col
+            md="12"
+            tag="div"
+            widths={
+                        Array [
+                                    "xs",
+                                    "sm",
+                                    "md",
+                                    "lg",
+                                    "xl",
+                                  ]
+            }
+>
+            <FormGroup
+                        check={true}
+                        inline={true}
+                        tag="div"
+            >
+                        <Label
+                                    for="notifyInput"
+                                    tag="label"
+                                    widths={
+                                                Array [
+                                                            "xs",
+                                                            "sm",
+                                                            "md",
+                                                            "lg",
+                                                            "xl",
+                                                          ]
+                                    }
+                        >
+                                    <Input
+                                                checked={Array []}
+                                                id="notifyInput"
+                                                onChange={[Function]}
+                                                type="checkbox"
+                                    />
+                                    Chci dostávat informace o 
+                                    <span
+                                                id="Tooltip0"
+                                                style={
+                                                            Object {
+                                                                        "borderBottom": "1px dotted",
+                                                                        "cursor": "pointer",
+                                                                      }
+                                                }
+                                    >
+                                                změnách masáží
+                                    </span>
+                        </Label>
+            </FormGroup>
+            <Tooltip
+                        autohide={true}
+                        delay={
+                                    Object {
+                                                "hide": 250,
+                                                "show": 0,
+                                              }
+                        }
+                        hideArrow={false}
+                        isOpen={false}
+                        placement="top"
+                        placementPrefix="bs-tooltip"
+                        target="Tooltip0"
+                        toggle={[Function]}
+            >
+                        Rozpis nových a zrušení připsaných masáží
+            </Tooltip>
+</Col>,
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <FormGroup
+                check={true}
+                inline={true}
+                tag="div"
+>
+                <Label
+                                for="notifyInput"
+                                tag="label"
+                                widths={
+                                                Array [
+                                                                "xs",
+                                                                "sm",
+                                                                "md",
+                                                                "lg",
+                                                                "xl",
+                                                              ]
+                                }
+                >
+                                <Input
+                                                checked={Array []}
+                                                id="notifyInput"
+                                                onChange={[Function]}
+                                                type="checkbox"
+                                />
+                                Chci dostávat informace o 
+                                <span
+                                                id="Tooltip0"
+                                                style={
+                                                                Object {
+                                                                                "borderBottom": "1px dotted",
+                                                                                "cursor": "pointer",
+                                                                              }
+                                                }
+                                >
+                                                změnách masáží
+                                </span>
+                </Label>
+</FormGroup>,
+              <Tooltip
+                autohide={true}
+                delay={
+                                Object {
+                                                "hide": 250,
+                                                "show": 0,
+                                              }
+                }
+                hideArrow={false}
+                isOpen={false}
+                placement="top"
+                placementPrefix="bs-tooltip"
+                target="Tooltip0"
+                toggle={[Function]}
+>
+                Rozpis nových a zrušení připsaných masáží
+</Tooltip>,
+            ],
+            "md": "12",
+            "tag": "div",
+            "widths": Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "check": true,
+                "children": <Label
+                  for="notifyInput"
+                  tag="label"
+                  widths={
+                                    Array [
+                                                      "xs",
+                                                      "sm",
+                                                      "md",
+                                                      "lg",
+                                                      "xl",
+                                                    ]
+                  }
+>
+                  <Input
+                                    checked={Array []}
+                                    id="notifyInput"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                  />
+                  Chci dostávat informace o 
+                  <span
+                                    id="Tooltip0"
+                                    style={
+                                                      Object {
+                                                                        "borderBottom": "1px dotted",
+                                                                        "cursor": "pointer",
+                                                                      }
+                                    }
+                  >
+                                    změnách masáží
+                  </span>
+</Label>,
+                "inline": true,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Input
+                      checked={Array []}
+                      id="notifyInput"
+                      onChange={[Function]}
+                      type="checkbox"
+/>,
+                    "Chci dostávat informace o ",
+                    <span
+                      id="Tooltip0"
+                      style={
+                                            Object {
+                                                                  "borderBottom": "1px dotted",
+                                                                  "cursor": "pointer",
+                                                                }
+                      }
+>
+                      změnách masáží
+</span>,
+                  ],
+                  "for": "notifyInput",
+                  "tag": "label",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "checked": Array [],
+                      "id": "notifyInput",
+                      "onChange": [Function],
+                      "type": "checkbox",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "Chci dostávat informace o ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "změnách masáží",
+                      "id": "Tooltip0",
+                      "style": Object {
+                        "borderBottom": "1px dotted",
+                        "cursor": "pointer",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "změnách masáží",
+                    "type": "span",
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "autohide": true,
+                "children": "Rozpis nových a zrušení připsaných masáží",
+                "delay": Object {
+                  "hide": 250,
+                  "show": 0,
+                },
+                "hideArrow": false,
+                "isOpen": false,
+                "placement": "top",
+                "placementPrefix": "bs-tooltip",
+                "target": "Tooltip0",
+                "toggle": [Function],
+              },
+              "ref": null,
+              "rendered": "Rozpis nových a zrušení připsaných masáží",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "O portálu",
+        },
+        "ref": null,
+        "rendered": "O portálu",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <Col
+            md="12"
+            tag="div"
+            widths={
+                        Array [
+                                    "xs",
+                                    "sm",
+                                    "md",
+                                    "lg",
+                                    "xl",
+                                  ]
+            }
+>
+            Navštivte náš 
+            <a
+                        href={undefined}
+                        rel="noreferrer noopener"
+                        target="_blank"
+            >
+                        GitHub
+            </a>
+             
+            <del>
+                        a naši 
+                        <a
+                                    href="undefinedwiki"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                        >
+                                    wiki
+                        </a>
+            </del>
+            ! (WIP)
+</Col>,
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              "Navštivte náš ",
+              <a
+                href={undefined}
+                rel="noreferrer noopener"
+                target="_blank"
+>
+                GitHub
+</a>,
+              " ",
+              <del>
+                a naši 
+                <a
+                                href="undefinedwiki"
+                                rel="noreferrer noopener"
+                                target="_blank"
+                >
+                                wiki
+                </a>
+</del>,
+              "! (WIP)",
+            ],
+            "md": "12",
+            "tag": "div",
+            "widths": Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            "Navštivte náš ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "GitHub",
+                "href": undefined,
+                "rel": "noreferrer noopener",
+                "target": "_blank",
+              },
+              "ref": null,
+              "rendered": "GitHub",
+              "type": "a",
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "a naši ",
+                  <a
+                    href="undefinedwiki"
+                    rel="noreferrer noopener"
+                    target="_blank"
+>
+                    wiki
+</a>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "a naši ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "wiki",
+                    "href": "undefinedwiki",
+                    "rel": "noreferrer noopener",
+                    "target": "_blank",
+                  },
+                  "ref": null,
+                  "rendered": "wiki",
+                  "type": "a",
+                },
+              ],
+              "type": "del",
+            },
+            "! (WIP)",
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <Col
+            md="12"
+            tag="div"
+            widths={
+                        Array [
+                                    "xs",
+                                    "sm",
+                                    "md",
+                                    "lg",
+                                    "xl",
+                                  ]
+            }
+>
+            Hlaste chyby 
+            <a
+                        href="undefinedissues"
+                        rel="noreferrer noopener"
+                        target="_blank"
+            >
+                        zde
+            </a>
+            .
+</Col>,
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              "Hlaste chyby ",
+              <a
+                href="undefinedissues"
+                rel="noreferrer noopener"
+                target="_blank"
+>
+                zde
+</a>,
+              ".",
+            ],
+            "md": "12",
+            "tag": "div",
+            "widths": Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            "Hlaste chyby ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "zde",
+                "href": "undefinedissues",
+                "rel": "noreferrer noopener",
+                "target": "_blank",
+              },
+              "ref": null,
+              "rendered": "zde",
+              "type": "a",
+            },
+            ".",
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <InfoAlert
+            onClose={[Function]}
+>
+            Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
+</InfoAlert>,
+          <h1>
+            Nastavení
+</h1>,
+          <hr />,
+          <h3>
+            Uživatelská nastavení
+</h3>,
+          <Row
+            tag="div"
+>
+            <Col
+                        md="12"
+                        tag="div"
+                        widths={
+                                    Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                        }
+            >
+                        <FormGroup
+                                    check={true}
+                                    inline={true}
+                                    tag="div"
+                        >
+                                    <Label
+                                                for="notifyInput"
+                                                tag="label"
+                                                widths={
+                                                            Array [
+                                                                        "xs",
+                                                                        "sm",
+                                                                        "md",
+                                                                        "lg",
+                                                                        "xl",
+                                                                      ]
+                                                }
+                                    >
+                                                <Input
+                                                            checked={Array []}
+                                                            id="notifyInput"
+                                                            onChange={[Function]}
+                                                            type="checkbox"
+                                                />
+                                                Chci dostávat informace o 
+                                                <span
+                                                            id="Tooltip0"
+                                                            style={
+                                                                        Object {
+                                                                                    "borderBottom": "1px dotted",
+                                                                                    "cursor": "pointer",
+                                                                                  }
+                                                            }
+                                                >
+                                                            změnách masáží
+                                                </span>
+                                    </Label>
+                        </FormGroup>
+                        <Tooltip
+                                    autohide={true}
+                                    delay={
+                                                Object {
+                                                            "hide": 250,
+                                                            "show": 0,
+                                                          }
+                                    }
+                                    hideArrow={false}
+                                    isOpen={false}
+                                    placement="top"
+                                    placementPrefix="bs-tooltip"
+                                    target="Tooltip0"
+                                    toggle={[Function]}
+                        >
+                                    Rozpis nových a zrušení připsaných masáží
+                        </Tooltip>
+            </Col>
+</Row>,
+          <h3>
+            O portálu
+</h3>,
+          <Row
+            tag="div"
+>
+            <Col
+                        md="12"
+                        tag="div"
+                        widths={
+                                    Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                        }
+            >
+                        Navštivte náš 
+                        <a
+                                    href={undefined}
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                        >
+                                    GitHub
+                        </a>
+                         
+                        <del>
+                                    a naši 
+                                    <a
+                                                href="undefinedwiki"
+                                                rel="noreferrer noopener"
+                                                target="_blank"
+                                    >
+                                                wiki
+                                    </a>
+                        </del>
+                        ! (WIP)
+            </Col>
+</Row>,
+          <Row
+            tag="div"
+>
+            <Col
+                        md="12"
+                        tag="div"
+                        widths={
+                                    Array [
+                                                "xs",
+                                                "sm",
+                                                "md",
+                                                "lg",
+                                                "xl",
+                                              ]
+                        }
+            >
+                        Hlaste chyby 
+                        <a
+                                    href="undefinedissues"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                        >
+                                    zde
+                        </a>
+                        .
+            </Col>
+</Row>,
+        ],
+        "className": "my-3",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+            "onClose": [Function],
+          },
+          "ref": null,
+          "rendered": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              false,
+              "Nastavení",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            false,
+            "Nastavení",
+          ],
+          "type": "h1",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "hr",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Uživatelská nastavení",
+          },
+          "ref": null,
+          "rendered": "Uživatelská nastavení",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <Col
+              md="12"
+              tag="div"
+              widths={
+                            Array [
+                                          "xs",
+                                          "sm",
+                                          "md",
+                                          "lg",
+                                          "xl",
+                                        ]
+              }
+>
+              <FormGroup
+                            check={true}
+                            inline={true}
+                            tag="div"
+              >
+                            <Label
+                                          for="notifyInput"
+                                          tag="label"
+                                          widths={
+                                                        Array [
+                                                                      "xs",
+                                                                      "sm",
+                                                                      "md",
+                                                                      "lg",
+                                                                      "xl",
+                                                                    ]
+                                          }
+                            >
+                                          <Input
+                                                        checked={Array []}
+                                                        id="notifyInput"
+                                                        onChange={[Function]}
+                                                        type="checkbox"
+                                          />
+                                          Chci dostávat informace o 
+                                          <span
+                                                        id="Tooltip0"
+                                                        style={
+                                                                      Object {
+                                                                                    "borderBottom": "1px dotted",
+                                                                                    "cursor": "pointer",
+                                                                                  }
+                                                        }
+                                          >
+                                                        změnách masáží
+                                          </span>
+                            </Label>
+              </FormGroup>
+              <Tooltip
+                            autohide={true}
+                            delay={
+                                          Object {
+                                                        "hide": 250,
+                                                        "show": 0,
+                                                      }
+                            }
+                            hideArrow={false}
+                            isOpen={false}
+                            placement="top"
+                            placementPrefix="bs-tooltip"
+                            target="Tooltip0"
+                            toggle={[Function]}
+              >
+                            Rozpis nových a zrušení připsaných masáží
+              </Tooltip>
+</Col>,
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <FormGroup
+                  check={true}
+                  inline={true}
+                  tag="div"
+>
+                  <Label
+                                    for="notifyInput"
+                                    tag="label"
+                                    widths={
+                                                      Array [
+                                                                        "xs",
+                                                                        "sm",
+                                                                        "md",
+                                                                        "lg",
+                                                                        "xl",
+                                                                      ]
+                                    }
+                  >
+                                    <Input
+                                                      checked={Array []}
+                                                      id="notifyInput"
+                                                      onChange={[Function]}
+                                                      type="checkbox"
+                                    />
+                                    Chci dostávat informace o 
+                                    <span
+                                                      id="Tooltip0"
+                                                      style={
+                                                                        Object {
+                                                                                          "borderBottom": "1px dotted",
+                                                                                          "cursor": "pointer",
+                                                                                        }
+                                                      }
+                                    >
+                                                      změnách masáží
+                                    </span>
+                  </Label>
+</FormGroup>,
+                <Tooltip
+                  autohide={true}
+                  delay={
+                                    Object {
+                                                      "hide": 250,
+                                                      "show": 0,
+                                                    }
+                  }
+                  hideArrow={false}
+                  isOpen={false}
+                  placement="top"
+                  placementPrefix="bs-tooltip"
+                  target="Tooltip0"
+                  toggle={[Function]}
+>
+                  Rozpis nových a zrušení připsaných masáží
+</Tooltip>,
+              ],
+              "md": "12",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "check": true,
+                  "children": <Label
+                    for="notifyInput"
+                    tag="label"
+                    widths={
+                                        Array [
+                                                            "xs",
+                                                            "sm",
+                                                            "md",
+                                                            "lg",
+                                                            "xl",
+                                                          ]
+                    }
+>
+                    <Input
+                                        checked={Array []}
+                                        id="notifyInput"
+                                        onChange={[Function]}
+                                        type="checkbox"
+                    />
+                    Chci dostávat informace o 
+                    <span
+                                        id="Tooltip0"
+                                        style={
+                                                            Object {
+                                                                                "borderBottom": "1px dotted",
+                                                                                "cursor": "pointer",
+                                                                              }
+                                        }
+                    >
+                                        změnách masáží
+                    </span>
+</Label>,
+                  "inline": true,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": Array [
+                      <Input
+                        checked={Array []}
+                        id="notifyInput"
+                        onChange={[Function]}
+                        type="checkbox"
+/>,
+                      "Chci dostávat informace o ",
+                      <span
+                        id="Tooltip0"
+                        style={
+                                                Object {
+                                                                        "borderBottom": "1px dotted",
+                                                                        "cursor": "pointer",
+                                                                      }
+                        }
+>
+                        změnách masáží
+</span>,
+                    ],
+                    "for": "notifyInput",
+                    "tag": "label",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "checked": Array [],
+                        "id": "notifyInput",
+                        "onChange": [Function],
+                        "type": "checkbox",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "Chci dostávat informace o ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "změnách masáží",
+                        "id": "Tooltip0",
+                        "style": Object {
+                          "borderBottom": "1px dotted",
+                          "cursor": "pointer",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "změnách masáží",
+                      "type": "span",
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "autohide": true,
+                  "children": "Rozpis nových a zrušení připsaných masáží",
+                  "delay": Object {
+                    "hide": 250,
+                    "show": 0,
+                  },
+                  "hideArrow": false,
+                  "isOpen": false,
+                  "placement": "top",
+                  "placementPrefix": "bs-tooltip",
+                  "target": "Tooltip0",
+                  "toggle": [Function],
+                },
+                "ref": null,
+                "rendered": "Rozpis nových a zrušení připsaných masáží",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "O portálu",
+          },
+          "ref": null,
+          "rendered": "O portálu",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <Col
+              md="12"
+              tag="div"
+              widths={
+                            Array [
+                                          "xs",
+                                          "sm",
+                                          "md",
+                                          "lg",
+                                          "xl",
+                                        ]
+              }
+>
+              Navštivte náš 
+              <a
+                            href={undefined}
+                            rel="noreferrer noopener"
+                            target="_blank"
+              >
+                            GitHub
+              </a>
+               
+              <del>
+                            a naši 
+                            <a
+                                          href="undefinedwiki"
+                                          rel="noreferrer noopener"
+                                          target="_blank"
+                            >
+                                          wiki
+                            </a>
+              </del>
+              ! (WIP)
+</Col>,
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                "Navštivte náš ",
+                <a
+                  href={undefined}
+                  rel="noreferrer noopener"
+                  target="_blank"
+>
+                  GitHub
+</a>,
+                " ",
+                <del>
+                  a naši 
+                  <a
+                                    href="undefinedwiki"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                  >
+                                    wiki
+                  </a>
+</del>,
+                "! (WIP)",
+              ],
+              "md": "12",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Navštivte náš ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "GitHub",
+                  "href": undefined,
+                  "rel": "noreferrer noopener",
+                  "target": "_blank",
+                },
+                "ref": null,
+                "rendered": "GitHub",
+                "type": "a",
+              },
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    "a naši ",
+                    <a
+                      href="undefinedwiki"
+                      rel="noreferrer noopener"
+                      target="_blank"
+>
+                      wiki
+</a>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "a naši ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "wiki",
+                      "href": "undefinedwiki",
+                      "rel": "noreferrer noopener",
+                      "target": "_blank",
+                    },
+                    "ref": null,
+                    "rendered": "wiki",
+                    "type": "a",
+                  },
+                ],
+                "type": "del",
+              },
+              "! (WIP)",
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <Col
+              md="12"
+              tag="div"
+              widths={
+                            Array [
+                                          "xs",
+                                          "sm",
+                                          "md",
+                                          "lg",
+                                          "xl",
+                                        ]
+              }
+>
+              Hlaste chyby 
+              <a
+                            href="undefinedissues"
+                            rel="noreferrer noopener"
+                            target="_blank"
+              >
+                            zde
+              </a>
+              .
+</Col>,
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                "Hlaste chyby ",
+                <a
+                  href="undefinedissues"
+                  rel="noreferrer noopener"
+                  target="_blank"
+>
+                  zde
+</a>,
+                ".",
+              ],
+              "md": "12",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Hlaste chyby ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "zde",
+                  "href": "undefinedissues",
+                  "rel": "noreferrer noopener",
+                  "target": "_blank",
+                },
+                "ref": null,
+                "rendered": "zde",
+                "type": "a",
+              },
+              ".",
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

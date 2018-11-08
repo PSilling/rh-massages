@@ -5,8 +5,8 @@ import React from "react";
 import { shallow } from "enzyme";
 import moment from "moment";
 import MassagesArchive from "../../views/MassagesArchive";
-import BatchButton from "../../components/buttons/BatchButton";
-import BatchDeleteButton from "../../components/buttons/BatchDeleteButton";
+import TooltipButton from "../../components/buttons/TooltipButton";
+import ConfirmationButton from "../../components/buttons/ConfirmationButton";
 import CalendarPanel from "../../components/panels/CalendarPanel";
 import Util from "../../util/Util";
 
@@ -39,8 +39,8 @@ test("properly changes state variables", () => {
     }
   ];
   const wrapper = shallow(<MassagesArchive />);
-  const selectButton = wrapper.find(BatchButton);
-  const deleteButtons = wrapper.find(BatchDeleteButton);
+  const selectButton = wrapper.find(TooltipButton);
+  const deleteButtons = wrapper.find(ConfirmationButton);
   const panel = wrapper.find(CalendarPanel);
 
   wrapper.instance().setState({ loading: true });
@@ -53,9 +53,9 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.selectEvents).toBe(false);
 
   expect(deleteButtons.get(0).props.disabled).toBe(true);
-  deleteButtons.get(0).props.onDelete();
+  deleteButtons.get(0).props.onConfirm();
   expect(Util.delete).toHaveBeenCalledTimes(1);
-  deleteButtons.get(1).props.onDelete();
+  deleteButtons.get(1).props.onConfirm();
   expect(Util.get).toHaveBeenCalledTimes(4);
   expect(Util.delete).toHaveBeenCalledTimes(1);
   expect(panel.props().selected).toEqual([]);

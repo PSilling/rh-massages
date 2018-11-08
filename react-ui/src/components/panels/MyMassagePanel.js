@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
+import { Row, Col, Card, Button, CardHeader, CardBody, CardText } from "reactstrap";
 import moment from "moment";
 
 // component imports
@@ -52,37 +53,39 @@ class MyMassagePanel extends Component {
 
   render() {
     return (
-      <div>
-        <div className="col-md-3">
-          <div className={`panel panel-${this.props.type}`} style={{ height: "15em" }}>
-            <div className="panel-heading">
-              {moment(this.props.massage.date).format("ddd L")}
-              <button
-                type="button"
-                className="close"
-                aria-label="Close"
-                onClick={this.handleToggle}
-                title={_t.translate("Unassign me")}
-              >
-                {this.props.disabled ? "" : <span aria-hidden="true">&times;</span>}
-              </button>
-            </div>
-            <div className="panel-body">
-              <p>{`${_t.translate("Facility")}: ${this.props.massage.facility.name}`}</p>
-              <p>{`${_t.translate("Masseur/Masseuse")}: ${this.props.massage.masseuse}`}</p>
-              <p>
-                {`${_t.translate("Time")}: ${moment(this.props.massage.date).format("HH:mm")}–${moment(
-                  this.props.massage.ending
-                ).format("HH:mm")}`}
-              </p>
-              <p style={{ marginTop: "-8px" }}>
-                {`${_t.translate("Event")}:`}
-                <CalendarButton link={Util.addToCalendar(this.props.massage)} />
-              </p>
-            </div>
-          </div>
-        </div>
-        {this.state.active ? (
+      <div className="mb-3">
+        <Row>
+          <Col md="3">
+            <Card color={this.props.type} outline>
+              <CardHeader>
+                {moment(this.props.massage.date).format("ddd L")}
+                <Button
+                  color="light"
+                  className="close"
+                  aria-label="Close"
+                  onClick={this.handleToggle}
+                  disabled={this.props.disabled}
+                >
+                  {!this.props.disabled && <span aria-hidden="true">&times;</span>}
+                </Button>
+              </CardHeader>
+              <CardBody>
+                <CardText>{`${_t.translate("Facility")}: ${this.props.massage.facility.name}`}</CardText>
+                <CardText>{`${_t.translate("Masseur/Masseuse")}: ${this.props.massage.masseuse}`}</CardText>
+                <CardText>
+                  {`${_t.translate("Time")}: ${moment(this.props.massage.date).format("HH:mm")}–${moment(
+                    this.props.massage.ending
+                  ).format("HH:mm")}`}
+                </CardText>
+                <CardText>
+                  {`${_t.translate("Event")}: `}
+                  <CalendarButton link={Util.getEventLink(this.props.massage)} />
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+        {this.state.active && (
           <ConfirmationModal
             message={_t.translate("Are you sure you want to unassign yourself from this massage?")}
             onClose={this.handleToggle}
@@ -91,8 +94,6 @@ class MyMassagePanel extends Component {
               this.cancelMassage();
             }}
           />
-        ) : (
-          ""
         )}
       </div>
     );

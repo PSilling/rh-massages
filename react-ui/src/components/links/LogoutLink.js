@@ -1,6 +1,9 @@
 // react imports
 import React, { Component } from "react";
 
+// module imports
+import { NavLink } from "reactstrap";
+
 // util imports
 import Auth from "../../util/Auth";
 import _t from "../../util/Translations";
@@ -31,11 +34,11 @@ class LogoutLink extends Component {
 
   render() {
     return (
-      <button type="button" className="btn btn-link navbar-btn" onClick={this.logout}>
-        <span className="glyphicon glyphicon-log-out" />
+      <NavLink onClick={this.logout} style={{ cursor: "pointer" }}>
+        <span className="fas fa-sign-out-alt" />
         &nbsp;
         {_t.translate("Logout")}
-      </button>
+      </NavLink>
     );
   }
 }

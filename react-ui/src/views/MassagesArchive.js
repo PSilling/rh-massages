@@ -2,11 +2,12 @@
 import React, { Component } from "react";
 
 // module imports
+import { Row, Col } from "reactstrap";
 import moment from "moment";
 
 // component imports
-import BatchButton from "../components/buttons/BatchButton";
-import BatchDeleteButton from "../components/buttons/BatchDeleteButton";
+import TooltipButton from "../components/buttons/TooltipButton";
+import ConfirmationButton from "../components/buttons/ConfirmationButton";
 import CalendarPanel from "../components/panels/CalendarPanel";
 import InfoAlert from "../components/util/InfoAlert";
 import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
@@ -106,25 +107,20 @@ class MassagesArchive extends Component {
    * Removes all old Massages from the server.
    */
   deleteAllMassages = () => {
-    Util.get(
-      `${Util.MASSAGES_URL}old?&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to)
-        .add(1, "days")
-        .unix() * 1000}`,
-      json => {
-        if (json === undefined || json.massages === undefined || json.massages.length === 0) {
-          return;
-        }
-        let idString = "?";
-        for (let i = 0; i < json.massages.length; i++) {
-          if (idString.length > 2000) {
-            Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
-            idString = "?";
-          }
-          idString += `ids=${json.massages[i].id}&`;
-        }
-        Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+    Util.get(`${Util.MASSAGES_URL}old?&from=${moment(0).unix() * 1000}&to=${moment().unix() * 1000}`, json => {
+      if (json === undefined || json.massages === undefined) {
+        return;
       }
-    );
+      let idString = "?";
+      for (let i = 0; i < json.massages.length; i++) {
+        if (idString.length > 2000) {
+          Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+          idString = "?";
+        }
+        idString += `ids=${json.massages[i].id}&`;
+      }
+      Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+    });
   };
 
   handleEventSelect = event => {
@@ -187,36 +183,39 @@ class MassagesArchive extends Component {
     }
 
     return (
-      <div>
-        {!localStorage.getItem("closeArchiveAlert") ? (
+      <div className="my-3">
+        {!localStorage.getItem("closeArchiveAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
-        ) : (
-          ""
         )}
         <h1>
-          {this.state.loading ? <div className="loader pull-right" /> : ""}
+          {this.state.loading && <div className="loader float-right" />}
           {_t.translate("Massages Archive")}
         </h1>
         <hr />
-        <div className="row" style={{ marginBottom: "15px" }}>
-          <div className="col-md-6">
-            <BatchButton
+        <Row>
+          <Col md="6">
+            <TooltipButton
               label={_t.translate("Select")}
               onClick={this.changeSelectEvents}
               active={this.state.selectEvents}
+              tooltip={_t.translate("Select multiple massages for batch operations")}
             />
-          </div>
-          <div className="col-md-6 text-right">
-            <BatchDeleteButton
-              onDelete={this.deleteSelectedMassages}
+          </Col>
+          <Col md="6" className="text-right">
+            <ConfirmationButton
+              onConfirm={this.deleteSelectedMassages}
               label={_t.translate("Delete selected")}
               disabled={this.state.selected.length === 0}
+              tooltip={_t.translate("Delete selected massages")}
             />
-            <span style={{ marginLeft: "5px" }}>
-              <BatchDeleteButton onDelete={this.deleteAllMassages} label={_t.translate("Delete all")} />
-            </span>
-          </div>
-        </div>
+            <ConfirmationButton
+              className="ml-2"
+              onConfirm={this.deleteAllMassages}
+              label={_t.translate("Delete all")}
+              tooltip={_t.translate("Clear the massage history")}
+            />
+          </Col>
+        </Row>
         <CalendarPanel
           events={this.state.events}
           selectEvents={this.state.selectEvents}

@@ -2,19 +2,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// util imports
-import _t from "../../util/Translations";
+// module imports
+import { Alert } from "reactstrap";
 
 /**
  * Bootsrap information alert panel for basic information distribution.
  */
 const InfoAlert = function InfoAlert(props) {
   return (
-    <div className="alert alert-info alert-dismissible" style={{ marginBottom: "15px" }}>
-      <button type="button" className="close" aria-label="Close" onClick={props.onClose} title={_t.translate("Close")}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {props.children}
+    <div className="no-print my-3">
+      <Alert color="info" isOpen toggle={props.onClose}>
+        {props.children}
+      </Alert>
     </div>
   );
 };

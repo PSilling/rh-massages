@@ -1,16 +1,15 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
+import { Row, Col, Button, Modal, ModalBody, Tooltip } from "reactstrap";
 import moment from "moment";
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
 
 // component imports
-import EditButton from "../iconbuttons/EditButton";
-import DeleteButton from "../iconbuttons/DeleteButton";
+import ConfirmationIconButton from "../iconbuttons/ConfirmationIconButton";
 import ModalActions from "../buttons/ModalActions";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import Auth from "../../util/Auth";
@@ -22,54 +21,71 @@ import Util from "../../util/Util";
  * Also supports assignment management.
  */
 class MassageEventModal extends Component {
-  definitionStyle = { marginBottom: "0.75em" };
+  state = { tooltipActive: false };
 
-  handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
+  tooltipTarget = Util.getTooltipTargets(1)[0];
+
+  definitionClass = "mb-3";
+
+  onCalendarConfirm = () => {
+    window.open(Util.getEventLink(this.props.event.massage), "_blank");
+    this.props.onConfirm();
+  };
+
+  toggleTooltip = () => {
+    this.setState(prevState => ({ tooltipActive: !prevState.tooltipActive }));
+  };
+
+  handleKeyPress = event => {
+    if (event.key === "Enter" && document.activeElement.tabIndex === -1) {
       this.props.onClose();
     }
   };
 
-  handleInputKeyPress = event => {
-    if (event.charCode === 13) {
-      this.props.onClose();
-    }
-  };
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>
+            {_t.translate("Details")}
+            {Auth.isAdmin() && (
+              <div className="float-right">
+                {this.props.allowEditation && (
+                  <TooltipIconButton icon="edit" onClick={this.props.onEdit} tooltip={_t.translate("Edit")} />
+                )}
+                <ConfirmationIconButton
+                  className="ml-2"
+                  icon="trash"
+                  onConfirm={this.props.onDelete}
+                  tooltip={_t.translate("Delete")}
+                />
+              </div>
+            )}
+          </h3>
+          <hr />
+        </Col>
+      </Row>
 
-  renderInsides = () => (
-    <div>
-      <h2>
-        {_t.translate("Details")}
-        {Auth.isAdmin() ? (
-          <div className="pull-right">
-            {this.props.allowEditation ? <EditButton onEdit={this.props.onEdit} /> : ""}
-            <DeleteButton onDelete={this.props.onDelete} />
-          </div>
-        ) : (
-          ""
-        )}
-      </h2>
-      <hr />
-      <div className="row">
-        <div className="col-md-4">
+      <Row>
+        <Col md="4">
           <dl>
             <dt>{_t.translate("Facility")}</dt>
-            <dd style={this.definitionStyle}>{this.props.event.massage.facility.name}</dd>
+            <dd className={this.definitionClass}>{this.props.event.massage.facility.name}</dd>
             <dt>{_t.translate("Time")}</dt>
-            <dd style={this.definitionStyle}>
+            <dd className={this.definitionClass}>
               {`${moment(this.props.event.massage.date).format("HH:mm")}–${moment(
                 this.props.event.massage.ending
               ).format("HH:mm")}`}
             </dd>
             <dt>{_t.translate("Client")}</dt>
             {Util.isEmpty(this.props.event.massage.client) ? (
-              <dd style={this.definitionStyle}>
+              <dd className={this.definitionClass}>
                 <p className="text-success">
                   <strong>{_t.translate("Free")}</strong>
                 </p>
               </dd>
             ) : (
-              <dd style={this.definitionStyle}>
+              <dd className={this.definitionClass}>
                 <p
                   className={
                     this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub()
@@ -82,83 +98,72 @@ class MassageEventModal extends Component {
               </dd>
             )}
           </dl>
-        </div>
+        </Col>
 
-        <div className="col-md-4">
+        <Col md="4">
           <dl>
             <dt>{_t.translate("Masseur/Masseuse")}</dt>
-            <dd style={this.definitionStyle}>{this.props.event.massage.masseuse}</dd>
+            <dd className={this.definitionClass}>{this.props.event.massage.masseuse}</dd>
             <dt>{_t.translate("Duration")}</dt>
-            <dd style={this.definitionStyle}>
+            <dd className={this.definitionClass}>
               {`${moment
                 .duration(moment(this.props.event.massage.ending).diff(this.props.event.massage.date))
                 .asMinutes()} ${_t.translate("minutes")}`}
             </dd>
           </dl>
-        </div>
+        </Col>
 
-        <div className="col-md-4">
+        <Col md="4">
           <dl>
             <dt>{_t.translate("Date")}</dt>
-            <dd style={this.definitionStyle}>{moment(this.props.event.massage.date).format("L")}</dd>
+            <dd className={this.definitionClass}>{moment(this.props.event.massage.date).format("L")}</dd>
           </dl>
-        </div>
-      </div>
-
+        </Col>
+      </Row>
       <ModalActions
         primaryLabel={this.props.label}
-        title={this.props.disabled ? _t.translate("Maximal simultaneous massage time per user would be exceeded") : ""}
         disabled={this.props.disabled}
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >
-        {this.props.label === _t.translate("Assign me") ? (
-          <a
-            href={Util.addToCalendar(this.props.event.massage)}
-            target="_blank"
-            rel="noreferrer noopener"
-            tabIndex="-1"
-          >
-            <button
-              type="button"
-              className="btn btn-primary"
+        {this.props.label === _t.translate("Assign me") && (
+          <span>
+            <Button
+              id={this.tooltipTarget}
+              className="mr-2"
+              tag="a"
+              color="primary"
               disabled={this.props.disabled}
-              title={
-                this.props.disabled
-                  ? _t.translate("Maximal simultaneous massage time per user would be exceeded")
-                  : _t.translate("Assigns this massage and opens a predefined Google event editor in a new tab")
-              }
-              onClick={this.props.onConfirm}
-              style={{ marginRight: "5px" }}
+              onClick={this.onCalendarConfirm}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex="-1"
             >
               {_t.translate("Assign and add to calendar")}
-            </button>
-          </a>
-        ) : (
-          ""
+            </Button>
+            <Tooltip
+              isOpen={this.state.tooltipActive}
+              target={this.tooltipTarget}
+              toggle={this.toggleTooltip}
+              trigger="hover"
+            >
+              {this.props.disabled
+                ? _t.translate("Maximal simultaneous massage time per user would be exceeded")
+                : _t.translate("Assigns this massage and opens a predefined Google event editor in a new tab")}
+            </Tooltip>
+          </span>
         )}
       </ModalActions>
-    </div>
+    </ModalBody>
   );
 
   render() {
     return this.props.withPortal ? (
-      <ModalContainer onClose={this.props.onClose}>
-        <ModalDialog
-          onClose={this.props.onClose}
-          width="40%"
-          style={{ outline: "none" }}
-          tabIndex="-1"
-          onKeyPress={this.handleModalKeyPress}
-          ref={dialog => {
-            this.modalDialog = dialog;
-          }}
-        >
-          {this.renderInsides()}
-        </ModalDialog>
-      </ModalContainer>
+      <Modal size="lg" isOpen toggle={this.props.onClose} tabIndex="-1" onKeyPress={this.handleModalKeyPress}>
+        {this.createInsides()}
+      </Modal>
     ) : (
-      this.renderInsides()
+      this.createInsides()
     );
   }
 }

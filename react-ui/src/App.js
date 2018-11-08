@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-
 import PropTypes from "prop-types";
 
 // module imports
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 import moment from "moment";
 import { NotificationContainer } from "react-notifications";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-notifications/lib/notifications.css";
 import "react-datetime/css/react-datetime.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -27,9 +29,6 @@ import UnauthorizedMessage from "./components/util/UnauthorizedMessage";
 // util imports
 import Auth from "./util/Auth";
 import _t from "./util/Translations";
-
-// Bootstrap customization file import
-import "./styles/main/bootstrap.min.css";
 
 // moment.js localization
 moment.updateLocale("en", {
@@ -53,67 +52,69 @@ moment.updateLocale("en", {
  * 404 page displayed when no route is matched.
  */
 const NoMatch = ({ location }) => (
-  <div className="text-center">
-    <h3>
-      <code>Error 404:</code>
-      {_t.translate(" page doesn't exist: ")}
-      <code>{location.pathname}</code>
-    </h3>
-    <h3 style={{ marginTop: "30px" }}>
+  <div className="text-center mt-5">
+    <h4>
+      <code>
+        Error 404
+        {_t.translate(" (page doesn't exist): ")}
+        {location.pathname}
+      </code>
+    </h4>
+    <h4 className="mt-4">
       <Link style={{ color: "#595959" }} to="/">
         {_t.translate("Back to main page")}
       </Link>
-    </h3>
+    </h4>
   </div>
 );
 
 // navigation bar with view links
 export const NavWithLinks = withRouter(({ location }) => (
-  <nav className="navbar navbar-default no-print">
-    <div className="container-fluid">
-      <div className="navbar-header">
-        <Link className="navbar-brand" to="/">
+  <Navbar color="light" light expand="md" className="no-print">
+    <NavbarBrand>{_t.translate("Massages")}</NavbarBrand>
+    <Nav navbar>
+      <NavItem active={location.pathname === "/my-massages"}>
+        <NavLink tag={Link} to="/my-massages" className="mr-1">
+          {_t.translate("My Massages")}
+        </NavLink>
+      </NavItem>
+      <NavItem active={location.pathname === "/"}>
+        <NavLink tag={Link} to="/" className="mr-1">
           {_t.translate("Massages")}
-        </Link>
-      </div>
-      <ul className="nav navbar-nav">
-        <li className={location.pathname === "/my-massages" ? "active" : ""}>
-          <Link to="/my-massages">{_t.translate("My Massages")}</Link>
-        </li>
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/">{_t.translate("Massages")}</Link>
-        </li>
-        {Auth.isAdmin() ? (
-          <li className={location.pathname === "/facilities" ? "active" : ""}>
-            <Link to="/facilities">{_t.translate("Facilities")}</Link>
-          </li>
-        ) : (
-          ""
-        )}
-        {Auth.isAdmin() ? (
-          <li className={location.pathname === "/massages-archive" ? "active" : ""}>
-            <Link to="/massages-archive">{_t.translate("Massages Archive")}</Link>
-          </li>
-        ) : (
-          ""
-        )}
-        <li className={location.pathname === "/settings" ? "active" : ""}>
-          <Link to="/settings">{_t.translate("Settings")}</Link>
-        </li>
-      </ul>
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <ProfileLink />
-        </li>
-        <li>
-          <LogoutLink />
-        </li>
-        <li>
-          <LangLink />
-        </li>
-      </ul>
-    </div>
-  </nav>
+        </NavLink>
+      </NavItem>
+      {Auth.isAdmin() && (
+        <NavItem active={location.pathname === "/facilities"}>
+          <NavLink tag={Link} to="/facilities" className="mr-1">
+            {_t.translate("Facilities")}
+          </NavLink>
+        </NavItem>
+      )}
+      {Auth.isAdmin() && (
+        <NavItem active={location.pathname === "/massages-archive"}>
+          <NavLink tag={Link} to="/massages-archive" className="mr-1">
+            {_t.translate("Massages Archive")}
+          </NavLink>
+        </NavItem>
+      )}
+      <NavItem active={location.pathname === "/settings"}>
+        <NavLink tag={Link} to="/settings" className="mr-1">
+          {_t.translate("Settings")}
+        </NavLink>
+      </NavItem>
+    </Nav>
+    <Nav navbar style={{ marginLeft: "auto", marginRight: "0" }}>
+      <NavItem className="mr-1">
+        <ProfileLink />
+      </NavItem>
+      <NavItem className="mr-1">
+        <LogoutLink />
+      </NavItem>
+      <NavItem>
+        <LangLink />
+      </NavItem>
+    </Nav>
+  </Navbar>
 ));
 
 /**

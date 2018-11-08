@@ -1,16 +1,246 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders content correctly 1`] = `
-<button
-  className="btn btn-link navbar-btn"
-  onClick={[Function]}
-  title="Zobrazit Keycloak profil"
-  type="button"
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ProfileLink />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <NavLink
+          id="Tooltip1"
+          onClick={[Function]}
+          style={
+                    Object {
+                              "cursor": "pointer",
+                            }
+          }
+          tag="a"
 >
-  <span
-    className="glyphicon glyphicon-user"
-  />
-   
-  Profil
-</button>
+          <span
+                    className="fas fa-user-circle"
+          />
+           
+          Profil
+</NavLink>,
+        <Tooltip
+          autohide={true}
+          delay={
+                    Object {
+                              "hide": 250,
+                              "show": 0,
+                            }
+          }
+          hideArrow={false}
+          isOpen={false}
+          placement="top"
+          placementPrefix="bs-tooltip"
+          target="Tooltip1"
+          toggle={[Function]}
+>
+          Zobrazit Keycloak profil
+</Tooltip>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <span
+              className="fas fa-user-circle"
+/>,
+            " ",
+            "Profil",
+          ],
+          "id": "Tooltip1",
+          "onClick": [Function],
+          "style": Object {
+            "cursor": "pointer",
+          },
+          "tag": "a",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "fas fa-user-circle",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+          " ",
+          "Profil",
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "autohide": true,
+          "children": "Zobrazit Keycloak profil",
+          "delay": Object {
+            "hide": 250,
+            "show": 0,
+          },
+          "hideArrow": false,
+          "isOpen": false,
+          "placement": "top",
+          "placementPrefix": "bs-tooltip",
+          "target": "Tooltip1",
+          "toggle": [Function],
+        },
+        "ref": null,
+        "rendered": "Zobrazit Keycloak profil",
+        "type": [Function],
+      },
+    ],
+    "type": "span",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <NavLink
+            id="Tooltip1"
+            onClick={[Function]}
+            style={
+                        Object {
+                                    "cursor": "pointer",
+                                  }
+            }
+            tag="a"
+>
+            <span
+                        className="fas fa-user-circle"
+            />
+             
+            Profil
+</NavLink>,
+          <Tooltip
+            autohide={true}
+            delay={
+                        Object {
+                                    "hide": 250,
+                                    "show": 0,
+                                  }
+            }
+            hideArrow={false}
+            isOpen={false}
+            placement="top"
+            placementPrefix="bs-tooltip"
+            target="Tooltip1"
+            toggle={[Function]}
+>
+            Zobrazit Keycloak profil
+</Tooltip>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <span
+                className="fas fa-user-circle"
+/>,
+              " ",
+              "Profil",
+            ],
+            "id": "Tooltip1",
+            "onClick": [Function],
+            "style": Object {
+              "cursor": "pointer",
+            },
+            "tag": "a",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "fas fa-user-circle",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+            " ",
+            "Profil",
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "autohide": true,
+            "children": "Zobrazit Keycloak profil",
+            "delay": Object {
+              "hide": 250,
+              "show": 0,
+            },
+            "hideArrow": false,
+            "isOpen": false,
+            "placement": "top",
+            "placementPrefix": "bs-tooltip",
+            "target": "Tooltip1",
+            "toggle": [Function],
+          },
+          "ref": null,
+          "rendered": "Zobrazit Keycloak profil",
+          "type": [Function],
+        },
+      ],
+      "type": "span",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

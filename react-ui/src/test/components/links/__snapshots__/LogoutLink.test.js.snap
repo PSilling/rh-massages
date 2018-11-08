@@ -1,15 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders content correctly 1`] = `
-<button
-  className="btn btn-link navbar-btn"
+<a
+  className="nav-link"
   onClick={[Function]}
-  type="button"
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
 >
   <span
-    className="glyphicon glyphicon-log-out"
+    className="fas fa-sign-out-alt"
   />
    
   Odhlásit
-</button>
+</a>
 `;

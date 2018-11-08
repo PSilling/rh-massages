@@ -1,6 +1,9 @@
 // react imports
 import React, { Component } from "react";
 
+// module imports
+import { Table } from "reactstrap";
+
 // component imports
 import FacilityModal from "../components/modals/FacilityModal";
 import FacilityRow from "../components/rows/FacilityRow";
@@ -57,21 +60,19 @@ class Facilities extends Component {
 
     return (
       <div>
-        {!localStorage.getItem("closeFacilitiesAlert") ? (
+        {!localStorage.getItem("closeFacilitiesAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
-        ) : (
-          ""
         )}
         <h1>
-          {this.state.loading ? <div className="loader pull-right" /> : ""}
+          {this.state.loading && <div className="loader float-right" />}
           {_t.translate("Facilities")}
         </h1>
         <hr />
-        <table className="table table-hover table-responsive table-striped table-condensed">
+        <Table hover responsive striped size="sm">
           <thead>
             <tr>
-              <th>{_t.translate("Name")}</th>
-              <th>
+              <th scope="col">{_t.translate("Name")}</th>
+              <th scope="col">
                 <FacilityModal
                   active={this.state.modalActive}
                   facility={this.state.editId === -1 ? null : this.state.facilities[this.state.editId]}
@@ -95,11 +96,13 @@ class Facilities extends Component {
           ) : (
             <tbody>
               <tr>
-                <th colSpan="2">{_t.translate("None")}</th>
+                <th colSpan="2" scope="row">
+                  {_t.translate("None")}
+                </th>
               </tr>
             </tbody>
           )}
-        </table>
+        </Table>
       </div>
     );
   }

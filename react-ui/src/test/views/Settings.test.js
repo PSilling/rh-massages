@@ -1,6 +1,6 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
 import Settings from "../../views/Settings";
@@ -15,31 +15,30 @@ afterAll(() => {
 });
 
 test("renders content correctly", () => {
-  const testRenderer = TestRenderer.create(<Settings />);
-  const treeJSON = testRenderer.toJSON();
+  const wrapper = shallow(<Settings />);
 
-  expect(treeJSON).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot();
 });
 
 test("properly changes state variables", () => {
   Util.get = jest.fn((url, update) => {
     update(true);
   });
-  const testRenderer = TestRenderer.create(<Settings />);
-  const testInstance = testRenderer.root;
+  const wrapper = shallow(<Settings />);
 
-  testInstance.instance.setState({ loading: true, notify: false });
-  testInstance.instance.getSettings();
-  expect(testInstance.instance.state.notify).toEqual(true);
-  expect(testInstance.instance.state.loading).toBe(false);
-  testInstance.findAllByProps({ className: "row" });
+  wrapper.instance().setState({ loading: true, notify: false });
+  wrapper.instance().getSettings();
+  expect(wrapper.instance().state.notify).toEqual(true);
+  expect(wrapper.instance().state.loading).toBe(false);
+  wrapper.find({ className: "row" });
 
-  const notifyInput = testInstance.findByProps({
-    onChange: testInstance.instance.changeNotify
+  const notifyInput = wrapper.find({
+    onChange: wrapper.instance().changeNotify
   });
 
-  expect(notifyInput.props.checked).toBe(true);
-  notifyInput.props.onChange({ target: { checked: false } });
-  expect(notifyInput.props.checked).toBe(false);
+  expect(notifyInput.props().checked).toBe(true);
+  expect(wrapper.instance().state.notify).toBe(true);
+  notifyInput.props().onChange({ target: { checked: false } });
+  expect(wrapper.instance().state.notify).toBe(false);
   expect(Util.put).toHaveBeenCalledTimes(1);
 });

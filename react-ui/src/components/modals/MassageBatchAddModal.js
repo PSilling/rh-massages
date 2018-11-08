@@ -1,17 +1,18 @@
 // react imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 // module imports
-import Datetime from "react-datetime";
-import { ModalContainer, ModalDialog } from "react-modal-dialog";
+import { Button, Nav, Row, Col, FormGroup, Label, Input, Modal, ModalBody } from "reactstrap";
 import moment from "moment";
 
 // component imports
-import BatchButton from "../buttons/BatchButton";
 import ModalActions from "../buttons/ModalActions";
+import LabeledDatetime from "../formitems/LabeledDatetime";
+import LabeledInput from "../formitems/LabeledInput";
 import Tab from "../navs/Tab";
+import TooltipButton from "../buttons/TooltipButton";
+import TooltipGroup from "../util/TooltipGroup";
 
 // util imports
 import _t from "../../util/Translations";
@@ -42,6 +43,15 @@ class MassageBatchAddModal extends Component {
   weekdays = _t.translate("Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday").split("_");
 
   yesterday = moment().subtract(1, "day");
+
+  tooltipTargets = Util.getTooltipTargets(4);
+
+  tooltipLabels = [
+    _t.translate("Import previously downloaded rules"),
+    _t.translate("The days on which the defined massages should be created"),
+    _t.translate("Information about the massages that should be created"),
+    _t.translate("Information about breaks between individual massages")
+  ];
 
   getMinutes = from => 60 * from.get("hour", "hours") + from.get("minute", "minutes");
 
@@ -414,7 +424,7 @@ class MassageBatchAddModal extends Component {
   };
 
   handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement === ReactDOM.findDOMNode(this.modalDialog)) {
+    if (event.charCode === 13 && document.activeElement.tabIndex === -1) {
       this.addMassages();
     }
   };
@@ -425,262 +435,254 @@ class MassageBatchAddModal extends Component {
     }
   };
 
-  renderInsides = () => (
-    <div>
-      <h2>
-        {_t.translate("Create Massages")}
-        <div className="pull-right">
-          <label className="btn btn-default" style={{ marginRight: "5px" }} htmlFor="fileImport">
-            {_t.translate("Import rules")}
-          </label>
-          <input id="fileImport" type="file" onChange={this.importRules} style={{ display: "none" }} accept=".json" />
+  createInsides = () => (
+    <ModalBody>
+      <Row>
+        <Col md="12">
+          <h3>
+            {_t.translate("Create Massages")}
+            <div className="float-right">
+              <Button id={this.tooltipTargets[0]} tag="label" outline htmlFor="fileImport">
+                {_t.translate("Import")}
+              </Button>
+              <Input id="fileImport" className="d-none" type="file" onChange={this.importRules} accept=".json" />
+              <TooltipButton
+                className="ml-2 mb-2"
+                onClick={this.exportRules}
+                label={_t.translate("Export")}
+                tooltip={_t.translate(
+                  "Download a configuration file that you can use to import these rules at a later date"
+                )}
+              />
+            </div>
+          </h3>
+          <hr />
+        </Col>
+      </Row>
 
-          <BatchButton onClick={this.exportRules} label={_t.translate("Export rules")} />
-        </div>
-      </h2>
       {this.state.rules.length > 0 ? (
         <div>
-          <ul className="nav nav-tabs" style={{ marginBottom: "15px" }}>
-            {this.state.rules.map((item, index) => (
-              <Tab
-                key={_t.translate("Rule #") + (index + 1)}
-                active={index === this.state.index}
-                label={_t.translate("Rule #") + (index + 1)}
-                onClick={() => this.changeTabIndex(index)}
-              />
-            ))}
-          </ul>
-          <div className="form-group col-md-12">
-            <div className="pull-right" style={{ marginLeft: "5px" }}>
-              <span style={{ marginRight: "5px" }}>
-                <BatchButton
-                  onClick={this.addRule}
-                  disabled={this.state.rules.length > 4}
-                  label={_t.translate("Create rule")}
-                />
-              </span>
-              <BatchButton
-                onClick={() => this.removeRule(this.state.index)}
-                disabled={!(this.state.rules.length > 1)}
-                label={_t.translate("Remove rule")}
-              />
-            </div>
-
-            <strong>{_t.translate("Repeat each")}</strong>
-            <div>
-              {this.weekdays.map(item => (
-                <label key={item} className="checkbox-inline" htmlFor={`weekday${item}`}>
-                  <input
-                    id={`weekday${item}`}
-                    type="checkbox"
-                    onChange={event => this.changeDays(event, item)}
-                    onKeyPress={this.handleInputKeyPress}
-                    checked={this.state.rules[this.state.index].days.indexOf(item) > -1}
+          <Row>
+            <Col md="12">
+              <Nav tabs className="mb-3">
+                {this.state.rules.map((item, index) => (
+                  <Tab
+                    key={_t.translate("Rule #") + (index + 1)}
+                    active={index === this.state.index}
+                    label={_t.translate("Rule #") + (index + 1)}
+                    onClick={() => this.changeTabIndex(index)}
+                    onRemoveClick={() => this.removeRule(index)}
                   />
-                  <strong>{item.toLowerCase()}</strong>
-                </label>
-              ))}
-            </div>
-          </div>
+                ))}
+                {this.state.rules.length < 5 && <Tab active={false} label="+" onClick={this.addRule} />}
+              </Nav>
+            </Col>
+          </Row>
 
-          <div className="form-group col-md-12">
-            <div className="row">
-              <div className="col-md-4">
-                <label htmlFor="startDateInput">{_t.translate("Rule applies after")}</label>
-                <Datetime
+          <Row>
+            <Col md="12">
+              <Label id={this.tooltipTargets[1]}>{_t.translate("Repeat each")}</Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="10">
+              <FormGroup check inline>
+                <div>
+                  {this.weekdays.map(item => (
+                    <Label key={item} for={`weekday${item}`}>
+                      <Input
+                        id={`weekday${item}`}
+                        type="checkbox"
+                        onChange={event => this.changeDays(event, item)}
+                        onKeyPress={this.handleInputKeyPress}
+                        checked={this.state.rules[this.state.index].days.indexOf(item) > -1}
+                      />
+                      <Label className="mr-2" for={`weekday${item}`}>
+                        {item.toLowerCase()}
+                      </Label>
+                    </Label>
+                  ))}
+                </div>
+              </FormGroup>
+            </Col>
+          </Row>
+
+          <Row>
+            <LabeledInput
+              size="8"
+              label={_t.translate("Masseur/Masseuse")}
+              value={this.state.rules[this.state.index].masseuse}
+              onChange={this.changeMasseuse}
+              onEnterPress={this.addMassages}
+              type="text"
+              maxLength="64"
+              options={this.props.masseuses}
+              tooltip={_t.translate("The name of the masseur or massuese providing this rule's massages")}
+            />
+          </Row>
+
+          <Row>
+            <Col md="12">
+              <Row>
+                <LabeledDatetime
+                  size="4"
+                  label={_t.translate("Rule applies after")}
                   value={this.state.rules[this.state.index].startDate}
                   onChange={this.changeStartDate}
+                  onEnterPress={this.addMassages}
                   timeFormat={false}
                   isValidDate={current => current.isAfter(this.yesterday)}
-                  inputProps={{
-                    id: "startDateInput",
-                    placeholder: _t.translate("Date"),
-                    onKeyPress: this.handleInputKeyPress
-                  }}
+                  tooltip={_t.translate("The date after which the defined massages should be created")}
                 />
-              </div>
-
-              <div className="col-md-4">
-                <label htmlFor="weeksInput">{_t.translate("Number of repetitions (weekly)")}</label>
-                <input
-                  id="weeksInput"
+                <LabeledInput
+                  size="4"
+                  label={_t.translate("Number of repetitions (weekly)")}
                   value={this.state.rules[this.state.index].weeks}
                   onChange={this.changeWeeks}
-                  className="form-control"
-                  onKeyPress={this.handleInputKeyPress}
-                  onFocus={Util.moveCursorToEnd}
-                  autoFocus
+                  onEnterPress={this.addMassages}
                   type="number"
                   min="1"
                   max="54"
-                  placeholder={_t.translate("Number of repetitions")}
+                  tooltip={_t.translate("The number of weeks (after the start date) this rule should be applied to")}
                 />
-              </div>
-            </div>
-          </div>
+              </Row>
+            </Col>
+          </Row>
 
-          <div className="form-group col-md-12">
-            <label htmlFor="masseuseInput">{_t.translate("Masseur/Masseuse")}</label>
-            <input
-              id="masseuseInput"
-              value={this.state.rules[this.state.index].masseuse}
-              className="form-control"
-              onChange={this.changeMasseuse}
-              type="text"
-              maxLength="64"
-              onFocus={Util.moveCursorToEnd}
-              onKeyPress={this.handleInputKeyPress}
-              placeholder={_t.translate("Masseur/Masseuse")}
-              list="masseuses"
-            />
-            <datalist id="masseuses">
-              {this.props.masseuses.map(item => (
-                <option key={item} value={item} />
-              ))}
-            </datalist>
-          </div>
-
-          <div className="form-group col-md-12">
-            <label htmlFor="startTimeInput">{_t.translate("Massages")}</label>
-            <div className="row">
-              <div className="col-md-3">
-                <label htmlFor="startTimeInput">{_t.translate("Shift start")}</label>
-                <Datetime
+          <Row>
+            <Col md="12">
+              <Label id={this.tooltipTargets[2]}>{_t.translate("Massages")}</Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="12">
+              <Row>
+                <LabeledDatetime
+                  size="3"
+                  label={_t.translate("Shift start")}
                   value={this.state.rules[this.state.index].startTime}
                   onChange={this.changeStartTime}
+                  onEnterPress={this.addMassages}
                   dateFormat={false}
-                  inputProps={{
-                    id: "startTimeInput",
-                    placeholder: _t.translate("Shift start"),
-                    onKeyPress: this.handleInputKeyPress
-                  }}
+                  tooltip={_t.translate("The time after which massages will start to be created each day")}
                 />
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="massageDurationInput">{_t.translate("Duration")}</label>
-                <Datetime
+                <LabeledDatetime
+                  size="3"
+                  label={_t.translate("Duration")}
                   value={this.state.rules[this.state.index].massageDuration}
                   onChange={this.changeMassageDuration}
+                  onEnterPress={this.addMassages}
                   dateFormat={false}
-                  inputProps={{
-                    id: "massageDurationInput",
-                    placeholder: _t.translate("Duration"),
-                    onKeyPress: this.handleInputKeyPress
-                  }}
+                  tooltip={_t.translate("How long should each of the created massages be")}
                 />
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="massagesPerDayInput">{_t.translate("Number of massages per day")}</label>
-                <input
-                  id="massagesPerDayInput"
+                <LabeledInput
+                  size="3"
+                  label={_t.translate("Number of massages per day")}
                   value={this.state.rules[this.state.index].massagesPerDay}
                   onChange={this.changeMassagesPerDay}
-                  className="form-control"
-                  onKeyPress={this.handleInputKeyPress}
-                  onFocus={Util.moveCursorToEnd}
+                  onEnterPress={this.addMassages}
                   type="number"
                   min="1"
                   max="100"
-                  placeholder={_t.translate("Number of massages per day")}
+                  tooltip={_t.translate("How many massages should be created per day")}
                 />
-              </div>
-            </div>
-          </div>
+              </Row>
+            </Col>
+          </Row>
 
-          <div className="form-group col-md-12">
-            <label htmlFor="normalPauseInput">{_t.translate("Breaks")}</label>
-            <div className="row">
-              <div className="col-md-3">
-                <label htmlFor="normalPauseInput">{_t.translate("Normal break")}</label>
-                <Datetime
+          <Row>
+            <Col md="12">
+              <Label id={this.tooltipTargets[3]}>{_t.translate("Breaks")}</Label>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="12">
+              <Row>
+                <LabeledDatetime
+                  size="3"
+                  label={_t.translate("Normal break")}
                   value={this.state.rules[this.state.index].normalPause}
                   onChange={this.changeNormalPause}
+                  onEnterPress={this.addMassages}
                   dateFormat={false}
-                  inputProps={{
-                    id: "normalPauseInput",
-                    placeholder: _t.translate("Normal break"),
-                    onKeyPress: this.handleInputKeyPress
-                  }}
+                  tooltip={_t.translate(
+                    "Length of the default break after each massage (not included the prelunch massage)"
+                  )}
                 />
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="bigPauseInput">{_t.translate("Lunch break")}</label>
-                <Datetime
+                <LabeledDatetime
+                  size="3"
+                  label={_t.translate("Lunch break")}
                   value={this.state.rules[this.state.index].bigPause}
                   onChange={this.changeBigPause}
+                  onEnterPress={this.addMassages}
                   dateFormat={false}
-                  inputProps={{
-                    id: "bigPauseInput",
-                    placeholder: _t.translate("Lunch break"),
-                    onKeyPress: this.handleInputKeyPress
-                  }}
+                  tooltip={_t.translate("Length of the lunch break")}
                 />
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="pauseAfterInput">{_t.translate("Lunch after")}</label>
-                <input
-                  id="pauseAfterInput"
+                <LabeledInput
+                  size="3"
+                  label={_t.translate("Massages before lunch")}
                   value={this.state.rules[this.state.index].bigPauseAfter}
                   onChange={this.changeBigPauseAfter}
-                  onKeyPress={this.handleInputKeyPress}
-                  className="form-control"
-                  onFocus={Util.moveCursorToEnd}
+                  onEnterPress={this.addMassages}
                   type="number"
                   min="1"
                   max={this.state.rules[this.state.index].massagesPerDay}
-                  placeholder={_t.translate("Lunch after")}
+                  tooltip={_t.translate("Number of massages before the lunch break")}
                 />
-                {_t.translate("...massages")}
-              </div>
-            </div>
-          </div>
+              </Row>
+            </Col>
+            <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
+          </Row>
         </div>
       ) : (
-        <div className="col-md-2">
-          <BatchButton onClick={this.addRule} disabled={false} label={_t.translate("Create rule")} />
-        </div>
+        <Row>
+          <Col md="2">
+            <TooltipButton
+              onClick={this.addRule}
+              disabled={false}
+              label={_t.translate("Create rule")}
+              tooltip={_t.translate("Add a new creation macro")}
+            />
+          </Col>
+        </Row>
       )}
+
       <ModalActions
         primaryLabel={_t.translate("Create")}
         onProceed={this.addMassages}
         onClose={() => this.props.onToggle(false)}
-        autoFocus={false}
       />
-    </div>
+    </ModalBody>
   );
 
-  renderModal = () => {
-    if (this.props.withPortal) {
-      return (
-        <ModalContainer onClose={() => this.props.onToggle(false)}>
-          <ModalDialog
-            onClose={() => this.props.onToggle(false)}
-            width="50%"
-            style={{ outline: "none" }}
-            tabIndex="-1"
-            onKeyPress={this.handleModalKeyPress}
-            ref={dialog => {
-              this.modalDialog = dialog;
-            }}
-          >
-            {this.renderInsides()}
-          </ModalDialog>
-        </ModalContainer>
-      );
-    }
-    return this.renderInsides();
-  };
+  createModal = () =>
+    this.props.withPortal ? (
+      <Modal
+        size="lg"
+        isOpen
+        toggle={() => this.props.onToggle(false)}
+        tabIndex="-1"
+        onKeyPress={this.handleModalKeyPress}
+      >
+        {this.createInsides()}
+      </Modal>
+    ) : (
+      this.createInsides()
+    );
 
   render() {
+    const { facilityId, getCallback, onToggle, active, masseuses, withPortal, ...rest } = this.props;
     return (
-      <span style={{ marginRight: "5px", marginLeft: "5px" }}>
-        <BatchButton onClick={() => this.props.onToggle(false)} label={_t.translate("Add more")} />
+      <span>
+        <TooltipButton
+          {...rest}
+          onClick={() => this.props.onToggle(false)}
+          label={_t.translate("Add more")}
+          tooltip={_t.translate("Create multiple massages at once")}
+        />
 
-        {this.props.active && this.renderModal()}
+        {this.props.active && this.createModal()}
       </span>
     );
   }
@@ -703,7 +705,7 @@ MassageBatchAddModal.propTypes = {
 
 MassageBatchAddModal.defaultProps = {
   active: false,
-  masseuses: ["Novák"],
+  masseuses: [],
   withPortal: true
 };
 

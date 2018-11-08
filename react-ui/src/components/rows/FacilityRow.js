@@ -3,8 +3,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // component imports
-import DeleteButton from "../iconbuttons/DeleteButton";
-import EditButton from "../iconbuttons/EditButton";
+import ConfirmationIconButton from "../iconbuttons/ConfirmationIconButton";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
+
+// util imports
+import _t from "../../util/Translations";
 
 /**
  * Facility information row for Facilities view.
@@ -19,11 +22,14 @@ class FacilityRow extends Component {
       <tr>
         <td>{this.props.facility.name}</td>
         <td width="105px">
-          <span className="pull-right">
-            <span style={{ marginRight: "5px" }}>
-              <EditButton onEdit={this.props.onEdit} />
-            </span>
-            <DeleteButton onDelete={this.props.onDelete} />
+          <span className="float-right">
+            <TooltipIconButton icon="edit" onClick={this.props.onEdit} tooltip={_t.translate("Edit")} />
+            <ConfirmationIconButton
+              className="ml-2"
+              icon="trash"
+              onConfirm={this.props.onDelete}
+              tooltip={_t.translate("Delete")}
+            />
           </span>
         </td>
       </tr>

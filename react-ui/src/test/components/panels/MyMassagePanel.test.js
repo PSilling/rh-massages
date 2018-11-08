@@ -1,8 +1,9 @@
 // react imports
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import { shallow } from "enzyme";
 
 // test imports
+import { Button, CardHeader, CardText } from "reactstrap";
 import moment from "moment";
 import ConfirmationModal from "../../../components/modals/ConfirmationModal";
 import MyMassagePanel from "../../../components/panels/MyMassagePanel";
@@ -24,29 +25,25 @@ test("renders content with correct props", () => {
     client: null,
     facility: { id: 1, name: "test" }
   };
-  const testRenderer = TestRenderer.create(<MyMassagePanel massage={testMassage} getCallback={testFunction} />);
-  const testInstance = testRenderer.root;
-  const paragraphs = testInstance.findAllByType("p");
-  const header = testInstance.findByProps({ className: "panel-heading" });
-  const buttons = testInstance.findAllByType("button");
-  const treeJSON = testRenderer.toJSON();
+  const wrapper = shallow(<MyMassagePanel massage={testMassage} getCallback={testFunction} />);
+  const texts = wrapper.find(CardText);
+  const header = wrapper.find(CardHeader);
+  const button = wrapper.find(Button);
 
-  testInstance.findByProps({ className: "panel panel-default" });
-
-  expect(header.props.children[0]).toEqual(moment(testMassage.date).format("ddd L"));
-  expect(paragraphs[0].props.children).toEqual(`${_t.translate("Facility")}: ${testMassage.facility.name}`);
-  expect(paragraphs[1].props.children).toEqual(`${_t.translate("Masseur/Masseuse")}: ${testMassage.masseuse}`);
-  expect(paragraphs[2].props.children).toEqual(
+  expect(header.props().children[0]).toEqual(moment(testMassage.date).format("ddd L"));
+  expect(texts.get(0).props.children).toEqual(`${_t.translate("Facility")}: ${testMassage.facility.name}`);
+  expect(texts.get(1).props.children).toEqual(`${_t.translate("Masseur/Masseuse")}: ${testMassage.masseuse}`);
+  expect(texts.get(2).props.children).toEqual(
     `${_t.translate("Time")}: ${moment(testMassage.date).format("HH:mm")}–${moment(testMassage.ending).format("HH:mm")}`
   );
   expect(testFunction).not.toHaveBeenCalled();
 
-  buttons[0].props.onClick();
+  button.props().onClick();
 
-  const modal = testInstance.findByType(ConfirmationModal);
+  const modal = wrapper.find(ConfirmationModal);
 
-  modal.props.onConfirm();
+  modal.props().onConfirm();
 
   expect(testFunction).toHaveBeenCalledTimes(1);
-  expect(treeJSON).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot();
 });

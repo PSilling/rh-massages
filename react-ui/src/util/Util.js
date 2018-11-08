@@ -13,7 +13,6 @@ const Util = function Util() {};
 
 /**
  * Checks whether an Object is null, undefined or an empty string.
- *
  * @param  object Object to check
  * @return true if empty, false otherwise
  */
@@ -23,7 +22,6 @@ Util.isEmpty = function isEmpty(object) {
 
 /**
  * Creates a new notification message. Supports types info, success, warning and error.
- *
  * @param type            notification type
  * @param message         notification message
  * @param title           notification title
@@ -50,7 +48,6 @@ Util.notify = (type, message, title) => {
 
 /**
  * Fetches data from a given endpoint.
- *
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  */
@@ -91,7 +88,6 @@ Util.get = (url, update) => {
 
 /**
  * Creates a new element at a given endpoint.
- *
  * @param url             defined endpoint
  * @param data            data to send
  * @param update          callback function to update the resources
@@ -133,7 +129,6 @@ Util.post = (url, data, update, notify = true) => {
 
 /**
  * Edits an element at a given endpoint.
- *
  * @param url             defined endpoint
  * @param data            data to send
  * @param update          callback function to update the resources
@@ -175,7 +170,6 @@ Util.put = (url, data, update, notify = true) => {
 
 /**
  * Deletes an element at a given endpoint.
- *
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
@@ -225,10 +219,9 @@ Util.clearAllIntervals = () => {
 
 /**
  * Generates a Google Calendar link for a given massage event.
- *
  * @param massage the Massage to be added to the calendar
  */
-Util.addToCalendar = massage => {
+Util.getEventLink = massage => {
   let url = "https://www.google.com/calendar/render?action=TEMPLATE";
   url += `&text=${_t.translate("Massage")}`;
   url += `&dates=${moment
@@ -255,7 +248,6 @@ Util.moveCursorToEnd = event => {
 
 /**
  * Returns a highlighted text based on an search query (highlights the first occurrence only).
- *
  * @param text      text to be highlighted
  * @param query     search query String
  */
@@ -289,14 +281,12 @@ Util.highlightInText = (text, query) => {
 
 /**
  * Creates a new contact info String from a given Client.
- *
  * @param client Client to get contact info for
  */
 Util.getContactInfo = client => `${client.name} ${client.surname} (${client.email})`;
 
 /**
  * Searches an array for a given item ID.
- *
  * @param array array to search in
  * @param id id to search for
  */
@@ -309,6 +299,19 @@ Util.findInArrayById = (array, id) => {
   return -1;
 };
 
+/**
+ * Returns an array of tooltip targets for unique tooltip ID use.
+ * @param  count number of tooltip targets to generate
+ * @return       array of generated tooltip targets
+ */
+Util.getTooltipTargets = count => {
+  const targets = [];
+  for (let i = 0; i < count; i++) {
+    targets.push(`Tooltip${Util.tooltipCount++}`);
+  }
+  return targets;
+};
+
 Util.FACILITIES_URL = "api/facilities/"; // url of /facilities endpoint
 Util.MASSAGES_URL = "api/massages/"; // url of /massages endpoint
 Util.CLIENTS_URL = "api/clients/"; // url of /clients endpoint
@@ -318,5 +321,7 @@ Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in millise
 Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
 Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes
 Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per Client
+
+Util.tooltipCount = 1; // current number of tooltips (needed for correct ID placement)
 
 export default Util;
