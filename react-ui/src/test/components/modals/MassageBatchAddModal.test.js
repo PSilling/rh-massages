@@ -13,6 +13,10 @@ beforeAll(() => {
   Date.now = jest.fn(() => 0);
 });
 
+afterAll(() => {
+  jest.resetAllMocks();
+});
+
 test("renders inside content with correct props", () => {
   const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();

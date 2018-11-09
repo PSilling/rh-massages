@@ -5,16 +5,29 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LabeledDatetime
     label="test"
-    onChange={[Function]}
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     onEnterPress={[Function]}
     size="12"
     tooltip="tooltip"
     value={"1970-01-01T00:00:00.001Z"}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -25,66 +38,80 @@ ShallowWrapper {
     "props": Object {
       "children": <FormGroup
         tag="div"
->
+      >
         <Label
-                for="Tooltip1_input"
-                id="Tooltip1"
-                tag="label"
-                widths={
-                        Array [
-                                "xs",
-                                "sm",
-                                "md",
-                                "lg",
-                                "xl",
-                              ]
-                }
+          for="Tooltip1_input"
+          id="Tooltip1"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
-                test
+          test
         </Label>
-        <Unknown
-                className=""
-                closeOnSelect={false}
-                closeOnTab={true}
-                dateFormat={true}
-                defaultValue=""
-                input={true}
-                inputProps={
-                        Object {
-                                "id": "Tooltip1_input",
-                                "onFocus": [Function],
-                                "onKeyPress": [Function],
-                                "placeholder": "test",
-                              }
-                }
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onViewModeChange={[Function]}
-                strictParsing={true}
-                timeConstraints={Object {}}
-                timeFormat={true}
-                utc={false}
-                value={"1970-01-01T00:00:00.001Z"}
+        <DateTime
+          className=""
+          closeOnSelect={false}
+          closeOnTab={true}
+          dateFormat={true}
+          defaultValue=""
+          input={true}
+          inputProps={
+            Object {
+              "id": "Tooltip1_input",
+              "onFocus": [Function],
+              "onKeyPress": [Function],
+              "placeholder": "test",
+            }
+          }
+          onBlur={[Function]}
+          onChange={
+            [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            }
+          }
+          onFocus={[Function]}
+          onNavigateBack={[Function]}
+          onNavigateForward={[Function]}
+          onViewModeChange={[Function]}
+          strictParsing={true}
+          timeConstraints={Object {}}
+          timeFormat={true}
+          utc={false}
+          value={"1970-01-01T00:00:00.001Z"}
         />
         <Tooltip
-                autohide={true}
-                delay={
-                        Object {
-                                "hide": 250,
-                                "show": 0,
-                              }
-                }
-                hideArrow={false}
-                isOpen={false}
-                placement="top"
-                placementPrefix="bs-tooltip"
-                target="Tooltip1"
-                toggle={[Function]}
+          autohide={true}
+          delay={
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
+          }
+          hideArrow={false}
+          isOpen={false}
+          placement="top"
+          placementPrefix="bs-tooltip"
+          target="Tooltip1"
+          toggle={[Function]}
         >
-                tooltip
+          tooltip
         </Tooltip>
-</FormGroup>,
+      </FormGroup>,
       "md": "12",
       "tag": "div",
       "widths": Array [
@@ -107,18 +134,18 @@ ShallowWrapper {
             id="Tooltip1"
             tag="label"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             test
-</Label>,
-          <Unknown
+          </Label>,
+          <DateTime
             className=""
             closeOnSelect={false}
             closeOnTab={true}
@@ -126,30 +153,44 @@ ShallowWrapper {
             defaultValue=""
             input={true}
             inputProps={
-                        Object {
-                                    "id": "Tooltip1_input",
-                                    "onFocus": [Function],
-                                    "onKeyPress": [Function],
-                                    "placeholder": "test",
-                                  }
+              Object {
+                "id": "Tooltip1_input",
+                "onFocus": [Function],
+                "onKeyPress": [Function],
+                "placeholder": "test",
+              }
             }
             onBlur={[Function]}
-            onChange={[Function]}
+            onChange={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
             onFocus={[Function]}
+            onNavigateBack={[Function]}
+            onNavigateForward={[Function]}
             onViewModeChange={[Function]}
             strictParsing={true}
             timeConstraints={Object {}}
             timeFormat={true}
             utc={false}
             value={"1970-01-01T00:00:00.001Z"}
-/>,
+          />,
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -157,9 +198,9 @@ ShallowWrapper {
             placementPrefix="bs-tooltip"
             target="Tooltip1"
             toggle={[Function]}
->
+          >
             tooltip
-</Tooltip>,
+          </Tooltip>,
         ],
         "tag": "div",
       },
@@ -204,8 +245,20 @@ ShallowWrapper {
               "placeholder": "test",
             },
             "onBlur": [Function],
-            "onChange": [Function],
+            "onChange": [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            },
             "onFocus": [Function],
+            "onNavigateBack": [Function],
+            "onNavigateForward": [Function],
             "onViewModeChange": [Function],
             "strictParsing": true,
             "timeConstraints": Object {},
@@ -252,66 +305,80 @@ ShallowWrapper {
       "props": Object {
         "children": <FormGroup
           tag="div"
->
+        >
           <Label
-                    for="Tooltip1_input"
-                    id="Tooltip1"
-                    tag="label"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            for="Tooltip1_input"
+            id="Tooltip1"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    test
+            test
           </Label>
-          <Unknown
-                    className=""
-                    closeOnSelect={false}
-                    closeOnTab={true}
-                    dateFormat={true}
-                    defaultValue=""
-                    input={true}
-                    inputProps={
-                              Object {
-                                        "id": "Tooltip1_input",
-                                        "onFocus": [Function],
-                                        "onKeyPress": [Function],
-                                        "placeholder": "test",
-                                      }
-                    }
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onViewModeChange={[Function]}
-                    strictParsing={true}
-                    timeConstraints={Object {}}
-                    timeFormat={true}
-                    utc={false}
-                    value={"1970-01-01T00:00:00.001Z"}
+          <DateTime
+            className=""
+            closeOnSelect={false}
+            closeOnTab={true}
+            dateFormat={true}
+            defaultValue=""
+            input={true}
+            inputProps={
+              Object {
+                "id": "Tooltip1_input",
+                "onFocus": [Function],
+                "onKeyPress": [Function],
+                "placeholder": "test",
+              }
+            }
+            onBlur={[Function]}
+            onChange={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
+            onFocus={[Function]}
+            onNavigateBack={[Function]}
+            onNavigateForward={[Function]}
+            onViewModeChange={[Function]}
+            strictParsing={true}
+            timeConstraints={Object {}}
+            timeFormat={true}
+            utc={false}
+            value={"1970-01-01T00:00:00.001Z"}
           />
           <Tooltip
-                    autohide={true}
-                    delay={
-                              Object {
-                                        "hide": 250,
-                                        "show": 0,
-                                      }
-                    }
-                    hideArrow={false}
-                    isOpen={false}
-                    placement="top"
-                    placementPrefix="bs-tooltip"
-                    target="Tooltip1"
-                    toggle={[Function]}
+            autohide={true}
+            delay={
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
+            }
+            hideArrow={false}
+            isOpen={false}
+            placement="top"
+            placementPrefix="bs-tooltip"
+            target="Tooltip1"
+            toggle={[Function]}
           >
-                    tooltip
+            tooltip
           </Tooltip>
-</FormGroup>,
+        </FormGroup>,
         "md": "12",
         "tag": "div",
         "widths": Array [
@@ -334,18 +401,18 @@ ShallowWrapper {
               id="Tooltip1"
               tag="label"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               test
-</Label>,
-            <Unknown
+            </Label>,
+            <DateTime
               className=""
               closeOnSelect={false}
               closeOnTab={true}
@@ -353,30 +420,44 @@ ShallowWrapper {
               defaultValue=""
               input={true}
               inputProps={
-                            Object {
-                                          "id": "Tooltip1_input",
-                                          "onFocus": [Function],
-                                          "onKeyPress": [Function],
-                                          "placeholder": "test",
-                                        }
+                Object {
+                  "id": "Tooltip1_input",
+                  "onFocus": [Function],
+                  "onKeyPress": [Function],
+                  "placeholder": "test",
+                }
               }
               onBlur={[Function]}
-              onChange={[Function]}
+              onChange={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
               onFocus={[Function]}
+              onNavigateBack={[Function]}
+              onNavigateForward={[Function]}
               onViewModeChange={[Function]}
               strictParsing={true}
               timeConstraints={Object {}}
               timeFormat={true}
               utc={false}
               value={"1970-01-01T00:00:00.001Z"}
-/>,
+            />,
             <Tooltip
               autohide={true}
               delay={
-                            Object {
-                                          "hide": 250,
-                                          "show": 0,
-                                        }
+                Object {
+                  "hide": 250,
+                  "show": 0,
+                }
               }
               hideArrow={false}
               isOpen={false}
@@ -384,9 +465,9 @@ ShallowWrapper {
               placementPrefix="bs-tooltip"
               target="Tooltip1"
               toggle={[Function]}
->
+            >
               tooltip
-</Tooltip>,
+            </Tooltip>,
           ],
           "tag": "div",
         },
@@ -431,8 +512,20 @@ ShallowWrapper {
                 "placeholder": "test",
               },
               "onBlur": [Function],
-              "onChange": [Function],
+              "onChange": [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
               "onFocus": [Function],
+              "onNavigateBack": [Function],
+              "onNavigateForward": [Function],
               "onViewModeChange": [Function],
               "strictParsing": true,
               "timeConstraints": Object {},
@@ -488,8 +581,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

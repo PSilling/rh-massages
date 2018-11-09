@@ -6,19 +6,32 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <TooltipIconButton
     disabled={false}
     icon="edit"
-    onClick={[Function]}
+    onClick={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     size="sm"
     style={
-        Object {
-            "border": "0px solid transparent",
-          }
+      Object {
+        "border": "0px solid transparent",
+      }
     }
     tooltip="tooltip"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -32,28 +45,40 @@ ShallowWrapper {
           color="secondary"
           disabled={false}
           id="Tooltip1"
-          onClick={[Function]}
+          onClick={
+            [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            }
+          }
           outline={true}
           size="sm"
           style={
-                    Object {
-                              "border": "0px solid transparent",
-                            }
+            Object {
+              "border": "0px solid transparent",
+            }
           }
           tag="button"
           tooltip="tooltip"
->
+        >
           <span
-                    className="fas fa-edit"
+            className="fas fa-edit"
           />
-</Button>,
+        </Button>,
         <Tooltip
           autohide={true}
           delay={
-                    Object {
-                              "hide": 250,
-                              "show": 0,
-                            }
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
           }
           hideArrow={false}
           isOpen={false}
@@ -62,9 +87,9 @@ ShallowWrapper {
           target="Tooltip1"
           toggle={[Function]}
           trigger="hover"
->
+        >
           tooltip
-</Tooltip>,
+        </Tooltip>,
       ],
       "className": "no-print",
     },
@@ -77,11 +102,21 @@ ShallowWrapper {
         "props": Object {
           "children": <span
             className="fas fa-edit"
-/>,
+          />,
           "color": "secondary",
           "disabled": false,
           "id": "Tooltip1",
-          "onClick": [Function],
+          "onClick": [MockFunction] {
+            "calls": Array [
+              Array [],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          },
           "outline": true,
           "size": "sm",
           "style": Object {
@@ -141,28 +176,40 @@ ShallowWrapper {
             color="secondary"
             disabled={false}
             id="Tooltip1"
-            onClick={[Function]}
+            onClick={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
             outline={true}
             size="sm"
             style={
-                        Object {
-                                    "border": "0px solid transparent",
-                                  }
+              Object {
+                "border": "0px solid transparent",
+              }
             }
             tag="button"
             tooltip="tooltip"
->
+          >
             <span
-                        className="fas fa-edit"
+              className="fas fa-edit"
             />
-</Button>,
+          </Button>,
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -171,9 +218,9 @@ ShallowWrapper {
             target="Tooltip1"
             toggle={[Function]}
             trigger="hover"
->
+          >
             tooltip
-</Tooltip>,
+          </Tooltip>,
         ],
         "className": "no-print",
       },
@@ -186,11 +233,21 @@ ShallowWrapper {
           "props": Object {
             "children": <span
               className="fas fa-edit"
-/>,
+            />,
             "color": "secondary",
             "disabled": false,
             "id": "Tooltip1",
-            "onClick": [Function],
+            "onClick": [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            },
             "outline": true,
             "size": "sm",
             "style": Object {
@@ -256,8 +313,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

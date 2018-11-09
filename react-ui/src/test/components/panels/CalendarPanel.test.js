@@ -16,8 +16,7 @@ beforeAll(() => {
   Date.now = jest.fn(() => 0);
 });
 
-
-afterEach(() => {
+afterAll(() => {
   jest.resetAllMocks();
 });
 
@@ -123,6 +122,8 @@ test("renders content with correct props and funcionality", () => {
   expect(testEditFunction).toHaveBeenLastCalledWith(testEvents[2].massage);
   expect(testDeleteFunction).toHaveBeenLastCalledWith(testEvents[2].massage.id);
   expect(modal.props().onClose).toBe(wrapper.instance().handleToggle);
+
+  testDateChangeFunction.mockClear();
 
   expect(wrapper).toMatchSnapshot();
 });

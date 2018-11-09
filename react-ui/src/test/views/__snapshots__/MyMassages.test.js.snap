@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -19,27 +20,27 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete vidět své zapsané masáže. Použitím tlačítka kalendáře lze podle dané masáže vygenerovat Google událost.
-</InfoAlert>,
+        </InfoAlert>,
         <h1>
           Moje masáže
-</h1>,
+        </h1>,
         <hr />,
         <h3>
           Žádné – 
           <Link
-                    replace={false}
-                    style={
-                              Object {
-                                        "color": "#595959",
-                                      }
-                    }
-                    to="/"
+            replace={false}
+            style={
+              Object {
+                "color": "#595959",
+              }
+            }
+            to="/"
           >
-                    Jít na masáže
+            Jít na masáže
           </Link>
-</h3>,
+        </h3>,
       ],
       "className": "my-3",
     },
@@ -93,14 +94,14 @@ ShallowWrapper {
             <Link
               replace={false}
               style={
-                            Object {
-                                          "color": "#595959",
-                                        }
+                Object {
+                  "color": "#595959",
+                }
               }
               to="/"
->
+            >
               Jít na masáže
-</Link>,
+            </Link>,
           ],
         },
         "ref": null,
@@ -137,27 +138,27 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete vidět své zapsané masáže. Použitím tlačítka kalendáře lze podle dané masáže vygenerovat Google událost.
-</InfoAlert>,
+          </InfoAlert>,
           <h1>
             Moje masáže
-</h1>,
+          </h1>,
           <hr />,
           <h3>
             Žádné – 
             <Link
-                        replace={false}
-                        style={
-                                    Object {
-                                                "color": "#595959",
-                                              }
-                        }
-                        to="/"
+              replace={false}
+              style={
+                Object {
+                  "color": "#595959",
+                }
+              }
+              to="/"
             >
-                        Jít na masáže
+              Jít na masáže
             </Link>
-</h3>,
+          </h3>,
         ],
         "className": "my-3",
       },
@@ -211,14 +212,14 @@ ShallowWrapper {
               <Link
                 replace={false}
                 style={
-                                Object {
-                                                "color": "#595959",
-                                              }
+                  Object {
+                    "color": "#595959",
+                  }
                 }
                 to="/"
->
+              >
                 Jít na masáže
-</Link>,
+              </Link>,
             ],
           },
           "ref": null,
@@ -263,8 +264,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

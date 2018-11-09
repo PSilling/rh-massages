@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -19,131 +20,131 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
-</InfoAlert>,
+        </InfoAlert>,
         <div
           className="my-3 no-print"
->
+        >
           <div>
-                    <div
-                              className="loader float-right"
-                    />
-                    <h1>
-                              Masáže v test
-                    </h1>
-                    <Nav
-                              className="mb-3"
-                              tabs={true}
-                              tag="ul"
-                              vertical={false}
-                    >
-                              <Tab
-                                        active={true}
-                                        label="test"
-                                        onClick={[Function]}
-                                        onRemoveClick={null}
-                              />
-                    </Nav>
-                    <Row
-                              tag="div"
-                    >
-                              <Col
-                                        md="6"
-                                        tag="div"
-                                        widths={
-                                                  Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                        }
-                              >
-                                        <TooltipButton
-                                                  active={true}
-                                                  className="mr-2"
-                                                  disabled={false}
-                                                  label="Vybírat"
-                                                  onClick={[Function]}
-                                                  tooltip="Výběr více masáží pro hromadné operace"
-                                        />
-                                        <TooltipButton
-                                                  active={false}
-                                                  disabled={false}
-                                                  label="Jen volné"
-                                                  onClick={[Function]}
-                                                  tooltip="Zobrazit pouze volné (zelené) masáže"
-                                        />
-                              </Col>
-                              <Col
-                                        className="text-right"
-                                        md="6"
-                                        tag="div"
-                                        widths={
-                                                  Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                        }
-                              >
-                                        <PrintModal
-                                                  className="mr-2"
-                                                  date={null}
-                                                  facilityId={1}
-                                                  masseuses={Array []}
-                                                  onPrint={[Function]}
-                                                  withPortal={true}
-                                        />
-                                        <span>
-                                                  <ConfirmationButton
-                                                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                            disabled={true}
-                                                            label="Smazat vybrané"
-                                                            onConfirm={[Function]}
-                                                            tooltip="Smazat vybrané masáže"
-                                                  />
-                                                  <MassageBatchAddModal
-                                                            active={false}
-                                                            className="mx-2"
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                  />
-                                                  <MassageModal
-                                                            active={false}
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            massage={null}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                  />
-                                        </span>
-                              </Col>
-                    </Row>
-                    <CalendarPanel
-                              allowEditation={true}
-                              events={Array []}
-                              massageMinutes={0}
-                              onAdd={[Function]}
-                              onAssign={[Function]}
-                              onCancel={[Function]}
-                              onDateChange={[Function]}
-                              onDelete={[Function]}
-                              onEdit={[Function]}
-                              onSelect={[Function]}
-                              selectEvents={true}
-                              selected={Array []}
-                    />
+            <div
+              className="loader float-right"
+            />
+            <h1>
+              Masáže v test
+            </h1>
+            <Nav
+              className="mb-3"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="test"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+            </Nav>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="6"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <TooltipButton
+                  active={true}
+                  className="mr-2"
+                  disabled={false}
+                  label="Vybírat"
+                  onClick={[Function]}
+                  tooltip="Výběr více masáží pro hromadné operace"
+                />
+                <TooltipButton
+                  active={false}
+                  disabled={false}
+                  label="Jen volné"
+                  onClick={[Function]}
+                  tooltip="Zobrazit pouze volné (zelené) masáže"
+                />
+              </Col>
+              <Col
+                className="text-right"
+                md="6"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <PrintModal
+                  className="mr-2"
+                  date={null}
+                  facilityId={1}
+                  masseuses={Array []}
+                  onPrint={[Function]}
+                  withPortal={true}
+                />
+                <span>
+                  <ConfirmationButton
+                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    disabled={true}
+                    label="Smazat vybrané"
+                    onConfirm={[Function]}
+                    tooltip="Smazat vybrané masáže"
+                  />
+                  <MassageBatchAddModal
+                    active={false}
+                    className="mx-2"
+                    facilityId={1}
+                    getCallback={[Function]}
+                    masseuses={Array []}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                  <MassageModal
+                    active={false}
+                    facilityId={1}
+                    getCallback={[Function]}
+                    massage={null}
+                    masseuses={Array []}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                </span>
+              </Col>
+            </Row>
+            <CalendarPanel
+              allowEditation={true}
+              events={Array []}
+              massageMinutes={0}
+              onAdd={[Function]}
+              onAssign={[Function]}
+              onCancel={[Function]}
+              onDateChange={[Function]}
+              onDelete={[Function]}
+              onEdit={[Function]}
+              onSelect={[Function]}
+              selectEvents={true}
+              selected={Array []}
+            />
           </div>
-</div>,
+        </div>,
         false,
       ],
     },
@@ -168,122 +169,122 @@ ShallowWrapper {
         "props": Object {
           "children": <div>
             <div
-                        className="loader float-right"
+              className="loader float-right"
             />
             <h1>
-                        Masáže v test
+              Masáže v test
             </h1>
             <Nav
-                        className="mb-3"
-                        tabs={true}
-                        tag="ul"
-                        vertical={false}
+              className="mb-3"
+              tabs={true}
+              tag="ul"
+              vertical={false}
             >
-                        <Tab
-                                    active={true}
-                                    label="test"
-                                    onClick={[Function]}
-                                    onRemoveClick={null}
-                        />
+              <Tab
+                active={true}
+                label="test"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
             </Nav>
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <Col
-                                    md="6"
-                                    tag="div"
-                                    widths={
-                                                Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                    }
-                        >
-                                    <TooltipButton
-                                                active={true}
-                                                className="mr-2"
-                                                disabled={false}
-                                                label="Vybírat"
-                                                onClick={[Function]}
-                                                tooltip="Výběr více masáží pro hromadné operace"
-                                    />
-                                    <TooltipButton
-                                                active={false}
-                                                disabled={false}
-                                                label="Jen volné"
-                                                onClick={[Function]}
-                                                tooltip="Zobrazit pouze volné (zelené) masáže"
-                                    />
-                        </Col>
-                        <Col
-                                    className="text-right"
-                                    md="6"
-                                    tag="div"
-                                    widths={
-                                                Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                    }
-                        >
-                                    <PrintModal
-                                                className="mr-2"
-                                                date={null}
-                                                facilityId={1}
-                                                masseuses={Array []}
-                                                onPrint={[Function]}
-                                                withPortal={true}
-                                    />
-                                    <span>
-                                                <ConfirmationButton
-                                                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                            disabled={true}
-                                                            label="Smazat vybrané"
-                                                            onConfirm={[Function]}
-                                                            tooltip="Smazat vybrané masáže"
-                                                />
-                                                <MassageBatchAddModal
-                                                            active={false}
-                                                            className="mx-2"
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                />
-                                                <MassageModal
-                                                            active={false}
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            massage={null}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                />
-                                    </span>
-                        </Col>
+              <Col
+                md="6"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <TooltipButton
+                  active={true}
+                  className="mr-2"
+                  disabled={false}
+                  label="Vybírat"
+                  onClick={[Function]}
+                  tooltip="Výběr více masáží pro hromadné operace"
+                />
+                <TooltipButton
+                  active={false}
+                  disabled={false}
+                  label="Jen volné"
+                  onClick={[Function]}
+                  tooltip="Zobrazit pouze volné (zelené) masáže"
+                />
+              </Col>
+              <Col
+                className="text-right"
+                md="6"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <PrintModal
+                  className="mr-2"
+                  date={null}
+                  facilityId={1}
+                  masseuses={Array []}
+                  onPrint={[Function]}
+                  withPortal={true}
+                />
+                <span>
+                  <ConfirmationButton
+                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    disabled={true}
+                    label="Smazat vybrané"
+                    onConfirm={[Function]}
+                    tooltip="Smazat vybrané masáže"
+                  />
+                  <MassageBatchAddModal
+                    active={false}
+                    className="mx-2"
+                    facilityId={1}
+                    getCallback={[Function]}
+                    masseuses={Array []}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                  <MassageModal
+                    active={false}
+                    facilityId={1}
+                    getCallback={[Function]}
+                    massage={null}
+                    masseuses={Array []}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                </span>
+              </Col>
             </Row>
             <CalendarPanel
-                        allowEditation={true}
-                        events={Array []}
-                        massageMinutes={0}
-                        onAdd={[Function]}
-                        onAssign={[Function]}
-                        onCancel={[Function]}
-                        onDateChange={[Function]}
-                        onDelete={[Function]}
-                        onEdit={[Function]}
-                        onSelect={[Function]}
-                        selectEvents={true}
-                        selected={Array []}
+              allowEditation={true}
+              events={Array []}
+              massageMinutes={0}
+              onAdd={[Function]}
+              onAssign={[Function]}
+              onCancel={[Function]}
+              onDateChange={[Function]}
+              onDelete={[Function]}
+              onEdit={[Function]}
+              onSelect={[Function]}
+              selectEvents={true}
+              selected={Array []}
             />
-</div>,
+          </div>,
           "className": "my-3 no-print",
         },
         "ref": null,
@@ -295,106 +296,106 @@ ShallowWrapper {
             "children": Array [
               <div
                 className="loader float-right"
-/>,
+              />,
               <h1>
                 Masáže v test
-</h1>,
+              </h1>,
               <Nav
                 className="mb-3"
                 tabs={true}
                 tag="ul"
                 vertical={false}
->
+              >
                 <Tab
-                                active={true}
-                                label="test"
-                                onClick={[Function]}
-                                onRemoveClick={null}
+                  active={true}
+                  label="test"
+                  onClick={[Function]}
+                  onRemoveClick={null}
                 />
-</Nav>,
+              </Nav>,
               <Row
                 tag="div"
->
+              >
                 <Col
-                                md="6"
-                                tag="div"
-                                widths={
-                                                Array [
-                                                                "xs",
-                                                                "sm",
-                                                                "md",
-                                                                "lg",
-                                                                "xl",
-                                                              ]
-                                }
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                                <TooltipButton
-                                                active={true}
-                                                className="mr-2"
-                                                disabled={false}
-                                                label="Vybírat"
-                                                onClick={[Function]}
-                                                tooltip="Výběr více masáží pro hromadné operace"
-                                />
-                                <TooltipButton
-                                                active={false}
-                                                disabled={false}
-                                                label="Jen volné"
-                                                onClick={[Function]}
-                                                tooltip="Zobrazit pouze volné (zelené) masáže"
-                                />
+                  <TooltipButton
+                    active={true}
+                    className="mr-2"
+                    disabled={false}
+                    label="Vybírat"
+                    onClick={[Function]}
+                    tooltip="Výběr více masáží pro hromadné operace"
+                  />
+                  <TooltipButton
+                    active={false}
+                    disabled={false}
+                    label="Jen volné"
+                    onClick={[Function]}
+                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                  />
                 </Col>
                 <Col
-                                className="text-right"
-                                md="6"
-                                tag="div"
-                                widths={
-                                                Array [
-                                                                "xs",
-                                                                "sm",
-                                                                "md",
-                                                                "lg",
-                                                                "xl",
-                                                              ]
-                                }
+                  className="text-right"
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                                <PrintModal
-                                                className="mr-2"
-                                                date={null}
-                                                facilityId={1}
-                                                masseuses={Array []}
-                                                onPrint={[Function]}
-                                                withPortal={true}
-                                />
-                                <span>
-                                                <ConfirmationButton
-                                                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                                disabled={true}
-                                                                label="Smazat vybrané"
-                                                                onConfirm={[Function]}
-                                                                tooltip="Smazat vybrané masáže"
-                                                />
-                                                <MassageBatchAddModal
-                                                                active={false}
-                                                                className="mx-2"
-                                                                facilityId={1}
-                                                                getCallback={[Function]}
-                                                                masseuses={Array []}
-                                                                onToggle={[Function]}
-                                                                withPortal={true}
-                                                />
-                                                <MassageModal
-                                                                active={false}
-                                                                facilityId={1}
-                                                                getCallback={[Function]}
-                                                                massage={null}
-                                                                masseuses={Array []}
-                                                                onToggle={[Function]}
-                                                                withPortal={true}
-                                                />
-                                </span>
+                  <PrintModal
+                    className="mr-2"
+                    date={null}
+                    facilityId={1}
+                    masseuses={Array []}
+                    onPrint={[Function]}
+                    withPortal={true}
+                  />
+                  <span>
+                    <ConfirmationButton
+                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                      disabled={true}
+                      label="Smazat vybrané"
+                      onConfirm={[Function]}
+                      tooltip="Smazat vybrané masáže"
+                    />
+                    <MassageBatchAddModal
+                      active={false}
+                      className="mx-2"
+                      facilityId={1}
+                      getCallback={[Function]}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                    <MassageModal
+                      active={false}
+                      facilityId={1}
+                      getCallback={[Function]}
+                      massage={null}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                  </span>
                 </Col>
-</Row>,
+              </Row>,
               <CalendarPanel
                 allowEditation={true}
                 events={Array []}
@@ -408,7 +409,7 @@ ShallowWrapper {
                 onSelect={[Function]}
                 selectEvents={true}
                 selected={Array []}
-/>,
+              />,
             ],
           },
           "ref": null,
@@ -446,7 +447,7 @@ ShallowWrapper {
                     label="test"
                     onClick={[Function]}
                     onRemoveClick={null}
-/>,
+                  />,
                 ],
                 "className": "mb-3",
                 "tabs": true,
@@ -482,81 +483,81 @@ ShallowWrapper {
                     md="6"
                     tag="div"
                     widths={
-                                        Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
                     }
->
+                  >
                     <TooltipButton
-                                        active={true}
-                                        className="mr-2"
-                                        disabled={false}
-                                        label="Vybírat"
-                                        onClick={[Function]}
-                                        tooltip="Výběr více masáží pro hromadné operace"
+                      active={true}
+                      className="mr-2"
+                      disabled={false}
+                      label="Vybírat"
+                      onClick={[Function]}
+                      tooltip="Výběr více masáží pro hromadné operace"
                     />
                     <TooltipButton
-                                        active={false}
-                                        disabled={false}
-                                        label="Jen volné"
-                                        onClick={[Function]}
-                                        tooltip="Zobrazit pouze volné (zelené) masáže"
+                      active={false}
+                      disabled={false}
+                      label="Jen volné"
+                      onClick={[Function]}
+                      tooltip="Zobrazit pouze volné (zelené) masáže"
                     />
-</Col>,
+                  </Col>,
                   <Col
                     className="text-right"
                     md="6"
                     tag="div"
                     widths={
-                                        Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
                     }
->
+                  >
                     <PrintModal
-                                        className="mr-2"
-                                        date={null}
-                                        facilityId={1}
-                                        masseuses={Array []}
-                                        onPrint={[Function]}
-                                        withPortal={true}
+                      className="mr-2"
+                      date={null}
+                      facilityId={1}
+                      masseuses={Array []}
+                      onPrint={[Function]}
+                      withPortal={true}
                     />
                     <span>
-                                        <ConfirmationButton
-                                                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                            disabled={true}
-                                                            label="Smazat vybrané"
-                                                            onConfirm={[Function]}
-                                                            tooltip="Smazat vybrané masáže"
-                                        />
-                                        <MassageBatchAddModal
-                                                            active={false}
-                                                            className="mx-2"
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                        />
-                                        <MassageModal
-                                                            active={false}
-                                                            facilityId={1}
-                                                            getCallback={[Function]}
-                                                            massage={null}
-                                                            masseuses={Array []}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                        />
+                      <ConfirmationButton
+                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                        disabled={true}
+                        label="Smazat vybrané"
+                        onConfirm={[Function]}
+                        tooltip="Smazat vybrané masáže"
+                      />
+                      <MassageBatchAddModal
+                        active={false}
+                        className="mx-2"
+                        facilityId={1}
+                        getCallback={[Function]}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+                      />
+                      <MassageModal
+                        active={false}
+                        facilityId={1}
+                        getCallback={[Function]}
+                        massage={null}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+                      />
                     </span>
-</Col>,
+                  </Col>,
                 ],
                 "tag": "div",
               },
@@ -575,14 +576,14 @@ ShallowWrapper {
                         label="Vybírat"
                         onClick={[Function]}
                         tooltip="Výběr více masáží pro hromadné operace"
-/>,
+                      />,
                       <TooltipButton
                         active={false}
                         disabled={false}
                         label="Jen volné"
                         onClick={[Function]}
                         tooltip="Zobrazit pouze volné (zelené) masáže"
-/>,
+                      />,
                     ],
                     "md": "6",
                     "tag": "div",
@@ -643,34 +644,34 @@ ShallowWrapper {
                         masseuses={Array []}
                         onPrint={[Function]}
                         withPortal={true}
-/>,
+                      />,
                       <span>
                         <ConfirmationButton
-                                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                disabled={true}
-                                                label="Smazat vybrané"
-                                                onConfirm={[Function]}
-                                                tooltip="Smazat vybrané masáže"
+                          dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                          disabled={true}
+                          label="Smazat vybrané"
+                          onConfirm={[Function]}
+                          tooltip="Smazat vybrané masáže"
                         />
                         <MassageBatchAddModal
-                                                active={false}
-                                                className="mx-2"
-                                                facilityId={1}
-                                                getCallback={[Function]}
-                                                masseuses={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
+                          active={false}
+                          className="mx-2"
+                          facilityId={1}
+                          getCallback={[Function]}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
                         />
                         <MassageModal
-                                                active={false}
-                                                facilityId={1}
-                                                getCallback={[Function]}
-                                                massage={null}
-                                                masseuses={Array []}
-                                                onToggle={[Function]}
-                                                withPortal={true}
+                          active={false}
+                          facilityId={1}
+                          getCallback={[Function]}
+                          massage={null}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
                         />
-</span>,
+                      </span>,
                     ],
                     "className": "text-right",
                     "md": "6",
@@ -713,7 +714,7 @@ ShallowWrapper {
                             label="Smazat vybrané"
                             onConfirm={[Function]}
                             tooltip="Smazat vybrané masáže"
-/>,
+                          />,
                           <MassageBatchAddModal
                             active={false}
                             className="mx-2"
@@ -722,7 +723,7 @@ ShallowWrapper {
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
-/>,
+                          />,
                           <MassageModal
                             active={false}
                             facilityId={1}
@@ -731,7 +732,7 @@ ShallowWrapper {
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
-/>,
+                          />,
                         ],
                       },
                       "ref": null,
@@ -834,131 +835,131 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
-</InfoAlert>,
+          </InfoAlert>,
           <div
             className="my-3 no-print"
->
+          >
             <div>
-                        <div
-                                    className="loader float-right"
-                        />
-                        <h1>
-                                    Masáže v test
-                        </h1>
-                        <Nav
-                                    className="mb-3"
-                                    tabs={true}
-                                    tag="ul"
-                                    vertical={false}
-                        >
-                                    <Tab
-                                                active={true}
-                                                label="test"
-                                                onClick={[Function]}
-                                                onRemoveClick={null}
-                                    />
-                        </Nav>
-                        <Row
-                                    tag="div"
-                        >
-                                    <Col
-                                                md="6"
-                                                tag="div"
-                                                widths={
-                                                            Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                                }
-                                    >
-                                                <TooltipButton
-                                                            active={true}
-                                                            className="mr-2"
-                                                            disabled={false}
-                                                            label="Vybírat"
-                                                            onClick={[Function]}
-                                                            tooltip="Výběr více masáží pro hromadné operace"
-                                                />
-                                                <TooltipButton
-                                                            active={false}
-                                                            disabled={false}
-                                                            label="Jen volné"
-                                                            onClick={[Function]}
-                                                            tooltip="Zobrazit pouze volné (zelené) masáže"
-                                                />
-                                    </Col>
-                                    <Col
-                                                className="text-right"
-                                                md="6"
-                                                tag="div"
-                                                widths={
-                                                            Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                                }
-                                    >
-                                                <PrintModal
-                                                            className="mr-2"
-                                                            date={null}
-                                                            facilityId={1}
-                                                            masseuses={Array []}
-                                                            onPrint={[Function]}
-                                                            withPortal={true}
-                                                />
-                                                <span>
-                                                            <ConfirmationButton
-                                                                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                                        disabled={true}
-                                                                        label="Smazat vybrané"
-                                                                        onConfirm={[Function]}
-                                                                        tooltip="Smazat vybrané masáže"
-                                                            />
-                                                            <MassageBatchAddModal
-                                                                        active={false}
-                                                                        className="mx-2"
-                                                                        facilityId={1}
-                                                                        getCallback={[Function]}
-                                                                        masseuses={Array []}
-                                                                        onToggle={[Function]}
-                                                                        withPortal={true}
-                                                            />
-                                                            <MassageModal
-                                                                        active={false}
-                                                                        facilityId={1}
-                                                                        getCallback={[Function]}
-                                                                        massage={null}
-                                                                        masseuses={Array []}
-                                                                        onToggle={[Function]}
-                                                                        withPortal={true}
-                                                            />
-                                                </span>
-                                    </Col>
-                        </Row>
-                        <CalendarPanel
-                                    allowEditation={true}
-                                    events={Array []}
-                                    massageMinutes={0}
-                                    onAdd={[Function]}
-                                    onAssign={[Function]}
-                                    onCancel={[Function]}
-                                    onDateChange={[Function]}
-                                    onDelete={[Function]}
-                                    onEdit={[Function]}
-                                    onSelect={[Function]}
-                                    selectEvents={true}
-                                    selected={Array []}
-                        />
+              <div
+                className="loader float-right"
+              />
+              <h1>
+                Masáže v test
+              </h1>
+              <Nav
+                className="mb-3"
+                tabs={true}
+                tag="ul"
+                vertical={false}
+              >
+                <Tab
+                  active={true}
+                  label="test"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+              </Nav>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <TooltipButton
+                    active={true}
+                    className="mr-2"
+                    disabled={false}
+                    label="Vybírat"
+                    onClick={[Function]}
+                    tooltip="Výběr více masáží pro hromadné operace"
+                  />
+                  <TooltipButton
+                    active={false}
+                    disabled={false}
+                    label="Jen volné"
+                    onClick={[Function]}
+                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                  />
+                </Col>
+                <Col
+                  className="text-right"
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <PrintModal
+                    className="mr-2"
+                    date={null}
+                    facilityId={1}
+                    masseuses={Array []}
+                    onPrint={[Function]}
+                    withPortal={true}
+                  />
+                  <span>
+                    <ConfirmationButton
+                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                      disabled={true}
+                      label="Smazat vybrané"
+                      onConfirm={[Function]}
+                      tooltip="Smazat vybrané masáže"
+                    />
+                    <MassageBatchAddModal
+                      active={false}
+                      className="mx-2"
+                      facilityId={1}
+                      getCallback={[Function]}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                    <MassageModal
+                      active={false}
+                      facilityId={1}
+                      getCallback={[Function]}
+                      massage={null}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                  </span>
+                </Col>
+              </Row>
+              <CalendarPanel
+                allowEditation={true}
+                events={Array []}
+                massageMinutes={0}
+                onAdd={[Function]}
+                onAssign={[Function]}
+                onCancel={[Function]}
+                onDateChange={[Function]}
+                onDelete={[Function]}
+                onEdit={[Function]}
+                onSelect={[Function]}
+                selectEvents={true}
+                selected={Array []}
+              />
             </div>
-</div>,
+          </div>,
           false,
         ],
       },
@@ -983,122 +984,122 @@ ShallowWrapper {
           "props": Object {
             "children": <div>
               <div
-                            className="loader float-right"
+                className="loader float-right"
               />
               <h1>
-                            Masáže v test
+                Masáže v test
               </h1>
               <Nav
-                            className="mb-3"
-                            tabs={true}
-                            tag="ul"
-                            vertical={false}
+                className="mb-3"
+                tabs={true}
+                tag="ul"
+                vertical={false}
               >
-                            <Tab
-                                          active={true}
-                                          label="test"
-                                          onClick={[Function]}
-                                          onRemoveClick={null}
-                            />
+                <Tab
+                  active={true}
+                  label="test"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
               </Nav>
               <Row
-                            tag="div"
+                tag="div"
               >
-                            <Col
-                                          md="6"
-                                          tag="div"
-                                          widths={
-                                                        Array [
-                                                                      "xs",
-                                                                      "sm",
-                                                                      "md",
-                                                                      "lg",
-                                                                      "xl",
-                                                                    ]
-                                          }
-                            >
-                                          <TooltipButton
-                                                        active={true}
-                                                        className="mr-2"
-                                                        disabled={false}
-                                                        label="Vybírat"
-                                                        onClick={[Function]}
-                                                        tooltip="Výběr více masáží pro hromadné operace"
-                                          />
-                                          <TooltipButton
-                                                        active={false}
-                                                        disabled={false}
-                                                        label="Jen volné"
-                                                        onClick={[Function]}
-                                                        tooltip="Zobrazit pouze volné (zelené) masáže"
-                                          />
-                            </Col>
-                            <Col
-                                          className="text-right"
-                                          md="6"
-                                          tag="div"
-                                          widths={
-                                                        Array [
-                                                                      "xs",
-                                                                      "sm",
-                                                                      "md",
-                                                                      "lg",
-                                                                      "xl",
-                                                                    ]
-                                          }
-                            >
-                                          <PrintModal
-                                                        className="mr-2"
-                                                        date={null}
-                                                        facilityId={1}
-                                                        masseuses={Array []}
-                                                        onPrint={[Function]}
-                                                        withPortal={true}
-                                          />
-                                          <span>
-                                                        <ConfirmationButton
-                                                                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                                      disabled={true}
-                                                                      label="Smazat vybrané"
-                                                                      onConfirm={[Function]}
-                                                                      tooltip="Smazat vybrané masáže"
-                                                        />
-                                                        <MassageBatchAddModal
-                                                                      active={false}
-                                                                      className="mx-2"
-                                                                      facilityId={1}
-                                                                      getCallback={[Function]}
-                                                                      masseuses={Array []}
-                                                                      onToggle={[Function]}
-                                                                      withPortal={true}
-                                                        />
-                                                        <MassageModal
-                                                                      active={false}
-                                                                      facilityId={1}
-                                                                      getCallback={[Function]}
-                                                                      massage={null}
-                                                                      masseuses={Array []}
-                                                                      onToggle={[Function]}
-                                                                      withPortal={true}
-                                                        />
-                                          </span>
-                            </Col>
+                <Col
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <TooltipButton
+                    active={true}
+                    className="mr-2"
+                    disabled={false}
+                    label="Vybírat"
+                    onClick={[Function]}
+                    tooltip="Výběr více masáží pro hromadné operace"
+                  />
+                  <TooltipButton
+                    active={false}
+                    disabled={false}
+                    label="Jen volné"
+                    onClick={[Function]}
+                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                  />
+                </Col>
+                <Col
+                  className="text-right"
+                  md="6"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <PrintModal
+                    className="mr-2"
+                    date={null}
+                    facilityId={1}
+                    masseuses={Array []}
+                    onPrint={[Function]}
+                    withPortal={true}
+                  />
+                  <span>
+                    <ConfirmationButton
+                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                      disabled={true}
+                      label="Smazat vybrané"
+                      onConfirm={[Function]}
+                      tooltip="Smazat vybrané masáže"
+                    />
+                    <MassageBatchAddModal
+                      active={false}
+                      className="mx-2"
+                      facilityId={1}
+                      getCallback={[Function]}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                    <MassageModal
+                      active={false}
+                      facilityId={1}
+                      getCallback={[Function]}
+                      massage={null}
+                      masseuses={Array []}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                  </span>
+                </Col>
               </Row>
               <CalendarPanel
-                            allowEditation={true}
-                            events={Array []}
-                            massageMinutes={0}
-                            onAdd={[Function]}
-                            onAssign={[Function]}
-                            onCancel={[Function]}
-                            onDateChange={[Function]}
-                            onDelete={[Function]}
-                            onEdit={[Function]}
-                            onSelect={[Function]}
-                            selectEvents={true}
-                            selected={Array []}
+                allowEditation={true}
+                events={Array []}
+                massageMinutes={0}
+                onAdd={[Function]}
+                onAssign={[Function]}
+                onCancel={[Function]}
+                onDateChange={[Function]}
+                onDelete={[Function]}
+                onEdit={[Function]}
+                onSelect={[Function]}
+                selectEvents={true}
+                selected={Array []}
               />
-</div>,
+            </div>,
             "className": "my-3 no-print",
           },
           "ref": null,
@@ -1110,106 +1111,106 @@ ShallowWrapper {
               "children": Array [
                 <div
                   className="loader float-right"
-/>,
+                />,
                 <h1>
                   Masáže v test
-</h1>,
+                </h1>,
                 <Nav
                   className="mb-3"
                   tabs={true}
                   tag="ul"
                   vertical={false}
->
+                >
                   <Tab
-                                    active={true}
-                                    label="test"
-                                    onClick={[Function]}
-                                    onRemoveClick={null}
+                    active={true}
+                    label="test"
+                    onClick={[Function]}
+                    onRemoveClick={null}
                   />
-</Nav>,
+                </Nav>,
                 <Row
                   tag="div"
->
+                >
                   <Col
-                                    md="6"
-                                    tag="div"
-                                    widths={
-                                                      Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                    }
+                    md="6"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
                   >
-                                    <TooltipButton
-                                                      active={true}
-                                                      className="mr-2"
-                                                      disabled={false}
-                                                      label="Vybírat"
-                                                      onClick={[Function]}
-                                                      tooltip="Výběr více masáží pro hromadné operace"
-                                    />
-                                    <TooltipButton
-                                                      active={false}
-                                                      disabled={false}
-                                                      label="Jen volné"
-                                                      onClick={[Function]}
-                                                      tooltip="Zobrazit pouze volné (zelené) masáže"
-                                    />
+                    <TooltipButton
+                      active={true}
+                      className="mr-2"
+                      disabled={false}
+                      label="Vybírat"
+                      onClick={[Function]}
+                      tooltip="Výběr více masáží pro hromadné operace"
+                    />
+                    <TooltipButton
+                      active={false}
+                      disabled={false}
+                      label="Jen volné"
+                      onClick={[Function]}
+                      tooltip="Zobrazit pouze volné (zelené) masáže"
+                    />
                   </Col>
                   <Col
-                                    className="text-right"
-                                    md="6"
-                                    tag="div"
-                                    widths={
-                                                      Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                    }
+                    className="text-right"
+                    md="6"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
                   >
-                                    <PrintModal
-                                                      className="mr-2"
-                                                      date={null}
-                                                      facilityId={1}
-                                                      masseuses={Array []}
-                                                      onPrint={[Function]}
-                                                      withPortal={true}
-                                    />
-                                    <span>
-                                                      <ConfirmationButton
-                                                                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                                        disabled={true}
-                                                                        label="Smazat vybrané"
-                                                                        onConfirm={[Function]}
-                                                                        tooltip="Smazat vybrané masáže"
-                                                      />
-                                                      <MassageBatchAddModal
-                                                                        active={false}
-                                                                        className="mx-2"
-                                                                        facilityId={1}
-                                                                        getCallback={[Function]}
-                                                                        masseuses={Array []}
-                                                                        onToggle={[Function]}
-                                                                        withPortal={true}
-                                                      />
-                                                      <MassageModal
-                                                                        active={false}
-                                                                        facilityId={1}
-                                                                        getCallback={[Function]}
-                                                                        massage={null}
-                                                                        masseuses={Array []}
-                                                                        onToggle={[Function]}
-                                                                        withPortal={true}
-                                                      />
-                                    </span>
+                    <PrintModal
+                      className="mr-2"
+                      date={null}
+                      facilityId={1}
+                      masseuses={Array []}
+                      onPrint={[Function]}
+                      withPortal={true}
+                    />
+                    <span>
+                      <ConfirmationButton
+                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                        disabled={true}
+                        label="Smazat vybrané"
+                        onConfirm={[Function]}
+                        tooltip="Smazat vybrané masáže"
+                      />
+                      <MassageBatchAddModal
+                        active={false}
+                        className="mx-2"
+                        facilityId={1}
+                        getCallback={[Function]}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+                      />
+                      <MassageModal
+                        active={false}
+                        facilityId={1}
+                        getCallback={[Function]}
+                        massage={null}
+                        masseuses={Array []}
+                        onToggle={[Function]}
+                        withPortal={true}
+                      />
+                    </span>
                   </Col>
-</Row>,
+                </Row>,
                 <CalendarPanel
                   allowEditation={true}
                   events={Array []}
@@ -1223,7 +1224,7 @@ ShallowWrapper {
                   onSelect={[Function]}
                   selectEvents={true}
                   selected={Array []}
-/>,
+                />,
               ],
             },
             "ref": null,
@@ -1261,7 +1262,7 @@ ShallowWrapper {
                       label="test"
                       onClick={[Function]}
                       onRemoveClick={null}
-/>,
+                    />,
                   ],
                   "className": "mb-3",
                   "tabs": true,
@@ -1297,81 +1298,81 @@ ShallowWrapper {
                       md="6"
                       tag="div"
                       widths={
-                                            Array [
-                                                                  "xs",
-                                                                  "sm",
-                                                                  "md",
-                                                                  "lg",
-                                                                  "xl",
-                                                                ]
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
                       }
->
+                    >
                       <TooltipButton
-                                            active={true}
-                                            className="mr-2"
-                                            disabled={false}
-                                            label="Vybírat"
-                                            onClick={[Function]}
-                                            tooltip="Výběr více masáží pro hromadné operace"
+                        active={true}
+                        className="mr-2"
+                        disabled={false}
+                        label="Vybírat"
+                        onClick={[Function]}
+                        tooltip="Výběr více masáží pro hromadné operace"
                       />
                       <TooltipButton
-                                            active={false}
-                                            disabled={false}
-                                            label="Jen volné"
-                                            onClick={[Function]}
-                                            tooltip="Zobrazit pouze volné (zelené) masáže"
+                        active={false}
+                        disabled={false}
+                        label="Jen volné"
+                        onClick={[Function]}
+                        tooltip="Zobrazit pouze volné (zelené) masáže"
                       />
-</Col>,
+                    </Col>,
                     <Col
                       className="text-right"
                       md="6"
                       tag="div"
                       widths={
-                                            Array [
-                                                                  "xs",
-                                                                  "sm",
-                                                                  "md",
-                                                                  "lg",
-                                                                  "xl",
-                                                                ]
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
                       }
->
+                    >
                       <PrintModal
-                                            className="mr-2"
-                                            date={null}
-                                            facilityId={1}
-                                            masseuses={Array []}
-                                            onPrint={[Function]}
-                                            withPortal={true}
+                        className="mr-2"
+                        date={null}
+                        facilityId={1}
+                        masseuses={Array []}
+                        onPrint={[Function]}
+                        withPortal={true}
                       />
                       <span>
-                                            <ConfirmationButton
-                                                                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                                  disabled={true}
-                                                                  label="Smazat vybrané"
-                                                                  onConfirm={[Function]}
-                                                                  tooltip="Smazat vybrané masáže"
-                                            />
-                                            <MassageBatchAddModal
-                                                                  active={false}
-                                                                  className="mx-2"
-                                                                  facilityId={1}
-                                                                  getCallback={[Function]}
-                                                                  masseuses={Array []}
-                                                                  onToggle={[Function]}
-                                                                  withPortal={true}
-                                            />
-                                            <MassageModal
-                                                                  active={false}
-                                                                  facilityId={1}
-                                                                  getCallback={[Function]}
-                                                                  massage={null}
-                                                                  masseuses={Array []}
-                                                                  onToggle={[Function]}
-                                                                  withPortal={true}
-                                            />
+                        <ConfirmationButton
+                          dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                          disabled={true}
+                          label="Smazat vybrané"
+                          onConfirm={[Function]}
+                          tooltip="Smazat vybrané masáže"
+                        />
+                        <MassageBatchAddModal
+                          active={false}
+                          className="mx-2"
+                          facilityId={1}
+                          getCallback={[Function]}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+                        />
+                        <MassageModal
+                          active={false}
+                          facilityId={1}
+                          getCallback={[Function]}
+                          massage={null}
+                          masseuses={Array []}
+                          onToggle={[Function]}
+                          withPortal={true}
+                        />
                       </span>
-</Col>,
+                    </Col>,
                   ],
                   "tag": "div",
                 },
@@ -1390,14 +1391,14 @@ ShallowWrapper {
                           label="Vybírat"
                           onClick={[Function]}
                           tooltip="Výběr více masáží pro hromadné operace"
-/>,
+                        />,
                         <TooltipButton
                           active={false}
                           disabled={false}
                           label="Jen volné"
                           onClick={[Function]}
                           tooltip="Zobrazit pouze volné (zelené) masáže"
-/>,
+                        />,
                       ],
                       "md": "6",
                       "tag": "div",
@@ -1458,34 +1459,34 @@ ShallowWrapper {
                           masseuses={Array []}
                           onPrint={[Function]}
                           withPortal={true}
-/>,
+                        />,
                         <span>
                           <ConfirmationButton
-                                                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                                    disabled={true}
-                                                    label="Smazat vybrané"
-                                                    onConfirm={[Function]}
-                                                    tooltip="Smazat vybrané masáže"
+                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                            disabled={true}
+                            label="Smazat vybrané"
+                            onConfirm={[Function]}
+                            tooltip="Smazat vybrané masáže"
                           />
                           <MassageBatchAddModal
-                                                    active={false}
-                                                    className="mx-2"
-                                                    facilityId={1}
-                                                    getCallback={[Function]}
-                                                    masseuses={Array []}
-                                                    onToggle={[Function]}
-                                                    withPortal={true}
+                            active={false}
+                            className="mx-2"
+                            facilityId={1}
+                            getCallback={[Function]}
+                            masseuses={Array []}
+                            onToggle={[Function]}
+                            withPortal={true}
                           />
                           <MassageModal
-                                                    active={false}
-                                                    facilityId={1}
-                                                    getCallback={[Function]}
-                                                    massage={null}
-                                                    masseuses={Array []}
-                                                    onToggle={[Function]}
-                                                    withPortal={true}
+                            active={false}
+                            facilityId={1}
+                            getCallback={[Function]}
+                            massage={null}
+                            masseuses={Array []}
+                            onToggle={[Function]}
+                            withPortal={true}
                           />
-</span>,
+                        </span>,
                       ],
                       "className": "text-right",
                       "md": "6",
@@ -1528,7 +1529,7 @@ ShallowWrapper {
                               label="Smazat vybrané"
                               onConfirm={[Function]}
                               tooltip="Smazat vybrané masáže"
-/>,
+                            />,
                             <MassageBatchAddModal
                               active={false}
                               className="mx-2"
@@ -1537,7 +1538,7 @@ ShallowWrapper {
                               masseuses={Array []}
                               onToggle={[Function]}
                               withPortal={true}
-/>,
+                            />,
                             <MassageModal
                               active={false}
                               facilityId={1}
@@ -1546,7 +1547,7 @@ ShallowWrapper {
                               masseuses={Array []}
                               onToggle={[Function]}
                               withPortal={true}
-/>,
+                            />,
                           ],
                         },
                         "ref": null,
@@ -1657,8 +1658,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
@@ -1671,6 +1670,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -1682,70 +1682,70 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
-</InfoAlert>,
+        </InfoAlert>,
         <div
           className="my-3 no-print"
->
+        >
           <div>
-                    <h1>
-                              Masáže
-                    </h1>
-                    <hr />
+            <h1>
+              Masáže
+            </h1>
+            <hr />
           </div>
-</div>,
+        </div>,
         <div
           className="print-only"
->
+        >
           <h1>
-                    Rozpis
+            Rozpis
           </h1>
           <Table
-                    responsiveTag="div"
-                    tag="table"
+            responsiveTag="div"
+            tag="table"
           >
-                    <thead>
-                              <tr>
-                                        <th
-                                                  scope="col"
-                                        >
-                                                  Datum
-                                        </th>
-                                        <th
-                                                  scope="col"
-                                        >
-                                                  Čas
-                                        </th>
-                                        <th
-                                                  scope="col"
-                                        >
-                                                  Masér/Masérka
-                                        </th>
-                                        <th
-                                                  scope="col"
-                                                  width="40%"
-                                        >
-                                                  Klient
-                                        </th>
-                              </tr>
-                    </thead>
-                    <tbody>
-                              <tr>
-                                        <td>
-                                                  01/01/1970
-                                        </td>
-                                        <td>
-                                                  01:00–01:00
-                                        </td>
-                                        <td />
-                                        <td>
-                                                  Volno
-                                        </td>
-                              </tr>
-                    </tbody>
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                >
+                  Datum
+                </th>
+                <th
+                  scope="col"
+                >
+                  Čas
+                </th>
+                <th
+                  scope="col"
+                >
+                  Masér/Masérka
+                </th>
+                <th
+                  scope="col"
+                  width="40%"
+                >
+                  Klient
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  01/01/1970
+                </td>
+                <td>
+                  01:00–01:00
+                </td>
+                <td />
+                <td>
+                  Volno
+                </td>
+              </tr>
+            </tbody>
           </Table>
-</div>,
+        </div>,
       ],
     },
     "ref": null,
@@ -1769,10 +1769,10 @@ ShallowWrapper {
         "props": Object {
           "children": <div>
             <h1>
-                        Masáže
+              Masáže
             </h1>
             <hr />
-</div>,
+          </div>,
           "className": "my-3 no-print",
         },
         "ref": null,
@@ -1784,7 +1784,7 @@ ShallowWrapper {
             "children": Array [
               <h1>
                 Masáže
-</h1>,
+              </h1>,
               <hr />,
             ],
           },
@@ -1823,51 +1823,51 @@ ShallowWrapper {
           "children": Array [
             <h1>
               Rozpis
-</h1>,
+            </h1>,
             <Table
               responsiveTag="div"
               tag="table"
->
+            >
               <thead>
-                            <tr>
-                                          <th
-                                                        scope="col"
-                                          >
-                                                        Datum
-                                          </th>
-                                          <th
-                                                        scope="col"
-                                          >
-                                                        Čas
-                                          </th>
-                                          <th
-                                                        scope="col"
-                                          >
-                                                        Masér/Masérka
-                                          </th>
-                                          <th
-                                                        scope="col"
-                                                        width="40%"
-                                          >
-                                                        Klient
-                                          </th>
-                            </tr>
+                <tr>
+                  <th
+                    scope="col"
+                  >
+                    Datum
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Čas
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Masér/Masérka
+                  </th>
+                  <th
+                    scope="col"
+                    width="40%"
+                  >
+                    Klient
+                  </th>
+                </tr>
               </thead>
               <tbody>
-                            <tr>
-                                          <td>
-                                                        01/01/1970
-                                          </td>
-                                          <td>
-                                                        01:00–01:00
-                                          </td>
-                                          <td />
-                                          <td>
-                                                        Volno
-                                          </td>
-                            </tr>
+                <tr>
+                  <td>
+                    01/01/1970
+                  </td>
+                  <td>
+                    01:00–01:00
+                  </td>
+                  <td />
+                  <td>
+                    Volno
+                  </td>
+                </tr>
               </tbody>
-</Table>,
+            </Table>,
           ],
           "className": "print-only",
         },
@@ -1892,43 +1892,43 @@ ShallowWrapper {
               "children": Array [
                 <thead>
                   <tr>
-                                    <th
-                                                      scope="col"
-                                    >
-                                                      Datum
-                                    </th>
-                                    <th
-                                                      scope="col"
-                                    >
-                                                      Čas
-                                    </th>
-                                    <th
-                                                      scope="col"
-                                    >
-                                                      Masér/Masérka
-                                    </th>
-                                    <th
-                                                      scope="col"
-                                                      width="40%"
-                                    >
-                                                      Klient
-                                    </th>
+                    <th
+                      scope="col"
+                    >
+                      Datum
+                    </th>
+                    <th
+                      scope="col"
+                    >
+                      Čas
+                    </th>
+                    <th
+                      scope="col"
+                    >
+                      Masér/Masérka
+                    </th>
+                    <th
+                      scope="col"
+                      width="40%"
+                    >
+                      Klient
+                    </th>
                   </tr>
-</thead>,
+                </thead>,
                 <tbody>
                   <tr>
-                                    <td>
-                                                      01/01/1970
-                                    </td>
-                                    <td>
-                                                      01:00–01:00
-                                    </td>
-                                    <td />
-                                    <td>
-                                                      Volno
-                                    </td>
+                    <td>
+                      01/01/1970
+                    </td>
+                    <td>
+                      01:00–01:00
+                    </td>
+                    <td />
+                    <td>
+                      Volno
+                    </td>
                   </tr>
-</tbody>,
+                </tbody>,
               ],
               "responsiveTag": "div",
               "tag": "table",
@@ -1942,27 +1942,27 @@ ShallowWrapper {
                 "props": Object {
                   "children": <tr>
                     <th
-                                        scope="col"
+                      scope="col"
                     >
-                                        Datum
+                      Datum
                     </th>
                     <th
-                                        scope="col"
+                      scope="col"
                     >
-                                        Čas
+                      Čas
                     </th>
                     <th
-                                        scope="col"
+                      scope="col"
                     >
-                                        Masér/Masérka
+                      Masér/Masérka
                     </th>
                     <th
-                                        scope="col"
-                                        width="40%"
+                      scope="col"
+                      width="40%"
                     >
-                                        Klient
+                      Klient
                     </th>
-</tr>,
+                  </tr>,
                 },
                 "ref": null,
                 "rendered": Object {
@@ -1973,25 +1973,25 @@ ShallowWrapper {
                     "children": Array [
                       <th
                         scope="col"
->
+                      >
                         Datum
-</th>,
+                      </th>,
                       <th
                         scope="col"
->
+                      >
                         Čas
-</th>,
+                      </th>,
                       <th
                         scope="col"
->
+                      >
                         Masér/Masérka
-</th>,
+                      </th>,
                       <th
                         scope="col"
                         width="40%"
->
+                      >
                         Klient
-</th>,
+                      </th>,
                     ],
                   },
                   "ref": null,
@@ -2058,16 +2058,16 @@ ShallowWrapper {
                   "children": Array [
                     <tr>
                       <td>
-                                            01/01/1970
+                        01/01/1970
                       </td>
                       <td>
-                                            01:00–01:00
+                        01:00–01:00
                       </td>
                       <td />
                       <td>
-                                            Volno
+                        Volno
                       </td>
-</tr>,
+                    </tr>,
                   ],
                 },
                 "ref": null,
@@ -2080,14 +2080,14 @@ ShallowWrapper {
                       "children": Array [
                         <td>
                           01/01/1970
-</td>,
+                        </td>,
                         <td>
                           01:00–01:00
-</td>,
+                        </td>,
                         <td />,
                         <td>
                           Volno
-</td>,
+                        </td>,
                       ],
                     },
                     "ref": null,
@@ -2160,70 +2160,70 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete prohlížet nadcházející masáže. Pro zobrazení detailů nebo pro zaregistrování masáže klikněte na odpovídající údálost v kalendáři níže.
-</InfoAlert>,
+          </InfoAlert>,
           <div
             className="my-3 no-print"
->
+          >
             <div>
-                        <h1>
-                                    Masáže
-                        </h1>
-                        <hr />
+              <h1>
+                Masáže
+              </h1>
+              <hr />
             </div>
-</div>,
+          </div>,
           <div
             className="print-only"
->
+          >
             <h1>
-                        Rozpis
+              Rozpis
             </h1>
             <Table
-                        responsiveTag="div"
-                        tag="table"
+              responsiveTag="div"
+              tag="table"
             >
-                        <thead>
-                                    <tr>
-                                                <th
-                                                            scope="col"
-                                                >
-                                                            Datum
-                                                </th>
-                                                <th
-                                                            scope="col"
-                                                >
-                                                            Čas
-                                                </th>
-                                                <th
-                                                            scope="col"
-                                                >
-                                                            Masér/Masérka
-                                                </th>
-                                                <th
-                                                            scope="col"
-                                                            width="40%"
-                                                >
-                                                            Klient
-                                                </th>
-                                    </tr>
-                        </thead>
-                        <tbody>
-                                    <tr>
-                                                <td>
-                                                            01/01/1970
-                                                </td>
-                                                <td>
-                                                            01:00–01:00
-                                                </td>
-                                                <td />
-                                                <td>
-                                                            Volno
-                                                </td>
-                                    </tr>
-                        </tbody>
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                  >
+                    Datum
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Čas
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Masér/Masérka
+                  </th>
+                  <th
+                    scope="col"
+                    width="40%"
+                  >
+                    Klient
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    01/01/1970
+                  </td>
+                  <td>
+                    01:00–01:00
+                  </td>
+                  <td />
+                  <td>
+                    Volno
+                  </td>
+                </tr>
+              </tbody>
             </Table>
-</div>,
+          </div>,
         ],
       },
       "ref": null,
@@ -2247,10 +2247,10 @@ ShallowWrapper {
           "props": Object {
             "children": <div>
               <h1>
-                            Masáže
+                Masáže
               </h1>
               <hr />
-</div>,
+            </div>,
             "className": "my-3 no-print",
           },
           "ref": null,
@@ -2262,7 +2262,7 @@ ShallowWrapper {
               "children": Array [
                 <h1>
                   Masáže
-</h1>,
+                </h1>,
                 <hr />,
               ],
             },
@@ -2301,51 +2301,51 @@ ShallowWrapper {
             "children": Array [
               <h1>
                 Rozpis
-</h1>,
+              </h1>,
               <Table
                 responsiveTag="div"
                 tag="table"
->
+              >
                 <thead>
-                                <tr>
-                                                <th
-                                                                scope="col"
-                                                >
-                                                                Datum
-                                                </th>
-                                                <th
-                                                                scope="col"
-                                                >
-                                                                Čas
-                                                </th>
-                                                <th
-                                                                scope="col"
-                                                >
-                                                                Masér/Masérka
-                                                </th>
-                                                <th
-                                                                scope="col"
-                                                                width="40%"
-                                                >
-                                                                Klient
-                                                </th>
-                                </tr>
+                  <tr>
+                    <th
+                      scope="col"
+                    >
+                      Datum
+                    </th>
+                    <th
+                      scope="col"
+                    >
+                      Čas
+                    </th>
+                    <th
+                      scope="col"
+                    >
+                      Masér/Masérka
+                    </th>
+                    <th
+                      scope="col"
+                      width="40%"
+                    >
+                      Klient
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
-                                <tr>
-                                                <td>
-                                                                01/01/1970
-                                                </td>
-                                                <td>
-                                                                01:00–01:00
-                                                </td>
-                                                <td />
-                                                <td>
-                                                                Volno
-                                                </td>
-                                </tr>
+                  <tr>
+                    <td>
+                      01/01/1970
+                    </td>
+                    <td>
+                      01:00–01:00
+                    </td>
+                    <td />
+                    <td>
+                      Volno
+                    </td>
+                  </tr>
                 </tbody>
-</Table>,
+              </Table>,
             ],
             "className": "print-only",
           },
@@ -2370,43 +2370,43 @@ ShallowWrapper {
                 "children": Array [
                   <thead>
                     <tr>
-                                        <th
-                                                            scope="col"
-                                        >
-                                                            Datum
-                                        </th>
-                                        <th
-                                                            scope="col"
-                                        >
-                                                            Čas
-                                        </th>
-                                        <th
-                                                            scope="col"
-                                        >
-                                                            Masér/Masérka
-                                        </th>
-                                        <th
-                                                            scope="col"
-                                                            width="40%"
-                                        >
-                                                            Klient
-                                        </th>
+                      <th
+                        scope="col"
+                      >
+                        Datum
+                      </th>
+                      <th
+                        scope="col"
+                      >
+                        Čas
+                      </th>
+                      <th
+                        scope="col"
+                      >
+                        Masér/Masérka
+                      </th>
+                      <th
+                        scope="col"
+                        width="40%"
+                      >
+                        Klient
+                      </th>
                     </tr>
-</thead>,
+                  </thead>,
                   <tbody>
                     <tr>
-                                        <td>
-                                                            01/01/1970
-                                        </td>
-                                        <td>
-                                                            01:00–01:00
-                                        </td>
-                                        <td />
-                                        <td>
-                                                            Volno
-                                        </td>
+                      <td>
+                        01/01/1970
+                      </td>
+                      <td>
+                        01:00–01:00
+                      </td>
+                      <td />
+                      <td>
+                        Volno
+                      </td>
                     </tr>
-</tbody>,
+                  </tbody>,
                 ],
                 "responsiveTag": "div",
                 "tag": "table",
@@ -2420,27 +2420,27 @@ ShallowWrapper {
                   "props": Object {
                     "children": <tr>
                       <th
-                                            scope="col"
+                        scope="col"
                       >
-                                            Datum
+                        Datum
                       </th>
                       <th
-                                            scope="col"
+                        scope="col"
                       >
-                                            Čas
+                        Čas
                       </th>
                       <th
-                                            scope="col"
+                        scope="col"
                       >
-                                            Masér/Masérka
+                        Masér/Masérka
                       </th>
                       <th
-                                            scope="col"
-                                            width="40%"
+                        scope="col"
+                        width="40%"
                       >
-                                            Klient
+                        Klient
                       </th>
-</tr>,
+                    </tr>,
                   },
                   "ref": null,
                   "rendered": Object {
@@ -2451,25 +2451,25 @@ ShallowWrapper {
                       "children": Array [
                         <th
                           scope="col"
->
+                        >
                           Datum
-</th>,
+                        </th>,
                         <th
                           scope="col"
->
+                        >
                           Čas
-</th>,
+                        </th>,
                         <th
                           scope="col"
->
+                        >
                           Masér/Masérka
-</th>,
+                        </th>,
                         <th
                           scope="col"
                           width="40%"
->
+                        >
                           Klient
-</th>,
+                        </th>,
                       ],
                     },
                     "ref": null,
@@ -2536,16 +2536,16 @@ ShallowWrapper {
                     "children": Array [
                       <tr>
                         <td>
-                                                01/01/1970
+                          01/01/1970
                         </td>
                         <td>
-                                                01:00–01:00
+                          01:00–01:00
                         </td>
                         <td />
                         <td>
-                                                Volno
+                          Volno
                         </td>
-</tr>,
+                      </tr>,
                     ],
                   },
                   "ref": null,
@@ -2558,14 +2558,14 @@ ShallowWrapper {
                         "children": Array [
                           <td>
                             01/01/1970
-</td>,
+                          </td>,
                           <td>
                             01:00–01:00
-</td>,
+                          </td>,
                           <td />,
                           <td>
                             Volno
-</td>,
+                          </td>,
                         ],
                       },
                       "ref": null,
@@ -2646,8 +2646,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

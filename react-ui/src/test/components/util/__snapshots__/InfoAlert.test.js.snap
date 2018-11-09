@@ -11,7 +11,7 @@ exports[`renders content with correct props 1`] = `
     <button
       aria-label="Close"
       className="close"
-      onClick={[Function]}
+      onClick={[MockFunction]}
       type="button"
     >
       <span

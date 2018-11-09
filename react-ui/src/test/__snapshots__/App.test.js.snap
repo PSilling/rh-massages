@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -18,45 +19,45 @@ ShallowWrapper {
     "props": Object {
       "children": <div>
         <NotificationContainer
-                enterTimeout={400}
-                leaveTimeout={400}
+          enterTimeout={400}
+          leaveTimeout={400}
         />
         <withRouter() />
         <div
-                className="container"
+          className="container"
         >
-                <Switch>
-                        <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/"
-                        />
-                        <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/my-massages"
-                        />
-                        <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/facilities"
-                        />
-                        <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/massages-archive"
-                        />
-                        <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/settings"
-                        />
-                        <Route
-                                component={[Function]}
-                        />
-                </Switch>
+          <Switch>
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/my-massages"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/facilities"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/massages-archive"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/settings"
+            />
+            <Route
+              component={[Function]}
+            />
+          </Switch>
         </div>
-</div>,
+      </div>,
     },
     "ref": null,
     "rendered": Object {
@@ -68,42 +69,42 @@ ShallowWrapper {
           <NotificationContainer
             enterTimeout={400}
             leaveTimeout={400}
-/>,
+          />,
           <withRouter() />,
           <div
             className="container"
->
+          >
             <Switch>
-                        <Route
-                                    component={[Function]}
-                                    exact={true}
-                                    path="/"
-                        />
-                        <Route
-                                    component={[Function]}
-                                    exact={true}
-                                    path="/my-massages"
-                        />
-                        <Route
-                                    component={[Function]}
-                                    exact={true}
-                                    path="/facilities"
-                        />
-                        <Route
-                                    component={[Function]}
-                                    exact={true}
-                                    path="/massages-archive"
-                        />
-                        <Route
-                                    component={[Function]}
-                                    exact={true}
-                                    path="/settings"
-                        />
-                        <Route
-                                    component={[Function]}
-                        />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/my-massages"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/facilities"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/massages-archive"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/settings"
+              />
+              <Route
+                component={[Function]}
+              />
             </Switch>
-</div>,
+          </div>,
         ],
       },
       "ref": null,
@@ -136,34 +137,34 @@ ShallowWrapper {
           "props": Object {
             "children": <Switch>
               <Route
-                            component={[Function]}
-                            exact={true}
-                            path="/"
+                component={[Function]}
+                exact={true}
+                path="/"
               />
               <Route
-                            component={[Function]}
-                            exact={true}
-                            path="/my-massages"
+                component={[Function]}
+                exact={true}
+                path="/my-massages"
               />
               <Route
-                            component={[Function]}
-                            exact={true}
-                            path="/facilities"
+                component={[Function]}
+                exact={true}
+                path="/facilities"
               />
               <Route
-                            component={[Function]}
-                            exact={true}
-                            path="/massages-archive"
+                component={[Function]}
+                exact={true}
+                path="/massages-archive"
               />
               <Route
-                            component={[Function]}
-                            exact={true}
-                            path="/settings"
+                component={[Function]}
+                exact={true}
+                path="/settings"
               />
               <Route
-                            component={[Function]}
+                component={[Function]}
               />
-</Switch>,
+            </Switch>,
             "className": "container",
           },
           "ref": null,
@@ -177,30 +178,30 @@ ShallowWrapper {
                   component={[Function]}
                   exact={true}
                   path="/"
-/>,
+                />,
                 <Route
                   component={[Function]}
                   exact={true}
                   path="/my-massages"
-/>,
+                />,
                 <Route
                   component={[Function]}
                   exact={true}
                   path="/facilities"
-/>,
+                />,
                 <Route
                   component={[Function]}
                   exact={true}
                   path="/massages-archive"
-/>,
+                />,
                 <Route
                   component={[Function]}
                   exact={true}
                   path="/settings"
-/>,
+                />,
                 <Route
                   component={[Function]}
-/>,
+                />,
               ],
             },
             "ref": null,
@@ -299,45 +300,45 @@ ShallowWrapper {
       "props": Object {
         "children": <div>
           <NotificationContainer
-                    enterTimeout={400}
-                    leaveTimeout={400}
+            enterTimeout={400}
+            leaveTimeout={400}
           />
           <withRouter() />
           <div
-                    className="container"
+            className="container"
           >
-                    <Switch>
-                              <Route
-                                        component={[Function]}
-                                        exact={true}
-                                        path="/"
-                              />
-                              <Route
-                                        component={[Function]}
-                                        exact={true}
-                                        path="/my-massages"
-                              />
-                              <Route
-                                        component={[Function]}
-                                        exact={true}
-                                        path="/facilities"
-                              />
-                              <Route
-                                        component={[Function]}
-                                        exact={true}
-                                        path="/massages-archive"
-                              />
-                              <Route
-                                        component={[Function]}
-                                        exact={true}
-                                        path="/settings"
-                              />
-                              <Route
-                                        component={[Function]}
-                              />
-                    </Switch>
+            <Switch>
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/my-massages"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/facilities"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/massages-archive"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/settings"
+              />
+              <Route
+                component={[Function]}
+              />
+            </Switch>
           </div>
-</div>,
+        </div>,
       },
       "ref": null,
       "rendered": Object {
@@ -349,42 +350,42 @@ ShallowWrapper {
             <NotificationContainer
               enterTimeout={400}
               leaveTimeout={400}
-/>,
+            />,
             <withRouter() />,
             <div
               className="container"
->
+            >
               <Switch>
-                            <Route
-                                          component={[Function]}
-                                          exact={true}
-                                          path="/"
-                            />
-                            <Route
-                                          component={[Function]}
-                                          exact={true}
-                                          path="/my-massages"
-                            />
-                            <Route
-                                          component={[Function]}
-                                          exact={true}
-                                          path="/facilities"
-                            />
-                            <Route
-                                          component={[Function]}
-                                          exact={true}
-                                          path="/massages-archive"
-                            />
-                            <Route
-                                          component={[Function]}
-                                          exact={true}
-                                          path="/settings"
-                            />
-                            <Route
-                                          component={[Function]}
-                            />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/my-massages"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/facilities"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/massages-archive"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/settings"
+                />
+                <Route
+                  component={[Function]}
+                />
               </Switch>
-</div>,
+            </div>,
           ],
         },
         "ref": null,
@@ -417,34 +418,34 @@ ShallowWrapper {
             "props": Object {
               "children": <Switch>
                 <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/"
+                  component={[Function]}
+                  exact={true}
+                  path="/"
                 />
                 <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/my-massages"
+                  component={[Function]}
+                  exact={true}
+                  path="/my-massages"
                 />
                 <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/facilities"
+                  component={[Function]}
+                  exact={true}
+                  path="/facilities"
                 />
                 <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/massages-archive"
+                  component={[Function]}
+                  exact={true}
+                  path="/massages-archive"
                 />
                 <Route
-                                component={[Function]}
-                                exact={true}
-                                path="/settings"
+                  component={[Function]}
+                  exact={true}
+                  path="/settings"
                 />
                 <Route
-                                component={[Function]}
+                  component={[Function]}
                 />
-</Switch>,
+              </Switch>,
               "className": "container",
             },
             "ref": null,
@@ -458,30 +459,30 @@ ShallowWrapper {
                     component={[Function]}
                     exact={true}
                     path="/"
-/>,
+                  />,
                   <Route
                     component={[Function]}
                     exact={true}
                     path="/my-massages"
-/>,
+                  />,
                   <Route
                     component={[Function]}
                     exact={true}
                     path="/facilities"
-/>,
+                  />,
                   <Route
                     component={[Function]}
                     exact={true}
                     path="/massages-archive"
-/>,
+                  />,
                   <Route
                     component={[Function]}
                     exact={true}
                     path="/settings"
-/>,
+                  />,
                   <Route
                     component={[Function]}
-/>,
+                  />,
                 ],
               },
               "ref": null,
@@ -589,8 +590,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
@@ -603,6 +602,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -646,8 +646,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

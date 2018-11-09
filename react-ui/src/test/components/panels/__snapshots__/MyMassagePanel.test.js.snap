@@ -5,25 +5,38 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MyMassagePanel
     disabled={true}
-    getCallback={[Function]}
+    getCallback={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     massage={
-        Object {
-            "client": null,
-            "date": 1970-01-01T00:00:00.000Z,
-            "ending": 1970-01-01T00:00:01.000Z,
-            "facility": Object {
-              "id": 1,
-              "name": "test",
-            },
-            "id": 1,
-          }
+      Object {
+        "client": null,
+        "date": 1970-01-01T00:00:00.000Z,
+        "ending": 1970-01-01T00:00:01.000Z,
+        "facility": Object {
+          "id": 1,
+          "name": "test",
+        },
+        "id": 1,
+      }
     }
     type="default"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -35,68 +48,68 @@ ShallowWrapper {
       "children": Array [
         <Row
           tag="div"
->
+        >
           <Col
-                    md="3"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="3"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <Card
-                              color="default"
-                              outline={true}
-                              tag="div"
-                    >
-                              <CardHeader
-                                        tag="div"
-                              >
-                                        Thu 01/01/1970
-                                        <Button
-                                                  aria-label="Close"
-                                                  className="close"
-                                                  color="light"
-                                                  disabled={true}
-                                                  onClick={[Function]}
-                                                  tag="button"
-                                        />
-                              </CardHeader>
-                              <CardBody
-                                        tag="div"
-                              >
-                                        <CardText
-                                                  tag="p"
-                                        >
-                                                  Budova: test
-                                        </CardText>
-                                        <CardText
-                                                  tag="p"
-                                        >
-                                                  Masér/Masérka: undefined
-                                        </CardText>
-                                        <CardText
-                                                  tag="p"
-                                        >
-                                                  Čas: 01:00–01:00
-                                        </CardText>
-                                        <CardText
-                                                  tag="p"
-                                        >
-                                                  Událost: 
-                                                  <CalendarButton
-                                                            link=""
-                                                  />
-                                        </CardText>
-                              </CardBody>
-                    </Card>
+            <Card
+              color="default"
+              outline={true}
+              tag="div"
+            >
+              <CardHeader
+                tag="div"
+              >
+                Thu 01/01/1970
+                <Button
+                  aria-label="Close"
+                  className="close"
+                  color="light"
+                  disabled={true}
+                  onClick={[Function]}
+                  tag="button"
+                />
+              </CardHeader>
+              <CardBody
+                tag="div"
+              >
+                <CardText
+                  tag="p"
+                >
+                  Budova: test
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Masér/Masérka: undefined
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Čas: 01:00–01:00
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Událost: 
+                  <CalendarButton
+                    link=""
+                  />
+                </CardText>
+              </CardBody>
+            </Card>
           </Col>
-</Row>,
+        </Row>,
         false,
       ],
       "className": "mb-3",
@@ -112,62 +125,62 @@ ShallowWrapper {
             md="3"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             <Card
-                        color="default"
-                        outline={true}
-                        tag="div"
+              color="default"
+              outline={true}
+              tag="div"
             >
-                        <CardHeader
-                                    tag="div"
-                        >
-                                    Thu 01/01/1970
-                                    <Button
-                                                aria-label="Close"
-                                                className="close"
-                                                color="light"
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                tag="button"
-                                    />
-                        </CardHeader>
-                        <CardBody
-                                    tag="div"
-                        >
-                                    <CardText
-                                                tag="p"
-                                    >
-                                                Budova: test
-                                    </CardText>
-                                    <CardText
-                                                tag="p"
-                                    >
-                                                Masér/Masérka: undefined
-                                    </CardText>
-                                    <CardText
-                                                tag="p"
-                                    >
-                                                Čas: 01:00–01:00
-                                    </CardText>
-                                    <CardText
-                                                tag="p"
-                                    >
-                                                Událost: 
-                                                <CalendarButton
-                                                            link=""
-                                                />
-                                    </CardText>
-                        </CardBody>
+              <CardHeader
+                tag="div"
+              >
+                Thu 01/01/1970
+                <Button
+                  aria-label="Close"
+                  className="close"
+                  color="light"
+                  disabled={true}
+                  onClick={[Function]}
+                  tag="button"
+                />
+              </CardHeader>
+              <CardBody
+                tag="div"
+              >
+                <CardText
+                  tag="p"
+                >
+                  Budova: test
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Masér/Masérka: undefined
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Čas: 01:00–01:00
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Událost: 
+                  <CalendarButton
+                    link=""
+                  />
+                </CardText>
+              </CardBody>
             </Card>
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -180,48 +193,48 @@ ShallowWrapper {
               color="default"
               outline={true}
               tag="div"
->
+            >
               <CardHeader
-                            tag="div"
+                tag="div"
               >
-                            Thu 01/01/1970
-                            <Button
-                                          aria-label="Close"
-                                          className="close"
-                                          color="light"
-                                          disabled={true}
-                                          onClick={[Function]}
-                                          tag="button"
-                            />
+                Thu 01/01/1970
+                <Button
+                  aria-label="Close"
+                  className="close"
+                  color="light"
+                  disabled={true}
+                  onClick={[Function]}
+                  tag="button"
+                />
               </CardHeader>
               <CardBody
-                            tag="div"
+                tag="div"
               >
-                            <CardText
-                                          tag="p"
-                            >
-                                          Budova: test
-                            </CardText>
-                            <CardText
-                                          tag="p"
-                            >
-                                          Masér/Masérka: undefined
-                            </CardText>
-                            <CardText
-                                          tag="p"
-                            >
-                                          Čas: 01:00–01:00
-                            </CardText>
-                            <CardText
-                                          tag="p"
-                            >
-                                          Událost: 
-                                          <CalendarButton
-                                                        link=""
-                                          />
-                            </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Budova: test
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Masér/Masérka: undefined
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Čas: 01:00–01:00
+                </CardText>
+                <CardText
+                  tag="p"
+                >
+                  Událost: 
+                  <CalendarButton
+                    link=""
+                  />
+                </CardText>
               </CardBody>
-</Card>,
+            </Card>,
             "md": "3",
             "tag": "div",
             "widths": Array [
@@ -241,44 +254,44 @@ ShallowWrapper {
               "children": Array [
                 <CardHeader
                   tag="div"
->
+                >
                   Thu 01/01/1970
                   <Button
-                                    aria-label="Close"
-                                    className="close"
-                                    color="light"
-                                    disabled={true}
-                                    onClick={[Function]}
-                                    tag="button"
+                    aria-label="Close"
+                    className="close"
+                    color="light"
+                    disabled={true}
+                    onClick={[Function]}
+                    tag="button"
                   />
-</CardHeader>,
+                </CardHeader>,
                 <CardBody
                   tag="div"
->
+                >
                   <CardText
-                                    tag="p"
+                    tag="p"
                   >
-                                    Budova: test
+                    Budova: test
                   </CardText>
                   <CardText
-                                    tag="p"
+                    tag="p"
                   >
-                                    Masér/Masérka: undefined
+                    Masér/Masérka: undefined
                   </CardText>
                   <CardText
-                                    tag="p"
+                    tag="p"
                   >
-                                    Čas: 01:00–01:00
+                    Čas: 01:00–01:00
                   </CardText>
                   <CardText
-                                    tag="p"
+                    tag="p"
                   >
-                                    Událost: 
-                                    <CalendarButton
-                                                      link=""
-                                    />
+                    Událost: 
+                    <CalendarButton
+                      link=""
+                    />
                   </CardText>
-</CardBody>,
+                </CardBody>,
               ],
               "color": "default",
               "outline": true,
@@ -300,7 +313,7 @@ ShallowWrapper {
                       disabled={true}
                       onClick={[Function]}
                       tag="button"
-/>,
+                    />,
                   ],
                   "tag": "div",
                 },
@@ -335,27 +348,27 @@ ShallowWrapper {
                   "children": Array [
                     <CardText
                       tag="p"
->
+                    >
                       Budova: test
-</CardText>,
+                    </CardText>,
                     <CardText
                       tag="p"
->
+                    >
                       Masér/Masérka: undefined
-</CardText>,
+                    </CardText>,
                     <CardText
                       tag="p"
->
+                    >
                       Čas: 01:00–01:00
-</CardText>,
+                    </CardText>,
                     <CardText
                       tag="p"
->
+                    >
                       Událost: 
                       <CalendarButton
-                                            link=""
+                        link=""
                       />
-</CardText>,
+                    </CardText>,
                   ],
                   "tag": "div",
                 },
@@ -406,7 +419,7 @@ ShallowWrapper {
                         "Událost: ",
                         <CalendarButton
                           link=""
-/>,
+                        />,
                       ],
                       "tag": "p",
                     },
@@ -450,68 +463,68 @@ ShallowWrapper {
         "children": Array [
           <Row
             tag="div"
->
+          >
             <Col
-                        md="3"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="3"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <Card
-                                    color="default"
-                                    outline={true}
-                                    tag="div"
-                        >
-                                    <CardHeader
-                                                tag="div"
-                                    >
-                                                Thu 01/01/1970
-                                                <Button
-                                                            aria-label="Close"
-                                                            className="close"
-                                                            color="light"
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            tag="button"
-                                                />
-                                    </CardHeader>
-                                    <CardBody
-                                                tag="div"
-                                    >
-                                                <CardText
-                                                            tag="p"
-                                                >
-                                                            Budova: test
-                                                </CardText>
-                                                <CardText
-                                                            tag="p"
-                                                >
-                                                            Masér/Masérka: undefined
-                                                </CardText>
-                                                <CardText
-                                                            tag="p"
-                                                >
-                                                            Čas: 01:00–01:00
-                                                </CardText>
-                                                <CardText
-                                                            tag="p"
-                                                >
-                                                            Událost: 
-                                                            <CalendarButton
-                                                                        link=""
-                                                            />
-                                                </CardText>
-                                    </CardBody>
-                        </Card>
+              <Card
+                color="default"
+                outline={true}
+                tag="div"
+              >
+                <CardHeader
+                  tag="div"
+                >
+                  Thu 01/01/1970
+                  <Button
+                    aria-label="Close"
+                    className="close"
+                    color="light"
+                    disabled={true}
+                    onClick={[Function]}
+                    tag="button"
+                  />
+                </CardHeader>
+                <CardBody
+                  tag="div"
+                >
+                  <CardText
+                    tag="p"
+                  >
+                    Budova: test
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Masér/Masérka: undefined
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Čas: 01:00–01:00
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Událost: 
+                    <CalendarButton
+                      link=""
+                    />
+                  </CardText>
+                </CardBody>
+              </Card>
             </Col>
-</Row>,
+          </Row>,
           false,
         ],
         "className": "mb-3",
@@ -527,62 +540,62 @@ ShallowWrapper {
               md="3"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <Card
-                            color="default"
-                            outline={true}
-                            tag="div"
+                color="default"
+                outline={true}
+                tag="div"
               >
-                            <CardHeader
-                                          tag="div"
-                            >
-                                          Thu 01/01/1970
-                                          <Button
-                                                        aria-label="Close"
-                                                        className="close"
-                                                        color="light"
-                                                        disabled={true}
-                                                        onClick={[Function]}
-                                                        tag="button"
-                                          />
-                            </CardHeader>
-                            <CardBody
-                                          tag="div"
-                            >
-                                          <CardText
-                                                        tag="p"
-                                          >
-                                                        Budova: test
-                                          </CardText>
-                                          <CardText
-                                                        tag="p"
-                                          >
-                                                        Masér/Masérka: undefined
-                                          </CardText>
-                                          <CardText
-                                                        tag="p"
-                                          >
-                                                        Čas: 01:00–01:00
-                                          </CardText>
-                                          <CardText
-                                                        tag="p"
-                                          >
-                                                        Událost: 
-                                                        <CalendarButton
-                                                                      link=""
-                                                        />
-                                          </CardText>
-                            </CardBody>
+                <CardHeader
+                  tag="div"
+                >
+                  Thu 01/01/1970
+                  <Button
+                    aria-label="Close"
+                    className="close"
+                    color="light"
+                    disabled={true}
+                    onClick={[Function]}
+                    tag="button"
+                  />
+                </CardHeader>
+                <CardBody
+                  tag="div"
+                >
+                  <CardText
+                    tag="p"
+                  >
+                    Budova: test
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Masér/Masérka: undefined
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Čas: 01:00–01:00
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Událost: 
+                    <CalendarButton
+                      link=""
+                    />
+                  </CardText>
+                </CardBody>
               </Card>
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -595,48 +608,48 @@ ShallowWrapper {
                 color="default"
                 outline={true}
                 tag="div"
->
+              >
                 <CardHeader
-                                tag="div"
+                  tag="div"
                 >
-                                Thu 01/01/1970
-                                <Button
-                                                aria-label="Close"
-                                                className="close"
-                                                color="light"
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                tag="button"
-                                />
+                  Thu 01/01/1970
+                  <Button
+                    aria-label="Close"
+                    className="close"
+                    color="light"
+                    disabled={true}
+                    onClick={[Function]}
+                    tag="button"
+                  />
                 </CardHeader>
                 <CardBody
-                                tag="div"
+                  tag="div"
                 >
-                                <CardText
-                                                tag="p"
-                                >
-                                                Budova: test
-                                </CardText>
-                                <CardText
-                                                tag="p"
-                                >
-                                                Masér/Masérka: undefined
-                                </CardText>
-                                <CardText
-                                                tag="p"
-                                >
-                                                Čas: 01:00–01:00
-                                </CardText>
-                                <CardText
-                                                tag="p"
-                                >
-                                                Událost: 
-                                                <CalendarButton
-                                                                link=""
-                                                />
-                                </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Budova: test
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Masér/Masérka: undefined
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Čas: 01:00–01:00
+                  </CardText>
+                  <CardText
+                    tag="p"
+                  >
+                    Událost: 
+                    <CalendarButton
+                      link=""
+                    />
+                  </CardText>
                 </CardBody>
-</Card>,
+              </Card>,
               "md": "3",
               "tag": "div",
               "widths": Array [
@@ -656,44 +669,44 @@ ShallowWrapper {
                 "children": Array [
                   <CardHeader
                     tag="div"
->
+                  >
                     Thu 01/01/1970
                     <Button
-                                        aria-label="Close"
-                                        className="close"
-                                        color="light"
-                                        disabled={true}
-                                        onClick={[Function]}
-                                        tag="button"
+                      aria-label="Close"
+                      className="close"
+                      color="light"
+                      disabled={true}
+                      onClick={[Function]}
+                      tag="button"
                     />
-</CardHeader>,
+                  </CardHeader>,
                   <CardBody
                     tag="div"
->
+                  >
                     <CardText
-                                        tag="p"
+                      tag="p"
                     >
-                                        Budova: test
+                      Budova: test
                     </CardText>
                     <CardText
-                                        tag="p"
+                      tag="p"
                     >
-                                        Masér/Masérka: undefined
+                      Masér/Masérka: undefined
                     </CardText>
                     <CardText
-                                        tag="p"
+                      tag="p"
                     >
-                                        Čas: 01:00–01:00
+                      Čas: 01:00–01:00
                     </CardText>
                     <CardText
-                                        tag="p"
+                      tag="p"
                     >
-                                        Událost: 
-                                        <CalendarButton
-                                                            link=""
-                                        />
+                      Událost: 
+                      <CalendarButton
+                        link=""
+                      />
                     </CardText>
-</CardBody>,
+                  </CardBody>,
                 ],
                 "color": "default",
                 "outline": true,
@@ -715,7 +728,7 @@ ShallowWrapper {
                         disabled={true}
                         onClick={[Function]}
                         tag="button"
-/>,
+                      />,
                     ],
                     "tag": "div",
                   },
@@ -750,27 +763,27 @@ ShallowWrapper {
                     "children": Array [
                       <CardText
                         tag="p"
->
+                      >
                         Budova: test
-</CardText>,
+                      </CardText>,
                       <CardText
                         tag="p"
->
+                      >
                         Masér/Masérka: undefined
-</CardText>,
+                      </CardText>,
                       <CardText
                         tag="p"
->
+                      >
                         Čas: 01:00–01:00
-</CardText>,
+                      </CardText>,
                       <CardText
                         tag="p"
->
+                      >
                         Událost: 
                         <CalendarButton
-                                                link=""
+                          link=""
                         />
-</CardText>,
+                      </CardText>,
                     ],
                     "tag": "div",
                   },
@@ -821,7 +834,7 @@ ShallowWrapper {
                           "Událost: ",
                           <CalendarButton
                             link=""
-/>,
+                          />,
                         ],
                         "tag": "p",
                       },
@@ -873,8 +886,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

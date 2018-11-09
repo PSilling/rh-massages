@@ -7,13 +7,26 @@ ShallowWrapper {
     dialogMessage="message"
     disabled={false}
     label="test"
-    onConfirm={[Function]}
+    onConfirm={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     tooltip="Delete"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -29,7 +42,7 @@ ShallowWrapper {
           label="test"
           onClick={[Function]}
           tooltip="Delete"
-/>,
+        />,
         false,
       ],
     },
@@ -67,7 +80,7 @@ ShallowWrapper {
             label="test"
             onClick={[Function]}
             tooltip="Delete"
-/>,
+          />,
           false,
         ],
       },
@@ -109,8 +122,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

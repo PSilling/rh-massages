@@ -16,7 +16,7 @@ import Auth from "../../util/Auth";
 import _t from "../../util/Translations";
 import Util from "../../util/Util";
 
-BigCalendar.momentLocalizer(moment);
+const localizer = BigCalendar.momentLocalizer(moment);
 
 /**
  * Calendar with massage events. Supports color feedback and Massage administration.
@@ -212,6 +212,7 @@ class CalendarPanel extends Component {
               max={new Date("2018-01-01T18:00:00")}
               popup
               toolbar={false}
+              localizer={localizer}
             />
           </Col>
         </Row>

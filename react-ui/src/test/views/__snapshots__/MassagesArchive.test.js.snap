@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -19,71 +20,71 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete prohlížet dokončené, archivované masáže.
-</InfoAlert>,
+        </InfoAlert>,
         <h1>
           <div
-                    className="loader float-right"
+            className="loader float-right"
           />
           Archiv masáží
-</h1>,
+        </h1>,
         <hr />,
         <Row
           tag="div"
->
+        >
           <Col
-                    md="6"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="6"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <TooltipButton
-                              active={true}
-                              disabled={false}
-                              label="Vybírat"
-                              onClick={[Function]}
-                              tooltip="Výběr více masáží pro hromadné operace"
-                    />
+            <TooltipButton
+              active={true}
+              disabled={false}
+              label="Vybírat"
+              onClick={[Function]}
+              tooltip="Výběr více masáží pro hromadné operace"
+            />
           </Col>
           <Col
-                    className="text-right"
-                    md="6"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            className="text-right"
+            md="6"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <ConfirmationButton
-                              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                              disabled={true}
-                              label="Smazat vybrané"
-                              onConfirm={[Function]}
-                              tooltip="Smazat vybrané masáže"
-                    />
-                    <ConfirmationButton
-                              className="ml-2"
-                              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                              disabled={false}
-                              label="Smazat vše"
-                              onConfirm={[Function]}
-                              tooltip="Vyčistit historii masáží"
-                    />
+            <ConfirmationButton
+              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              disabled={true}
+              label="Smazat vybrané"
+              onConfirm={[Function]}
+              tooltip="Smazat vybrané masáže"
+            />
+            <ConfirmationButton
+              className="ml-2"
+              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              disabled={false}
+              label="Smazat vše"
+              onConfirm={[Function]}
+              tooltip="Vyčistit historii masáží"
+            />
           </Col>
-</Row>,
+        </Row>,
         <CalendarPanel
           allowEditation={false}
           events={Array []}
@@ -97,7 +98,7 @@ ShallowWrapper {
           onSelect={[Function]}
           selectEvents={true}
           selected={Array []}
-/>,
+        />,
       ],
       "className": "my-3",
     },
@@ -123,7 +124,7 @@ ShallowWrapper {
           "children": Array [
             <div
               className="loader float-right"
-/>,
+            />,
             "Archiv masáží",
           ],
         },
@@ -163,53 +164,53 @@ ShallowWrapper {
               md="6"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <TooltipButton
-                            active={true}
-                            disabled={false}
-                            label="Vybírat"
-                            onClick={[Function]}
-                            tooltip="Výběr více masáží pro hromadné operace"
+                active={true}
+                disabled={false}
+                label="Vybírat"
+                onClick={[Function]}
+                tooltip="Výběr více masáží pro hromadné operace"
               />
-</Col>,
+            </Col>,
             <Col
               className="text-right"
               md="6"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <ConfirmationButton
-                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                            disabled={true}
-                            label="Smazat vybrané"
-                            onConfirm={[Function]}
-                            tooltip="Smazat vybrané masáže"
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={true}
+                label="Smazat vybrané"
+                onConfirm={[Function]}
+                tooltip="Smazat vybrané masáže"
               />
               <ConfirmationButton
-                            className="ml-2"
-                            dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                            disabled={false}
-                            label="Smazat vše"
-                            onConfirm={[Function]}
-                            tooltip="Vyčistit historii masáží"
+                className="ml-2"
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={false}
+                label="Smazat vše"
+                onConfirm={[Function]}
+                tooltip="Vyčistit historii masáží"
               />
-</Col>,
+            </Col>,
           ],
           "tag": "div",
         },
@@ -226,7 +227,7 @@ ShallowWrapper {
                 label="Vybírat"
                 onClick={[Function]}
                 tooltip="Výběr více masáží pro hromadné operace"
-/>,
+              />,
               "md": "6",
               "tag": "div",
               "widths": Array [
@@ -267,7 +268,7 @@ ShallowWrapper {
                   label="Smazat vybrané"
                   onConfirm={[Function]}
                   tooltip="Smazat vybrané masáže"
-/>,
+                />,
                 <ConfirmationButton
                   className="ml-2"
                   dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
@@ -275,7 +276,7 @@ ShallowWrapper {
                   label="Smazat vše"
                   onConfirm={[Function]}
                   tooltip="Vyčistit historii masáží"
-/>,
+                />,
               ],
               "className": "text-right",
               "md": "6",
@@ -361,71 +362,71 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete prohlížet dokončené, archivované masáže.
-</InfoAlert>,
+          </InfoAlert>,
           <h1>
             <div
-                        className="loader float-right"
+              className="loader float-right"
             />
             Archiv masáží
-</h1>,
+          </h1>,
           <hr />,
           <Row
             tag="div"
->
+          >
             <Col
-                        md="6"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="6"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <TooltipButton
-                                    active={true}
-                                    disabled={false}
-                                    label="Vybírat"
-                                    onClick={[Function]}
-                                    tooltip="Výběr více masáží pro hromadné operace"
-                        />
+              <TooltipButton
+                active={true}
+                disabled={false}
+                label="Vybírat"
+                onClick={[Function]}
+                tooltip="Výběr více masáží pro hromadné operace"
+              />
             </Col>
             <Col
-                        className="text-right"
-                        md="6"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              className="text-right"
+              md="6"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <ConfirmationButton
-                                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                    disabled={true}
-                                    label="Smazat vybrané"
-                                    onConfirm={[Function]}
-                                    tooltip="Smazat vybrané masáže"
-                        />
-                        <ConfirmationButton
-                                    className="ml-2"
-                                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                    disabled={false}
-                                    label="Smazat vše"
-                                    onConfirm={[Function]}
-                                    tooltip="Vyčistit historii masáží"
-                        />
+              <ConfirmationButton
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={true}
+                label="Smazat vybrané"
+                onConfirm={[Function]}
+                tooltip="Smazat vybrané masáže"
+              />
+              <ConfirmationButton
+                className="ml-2"
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={false}
+                label="Smazat vše"
+                onConfirm={[Function]}
+                tooltip="Vyčistit historii masáží"
+              />
             </Col>
-</Row>,
+          </Row>,
           <CalendarPanel
             allowEditation={false}
             events={Array []}
@@ -439,7 +440,7 @@ ShallowWrapper {
             onSelect={[Function]}
             selectEvents={true}
             selected={Array []}
-/>,
+          />,
         ],
         "className": "my-3",
       },
@@ -465,7 +466,7 @@ ShallowWrapper {
             "children": Array [
               <div
                 className="loader float-right"
-/>,
+              />,
               "Archiv masáží",
             ],
           },
@@ -505,53 +506,53 @@ ShallowWrapper {
                 md="6"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <TooltipButton
-                                active={true}
-                                disabled={false}
-                                label="Vybírat"
-                                onClick={[Function]}
-                                tooltip="Výběr více masáží pro hromadné operace"
+                  active={true}
+                  disabled={false}
+                  label="Vybírat"
+                  onClick={[Function]}
+                  tooltip="Výběr více masáží pro hromadné operace"
                 />
-</Col>,
+              </Col>,
               <Col
                 className="text-right"
                 md="6"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <ConfirmationButton
-                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                disabled={true}
-                                label="Smazat vybrané"
-                                onConfirm={[Function]}
-                                tooltip="Smazat vybrané masáže"
+                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  disabled={true}
+                  label="Smazat vybrané"
+                  onConfirm={[Function]}
+                  tooltip="Smazat vybrané masáže"
                 />
                 <ConfirmationButton
-                                className="ml-2"
-                                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                                disabled={false}
-                                label="Smazat vše"
-                                onConfirm={[Function]}
-                                tooltip="Vyčistit historii masáží"
+                  className="ml-2"
+                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  disabled={false}
+                  label="Smazat vše"
+                  onConfirm={[Function]}
+                  tooltip="Vyčistit historii masáží"
                 />
-</Col>,
+              </Col>,
             ],
             "tag": "div",
           },
@@ -568,7 +569,7 @@ ShallowWrapper {
                   label="Vybírat"
                   onClick={[Function]}
                   tooltip="Výběr více masáží pro hromadné operace"
-/>,
+                />,
                 "md": "6",
                 "tag": "div",
                 "widths": Array [
@@ -609,7 +610,7 @@ ShallowWrapper {
                     label="Smazat vybrané"
                     onConfirm={[Function]}
                     tooltip="Smazat vybrané masáže"
-/>,
+                  />,
                   <ConfirmationButton
                     className="ml-2"
                     dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
@@ -617,7 +618,7 @@ ShallowWrapper {
                     label="Smazat vše"
                     onConfirm={[Function]}
                     tooltip="Vyčistit historii masáží"
-/>,
+                  />,
                 ],
                 "className": "text-right",
                 "md": "6",
@@ -711,8 +712,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

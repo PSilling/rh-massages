@@ -5,11 +5,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CalendarButton
     link="test"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -27,25 +28,25 @@ ShallowWrapper {
           rel="noopener noreferrer"
           size="sm"
           style={
-                    Object {
-                              "border": "0px solid transparent",
-                            }
+            Object {
+              "border": "0px solid transparent",
+            }
           }
           tabIndex="-1"
           tag="a"
           target="_blank"
->
+        >
           <span
-                    className="fas fa-calendar-plus"
+            className="fas fa-calendar-plus"
           />
-</Button>,
+        </Button>,
         <Tooltip
           autohide={true}
           delay={
-                    Object {
-                              "hide": 250,
-                              "show": 0,
-                            }
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
           }
           hideArrow={false}
           isOpen={false}
@@ -53,9 +54,9 @@ ShallowWrapper {
           placementPrefix="bs-tooltip"
           target="Tooltip1"
           toggle={[Function]}
->
+        >
           Přidat do Google kalendáře
-</Tooltip>,
+        </Tooltip>,
       ],
     },
     "ref": null,
@@ -67,7 +68,7 @@ ShallowWrapper {
         "props": Object {
           "children": <span
             className="fas fa-calendar-plus"
-/>,
+          />,
           "color": "secondary",
           "href": "test",
           "id": "Tooltip1",
@@ -135,25 +136,25 @@ ShallowWrapper {
             rel="noopener noreferrer"
             size="sm"
             style={
-                        Object {
-                                    "border": "0px solid transparent",
-                                  }
+              Object {
+                "border": "0px solid transparent",
+              }
             }
             tabIndex="-1"
             tag="a"
             target="_blank"
->
+          >
             <span
-                        className="fas fa-calendar-plus"
+              className="fas fa-calendar-plus"
             />
-</Button>,
+          </Button>,
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -161,9 +162,9 @@ ShallowWrapper {
             placementPrefix="bs-tooltip"
             target="Tooltip1"
             toggle={[Function]}
->
+          >
             Přidat do Google kalendáře
-</Tooltip>,
+          </Tooltip>,
         ],
       },
       "ref": null,
@@ -175,7 +176,7 @@ ShallowWrapper {
           "props": Object {
             "children": <span
               className="fas fa-calendar-plus"
-/>,
+            />,
             "color": "secondary",
             "href": "test",
             "id": "Tooltip1",
@@ -245,8 +246,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

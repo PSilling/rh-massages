@@ -6,12 +6,25 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <ConfirmationIconButton
     dialogMessage="message"
     icon="trash"
-    onConfirm={[Function]}
-/>,
+    onConfirm={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -27,12 +40,12 @@ ShallowWrapper {
           onClick={[Function]}
           size="sm"
           style={
-                    Object {
-                              "border": "0px solid transparent",
-                            }
+            Object {
+              "border": "0px solid transparent",
+            }
           }
           tooltip=""
-/>,
+        />,
         false,
       ],
     },
@@ -73,12 +86,12 @@ ShallowWrapper {
             onClick={[Function]}
             size="sm"
             style={
-                        Object {
-                                    "border": "0px solid transparent",
-                                  }
+              Object {
+                "border": "0px solid transparent",
+              }
             }
             tooltip=""
-/>,
+          />,
           false,
         ],
       },
@@ -123,8 +136,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

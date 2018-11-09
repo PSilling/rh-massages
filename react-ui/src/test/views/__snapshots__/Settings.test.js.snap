@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -19,157 +20,156 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
-</InfoAlert>,
+        </InfoAlert>,
         <h1>
           Nastavení
-</h1>,
+        </h1>,
         <hr />,
         <h3>
           Uživatelská nastavení
-</h3>,
+        </h3>,
         <Row
           tag="div"
->
+        >
           <Col
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <FormGroup
-                              check={true}
-                              inline={true}
-                              tag="div"
-                    >
-                              <Label
-                                        for="notifyInput"
-                                        tag="label"
-                                        widths={
-                                                  Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                        }
-                              >
-                                        <Input
-                                                  checked={Array []}
-                                                  id="notifyInput"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                        />
-                                        Chci dostávat informace o 
-                                        <span
-                                                  id="Tooltip0"
-                                                  style={
-                                                            Object {
-                                                                      "borderBottom": "1px dotted",
-                                                                      "cursor": "pointer",
-                                                                    }
-                                                  }
-                                        >
-                                                  změnách masáží
-                                        </span>
-                              </Label>
-                    </FormGroup>
-                    <Tooltip
-                              autohide={true}
-                              delay={
-                                        Object {
-                                                  "hide": 250,
-                                                  "show": 0,
-                                                }
-                              }
-                              hideArrow={false}
-                              isOpen={false}
-                              placement="top"
-                              placementPrefix="bs-tooltip"
-                              target="Tooltip0"
-                              toggle={[Function]}
-                    >
-                              Rozpis nových a zrušení připsaných masáží
-                    </Tooltip>
+            <FormGroup
+              check={true}
+              inline={true}
+              tag="div"
+            >
+              <Label
+                for="notifyInput"
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  checked={Array []}
+                  id="notifyInput"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                Chci dostávat informace o 
+                <span
+                  id="Tooltip0"
+                  style={
+                    Object {
+                      "borderBottom": "1px dotted",
+                      "cursor": "pointer",
+                    }
+                  }
+                >
+                  změnách masáží
+                </span>
+              </Label>
+            </FormGroup>
+            <Tooltip
+              autohide={true}
+              delay={
+                Object {
+                  "hide": 250,
+                  "show": 0,
+                }
+              }
+              hideArrow={false}
+              isOpen={false}
+              placement="top"
+              placementPrefix="bs-tooltip"
+              target="Tooltip0"
+              toggle={[Function]}
+            >
+              Rozpis nových a zrušení připsaných masáží
+            </Tooltip>
           </Col>
-</Row>,
+        </Row>,
         <h3>
           O portálu
-</h3>,
+        </h3>,
         <Row
           tag="div"
->
+        >
           <Col
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    Navštivte náš 
-                    <a
-                              href={undefined}
-                              rel="noreferrer noopener"
-                              target="_blank"
-                    >
-                              GitHub
-                    </a>
-                     
-                    <del>
-                              a naši 
-                              <a
-                                        href="undefinedwiki"
-                                        rel="noreferrer noopener"
-                                        target="_blank"
-                              >
-                                        wiki
-                              </a>
-                    </del>
-                    ! (WIP)
+            Navštivte náš 
+            <a
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              GitHub
+            </a>
+             
+            <del>
+              a naši 
+              <a
+                href="undefinedwiki"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                wiki
+              </a>
+            </del>
+            ! (WIP)
           </Col>
-</Row>,
+        </Row>,
         <Row
           tag="div"
->
+        >
           <Col
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    Hlaste chyby 
-                    <a
-                              href="undefinedissues"
-                              rel="noreferrer noopener"
-                              target="_blank"
-                    >
-                              zde
-                    </a>
-                    .
+            Hlaste chyby 
+            <a
+              href="undefinedissues"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              zde
+            </a>
+            .
           </Col>
-</Row>,
+        </Row>,
       ],
       "className": "my-3",
     },
@@ -233,71 +233,71 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             <FormGroup
-                        check={true}
-                        inline={true}
-                        tag="div"
+              check={true}
+              inline={true}
+              tag="div"
             >
-                        <Label
-                                    for="notifyInput"
-                                    tag="label"
-                                    widths={
-                                                Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                    }
-                        >
-                                    <Input
-                                                checked={Array []}
-                                                id="notifyInput"
-                                                onChange={[Function]}
-                                                type="checkbox"
-                                    />
-                                    Chci dostávat informace o 
-                                    <span
-                                                id="Tooltip0"
-                                                style={
-                                                            Object {
-                                                                        "borderBottom": "1px dotted",
-                                                                        "cursor": "pointer",
-                                                                      }
-                                                }
-                                    >
-                                                změnách masáží
-                                    </span>
-                        </Label>
+              <Label
+                for="notifyInput"
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  checked={Array []}
+                  id="notifyInput"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                Chci dostávat informace o 
+                <span
+                  id="Tooltip0"
+                  style={
+                    Object {
+                      "borderBottom": "1px dotted",
+                      "cursor": "pointer",
+                    }
+                  }
+                >
+                  změnách masáží
+                </span>
+              </Label>
             </FormGroup>
             <Tooltip
-                        autohide={true}
-                        delay={
-                                    Object {
-                                                "hide": 250,
-                                                "show": 0,
-                                              }
-                        }
-                        hideArrow={false}
-                        isOpen={false}
-                        placement="top"
-                        placementPrefix="bs-tooltip"
-                        target="Tooltip0"
-                        toggle={[Function]}
+              autohide={true}
+              delay={
+                Object {
+                  "hide": 250,
+                  "show": 0,
+                }
+              }
+              hideArrow={false}
+              isOpen={false}
+              placement="top"
+              placementPrefix="bs-tooltip"
+              target="Tooltip0"
+              toggle={[Function]}
             >
-                        Rozpis nových a zrušení připsaných masáží
+              Rozpis nových a zrušení připsaných masáží
             </Tooltip>
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -311,47 +311,47 @@ ShallowWrapper {
                 check={true}
                 inline={true}
                 tag="div"
->
+              >
                 <Label
-                                for="notifyInput"
-                                tag="label"
-                                widths={
-                                                Array [
-                                                                "xs",
-                                                                "sm",
-                                                                "md",
-                                                                "lg",
-                                                                "xl",
-                                                              ]
-                                }
+                  for="notifyInput"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                                <Input
-                                                checked={Array []}
-                                                id="notifyInput"
-                                                onChange={[Function]}
-                                                type="checkbox"
-                                />
-                                Chci dostávat informace o 
-                                <span
-                                                id="Tooltip0"
-                                                style={
-                                                                Object {
-                                                                                "borderBottom": "1px dotted",
-                                                                                "cursor": "pointer",
-                                                                              }
-                                                }
-                                >
-                                                změnách masáží
-                                </span>
+                  <Input
+                    checked={Array []}
+                    id="notifyInput"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  Chci dostávat informace o 
+                  <span
+                    id="Tooltip0"
+                    style={
+                      Object {
+                        "borderBottom": "1px dotted",
+                        "cursor": "pointer",
+                      }
+                    }
+                  >
+                    změnách masáží
+                  </span>
                 </Label>
-</FormGroup>,
+              </FormGroup>,
               <Tooltip
                 autohide={true}
                 delay={
-                                Object {
-                                                "hide": 250,
-                                                "show": 0,
-                                              }
+                  Object {
+                    "hide": 250,
+                    "show": 0,
+                  }
                 }
                 hideArrow={false}
                 isOpen={false}
@@ -359,9 +359,9 @@ ShallowWrapper {
                 placementPrefix="bs-tooltip"
                 target="Tooltip0"
                 toggle={[Function]}
->
+              >
                 Rozpis nových a zrušení připsaných masáží
-</Tooltip>,
+              </Tooltip>,
             ],
             "md": "12",
             "tag": "div",
@@ -385,34 +385,34 @@ ShallowWrapper {
                   for="notifyInput"
                   tag="label"
                   widths={
-                                    Array [
-                                                      "xs",
-                                                      "sm",
-                                                      "md",
-                                                      "lg",
-                                                      "xl",
-                                                    ]
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
                   }
->
+                >
                   <Input
-                                    checked={Array []}
-                                    id="notifyInput"
-                                    onChange={[Function]}
-                                    type="checkbox"
+                    checked={Array []}
+                    id="notifyInput"
+                    onChange={[Function]}
+                    type="checkbox"
                   />
                   Chci dostávat informace o 
                   <span
-                                    id="Tooltip0"
-                                    style={
-                                                      Object {
-                                                                        "borderBottom": "1px dotted",
-                                                                        "cursor": "pointer",
-                                                                      }
-                                    }
+                    id="Tooltip0"
+                    style={
+                      Object {
+                        "borderBottom": "1px dotted",
+                        "cursor": "pointer",
+                      }
+                    }
                   >
-                                    změnách masáží
+                    změnách masáží
                   </span>
-</Label>,
+                </Label>,
                 "inline": true,
                 "tag": "div",
               },
@@ -428,19 +428,19 @@ ShallowWrapper {
                       id="notifyInput"
                       onChange={[Function]}
                       type="checkbox"
-/>,
+                    />,
                     "Chci dostávat informace o ",
                     <span
                       id="Tooltip0"
                       style={
-                                            Object {
-                                                                  "borderBottom": "1px dotted",
-                                                                  "cursor": "pointer",
-                                                                }
+                        Object {
+                          "borderBottom": "1px dotted",
+                          "cursor": "pointer",
+                        }
                       }
->
+                    >
                       změnách masáží
-</span>,
+                    </span>,
                   ],
                   "for": "notifyInput",
                   "tag": "label",
@@ -537,36 +537,35 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             Navštivte náš 
             <a
-                        href={undefined}
-                        rel="noreferrer noopener"
-                        target="_blank"
+              rel="noreferrer noopener"
+              target="_blank"
             >
-                        GitHub
+              GitHub
             </a>
              
             <del>
-                        a naši 
-                        <a
-                                    href="undefinedwiki"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                        >
-                                    wiki
-                        </a>
+              a naši 
+              <a
+                href="undefinedwiki"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                wiki
+              </a>
             </del>
             ! (WIP)
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -578,23 +577,22 @@ ShallowWrapper {
             "children": Array [
               "Navštivte náš ",
               <a
-                href={undefined}
                 rel="noreferrer noopener"
                 target="_blank"
->
+              >
                 GitHub
-</a>,
+              </a>,
               " ",
               <del>
                 a naši 
                 <a
-                                href="undefinedwiki"
-                                rel="noreferrer noopener"
-                                target="_blank"
+                  href="undefinedwiki"
+                  rel="noreferrer noopener"
+                  target="_blank"
                 >
-                                wiki
+                  wiki
                 </a>
-</del>,
+              </del>,
               "! (WIP)",
             ],
             "md": "12",
@@ -636,9 +634,9 @@ ShallowWrapper {
                     href="undefinedwiki"
                     rel="noreferrer noopener"
                     target="_blank"
->
+                  >
                     wiki
-</a>,
+                  </a>,
                 ],
               },
               "ref": null,
@@ -676,25 +674,25 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             Hlaste chyby 
             <a
-                        href="undefinedissues"
-                        rel="noreferrer noopener"
-                        target="_blank"
+              href="undefinedissues"
+              rel="noreferrer noopener"
+              target="_blank"
             >
-                        zde
+              zde
             </a>
             .
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -709,9 +707,9 @@ ShallowWrapper {
                 href="undefinedissues"
                 rel="noreferrer noopener"
                 target="_blank"
->
+              >
                 zde
-</a>,
+              </a>,
               ".",
             ],
             "md": "12",
@@ -759,157 +757,156 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
-</InfoAlert>,
+          </InfoAlert>,
           <h1>
             Nastavení
-</h1>,
+          </h1>,
           <hr />,
           <h3>
             Uživatelská nastavení
-</h3>,
+          </h3>,
           <Row
             tag="div"
->
+          >
             <Col
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <FormGroup
-                                    check={true}
-                                    inline={true}
-                                    tag="div"
-                        >
-                                    <Label
-                                                for="notifyInput"
-                                                tag="label"
-                                                widths={
-                                                            Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                                }
-                                    >
-                                                <Input
-                                                            checked={Array []}
-                                                            id="notifyInput"
-                                                            onChange={[Function]}
-                                                            type="checkbox"
-                                                />
-                                                Chci dostávat informace o 
-                                                <span
-                                                            id="Tooltip0"
-                                                            style={
-                                                                        Object {
-                                                                                    "borderBottom": "1px dotted",
-                                                                                    "cursor": "pointer",
-                                                                                  }
-                                                            }
-                                                >
-                                                            změnách masáží
-                                                </span>
-                                    </Label>
-                        </FormGroup>
-                        <Tooltip
-                                    autohide={true}
-                                    delay={
-                                                Object {
-                                                            "hide": 250,
-                                                            "show": 0,
-                                                          }
-                                    }
-                                    hideArrow={false}
-                                    isOpen={false}
-                                    placement="top"
-                                    placementPrefix="bs-tooltip"
-                                    target="Tooltip0"
-                                    toggle={[Function]}
-                        >
-                                    Rozpis nových a zrušení připsaných masáží
-                        </Tooltip>
+              <FormGroup
+                check={true}
+                inline={true}
+                tag="div"
+              >
+                <Label
+                  for="notifyInput"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <Input
+                    checked={Array []}
+                    id="notifyInput"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  Chci dostávat informace o 
+                  <span
+                    id="Tooltip0"
+                    style={
+                      Object {
+                        "borderBottom": "1px dotted",
+                        "cursor": "pointer",
+                      }
+                    }
+                  >
+                    změnách masáží
+                  </span>
+                </Label>
+              </FormGroup>
+              <Tooltip
+                autohide={true}
+                delay={
+                  Object {
+                    "hide": 250,
+                    "show": 0,
+                  }
+                }
+                hideArrow={false}
+                isOpen={false}
+                placement="top"
+                placementPrefix="bs-tooltip"
+                target="Tooltip0"
+                toggle={[Function]}
+              >
+                Rozpis nových a zrušení připsaných masáží
+              </Tooltip>
             </Col>
-</Row>,
+          </Row>,
           <h3>
             O portálu
-</h3>,
+          </h3>,
           <Row
             tag="div"
->
+          >
             <Col
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        Navštivte náš 
-                        <a
-                                    href={undefined}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                        >
-                                    GitHub
-                        </a>
-                         
-                        <del>
-                                    a naši 
-                                    <a
-                                                href="undefinedwiki"
-                                                rel="noreferrer noopener"
-                                                target="_blank"
-                                    >
-                                                wiki
-                                    </a>
-                        </del>
-                        ! (WIP)
+              Navštivte náš 
+              <a
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                GitHub
+              </a>
+               
+              <del>
+                a naši 
+                <a
+                  href="undefinedwiki"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </del>
+              ! (WIP)
             </Col>
-</Row>,
+          </Row>,
           <Row
             tag="div"
->
+          >
             <Col
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        Hlaste chyby 
-                        <a
-                                    href="undefinedissues"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                        >
-                                    zde
-                        </a>
-                        .
+              Hlaste chyby 
+              <a
+                href="undefinedissues"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                zde
+              </a>
+              .
             </Col>
-</Row>,
+          </Row>,
         ],
         "className": "my-3",
       },
@@ -973,71 +970,71 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <FormGroup
-                            check={true}
-                            inline={true}
-                            tag="div"
+                check={true}
+                inline={true}
+                tag="div"
               >
-                            <Label
-                                          for="notifyInput"
-                                          tag="label"
-                                          widths={
-                                                        Array [
-                                                                      "xs",
-                                                                      "sm",
-                                                                      "md",
-                                                                      "lg",
-                                                                      "xl",
-                                                                    ]
-                                          }
-                            >
-                                          <Input
-                                                        checked={Array []}
-                                                        id="notifyInput"
-                                                        onChange={[Function]}
-                                                        type="checkbox"
-                                          />
-                                          Chci dostávat informace o 
-                                          <span
-                                                        id="Tooltip0"
-                                                        style={
-                                                                      Object {
-                                                                                    "borderBottom": "1px dotted",
-                                                                                    "cursor": "pointer",
-                                                                                  }
-                                                        }
-                                          >
-                                                        změnách masáží
-                                          </span>
-                            </Label>
+                <Label
+                  for="notifyInput"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <Input
+                    checked={Array []}
+                    id="notifyInput"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  Chci dostávat informace o 
+                  <span
+                    id="Tooltip0"
+                    style={
+                      Object {
+                        "borderBottom": "1px dotted",
+                        "cursor": "pointer",
+                      }
+                    }
+                  >
+                    změnách masáží
+                  </span>
+                </Label>
               </FormGroup>
               <Tooltip
-                            autohide={true}
-                            delay={
-                                          Object {
-                                                        "hide": 250,
-                                                        "show": 0,
-                                                      }
-                            }
-                            hideArrow={false}
-                            isOpen={false}
-                            placement="top"
-                            placementPrefix="bs-tooltip"
-                            target="Tooltip0"
-                            toggle={[Function]}
+                autohide={true}
+                delay={
+                  Object {
+                    "hide": 250,
+                    "show": 0,
+                  }
+                }
+                hideArrow={false}
+                isOpen={false}
+                placement="top"
+                placementPrefix="bs-tooltip"
+                target="Tooltip0"
+                toggle={[Function]}
               >
-                            Rozpis nových a zrušení připsaných masáží
+                Rozpis nových a zrušení připsaných masáží
               </Tooltip>
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -1051,47 +1048,47 @@ ShallowWrapper {
                   check={true}
                   inline={true}
                   tag="div"
->
+                >
                   <Label
-                                    for="notifyInput"
-                                    tag="label"
-                                    widths={
-                                                      Array [
-                                                                        "xs",
-                                                                        "sm",
-                                                                        "md",
-                                                                        "lg",
-                                                                        "xl",
-                                                                      ]
-                                    }
+                    for="notifyInput"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
                   >
-                                    <Input
-                                                      checked={Array []}
-                                                      id="notifyInput"
-                                                      onChange={[Function]}
-                                                      type="checkbox"
-                                    />
-                                    Chci dostávat informace o 
-                                    <span
-                                                      id="Tooltip0"
-                                                      style={
-                                                                        Object {
-                                                                                          "borderBottom": "1px dotted",
-                                                                                          "cursor": "pointer",
-                                                                                        }
-                                                      }
-                                    >
-                                                      změnách masáží
-                                    </span>
+                    <Input
+                      checked={Array []}
+                      id="notifyInput"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                    Chci dostávat informace o 
+                    <span
+                      id="Tooltip0"
+                      style={
+                        Object {
+                          "borderBottom": "1px dotted",
+                          "cursor": "pointer",
+                        }
+                      }
+                    >
+                      změnách masáží
+                    </span>
                   </Label>
-</FormGroup>,
+                </FormGroup>,
                 <Tooltip
                   autohide={true}
                   delay={
-                                    Object {
-                                                      "hide": 250,
-                                                      "show": 0,
-                                                    }
+                    Object {
+                      "hide": 250,
+                      "show": 0,
+                    }
                   }
                   hideArrow={false}
                   isOpen={false}
@@ -1099,9 +1096,9 @@ ShallowWrapper {
                   placementPrefix="bs-tooltip"
                   target="Tooltip0"
                   toggle={[Function]}
->
+                >
                   Rozpis nových a zrušení připsaných masáží
-</Tooltip>,
+                </Tooltip>,
               ],
               "md": "12",
               "tag": "div",
@@ -1125,34 +1122,34 @@ ShallowWrapper {
                     for="notifyInput"
                     tag="label"
                     widths={
-                                        Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
                     }
->
+                  >
                     <Input
-                                        checked={Array []}
-                                        id="notifyInput"
-                                        onChange={[Function]}
-                                        type="checkbox"
+                      checked={Array []}
+                      id="notifyInput"
+                      onChange={[Function]}
+                      type="checkbox"
                     />
                     Chci dostávat informace o 
                     <span
-                                        id="Tooltip0"
-                                        style={
-                                                            Object {
-                                                                                "borderBottom": "1px dotted",
-                                                                                "cursor": "pointer",
-                                                                              }
-                                        }
+                      id="Tooltip0"
+                      style={
+                        Object {
+                          "borderBottom": "1px dotted",
+                          "cursor": "pointer",
+                        }
+                      }
                     >
-                                        změnách masáží
+                      změnách masáží
                     </span>
-</Label>,
+                  </Label>,
                   "inline": true,
                   "tag": "div",
                 },
@@ -1168,19 +1165,19 @@ ShallowWrapper {
                         id="notifyInput"
                         onChange={[Function]}
                         type="checkbox"
-/>,
+                      />,
                       "Chci dostávat informace o ",
                       <span
                         id="Tooltip0"
                         style={
-                                                Object {
-                                                                        "borderBottom": "1px dotted",
-                                                                        "cursor": "pointer",
-                                                                      }
+                          Object {
+                            "borderBottom": "1px dotted",
+                            "cursor": "pointer",
+                          }
                         }
->
+                      >
                         změnách masáží
-</span>,
+                      </span>,
                     ],
                     "for": "notifyInput",
                     "tag": "label",
@@ -1277,36 +1274,35 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               Navštivte náš 
               <a
-                            href={undefined}
-                            rel="noreferrer noopener"
-                            target="_blank"
+                rel="noreferrer noopener"
+                target="_blank"
               >
-                            GitHub
+                GitHub
               </a>
                
               <del>
-                            a naši 
-                            <a
-                                          href="undefinedwiki"
-                                          rel="noreferrer noopener"
-                                          target="_blank"
-                            >
-                                          wiki
-                            </a>
+                a naši 
+                <a
+                  href="undefinedwiki"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  wiki
+                </a>
               </del>
               ! (WIP)
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -1318,23 +1314,22 @@ ShallowWrapper {
               "children": Array [
                 "Navštivte náš ",
                 <a
-                  href={undefined}
                   rel="noreferrer noopener"
                   target="_blank"
->
+                >
                   GitHub
-</a>,
+                </a>,
                 " ",
                 <del>
                   a naši 
                   <a
-                                    href="undefinedwiki"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
+                    href="undefinedwiki"
+                    rel="noreferrer noopener"
+                    target="_blank"
                   >
-                                    wiki
+                    wiki
                   </a>
-</del>,
+                </del>,
                 "! (WIP)",
               ],
               "md": "12",
@@ -1376,9 +1371,9 @@ ShallowWrapper {
                       href="undefinedwiki"
                       rel="noreferrer noopener"
                       target="_blank"
->
+                    >
                       wiki
-</a>,
+                    </a>,
                   ],
                 },
                 "ref": null,
@@ -1416,25 +1411,25 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               Hlaste chyby 
               <a
-                            href="undefinedissues"
-                            rel="noreferrer noopener"
-                            target="_blank"
+                href="undefinedissues"
+                rel="noreferrer noopener"
+                target="_blank"
               >
-                            zde
+                zde
               </a>
               .
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -1449,9 +1444,9 @@ ShallowWrapper {
                   href="undefinedissues"
                   rel="noreferrer noopener"
                   target="_blank"
->
+                >
                   zde
-</a>,
+                </a>,
                 ".",
               ],
               "md": "12",
@@ -1507,8 +1502,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

@@ -8,6 +8,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -19,12 +20,12 @@ ShallowWrapper {
       "children": Array [
         <InfoAlert
           onClose={[Function]}
->
+        >
           Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
-</InfoAlert>,
+        </InfoAlert>,
         <h1>
           Budovy
-</h1>,
+        </h1>,
         <hr />,
         <Table
           hover={true}
@@ -33,40 +34,40 @@ ShallowWrapper {
           size="sm"
           striped={true}
           tag="table"
->
+        >
           <thead>
-                    <tr>
-                              <th
-                                        scope="col"
-                              >
-                                        Název
-                              </th>
-                              <th
-                                        scope="col"
-                              >
-                                        <FacilityModal
-                                                  active={false}
-                                                  facility={null}
-                                                  getCallback={[Function]}
-                                                  onToggle={[Function]}
-                                                  withPortal={true}
-                                        />
-                              </th>
-                    </tr>
+            <tr>
+              <th
+                scope="col"
+              >
+                Název
+              </th>
+              <th
+                scope="col"
+              >
+                <FacilityModal
+                  active={false}
+                  facility={null}
+                  getCallback={[Function]}
+                  onToggle={[Function]}
+                  withPortal={true}
+                />
+              </th>
+            </tr>
           </thead>
           <tbody>
-                    <FacilityRow
-                              facility={
-                                        Object {
-                                                  "id": 1,
-                                                  "name": "test",
-                                                }
-                              }
-                              onDelete={[Function]}
-                              onEdit={[Function]}
-                    />
+            <FacilityRow
+              facility={
+                Object {
+                  "id": 1,
+                  "name": "test",
+                }
+              }
+              onDelete={[Function]}
+              onEdit={[Function]}
+            />
           </tbody>
-</Table>,
+        </Table>,
       ],
     },
     "ref": null,
@@ -117,36 +118,36 @@ ShallowWrapper {
           "children": Array [
             <thead>
               <tr>
-                            <th
-                                          scope="col"
-                            >
-                                          Název
-                            </th>
-                            <th
-                                          scope="col"
-                            >
-                                          <FacilityModal
-                                                        active={false}
-                                                        facility={null}
-                                                        getCallback={[Function]}
-                                                        onToggle={[Function]}
-                                                        withPortal={true}
-                                          />
-                            </th>
+                <th
+                  scope="col"
+                >
+                  Název
+                </th>
+                <th
+                  scope="col"
+                >
+                  <FacilityModal
+                    active={false}
+                    facility={null}
+                    getCallback={[Function]}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                </th>
               </tr>
-</thead>,
+            </thead>,
             <tbody>
               <FacilityRow
-                            facility={
-                                          Object {
-                                                        "id": 1,
-                                                        "name": "test",
-                                                      }
-                            }
-                            onDelete={[Function]}
-                            onEdit={[Function]}
+                facility={
+                  Object {
+                    "id": 1,
+                    "name": "test",
+                  }
+                }
+                onDelete={[Function]}
+                onEdit={[Function]}
               />
-</tbody>,
+            </tbody>,
           ],
           "hover": true,
           "responsive": true,
@@ -164,22 +165,22 @@ ShallowWrapper {
             "props": Object {
               "children": <tr>
                 <th
-                                scope="col"
+                  scope="col"
                 >
-                                Název
+                  Název
                 </th>
                 <th
-                                scope="col"
+                  scope="col"
                 >
-                                <FacilityModal
-                                                active={false}
-                                                facility={null}
-                                                getCallback={[Function]}
-                                                onToggle={[Function]}
-                                                withPortal={true}
-                                />
+                  <FacilityModal
+                    active={false}
+                    facility={null}
+                    getCallback={[Function]}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
                 </th>
-</tr>,
+              </tr>,
             },
             "ref": null,
             "rendered": Object {
@@ -190,20 +191,20 @@ ShallowWrapper {
                 "children": Array [
                   <th
                     scope="col"
->
+                  >
                     Název
-</th>,
+                  </th>,
                   <th
                     scope="col"
->
+                  >
                     <FacilityModal
-                                        active={false}
-                                        facility={null}
-                                        getCallback={[Function]}
-                                        onToggle={[Function]}
-                                        withPortal={true}
+                      active={false}
+                      facility={null}
+                      getCallback={[Function]}
+                      onToggle={[Function]}
+                      withPortal={true}
                     />
-</th>,
+                  </th>,
                 ],
               },
               "ref": null,
@@ -231,7 +232,7 @@ ShallowWrapper {
                       getCallback={[Function]}
                       onToggle={[Function]}
                       withPortal={true}
-/>,
+                    />,
                     "scope": "col",
                   },
                   "ref": null,
@@ -265,14 +266,14 @@ ShallowWrapper {
               "children": Array [
                 <FacilityRow
                   facility={
-                                    Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    }
+                    Object {
+                      "id": 1,
+                      "name": "test",
+                    }
                   }
                   onDelete={[Function]}
                   onEdit={[Function]}
-/>,
+                />,
               ],
             },
             "ref": null,
@@ -311,12 +312,12 @@ ShallowWrapper {
         "children": Array [
           <InfoAlert
             onClose={[Function]}
->
+          >
             Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
-</InfoAlert>,
+          </InfoAlert>,
           <h1>
             Budovy
-</h1>,
+          </h1>,
           <hr />,
           <Table
             hover={true}
@@ -325,40 +326,40 @@ ShallowWrapper {
             size="sm"
             striped={true}
             tag="table"
->
+          >
             <thead>
-                        <tr>
-                                    <th
-                                                scope="col"
-                                    >
-                                                Název
-                                    </th>
-                                    <th
-                                                scope="col"
-                                    >
-                                                <FacilityModal
-                                                            active={false}
-                                                            facility={null}
-                                                            getCallback={[Function]}
-                                                            onToggle={[Function]}
-                                                            withPortal={true}
-                                                />
-                                    </th>
-                        </tr>
+              <tr>
+                <th
+                  scope="col"
+                >
+                  Název
+                </th>
+                <th
+                  scope="col"
+                >
+                  <FacilityModal
+                    active={false}
+                    facility={null}
+                    getCallback={[Function]}
+                    onToggle={[Function]}
+                    withPortal={true}
+                  />
+                </th>
+              </tr>
             </thead>
             <tbody>
-                        <FacilityRow
-                                    facility={
-                                                Object {
-                                                            "id": 1,
-                                                            "name": "test",
-                                                          }
-                                    }
-                                    onDelete={[Function]}
-                                    onEdit={[Function]}
-                        />
+              <FacilityRow
+                facility={
+                  Object {
+                    "id": 1,
+                    "name": "test",
+                  }
+                }
+                onDelete={[Function]}
+                onEdit={[Function]}
+              />
             </tbody>
-</Table>,
+          </Table>,
         ],
       },
       "ref": null,
@@ -409,36 +410,36 @@ ShallowWrapper {
             "children": Array [
               <thead>
                 <tr>
-                                <th
-                                                scope="col"
-                                >
-                                                Název
-                                </th>
-                                <th
-                                                scope="col"
-                                >
-                                                <FacilityModal
-                                                                active={false}
-                                                                facility={null}
-                                                                getCallback={[Function]}
-                                                                onToggle={[Function]}
-                                                                withPortal={true}
-                                                />
-                                </th>
+                  <th
+                    scope="col"
+                  >
+                    Název
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    <FacilityModal
+                      active={false}
+                      facility={null}
+                      getCallback={[Function]}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
+                  </th>
                 </tr>
-</thead>,
+              </thead>,
               <tbody>
                 <FacilityRow
-                                facility={
-                                                Object {
-                                                                "id": 1,
-                                                                "name": "test",
-                                                              }
-                                }
-                                onDelete={[Function]}
-                                onEdit={[Function]}
+                  facility={
+                    Object {
+                      "id": 1,
+                      "name": "test",
+                    }
+                  }
+                  onDelete={[Function]}
+                  onEdit={[Function]}
                 />
-</tbody>,
+              </tbody>,
             ],
             "hover": true,
             "responsive": true,
@@ -456,22 +457,22 @@ ShallowWrapper {
               "props": Object {
                 "children": <tr>
                   <th
-                                    scope="col"
+                    scope="col"
                   >
-                                    Název
+                    Název
                   </th>
                   <th
-                                    scope="col"
+                    scope="col"
                   >
-                                    <FacilityModal
-                                                      active={false}
-                                                      facility={null}
-                                                      getCallback={[Function]}
-                                                      onToggle={[Function]}
-                                                      withPortal={true}
-                                    />
+                    <FacilityModal
+                      active={false}
+                      facility={null}
+                      getCallback={[Function]}
+                      onToggle={[Function]}
+                      withPortal={true}
+                    />
                   </th>
-</tr>,
+                </tr>,
               },
               "ref": null,
               "rendered": Object {
@@ -482,20 +483,20 @@ ShallowWrapper {
                   "children": Array [
                     <th
                       scope="col"
->
+                    >
                       Název
-</th>,
+                    </th>,
                     <th
                       scope="col"
->
+                    >
                       <FacilityModal
-                                            active={false}
-                                            facility={null}
-                                            getCallback={[Function]}
-                                            onToggle={[Function]}
-                                            withPortal={true}
+                        active={false}
+                        facility={null}
+                        getCallback={[Function]}
+                        onToggle={[Function]}
+                        withPortal={true}
                       />
-</th>,
+                    </th>,
                   ],
                 },
                 "ref": null,
@@ -523,7 +524,7 @@ ShallowWrapper {
                         getCallback={[Function]}
                         onToggle={[Function]}
                         withPortal={true}
-/>,
+                      />,
                       "scope": "col",
                     },
                     "ref": null,
@@ -557,14 +558,14 @@ ShallowWrapper {
                 "children": Array [
                   <FacilityRow
                     facility={
-                                        Object {
-                                                            "id": 1,
-                                                            "name": "test",
-                                                          }
+                      Object {
+                        "id": 1,
+                        "name": "test",
+                      }
                     }
                     onDelete={[Function]}
                     onEdit={[Function]}
-/>,
+                  />,
                 ],
               },
               "ref": null,
@@ -611,8 +612,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

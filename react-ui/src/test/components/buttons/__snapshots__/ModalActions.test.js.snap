@@ -9,7 +9,19 @@ exports[`renders content with correct props 1`] = `
   >
     <hr />
     <button
-      onClick={[Function]}
+      onClick={
+        [MockFunction] {
+          "calls": Array [
+            Array [],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": undefined,
+            },
+          ],
+        }
+      }
       type="button"
     />
     <button

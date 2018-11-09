@@ -6,14 +6,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <FacilityModal
     active={true}
     facility={null}
-    getCallback={[Function]}
-    onToggle={[Function]}
+    getCallback={[MockFunction]}
+    onToggle={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     withPortal={false}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -26,62 +39,86 @@ ShallowWrapper {
         <TooltipIconButton
           disabled={false}
           icon="plus"
-          onClick={[Function]}
+          onClick={
+            [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            }
+          }
           size="sm"
           style={
-                    Object {
-                              "border": "0px solid transparent",
-                            }
+            Object {
+              "border": "0px solid transparent",
+            }
           }
           tooltip="Vytvořit novou budovu"
-/>,
+        />,
         <ModalBody
           tag="div"
->
+        >
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <Col
-                              md="12"
-                              tag="div"
-                              widths={
-                                        Array [
-                                                  "xs",
-                                                  "sm",
-                                                  "md",
-                                                  "lg",
-                                                  "xl",
-                                                ]
-                              }
-                    >
-                              <h3>
-                                        Nová budova
-                              </h3>
-                              <hr />
-                    </Col>
+            <Col
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <h3>
+                Nová budova
+              </h3>
+              <hr />
+            </Col>
           </Row>
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <LabeledInput
-                              label="Název"
-                              maxLength="64"
-                              onChange={[Function]}
-                              onEnterPress={[Function]}
-                              options={Array []}
-                              size="12"
-                              tooltip="Jak by se tato budova měla jmenovat"
-                              type="text"
-                              value=""
-                    />
+            <LabeledInput
+              label="Název"
+              maxLength="64"
+              onChange={[Function]}
+              onEnterPress={[Function]}
+              options={Array []}
+              size="12"
+              tooltip="Jak by se tato budova měla jmenovat"
+              type="text"
+              value=""
+            />
           </Row>
           <ModalActions
-                    disabled={false}
-                    onClose={[Function]}
-                    onProceed={[Function]}
-                    primaryLabel="Přidat"
+            disabled={false}
+            onClose={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
+            onProceed={[Function]}
+            primaryLabel="Přidat"
           />
-</ModalBody>,
+        </ModalBody>,
       ],
       "className": "float-right",
     },
@@ -94,7 +131,17 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "icon": "plus",
-          "onClick": [Function],
+          "onClick": [MockFunction] {
+            "calls": Array [
+              Array [],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          },
           "size": "sm",
           "style": Object {
             "border": "0px solid transparent",
@@ -113,47 +160,59 @@ ShallowWrapper {
           "children": Array [
             <Row
               tag="div"
->
+            >
               <Col
-                            md="12"
-                            tag="div"
-                            widths={
-                                          Array [
-                                                        "xs",
-                                                        "sm",
-                                                        "md",
-                                                        "lg",
-                                                        "xl",
-                                                      ]
-                            }
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                            <h3>
-                                          Nová budova
-                            </h3>
-                            <hr />
+                <h3>
+                  Nová budova
+                </h3>
+                <hr />
               </Col>
-</Row>,
+            </Row>,
             <Row
               tag="div"
->
+            >
               <LabeledInput
-                            label="Název"
-                            maxLength="64"
-                            onChange={[Function]}
-                            onEnterPress={[Function]}
-                            options={Array []}
-                            size="12"
-                            tooltip="Jak by se tato budova měla jmenovat"
-                            type="text"
-                            value=""
+                label="Název"
+                maxLength="64"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                options={Array []}
+                size="12"
+                tooltip="Jak by se tato budova měla jmenovat"
+                type="text"
+                value=""
               />
-</Row>,
+            </Row>,
             <ModalActions
               disabled={false}
-              onClose={[Function]}
+              onClose={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
               onProceed={[Function]}
               primaryLabel="Přidat"
-/>,
+            />,
           ],
           "tag": "div",
         },
@@ -168,20 +227,20 @@ ShallowWrapper {
                 md="12"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <h3>
-                                Nová budova
+                  Nová budova
                 </h3>
                 <hr />
-</Col>,
+              </Col>,
               "tag": "div",
             },
             "ref": null,
@@ -193,7 +252,7 @@ ShallowWrapper {
                 "children": Array [
                   <h3>
                     Nová budova
-</h3>,
+                  </h3>,
                   <hr />,
                 ],
                 "md": "12",
@@ -248,7 +307,7 @@ ShallowWrapper {
                 tooltip="Jak by se tato budova měla jmenovat"
                 type="text"
                 value=""
-/>,
+              />,
               "tag": "div",
             },
             "ref": null,
@@ -280,7 +339,17 @@ ShallowWrapper {
             "props": Object {
               "children": null,
               "disabled": false,
-              "onClose": [Function],
+              "onClose": [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
               "onProceed": [Function],
               "primaryLabel": "Přidat",
             },
@@ -304,62 +373,86 @@ ShallowWrapper {
           <TooltipIconButton
             disabled={false}
             icon="plus"
-            onClick={[Function]}
+            onClick={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
             size="sm"
             style={
-                        Object {
-                                    "border": "0px solid transparent",
-                                  }
+              Object {
+                "border": "0px solid transparent",
+              }
             }
             tooltip="Vytvořit novou budovu"
-/>,
+          />,
           <ModalBody
             tag="div"
->
+          >
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <Col
-                                    md="12"
-                                    tag="div"
-                                    widths={
-                                                Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                    }
-                        >
-                                    <h3>
-                                                Nová budova
-                                    </h3>
-                                    <hr />
-                        </Col>
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <h3>
+                  Nová budova
+                </h3>
+                <hr />
+              </Col>
             </Row>
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <LabeledInput
-                                    label="Název"
-                                    maxLength="64"
-                                    onChange={[Function]}
-                                    onEnterPress={[Function]}
-                                    options={Array []}
-                                    size="12"
-                                    tooltip="Jak by se tato budova měla jmenovat"
-                                    type="text"
-                                    value=""
-                        />
+              <LabeledInput
+                label="Název"
+                maxLength="64"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                options={Array []}
+                size="12"
+                tooltip="Jak by se tato budova měla jmenovat"
+                type="text"
+                value=""
+              />
             </Row>
             <ModalActions
-                        disabled={false}
-                        onClose={[Function]}
-                        onProceed={[Function]}
-                        primaryLabel="Přidat"
+              disabled={false}
+              onClose={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
+              onProceed={[Function]}
+              primaryLabel="Přidat"
             />
-</ModalBody>,
+          </ModalBody>,
         ],
         "className": "float-right",
       },
@@ -372,7 +465,17 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "icon": "plus",
-            "onClick": [Function],
+            "onClick": [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            },
             "size": "sm",
             "style": Object {
               "border": "0px solid transparent",
@@ -391,47 +494,59 @@ ShallowWrapper {
             "children": Array [
               <Row
                 tag="div"
->
+              >
                 <Col
-                                md="12"
-                                tag="div"
-                                widths={
-                                                Array [
-                                                                "xs",
-                                                                "sm",
-                                                                "md",
-                                                                "lg",
-                                                                "xl",
-                                                              ]
-                                }
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                                <h3>
-                                                Nová budova
-                                </h3>
-                                <hr />
+                  <h3>
+                    Nová budova
+                  </h3>
+                  <hr />
                 </Col>
-</Row>,
+              </Row>,
               <Row
                 tag="div"
->
+              >
                 <LabeledInput
-                                label="Název"
-                                maxLength="64"
-                                onChange={[Function]}
-                                onEnterPress={[Function]}
-                                options={Array []}
-                                size="12"
-                                tooltip="Jak by se tato budova měla jmenovat"
-                                type="text"
-                                value=""
+                  label="Název"
+                  maxLength="64"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  options={Array []}
+                  size="12"
+                  tooltip="Jak by se tato budova měla jmenovat"
+                  type="text"
+                  value=""
                 />
-</Row>,
+              </Row>,
               <ModalActions
                 disabled={false}
-                onClose={[Function]}
+                onClose={
+                  [MockFunction] {
+                    "calls": Array [
+                      Array [],
+                    ],
+                    "results": Array [
+                      Object {
+                        "isThrow": false,
+                        "value": undefined,
+                      },
+                    ],
+                  }
+                }
                 onProceed={[Function]}
                 primaryLabel="Přidat"
-/>,
+              />,
             ],
             "tag": "div",
           },
@@ -446,20 +561,20 @@ ShallowWrapper {
                   md="12"
                   tag="div"
                   widths={
-                                    Array [
-                                                      "xs",
-                                                      "sm",
-                                                      "md",
-                                                      "lg",
-                                                      "xl",
-                                                    ]
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
                   }
->
+                >
                   <h3>
-                                    Nová budova
+                    Nová budova
                   </h3>
                   <hr />
-</Col>,
+                </Col>,
                 "tag": "div",
               },
               "ref": null,
@@ -471,7 +586,7 @@ ShallowWrapper {
                   "children": Array [
                     <h3>
                       Nová budova
-</h3>,
+                    </h3>,
                     <hr />,
                   ],
                   "md": "12",
@@ -526,7 +641,7 @@ ShallowWrapper {
                   tooltip="Jak by se tato budova měla jmenovat"
                   type="text"
                   value=""
-/>,
+                />,
                 "tag": "div",
               },
               "ref": null,
@@ -558,7 +673,17 @@ ShallowWrapper {
               "props": Object {
                 "children": null,
                 "disabled": false,
-                "onClose": [Function],
+                "onClose": [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                },
                 "onProceed": [Function],
                 "primaryLabel": "Přidat",
               },
@@ -589,8 +714,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

@@ -6,68 +6,108 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <CalendarPanel
     allowEditation={true}
     events={
-        Array [
-            Object {
-              "bgColor": "white",
-              "massage": Object {
-                "client": null,
-                "date": 1970-01-01T00:00:00.000Z,
-                "ending": 1970-01-01T00:00:01.000Z,
-                "facility": Object {
-                  "id": 1,
-                  "name": "test",
-                },
-                "id": 1,
-                "masseuse": "test",
-              },
+      Array [
+        Object {
+          "bgColor": "white",
+          "massage": Object {
+            "client": null,
+            "date": 1970-01-01T00:00:00.000Z,
+            "ending": 1970-01-01T00:00:01.000Z,
+            "facility": Object {
+              "id": 1,
+              "name": "test",
             },
-            Object {
-              "bgColor": "black",
-              "massage": Object {
-                "client": Object {
-                  "sub": "test",
-                },
-                "date": 1970-01-01T00:00:01.000Z,
-                "ending": 1970-01-01T00:00:02.000Z,
-                "facility": Object {
-                  "id": 1,
-                  "name": "test",
-                },
-                "id": 2,
-              },
+            "id": 1,
+            "masseuse": "test",
+          },
+        },
+        Object {
+          "bgColor": "black",
+          "massage": Object {
+            "client": Object {
+              "sub": "test",
             },
-            Object {
-              "bgColor": "yellow",
-              "massage": Object {
-                "client": Object {
-                  "sub": "test2",
-                },
-                "date": 1970-01-01T00:00:02.000Z,
-                "ending": 1970-01-01T00:00:03.000Z,
-                "facility": Object {
-                  "id": 1,
-                  "name": "test",
-                },
-                "id": 3,
-              },
+            "date": 1970-01-01T00:00:01.000Z,
+            "ending": 1970-01-01T00:00:02.000Z,
+            "facility": Object {
+              "id": 1,
+              "name": "test",
             },
-          ]
+            "id": 2,
+          },
+        },
+        Object {
+          "bgColor": "yellow",
+          "massage": Object {
+            "client": Object {
+              "sub": "test2",
+            },
+            "date": 1970-01-01T00:00:02.000Z,
+            "ending": 1970-01-01T00:00:03.000Z,
+            "facility": Object {
+              "id": 1,
+              "name": "test",
+            },
+            "id": 3,
+          },
+        },
+      ]
     }
     massageMinutes={0}
-    onAdd={[Function]}
-    onAssign={[Function]}
-    onCancel={[Function]}
-    onDateChange={[Function]}
-    onDelete={[Function]}
-    onEdit={[Function]}
-    onSelect={[Function]}
+    onAdd={[MockFunction]}
+    onAssign={[MockFunction]}
+    onCancel={[MockFunction]}
+    onDateChange={[MockFunction]}
+    onDelete={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            3,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    onEdit={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "client": Object {
+                "sub": "test2",
+              },
+              "date": 1970-01-01T00:00:02.000Z,
+              "ending": 1970-01-01T00:00:03.000Z,
+              "facility": Object {
+                "id": 1,
+                "name": "test",
+              },
+              "id": 3,
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    onSelect={[MockFunction]}
     selectEvents={true}
     selected={Array []}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -79,180 +119,204 @@ ShallowWrapper {
       "children": Array [
         <Row
           tag="div"
->
+        >
           <Col
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <CalendarToolbar
-                              leftAction={[Function]}
-                              leftDisabled={false}
-                              month="Invalid date"
-                              monthActive={true}
-                              onViewChange={[Function]}
-                              rightAction={[Function]}
-                              rightDisabled={false}
-                    />
-                    <Uncontrolled(Calendar)
-                              date={null}
-                              endAccessor={[Function]}
-                              eventPropGetter={[Function]}
-                              events={
-                                        Array [
-                                                  Object {
-                                                    "bgColor": "white",
-                                                    "massage": Object {
-                                                      "client": null,
-                                                      "date": 1970-01-01T00:00:00.000Z,
-                                                      "ending": 1970-01-01T00:00:01.000Z,
-                                                      "facility": Object {
-                                                        "id": 1,
-                                                        "name": "test",
-                                                      },
-                                                      "id": 1,
-                                                      "masseuse": "test",
-                                                    },
-                                                  },
-                                                  Object {
-                                                    "bgColor": "black",
-                                                    "massage": Object {
-                                                      "client": Object {
-                                                        "sub": "test",
-                                                      },
-                                                      "date": 1970-01-01T00:00:01.000Z,
-                                                      "ending": 1970-01-01T00:00:02.000Z,
-                                                      "facility": Object {
-                                                        "id": 1,
-                                                        "name": "test",
-                                                      },
-                                                      "id": 2,
-                                                    },
-                                                  },
-                                                  Object {
-                                                    "bgColor": "yellow",
-                                                    "massage": Object {
-                                                      "client": Object {
-                                                        "sub": "test2",
-                                                      },
-                                                      "date": 1970-01-01T00:00:02.000Z,
-                                                      "ending": 1970-01-01T00:00:03.000Z,
-                                                      "facility": Object {
-                                                        "id": 1,
-                                                        "name": "test",
-                                                      },
-                                                      "id": 3,
-                                                    },
-                                                  },
-                                                ]
-                              }
-                              max={2018-01-01T17:00:00.000Z}
-                              messages={
-                                        Object {
-                                                  "allDay": "Celý den",
-                                                  "date": "Datum",
-                                                  "event": "Událost",
-                                                  "month": "Měsíc",
-                                                  "next": ">",
-                                                  "previous": "<",
-                                                  "showMore": [Function],
-                                                  "time": "Čas",
-                                                  "today": "Dnes",
-                                                  "work_week": "Týden",
-                                                }
-                              }
-                              min={2018-01-01T07:30:00.000Z}
-                              onNavigate={[Function]}
-                              onSelectEvent={[Function]}
-                              onSelectSlot={[Function]}
-                              onView={[Function]}
-                              popup={true}
-                              selectable={false}
-                              startAccessor={[Function]}
-                              style={
-                                        Object {
-                                                  "height": "85vh",
-                                                }
-                              }
-                              timeslots={1}
-                              titleAccessor={[Function]}
-                              toolbar={false}
-                              view="month"
-                              views={
-                                        Array [
-                                                  "work_week",
-                                                  "month",
-                                                ]
-                              }
-                    />
+            <CalendarToolbar
+              leftAction={[Function]}
+              leftDisabled={false}
+              month="Invalid date"
+              monthActive={true}
+              onViewChange={[Function]}
+              rightAction={[Function]}
+              rightDisabled={false}
+            />
+            <ForwardRef
+              date={null}
+              endAccessor={[Function]}
+              eventPropGetter={[Function]}
+              events={
+                Array [
+                  Object {
+                    "bgColor": "white",
+                    "massage": Object {
+                      "client": null,
+                      "date": 1970-01-01T00:00:00.000Z,
+                      "ending": 1970-01-01T00:00:01.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 1,
+                      "masseuse": "test",
+                    },
+                  },
+                  Object {
+                    "bgColor": "black",
+                    "massage": Object {
+                      "client": Object {
+                        "sub": "test",
+                      },
+                      "date": 1970-01-01T00:00:01.000Z,
+                      "ending": 1970-01-01T00:00:02.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 2,
+                    },
+                  },
+                  Object {
+                    "bgColor": "yellow",
+                    "massage": Object {
+                      "client": Object {
+                        "sub": "test2",
+                      },
+                      "date": 1970-01-01T00:00:02.000Z,
+                      "ending": 1970-01-01T00:00:03.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 3,
+                    },
+                  },
+                ]
+              }
+              localizer={
+                DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                }
+              }
+              max={2018-01-01T17:00:00.000Z}
+              messages={
+                Object {
+                  "allDay": "Celý den",
+                  "date": "Datum",
+                  "event": "Událost",
+                  "month": "Měsíc",
+                  "next": ">",
+                  "previous": "<",
+                  "showMore": [Function],
+                  "time": "Čas",
+                  "today": "Dnes",
+                  "work_week": "Týden",
+                }
+              }
+              min={2018-01-01T07:30:00.000Z}
+              onNavigate={[Function]}
+              onSelectEvent={[Function]}
+              onSelectSlot={[MockFunction]}
+              onView={[Function]}
+              popup={true}
+              selectable={false}
+              startAccessor={[Function]}
+              style={
+                Object {
+                  "height": "85vh",
+                }
+              }
+              timeslots={1}
+              titleAccessor={[Function]}
+              toolbar={false}
+              view="month"
+              views={
+                Array [
+                  "work_week",
+                  "month",
+                ]
+              }
+            />
           </Col>
-</Row>,
+        </Row>,
         <Row
           className="text-center mt-3"
           tag="div"
->
+        >
           <Col
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <strong>
-                              Legenda:
-                    </strong>
-                    <span
-                              style={
-                                        Object {
-                                                  "backgroundColor": "#2fad2f",
-                                                  "borderRadius": "4px",
-                                                  "marginLeft": "8px",
-                                                  "padding": "8px",
-                                                }
-                              }
-                    >
-                              Volná masáž
-                    </span>
-                    <span
-                              style={
-                                        Object {
-                                                  "backgroundColor": "#ee9d2a",
-                                                  "borderRadius": "4px",
-                                                  "marginLeft": "8px",
-                                                  "padding": "8px",
-                                                }
-                              }
-                    >
-                              Moje masáž
-                    </span>
-                    <span
-                              style={
-                                        Object {
-                                                  "backgroundColor": "#d10a14",
-                                                  "borderRadius": "4px",
-                                                  "marginLeft": "8px",
-                                                  "padding": "8px",
-                                                }
-                              }
-                    >
-                              Přiřazená masáž
-                    </span>
+            <strong>
+              Legenda:
+            </strong>
+            <span
+              style={
+                Object {
+                  "backgroundColor": "#2fad2f",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
+            >
+              Volná masáž
+            </span>
+            <span
+              style={
+                Object {
+                  "backgroundColor": "#ee9d2a",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
+            >
+              Moje masáž
+            </span>
+            <span
+              style={
+                Object {
+                  "backgroundColor": "#d10a14",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
+            >
+              Přiřazená masáž
+            </span>
           </Col>
-</Row>,
+        </Row>,
         false,
       ],
       "className": "mb-3",
@@ -268,116 +332,140 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             <CalendarToolbar
-                        leftAction={[Function]}
-                        leftDisabled={false}
-                        month="Invalid date"
-                        monthActive={true}
-                        onViewChange={[Function]}
-                        rightAction={[Function]}
-                        rightDisabled={false}
+              leftAction={[Function]}
+              leftDisabled={false}
+              month="Invalid date"
+              monthActive={true}
+              onViewChange={[Function]}
+              rightAction={[Function]}
+              rightDisabled={false}
             />
-            <Uncontrolled(Calendar)
-                        date={null}
-                        endAccessor={[Function]}
-                        eventPropGetter={[Function]}
-                        events={
-                                    Array [
-                                                Object {
-                                                  "bgColor": "white",
-                                                  "massage": Object {
-                                                    "client": null,
-                                                    "date": 1970-01-01T00:00:00.000Z,
-                                                    "ending": 1970-01-01T00:00:01.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 1,
-                                                    "masseuse": "test",
-                                                  },
-                                                },
-                                                Object {
-                                                  "bgColor": "black",
-                                                  "massage": Object {
-                                                    "client": Object {
-                                                      "sub": "test",
-                                                    },
-                                                    "date": 1970-01-01T00:00:01.000Z,
-                                                    "ending": 1970-01-01T00:00:02.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 2,
-                                                  },
-                                                },
-                                                Object {
-                                                  "bgColor": "yellow",
-                                                  "massage": Object {
-                                                    "client": Object {
-                                                      "sub": "test2",
-                                                    },
-                                                    "date": 1970-01-01T00:00:02.000Z,
-                                                    "ending": 1970-01-01T00:00:03.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 3,
-                                                  },
-                                                },
-                                              ]
-                        }
-                        max={2018-01-01T17:00:00.000Z}
-                        messages={
-                                    Object {
-                                                "allDay": "Celý den",
-                                                "date": "Datum",
-                                                "event": "Událost",
-                                                "month": "Měsíc",
-                                                "next": ">",
-                                                "previous": "<",
-                                                "showMore": [Function],
-                                                "time": "Čas",
-                                                "today": "Dnes",
-                                                "work_week": "Týden",
-                                              }
-                        }
-                        min={2018-01-01T07:30:00.000Z}
-                        onNavigate={[Function]}
-                        onSelectEvent={[Function]}
-                        onSelectSlot={[Function]}
-                        onView={[Function]}
-                        popup={true}
-                        selectable={false}
-                        startAccessor={[Function]}
-                        style={
-                                    Object {
-                                                "height": "85vh",
-                                              }
-                        }
-                        timeslots={1}
-                        titleAccessor={[Function]}
-                        toolbar={false}
-                        view="month"
-                        views={
-                                    Array [
-                                                "work_week",
-                                                "month",
-                                              ]
-                        }
+            <ForwardRef
+              date={null}
+              endAccessor={[Function]}
+              eventPropGetter={[Function]}
+              events={
+                Array [
+                  Object {
+                    "bgColor": "white",
+                    "massage": Object {
+                      "client": null,
+                      "date": 1970-01-01T00:00:00.000Z,
+                      "ending": 1970-01-01T00:00:01.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 1,
+                      "masseuse": "test",
+                    },
+                  },
+                  Object {
+                    "bgColor": "black",
+                    "massage": Object {
+                      "client": Object {
+                        "sub": "test",
+                      },
+                      "date": 1970-01-01T00:00:01.000Z,
+                      "ending": 1970-01-01T00:00:02.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 2,
+                    },
+                  },
+                  Object {
+                    "bgColor": "yellow",
+                    "massage": Object {
+                      "client": Object {
+                        "sub": "test2",
+                      },
+                      "date": 1970-01-01T00:00:02.000Z,
+                      "ending": 1970-01-01T00:00:03.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 3,
+                    },
+                  },
+                ]
+              }
+              localizer={
+                DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                }
+              }
+              max={2018-01-01T17:00:00.000Z}
+              messages={
+                Object {
+                  "allDay": "Celý den",
+                  "date": "Datum",
+                  "event": "Událost",
+                  "month": "Měsíc",
+                  "next": ">",
+                  "previous": "<",
+                  "showMore": [Function],
+                  "time": "Čas",
+                  "today": "Dnes",
+                  "work_week": "Týden",
+                }
+              }
+              min={2018-01-01T07:30:00.000Z}
+              onNavigate={[Function]}
+              onSelectEvent={[Function]}
+              onSelectSlot={[MockFunction]}
+              onView={[Function]}
+              popup={true}
+              selectable={false}
+              startAccessor={[Function]}
+              style={
+                Object {
+                  "height": "85vh",
+                }
+              }
+              timeslots={1}
+              titleAccessor={[Function]}
+              toolbar={false}
+              view="month"
+              views={
+                Array [
+                  "work_week",
+                  "month",
+                ]
+              }
             />
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -395,98 +483,122 @@ ShallowWrapper {
                 onViewChange={[Function]}
                 rightAction={[Function]}
                 rightDisabled={false}
-/>,
-              <Uncontrolled(Calendar)
+              />,
+              <ForwardRef
                 date={null}
                 endAccessor={[Function]}
                 eventPropGetter={[Function]}
                 events={
-                                Array [
-                                                Object {
-                                                  "bgColor": "white",
-                                                  "massage": Object {
-                                                    "client": null,
-                                                    "date": 1970-01-01T00:00:00.000Z,
-                                                    "ending": 1970-01-01T00:00:01.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 1,
-                                                    "masseuse": "test",
-                                                  },
-                                                },
-                                                Object {
-                                                  "bgColor": "black",
-                                                  "massage": Object {
-                                                    "client": Object {
-                                                      "sub": "test",
-                                                    },
-                                                    "date": 1970-01-01T00:00:01.000Z,
-                                                    "ending": 1970-01-01T00:00:02.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 2,
-                                                  },
-                                                },
-                                                Object {
-                                                  "bgColor": "yellow",
-                                                  "massage": Object {
-                                                    "client": Object {
-                                                      "sub": "test2",
-                                                    },
-                                                    "date": 1970-01-01T00:00:02.000Z,
-                                                    "ending": 1970-01-01T00:00:03.000Z,
-                                                    "facility": Object {
-                                                      "id": 1,
-                                                      "name": "test",
-                                                    },
-                                                    "id": 3,
-                                                  },
-                                                },
-                                              ]
+                  Array [
+                    Object {
+                      "bgColor": "white",
+                      "massage": Object {
+                        "client": null,
+                        "date": 1970-01-01T00:00:00.000Z,
+                        "ending": 1970-01-01T00:00:01.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 1,
+                        "masseuse": "test",
+                      },
+                    },
+                    Object {
+                      "bgColor": "black",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test",
+                        },
+                        "date": 1970-01-01T00:00:01.000Z,
+                        "ending": 1970-01-01T00:00:02.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 2,
+                      },
+                    },
+                    Object {
+                      "bgColor": "yellow",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test2",
+                        },
+                        "date": 1970-01-01T00:00:02.000Z,
+                        "ending": 1970-01-01T00:00:03.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 3,
+                      },
+                    },
+                  ]
+                }
+                localizer={
+                  DateLocalizer {
+                    "format": [Function],
+                    "formats": Object {
+                      "agendaDateFormat": "ddd MMM DD",
+                      "agendaHeaderFormat": [Function],
+                      "agendaTimeFormat": "LT",
+                      "agendaTimeRangeFormat": [Function],
+                      "dateFormat": "DD",
+                      "dayFormat": "DD ddd",
+                      "dayHeaderFormat": "dddd MMM DD",
+                      "dayRangeHeaderFormat": [Function],
+                      "eventTimeRangeEndFormat": [Function],
+                      "eventTimeRangeFormat": [Function],
+                      "eventTimeRangeStartFormat": [Function],
+                      "monthHeaderFormat": "MMMM YYYY",
+                      "selectRangeFormat": [Function],
+                      "timeGutterFormat": "LT",
+                      "weekdayFormat": "ddd",
+                    },
+                    "propType": [Function],
+                    "startOfWeek": [Function],
+                  }
                 }
                 max={2018-01-01T17:00:00.000Z}
                 messages={
-                                Object {
-                                                "allDay": "Celý den",
-                                                "date": "Datum",
-                                                "event": "Událost",
-                                                "month": "Měsíc",
-                                                "next": ">",
-                                                "previous": "<",
-                                                "showMore": [Function],
-                                                "time": "Čas",
-                                                "today": "Dnes",
-                                                "work_week": "Týden",
-                                              }
+                  Object {
+                    "allDay": "Celý den",
+                    "date": "Datum",
+                    "event": "Událost",
+                    "month": "Měsíc",
+                    "next": ">",
+                    "previous": "<",
+                    "showMore": [Function],
+                    "time": "Čas",
+                    "today": "Dnes",
+                    "work_week": "Týden",
+                  }
                 }
                 min={2018-01-01T07:30:00.000Z}
                 onNavigate={[Function]}
                 onSelectEvent={[Function]}
-                onSelectSlot={[Function]}
+                onSelectSlot={[MockFunction]}
                 onView={[Function]}
                 popup={true}
                 selectable={false}
                 startAccessor={[Function]}
                 style={
-                                Object {
-                                                "height": "85vh",
-                                              }
+                  Object {
+                    "height": "85vh",
+                  }
                 }
                 timeslots={1}
                 titleAccessor={[Function]}
                 toolbar={false}
                 view="month"
                 views={
-                                Array [
-                                                "work_week",
-                                                "month",
-                                              ]
+                  Array [
+                    "work_week",
+                    "month",
+                  ]
                 }
-/>,
+              />,
             ],
             "md": "12",
             "tag": "div",
@@ -520,7 +632,7 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
                 "date": null,
                 "endAccessor": [Function],
@@ -571,6 +683,28 @@ ShallowWrapper {
                     },
                   },
                 ],
+                "localizer": DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                },
                 "max": 2018-01-01T17:00:00.000Z,
                 "messages": Object {
                   "allDay": "Celý den",
@@ -587,7 +721,7 @@ ShallowWrapper {
                 "min": 2018-01-01T07:30:00.000Z,
                 "onNavigate": [Function],
                 "onSelectEvent": [Function],
-                "onSelectSlot": [Function],
+                "onSelectSlot": [MockFunction],
                 "onView": [Function],
                 "popup": true,
                 "selectable": false,
@@ -606,7 +740,42 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": null,
-              "type": [Function],
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "ControlledComponent": [Function],
+                "Navigate": Object {
+                  "DATE": "DATE",
+                  "NEXT": "NEXT",
+                  "PREVIOUS": "PREV",
+                  "TODAY": "TODAY",
+                },
+                "Views": Object {
+                  "AGENDA": "agenda",
+                  "DAY": "day",
+                  "MONTH": "month",
+                  "WEEK": "week",
+                  "WORK_WEEK": "work_week",
+                },
+                "components": Object {
+                  "dateCellWrapper": [Function],
+                  "dayWrapper": [Function],
+                  "eventWrapper": [Function],
+                },
+                "deferControlTo": [Function],
+                "globalizeLocalizer": [Function],
+                "momentLocalizer": [Function],
+                "move": [Function],
+                "propTypes": Object {
+                  "date": [Function],
+                  "defaultDate": [Function],
+                  "defaultSelected": [Function],
+                  "defaultView": [Function],
+                  "innerRef": [Function],
+                  "selected": [Function],
+                  "view": [Function],
+                },
+                "render": [Function],
+              },
             },
           ],
           "type": [Function],
@@ -622,55 +791,55 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             <strong>
-                        Legenda:
+              Legenda:
             </strong>
             <span
-                        style={
-                                    Object {
-                                                "backgroundColor": "#2fad2f",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
-                        }
+              style={
+                Object {
+                  "backgroundColor": "#2fad2f",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
             >
-                        Volná masáž
+              Volná masáž
             </span>
             <span
-                        style={
-                                    Object {
-                                                "backgroundColor": "#ee9d2a",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
-                        }
+              style={
+                Object {
+                  "backgroundColor": "#ee9d2a",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
             >
-                        Moje masáž
+              Moje masáž
             </span>
             <span
-                        style={
-                                    Object {
-                                                "backgroundColor": "#d10a14",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
-                        }
+              style={
+                Object {
+                  "backgroundColor": "#d10a14",
+                  "borderRadius": "4px",
+                  "marginLeft": "8px",
+                  "padding": "8px",
+                }
+              }
             >
-                        Přiřazená masáž
+              Přiřazená masáž
             </span>
-</Col>,
+          </Col>,
           "className": "text-center mt-3",
           "tag": "div",
         },
@@ -683,43 +852,43 @@ ShallowWrapper {
             "children": Array [
               <strong>
                 Legenda:
-</strong>,
+              </strong>,
               <span
                 style={
-                                Object {
-                                                "backgroundColor": "#2fad2f",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
+                  Object {
+                    "backgroundColor": "#2fad2f",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
                 }
->
+              >
                 Volná masáž
-</span>,
+              </span>,
               <span
                 style={
-                                Object {
-                                                "backgroundColor": "#ee9d2a",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
+                  Object {
+                    "backgroundColor": "#ee9d2a",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
                 }
->
+              >
                 Moje masáž
-</span>,
+              </span>,
               <span
                 style={
-                                Object {
-                                                "backgroundColor": "#d10a14",
-                                                "borderRadius": "4px",
-                                                "marginLeft": "8px",
-                                                "padding": "8px",
-                                              }
+                  Object {
+                    "backgroundColor": "#d10a14",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
                 }
->
+              >
                 Přiřazená masáž
-</span>,
+              </span>,
             ],
             "md": "12",
             "tag": "div",
@@ -813,180 +982,204 @@ ShallowWrapper {
         "children": Array [
           <Row
             tag="div"
->
+          >
             <Col
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <CalendarToolbar
-                                    leftAction={[Function]}
-                                    leftDisabled={false}
-                                    month="Invalid date"
-                                    monthActive={true}
-                                    onViewChange={[Function]}
-                                    rightAction={[Function]}
-                                    rightDisabled={false}
-                        />
-                        <Uncontrolled(Calendar)
-                                    date={null}
-                                    endAccessor={[Function]}
-                                    eventPropGetter={[Function]}
-                                    events={
-                                                Array [
-                                                            Object {
-                                                              "bgColor": "white",
-                                                              "massage": Object {
-                                                                "client": null,
-                                                                "date": 1970-01-01T00:00:00.000Z,
-                                                                "ending": 1970-01-01T00:00:01.000Z,
-                                                                "facility": Object {
-                                                                  "id": 1,
-                                                                  "name": "test",
-                                                                },
-                                                                "id": 1,
-                                                                "masseuse": "test",
-                                                              },
-                                                            },
-                                                            Object {
-                                                              "bgColor": "black",
-                                                              "massage": Object {
-                                                                "client": Object {
-                                                                  "sub": "test",
-                                                                },
-                                                                "date": 1970-01-01T00:00:01.000Z,
-                                                                "ending": 1970-01-01T00:00:02.000Z,
-                                                                "facility": Object {
-                                                                  "id": 1,
-                                                                  "name": "test",
-                                                                },
-                                                                "id": 2,
-                                                              },
-                                                            },
-                                                            Object {
-                                                              "bgColor": "yellow",
-                                                              "massage": Object {
-                                                                "client": Object {
-                                                                  "sub": "test2",
-                                                                },
-                                                                "date": 1970-01-01T00:00:02.000Z,
-                                                                "ending": 1970-01-01T00:00:03.000Z,
-                                                                "facility": Object {
-                                                                  "id": 1,
-                                                                  "name": "test",
-                                                                },
-                                                                "id": 3,
-                                                              },
-                                                            },
-                                                          ]
-                                    }
-                                    max={2018-01-01T17:00:00.000Z}
-                                    messages={
-                                                Object {
-                                                            "allDay": "Celý den",
-                                                            "date": "Datum",
-                                                            "event": "Událost",
-                                                            "month": "Měsíc",
-                                                            "next": ">",
-                                                            "previous": "<",
-                                                            "showMore": [Function],
-                                                            "time": "Čas",
-                                                            "today": "Dnes",
-                                                            "work_week": "Týden",
-                                                          }
-                                    }
-                                    min={2018-01-01T07:30:00.000Z}
-                                    onNavigate={[Function]}
-                                    onSelectEvent={[Function]}
-                                    onSelectSlot={[Function]}
-                                    onView={[Function]}
-                                    popup={true}
-                                    selectable={false}
-                                    startAccessor={[Function]}
-                                    style={
-                                                Object {
-                                                            "height": "85vh",
-                                                          }
-                                    }
-                                    timeslots={1}
-                                    titleAccessor={[Function]}
-                                    toolbar={false}
-                                    view="month"
-                                    views={
-                                                Array [
-                                                            "work_week",
-                                                            "month",
-                                                          ]
-                                    }
-                        />
+              <CalendarToolbar
+                leftAction={[Function]}
+                leftDisabled={false}
+                month="Invalid date"
+                monthActive={true}
+                onViewChange={[Function]}
+                rightAction={[Function]}
+                rightDisabled={false}
+              />
+              <ForwardRef
+                date={null}
+                endAccessor={[Function]}
+                eventPropGetter={[Function]}
+                events={
+                  Array [
+                    Object {
+                      "bgColor": "white",
+                      "massage": Object {
+                        "client": null,
+                        "date": 1970-01-01T00:00:00.000Z,
+                        "ending": 1970-01-01T00:00:01.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 1,
+                        "masseuse": "test",
+                      },
+                    },
+                    Object {
+                      "bgColor": "black",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test",
+                        },
+                        "date": 1970-01-01T00:00:01.000Z,
+                        "ending": 1970-01-01T00:00:02.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 2,
+                      },
+                    },
+                    Object {
+                      "bgColor": "yellow",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test2",
+                        },
+                        "date": 1970-01-01T00:00:02.000Z,
+                        "ending": 1970-01-01T00:00:03.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 3,
+                      },
+                    },
+                  ]
+                }
+                localizer={
+                  DateLocalizer {
+                    "format": [Function],
+                    "formats": Object {
+                      "agendaDateFormat": "ddd MMM DD",
+                      "agendaHeaderFormat": [Function],
+                      "agendaTimeFormat": "LT",
+                      "agendaTimeRangeFormat": [Function],
+                      "dateFormat": "DD",
+                      "dayFormat": "DD ddd",
+                      "dayHeaderFormat": "dddd MMM DD",
+                      "dayRangeHeaderFormat": [Function],
+                      "eventTimeRangeEndFormat": [Function],
+                      "eventTimeRangeFormat": [Function],
+                      "eventTimeRangeStartFormat": [Function],
+                      "monthHeaderFormat": "MMMM YYYY",
+                      "selectRangeFormat": [Function],
+                      "timeGutterFormat": "LT",
+                      "weekdayFormat": "ddd",
+                    },
+                    "propType": [Function],
+                    "startOfWeek": [Function],
+                  }
+                }
+                max={2018-01-01T17:00:00.000Z}
+                messages={
+                  Object {
+                    "allDay": "Celý den",
+                    "date": "Datum",
+                    "event": "Událost",
+                    "month": "Měsíc",
+                    "next": ">",
+                    "previous": "<",
+                    "showMore": [Function],
+                    "time": "Čas",
+                    "today": "Dnes",
+                    "work_week": "Týden",
+                  }
+                }
+                min={2018-01-01T07:30:00.000Z}
+                onNavigate={[Function]}
+                onSelectEvent={[Function]}
+                onSelectSlot={[MockFunction]}
+                onView={[Function]}
+                popup={true}
+                selectable={false}
+                startAccessor={[Function]}
+                style={
+                  Object {
+                    "height": "85vh",
+                  }
+                }
+                timeslots={1}
+                titleAccessor={[Function]}
+                toolbar={false}
+                view="month"
+                views={
+                  Array [
+                    "work_week",
+                    "month",
+                  ]
+                }
+              />
             </Col>
-</Row>,
+          </Row>,
           <Row
             className="text-center mt-3"
             tag="div"
->
+          >
             <Col
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <strong>
-                                    Legenda:
-                        </strong>
-                        <span
-                                    style={
-                                                Object {
-                                                            "backgroundColor": "#2fad2f",
-                                                            "borderRadius": "4px",
-                                                            "marginLeft": "8px",
-                                                            "padding": "8px",
-                                                          }
-                                    }
-                        >
-                                    Volná masáž
-                        </span>
-                        <span
-                                    style={
-                                                Object {
-                                                            "backgroundColor": "#ee9d2a",
-                                                            "borderRadius": "4px",
-                                                            "marginLeft": "8px",
-                                                            "padding": "8px",
-                                                          }
-                                    }
-                        >
-                                    Moje masáž
-                        </span>
-                        <span
-                                    style={
-                                                Object {
-                                                            "backgroundColor": "#d10a14",
-                                                            "borderRadius": "4px",
-                                                            "marginLeft": "8px",
-                                                            "padding": "8px",
-                                                          }
-                                    }
-                        >
-                                    Přiřazená masáž
-                        </span>
+              <strong>
+                Legenda:
+              </strong>
+              <span
+                style={
+                  Object {
+                    "backgroundColor": "#2fad2f",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
+              >
+                Volná masáž
+              </span>
+              <span
+                style={
+                  Object {
+                    "backgroundColor": "#ee9d2a",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
+              >
+                Moje masáž
+              </span>
+              <span
+                style={
+                  Object {
+                    "backgroundColor": "#d10a14",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
+              >
+                Přiřazená masáž
+              </span>
             </Col>
-</Row>,
+          </Row>,
           false,
         ],
         "className": "mb-3",
@@ -1002,116 +1195,140 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <CalendarToolbar
-                            leftAction={[Function]}
-                            leftDisabled={false}
-                            month="Invalid date"
-                            monthActive={true}
-                            onViewChange={[Function]}
-                            rightAction={[Function]}
-                            rightDisabled={false}
+                leftAction={[Function]}
+                leftDisabled={false}
+                month="Invalid date"
+                monthActive={true}
+                onViewChange={[Function]}
+                rightAction={[Function]}
+                rightDisabled={false}
               />
-              <Uncontrolled(Calendar)
-                            date={null}
-                            endAccessor={[Function]}
-                            eventPropGetter={[Function]}
-                            events={
-                                          Array [
-                                                        Object {
-                                                          "bgColor": "white",
-                                                          "massage": Object {
-                                                            "client": null,
-                                                            "date": 1970-01-01T00:00:00.000Z,
-                                                            "ending": 1970-01-01T00:00:01.000Z,
-                                                            "facility": Object {
-                                                              "id": 1,
-                                                              "name": "test",
-                                                            },
-                                                            "id": 1,
-                                                            "masseuse": "test",
-                                                          },
-                                                        },
-                                                        Object {
-                                                          "bgColor": "black",
-                                                          "massage": Object {
-                                                            "client": Object {
-                                                              "sub": "test",
-                                                            },
-                                                            "date": 1970-01-01T00:00:01.000Z,
-                                                            "ending": 1970-01-01T00:00:02.000Z,
-                                                            "facility": Object {
-                                                              "id": 1,
-                                                              "name": "test",
-                                                            },
-                                                            "id": 2,
-                                                          },
-                                                        },
-                                                        Object {
-                                                          "bgColor": "yellow",
-                                                          "massage": Object {
-                                                            "client": Object {
-                                                              "sub": "test2",
-                                                            },
-                                                            "date": 1970-01-01T00:00:02.000Z,
-                                                            "ending": 1970-01-01T00:00:03.000Z,
-                                                            "facility": Object {
-                                                              "id": 1,
-                                                              "name": "test",
-                                                            },
-                                                            "id": 3,
-                                                          },
-                                                        },
-                                                      ]
-                            }
-                            max={2018-01-01T17:00:00.000Z}
-                            messages={
-                                          Object {
-                                                        "allDay": "Celý den",
-                                                        "date": "Datum",
-                                                        "event": "Událost",
-                                                        "month": "Měsíc",
-                                                        "next": ">",
-                                                        "previous": "<",
-                                                        "showMore": [Function],
-                                                        "time": "Čas",
-                                                        "today": "Dnes",
-                                                        "work_week": "Týden",
-                                                      }
-                            }
-                            min={2018-01-01T07:30:00.000Z}
-                            onNavigate={[Function]}
-                            onSelectEvent={[Function]}
-                            onSelectSlot={[Function]}
-                            onView={[Function]}
-                            popup={true}
-                            selectable={false}
-                            startAccessor={[Function]}
-                            style={
-                                          Object {
-                                                        "height": "85vh",
-                                                      }
-                            }
-                            timeslots={1}
-                            titleAccessor={[Function]}
-                            toolbar={false}
-                            view="month"
-                            views={
-                                          Array [
-                                                        "work_week",
-                                                        "month",
-                                                      ]
-                            }
+              <ForwardRef
+                date={null}
+                endAccessor={[Function]}
+                eventPropGetter={[Function]}
+                events={
+                  Array [
+                    Object {
+                      "bgColor": "white",
+                      "massage": Object {
+                        "client": null,
+                        "date": 1970-01-01T00:00:00.000Z,
+                        "ending": 1970-01-01T00:00:01.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 1,
+                        "masseuse": "test",
+                      },
+                    },
+                    Object {
+                      "bgColor": "black",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test",
+                        },
+                        "date": 1970-01-01T00:00:01.000Z,
+                        "ending": 1970-01-01T00:00:02.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 2,
+                      },
+                    },
+                    Object {
+                      "bgColor": "yellow",
+                      "massage": Object {
+                        "client": Object {
+                          "sub": "test2",
+                        },
+                        "date": 1970-01-01T00:00:02.000Z,
+                        "ending": 1970-01-01T00:00:03.000Z,
+                        "facility": Object {
+                          "id": 1,
+                          "name": "test",
+                        },
+                        "id": 3,
+                      },
+                    },
+                  ]
+                }
+                localizer={
+                  DateLocalizer {
+                    "format": [Function],
+                    "formats": Object {
+                      "agendaDateFormat": "ddd MMM DD",
+                      "agendaHeaderFormat": [Function],
+                      "agendaTimeFormat": "LT",
+                      "agendaTimeRangeFormat": [Function],
+                      "dateFormat": "DD",
+                      "dayFormat": "DD ddd",
+                      "dayHeaderFormat": "dddd MMM DD",
+                      "dayRangeHeaderFormat": [Function],
+                      "eventTimeRangeEndFormat": [Function],
+                      "eventTimeRangeFormat": [Function],
+                      "eventTimeRangeStartFormat": [Function],
+                      "monthHeaderFormat": "MMMM YYYY",
+                      "selectRangeFormat": [Function],
+                      "timeGutterFormat": "LT",
+                      "weekdayFormat": "ddd",
+                    },
+                    "propType": [Function],
+                    "startOfWeek": [Function],
+                  }
+                }
+                max={2018-01-01T17:00:00.000Z}
+                messages={
+                  Object {
+                    "allDay": "Celý den",
+                    "date": "Datum",
+                    "event": "Událost",
+                    "month": "Měsíc",
+                    "next": ">",
+                    "previous": "<",
+                    "showMore": [Function],
+                    "time": "Čas",
+                    "today": "Dnes",
+                    "work_week": "Týden",
+                  }
+                }
+                min={2018-01-01T07:30:00.000Z}
+                onNavigate={[Function]}
+                onSelectEvent={[Function]}
+                onSelectSlot={[MockFunction]}
+                onView={[Function]}
+                popup={true}
+                selectable={false}
+                startAccessor={[Function]}
+                style={
+                  Object {
+                    "height": "85vh",
+                  }
+                }
+                timeslots={1}
+                titleAccessor={[Function]}
+                toolbar={false}
+                view="month"
+                views={
+                  Array [
+                    "work_week",
+                    "month",
+                  ]
+                }
               />
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -1129,98 +1346,122 @@ ShallowWrapper {
                   onViewChange={[Function]}
                   rightAction={[Function]}
                   rightDisabled={false}
-/>,
-                <Uncontrolled(Calendar)
+                />,
+                <ForwardRef
                   date={null}
                   endAccessor={[Function]}
                   eventPropGetter={[Function]}
                   events={
-                                    Array [
-                                                      Object {
-                                                        "bgColor": "white",
-                                                        "massage": Object {
-                                                          "client": null,
-                                                          "date": 1970-01-01T00:00:00.000Z,
-                                                          "ending": 1970-01-01T00:00:01.000Z,
-                                                          "facility": Object {
-                                                            "id": 1,
-                                                            "name": "test",
-                                                          },
-                                                          "id": 1,
-                                                          "masseuse": "test",
-                                                        },
-                                                      },
-                                                      Object {
-                                                        "bgColor": "black",
-                                                        "massage": Object {
-                                                          "client": Object {
-                                                            "sub": "test",
-                                                          },
-                                                          "date": 1970-01-01T00:00:01.000Z,
-                                                          "ending": 1970-01-01T00:00:02.000Z,
-                                                          "facility": Object {
-                                                            "id": 1,
-                                                            "name": "test",
-                                                          },
-                                                          "id": 2,
-                                                        },
-                                                      },
-                                                      Object {
-                                                        "bgColor": "yellow",
-                                                        "massage": Object {
-                                                          "client": Object {
-                                                            "sub": "test2",
-                                                          },
-                                                          "date": 1970-01-01T00:00:02.000Z,
-                                                          "ending": 1970-01-01T00:00:03.000Z,
-                                                          "facility": Object {
-                                                            "id": 1,
-                                                            "name": "test",
-                                                          },
-                                                          "id": 3,
-                                                        },
-                                                      },
-                                                    ]
+                    Array [
+                      Object {
+                        "bgColor": "white",
+                        "massage": Object {
+                          "client": null,
+                          "date": 1970-01-01T00:00:00.000Z,
+                          "ending": 1970-01-01T00:00:01.000Z,
+                          "facility": Object {
+                            "id": 1,
+                            "name": "test",
+                          },
+                          "id": 1,
+                          "masseuse": "test",
+                        },
+                      },
+                      Object {
+                        "bgColor": "black",
+                        "massage": Object {
+                          "client": Object {
+                            "sub": "test",
+                          },
+                          "date": 1970-01-01T00:00:01.000Z,
+                          "ending": 1970-01-01T00:00:02.000Z,
+                          "facility": Object {
+                            "id": 1,
+                            "name": "test",
+                          },
+                          "id": 2,
+                        },
+                      },
+                      Object {
+                        "bgColor": "yellow",
+                        "massage": Object {
+                          "client": Object {
+                            "sub": "test2",
+                          },
+                          "date": 1970-01-01T00:00:02.000Z,
+                          "ending": 1970-01-01T00:00:03.000Z,
+                          "facility": Object {
+                            "id": 1,
+                            "name": "test",
+                          },
+                          "id": 3,
+                        },
+                      },
+                    ]
+                  }
+                  localizer={
+                    DateLocalizer {
+                      "format": [Function],
+                      "formats": Object {
+                        "agendaDateFormat": "ddd MMM DD",
+                        "agendaHeaderFormat": [Function],
+                        "agendaTimeFormat": "LT",
+                        "agendaTimeRangeFormat": [Function],
+                        "dateFormat": "DD",
+                        "dayFormat": "DD ddd",
+                        "dayHeaderFormat": "dddd MMM DD",
+                        "dayRangeHeaderFormat": [Function],
+                        "eventTimeRangeEndFormat": [Function],
+                        "eventTimeRangeFormat": [Function],
+                        "eventTimeRangeStartFormat": [Function],
+                        "monthHeaderFormat": "MMMM YYYY",
+                        "selectRangeFormat": [Function],
+                        "timeGutterFormat": "LT",
+                        "weekdayFormat": "ddd",
+                      },
+                      "propType": [Function],
+                      "startOfWeek": [Function],
+                    }
                   }
                   max={2018-01-01T17:00:00.000Z}
                   messages={
-                                    Object {
-                                                      "allDay": "Celý den",
-                                                      "date": "Datum",
-                                                      "event": "Událost",
-                                                      "month": "Měsíc",
-                                                      "next": ">",
-                                                      "previous": "<",
-                                                      "showMore": [Function],
-                                                      "time": "Čas",
-                                                      "today": "Dnes",
-                                                      "work_week": "Týden",
-                                                    }
+                    Object {
+                      "allDay": "Celý den",
+                      "date": "Datum",
+                      "event": "Událost",
+                      "month": "Měsíc",
+                      "next": ">",
+                      "previous": "<",
+                      "showMore": [Function],
+                      "time": "Čas",
+                      "today": "Dnes",
+                      "work_week": "Týden",
+                    }
                   }
                   min={2018-01-01T07:30:00.000Z}
                   onNavigate={[Function]}
                   onSelectEvent={[Function]}
-                  onSelectSlot={[Function]}
+                  onSelectSlot={[MockFunction]}
                   onView={[Function]}
                   popup={true}
                   selectable={false}
                   startAccessor={[Function]}
                   style={
-                                    Object {
-                                                      "height": "85vh",
-                                                    }
+                    Object {
+                      "height": "85vh",
+                    }
                   }
                   timeslots={1}
                   titleAccessor={[Function]}
                   toolbar={false}
                   view="month"
                   views={
-                                    Array [
-                                                      "work_week",
-                                                      "month",
-                                                    ]
+                    Array [
+                      "work_week",
+                      "month",
+                    ]
                   }
-/>,
+                />,
               ],
               "md": "12",
               "tag": "div",
@@ -1254,7 +1495,7 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
                   "date": null,
                   "endAccessor": [Function],
@@ -1305,6 +1546,28 @@ ShallowWrapper {
                       },
                     },
                   ],
+                  "localizer": DateLocalizer {
+                    "format": [Function],
+                    "formats": Object {
+                      "agendaDateFormat": "ddd MMM DD",
+                      "agendaHeaderFormat": [Function],
+                      "agendaTimeFormat": "LT",
+                      "agendaTimeRangeFormat": [Function],
+                      "dateFormat": "DD",
+                      "dayFormat": "DD ddd",
+                      "dayHeaderFormat": "dddd MMM DD",
+                      "dayRangeHeaderFormat": [Function],
+                      "eventTimeRangeEndFormat": [Function],
+                      "eventTimeRangeFormat": [Function],
+                      "eventTimeRangeStartFormat": [Function],
+                      "monthHeaderFormat": "MMMM YYYY",
+                      "selectRangeFormat": [Function],
+                      "timeGutterFormat": "LT",
+                      "weekdayFormat": "ddd",
+                    },
+                    "propType": [Function],
+                    "startOfWeek": [Function],
+                  },
                   "max": 2018-01-01T17:00:00.000Z,
                   "messages": Object {
                     "allDay": "Celý den",
@@ -1321,7 +1584,7 @@ ShallowWrapper {
                   "min": 2018-01-01T07:30:00.000Z,
                   "onNavigate": [Function],
                   "onSelectEvent": [Function],
-                  "onSelectSlot": [Function],
+                  "onSelectSlot": [MockFunction],
                   "onView": [Function],
                   "popup": true,
                   "selectable": false,
@@ -1340,7 +1603,42 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": null,
-                "type": [Function],
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "ControlledComponent": [Function],
+                  "Navigate": Object {
+                    "DATE": "DATE",
+                    "NEXT": "NEXT",
+                    "PREVIOUS": "PREV",
+                    "TODAY": "TODAY",
+                  },
+                  "Views": Object {
+                    "AGENDA": "agenda",
+                    "DAY": "day",
+                    "MONTH": "month",
+                    "WEEK": "week",
+                    "WORK_WEEK": "work_week",
+                  },
+                  "components": Object {
+                    "dateCellWrapper": [Function],
+                    "dayWrapper": [Function],
+                    "eventWrapper": [Function],
+                  },
+                  "deferControlTo": [Function],
+                  "globalizeLocalizer": [Function],
+                  "momentLocalizer": [Function],
+                  "move": [Function],
+                  "propTypes": Object {
+                    "date": [Function],
+                    "defaultDate": [Function],
+                    "defaultSelected": [Function],
+                    "defaultView": [Function],
+                    "innerRef": [Function],
+                    "selected": [Function],
+                    "view": [Function],
+                  },
+                  "render": [Function],
+                },
               },
             ],
             "type": [Function],
@@ -1356,55 +1654,55 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <strong>
-                            Legenda:
+                Legenda:
               </strong>
               <span
-                            style={
-                                          Object {
-                                                        "backgroundColor": "#2fad2f",
-                                                        "borderRadius": "4px",
-                                                        "marginLeft": "8px",
-                                                        "padding": "8px",
-                                                      }
-                            }
+                style={
+                  Object {
+                    "backgroundColor": "#2fad2f",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
               >
-                            Volná masáž
+                Volná masáž
               </span>
               <span
-                            style={
-                                          Object {
-                                                        "backgroundColor": "#ee9d2a",
-                                                        "borderRadius": "4px",
-                                                        "marginLeft": "8px",
-                                                        "padding": "8px",
-                                                      }
-                            }
+                style={
+                  Object {
+                    "backgroundColor": "#ee9d2a",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
               >
-                            Moje masáž
+                Moje masáž
               </span>
               <span
-                            style={
-                                          Object {
-                                                        "backgroundColor": "#d10a14",
-                                                        "borderRadius": "4px",
-                                                        "marginLeft": "8px",
-                                                        "padding": "8px",
-                                                      }
-                            }
+                style={
+                  Object {
+                    "backgroundColor": "#d10a14",
+                    "borderRadius": "4px",
+                    "marginLeft": "8px",
+                    "padding": "8px",
+                  }
+                }
               >
-                            Přiřazená masáž
+                Přiřazená masáž
               </span>
-</Col>,
+            </Col>,
             "className": "text-center mt-3",
             "tag": "div",
           },
@@ -1417,43 +1715,43 @@ ShallowWrapper {
               "children": Array [
                 <strong>
                   Legenda:
-</strong>,
+                </strong>,
                 <span
                   style={
-                                    Object {
-                                                      "backgroundColor": "#2fad2f",
-                                                      "borderRadius": "4px",
-                                                      "marginLeft": "8px",
-                                                      "padding": "8px",
-                                                    }
+                    Object {
+                      "backgroundColor": "#2fad2f",
+                      "borderRadius": "4px",
+                      "marginLeft": "8px",
+                      "padding": "8px",
+                    }
                   }
->
+                >
                   Volná masáž
-</span>,
+                </span>,
                 <span
                   style={
-                                    Object {
-                                                      "backgroundColor": "#ee9d2a",
-                                                      "borderRadius": "4px",
-                                                      "marginLeft": "8px",
-                                                      "padding": "8px",
-                                                    }
+                    Object {
+                      "backgroundColor": "#ee9d2a",
+                      "borderRadius": "4px",
+                      "marginLeft": "8px",
+                      "padding": "8px",
+                    }
                   }
->
+                >
                   Moje masáž
-</span>,
+                </span>,
                 <span
                   style={
-                                    Object {
-                                                      "backgroundColor": "#d10a14",
-                                                      "borderRadius": "4px",
-                                                      "marginLeft": "8px",
-                                                      "padding": "8px",
-                                                    }
+                    Object {
+                      "backgroundColor": "#d10a14",
+                      "borderRadius": "4px",
+                      "marginLeft": "8px",
+                      "padding": "8px",
+                    }
                   }
->
+                >
                   Přiřazená masáž
-</span>,
+                </span>,
               ],
               "md": "12",
               "tag": "div",
@@ -1555,8 +1853,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

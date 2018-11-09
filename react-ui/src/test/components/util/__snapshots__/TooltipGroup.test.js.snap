@@ -5,22 +5,23 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TooltipGroup
     labels={
-        Array [
-            "test1",
-            "test2",
-          ]
+      Array [
+        "test1",
+        "test2",
+      ]
     }
     targets={
-        Array [
-            "target1",
-            "target2",
-          ]
+      Array [
+        "target1",
+        "target2",
+      ]
     }
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -33,10 +34,10 @@ ShallowWrapper {
         <Tooltip
           autohide={true}
           delay={
-                    Object {
-                              "hide": 250,
-                              "show": 0,
-                            }
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
           }
           hideArrow={false}
           isOpen={false}
@@ -45,16 +46,16 @@ ShallowWrapper {
           target="target1"
           toggle={[Function]}
           trigger="hover"
->
+        >
           test1
-</Tooltip>,
+        </Tooltip>,
         <Tooltip
           autohide={true}
           delay={
-                    Object {
-                              "hide": 250,
-                              "show": 0,
-                            }
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
           }
           hideArrow={false}
           isOpen={false}
@@ -63,9 +64,9 @@ ShallowWrapper {
           target="target2"
           toggle={[Function]}
           trigger="hover"
->
+        >
           test2
-</Tooltip>,
+        </Tooltip>,
       ],
       "className": "no-print",
     },
@@ -130,10 +131,10 @@ ShallowWrapper {
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -142,16 +143,16 @@ ShallowWrapper {
             target="target1"
             toggle={[Function]}
             trigger="hover"
->
+          >
             test1
-</Tooltip>,
+          </Tooltip>,
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -160,9 +161,9 @@ ShallowWrapper {
             target="target2"
             toggle={[Function]}
             trigger="hover"
->
+          >
             test2
-</Tooltip>,
+          </Tooltip>,
         ],
         "className": "no-print",
       },
@@ -234,8 +235,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

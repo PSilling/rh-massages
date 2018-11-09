@@ -4,18 +4,40 @@ exports[`renders content with correct props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CalendarToolbar
-    leftAction={[Function]}
+    leftAction={[MockFunction]}
     leftDisabled={false}
     month="test"
     monthActive={true}
-    onViewChange={[Function]}
-    rightAction={[Function]}
+    onViewChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "work_week",
+          ],
+          Array [
+            "month",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "work_week",
+          },
+          Object {
+            "isThrow": false,
+            "value": "month",
+          },
+        ],
+      }
+    }
+    rightAction={[MockFunction]}
     rightDisabled={true}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -27,139 +49,139 @@ ShallowWrapper {
       "children": Array [
         <Row
           tag="div"
->
+        >
           <Col
-                    className="text-center"
-                    md="12"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            className="text-center"
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <strong>
-                              test
-                    </strong>
+            <strong>
+              test
+            </strong>
           </Col>
-</Row>,
+        </Row>,
         <Row
           className="mb-3"
           tag="div"
->
+        >
           <Col
-                    md="1"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            md="1"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <TooltipIconButton
-                              disabled={false}
-                              icon="chevron-circle-left"
-                              onClick={[Function]}
-                              size="md"
-                              style={
-                                        Object {
-                                                  "border": "0px solid transparent",
-                                                }
-                              }
-                              tooltip="Předchozí měsíc"
-                    />
+            <TooltipIconButton
+              disabled={false}
+              icon="chevron-circle-left"
+              onClick={[MockFunction]}
+              size="md"
+              style={
+                Object {
+                  "border": "0px solid transparent",
+                }
+              }
+              tooltip="Předchozí měsíc"
+            />
           </Col>
           <Col
-                    className="text-center"
-                    md="10"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            className="text-center"
+            md="10"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <ButtonGroup
-                              role="group"
-                              tag="div"
-                    >
-                              <Button
-                                        active={false}
-                                        className="ml-2"
-                                        color="secondary"
-                                        id="Tooltip1"
-                                        onClick={[Function]}
-                                        outline={true}
-                                        tag="button"
-                              >
-                                        Týden
-                              </Button>
-                              <Button
-                                        active={true}
-                                        color="secondary"
-                                        id="Tooltip2"
-                                        onClick={[Function]}
-                                        outline={true}
-                                        tag="button"
-                              >
-                                        Měsíc
-                              </Button>
-                    </ButtonGroup>
-                    <TooltipGroup
-                              labels={
-                                        Array [
-                                                  "Zobrazit po týdnech",
-                                                  "Zobrazit po měsících",
-                                                ]
-                              }
-                              targets={
-                                        Array [
-                                                  "Tooltip1",
-                                                  "Tooltip2",
-                                                ]
-                              }
-                    />
+            <ButtonGroup
+              role="group"
+              tag="div"
+            >
+              <Button
+                active={false}
+                className="ml-2"
+                color="secondary"
+                id="Tooltip1"
+                onClick={[Function]}
+                outline={true}
+                tag="button"
+              >
+                Týden
+              </Button>
+              <Button
+                active={true}
+                color="secondary"
+                id="Tooltip2"
+                onClick={[Function]}
+                outline={true}
+                tag="button"
+              >
+                Měsíc
+              </Button>
+            </ButtonGroup>
+            <TooltipGroup
+              labels={
+                Array [
+                  "Zobrazit po týdnech",
+                  "Zobrazit po měsících",
+                ]
+              }
+              targets={
+                Array [
+                  "Tooltip1",
+                  "Tooltip2",
+                ]
+              }
+            />
           </Col>
           <Col
-                    className="text-right"
-                    md="1"
-                    tag="div"
-                    widths={
-                              Array [
-                                        "xs",
-                                        "sm",
-                                        "md",
-                                        "lg",
-                                        "xl",
-                                      ]
-                    }
+            className="text-right"
+            md="1"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
           >
-                    <TooltipIconButton
-                              disabled={true}
-                              icon="chevron-circle-right"
-                              onClick={[Function]}
-                              size="md"
-                              style={
-                                        Object {
-                                                  "border": "0px solid transparent",
-                                                }
-                              }
-                              tooltip="Nadcházející měsíc"
-                    />
+            <TooltipIconButton
+              disabled={true}
+              icon="chevron-circle-right"
+              onClick={[MockFunction]}
+              size="md"
+              style={
+                Object {
+                  "border": "0px solid transparent",
+                }
+              }
+              tooltip="Nadcházející měsíc"
+            />
           </Col>
-</Row>,
+        </Row>,
       ],
     },
     "ref": null,
@@ -174,19 +196,19 @@ ShallowWrapper {
             md="12"
             tag="div"
             widths={
-                        Array [
-                                    "xs",
-                                    "sm",
-                                    "md",
-                                    "lg",
-                                    "xl",
-                                  ]
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
             }
->
+          >
             <strong>
-                        test
+              test
             </strong>
-</Col>,
+          </Col>,
           "tag": "div",
         },
         "ref": null,
@@ -197,7 +219,7 @@ ShallowWrapper {
           "props": Object {
             "children": <strong>
               test
-</strong>,
+            </strong>,
             "className": "text-center",
             "md": "12",
             "tag": "div",
@@ -235,110 +257,110 @@ ShallowWrapper {
               md="1"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <TooltipIconButton
-                            disabled={false}
-                            icon="chevron-circle-left"
-                            onClick={[Function]}
-                            size="md"
-                            style={
-                                          Object {
-                                                        "border": "0px solid transparent",
-                                                      }
-                            }
-                            tooltip="Předchozí měsíc"
+                disabled={false}
+                icon="chevron-circle-left"
+                onClick={[MockFunction]}
+                size="md"
+                style={
+                  Object {
+                    "border": "0px solid transparent",
+                  }
+                }
+                tooltip="Předchozí měsíc"
               />
-</Col>,
+            </Col>,
             <Col
               className="text-center"
               md="10"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <ButtonGroup
-                            role="group"
-                            tag="div"
+                role="group"
+                tag="div"
               >
-                            <Button
-                                          active={false}
-                                          className="ml-2"
-                                          color="secondary"
-                                          id="Tooltip1"
-                                          onClick={[Function]}
-                                          outline={true}
-                                          tag="button"
-                            >
-                                          Týden
-                            </Button>
-                            <Button
-                                          active={true}
-                                          color="secondary"
-                                          id="Tooltip2"
-                                          onClick={[Function]}
-                                          outline={true}
-                                          tag="button"
-                            >
-                                          Měsíc
-                            </Button>
+                <Button
+                  active={false}
+                  className="ml-2"
+                  color="secondary"
+                  id="Tooltip1"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
+                >
+                  Týden
+                </Button>
+                <Button
+                  active={true}
+                  color="secondary"
+                  id="Tooltip2"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
+                >
+                  Měsíc
+                </Button>
               </ButtonGroup>
               <TooltipGroup
-                            labels={
-                                          Array [
-                                                        "Zobrazit po týdnech",
-                                                        "Zobrazit po měsících",
-                                                      ]
-                            }
-                            targets={
-                                          Array [
-                                                        "Tooltip1",
-                                                        "Tooltip2",
-                                                      ]
-                            }
+                labels={
+                  Array [
+                    "Zobrazit po týdnech",
+                    "Zobrazit po měsících",
+                  ]
+                }
+                targets={
+                  Array [
+                    "Tooltip1",
+                    "Tooltip2",
+                  ]
+                }
               />
-</Col>,
+            </Col>,
             <Col
               className="text-right"
               md="1"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <TooltipIconButton
-                            disabled={true}
-                            icon="chevron-circle-right"
-                            onClick={[Function]}
-                            size="md"
-                            style={
-                                          Object {
-                                                        "border": "0px solid transparent",
-                                                      }
-                            }
-                            tooltip="Nadcházející měsíc"
+                disabled={true}
+                icon="chevron-circle-right"
+                onClick={[MockFunction]}
+                size="md"
+                style={
+                  Object {
+                    "border": "0px solid transparent",
+                  }
+                }
+                tooltip="Nadcházející měsíc"
               />
-</Col>,
+            </Col>,
           ],
           "className": "mb-3",
           "tag": "div",
@@ -353,15 +375,15 @@ ShallowWrapper {
               "children": <TooltipIconButton
                 disabled={false}
                 icon="chevron-circle-left"
-                onClick={[Function]}
+                onClick={[MockFunction]}
                 size="md"
                 style={
-                                Object {
-                                                "border": "0px solid transparent",
-                                              }
+                  Object {
+                    "border": "0px solid transparent",
+                  }
                 }
                 tooltip="Předchozí měsíc"
-/>,
+              />,
               "md": "1",
               "tag": "div",
               "widths": Array [
@@ -380,7 +402,7 @@ ShallowWrapper {
               "props": Object {
                 "disabled": false,
                 "icon": "chevron-circle-left",
-                "onClick": [Function],
+                "onClick": [MockFunction],
                 "size": "md",
                 "style": Object {
                   "border": "0px solid transparent",
@@ -402,43 +424,43 @@ ShallowWrapper {
                 <ButtonGroup
                   role="group"
                   tag="div"
->
+                >
                   <Button
-                                    active={false}
-                                    className="ml-2"
-                                    color="secondary"
-                                    id="Tooltip1"
-                                    onClick={[Function]}
-                                    outline={true}
-                                    tag="button"
+                    active={false}
+                    className="ml-2"
+                    color="secondary"
+                    id="Tooltip1"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
                   >
-                                    Týden
+                    Týden
                   </Button>
                   <Button
-                                    active={true}
-                                    color="secondary"
-                                    id="Tooltip2"
-                                    onClick={[Function]}
-                                    outline={true}
-                                    tag="button"
+                    active={true}
+                    color="secondary"
+                    id="Tooltip2"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
                   >
-                                    Měsíc
+                    Měsíc
                   </Button>
-</ButtonGroup>,
+                </ButtonGroup>,
                 <TooltipGroup
                   labels={
-                                    Array [
-                                                      "Zobrazit po týdnech",
-                                                      "Zobrazit po měsících",
-                                                    ]
+                    Array [
+                      "Zobrazit po týdnech",
+                      "Zobrazit po měsících",
+                    ]
                   }
                   targets={
-                                    Array [
-                                                      "Tooltip1",
-                                                      "Tooltip2",
-                                                    ]
+                    Array [
+                      "Tooltip1",
+                      "Tooltip2",
+                    ]
                   }
-/>,
+                />,
               ],
               "className": "text-center",
               "md": "10",
@@ -467,9 +489,9 @@ ShallowWrapper {
                       onClick={[Function]}
                       outline={true}
                       tag="button"
->
+                    >
                       Týden
-</Button>,
+                    </Button>,
                     <Button
                       active={true}
                       color="secondary"
@@ -477,9 +499,9 @@ ShallowWrapper {
                       onClick={[Function]}
                       outline={true}
                       tag="button"
->
+                    >
                       Měsíc
-</Button>,
+                    </Button>,
                   ],
                   "role": "group",
                   "tag": "div",
@@ -553,15 +575,15 @@ ShallowWrapper {
               "children": <TooltipIconButton
                 disabled={true}
                 icon="chevron-circle-right"
-                onClick={[Function]}
+                onClick={[MockFunction]}
                 size="md"
                 style={
-                                Object {
-                                                "border": "0px solid transparent",
-                                              }
+                  Object {
+                    "border": "0px solid transparent",
+                  }
                 }
                 tooltip="Nadcházející měsíc"
-/>,
+              />,
               "className": "text-right",
               "md": "1",
               "tag": "div",
@@ -581,7 +603,7 @@ ShallowWrapper {
               "props": Object {
                 "disabled": true,
                 "icon": "chevron-circle-right",
-                "onClick": [Function],
+                "onClick": [MockFunction],
                 "size": "md",
                 "style": Object {
                   "border": "0px solid transparent",
@@ -609,139 +631,139 @@ ShallowWrapper {
         "children": Array [
           <Row
             tag="div"
->
+          >
             <Col
-                        className="text-center"
-                        md="12"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              className="text-center"
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <strong>
-                                    test
-                        </strong>
+              <strong>
+                test
+              </strong>
             </Col>
-</Row>,
+          </Row>,
           <Row
             className="mb-3"
             tag="div"
->
+          >
             <Col
-                        md="1"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              md="1"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <TooltipIconButton
-                                    disabled={false}
-                                    icon="chevron-circle-left"
-                                    onClick={[Function]}
-                                    size="md"
-                                    style={
-                                                Object {
-                                                            "border": "0px solid transparent",
-                                                          }
-                                    }
-                                    tooltip="Předchozí měsíc"
-                        />
+              <TooltipIconButton
+                disabled={false}
+                icon="chevron-circle-left"
+                onClick={[MockFunction]}
+                size="md"
+                style={
+                  Object {
+                    "border": "0px solid transparent",
+                  }
+                }
+                tooltip="Předchozí měsíc"
+              />
             </Col>
             <Col
-                        className="text-center"
-                        md="10"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              className="text-center"
+              md="10"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <ButtonGroup
-                                    role="group"
-                                    tag="div"
-                        >
-                                    <Button
-                                                active={false}
-                                                className="ml-2"
-                                                color="secondary"
-                                                id="Tooltip1"
-                                                onClick={[Function]}
-                                                outline={true}
-                                                tag="button"
-                                    >
-                                                Týden
-                                    </Button>
-                                    <Button
-                                                active={true}
-                                                color="secondary"
-                                                id="Tooltip2"
-                                                onClick={[Function]}
-                                                outline={true}
-                                                tag="button"
-                                    >
-                                                Měsíc
-                                    </Button>
-                        </ButtonGroup>
-                        <TooltipGroup
-                                    labels={
-                                                Array [
-                                                            "Zobrazit po týdnech",
-                                                            "Zobrazit po měsících",
-                                                          ]
-                                    }
-                                    targets={
-                                                Array [
-                                                            "Tooltip1",
-                                                            "Tooltip2",
-                                                          ]
-                                    }
-                        />
+              <ButtonGroup
+                role="group"
+                tag="div"
+              >
+                <Button
+                  active={false}
+                  className="ml-2"
+                  color="secondary"
+                  id="Tooltip1"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
+                >
+                  Týden
+                </Button>
+                <Button
+                  active={true}
+                  color="secondary"
+                  id="Tooltip2"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
+                >
+                  Měsíc
+                </Button>
+              </ButtonGroup>
+              <TooltipGroup
+                labels={
+                  Array [
+                    "Zobrazit po týdnech",
+                    "Zobrazit po měsících",
+                  ]
+                }
+                targets={
+                  Array [
+                    "Tooltip1",
+                    "Tooltip2",
+                  ]
+                }
+              />
             </Col>
             <Col
-                        className="text-right"
-                        md="1"
-                        tag="div"
-                        widths={
-                                    Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
-                        }
+              className="text-right"
+              md="1"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
             >
-                        <TooltipIconButton
-                                    disabled={true}
-                                    icon="chevron-circle-right"
-                                    onClick={[Function]}
-                                    size="md"
-                                    style={
-                                                Object {
-                                                            "border": "0px solid transparent",
-                                                          }
-                                    }
-                                    tooltip="Nadcházející měsíc"
-                        />
+              <TooltipIconButton
+                disabled={true}
+                icon="chevron-circle-right"
+                onClick={[MockFunction]}
+                size="md"
+                style={
+                  Object {
+                    "border": "0px solid transparent",
+                  }
+                }
+                tooltip="Nadcházející měsíc"
+              />
             </Col>
-</Row>,
+          </Row>,
         ],
       },
       "ref": null,
@@ -756,19 +778,19 @@ ShallowWrapper {
               md="12"
               tag="div"
               widths={
-                            Array [
-                                          "xs",
-                                          "sm",
-                                          "md",
-                                          "lg",
-                                          "xl",
-                                        ]
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
               }
->
+            >
               <strong>
-                            test
+                test
               </strong>
-</Col>,
+            </Col>,
             "tag": "div",
           },
           "ref": null,
@@ -779,7 +801,7 @@ ShallowWrapper {
             "props": Object {
               "children": <strong>
                 test
-</strong>,
+              </strong>,
               "className": "text-center",
               "md": "12",
               "tag": "div",
@@ -817,110 +839,110 @@ ShallowWrapper {
                 md="1"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <TooltipIconButton
-                                disabled={false}
-                                icon="chevron-circle-left"
-                                onClick={[Function]}
-                                size="md"
-                                style={
-                                                Object {
-                                                                "border": "0px solid transparent",
-                                                              }
-                                }
-                                tooltip="Předchozí měsíc"
+                  disabled={false}
+                  icon="chevron-circle-left"
+                  onClick={[MockFunction]}
+                  size="md"
+                  style={
+                    Object {
+                      "border": "0px solid transparent",
+                    }
+                  }
+                  tooltip="Předchozí měsíc"
                 />
-</Col>,
+              </Col>,
               <Col
                 className="text-center"
                 md="10"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <ButtonGroup
-                                role="group"
-                                tag="div"
+                  role="group"
+                  tag="div"
                 >
-                                <Button
-                                                active={false}
-                                                className="ml-2"
-                                                color="secondary"
-                                                id="Tooltip1"
-                                                onClick={[Function]}
-                                                outline={true}
-                                                tag="button"
-                                >
-                                                Týden
-                                </Button>
-                                <Button
-                                                active={true}
-                                                color="secondary"
-                                                id="Tooltip2"
-                                                onClick={[Function]}
-                                                outline={true}
-                                                tag="button"
-                                >
-                                                Měsíc
-                                </Button>
+                  <Button
+                    active={false}
+                    className="ml-2"
+                    color="secondary"
+                    id="Tooltip1"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
+                  >
+                    Týden
+                  </Button>
+                  <Button
+                    active={true}
+                    color="secondary"
+                    id="Tooltip2"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
+                  >
+                    Měsíc
+                  </Button>
                 </ButtonGroup>
                 <TooltipGroup
-                                labels={
-                                                Array [
-                                                                "Zobrazit po týdnech",
-                                                                "Zobrazit po měsících",
-                                                              ]
-                                }
-                                targets={
-                                                Array [
-                                                                "Tooltip1",
-                                                                "Tooltip2",
-                                                              ]
-                                }
+                  labels={
+                    Array [
+                      "Zobrazit po týdnech",
+                      "Zobrazit po měsících",
+                    ]
+                  }
+                  targets={
+                    Array [
+                      "Tooltip1",
+                      "Tooltip2",
+                    ]
+                  }
                 />
-</Col>,
+              </Col>,
               <Col
                 className="text-right"
                 md="1"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <TooltipIconButton
-                                disabled={true}
-                                icon="chevron-circle-right"
-                                onClick={[Function]}
-                                size="md"
-                                style={
-                                                Object {
-                                                                "border": "0px solid transparent",
-                                                              }
-                                }
-                                tooltip="Nadcházející měsíc"
+                  disabled={true}
+                  icon="chevron-circle-right"
+                  onClick={[MockFunction]}
+                  size="md"
+                  style={
+                    Object {
+                      "border": "0px solid transparent",
+                    }
+                  }
+                  tooltip="Nadcházející měsíc"
                 />
-</Col>,
+              </Col>,
             ],
             "className": "mb-3",
             "tag": "div",
@@ -935,15 +957,15 @@ ShallowWrapper {
                 "children": <TooltipIconButton
                   disabled={false}
                   icon="chevron-circle-left"
-                  onClick={[Function]}
+                  onClick={[MockFunction]}
                   size="md"
                   style={
-                                    Object {
-                                                      "border": "0px solid transparent",
-                                                    }
+                    Object {
+                      "border": "0px solid transparent",
+                    }
                   }
                   tooltip="Předchozí měsíc"
-/>,
+                />,
                 "md": "1",
                 "tag": "div",
                 "widths": Array [
@@ -962,7 +984,7 @@ ShallowWrapper {
                 "props": Object {
                   "disabled": false,
                   "icon": "chevron-circle-left",
-                  "onClick": [Function],
+                  "onClick": [MockFunction],
                   "size": "md",
                   "style": Object {
                     "border": "0px solid transparent",
@@ -984,43 +1006,43 @@ ShallowWrapper {
                   <ButtonGroup
                     role="group"
                     tag="div"
->
+                  >
                     <Button
-                                        active={false}
-                                        className="ml-2"
-                                        color="secondary"
-                                        id="Tooltip1"
-                                        onClick={[Function]}
-                                        outline={true}
-                                        tag="button"
+                      active={false}
+                      className="ml-2"
+                      color="secondary"
+                      id="Tooltip1"
+                      onClick={[Function]}
+                      outline={true}
+                      tag="button"
                     >
-                                        Týden
+                      Týden
                     </Button>
                     <Button
-                                        active={true}
-                                        color="secondary"
-                                        id="Tooltip2"
-                                        onClick={[Function]}
-                                        outline={true}
-                                        tag="button"
+                      active={true}
+                      color="secondary"
+                      id="Tooltip2"
+                      onClick={[Function]}
+                      outline={true}
+                      tag="button"
                     >
-                                        Měsíc
+                      Měsíc
                     </Button>
-</ButtonGroup>,
+                  </ButtonGroup>,
                   <TooltipGroup
                     labels={
-                                        Array [
-                                                            "Zobrazit po týdnech",
-                                                            "Zobrazit po měsících",
-                                                          ]
+                      Array [
+                        "Zobrazit po týdnech",
+                        "Zobrazit po měsících",
+                      ]
                     }
                     targets={
-                                        Array [
-                                                            "Tooltip1",
-                                                            "Tooltip2",
-                                                          ]
+                      Array [
+                        "Tooltip1",
+                        "Tooltip2",
+                      ]
                     }
-/>,
+                  />,
                 ],
                 "className": "text-center",
                 "md": "10",
@@ -1049,9 +1071,9 @@ ShallowWrapper {
                         onClick={[Function]}
                         outline={true}
                         tag="button"
->
+                      >
                         Týden
-</Button>,
+                      </Button>,
                       <Button
                         active={true}
                         color="secondary"
@@ -1059,9 +1081,9 @@ ShallowWrapper {
                         onClick={[Function]}
                         outline={true}
                         tag="button"
->
+                      >
                         Měsíc
-</Button>,
+                      </Button>,
                     ],
                     "role": "group",
                     "tag": "div",
@@ -1135,15 +1157,15 @@ ShallowWrapper {
                 "children": <TooltipIconButton
                   disabled={true}
                   icon="chevron-circle-right"
-                  onClick={[Function]}
+                  onClick={[MockFunction]}
                   size="md"
                   style={
-                                    Object {
-                                                      "border": "0px solid transparent",
-                                                    }
+                    Object {
+                      "border": "0px solid transparent",
+                    }
                   }
                   tooltip="Nadcházející měsíc"
-/>,
+                />,
                 "className": "text-right",
                 "md": "1",
                 "tag": "div",
@@ -1163,7 +1185,7 @@ ShallowWrapper {
                 "props": Object {
                   "disabled": true,
                   "icon": "chevron-circle-right",
-                  "onClick": [Function],
+                  "onClick": [MockFunction],
                   "size": "md",
                   "style": Object {
                     "border": "0px solid transparent",
@@ -1199,8 +1221,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

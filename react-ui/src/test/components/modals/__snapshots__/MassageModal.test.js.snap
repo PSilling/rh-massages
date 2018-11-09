@@ -6,20 +6,21 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <MassageModal
     active={true}
     facilityId={1}
-    getCallback={[Function]}
+    getCallback={[MockFunction]}
     massage={null}
     masseuses={
-        Array [
-            "test",
-          ]
+      Array [
+        "test",
+      ]
     }
-    onToggle={[Function]}
+    onToggle={[MockFunction]}
     withPortal={false}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -32,88 +33,88 @@ ShallowWrapper {
         <TooltipIconButton
           disabled={false}
           icon="plus"
-          onClick={[Function]}
+          onClick={[MockFunction]}
           size="md"
           style={Object {}}
           tooltip="Vytvořit novou masáž"
-/>,
+        />,
         <ModalBody
           tag="div"
->
+        >
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <Col
-                              md="12"
-                              tag="div"
-                              widths={
-                                        Array [
-                                                  "xs",
-                                                  "sm",
-                                                  "md",
-                                                  "lg",
-                                                  "xl",
-                                                ]
-                              }
-                    >
-                              <h3>
-                                        Nová masáž
-                              </h3>
-                              <hr />
-                    </Col>
+            <Col
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <h3>
+                Nová masáž
+              </h3>
+              <hr />
+            </Col>
           </Row>
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <LabeledInput
-                              label="Masér/Masérka"
-                              maxLength="64"
-                              onChange={[Function]}
-                              onEnterPress={[Function]}
-                              options={
-                                        Array [
-                                                  "test",
-                                                ]
-                              }
-                              size="12"
-                              tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                              type="text"
-                              value=""
-                    />
+            <LabeledInput
+              label="Masér/Masérka"
+              maxLength="64"
+              onChange={[Function]}
+              onEnterPress={[Function]}
+              options={
+                Array [
+                  "test",
+                ]
+              }
+              size="12"
+              tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
+              type="text"
+              value=""
+            />
           </Row>
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <LabeledDatetime
-                              dateFormat={false}
-                              label="Délka trvání"
-                              onChange={[Function]}
-                              onEnterPress={[Function]}
-                              size="3"
-                              tooltip="Jak dlouhá by měla masáž být"
-                              value={"1969-12-31T23:30:00.000Z"}
-                    />
+            <LabeledDatetime
+              dateFormat={false}
+              label="Délka trvání"
+              onChange={[Function]}
+              onEnterPress={[Function]}
+              size="3"
+              tooltip="Jak dlouhá by měla masáž být"
+              value={"1969-12-31T23:30:00.000Z"}
+            />
           </Row>
           <Row
-                    tag="div"
+            tag="div"
           >
-                    <LabeledDatetime
-                              isValidDate={[Function]}
-                              label="Čas masáže"
-                              onChange={[Function]}
-                              onEnterPress={[Function]}
-                              size="4"
-                              tooltip="Kdy by se měla masáž konat"
-                              value={"1970-01-01T01:00:00.000Z"}
-                    />
+            <LabeledDatetime
+              isValidDate={[Function]}
+              label="Čas masáže"
+              onChange={[Function]}
+              onEnterPress={[Function]}
+              size="4"
+              tooltip="Kdy by se měla masáž konat"
+              value={"1970-01-01T01:00:00.000Z"}
+            />
           </Row>
           <ModalActions
-                    disabled={false}
-                    onClose={[Function]}
-                    onProceed={[Function]}
-                    primaryLabel="Přidat"
+            disabled={false}
+            onClose={[MockFunction]}
+            onProceed={[Function]}
+            primaryLabel="Přidat"
           />
-</ModalBody>,
+        </ModalBody>,
       ],
     },
     "ref": null,
@@ -125,7 +126,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "icon": "plus",
-          "onClick": [Function],
+          "onClick": [MockFunction],
           "size": "md",
           "style": Object {},
           "tooltip": "Vytvořit novou masáž",
@@ -142,77 +143,77 @@ ShallowWrapper {
           "children": Array [
             <Row
               tag="div"
->
+            >
               <Col
-                            md="12"
-                            tag="div"
-                            widths={
-                                          Array [
-                                                        "xs",
-                                                        "sm",
-                                                        "md",
-                                                        "lg",
-                                                        "xl",
-                                                      ]
-                            }
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                            <h3>
-                                          Nová masáž
-                            </h3>
-                            <hr />
+                <h3>
+                  Nová masáž
+                </h3>
+                <hr />
               </Col>
-</Row>,
+            </Row>,
             <Row
               tag="div"
->
+            >
               <LabeledInput
-                            label="Masér/Masérka"
-                            maxLength="64"
-                            onChange={[Function]}
-                            onEnterPress={[Function]}
-                            options={
-                                          Array [
-                                                        "test",
-                                                      ]
-                            }
-                            size="12"
-                            tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                            type="text"
-                            value=""
+                label="Masér/Masérka"
+                maxLength="64"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                options={
+                  Array [
+                    "test",
+                  ]
+                }
+                size="12"
+                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
+                type="text"
+                value=""
               />
-</Row>,
+            </Row>,
             <Row
               tag="div"
->
+            >
               <LabeledDatetime
-                            dateFormat={false}
-                            label="Délka trvání"
-                            onChange={[Function]}
-                            onEnterPress={[Function]}
-                            size="3"
-                            tooltip="Jak dlouhá by měla masáž být"
-                            value={"1969-12-31T23:30:00.000Z"}
+                dateFormat={false}
+                label="Délka trvání"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                size="3"
+                tooltip="Jak dlouhá by měla masáž být"
+                value={"1969-12-31T23:30:00.000Z"}
               />
-</Row>,
+            </Row>,
             <Row
               tag="div"
->
+            >
               <LabeledDatetime
-                            isValidDate={[Function]}
-                            label="Čas masáže"
-                            onChange={[Function]}
-                            onEnterPress={[Function]}
-                            size="4"
-                            tooltip="Kdy by se měla masáž konat"
-                            value={"1970-01-01T01:00:00.000Z"}
+                isValidDate={[Function]}
+                label="Čas masáže"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                size="4"
+                tooltip="Kdy by se měla masáž konat"
+                value={"1970-01-01T01:00:00.000Z"}
               />
-</Row>,
+            </Row>,
             <ModalActions
               disabled={false}
-              onClose={[Function]}
+              onClose={[MockFunction]}
               onProceed={[Function]}
               primaryLabel="Přidat"
-/>,
+            />,
           ],
           "tag": "div",
         },
@@ -227,20 +228,20 @@ ShallowWrapper {
                 md="12"
                 tag="div"
                 widths={
-                                Array [
-                                                "xs",
-                                                "sm",
-                                                "md",
-                                                "lg",
-                                                "xl",
-                                              ]
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
                 }
->
+              >
                 <h3>
-                                Nová masáž
+                  Nová masáž
                 </h3>
                 <hr />
-</Col>,
+              </Col>,
               "tag": "div",
             },
             "ref": null,
@@ -252,7 +253,7 @@ ShallowWrapper {
                 "children": Array [
                   <h3>
                     Nová masáž
-</h3>,
+                  </h3>,
                   <hr />,
                 ],
                 "md": "12",
@@ -303,15 +304,15 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 options={
-                                Array [
-                                                "test",
-                                              ]
+                  Array [
+                    "test",
+                  ]
                 }
                 size="12"
                 tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
                 type="text"
                 value=""
-/>,
+              />,
               "tag": "div",
             },
             "ref": null,
@@ -351,7 +352,7 @@ ShallowWrapper {
                 size="3"
                 tooltip="Jak dlouhá by měla masáž být"
                 value={"1969-12-31T23:30:00.000Z"}
-/>,
+              />,
               "tag": "div",
             },
             "ref": null,
@@ -387,7 +388,7 @@ ShallowWrapper {
                 size="4"
                 tooltip="Kdy by se měla masáž konat"
                 value={"1970-01-01T01:00:00.000Z"}
-/>,
+              />,
               "tag": "div",
             },
             "ref": null,
@@ -417,7 +418,7 @@ ShallowWrapper {
             "props": Object {
               "children": null,
               "disabled": false,
-              "onClose": [Function],
+              "onClose": [MockFunction],
               "onProceed": [Function],
               "primaryLabel": "Přidat",
             },
@@ -441,88 +442,88 @@ ShallowWrapper {
           <TooltipIconButton
             disabled={false}
             icon="plus"
-            onClick={[Function]}
+            onClick={[MockFunction]}
             size="md"
             style={Object {}}
             tooltip="Vytvořit novou masáž"
-/>,
+          />,
           <ModalBody
             tag="div"
->
+          >
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <Col
-                                    md="12"
-                                    tag="div"
-                                    widths={
-                                                Array [
-                                                            "xs",
-                                                            "sm",
-                                                            "md",
-                                                            "lg",
-                                                            "xl",
-                                                          ]
-                                    }
-                        >
-                                    <h3>
-                                                Nová masáž
-                                    </h3>
-                                    <hr />
-                        </Col>
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <h3>
+                  Nová masáž
+                </h3>
+                <hr />
+              </Col>
             </Row>
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <LabeledInput
-                                    label="Masér/Masérka"
-                                    maxLength="64"
-                                    onChange={[Function]}
-                                    onEnterPress={[Function]}
-                                    options={
-                                                Array [
-                                                            "test",
-                                                          ]
-                                    }
-                                    size="12"
-                                    tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                                    type="text"
-                                    value=""
-                        />
+              <LabeledInput
+                label="Masér/Masérka"
+                maxLength="64"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                options={
+                  Array [
+                    "test",
+                  ]
+                }
+                size="12"
+                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
+                type="text"
+                value=""
+              />
             </Row>
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <LabeledDatetime
-                                    dateFormat={false}
-                                    label="Délka trvání"
-                                    onChange={[Function]}
-                                    onEnterPress={[Function]}
-                                    size="3"
-                                    tooltip="Jak dlouhá by měla masáž být"
-                                    value={"1969-12-31T23:30:00.000Z"}
-                        />
+              <LabeledDatetime
+                dateFormat={false}
+                label="Délka trvání"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                size="3"
+                tooltip="Jak dlouhá by měla masáž být"
+                value={"1969-12-31T23:30:00.000Z"}
+              />
             </Row>
             <Row
-                        tag="div"
+              tag="div"
             >
-                        <LabeledDatetime
-                                    isValidDate={[Function]}
-                                    label="Čas masáže"
-                                    onChange={[Function]}
-                                    onEnterPress={[Function]}
-                                    size="4"
-                                    tooltip="Kdy by se měla masáž konat"
-                                    value={"1970-01-01T01:00:00.000Z"}
-                        />
+              <LabeledDatetime
+                isValidDate={[Function]}
+                label="Čas masáže"
+                onChange={[Function]}
+                onEnterPress={[Function]}
+                size="4"
+                tooltip="Kdy by se měla masáž konat"
+                value={"1970-01-01T01:00:00.000Z"}
+              />
             </Row>
             <ModalActions
-                        disabled={false}
-                        onClose={[Function]}
-                        onProceed={[Function]}
-                        primaryLabel="Přidat"
+              disabled={false}
+              onClose={[MockFunction]}
+              onProceed={[Function]}
+              primaryLabel="Přidat"
             />
-</ModalBody>,
+          </ModalBody>,
         ],
       },
       "ref": null,
@@ -534,7 +535,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "icon": "plus",
-            "onClick": [Function],
+            "onClick": [MockFunction],
             "size": "md",
             "style": Object {},
             "tooltip": "Vytvořit novou masáž",
@@ -551,77 +552,77 @@ ShallowWrapper {
             "children": Array [
               <Row
                 tag="div"
->
+              >
                 <Col
-                                md="12"
-                                tag="div"
-                                widths={
-                                                Array [
-                                                                "xs",
-                                                                "sm",
-                                                                "md",
-                                                                "lg",
-                                                                "xl",
-                                                              ]
-                                }
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                                <h3>
-                                                Nová masáž
-                                </h3>
-                                <hr />
+                  <h3>
+                    Nová masáž
+                  </h3>
+                  <hr />
                 </Col>
-</Row>,
+              </Row>,
               <Row
                 tag="div"
->
+              >
                 <LabeledInput
-                                label="Masér/Masérka"
-                                maxLength="64"
-                                onChange={[Function]}
-                                onEnterPress={[Function]}
-                                options={
-                                                Array [
-                                                                "test",
-                                                              ]
-                                }
-                                size="12"
-                                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                                type="text"
-                                value=""
+                  label="Masér/Masérka"
+                  maxLength="64"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  options={
+                    Array [
+                      "test",
+                    ]
+                  }
+                  size="12"
+                  tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
+                  type="text"
+                  value=""
                 />
-</Row>,
+              </Row>,
               <Row
                 tag="div"
->
+              >
                 <LabeledDatetime
-                                dateFormat={false}
-                                label="Délka trvání"
-                                onChange={[Function]}
-                                onEnterPress={[Function]}
-                                size="3"
-                                tooltip="Jak dlouhá by měla masáž být"
-                                value={"1969-12-31T23:30:00.000Z"}
+                  dateFormat={false}
+                  label="Délka trvání"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  size="3"
+                  tooltip="Jak dlouhá by měla masáž být"
+                  value={"1969-12-31T23:30:00.000Z"}
                 />
-</Row>,
+              </Row>,
               <Row
                 tag="div"
->
+              >
                 <LabeledDatetime
-                                isValidDate={[Function]}
-                                label="Čas masáže"
-                                onChange={[Function]}
-                                onEnterPress={[Function]}
-                                size="4"
-                                tooltip="Kdy by se měla masáž konat"
-                                value={"1970-01-01T01:00:00.000Z"}
+                  isValidDate={[Function]}
+                  label="Čas masáže"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  size="4"
+                  tooltip="Kdy by se měla masáž konat"
+                  value={"1970-01-01T01:00:00.000Z"}
                 />
-</Row>,
+              </Row>,
               <ModalActions
                 disabled={false}
-                onClose={[Function]}
+                onClose={[MockFunction]}
                 onProceed={[Function]}
                 primaryLabel="Přidat"
-/>,
+              />,
             ],
             "tag": "div",
           },
@@ -636,20 +637,20 @@ ShallowWrapper {
                   md="12"
                   tag="div"
                   widths={
-                                    Array [
-                                                      "xs",
-                                                      "sm",
-                                                      "md",
-                                                      "lg",
-                                                      "xl",
-                                                    ]
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
                   }
->
+                >
                   <h3>
-                                    Nová masáž
+                    Nová masáž
                   </h3>
                   <hr />
-</Col>,
+                </Col>,
                 "tag": "div",
               },
               "ref": null,
@@ -661,7 +662,7 @@ ShallowWrapper {
                   "children": Array [
                     <h3>
                       Nová masáž
-</h3>,
+                    </h3>,
                     <hr />,
                   ],
                   "md": "12",
@@ -712,15 +713,15 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   options={
-                                    Array [
-                                                      "test",
-                                                    ]
+                    Array [
+                      "test",
+                    ]
                   }
                   size="12"
                   tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
                   type="text"
                   value=""
-/>,
+                />,
                 "tag": "div",
               },
               "ref": null,
@@ -760,7 +761,7 @@ ShallowWrapper {
                   size="3"
                   tooltip="Jak dlouhá by měla masáž být"
                   value={"1969-12-31T23:30:00.000Z"}
-/>,
+                />,
                 "tag": "div",
               },
               "ref": null,
@@ -796,7 +797,7 @@ ShallowWrapper {
                   size="4"
                   tooltip="Kdy by se měla masáž konat"
                   value={"1970-01-01T01:00:00.000Z"}
-/>,
+                />,
                 "tag": "div",
               },
               "ref": null,
@@ -826,7 +827,7 @@ ShallowWrapper {
               "props": Object {
                 "children": null,
                 "disabled": false,
-                "onClose": [Function],
+                "onClose": [MockFunction],
                 "onProceed": [Function],
                 "primaryLabel": "Přidat",
               },
@@ -857,8 +858,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

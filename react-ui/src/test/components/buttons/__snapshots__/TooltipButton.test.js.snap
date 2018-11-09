@@ -7,13 +7,26 @@ ShallowWrapper {
     active={false}
     disabled={false}
     label="test"
-    onClick={[Function]}
+    onClick={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     tooltip="tooltip"
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -28,19 +41,31 @@ ShallowWrapper {
           color="secondary"
           disabled={false}
           id="Tooltip1"
-          onClick={[Function]}
+          onClick={
+            [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            }
+          }
           outline={true}
           tag="button"
->
+        >
           test
-</Button>,
+        </Button>,
         <Tooltip
           autohide={true}
           delay={
-                    Object {
-                              "hide": 250,
-                              "show": 0,
-                            }
+            Object {
+              "hide": 250,
+              "show": 0,
+            }
           }
           hideArrow={false}
           isOpen={false}
@@ -49,9 +74,9 @@ ShallowWrapper {
           target="Tooltip1"
           toggle={[Function]}
           trigger="hover"
->
+        >
           tooltip
-</Tooltip>,
+        </Tooltip>,
       ],
       "className": "no-print",
     },
@@ -67,7 +92,17 @@ ShallowWrapper {
           "color": "secondary",
           "disabled": false,
           "id": "Tooltip1",
-          "onClick": [Function],
+          "onClick": [MockFunction] {
+            "calls": Array [
+              Array [],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          },
           "outline": true,
           "tag": "button",
         },
@@ -113,19 +148,31 @@ ShallowWrapper {
             color="secondary"
             disabled={false}
             id="Tooltip1"
-            onClick={[Function]}
+            onClick={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
             outline={true}
             tag="button"
->
+          >
             test
-</Button>,
+          </Button>,
           <Tooltip
             autohide={true}
             delay={
-                        Object {
-                                    "hide": 250,
-                                    "show": 0,
-                                  }
+              Object {
+                "hide": 250,
+                "show": 0,
+              }
             }
             hideArrow={false}
             isOpen={false}
@@ -134,9 +181,9 @@ ShallowWrapper {
             target="Tooltip1"
             toggle={[Function]}
             trigger="hover"
->
+          >
             tooltip
-</Tooltip>,
+          </Tooltip>,
         ],
         "className": "no-print",
       },
@@ -152,7 +199,17 @@ ShallowWrapper {
             "color": "secondary",
             "disabled": false,
             "id": "Tooltip1",
-            "onClick": [Function],
+            "onClick": [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "isThrow": false,
+                  "value": undefined,
+                },
+              ],
+            },
             "outline": true,
             "tag": "button",
           },
@@ -203,8 +260,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
