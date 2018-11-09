@@ -312,16 +312,25 @@ Util.getTooltipTargets = count => {
   return targets;
 };
 
-Util.FACILITIES_URL = "api/facilities/"; // url of /facilities endpoint
-Util.MASSAGES_URL = "api/massages/"; // url of /massages endpoint
-Util.CLIENTS_URL = "api/clients/"; // url of /clients endpoint
-Util.LOGOUT_URL = "api/logout/"; // url of /logout endpoint
-Util.GITHUB_URL = "https://github.com/PSilling/rh-massages/"; // GitHub project url
-Util.REFRESH_MIN_TIME = 150; // refresh time for authorization tokens in milliseconds
-Util.AUTO_REFRESH_TIME = 1000; // automatic update interval for Massages view in milliseconds
-Util.CANCELLATION_LIMIT = 30; // cancellation limit before the start of a Massage in minutes
-Util.MAX_MASSAGE_MINS = 120; // maximal minute time of Massages per Client
-
-Util.tooltipCount = 1; // current number of tooltips (needed for correct ID placement)
+/** url of /facilities endpoint */
+Util.FACILITIES_URL = process.env.REACT_APP_FACILITIES_URL || "api/facilities/";
+/** url of /massages endpoint */
+Util.MASSAGES_URL = process.env.REACT_APP_MASSAGES_URL || "api/massages/";
+/** url of /clients endpoint */
+Util.CLIENTS_URL = process.env.REACT_APP_CLIENTS_URL || "api/clients/";
+/** url of /logout endpoint */
+Util.LOGOUT_URL = process.env.REACT_APP_LOGOUT_URL || "api/logout/";
+/** GitHub project url */
+Util.GITHUB_URL = process.env.REACT_APP_GITHUB_URL || "https://github.com/";
+/** refresh time for authorization tokens in milliseconds */
+Util.REFRESH_MIN_TIME = parseInt(process.env.REACT_APP_MIN_REFRESH_TIME, 10) || 150;
+/** automatic update interval for Massages view in milliseconds */
+Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) || 1000;
+/** cancellation limit before the start of a Massage in minutes */
+Util.CANCELLATION_LIMIT = parseInt(process.env.REACT_APP_CANCELLATION_LIMIT, 10) || 30;
+/** maximum minute time of Massages per Client */
+Util.MAX_MASSAGE_MINS = parseInt(process.env.REACT_APP_MASSAGE_TIME_LIMIT, 10) || 120;
+/** current number of tooltips (needed for correct ID placement) */
+Util.tooltipCount = 1;
 
 export default Util;
