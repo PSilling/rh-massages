@@ -1,3 +1,7 @@
+/**
+ * Utility class providing project localization setup.
+ */
+
 const Localize = require("localize");
 
 /**

@@ -14,6 +14,7 @@ import TooltipButton from "../buttons/TooltipButton";
 
 // util imports
 import _t from "../../util/Translations";
+import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
@@ -57,7 +58,7 @@ class PrintModal extends Component {
         Util.notify("error", "", _t.translate("An error occured!"));
     }
 
-    Util.get(
+    Fetch.get(
       `${Util.FACILITIES_URL + this.props.facilityId}/massages?search=${this.state.filter}&from=${moment(from).unix() *
         1000}&to=${moment(to).unix() * 1000}`,
       json => {

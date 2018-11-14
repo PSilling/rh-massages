@@ -1,7 +1,12 @@
+/**
+ * Utility class for authorization management.
+ */
+
 // Auth handler using Keycloak
 import Keycloak from "keycloak-js";
 
 // util imports
+import Fetch from "./Fetch";
 import Util from "./Util";
 
 /**
@@ -16,20 +21,17 @@ Auth.keycloak = Keycloak();
  * Register new and update old Clients after Keycloak authorization success.
  */
 Auth.keycloak.onAuthSuccess = () => {
-  Util.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
+  Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
     Auth.subscribed = json;
-    Util.put(Util.CLIENTS_URL, Auth.getClient(), () => {}, false);
+    Fetch.put(Util.CLIENTS_URL, Auth.getClient(), () => {}, false);
   });
 };
 
 Auth.subscribed = true;
 
 Auth.isAuthenticated = () => Auth.keycloak.authenticated;
-
 Auth.isAdmin = () => Auth.keycloak.hasRealmRole("admin");
-
 Auth.getToken = () => Auth.keycloak.token;
-
 Auth.getSub = () => Auth.keycloak.subject;
 
 /**

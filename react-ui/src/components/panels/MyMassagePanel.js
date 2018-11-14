@@ -11,8 +11,9 @@ import CalendarButton from "../iconbuttons/CalendarButton";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
 // util imports
-import Util from "../../util/Util";
 import _t from "../../util/Translations";
+import Fetch from "../../util/Fetch";
+import Util from "../../util/Util";
 
 /**
  * Massage information panel for My Massages view.
@@ -35,7 +36,7 @@ class MyMassagePanel extends Component {
   };
 
   cancelMassage = () => {
-    Util.put(
+    Fetch.put(
       Util.MASSAGES_URL,
       [
         {

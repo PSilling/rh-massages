@@ -14,8 +14,9 @@ import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import "../styles/components/loader.css";
 
 // util imports
-import Auth from "../util/Auth";
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
+import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
@@ -48,7 +49,7 @@ class MassagesArchive extends Component {
   }
 
   getMassages = () => {
-    Util.get(
+    Fetch.get(
       `${Util.MASSAGES_URL}old?from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
       json => {
         if (json !== undefined && json.massages !== undefined) {
@@ -86,7 +87,7 @@ class MassagesArchive extends Component {
   };
 
   deleteMassage = id => {
-    Util.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
+    Fetch.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
   };
 
   deleteSelectedMassages = () => {
@@ -97,7 +98,7 @@ class MassagesArchive extends Component {
       }
       idString += `ids=${this.state.selected[i].id}&`;
     }
-    Util.delete(Util.MASSAGES_URL + idString, () => {
+    Fetch.delete(Util.MASSAGES_URL + idString, () => {
       this.setState({ selected: [] });
       this.getMassages();
     });
@@ -107,19 +108,19 @@ class MassagesArchive extends Component {
    * Removes all old Massages from the server.
    */
   deleteAllMassages = () => {
-    Util.get(`${Util.MASSAGES_URL}old?&from=${moment(0).unix() * 1000}&to=${moment().unix() * 1000}`, json => {
+    Fetch.get(`${Util.MASSAGES_URL}old?&from=${moment(0).unix() * 1000}&to=${moment().unix() * 1000}`, json => {
       if (json === undefined || json.massages === undefined) {
         return;
       }
       let idString = "?";
       for (let i = 0; i < json.massages.length; i++) {
         if (idString.length > 2000) {
-          Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+          Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages);
           idString = "?";
         }
         idString += `ids=${json.massages[i].id}&`;
       }
-      Util.delete(Util.MASSAGES_URL + idString, this.getMassages);
+      Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages);
     });
   };
 

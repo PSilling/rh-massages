@@ -7,11 +7,11 @@ import { Table } from "reactstrap";
 import Facilities from "../../views/Facilities";
 import FacilityModal from "../../components/modals/FacilityModal";
 import FacilityRow from "../../components/rows/FacilityRow";
-import Util from "../../util/Util";
+import Fetch from "../../util/Fetch";
 
 // test mocks
 jest.mock("../../util/Auth");
-jest.mock("../../util/Util");
+jest.mock("../../util/Fetch");
 
 afterAll(() => {
   jest.resetAllMocks();
@@ -28,7 +28,7 @@ test("renders content correctly", () => {
 });
 
 test("properly changes state variables", () => {
-  Util.delete = jest.fn((url, update) => {
+  Fetch.delete = jest.fn((url, update) => {
     update();
   });
   const testFacilities = [{ id: 1, name: "test" }];
@@ -57,6 +57,6 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.editId).toBe(-1);
 
   rows.get(0).props.onDelete();
-  expect(Util.delete).toHaveBeenCalledTimes(1);
+  expect(Fetch.delete).toHaveBeenCalledTimes(1);
   expect(wrapper.instance().state.facilities).toEqual([]);
 });

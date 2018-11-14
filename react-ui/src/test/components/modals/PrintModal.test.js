@@ -10,7 +10,7 @@ import PrintModal from "../../../components/modals/PrintModal";
 import TooltipButton from "../../../components/buttons/TooltipButton";
 
 // test mocks
-jest.mock("../../../util/Util");
+jest.mock("../../../util/Fetch");
 
 beforeAll(() => {
   Date.now = jest.fn(() => 0);

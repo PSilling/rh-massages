@@ -14,6 +14,7 @@ import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
+import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
@@ -71,7 +72,7 @@ class MassageModal extends Component {
       return;
     }
     const date = this.getStartingDate();
-    Util.post(
+    Fetch.post(
       Util.MASSAGES_URL,
       [
         {
@@ -98,7 +99,7 @@ class MassageModal extends Component {
       return;
     }
     const date = this.getStartingDate();
-    Util.put(
+    Fetch.put(
       Util.MASSAGES_URL,
       [
         {

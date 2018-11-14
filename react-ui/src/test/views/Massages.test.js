@@ -12,10 +12,12 @@ import MassageBatchAddModal from "../../components/modals/MassageBatchAddModal";
 import MassageModal from "../../components/modals/MassageModal";
 import PrintModal from "../../components/modals/PrintModal";
 import Tab from "../../components/navs/Tab";
+import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 // test mocks
 jest.mock("../../util/Auth");
+jest.mock("../../util/Fetch");
 jest.mock("../../util/Util");
 
 afterAll(() => {
@@ -58,7 +60,7 @@ test("renders print content correctly", () => {
 
 test("properly changes state variables", () => {
   Date.now = dateNow;
-  Util.delete = jest.fn((url, update) => {
+  Fetch.delete = jest.fn((url, update) => {
     update();
   });
   const testMoment = moment().add(1, "days");
@@ -78,10 +80,10 @@ test("properly changes state variables", () => {
   };
   const wrapper = shallow(<Massages />);
 
-  expect(Util.get).toHaveBeenCalledTimes(3);
+  expect(Fetch.get).toHaveBeenCalledTimes(3);
   wrapper.instance().setState({ facilities: testFacilities, massages: testMassages });
   wrapper.instance().getFacilities();
-  expect(Util.get).toHaveBeenCalledTimes(4);
+  expect(Fetch.get).toHaveBeenCalledTimes(4);
   expect(wrapper.instance().state.facilities).toEqual([]);
   expect(wrapper.instance().state.massages).toBe(testMassages);
   wrapper.instance().setState({ facilities: testFacilities });
@@ -129,17 +131,17 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().createPrintRows().length).toBe(1);
 
   deleteButton.props().onConfirm();
-  expect(Util.delete).toHaveBeenCalledTimes(1);
+  expect(Fetch.delete).toHaveBeenCalledTimes(1);
   panel.props().onDelete(1);
-  expect(Util.delete).toHaveBeenCalledTimes(2);
+  expect(Fetch.delete).toHaveBeenCalledTimes(2);
   panel.props().onAdd({ start: testMoment, end: testMoment });
   expect(Util.notify).not.toHaveBeenCalled();
   panel.props().onEdit(testMassages[0]);
   expect(wrapper.instance().state.editMassage).toBe(testMassages[0]);
   panel.props().onAssign(testMassages[0]);
-  expect(Util.put).toHaveBeenCalledTimes(1);
+  expect(Fetch.put).toHaveBeenCalledTimes(1);
   panel.props().onCancel(testMassages[0]);
-  expect(Util.put).toHaveBeenCalledTimes(2);
+  expect(Fetch.put).toHaveBeenCalledTimes(2);
   panel.props().onSelect(testEvent);
   expect(wrapper.instance().state.selected[0]).toBe(testMassages[0]);
   panel.props().onSelect(null);

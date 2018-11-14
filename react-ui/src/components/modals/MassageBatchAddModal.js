@@ -16,6 +16,7 @@ import TooltipGroup from "../util/TooltipGroup";
 
 // util imports
 import _t from "../../util/Translations";
+import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
@@ -305,7 +306,7 @@ class MassageBatchAddModal extends Component {
       }
     }
     if (postArray.length > 0) {
-      Util.post(Util.MASSAGES_URL, postArray, () => {
+      Fetch.post(Util.MASSAGES_URL, postArray, () => {
         this.props.getCallback();
         this.props.onToggle(true);
       });

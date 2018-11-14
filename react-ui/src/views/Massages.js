@@ -18,8 +18,9 @@ import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import "../styles/components/loader.css";
 
 // util imports
-import Auth from "../util/Auth";
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
+import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
@@ -65,7 +66,7 @@ class Massages extends Component {
   }
 
   getFacilities = () => {
-    Util.get(Util.FACILITIES_URL, json => {
+    Fetch.get(Util.FACILITIES_URL, json => {
       this.setState({ facilities: json });
       this.getMassages();
     });
@@ -73,7 +74,7 @@ class Massages extends Component {
 
   getMassages = () => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
-      Util.get(
+      Fetch.get(
         `${Util.FACILITIES_URL + this.state.facilities[this.state.index].id}/massages?free=${
           this.state.freeOnly
         }&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
@@ -126,7 +127,7 @@ class Massages extends Component {
   };
 
   assignMassage = massage => {
-    Util.put(
+    Fetch.put(
       Util.MASSAGES_URL,
       [
         {
@@ -143,7 +144,7 @@ class Massages extends Component {
   };
 
   cancelMassage = massage => {
-    Util.put(
+    Fetch.put(
       Util.MASSAGES_URL,
       [
         {
@@ -160,7 +161,7 @@ class Massages extends Component {
   };
 
   deleteMassage = id => {
-    Util.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
+    Fetch.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
   };
 
   deleteSelectedMassages = () => {
@@ -171,7 +172,7 @@ class Massages extends Component {
       }
       idString += `ids=${this.state.selected[i].id}&`;
     }
-    Util.delete(Util.MASSAGES_URL + idString, () => {
+    Fetch.delete(Util.MASSAGES_URL + idString, () => {
       this.setState({ selected: [] });
       this.getMassages();
     });

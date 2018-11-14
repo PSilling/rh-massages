@@ -4,11 +4,11 @@ import { shallow } from "enzyme";
 
 // test imports
 import Settings from "../../views/Settings";
-import Util from "../../util/Util";
+import Fetch from "../../util/Fetch";
 
 // test mocks
 jest.mock("../../util/Auth");
-jest.mock("../../util/Util");
+jest.mock("../../util/Fetch");
 
 afterAll(() => {
   jest.resetAllMocks();
@@ -21,7 +21,7 @@ test("renders content correctly", () => {
 });
 
 test("properly changes state variables", () => {
-  Util.get = jest.fn((url, update) => {
+  Fetch.get = jest.fn((url, update) => {
     update(true);
   });
   const wrapper = shallow(<Settings />);
@@ -40,5 +40,5 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.notify).toBe(true);
   notifyInput.props().onChange({ target: { checked: false } });
   expect(wrapper.instance().state.notify).toBe(false);
-  expect(Util.put).toHaveBeenCalledTimes(1);
+  expect(Fetch.put).toHaveBeenCalledTimes(1);
 });

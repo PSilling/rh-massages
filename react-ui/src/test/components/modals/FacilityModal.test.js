@@ -10,7 +10,7 @@ import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton
 import _t from "../../../util/Translations";
 
 // test mocks
-jest.mock("../../../util/Util");
+jest.mock("../../../util/Fetch");
 
 test("renders inside content with correct props", () => {
   const testGetFunction = jest.fn();

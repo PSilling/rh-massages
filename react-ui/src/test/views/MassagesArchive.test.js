@@ -8,11 +8,11 @@ import MassagesArchive from "../../views/MassagesArchive";
 import TooltipButton from "../../components/buttons/TooltipButton";
 import ConfirmationButton from "../../components/buttons/ConfirmationButton";
 import CalendarPanel from "../../components/panels/CalendarPanel";
-import Util from "../../util/Util";
+import Fetch from "../../util/Fetch";
 
 // test mocks
 jest.mock("../../util/Auth");
-jest.mock("../../util/Util");
+jest.mock("../../util/Fetch");
 
 afterAll(() => {
   jest.resetAllMocks();
@@ -25,7 +25,7 @@ test("renders content correctly", () => {
 });
 
 test("properly changes state variables", () => {
-  Util.delete = jest.fn((url, update) => {
+  Fetch.delete = jest.fn((url, update) => {
     update();
   });
   const testMoment = moment().add(1, "days");
@@ -54,14 +54,14 @@ test("properly changes state variables", () => {
 
   expect(deleteButtons.get(0).props.disabled).toBe(true);
   deleteButtons.get(0).props.onConfirm();
-  expect(Util.delete).toHaveBeenCalledTimes(1);
+  expect(Fetch.delete).toHaveBeenCalledTimes(1);
   deleteButtons.get(1).props.onConfirm();
-  expect(Util.get).toHaveBeenCalledTimes(4);
-  expect(Util.delete).toHaveBeenCalledTimes(1);
+  expect(Fetch.get).toHaveBeenCalledTimes(4);
+  expect(Fetch.delete).toHaveBeenCalledTimes(1);
   expect(panel.props().selected).toEqual([]);
   expect(panel.props().allowEditation).toBe(false);
   panel.props().onDelete(1);
-  expect(Util.delete).toHaveBeenCalledTimes(2);
+  expect(Fetch.delete).toHaveBeenCalledTimes(2);
 
   panel.props().onDateChange(testMoment.clone(), "month");
   expect(wrapper.instance().state.from).toEqual(

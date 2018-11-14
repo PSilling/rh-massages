@@ -11,8 +11,9 @@ import MyMassagePanel from "../components/panels/MyMassagePanel";
 import "../styles/components/loader.css";
 
 // util imports
-import Auth from "../util/Auth";
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
+import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
@@ -36,7 +37,7 @@ class MyMassages extends Component {
   }
 
   getMassages = () => {
-    Util.get(`${Util.MASSAGES_URL}client`, json => {
+    Fetch.get(`${Util.MASSAGES_URL}client`, json => {
       this.setState({ massages: json, loading: false });
     });
   };

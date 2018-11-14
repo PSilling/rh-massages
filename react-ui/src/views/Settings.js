@@ -9,8 +9,9 @@ import InfoAlert from "../components/util/InfoAlert";
 import "../styles/components/loader.css";
 
 // util imports
-import Auth from "../util/Auth";
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
+import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
@@ -35,14 +36,14 @@ class Settings extends Component {
   }
 
   getSettings = () => {
-    Util.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
+    Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
       this.setState({ notify: json, loading: false });
     });
   };
 
   changeNotify = event => {
     Auth.subscribed = event.target.checked;
-    Util.put(
+    Fetch.put(
       Util.CLIENTS_URL,
       Auth.getClient(),
       () => {

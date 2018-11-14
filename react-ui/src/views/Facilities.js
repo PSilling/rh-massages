@@ -12,8 +12,9 @@ import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import "../styles/components/loader.css";
 
 // util imports
-import Auth from "../util/Auth";
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
+import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
@@ -35,13 +36,13 @@ class Facilities extends Component {
   }
 
   getFacilities = () => {
-    Util.get(Util.FACILITIES_URL, json => {
+    Fetch.get(Util.FACILITIES_URL, json => {
       this.setState({ facilities: json, loading: false });
     });
   };
 
   deleteFacility = id => {
-    Util.delete(Util.FACILITIES_URL + id, this.getFacilities);
+    Fetch.delete(Util.FACILITIES_URL + id, this.getFacilities);
   };
 
   closeAlert = () => {

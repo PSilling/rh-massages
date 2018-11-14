@@ -12,7 +12,7 @@ import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton
 import _t from "../../../util/Translations";
 
 // test mocks
-jest.mock("../../../util/Util");
+jest.mock("../../../util/Fetch");
 
 beforeAll(() => {
   Date.now = jest.fn(() => 0);

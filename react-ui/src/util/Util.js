@@ -1,5 +1,6 @@
-// react imports
-import React from "react";
+/**
+ * Utility class containing project-wide utility functions.
+ */
 
 // module imports
 import moment from "moment";
@@ -7,18 +8,8 @@ import { NotificationManager } from "react-notifications";
 
 // util imports
 import _t from "./Translations";
-import Auth from "./Auth";
 
 const Util = function Util() {};
-
-/**
- * Checks whether an Object is null, undefined or an empty string.
- * @param  object Object to check
- * @return true if empty, false otherwise
- */
-Util.isEmpty = function isEmpty(object) {
-  return object === null || typeof object === "undefined" || object === "";
-};
 
 /**
  * Creates a new notification message. Supports types info, success, warning and error.
@@ -47,163 +38,12 @@ Util.notify = (type, message, title) => {
 };
 
 /**
- * Fetches data from a given endpoint.
- * @param url             defined endpoint
- * @param update          callback function to update the resources
+ * Checks whether an Object is null, undefined or an empty string.
+ * @param  object Object to check
+ * @return true if empty, false otherwise
  */
-Util.get = (url, update) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${Auth.getToken()}`
-        }
-      })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occurred!")
-          );
-          return null;
-        })
-        .catch(error => {
-          Util.notify("error", error.toString(), _t.translate("An error occurred!"));
-        })
-        .then(json => {
-          update(json);
-        });
-    })
-    .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
-      Auth.keycloak.login();
-    });
-};
-
-/**
- * Creates a new element at a given endpoint.
- * @param url             defined endpoint
- * @param data            data to send
- * @param update          callback function to update the resources
- * @param notify          false if success notifications should be suppressed
- */
-Util.post = (url, data, update, notify = true) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "post",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
-          }
-          update();
-        } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
-        }
-      });
-    })
-    .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
-      Auth.keycloak.login();
-    });
-};
-
-/**
- * Edits an element at a given endpoint.
- * @param url             defined endpoint
- * @param data            data to send
- * @param update          callback function to update the resources
- * @param notify          false if success notifications should be suppressed
- */
-Util.put = (url, data, update, notify = true) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "put",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
-          }
-          update();
-        } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
-        }
-      });
-    })
-    .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
-      Auth.keycloak.login();
-    });
-};
-
-/**
- * Deletes an element at a given endpoint.
- * @param url             defined endpoint
- * @param update          callback function to update the resources
- * @param notify          false if success notifications should be suppressed
- */
-Util.delete = (url, update, notify = true) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "delete",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`
-        }
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
-          }
-          update();
-        } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
-        }
-      });
-    })
-    .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
-      Auth.keycloak.login();
-    });
+Util.isEmpty = function isEmpty(object) {
+  return object === null || typeof object === "undefined" || object === "";
 };
 
 /**
@@ -244,39 +84,6 @@ Util.moveCursorToEnd = event => {
   const { value } = event.target;
   event.target.value = "";
   event.target.value = value;
-};
-
-/**
- * Returns a highlighted text based on an search query (highlights the first occurrence only).
- * @param text      text to be highlighted
- * @param query     search query String
- */
-Util.highlightInText = (text, query) => {
-  const searchIndex = text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .indexOf(
-      query
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-    );
-  if (searchIndex === -1) {
-    return text;
-  }
-  const textStart = text.substring(0, searchIndex);
-
-  const firstOccurrence = text.substring(searchIndex, searchIndex + query.length);
-
-  const textRest = text.substring(searchIndex + query.length);
-  return (
-    <span>
-      {textStart}
-      <strong>{firstOccurrence}</strong>
-      {textRest}
-    </span>
-  );
 };
 
 /**

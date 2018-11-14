@@ -9,6 +9,7 @@ import MyMassagePanel from "../../components/panels/MyMassagePanel";
 import _t from "../../util/Translations";
 
 // test mocks
+jest.mock("../../util/Fetch");
 jest.mock("../../util/Util");
 
 afterAll(() => {

@@ -1,12 +1,3 @@
-const get = jest.fn((url, update) => {
-  update([]);
-});
-const post = jest.fn((url, data, update) => {
-  update();
-});
-const put = jest.fn((url, data, update) => {
-  update();
-});
 const notify = jest.fn();
 const clearAllIntervals = jest.fn();
 const getEventLink = jest.fn();
@@ -32,9 +23,6 @@ const getTooltipTargets = jest.fn(count => {
 });
 
 module.exports = {
-  get,
-  post,
-  put,
   notify,
   clearAllIntervals,
   getEventLink,

@@ -12,6 +12,7 @@ import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
+import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
@@ -38,7 +39,7 @@ class FacilityModal extends Component {
       Util.notify("error", "", _t.translate("Name is required!"));
       return;
     }
-    Util.post(
+    Fetch.post(
       Util.FACILITIES_URL,
       {
         name: this.state.name
@@ -55,7 +56,7 @@ class FacilityModal extends Component {
       Util.notify("error", "", _t.translate("Name is required!"));
       return;
     }
-    Util.put(
+    Fetch.put(
       Util.FACILITIES_URL + this.props.facility.id,
       {
         name: this.state.name

@@ -103,7 +103,7 @@ ShallowWrapper {
                 >
                   Událost: 
                   <CalendarButton
-                    link=""
+                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                   />
                 </CardText>
               </CardBody>
@@ -175,7 +175,7 @@ ShallowWrapper {
                 >
                   Událost: 
                   <CalendarButton
-                    link=""
+                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                   />
                 </CardText>
               </CardBody>
@@ -230,7 +230,7 @@ ShallowWrapper {
                 >
                   Událost: 
                   <CalendarButton
-                    link=""
+                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                   />
                 </CardText>
               </CardBody>
@@ -288,7 +288,7 @@ ShallowWrapper {
                   >
                     Událost: 
                     <CalendarButton
-                      link=""
+                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                     />
                   </CardText>
                 </CardBody>,
@@ -366,7 +366,7 @@ ShallowWrapper {
                     >
                       Událost: 
                       <CalendarButton
-                        link=""
+                        link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                       />
                     </CardText>,
                   ],
@@ -418,7 +418,7 @@ ShallowWrapper {
                       "children": Array [
                         "Událost: ",
                         <CalendarButton
-                          link=""
+                          link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                         />,
                       ],
                       "tag": "p",
@@ -431,7 +431,7 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "link": "",
+                          "link": "https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined",
                         },
                         "ref": null,
                         "rendered": null,
@@ -518,7 +518,7 @@ ShallowWrapper {
                   >
                     Událost: 
                     <CalendarButton
-                      link=""
+                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                     />
                   </CardText>
                 </CardBody>
@@ -590,7 +590,7 @@ ShallowWrapper {
                   >
                     Událost: 
                     <CalendarButton
-                      link=""
+                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                     />
                   </CardText>
                 </CardBody>
@@ -645,7 +645,7 @@ ShallowWrapper {
                   >
                     Událost: 
                     <CalendarButton
-                      link=""
+                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                     />
                   </CardText>
                 </CardBody>
@@ -703,7 +703,7 @@ ShallowWrapper {
                     >
                       Událost: 
                       <CalendarButton
-                        link=""
+                        link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                       />
                     </CardText>
                   </CardBody>,
@@ -781,7 +781,7 @@ ShallowWrapper {
                       >
                         Událost: 
                         <CalendarButton
-                          link=""
+                          link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                         />
                       </CardText>,
                     ],
@@ -833,7 +833,7 @@ ShallowWrapper {
                         "children": Array [
                           "Událost: ",
                           <CalendarButton
-                            link=""
+                            link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
                           />,
                         ],
                         "tag": "p",
@@ -846,7 +846,7 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "link": "",
+                            "link": "https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined",
                           },
                           "ref": null,
                           "rendered": null,
