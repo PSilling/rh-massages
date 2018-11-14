@@ -35,6 +35,10 @@ class Facilities extends Component {
     }, Util.AUTO_REFRESH_TIME * 30);
   }
 
+  componentWillUnmount() {
+    Util.clearAllIntervals();
+  }
+
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
       this.setState({ facilities: json, loading: false });

@@ -36,6 +36,10 @@ class MyMassages extends Component {
     }, Util.AUTO_REFRESH_TIME * 60);
   }
 
+  componentWillUnmount() {
+    Util.clearAllIntervals();
+  }
+
   getMassages = () => {
     Fetch.get(`${Util.MASSAGES_URL}client`, json => {
       this.setState({ massages: json, loading: false });

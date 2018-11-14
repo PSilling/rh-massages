@@ -48,6 +48,10 @@ class MassagesArchive extends Component {
     }, Util.AUTO_REFRESH_TIME);
   }
 
+  componentWillUnmount() {
+    Util.clearAllIntervals();
+  }
+
   getMassages = () => {
     Fetch.get(
       `${Util.MASSAGES_URL}old?from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,

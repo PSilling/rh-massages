@@ -35,6 +35,10 @@ class Settings extends Component {
     }, Util.AUTO_REFRESH_TIME * 600);
   }
 
+  componentWillUnmount() {
+    Util.clearAllIntervals();
+  }
+
   getSettings = () => {
     Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
       this.setState({ notify: json, loading: false });
