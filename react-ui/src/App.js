@@ -21,14 +21,15 @@ import MyMassages from "./views/MyMassages";
 import Settings from "./views/Settings";
 
 // component imports
+import ErrorBoundary from "./components/util/ErrorBoundary";
 import ProfileLink from "./components/links/ProfileLink";
 import LangLink from "./components/links/LangLink";
 import LogoutLink from "./components/links/LogoutLink";
 import UnauthorizedMessage from "./components/util/UnauthorizedMessage";
 
 // util imports
-import Auth from "./util/Auth";
 import _t from "./util/Translations";
+import Auth from "./util/Auth";
 
 // moment.js localization
 moment.updateLocale("en", {
@@ -133,14 +134,16 @@ const App = function App() {
         <NavWithLinks />
 
         <div className="container">
-          <Switch>
-            <Route exact path="/" component={Massages} />
-            <Route exact path="/my-massages" component={MyMassages} />
-            <Route exact path="/facilities" component={Facilities} />
-            <Route exact path="/massages-archive" component={MassagesArchive} />
-            <Route exact path="/settings" component={Settings} />
-            <Route component={NoMatch} />
-          </Switch>
+          <ErrorBoundary>
+            <Switch>
+              <Route exact path="/" component={Massages} />
+              <Route exact path="/my-massages" component={MyMassages} />
+              <Route exact path="/facilities" component={Facilities} />
+              <Route exact path="/massages-archive" component={MassagesArchive} />
+              <Route exact path="/settings" component={Settings} />
+              <Route component={NoMatch} />
+            </Switch>
+          </ErrorBoundary>
         </div>
       </div>
     </Router>

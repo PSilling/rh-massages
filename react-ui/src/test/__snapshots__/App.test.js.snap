@@ -26,54 +26,7 @@ ShallowWrapper {
         <div
           className="container"
         >
-          <Switch>
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/"
-            />
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/my-massages"
-            />
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/facilities"
-            />
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/massages-archive"
-            />
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/settings"
-            />
-            <Route
-              component={[Function]}
-            />
-          </Switch>
-        </div>
-      </div>,
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <NotificationContainer
-            enterTimeout={400}
-            leaveTimeout={400}
-          />,
-          <withRouter() />,
-          <div
-            className="container"
-          >
+          <ErrorBoundary>
             <Switch>
               <Route
                 component={[Function]}
@@ -104,6 +57,57 @@ ShallowWrapper {
                 component={[Function]}
               />
             </Switch>
+          </ErrorBoundary>
+        </div>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <NotificationContainer
+            enterTimeout={400}
+            leaveTimeout={400}
+          />,
+          <withRouter() />,
+          <div
+            className="container"
+          >
+            <ErrorBoundary>
+              <Switch>
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/my-massages"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/facilities"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/massages-archive"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/settings"
+                />
+                <Route
+                  component={[Function]}
+                />
+              </Switch>
+            </ErrorBoundary>
           </div>,
         ],
       },
@@ -135,226 +139,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Switch>
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/my-massages"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/facilities"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/massages-archive"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/settings"
-              />
-              <Route
-                component={[Function]}
-              />
-            </Switch>,
-            "className": "container",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": Array [
-                <Route
-                  component={[Function]}
-                  exact={true}
-                  path="/"
-                />,
-                <Route
-                  component={[Function]}
-                  exact={true}
-                  path="/my-massages"
-                />,
-                <Route
-                  component={[Function]}
-                  exact={true}
-                  path="/facilities"
-                />,
-                <Route
-                  component={[Function]}
-                  exact={true}
-                  path="/massages-archive"
-                />,
-                <Route
-                  component={[Function]}
-                  exact={true}
-                  path="/settings"
-                />,
-                <Route
-                  component={[Function]}
-                />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "exact": true,
-                  "path": "/",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "exact": true,
-                  "path": "/my-massages",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "exact": true,
-                  "path": "/facilities",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "exact": true,
-                  "path": "/massages-archive",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "exact": true,
-                  "path": "/settings",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-          "type": "div",
-        },
-      ],
-      "type": "div",
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": <div>
-          <NotificationContainer
-            enterTimeout={400}
-            leaveTimeout={400}
-          />
-          <withRouter() />
-          <div
-            className="container"
-          >
-            <Switch>
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/my-massages"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/facilities"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/massages-archive"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/settings"
-              />
-              <Route
-                component={[Function]}
-              />
-            </Switch>
-          </div>
-        </div>,
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <NotificationContainer
-              enterTimeout={400}
-              leaveTimeout={400}
-            />,
-            <withRouter() />,
-            <div
-              className="container"
-            >
+            "children": <ErrorBoundary>
               <Switch>
                 <Route
                   component={[Function]}
@@ -385,36 +170,14 @@ ShallowWrapper {
                   component={[Function]}
                 />
               </Switch>
-            </div>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
+            </ErrorBoundary>,
+            "className": "container",
+          },
+          "ref": null,
+          "rendered": Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
-            "props": Object {
-              "enterTimeout": 400,
-              "leaveTimeout": 400,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
             "props": Object {
               "children": <Switch>
                 <Route
@@ -446,7 +209,6 @@ ShallowWrapper {
                   component={[Function]}
                 />
               </Switch>,
-              "className": "container",
             },
             "ref": null,
             "rendered": Object {
@@ -564,6 +326,334 @@ ShallowWrapper {
                   "type": [Function],
                 },
               ],
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <div>
+          <NotificationContainer
+            enterTimeout={400}
+            leaveTimeout={400}
+          />
+          <withRouter() />
+          <div
+            className="container"
+          >
+            <ErrorBoundary>
+              <Switch>
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/my-massages"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/facilities"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/massages-archive"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/settings"
+                />
+                <Route
+                  component={[Function]}
+                />
+              </Switch>
+            </ErrorBoundary>
+          </div>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <NotificationContainer
+              enterTimeout={400}
+              leaveTimeout={400}
+            />,
+            <withRouter() />,
+            <div
+              className="container"
+            >
+              <ErrorBoundary>
+                <Switch>
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/my-massages"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/facilities"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/massages-archive"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/settings"
+                  />
+                  <Route
+                    component={[Function]}
+                  />
+                </Switch>
+              </ErrorBoundary>
+            </div>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "enterTimeout": 400,
+              "leaveTimeout": 400,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ErrorBoundary>
+                <Switch>
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/my-massages"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/facilities"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/massages-archive"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/settings"
+                  />
+                  <Route
+                    component={[Function]}
+                  />
+                </Switch>
+              </ErrorBoundary>,
+              "className": "container",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Switch>
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/my-massages"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/facilities"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/massages-archive"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/settings"
+                  />
+                  <Route
+                    component={[Function]}
+                  />
+                </Switch>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/"
+                    />,
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/my-massages"
+                    />,
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/facilities"
+                    />,
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/massages-archive"
+                    />,
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/settings"
+                    />,
+                    <Route
+                      component={[Function]}
+                    />,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/my-massages",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/facilities",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/massages-archive",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/settings",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             "type": "div",

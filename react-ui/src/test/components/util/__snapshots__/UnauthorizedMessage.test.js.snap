@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders content with correct props 1`] = `
-<div>
+<div
+  className="mt-3"
+>
   <h2>
     test
   </h2>

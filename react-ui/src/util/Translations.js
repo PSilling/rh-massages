@@ -334,6 +334,9 @@ const myLocalize = new Localize({
   "Print settings": {
     cs: "Nastavení tisku"
   },
+  "Reload page": {
+    cs: "Načíst znovu"
+  },
 
   // notification messages
   "Your request has been successful.": {
@@ -558,18 +561,6 @@ const myLocalize = new Localize({
   },
   "Masseuse, masseur or client name to use as a massages filter": {
     cs: "Masérka, masér anebo klient pro filtrování masáží"
-  },
-  "": {
-    cs: ""
-  },
-  "": {
-    cs: ""
-  },
-  "": {
-    cs: ""
-  },
-  "": {
-    cs: ""
   },
 
   // moment localization

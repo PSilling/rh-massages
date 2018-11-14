@@ -10,7 +10,7 @@ import _t from "../../util/Translations";
  */
 const UnauthorizedMessage = function UnauthorizedMessage(props) {
   return (
-    <div>
+    <div className="mt-3">
       <h2>{props.title}</h2>
       <hr />
       <h3>{_t.translate("Unauthorized")}</h3>
