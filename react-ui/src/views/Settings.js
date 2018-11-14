@@ -41,7 +41,9 @@ class Settings extends Component {
 
   getSettings = () => {
     Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
-      this.setState({ notify: json, loading: false });
+      if (json !== undefined) {
+        this.setState({ notify: json, loading: false });
+      }
     });
   };
 

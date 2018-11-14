@@ -44,7 +44,6 @@ class LabeledDatetime extends Component {
             inputProps={{
               id: `${this.tooltipTarget}_input`,
               placeholder: this.props.label,
-              onFocus: Util.moveCursorToEnd,
               onKeyPress: this.handleKeyPress
             }}
           />

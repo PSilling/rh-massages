@@ -44,13 +44,6 @@ test("fires correct notification types", () => {
   );
 });
 
-test("automatic cursor movement does not change event value", () => {
-  const event = { target: { value: "test" } };
-  Util.moveCursorToEnd(event);
-
-  expect(event.target.value).toEqual("test");
-});
-
 test("generates correct contact information", () => {
   const client = {
     name: "Name",

@@ -19,11 +19,9 @@ Auth.keycloak
       ReactDOM.render(<App />, document.getElementById("root"));
       registerServiceWorker();
     } else {
-      /* eslint-disable-next-line no-console */
-      console.log("[KEYCLOAK] Authentication has failed!");
+      console.error("Authentication has failed!"); /* eslint-disable-line */
     }
   })
   .error(() => {
-    /* eslint-disable-next-line no-console */
-    console.log("[KEYCLOAK] Failed to initialize Keycloak authentication!");
+    console.log("Failed to initialize Keycloak authentication!"); /* eslint-disable-line */
   });

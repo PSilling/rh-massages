@@ -28,23 +28,24 @@ Fetch.get = (url, update) => {
           if (response.ok) {
             return response.json();
           }
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occurred!")
-          );
-          return null;
+          console.error("Could not retrieve any data from server! Response: ", response); /* eslint-disable-line */
+          return undefined;
         })
         .catch(error => {
-          Util.notify("error", error.toString(), _t.translate("An error occurred!"));
+          /* eslint-disable-next-line */
+          console.error("An unexpected error occurred during the 'GET' request!", error.toString());
+          Util.notify(
+            "error",
+            error.toString(),
+            _t.translate("An unexpected error occurred during the 'GET' request!")
+          );
         })
         .then(json => {
           update(json);
         });
     })
     .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
+      console.error("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
       Auth.keycloak.login();
     });
 };
@@ -80,12 +81,12 @@ Fetch.post = (url, data, update, notify = true) => {
             _t.translate("Your request has ended unsuccessfully."),
             _t.translate("An error occured!")
           );
+          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
         }
       });
     })
     .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
+      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
       Auth.keycloak.login();
     });
 };
@@ -121,12 +122,12 @@ Fetch.put = (url, data, update, notify = true) => {
             _t.translate("Your request has ended unsuccessfully."),
             _t.translate("An error occured!")
           );
+          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
         }
       });
     })
     .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
+      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
       Auth.keycloak.login();
     });
 };
@@ -159,12 +160,12 @@ Fetch.delete = (url, update, notify = true) => {
             _t.translate("Your request has ended unsuccessfully."),
             _t.translate("An error occured!")
           );
+          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
         }
       });
     })
     .error(() => {
-      /* eslint-disable-next-line no-console */
-      console.log("Failed to refresh the token!");
+      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
       Auth.keycloak.login();
     });
 };

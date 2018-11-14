@@ -40,7 +40,6 @@ class LabeledInput extends Component {
             id={`${this.tooltipTarget}_input`}
             value={this.props.value}
             onChange={this.props.onChange}
-            onFocus={Util.moveCursorToEnd}
             onKeyPress={this.handleKeyPress}
             placeholder={this.props.label}
             list={`${this.tooltipTargets}_list`}

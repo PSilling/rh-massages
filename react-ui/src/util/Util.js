@@ -61,30 +61,19 @@ Util.clearAllIntervals = () => {
  * Generates a Google Calendar link for a given massage event.
  * @param massage the Massage to be added to the calendar
  */
-Util.getEventLink = massage => {
-  let url = "https://www.google.com/calendar/render?action=TEMPLATE";
-  url += `&text=${_t.translate("Massage")}`;
-  url += `&dates=${moment
+Util.getEventLink = massage =>
+  "https://www.google.com/calendar/render?action=TEMPLATE" +
+  `&text=${_t.translate("Massage")}` +
+  `&dates=${moment
     .utc(massage.date)
     .format("YYYYMMDDTHHmmssZ")
-    .replace("+00:00", "Z")}`;
-  url += `/${moment
+    .replace("+00:00", "Z")}` +
+  `/${moment
     .utc(massage.ending)
     .format("YYYYMMDDTHHmmssZ")
-    .replace("+00:00", "Z")}`;
-  url += `&location=Red%20Hat%20Czech%20${massage.facility.name}`;
-  url += `&details=${_t.translate("Masseur/Masseuse")}: ${massage.masseuse}`;
-  return url;
-};
-
-/**
- * Moves cursor in an input field to the end of event value.
- */
-Util.moveCursorToEnd = event => {
-  const { value } = event.target;
-  event.target.value = "";
-  event.target.value = value;
-};
+    .replace("+00:00", "Z")}` +
+  `&location=Red%20Hat%20Czech%20${massage.facility.name}` +
+  `&details=${_t.translate("Masseur/Masseuse")}: ${massage.masseuse}`;
 
 /**
  * Creates a new contact info String from a given Client.

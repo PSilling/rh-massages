@@ -42,7 +42,9 @@ class MyMassages extends Component {
 
   getMassages = () => {
     Fetch.get(`${Util.MASSAGES_URL}client`, json => {
-      this.setState({ massages: json, loading: false });
+      if (json !== undefined) {
+        this.setState({ massages: json, loading: false });
+      }
     });
   };
 

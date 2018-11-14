@@ -351,6 +351,9 @@ const myLocalize = new Localize({
   "An error occurred!": {
     cs: "Nastala chyba!"
   },
+  "An unexpected error occurred during the 'GET' request!": {
+    cs: "Při požadavku 'GET' nastala neočekávaná chyba!"
+  },
   Warning: {
     cs: "Upozornění"
   },

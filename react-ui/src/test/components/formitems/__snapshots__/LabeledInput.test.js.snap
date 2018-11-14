@@ -72,7 +72,6 @@ ShallowWrapper {
               ],
             }
           }
-          onFocus={[Function]}
           onKeyPress={[Function]}
           placeholder="test"
           type="text"
@@ -145,7 +144,6 @@ ShallowWrapper {
                 ],
               }
             }
-            onFocus={[Function]}
             onKeyPress={[Function]}
             placeholder="test"
             type="text"
@@ -213,7 +211,6 @@ ShallowWrapper {
                 },
               ],
             },
-            "onFocus": [Function],
             "onKeyPress": [Function],
             "placeholder": "test",
             "type": "text",
@@ -292,7 +289,6 @@ ShallowWrapper {
                 ],
               }
             }
-            onFocus={[Function]}
             onKeyPress={[Function]}
             placeholder="test"
             type="text"
@@ -365,7 +361,6 @@ ShallowWrapper {
                   ],
                 }
               }
-              onFocus={[Function]}
               onKeyPress={[Function]}
               placeholder="test"
               type="text"
@@ -433,7 +428,6 @@ ShallowWrapper {
                   },
                 ],
               },
-              "onFocus": [Function],
               "onKeyPress": [Function],
               "placeholder": "test",
               "type": "text",

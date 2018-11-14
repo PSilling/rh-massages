@@ -415,6 +415,7 @@ class Massages extends Component {
             </div>
           ) : (
             <div>
+              {this.state.loading && <div className="loader float-right" />}
               <h1>{_t.translate("Massages")}</h1>
               <hr />
             </div>

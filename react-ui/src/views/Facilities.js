@@ -41,7 +41,9 @@ class Facilities extends Component {
 
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
-      this.setState({ facilities: json, loading: false });
+      if (json !== undefined) {
+        this.setState({ facilities: json, loading: false });
+      }
     });
   };
 

@@ -1689,6 +1689,9 @@ ShallowWrapper {
           className="my-3 no-print"
         >
           <div>
+            <div
+              className="loader float-right"
+            />
             <h1>
               Masáže
             </h1>
@@ -1768,6 +1771,9 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": <div>
+            <div
+              className="loader float-right"
+            />
             <h1>
               Masáže
             </h1>
@@ -1782,6 +1788,9 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
+              <div
+                className="loader float-right"
+              />,
               <h1>
                 Masáže
               </h1>,
@@ -1790,6 +1799,17 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "loader float-right",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -2167,6 +2187,9 @@ ShallowWrapper {
             className="my-3 no-print"
           >
             <div>
+              <div
+                className="loader float-right"
+              />
               <h1>
                 Masáže
               </h1>
@@ -2246,6 +2269,9 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <div>
+              <div
+                className="loader float-right"
+              />
               <h1>
                 Masáže
               </h1>
@@ -2260,6 +2286,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
+                <div
+                  className="loader float-right"
+                />,
                 <h1>
                   Masáže
                 </h1>,
@@ -2268,6 +2297,17 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "loader float-right",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
               Object {
                 "instance": null,
                 "key": undefined,
