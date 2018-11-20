@@ -48,7 +48,8 @@ class Massages extends Component {
       .subtract(7, "days"),
     to: moment()
       .endOf("isoWeek")
-      .add(5, "days")
+      .add(5, "days"),
+    mounted: false
   };
 
   alertMessage =
@@ -58,6 +59,7 @@ class Massages extends Component {
   componentDidMount() {
     Util.clearAllIntervals();
 
+    this.setState({ mounted: true });
     this.getFacilities();
     setInterval(() => {
       if (this.state.modalActive || this.state.batchAddModalActive) return;
@@ -67,12 +69,15 @@ class Massages extends Component {
 
   componentWillUnmount() {
     Util.clearAllIntervals();
+    this.setState({ mounted: false });
   }
 
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
-      this.setState({ facilities: json });
-      this.getMassages();
+      if (this.state.mounted) {
+        this.setState({ facilities: json });
+        this.getMassages();
+      }
     });
   };
 
@@ -83,7 +88,12 @@ class Massages extends Component {
           this.state.freeOnly
         }&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
         json => {
-          if (json !== undefined && json.massages !== undefined && json.clientTime !== undefined) {
+          if (
+            this.state.mounted &&
+            json !== undefined &&
+            json.massages !== undefined &&
+            json.clientTime !== undefined
+          ) {
             this.updateEvents(json.massages, json.clientTime / 60000);
           }
         }

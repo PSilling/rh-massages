@@ -34,7 +34,8 @@ class MassagesArchive extends Component {
       .subtract(37, "days"),
     to: moment()
       .endOf("month")
-      .add(37, "days")
+      .add(37, "days"),
+    mounted: false
   };
 
   alertMessage = _t.translate("On this page you can view finished, archived massages.");
@@ -42,6 +43,7 @@ class MassagesArchive extends Component {
   componentDidMount() {
     Util.clearAllIntervals();
 
+    this.setState({ mounted: true });
     this.getMassages();
     setInterval(() => {
       this.getMassages();
@@ -50,13 +52,14 @@ class MassagesArchive extends Component {
 
   componentWillUnmount() {
     Util.clearAllIntervals();
+    this.setState({ mounted: false });
   }
 
   getMassages = () => {
     Fetch.get(
       `${Util.MASSAGES_URL}old?from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
       json => {
-        if (json !== undefined && json.massages !== undefined) {
+        if (this.state.mounted && json !== undefined && json.massages !== undefined) {
           this.updateEvents(json.massages);
         }
       }

@@ -3,135 +3,85 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
-import { Row, Col, Card, Button, CardHeader, CardBody, CardText } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import moment from "moment";
+import BigCalendar from "react-big-calendar";
 
 // component imports
-import CalendarButton from "../iconbuttons/CalendarButton";
-import ConfirmationModal from "../modals/ConfirmationModal";
+import CalendarView from "./components/CalendarView";
 
 // util imports
 import _t from "../../util/Translations";
-import Fetch from "../../util/Fetch";
-import Util from "../../util/Util";
 
+const localizer = BigCalendar.momentLocalizer(moment);
 /**
- * Massage information panel for My Massages view.
+ * Calendar with my massage events inside an agenda view.
  */
 class MyMassagePanel extends Component {
-  state = { active: false };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.type !== nextProps.type ||
-      this.props.massage.masseuse !== nextProps.massage.masseuse ||
-      this.props.massage.date !== nextProps.massage.date ||
-      this.props.massage.ending !== nextProps.massage.ending ||
-      this.state.active !== nextState.active
-    );
-  }
-
-  handleToggle = () => {
-    this.setState(prevStata => ({ active: !prevStata.active }));
+  localization = {
+    allDay: _t.translate("All day"),
+    date: _t.translate("Date"),
+    time: _t.translate("Time"),
+    event: _t.translate("Event")
   };
 
-  cancelMassage = () => {
-    Fetch.put(
-      Util.MASSAGES_URL,
-      [
-        {
-          id: this.props.massage.id,
-          date: this.props.massage.date,
-          ending: this.props.massage.ending,
-          masseuse: this.props.massage.masseuse,
-          client: null,
-          facility: this.props.massage.facility
-        }
-      ],
-      this.props.getCallback
-    );
-  };
+  generateTitle = event =>
+    _t.translate("Massage in ") + event.massage.facility.name + _t.translate(" with ") + event.massage.masseuse;
 
   render() {
     return (
       <div className="mb-3">
         <Row>
-          <Col md="3">
-            <Card color={this.props.type} outline>
-              <CardHeader>
-                {moment(this.props.massage.date).format("ddd L")}
-                <Button
-                  color="light"
-                  className="close"
-                  aria-label="Close"
-                  onClick={this.handleToggle}
-                  disabled={this.props.disabled}
-                >
-                  {!this.props.disabled && <span aria-hidden="true">&times;</span>}
-                </Button>
-              </CardHeader>
-              <CardBody>
-                <CardText>{`${_t.translate("Facility")}: ${this.props.massage.facility.name}`}</CardText>
-                <CardText>{`${_t.translate("Masseur/Masseuse")}: ${this.props.massage.masseuse}`}</CardText>
-                <CardText>
-                  {`${_t.translate("Time")}: ${moment(this.props.massage.date).format("HH:mm")}–${moment(
-                    this.props.massage.ending
-                  ).format("HH:mm")}`}
-                </CardText>
-                <CardText>
-                  {`${_t.translate("Event")}: `}
-                  <CalendarButton link={Util.getEventLink(this.props.massage)} />
-                </CardText>
-              </CardBody>
-            </Card>
+          <Col md="12">
+            <BigCalendar
+              messages={this.localization}
+              events={this.props.events}
+              defaultDate={new Date()}
+              length={365}
+              defaultView="view"
+              views={{ view: CalendarView }}
+              style={{ height: "85vh" }}
+              onCancel={this.props.onCancel}
+              slotPropGetter={this.eventStyler}
+              titleAccessor={this.generateTitle}
+              startAccessor={event => new Date(event.massage.date)}
+              endAccessor={event => new Date(event.massage.ending)}
+              localizer={localizer}
+              toolbar={false}
+            />
           </Col>
         </Row>
-        {this.state.active && (
-          <ConfirmationModal
-            message={_t.translate("Are you sure you want to unassign yourself from this massage?")}
-            onClose={this.handleToggle}
-            onConfirm={() => {
-              this.handleToggle();
-              this.cancelMassage();
-            }}
-          />
-        )}
       </div>
     );
   }
 }
 
 MyMassagePanel.propTypes = {
-  /** Massage to be printed inside the panel */
-  massage: PropTypes.shape({
-    id: PropTypes.number,
-    masseuse: PropTypes.string,
-    date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
-    ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
-    client: PropTypes.shape({
-      email: PropTypes.string,
-      name: PropTypes.string,
-      surname: PropTypes.string,
-      sub: PropTypes.string,
-      subscribed: PropTypes.bool
-    }),
-    facility: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string
+  /** events featured in the calendar */
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      bgColor: PropTypes.string,
+      massage: PropTypes.shape({
+        id: PropTypes.number,
+        masseuse: PropTypes.string,
+        date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
+        ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
+        client: PropTypes.shape({
+          email: PropTypes.string,
+          name: PropTypes.string,
+          surname: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool
+        }),
+        facility: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        })
+      })
     })
-  }).isRequired,
-  /** type of the Bootstrap panel */
-  type: PropTypes.string,
-  /** whether the removal button should be hidden or not */
-  disabled: PropTypes.bool,
-  /** update callback function called on Massage cancellation */
-  getCallback: PropTypes.func
-};
-
-MyMassagePanel.defaultProps = {
-  type: "default",
-  disabled: true,
-  getCallback: null
+  ).isRequired,
+  /** function called on massage cancellation */
+  onCancel: PropTypes.func.isRequired
 };
 
 export default MyMassagePanel;

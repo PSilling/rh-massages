@@ -7,21 +7,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <version>1.4.5</version>
+        <version>1.4.7</version>
         <artifactId>parent</artifactId>
         <groupId>cz.redhat</groupId>
     </parent>
 
     <groupId>cz.redhat</groupId>
     <artifactId>Massages</artifactId>
-    <version>1.4.5</version>
+    <version>1.4.7</version>
     <packaging>jar</packaging>
-
     <name>Massages</name>
-
-    <properties>
-        <mainClass>cz.redhat.MassagesApplication</mainClass>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -161,7 +156,6 @@
                             <mainClass>${mainClass}</mainClass>
                         </transformer>
                     </transformers>
-                    <!-- exclude signed Manifests -->
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -242,7 +236,7 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>./dropwizard-api/docs/checkstyle.xml</configLocation>
+                            <configLocation>${project.basedir}/docs/checkstyle.xml</configLocation>
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>

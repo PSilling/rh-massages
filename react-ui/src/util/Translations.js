@@ -117,6 +117,9 @@ const myLocalize = new Localize({
   "Assigns this massage and opens a predefined Google event editor in a new tab": {
     cs: "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce"
   },
+  "Opens a predefined Google event editor in a new tab": {
+    cs: "Otevře předdefinovaný editor Google událostí v nové záložce"
+  },
   "Too late to cancel this massage": {
     cs: "Příliš pozdě na zrušení této masáže"
   },
@@ -426,6 +429,12 @@ const myLocalize = new Localize({
   Massage: {
     cs: "Masáž"
   },
+  "Massage in ": {
+    cs: "Masáž v "
+  },
+  " with ": {
+    cs: " s "
+  },
   "Free massage": {
     cs: "Volná masáž"
   },
@@ -622,8 +631,8 @@ const myLocalize = new Localize({
   "On this page you can view all your assigned massages. ": {
     cs: "Na této stránce můžete vidět své zapsané masáže. "
   },
-  "Using the calendar button you can generate a Google Event for the given massage.": {
-    cs: "Použitím tlačítka kalendáře lze podle dané masáže vygenerovat Google událost."
+  "To view massage details click on the event name.": {
+    cs: "Pro zobrazení podrobností o masáži klikněte na název dané události."
   },
   "On this page you can manage your local user settings. ": {
     cs: "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. "

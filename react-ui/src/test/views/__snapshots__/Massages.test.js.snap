@@ -130,6 +130,7 @@ ShallowWrapper {
               </Col>
             </Row>
             <CalendarPanel
+              allowDeletion={true}
               allowEditation={true}
               events={Array []}
               massageMinutes={0}
@@ -271,6 +272,7 @@ ShallowWrapper {
               </Col>
             </Row>
             <CalendarPanel
+              allowDeletion={true}
               allowEditation={true}
               events={Array []}
               massageMinutes={0}
@@ -397,6 +399,7 @@ ShallowWrapper {
                 </Col>
               </Row>,
               <CalendarPanel
+                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -800,6 +803,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
+                "allowDeletion": true,
                 "allowEditation": true,
                 "events": Array [],
                 "massageMinutes": 0,
@@ -945,6 +949,7 @@ ShallowWrapper {
                 </Col>
               </Row>
               <CalendarPanel
+                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -1086,6 +1091,7 @@ ShallowWrapper {
                 </Col>
               </Row>
               <CalendarPanel
+                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -1212,6 +1218,7 @@ ShallowWrapper {
                   </Col>
                 </Row>,
                 <CalendarPanel
+                  allowDeletion={true}
                   allowEditation={true}
                   events={Array []}
                   massageMinutes={0}
@@ -1615,6 +1622,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "allowDeletion": true,
                   "allowEditation": true,
                   "events": Array [],
                   "massageMinutes": 0,

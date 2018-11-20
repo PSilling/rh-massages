@@ -7,8 +7,5 @@
 **/.idea/
 **/package-lock.json
 
-# Keycloak configuration json
-**/keycloak.json
-
 # environmental variables settings file
 **/.env

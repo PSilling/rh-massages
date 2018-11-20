@@ -4,33 +4,24 @@ exports[`renders content with correct props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MyMassagePanel
-    disabled={true}
-    getCallback={
-      [MockFunction] {
-        "calls": Array [
-          Array [],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": undefined,
+    events={
+      Array [
+        Object {
+          "massage": Object {
+            "client": null,
+            "date": 1970-01-01T00:00:00.000Z,
+            "ending": 1970-01-01T00:00:00.000Z,
+            "facility": Object {
+              "id": 1,
+              "name": "test",
+            },
+            "id": 1,
+            "masseuse": "test",
           },
-        ],
-      }
-    }
-    massage={
-      Object {
-        "client": null,
-        "date": 1970-01-01T00:00:00.000Z,
-        "ending": 1970-01-01T00:00:01.000Z,
-        "facility": Object {
-          "id": 1,
-          "name": "test",
         },
-        "id": 1,
-      }
+      ]
     }
-    type="default"
+    onCancel={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -45,12 +36,392 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <Row
+      "children": <Row
+        tag="div"
+      >
+        <Col
+          md="12"
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <ForwardRef
+            defaultDate={1970-01-01T00:00:00.000Z}
+            defaultView="view"
+            endAccessor={[Function]}
+            events={
+              Array [
+                Object {
+                  "massage": Object {
+                    "client": null,
+                    "date": 1970-01-01T00:00:00.000Z,
+                    "ending": 1970-01-01T00:00:00.000Z,
+                    "facility": Object {
+                      "id": 1,
+                      "name": "test",
+                    },
+                    "id": 1,
+                    "masseuse": "test",
+                  },
+                },
+              ]
+            }
+            length={365}
+            localizer={
+              DateLocalizer {
+                "format": [Function],
+                "formats": Object {
+                  "agendaDateFormat": "ddd MMM DD",
+                  "agendaHeaderFormat": [Function],
+                  "agendaTimeFormat": "LT",
+                  "agendaTimeRangeFormat": [Function],
+                  "dateFormat": "DD",
+                  "dayFormat": "DD ddd",
+                  "dayHeaderFormat": "dddd MMM DD",
+                  "dayRangeHeaderFormat": [Function],
+                  "eventTimeRangeEndFormat": [Function],
+                  "eventTimeRangeFormat": [Function],
+                  "eventTimeRangeStartFormat": [Function],
+                  "monthHeaderFormat": "MMMM YYYY",
+                  "selectRangeFormat": [Function],
+                  "timeGutterFormat": "LT",
+                  "weekdayFormat": "ddd",
+                },
+                "propType": [Function],
+                "startOfWeek": [Function],
+              }
+            }
+            messages={
+              Object {
+                "allDay": "Celý den",
+                "date": "Datum",
+                "event": "Událost",
+                "time": "Čas",
+              }
+            }
+            onCancel={[MockFunction]}
+            startAccessor={[Function]}
+            style={
+              Object {
+                "height": "85vh",
+              }
+            }
+            titleAccessor={[Function]}
+            toolbar={false}
+            views={
+              Object {
+                "view": [Function],
+              }
+            }
+          />
+        </Col>
+      </Row>,
+      "className": "mb-3",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <Col
+          md="12"
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <ForwardRef
+            defaultDate={1970-01-01T00:00:00.000Z}
+            defaultView="view"
+            endAccessor={[Function]}
+            events={
+              Array [
+                Object {
+                  "massage": Object {
+                    "client": null,
+                    "date": 1970-01-01T00:00:00.000Z,
+                    "ending": 1970-01-01T00:00:00.000Z,
+                    "facility": Object {
+                      "id": 1,
+                      "name": "test",
+                    },
+                    "id": 1,
+                    "masseuse": "test",
+                  },
+                },
+              ]
+            }
+            length={365}
+            localizer={
+              DateLocalizer {
+                "format": [Function],
+                "formats": Object {
+                  "agendaDateFormat": "ddd MMM DD",
+                  "agendaHeaderFormat": [Function],
+                  "agendaTimeFormat": "LT",
+                  "agendaTimeRangeFormat": [Function],
+                  "dateFormat": "DD",
+                  "dayFormat": "DD ddd",
+                  "dayHeaderFormat": "dddd MMM DD",
+                  "dayRangeHeaderFormat": [Function],
+                  "eventTimeRangeEndFormat": [Function],
+                  "eventTimeRangeFormat": [Function],
+                  "eventTimeRangeStartFormat": [Function],
+                  "monthHeaderFormat": "MMMM YYYY",
+                  "selectRangeFormat": [Function],
+                  "timeGutterFormat": "LT",
+                  "weekdayFormat": "ddd",
+                },
+                "propType": [Function],
+                "startOfWeek": [Function],
+              }
+            }
+            messages={
+              Object {
+                "allDay": "Celý den",
+                "date": "Datum",
+                "event": "Událost",
+                "time": "Čas",
+              }
+            }
+            onCancel={[MockFunction]}
+            startAccessor={[Function]}
+            style={
+              Object {
+                "height": "85vh",
+              }
+            }
+            titleAccessor={[Function]}
+            toolbar={false}
+            views={
+              Object {
+                "view": [Function],
+              }
+            }
+          />
+        </Col>,
+        "tag": "div",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <ForwardRef
+            defaultDate={1970-01-01T00:00:00.000Z}
+            defaultView="view"
+            endAccessor={[Function]}
+            events={
+              Array [
+                Object {
+                  "massage": Object {
+                    "client": null,
+                    "date": 1970-01-01T00:00:00.000Z,
+                    "ending": 1970-01-01T00:00:00.000Z,
+                    "facility": Object {
+                      "id": 1,
+                      "name": "test",
+                    },
+                    "id": 1,
+                    "masseuse": "test",
+                  },
+                },
+              ]
+            }
+            length={365}
+            localizer={
+              DateLocalizer {
+                "format": [Function],
+                "formats": Object {
+                  "agendaDateFormat": "ddd MMM DD",
+                  "agendaHeaderFormat": [Function],
+                  "agendaTimeFormat": "LT",
+                  "agendaTimeRangeFormat": [Function],
+                  "dateFormat": "DD",
+                  "dayFormat": "DD ddd",
+                  "dayHeaderFormat": "dddd MMM DD",
+                  "dayRangeHeaderFormat": [Function],
+                  "eventTimeRangeEndFormat": [Function],
+                  "eventTimeRangeFormat": [Function],
+                  "eventTimeRangeStartFormat": [Function],
+                  "monthHeaderFormat": "MMMM YYYY",
+                  "selectRangeFormat": [Function],
+                  "timeGutterFormat": "LT",
+                  "weekdayFormat": "ddd",
+                },
+                "propType": [Function],
+                "startOfWeek": [Function],
+              }
+            }
+            messages={
+              Object {
+                "allDay": "Celý den",
+                "date": "Datum",
+                "event": "Událost",
+                "time": "Čas",
+              }
+            }
+            onCancel={[MockFunction]}
+            startAccessor={[Function]}
+            style={
+              Object {
+                "height": "85vh",
+              }
+            }
+            titleAccessor={[Function]}
+            toolbar={false}
+            views={
+              Object {
+                "view": [Function],
+              }
+            }
+          />,
+          "md": "12",
+          "tag": "div",
+          "widths": Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "defaultDate": 1970-01-01T00:00:00.000Z,
+            "defaultView": "view",
+            "endAccessor": [Function],
+            "events": Array [
+              Object {
+                "massage": Object {
+                  "client": null,
+                  "date": 1970-01-01T00:00:00.000Z,
+                  "ending": 1970-01-01T00:00:00.000Z,
+                  "facility": Object {
+                    "id": 1,
+                    "name": "test",
+                  },
+                  "id": 1,
+                  "masseuse": "test",
+                },
+              },
+            ],
+            "length": 365,
+            "localizer": DateLocalizer {
+              "format": [Function],
+              "formats": Object {
+                "agendaDateFormat": "ddd MMM DD",
+                "agendaHeaderFormat": [Function],
+                "agendaTimeFormat": "LT",
+                "agendaTimeRangeFormat": [Function],
+                "dateFormat": "DD",
+                "dayFormat": "DD ddd",
+                "dayHeaderFormat": "dddd MMM DD",
+                "dayRangeHeaderFormat": [Function],
+                "eventTimeRangeEndFormat": [Function],
+                "eventTimeRangeFormat": [Function],
+                "eventTimeRangeStartFormat": [Function],
+                "monthHeaderFormat": "MMMM YYYY",
+                "selectRangeFormat": [Function],
+                "timeGutterFormat": "LT",
+                "weekdayFormat": "ddd",
+              },
+              "propType": [Function],
+              "startOfWeek": [Function],
+            },
+            "messages": Object {
+              "allDay": "Celý den",
+              "date": "Datum",
+              "event": "Událost",
+              "time": "Čas",
+            },
+            "onCancel": [MockFunction],
+            "slotPropGetter": undefined,
+            "startAccessor": [Function],
+            "style": Object {
+              "height": "85vh",
+            },
+            "titleAccessor": [Function],
+            "toolbar": false,
+            "views": Object {
+              "view": [Function],
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "ControlledComponent": [Function],
+            "Navigate": Object {
+              "DATE": "DATE",
+              "NEXT": "NEXT",
+              "PREVIOUS": "PREV",
+              "TODAY": "TODAY",
+            },
+            "Views": Object {
+              "AGENDA": "agenda",
+              "DAY": "day",
+              "MONTH": "month",
+              "WEEK": "week",
+              "WORK_WEEK": "work_week",
+            },
+            "components": Object {
+              "dateCellWrapper": [Function],
+              "dayWrapper": [Function],
+              "eventWrapper": [Function],
+            },
+            "deferControlTo": [Function],
+            "globalizeLocalizer": [Function],
+            "momentLocalizer": [Function],
+            "move": [Function],
+            "propTypes": Object {
+              "date": [Function],
+              "defaultDate": [Function],
+              "defaultSelected": [Function],
+              "defaultView": [Function],
+              "innerRef": [Function],
+              "selected": [Function],
+              "view": [Function],
+            },
+            "render": [Function],
+          },
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <Row
           tag="div"
         >
           <Col
-            md="3"
+            md="12"
             tag="div"
             widths={
               Array [
@@ -62,67 +433,87 @@ ShallowWrapper {
               ]
             }
           >
-            <Card
-              color="default"
-              outline={true}
-              tag="div"
-            >
-              <CardHeader
-                tag="div"
-              >
-                Thu 01/01/1970
-                <Button
-                  aria-label="Close"
-                  className="close"
-                  color="light"
-                  disabled={true}
-                  onClick={[Function]}
-                  tag="button"
-                />
-              </CardHeader>
-              <CardBody
-                tag="div"
-              >
-                <CardText
-                  tag="p"
-                >
-                  Budova: test
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Masér/Masérka: undefined
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Čas: 01:00–01:00
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Událost: 
-                  <CalendarButton
-                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                  />
-                </CardText>
-              </CardBody>
-            </Card>
+            <ForwardRef
+              defaultDate={1970-01-01T00:00:00.000Z}
+              defaultView="view"
+              endAccessor={[Function]}
+              events={
+                Array [
+                  Object {
+                    "massage": Object {
+                      "client": null,
+                      "date": 1970-01-01T00:00:00.000Z,
+                      "ending": 1970-01-01T00:00:00.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 1,
+                      "masseuse": "test",
+                    },
+                  },
+                ]
+              }
+              length={365}
+              localizer={
+                DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                }
+              }
+              messages={
+                Object {
+                  "allDay": "Celý den",
+                  "date": "Datum",
+                  "event": "Událost",
+                  "time": "Čas",
+                }
+              }
+              onCancel={[MockFunction]}
+              startAccessor={[Function]}
+              style={
+                Object {
+                  "height": "85vh",
+                }
+              }
+              titleAccessor={[Function]}
+              toolbar={false}
+              views={
+                Object {
+                  "view": [Function],
+                }
+              }
+            />
           </Col>
         </Row>,
-        false,
-      ],
-      "className": "mb-3",
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
+        "className": "mb-3",
+      },
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
           "children": <Col
-            md="3"
+            md="12"
             tag="div"
             widths={
               Array [
@@ -134,52 +525,75 @@ ShallowWrapper {
               ]
             }
           >
-            <Card
-              color="default"
-              outline={true}
-              tag="div"
-            >
-              <CardHeader
-                tag="div"
-              >
-                Thu 01/01/1970
-                <Button
-                  aria-label="Close"
-                  className="close"
-                  color="light"
-                  disabled={true}
-                  onClick={[Function]}
-                  tag="button"
-                />
-              </CardHeader>
-              <CardBody
-                tag="div"
-              >
-                <CardText
-                  tag="p"
-                >
-                  Budova: test
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Masér/Masérka: undefined
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Čas: 01:00–01:00
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Událost: 
-                  <CalendarButton
-                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                  />
-                </CardText>
-              </CardBody>
-            </Card>
+            <ForwardRef
+              defaultDate={1970-01-01T00:00:00.000Z}
+              defaultView="view"
+              endAccessor={[Function]}
+              events={
+                Array [
+                  Object {
+                    "massage": Object {
+                      "client": null,
+                      "date": 1970-01-01T00:00:00.000Z,
+                      "ending": 1970-01-01T00:00:00.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 1,
+                      "masseuse": "test",
+                    },
+                  },
+                ]
+              }
+              length={365}
+              localizer={
+                DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                }
+              }
+              messages={
+                Object {
+                  "allDay": "Celý den",
+                  "date": "Datum",
+                  "event": "Událost",
+                  "time": "Čas",
+                }
+              }
+              onCancel={[MockFunction]}
+              startAccessor={[Function]}
+              style={
+                Object {
+                  "height": "85vh",
+                }
+              }
+              titleAccessor={[Function]}
+              toolbar={false}
+              views={
+                Object {
+                  "view": [Function],
+                }
+              }
+            />
           </Col>,
           "tag": "div",
         },
@@ -189,53 +603,76 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": <Card
-              color="default"
-              outline={true}
-              tag="div"
-            >
-              <CardHeader
-                tag="div"
-              >
-                Thu 01/01/1970
-                <Button
-                  aria-label="Close"
-                  className="close"
-                  color="light"
-                  disabled={true}
-                  onClick={[Function]}
-                  tag="button"
-                />
-              </CardHeader>
-              <CardBody
-                tag="div"
-              >
-                <CardText
-                  tag="p"
-                >
-                  Budova: test
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Masér/Masérka: undefined
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Čas: 01:00–01:00
-                </CardText>
-                <CardText
-                  tag="p"
-                >
-                  Událost: 
-                  <CalendarButton
-                    link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                  />
-                </CardText>
-              </CardBody>
-            </Card>,
-            "md": "3",
+            "children": <ForwardRef
+              defaultDate={1970-01-01T00:00:00.000Z}
+              defaultView="view"
+              endAccessor={[Function]}
+              events={
+                Array [
+                  Object {
+                    "massage": Object {
+                      "client": null,
+                      "date": 1970-01-01T00:00:00.000Z,
+                      "ending": 1970-01-01T00:00:00.000Z,
+                      "facility": Object {
+                        "id": 1,
+                        "name": "test",
+                      },
+                      "id": 1,
+                      "masseuse": "test",
+                    },
+                  },
+                ]
+              }
+              length={365}
+              localizer={
+                DateLocalizer {
+                  "format": [Function],
+                  "formats": Object {
+                    "agendaDateFormat": "ddd MMM DD",
+                    "agendaHeaderFormat": [Function],
+                    "agendaTimeFormat": "LT",
+                    "agendaTimeRangeFormat": [Function],
+                    "dateFormat": "DD",
+                    "dayFormat": "DD ddd",
+                    "dayHeaderFormat": "dddd MMM DD",
+                    "dayRangeHeaderFormat": [Function],
+                    "eventTimeRangeEndFormat": [Function],
+                    "eventTimeRangeFormat": [Function],
+                    "eventTimeRangeStartFormat": [Function],
+                    "monthHeaderFormat": "MMMM YYYY",
+                    "selectRangeFormat": [Function],
+                    "timeGutterFormat": "LT",
+                    "weekdayFormat": "ddd",
+                  },
+                  "propType": [Function],
+                  "startOfWeek": [Function],
+                }
+              }
+              messages={
+                Object {
+                  "allDay": "Celý den",
+                  "date": "Datum",
+                  "event": "Událost",
+                  "time": "Čas",
+                }
+              }
+              onCancel={[MockFunction]}
+              startAccessor={[Function]}
+              style={
+                Object {
+                  "height": "85vh",
+                }
+              }
+              titleAccessor={[Function]}
+              toolbar={false}
+              views={
+                Object {
+                  "view": [Function],
+                }
+              }
+            />,
+            "md": "12",
             "tag": "div",
             "widths": Array [
               "xs",
@@ -251,622 +688,108 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": Array [
-                <CardHeader
-                  tag="div"
-                >
-                  Thu 01/01/1970
-                  <Button
-                    aria-label="Close"
-                    className="close"
-                    color="light"
-                    disabled={true}
-                    onClick={[Function]}
-                    tag="button"
-                  />
-                </CardHeader>,
-                <CardBody
-                  tag="div"
-                >
-                  <CardText
-                    tag="p"
-                  >
-                    Budova: test
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Masér/Masérka: undefined
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Čas: 01:00–01:00
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Událost: 
-                    <CalendarButton
-                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                    />
-                  </CardText>
-                </CardBody>,
+              "defaultDate": 1970-01-01T00:00:00.000Z,
+              "defaultView": "view",
+              "endAccessor": [Function],
+              "events": Array [
+                Object {
+                  "massage": Object {
+                    "client": null,
+                    "date": 1970-01-01T00:00:00.000Z,
+                    "ending": 1970-01-01T00:00:00.000Z,
+                    "facility": Object {
+                      "id": 1,
+                      "name": "test",
+                    },
+                    "id": 1,
+                    "masseuse": "test",
+                  },
+                },
               ],
-              "color": "default",
-              "outline": true,
-              "tag": "div",
+              "length": 365,
+              "localizer": DateLocalizer {
+                "format": [Function],
+                "formats": Object {
+                  "agendaDateFormat": "ddd MMM DD",
+                  "agendaHeaderFormat": [Function],
+                  "agendaTimeFormat": "LT",
+                  "agendaTimeRangeFormat": [Function],
+                  "dateFormat": "DD",
+                  "dayFormat": "DD ddd",
+                  "dayHeaderFormat": "dddd MMM DD",
+                  "dayRangeHeaderFormat": [Function],
+                  "eventTimeRangeEndFormat": [Function],
+                  "eventTimeRangeFormat": [Function],
+                  "eventTimeRangeStartFormat": [Function],
+                  "monthHeaderFormat": "MMMM YYYY",
+                  "selectRangeFormat": [Function],
+                  "timeGutterFormat": "LT",
+                  "weekdayFormat": "ddd",
+                },
+                "propType": [Function],
+                "startOfWeek": [Function],
+              },
+              "messages": Object {
+                "allDay": "Celý den",
+                "date": "Datum",
+                "event": "Událost",
+                "time": "Čas",
+              },
+              "onCancel": [MockFunction],
+              "slotPropGetter": undefined,
+              "startAccessor": [Function],
+              "style": Object {
+                "height": "85vh",
+              },
+              "titleAccessor": [Function],
+              "toolbar": false,
+              "views": Object {
+                "view": [Function],
+              },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": Array [
-                    "Thu 01/01/1970",
-                    <Button
-                      aria-label="Close"
-                      className="close"
-                      color="light"
-                      disabled={true}
-                      onClick={[Function]}
-                      tag="button"
-                    />,
-                  ],
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Array [
-                  "Thu 01/01/1970",
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "aria-label": "Close",
-                      "children": false,
-                      "className": "close",
-                      "color": "light",
-                      "disabled": true,
-                      "onClick": [Function],
-                      "tag": "button",
-                    },
-                    "ref": null,
-                    "rendered": false,
-                    "type": [Function],
-                  },
-                ],
-                "type": [Function],
+            "rendered": null,
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "ControlledComponent": [Function],
+              "Navigate": Object {
+                "DATE": "DATE",
+                "NEXT": "NEXT",
+                "PREVIOUS": "PREV",
+                "TODAY": "TODAY",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": Array [
-                    <CardText
-                      tag="p"
-                    >
-                      Budova: test
-                    </CardText>,
-                    <CardText
-                      tag="p"
-                    >
-                      Masér/Masérka: undefined
-                    </CardText>,
-                    <CardText
-                      tag="p"
-                    >
-                      Čas: 01:00–01:00
-                    </CardText>,
-                    <CardText
-                      tag="p"
-                    >
-                      Událost: 
-                      <CalendarButton
-                        link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                      />
-                    </CardText>,
-                  ],
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "children": "Budova: test",
-                      "tag": "p",
-                    },
-                    "ref": null,
-                    "rendered": "Budova: test",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "children": "Masér/Masérka: undefined",
-                      "tag": "p",
-                    },
-                    "ref": null,
-                    "rendered": "Masér/Masérka: undefined",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "children": "Čas: 01:00–01:00",
-                      "tag": "p",
-                    },
-                    "ref": null,
-                    "rendered": "Čas: 01:00–01:00",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "children": Array [
-                        "Událost: ",
-                        <CalendarButton
-                          link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                        />,
-                      ],
-                      "tag": "p",
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "Událost: ",
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "link": "https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                    ],
-                    "type": [Function],
-                  },
-                ],
-                "type": [Function],
+              "Views": Object {
+                "AGENDA": "agenda",
+                "DAY": "day",
+                "MONTH": "month",
+                "WEEK": "week",
+                "WORK_WEEK": "work_week",
               },
-            ],
-            "type": [Function],
+              "components": Object {
+                "dateCellWrapper": [Function],
+                "dayWrapper": [Function],
+                "eventWrapper": [Function],
+              },
+              "deferControlTo": [Function],
+              "globalizeLocalizer": [Function],
+              "momentLocalizer": [Function],
+              "move": [Function],
+              "propTypes": Object {
+                "date": [Function],
+                "defaultDate": [Function],
+                "defaultSelected": [Function],
+                "defaultView": [Function],
+                "innerRef": [Function],
+                "selected": [Function],
+                "view": [Function],
+              },
+              "render": [Function],
+            },
           },
           "type": [Function],
         },
         "type": [Function],
       },
-      false,
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <Row
-            tag="div"
-          >
-            <Col
-              md="3"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Card
-                color="default"
-                outline={true}
-                tag="div"
-              >
-                <CardHeader
-                  tag="div"
-                >
-                  Thu 01/01/1970
-                  <Button
-                    aria-label="Close"
-                    className="close"
-                    color="light"
-                    disabled={true}
-                    onClick={[Function]}
-                    tag="button"
-                  />
-                </CardHeader>
-                <CardBody
-                  tag="div"
-                >
-                  <CardText
-                    tag="p"
-                  >
-                    Budova: test
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Masér/Masérka: undefined
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Čas: 01:00–01:00
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Událost: 
-                    <CalendarButton
-                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                    />
-                  </CardText>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>,
-          false,
-        ],
-        "className": "mb-3",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": <Col
-              md="3"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Card
-                color="default"
-                outline={true}
-                tag="div"
-              >
-                <CardHeader
-                  tag="div"
-                >
-                  Thu 01/01/1970
-                  <Button
-                    aria-label="Close"
-                    className="close"
-                    color="light"
-                    disabled={true}
-                    onClick={[Function]}
-                    tag="button"
-                  />
-                </CardHeader>
-                <CardBody
-                  tag="div"
-                >
-                  <CardText
-                    tag="p"
-                  >
-                    Budova: test
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Masér/Masérka: undefined
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Čas: 01:00–01:00
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Událost: 
-                    <CalendarButton
-                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                    />
-                  </CardText>
-                </CardBody>
-              </Card>
-            </Col>,
-            "tag": "div",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": <Card
-                color="default"
-                outline={true}
-                tag="div"
-              >
-                <CardHeader
-                  tag="div"
-                >
-                  Thu 01/01/1970
-                  <Button
-                    aria-label="Close"
-                    className="close"
-                    color="light"
-                    disabled={true}
-                    onClick={[Function]}
-                    tag="button"
-                  />
-                </CardHeader>
-                <CardBody
-                  tag="div"
-                >
-                  <CardText
-                    tag="p"
-                  >
-                    Budova: test
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Masér/Masérka: undefined
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Čas: 01:00–01:00
-                  </CardText>
-                  <CardText
-                    tag="p"
-                  >
-                    Událost: 
-                    <CalendarButton
-                      link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                    />
-                  </CardText>
-                </CardBody>
-              </Card>,
-              "md": "3",
-              "tag": "div",
-              "widths": Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ],
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": Array [
-                  <CardHeader
-                    tag="div"
-                  >
-                    Thu 01/01/1970
-                    <Button
-                      aria-label="Close"
-                      className="close"
-                      color="light"
-                      disabled={true}
-                      onClick={[Function]}
-                      tag="button"
-                    />
-                  </CardHeader>,
-                  <CardBody
-                    tag="div"
-                  >
-                    <CardText
-                      tag="p"
-                    >
-                      Budova: test
-                    </CardText>
-                    <CardText
-                      tag="p"
-                    >
-                      Masér/Masérka: undefined
-                    </CardText>
-                    <CardText
-                      tag="p"
-                    >
-                      Čas: 01:00–01:00
-                    </CardText>
-                    <CardText
-                      tag="p"
-                    >
-                      Událost: 
-                      <CalendarButton
-                        link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                      />
-                    </CardText>
-                  </CardBody>,
-                ],
-                "color": "default",
-                "outline": true,
-                "tag": "div",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": Array [
-                      "Thu 01/01/1970",
-                      <Button
-                        aria-label="Close"
-                        className="close"
-                        color="light"
-                        disabled={true}
-                        onClick={[Function]}
-                        tag="button"
-                      />,
-                    ],
-                    "tag": "div",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "Thu 01/01/1970",
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "aria-label": "Close",
-                        "children": false,
-                        "className": "close",
-                        "color": "light",
-                        "disabled": true,
-                        "onClick": [Function],
-                        "tag": "button",
-                      },
-                      "ref": null,
-                      "rendered": false,
-                      "type": [Function],
-                    },
-                  ],
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": Array [
-                      <CardText
-                        tag="p"
-                      >
-                        Budova: test
-                      </CardText>,
-                      <CardText
-                        tag="p"
-                      >
-                        Masér/Masérka: undefined
-                      </CardText>,
-                      <CardText
-                        tag="p"
-                      >
-                        Čas: 01:00–01:00
-                      </CardText>,
-                      <CardText
-                        tag="p"
-                      >
-                        Událost: 
-                        <CalendarButton
-                          link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                        />
-                      </CardText>,
-                    ],
-                    "tag": "div",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "children": "Budova: test",
-                        "tag": "p",
-                      },
-                      "ref": null,
-                      "rendered": "Budova: test",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "children": "Masér/Masérka: undefined",
-                        "tag": "p",
-                      },
-                      "ref": null,
-                      "rendered": "Masér/Masérka: undefined",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "children": "Čas: 01:00–01:00",
-                        "tag": "p",
-                      },
-                      "ref": null,
-                      "rendered": "Čas: 01:00–01:00",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "children": Array [
-                          "Událost: ",
-                          <CalendarButton
-                            link="https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined"
-                          />,
-                        ],
-                        "tag": "p",
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        "Událost: ",
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "link": "https://www.google.com/calendar/render?action=TEMPLATE&text=Masáž&dates=19700101T000000Z/19700101T000001Z&location=Red%20Hat%20Czech%20test&details=Masér/Masérka: undefined",
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                      ],
-                      "type": [Function],
-                    },
-                  ],
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        false,
-      ],
       "type": "div",
     },
   ],

@@ -4,6 +4,7 @@ exports[`renders inside content with correct props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MassageEventModal
+    allowDeletion={true}
     allowEditation={true}
     disabled={false}
     event={
@@ -118,7 +119,7 @@ ShallowWrapper {
               <dd
                 className="mb-3"
               >
-                01:00–01:00
+                1:00 AM – 1:00 AM
               </dd>
               <dt>
                 Klient
@@ -483,7 +484,7 @@ ShallowWrapper {
                 <dd
                   className="mb-3"
                 >
-                  01:00–01:00
+                  1:00 AM – 1:00 AM
                 </dd>
                 <dt>
                   Klient
@@ -580,7 +581,7 @@ ShallowWrapper {
                 <dd
                   className="mb-3"
                 >
-                  01:00–01:00
+                  1:00 AM – 1:00 AM
                 </dd>
                 <dt>
                   Klient
@@ -628,7 +629,7 @@ ShallowWrapper {
                   <dd
                     className="mb-3"
                   >
-                    01:00–01:00
+                    1:00 AM – 1:00 AM
                   </dd>,
                   <dt>
                     Klient
@@ -687,11 +688,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "01:00–01:00",
+                    "children": "1:00 AM – 1:00 AM",
                     "className": "mb-3",
                   },
                   "ref": null,
-                  "rendered": "01:00–01:00",
+                  "rendered": "1:00 AM – 1:00 AM",
                   "type": "dd",
                 },
                 Object {
@@ -1152,7 +1153,7 @@ ShallowWrapper {
                 <dd
                   className="mb-3"
                 >
-                  01:00–01:00
+                  1:00 AM – 1:00 AM
                 </dd>
                 <dt>
                   Klient
@@ -1517,7 +1518,7 @@ ShallowWrapper {
                   <dd
                     className="mb-3"
                   >
-                    01:00–01:00
+                    1:00 AM – 1:00 AM
                   </dd>
                   <dt>
                     Klient
@@ -1614,7 +1615,7 @@ ShallowWrapper {
                   <dd
                     className="mb-3"
                   >
-                    01:00–01:00
+                    1:00 AM – 1:00 AM
                   </dd>
                   <dt>
                     Klient
@@ -1662,7 +1663,7 @@ ShallowWrapper {
                     <dd
                       className="mb-3"
                     >
-                      01:00–01:00
+                      1:00 AM – 1:00 AM
                     </dd>,
                     <dt>
                       Klient
@@ -1721,11 +1722,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "01:00–01:00",
+                      "children": "1:00 AM – 1:00 AM",
                       "className": "mb-3",
                     },
                     "ref": null,
-                    "rendered": "01:00–01:00",
+                    "rendered": "1:00 AM – 1:00 AM",
                     "type": "dd",
                   },
                   Object {

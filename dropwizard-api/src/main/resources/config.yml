@@ -1,8 +1,8 @@
 database:
   driverClass: org.postgresql.Driver
-  user: ${RM_DB_USERNAME:-postgres}
-  password: ${RM_DB_USERNAME:-postgres}
-  url: ${RM_DB_URL:-jdbc:postgresql://localhost:5432/postgres}
+  user: ${DB_USERNAME:-postgres}
+  password: ${DB_USERNAME:-postgres}
+  url: ${DB_URL:-jdbc:postgresql://localhost:5432/postgres}
   properties:
     charSet: UTF-8
     hibernate.hbm2ddl.auto: validate
@@ -24,6 +24,7 @@ keycloakConfiguration:
   ssl-required: none
   resource: ${KC_RESOURCE:-api-client}
   bearer-only: true
+  enable-cors: true
   credentials:
     secret: ${KC_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
 

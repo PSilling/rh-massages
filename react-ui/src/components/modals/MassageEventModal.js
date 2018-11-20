@@ -42,6 +42,56 @@ class MassageEventModal extends Component {
     }
   };
 
+  createChildrenButton = () => {
+    let onConfirm;
+    let label;
+    let tooltip;
+
+    if (this.props.label === _t.translate("Assign me")) {
+      onConfirm = this.onCalendarConfirm;
+      label = _t.translate("Assign and add to calendar");
+      tooltip = this.props.disabled
+        ? _t.translate("Maximal simultaneous massage time per user would be exceeded")
+        : _t.translate("Assigns this massage and opens a predefined Google event editor in a new tab");
+    } else if (this.props.label === _t.translate("Unassign me")) {
+      onConfirm = () => {
+        window.open(Util.getEventLink(this.props.event.massage), "_blank");
+        this.props.onClose();
+      };
+      label = _t.translate("Add to Google Calendar");
+      tooltip = _t.translate("Opens a predefined Google event editor in a new tab");
+    }
+
+    if (label === undefined) {
+      return null;
+    }
+    return (
+      <span>
+        <Button
+          id={this.tooltipTarget}
+          className="mr-2"
+          tag="a"
+          color="primary"
+          disabled={this.props.disabled}
+          onClick={onConfirm}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex="-1"
+        >
+          {label}
+        </Button>
+        <Tooltip
+          isOpen={this.state.tooltipActive}
+          target={this.tooltipTarget}
+          toggle={this.toggleTooltip}
+          trigger="hover"
+        >
+          {tooltip}
+        </Tooltip>
+      </span>
+    );
+  };
+
   createInsides = () => (
     <ModalBody>
       <Row>
@@ -53,12 +103,14 @@ class MassageEventModal extends Component {
                 {this.props.allowEditation && (
                   <TooltipIconButton icon="edit" onClick={this.props.onEdit} tooltip={_t.translate("Edit")} />
                 )}
-                <ConfirmationIconButton
-                  className="ml-2"
-                  icon="trash"
-                  onConfirm={this.props.onDelete}
-                  tooltip={_t.translate("Delete")}
-                />
+                {this.props.allowDeletion && (
+                  <ConfirmationIconButton
+                    className="ml-2"
+                    icon="trash"
+                    onConfirm={this.props.onDelete}
+                    tooltip={_t.translate("Delete")}
+                  />
+                )}
               </div>
             )}
           </h3>
@@ -73,9 +125,9 @@ class MassageEventModal extends Component {
             <dd className={this.definitionClass}>{this.props.event.massage.facility.name}</dd>
             <dt>{_t.translate("Time")}</dt>
             <dd className={this.definitionClass}>
-              {`${moment(this.props.event.massage.date).format("HH:mm")}–${moment(
+              {`${moment(this.props.event.massage.date).format("LT")} – ${moment(
                 this.props.event.massage.ending
-              ).format("HH:mm")}`}
+              ).format("LT")}`}
             </dd>
             <dt>{_t.translate("Client")}</dt>
             {Util.isEmpty(this.props.event.massage.client) ? (
@@ -88,7 +140,8 @@ class MassageEventModal extends Component {
               <dd className={this.definitionClass}>
                 <p
                   className={
-                    this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub()
+                    !this.props.allowDeletion ||
+                    (this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub())
                       ? "text-warning"
                       : "text-danger"
                   }
@@ -126,33 +179,7 @@ class MassageEventModal extends Component {
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >
-        {this.props.label === _t.translate("Assign me") && (
-          <span>
-            <Button
-              id={this.tooltipTarget}
-              className="mr-2"
-              tag="a"
-              color="primary"
-              disabled={this.props.disabled}
-              onClick={this.onCalendarConfirm}
-              target="_blank"
-              rel="noopener noreferrer"
-              tabIndex="-1"
-            >
-              {_t.translate("Assign and add to calendar")}
-            </Button>
-            <Tooltip
-              isOpen={this.state.tooltipActive}
-              target={this.tooltipTarget}
-              toggle={this.toggleTooltip}
-              trigger="hover"
-            >
-              {this.props.disabled
-                ? _t.translate("Maximal simultaneous massage time per user would be exceeded")
-                : _t.translate("Assigns this massage and opens a predefined Google event editor in a new tab")}
-            </Tooltip>
-          </span>
-        )}
+        {this.createChildrenButton()}
       </ModalActions>
     </ModalBody>
   );
@@ -196,7 +223,9 @@ MassageEventModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   /** function called on primary label action */
   onConfirm: PropTypes.func.isRequired,
-  /** whether non-delete administration should be enabled (false if archive) */
+  /** whether the delete button should be shown (Admin only) */
+  allowDeletion: PropTypes.bool,
+  /** whether the edit button should be shown (Admin only) */
   allowEditation: PropTypes.bool,
   /** whether the primary button should be disabled */
   disabled: PropTypes.bool,
@@ -209,10 +238,11 @@ MassageEventModal.propTypes = {
 };
 
 MassageEventModal.defaultProps = {
+  allowDeletion: true,
   allowEditation: true,
   disabled: false,
-  onEdit: null,
-  onDelete: null,
+  onEdit() {},
+  onDelete() {},
   withPortal: true
 };
 

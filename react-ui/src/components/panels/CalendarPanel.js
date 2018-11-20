@@ -34,14 +34,9 @@ class CalendarPanel extends Component {
 
   localization = {
     allDay: _t.translate("All day"),
-    previous: "<",
-    next: ">",
-    today: _t.translate("Today"),
-    month: _t.translate("Month"),
     date: _t.translate("Date"),
     time: _t.translate("Time"),
     event: _t.translate("Event"),
-    work_week: _t.translate("Week"),
     showMore: total => `+ ${_t.translate("Show more")} (${total})`
   };
 
@@ -240,6 +235,7 @@ class CalendarPanel extends Component {
             label={this.state.label}
             disabled={this.state.overtime}
             allowEditation={this.props.allowEditation}
+            allowDeletion={this.props.allowDeletion}
             onClose={this.handleToggle}
             onEdit={this.editEvent}
             onDelete={this.deleteEvent}
@@ -321,7 +317,9 @@ CalendarPanel.propTypes = {
   ).isRequired,
   /** whether multi event selection should be activated */
   selectEvents: PropTypes.bool.isRequired,
-  /** whether non-delete administration should be enabled (false if archive) */
+  /** whether the delete button should be shown (Admin only) */
+  allowDeletion: PropTypes.bool,
+  /** whether the edit button should be shown (Admin only) */
   allowEditation: PropTypes.bool,
   /** number of currently used Massage time in minutes */
   massageMinutes: PropTypes.number,
@@ -336,12 +334,13 @@ CalendarPanel.propTypes = {
 };
 
 CalendarPanel.defaultProps = {
+  allowDeletion: true,
   allowEditation: true,
   massageMinutes: 0,
-  onAdd: null,
-  onAssign: null,
-  onCancel: null,
-  onEdit: null
+  onAdd() {},
+  onAssign() {},
+  onCancel() {},
+  onEdit() {}
 };
 
 export default CalendarPanel;

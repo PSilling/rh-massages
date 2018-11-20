@@ -21,13 +21,14 @@ import Util from "../util/Util";
  * Main view table component for Facility management. Viewable only for administrators.
  */
 class Facilities extends Component {
-  state = { facilities: [], modalActive: false, editId: -1, loading: true };
+  state = { facilities: [], modalActive: false, editId: -1, loading: true, mounted: false };
 
   alertMessage = _t.translate("On this page you can manage facilities in which massages take place.");
 
   componentDidMount() {
     Util.clearAllIntervals();
 
+    this.setState({ mounted: true });
     this.getFacilities();
     setInterval(() => {
       if (this.state.modalActive) return;
@@ -37,11 +38,12 @@ class Facilities extends Component {
 
   componentWillUnmount() {
     Util.clearAllIntervals();
+    this.setState({ mounted: false });
   }
 
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
-      if (json !== undefined) {
+      if (this.state.mounted && json !== undefined) {
         this.setState({ facilities: json, loading: false });
       }
     });
@@ -74,7 +76,6 @@ class Facilities extends Component {
           {this.state.loading && <div className="loader float-right" />}
           {_t.translate("Facilities")}
         </h1>
-        <hr />
         <Table hover responsive striped size="sm">
           <thead>
             <tr>

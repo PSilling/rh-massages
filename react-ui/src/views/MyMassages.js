@@ -2,9 +2,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-// module imports
-import moment from "moment";
-
 // component imports
 import InfoAlert from "../components/util/InfoAlert";
 import MyMassagePanel from "../components/panels/MyMassagePanel";
@@ -12,7 +9,6 @@ import "../styles/components/loader.css";
 
 // util imports
 import _t from "../util/Translations";
-import Auth from "../util/Auth";
 import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
@@ -21,15 +17,16 @@ import Util from "../util/Util";
  * for better user experience.
  */
 class MyMassages extends Component {
-  state = { massages: [], loading: true };
+  state = { events: [], loading: true, mounted: false };
 
   alertMessage =
     _t.translate("On this page you can view all your assigned massages. ") +
-    _t.translate("Using the calendar button you can generate a Google Event for the given massage.");
+    _t.translate("To view massage details click on the event name.");
 
   componentDidMount() {
     Util.clearAllIntervals();
 
+    this.setState({ mounted: true });
     this.getMassages();
     setInterval(() => {
       this.getMassages();
@@ -38,63 +35,47 @@ class MyMassages extends Component {
 
   componentWillUnmount() {
     Util.clearAllIntervals();
+    this.setState({ mounted: false });
   }
 
   getMassages = () => {
     Fetch.get(`${Util.MASSAGES_URL}client`, json => {
-      if (json !== undefined) {
-        this.setState({ massages: json, loading: false });
+      if (this.state.mounted && json !== undefined) {
+        this.updateEvents(json);
       }
     });
+  };
+
+  updateEvents = massages => {
+    const events = [];
+
+    for (let i = 0; i < massages.length; i++) {
+      events.push({ massage: massages[i] });
+    }
+
+    this.setState({ events, loading: false });
+  };
+
+  cancelMassage = massage => {
+    Fetch.put(
+      Util.MASSAGES_URL,
+      [
+        {
+          id: massage.id,
+          date: massage.date,
+          ending: massage.ending,
+          masseuse: massage.masseuse,
+          client: null,
+          facility: massage.facility
+        }
+      ],
+      this.getMassages
+    );
   };
 
   closeAlert = () => {
     localStorage.setItem("closeMyMassagesAlert", true);
     this.setState(prevState => ({ loading: prevState.loading }));
-  };
-
-  /**
-   * Generates MyMassagePanels with their time information.
-   */
-  createPanels = () => {
-    const panels = [];
-    let i = 0;
-    let addHeader = true;
-    const headerTypes = ["Today", "This week", "Next week", "Later than next week"];
-    const startOfTypes = ["day", "week", "week", "year"];
-
-    for (let timeType = 0; timeType < 4; timeType++) {
-      for (i; i < this.state.massages.length; i++) {
-        if (
-          timeType !== 3 &&
-          !moment(this.state.massages[i].date)
-            .startOf(startOfTypes[timeType])
-            .isSame(
-              moment()
-                .add(timeType === 2 ? 7 : 0, "days")
-                .startOf(startOfTypes[timeType])
-            )
-        ) {
-          addHeader = true;
-          break;
-        }
-        if (addHeader) {
-          panels.push(<h2 key={headerTypes[timeType]}>{_t.translate(headerTypes[timeType])}</h2>);
-          addHeader = false;
-        }
-        const tooLate = moment(this.state.massages[i].date).diff(moment(), "minutes") <= Util.CANCELLATION_LIMIT;
-        panels.push(
-          <MyMassagePanel
-            key={this.state.massages[i].id}
-            type={tooLate ? "warning" : "info"}
-            massage={this.state.massages[i]}
-            getCallback={this.getMassages}
-            disabled={tooLate && !Auth.isAdmin()}
-          />
-        );
-      }
-    }
-    return panels;
   };
 
   render() {
@@ -107,9 +88,8 @@ class MyMassages extends Component {
           {this.state.loading && <div className="loader float-right" />}
           {_t.translate("My Massages")}
         </h1>
-        <hr />
-        {this.state.massages !== undefined && this.state.massages.length > 0 ? (
-          this.createPanels()
+        {this.state.events.length > 0 && this.state.events[0] !== undefined ? (
+          <MyMassagePanel events={this.state.events} onCancel={this.cancelMassage} />
         ) : (
           <h3>
             {`${_t.translate("None")} – `}

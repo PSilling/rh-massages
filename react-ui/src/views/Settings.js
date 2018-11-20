@@ -18,7 +18,7 @@ import Util from "../util/Util";
  * View containing portal and user settings.
  */
 class Settings extends Component {
-  state = { notify: false, loading: true, tooltipOpen: false };
+  state = { notify: false, loading: true, tooltipOpen: false, mounted: false };
 
   alertMessage =
     _t.translate("On this page you can manage your local user settings. ") +
@@ -29,6 +29,7 @@ class Settings extends Component {
   componentDidMount() {
     Util.clearAllIntervals();
 
+    this.setState({ mounted: true });
     this.getSettings();
     setInterval(() => {
       this.getSettings();
@@ -37,11 +38,12 @@ class Settings extends Component {
 
   componentWillUnmount() {
     Util.clearAllIntervals();
+    this.setState({ mounted: false });
   }
 
   getSettings = () => {
     Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
-      if (json !== undefined) {
+      if (this.state.mounted && json !== undefined) {
         this.setState({ notify: json, loading: false });
       }
     });

@@ -26,7 +26,6 @@ ShallowWrapper {
         <h1>
           Budovy
         </h1>,
-        <hr />,
         <Table
           hover={true}
           responsive={true}
@@ -100,15 +99,6 @@ ShallowWrapper {
           "Budovy",
         ],
         "type": "h1",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "hr",
       },
       Object {
         "instance": null,
@@ -318,7 +308,6 @@ ShallowWrapper {
           <h1>
             Budovy
           </h1>,
-          <hr />,
           <Table
             hover={true}
             responsive={true}
@@ -392,15 +381,6 @@ ShallowWrapper {
             "Budovy",
           ],
           "type": "h1",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "hr",
         },
         Object {
           "instance": null,

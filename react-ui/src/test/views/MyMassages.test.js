@@ -5,8 +5,6 @@ import { shallow } from "enzyme";
 
 // test imports
 import MyMassages from "../../views/MyMassages";
-import MyMassagePanel from "../../components/panels/MyMassagePanel";
-import _t from "../../util/Translations";
 
 // test mocks
 jest.mock("../../util/Fetch");
@@ -25,35 +23,24 @@ test("renders content correctly", () => {
 });
 
 test("properly changes state variables", () => {
-  const testMassages = [
+  const testEvents = [
     {
-      id: 1,
-      date: new Date(),
-      ending: new Date(),
-      client: null,
-      facility: { id: 1, name: "test" }
+      massage: {
+        id: 1,
+        date: new Date(0),
+        ending: new Date(1000),
+        client: null,
+        facility: { id: 1, name: "test" }
+      }
     }
   ];
   const wrapper = shallow(<MyMassages />);
 
-  testMassages[0].ending.setHours(testMassages[0].ending.getHours() + 1);
-  let panels = wrapper.find(MyMassagePanel);
-
-  expect(panels.length).toBe(0);
-  wrapper.instance().setState({ loading: true, massages: testMassages });
+  wrapper.instance().setState({ loading: true, events: testEvents });
   wrapper.instance().getMassages();
-  expect(wrapper.instance().state.massages).toEqual([]);
+  expect(wrapper.instance().state.events).toEqual([]);
   expect(wrapper.instance().state.loading).toBe(false);
+  wrapper.instance().setState({ events: testEvents });
 
-  wrapper.instance().setState({ massages: testMassages });
-  const header = wrapper.find("h2");
-  panels = wrapper.find(MyMassagePanel);
-  expect(header.props().children).toEqual(_t.translate("Today"));
-  expect(panels.length).toBe(1);
-  expect(panels.get(0).props.type).toBe("info");
-  expect(panels.get(0).props.massage).toBe(testMassages[0]);
-  expect(panels.get(0).props.disabled).toBe(false);
-
-  panels.get(0).props.getCallback();
-  expect(wrapper.instance().state.massages).toEqual([]);
+  expect(wrapper).toMatchSnapshot();
 });

@@ -15,7 +15,7 @@ class ErrorBoundary extends Component {
   state = { error: null, errorInfo: null };
 
   componentDidCatch(error, errorInfo) {
-    console.log("Unexpected " + error.toString() + ": " + errorInfo.componentStack); /* eslint-disable-line */
+    console.error("Unexpected " + error.toString() + ": " + errorInfo.componentStack); /* eslint-disable-line */
     this.setState({ error, errorInfo });
   }
 

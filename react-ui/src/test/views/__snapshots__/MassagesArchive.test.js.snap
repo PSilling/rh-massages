@@ -86,15 +86,16 @@ ShallowWrapper {
           </Col>
         </Row>,
         <CalendarPanel
+          allowDeletion={true}
           allowEditation={false}
           events={Array []}
           massageMinutes={0}
-          onAdd={null}
-          onAssign={null}
-          onCancel={null}
+          onAdd={[Function]}
+          onAssign={[Function]}
+          onCancel={[Function]}
           onDateChange={[Function]}
           onDelete={[Function]}
-          onEdit={null}
+          onEdit={[Function]}
           onSelect={[Function]}
           selectEvents={true}
           selected={Array []}
@@ -333,15 +334,16 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "allowDeletion": true,
           "allowEditation": false,
           "events": Array [],
           "massageMinutes": 0,
-          "onAdd": null,
-          "onAssign": null,
-          "onCancel": null,
+          "onAdd": [Function],
+          "onAssign": [Function],
+          "onCancel": [Function],
           "onDateChange": [Function],
           "onDelete": [Function],
-          "onEdit": null,
+          "onEdit": [Function],
           "onSelect": [Function],
           "selectEvents": true,
           "selected": Array [],
@@ -428,15 +430,16 @@ ShallowWrapper {
             </Col>
           </Row>,
           <CalendarPanel
+            allowDeletion={true}
             allowEditation={false}
             events={Array []}
             massageMinutes={0}
-            onAdd={null}
-            onAssign={null}
-            onCancel={null}
+            onAdd={[Function]}
+            onAssign={[Function]}
+            onCancel={[Function]}
             onDateChange={[Function]}
             onDelete={[Function]}
-            onEdit={null}
+            onEdit={[Function]}
             onSelect={[Function]}
             selectEvents={true}
             selected={Array []}
@@ -675,15 +678,16 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "allowDeletion": true,
             "allowEditation": false,
             "events": Array [],
             "massageMinutes": 0,
-            "onAdd": null,
-            "onAssign": null,
-            "onCancel": null,
+            "onAdd": [Function],
+            "onAssign": [Function],
+            "onCancel": [Function],
             "onDateChange": [Function],
             "onDelete": [Function],
-            "onEdit": null,
+            "onEdit": [Function],
             "onSelect": [Function],
             "selectEvents": true,
             "selected": Array [],

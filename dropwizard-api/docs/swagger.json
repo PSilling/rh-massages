@@ -2,7 +2,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.4.0",
+        "version": "1.4.7",
         "title": "Massages"
     },
     "host": "localhost:8080",

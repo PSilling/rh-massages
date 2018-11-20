@@ -3,47 +3,43 @@ import React from "react";
 import { shallow } from "enzyme";
 
 // test imports
-import { Button, CardHeader, CardText } from "reactstrap";
-import moment from "moment";
-import ConfirmationModal from "../../../components/modals/ConfirmationModal";
+import BigCalendar from "react-big-calendar";
+import CalendarView from "../../../components/panels/components/CalendarView";
 import MyMassagePanel from "../../../components/panels/MyMassagePanel";
-import _t from "../../../util/Translations";
 
-// test mocks
-jest.mock("../../../util/Fetch");
+beforeAll(() => {
+  const mockedDate = new Date(0);
+  global.Date = jest.fn(() => mockedDate);
+  Date.now = jest.fn(() => 0);
+});
 
-afterEach(() => {
+afterAll(() => {
   jest.resetAllMocks();
 });
 
 test("renders content with correct props", () => {
   const testFunction = jest.fn();
-  const testMassage = {
-    id: 1,
-    date: new Date(0),
-    ending: new Date(1000),
-    client: null,
-    facility: { id: 1, name: "test" }
-  };
-  const wrapper = shallow(<MyMassagePanel massage={testMassage} getCallback={testFunction} />);
-  const texts = wrapper.find(CardText);
-  const header = wrapper.find(CardHeader);
-  const button = wrapper.find(Button);
+  const testEvents = [
+    {
+      massage: {
+        id: 1,
+        date: new Date(0),
+        ending: new Date(1000),
+        masseuse: "test",
+        client: null,
+        facility: { id: 1, name: "test" }
+      }
+    }
+  ];
+  const wrapper = shallow(<MyMassagePanel events={testEvents} onCancel={testFunction} />);
+  const calendar = wrapper.find(BigCalendar);
 
-  expect(header.props().children[0]).toEqual(moment(testMassage.date).format("ddd L"));
-  expect(texts.get(0).props.children).toEqual(`${_t.translate("Facility")}: ${testMassage.facility.name}`);
-  expect(texts.get(1).props.children).toEqual(`${_t.translate("Masseur/Masseuse")}: ${testMassage.masseuse}`);
-  expect(texts.get(2).props.children).toEqual(
-    `${_t.translate("Time")}: ${moment(testMassage.date).format("HH:mm")}–${moment(testMassage.ending).format("HH:mm")}`
-  );
+  expect(calendar.props().events).toBe(testEvents);
+  expect(calendar.props().views).toEqual({ view: CalendarView });
+  expect(calendar.props().onCancel).toBe(testFunction);
+  expect(calendar.props().messages).toBe(wrapper.instance().localization);
+  expect(calendar.props().titleAccessor).toBe(wrapper.instance().generateTitle);
   expect(testFunction).not.toHaveBeenCalled();
 
-  button.props().onClick();
-
-  const modal = wrapper.find(ConfirmationModal);
-
-  modal.props().onConfirm();
-
-  expect(testFunction).toHaveBeenCalledTimes(1);
   expect(wrapper).toMatchSnapshot();
 });

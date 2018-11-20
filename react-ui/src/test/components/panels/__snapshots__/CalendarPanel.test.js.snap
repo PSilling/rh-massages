@@ -4,6 +4,7 @@ exports[`renders content with correct props and funcionality 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CalendarPanel
+    allowDeletion={true}
     allowEditation={true}
     events={
       Array [
@@ -224,13 +225,8 @@ ShallowWrapper {
                   "allDay": "Celý den",
                   "date": "Datum",
                   "event": "Událost",
-                  "month": "Měsíc",
-                  "next": ">",
-                  "previous": "<",
                   "showMore": [Function],
                   "time": "Čas",
-                  "today": "Dnes",
-                  "work_week": "Týden",
                 }
               }
               min={2018-01-01T07:30:00.000Z}
@@ -432,13 +428,8 @@ ShallowWrapper {
                   "allDay": "Celý den",
                   "date": "Datum",
                   "event": "Událost",
-                  "month": "Měsíc",
-                  "next": ">",
-                  "previous": "<",
                   "showMore": [Function],
                   "time": "Čas",
-                  "today": "Dnes",
-                  "work_week": "Týden",
                 }
               }
               min={2018-01-01T07:30:00.000Z}
@@ -566,13 +557,8 @@ ShallowWrapper {
                     "allDay": "Celý den",
                     "date": "Datum",
                     "event": "Událost",
-                    "month": "Měsíc",
-                    "next": ">",
-                    "previous": "<",
                     "showMore": [Function],
                     "time": "Čas",
-                    "today": "Dnes",
-                    "work_week": "Týden",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -710,13 +696,8 @@ ShallowWrapper {
                   "allDay": "Celý den",
                   "date": "Datum",
                   "event": "Událost",
-                  "month": "Měsíc",
-                  "next": ">",
-                  "previous": "<",
                   "showMore": [Function],
                   "time": "Čas",
-                  "today": "Dnes",
-                  "work_week": "Týden",
                 },
                 "min": 2018-01-01T07:30:00.000Z,
                 "onNavigate": [Function],
@@ -1087,13 +1068,8 @@ ShallowWrapper {
                     "allDay": "Celý den",
                     "date": "Datum",
                     "event": "Událost",
-                    "month": "Měsíc",
-                    "next": ">",
-                    "previous": "<",
                     "showMore": [Function],
                     "time": "Čas",
-                    "today": "Dnes",
-                    "work_week": "Týden",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -1295,13 +1271,8 @@ ShallowWrapper {
                     "allDay": "Celý den",
                     "date": "Datum",
                     "event": "Událost",
-                    "month": "Měsíc",
-                    "next": ">",
-                    "previous": "<",
                     "showMore": [Function],
                     "time": "Čas",
-                    "today": "Dnes",
-                    "work_week": "Týden",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -1429,13 +1400,8 @@ ShallowWrapper {
                       "allDay": "Celý den",
                       "date": "Datum",
                       "event": "Událost",
-                      "month": "Měsíc",
-                      "next": ">",
-                      "previous": "<",
                       "showMore": [Function],
                       "time": "Čas",
-                      "today": "Dnes",
-                      "work_week": "Týden",
                     }
                   }
                   min={2018-01-01T07:30:00.000Z}
@@ -1573,13 +1539,8 @@ ShallowWrapper {
                     "allDay": "Celý den",
                     "date": "Datum",
                     "event": "Událost",
-                    "month": "Měsíc",
-                    "next": ">",
-                    "previous": "<",
                     "showMore": [Function],
                     "time": "Čas",
-                    "today": "Dnes",
-                    "work_week": "Týden",
                   },
                   "min": 2018-01-01T07:30:00.000Z,
                   "onNavigate": [Function],
