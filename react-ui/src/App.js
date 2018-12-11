@@ -69,7 +69,9 @@ const NoMatch = ({ location }) => (
   </div>
 );
 
-// navigation bar with view links
+/**
+ * Application header.
+ */
 export const NavWithLinks = withRouter(({ location }) => (
   <Navbar color="light" light expand="md" className="no-print">
     <NavbarBrand>{_t.translate("Massages")}</NavbarBrand>
@@ -119,6 +121,17 @@ export const NavWithLinks = withRouter(({ location }) => (
 ));
 
 /**
+ * Application footer,
+ */
+const Footer = () => (
+  <footer className="container-fluid text-right fixed-bottom mr-3 mb-3">
+    <a href="https://www.openshift.com/" title="Powered by OpenShift Online">
+      <img alt="Powered by OpenShift Online" src="https://www.openshift.com/images/logos/powered_by_openshift.png" />
+    </a>
+  </footer>
+);
+
+/**
  * Main application component. Contains the Router, NotificationContainer and Navbar.
  */
 const App = function App() {
@@ -145,6 +158,7 @@ const App = function App() {
             </Switch>
           </ErrorBoundary>
         </div>
+        <Footer />
       </div>
     </Router>
   );

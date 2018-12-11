@@ -15,7 +15,14 @@ import Util from "./Util";
  */
 const Auth = function Auth() {};
 
-Auth.keycloak = Keycloak();
+Auth.keycloak = Keycloak({
+  realm: process.env.REACT_APP_KC_REALM || "massages",
+  url: process.env.REACT_APP_KC_AUTH_URL || "http://localhost:9090/auth",
+  "ssl-required": process.env.REACT_APP_KC_SSL_MODE || "none",
+  clientId: process.env.REACT_APP_KC_RESOURCE || "ui-client",
+  "public-client": process.env.REACT_APP_KC_PUBLIC_CLIENT || true,
+  "enable-cors": process.env.REACT_APP_KC_CORS || true
+});
 
 /**
  * Register new and update old Clients after Keycloak authorization success.

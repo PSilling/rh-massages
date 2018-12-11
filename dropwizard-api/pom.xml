@@ -16,7 +16,12 @@
     <artifactId>Massages</artifactId>
     <version>1.4.7</version>
     <packaging>jar</packaging>
+    
     <name>Massages</name>
+
+    <properties>
+        <mainClass>cz.redhat.MassagesApplication</mainClass>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
