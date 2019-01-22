@@ -178,7 +178,7 @@ ShallowWrapper {
                   "border": "0px solid transparent",
                 }
               }
-              tooltip="Nadcházející měsíc"
+              tooltip="Další měsíc"
             />
           </Col>
         </Row>,
@@ -358,7 +358,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Nadcházející měsíc"
+                tooltip="Další měsíc"
               />
             </Col>,
           ],
@@ -582,7 +582,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Nadcházející měsíc"
+                tooltip="Další měsíc"
               />,
               "className": "text-right",
               "md": "1",
@@ -608,7 +608,7 @@ ShallowWrapper {
                 "style": Object {
                   "border": "0px solid transparent",
                 },
-                "tooltip": "Nadcházející měsíc",
+                "tooltip": "Další měsíc",
               },
               "ref": null,
               "rendered": null,
@@ -760,7 +760,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Nadcházející měsíc"
+                tooltip="Další měsíc"
               />
             </Col>
           </Row>,
@@ -940,7 +940,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Nadcházející měsíc"
+                  tooltip="Další měsíc"
                 />
               </Col>,
             ],
@@ -1164,7 +1164,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Nadcházející měsíc"
+                  tooltip="Další měsíc"
                 />,
                 "className": "text-right",
                 "md": "1",
@@ -1190,7 +1190,7 @@ ShallowWrapper {
                   "style": Object {
                     "border": "0px solid transparent",
                   },
-                  "tooltip": "Nadcházející měsíc",
+                  "tooltip": "Další měsíc",
                 },
                 "ref": null,
                 "rendered": null,

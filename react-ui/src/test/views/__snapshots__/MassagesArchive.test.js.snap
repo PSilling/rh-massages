@@ -47,7 +47,7 @@ ShallowWrapper {
             }
           >
             <TooltipButton
-              active={true}
+              active={false}
               disabled={false}
               label="Vybírat"
               onClick={[Function]}
@@ -97,7 +97,7 @@ ShallowWrapper {
           onDelete={[Function]}
           onEdit={[Function]}
           onSelect={[Function]}
-          selectEvents={true}
+          selectEvents={false}
           selected={Array []}
         />,
       ],
@@ -175,7 +175,7 @@ ShallowWrapper {
               }
             >
               <TooltipButton
-                active={true}
+                active={false}
                 disabled={false}
                 label="Vybírat"
                 onClick={[Function]}
@@ -223,7 +223,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": <TooltipButton
-                active={true}
+                active={false}
                 disabled={false}
                 label="Vybírat"
                 onClick={[Function]}
@@ -245,7 +245,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "active": true,
+                "active": false,
                 "disabled": false,
                 "label": "Vybírat",
                 "onClick": [Function],
@@ -345,7 +345,7 @@ ShallowWrapper {
           "onDelete": [Function],
           "onEdit": [Function],
           "onSelect": [Function],
-          "selectEvents": true,
+          "selectEvents": false,
           "selected": Array [],
         },
         "ref": null,
@@ -391,7 +391,7 @@ ShallowWrapper {
               }
             >
               <TooltipButton
-                active={true}
+                active={false}
                 disabled={false}
                 label="Vybírat"
                 onClick={[Function]}
@@ -441,7 +441,7 @@ ShallowWrapper {
             onDelete={[Function]}
             onEdit={[Function]}
             onSelect={[Function]}
-            selectEvents={true}
+            selectEvents={false}
             selected={Array []}
           />,
         ],
@@ -519,7 +519,7 @@ ShallowWrapper {
                 }
               >
                 <TooltipButton
-                  active={true}
+                  active={false}
                   disabled={false}
                   label="Vybírat"
                   onClick={[Function]}
@@ -567,7 +567,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": <TooltipButton
-                  active={true}
+                  active={false}
                   disabled={false}
                   label="Vybírat"
                   onClick={[Function]}
@@ -589,7 +589,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "active": true,
+                  "active": false,
                   "disabled": false,
                   "label": "Vybírat",
                   "onClick": [Function],
@@ -689,7 +689,7 @@ ShallowWrapper {
             "onDelete": [Function],
             "onEdit": [Function],
             "onSelect": [Function],
-            "selectEvents": true,
+            "selectEvents": false,
             "selected": Array [],
           },
           "ref": null,

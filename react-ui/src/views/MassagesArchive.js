@@ -28,7 +28,7 @@ class MassagesArchive extends Component {
     events: [],
     loading: true,
     selected: [],
-    selectEvents: Auth.isAdmin(),
+    selectEvents: false,
     from: moment()
       .startOf("month")
       .subtract(37, "days"),

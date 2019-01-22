@@ -48,7 +48,9 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.events[0].massage).toBe(testMassages[0]);
   expect(wrapper.instance().state.loading).toBe(false);
 
-  expect(selectButton.props().active).toBe(true);
+  expect(selectButton.props().active).toBe(false);
+  selectButton.props().onClick();
+  expect(wrapper.instance().state.selectEvents).toBe(true);
   selectButton.props().onClick();
   expect(wrapper.instance().state.selectEvents).toBe(false);
 

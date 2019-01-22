@@ -30,7 +30,7 @@ class LabeledDatetime extends Component {
   };
 
   render() {
-    const { onChange, label, value, onEnterPress, size, tooltip, ...rest } = this.props;
+    const { disabled, onChange, label, value, onEnterPress, size, tooltip, ...rest } = this.props;
     return (
       <Col md={this.props.size}>
         <FormGroup>
@@ -43,6 +43,7 @@ class LabeledDatetime extends Component {
             onChange={this.props.onChange}
             inputProps={{
               id: `${this.tooltipTarget}_input`,
+              disabled,
               placeholder: this.props.label,
               onKeyPress: this.handleKeyPress
             }}
@@ -65,6 +66,8 @@ LabeledDatetime.propTypes = {
   label: PropTypes.string.isRequired,
   /** current value of the input field */
   value: PropTypes.oneOfType([PropTypes.instanceOf(moment), PropTypes.instanceOf(Date)]).isRequired,
+  /** whether the Datetime should be disabled */
+  disabled: PropTypes.bool,
   /** input datalist options */
   onEnterPress: PropTypes.func,
   /** input column length */
@@ -75,6 +78,7 @@ LabeledDatetime.propTypes = {
 
 LabeledDatetime.defaultProps = {
   onEnterPress() {},
+  disabled: false,
   size: "12",
   tooltip: ""
 };

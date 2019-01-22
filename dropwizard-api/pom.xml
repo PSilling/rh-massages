@@ -7,17 +7,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <version>1.4.7</version>
+        <version>1.4.8</version>
         <artifactId>parent</artifactId>
         <groupId>cz.redhat</groupId>
     </parent>
 
     <groupId>cz.redhat</groupId>
     <artifactId>Massages</artifactId>
-    <version>1.4.7</version>
+    <version>1.4.8</version>
     <packaging>jar</packaging>
-    
-    <name>Massages</name>
+
+    <name>Red Hat Massages Server</name>
 
     <properties>
         <mainClass>cz.redhat.MassagesApplication</mainClass>

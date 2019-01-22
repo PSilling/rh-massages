@@ -87,6 +87,7 @@ ShallowWrapper {
           >
             <LabeledDatetime
               dateFormat={false}
+              disabled={false}
               label="Délka trvání"
               onChange={[Function]}
               onEnterPress={[Function]}
@@ -99,6 +100,7 @@ ShallowWrapper {
             tag="div"
           >
             <LabeledDatetime
+              disabled={false}
               isValidDate={[Function]}
               label="Čas masáže"
               onChange={[Function]}
@@ -187,6 +189,7 @@ ShallowWrapper {
             >
               <LabeledDatetime
                 dateFormat={false}
+                disabled={false}
                 label="Délka trvání"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -199,6 +202,7 @@ ShallowWrapper {
               tag="div"
             >
               <LabeledDatetime
+                disabled={false}
                 isValidDate={[Function]}
                 label="Čas masáže"
                 onChange={[Function]}
@@ -346,6 +350,7 @@ ShallowWrapper {
             "props": Object {
               "children": <LabeledDatetime
                 dateFormat={false}
+                disabled={false}
                 label="Délka trvání"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -362,6 +367,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "dateFormat": false,
+                "disabled": false,
                 "label": "Délka trvání",
                 "onChange": [Function],
                 "onEnterPress": [Function],
@@ -381,6 +387,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": <LabeledDatetime
+                disabled={false}
                 isValidDate={[Function]}
                 label="Čas masáže"
                 onChange={[Function]}
@@ -397,6 +404,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
+                "disabled": false,
                 "isValidDate": [Function],
                 "label": "Čas masáže",
                 "onChange": [Function],
@@ -496,6 +504,7 @@ ShallowWrapper {
             >
               <LabeledDatetime
                 dateFormat={false}
+                disabled={false}
                 label="Délka trvání"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -508,6 +517,7 @@ ShallowWrapper {
               tag="div"
             >
               <LabeledDatetime
+                disabled={false}
                 isValidDate={[Function]}
                 label="Čas masáže"
                 onChange={[Function]}
@@ -596,6 +606,7 @@ ShallowWrapper {
               >
                 <LabeledDatetime
                   dateFormat={false}
+                  disabled={false}
                   label="Délka trvání"
                   onChange={[Function]}
                   onEnterPress={[Function]}
@@ -608,6 +619,7 @@ ShallowWrapper {
                 tag="div"
               >
                 <LabeledDatetime
+                  disabled={false}
                   isValidDate={[Function]}
                   label="Čas masáže"
                   onChange={[Function]}
@@ -755,6 +767,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <LabeledDatetime
                   dateFormat={false}
+                  disabled={false}
                   label="Délka trvání"
                   onChange={[Function]}
                   onEnterPress={[Function]}
@@ -771,6 +784,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "dateFormat": false,
+                  "disabled": false,
                   "label": "Délka trvání",
                   "onChange": [Function],
                   "onEnterPress": [Function],
@@ -790,6 +804,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": <LabeledDatetime
+                  disabled={false}
                   isValidDate={[Function]}
                   label="Čas masáže"
                   onChange={[Function]}
@@ -806,6 +821,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "disabled": false,
                   "isValidDate": [Function],
                   "label": "Čas masáže",
                   "onChange": [Function],

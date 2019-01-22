@@ -33,7 +33,7 @@ class Massages extends Component {
     masseuses: [],
     selected: [],
     index: 0,
-    selectEvents: Auth.isAdmin(),
+    selectEvents: false,
     editMassage: null,
     massageMinutes: 0,
     loading: true,

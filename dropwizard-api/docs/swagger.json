@@ -2,8 +2,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.4.7",
-        "title": "Massages"
+        "version": "1.4.8",
+        "title": "Red Hat Massages Server"
     },
     "host": "localhost:8080",
     "basePath": "/",

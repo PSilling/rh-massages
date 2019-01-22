@@ -1,8 +1,7 @@
 {
   "name": "react-ui",
-  "version": "1.4.6",
+  "version": "1.4.8",
   "homepage": ".",
-  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",

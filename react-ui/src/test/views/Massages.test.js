@@ -109,7 +109,9 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.index).toBe(0);
   expect(wrapper.instance().state.loading).toBe(true);
 
-  expect(tooltipButtons.get(0).props.active).toBe(true);
+  expect(tooltipButtons.get(0).props.active).toBe(false);
+  tooltipButtons.get(0).props.onClick();
+  expect(wrapper.instance().state.selectEvents).toBe(true);
   tooltipButtons.get(0).props.onClick();
   expect(wrapper.instance().state.selectEvents).toBe(false);
   expect(tooltipButtons.get(1).props.active).toBe(false);

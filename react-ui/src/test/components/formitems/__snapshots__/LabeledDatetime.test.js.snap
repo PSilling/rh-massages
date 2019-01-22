@@ -4,6 +4,7 @@ exports[`renders content with correct props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LabeledDatetime
+    disabled={false}
     label="test"
     onChange={
       [MockFunction] {
@@ -64,6 +65,7 @@ ShallowWrapper {
           input={true}
           inputProps={
             Object {
+              "disabled": false,
               "id": "Tooltip1_input",
               "onKeyPress": [Function],
               "placeholder": "test",
@@ -153,6 +155,7 @@ ShallowWrapper {
             input={true}
             inputProps={
               Object {
+                "disabled": false,
                 "id": "Tooltip1_input",
                 "onKeyPress": [Function],
                 "placeholder": "test",
@@ -237,6 +240,7 @@ ShallowWrapper {
             "defaultValue": "",
             "input": true,
             "inputProps": Object {
+              "disabled": false,
               "id": "Tooltip1_input",
               "onKeyPress": [Function],
               "placeholder": "test",
@@ -328,6 +332,7 @@ ShallowWrapper {
             input={true}
             inputProps={
               Object {
+                "disabled": false,
                 "id": "Tooltip1_input",
                 "onKeyPress": [Function],
                 "placeholder": "test",
@@ -417,6 +422,7 @@ ShallowWrapper {
               input={true}
               inputProps={
                 Object {
+                  "disabled": false,
                   "id": "Tooltip1_input",
                   "onKeyPress": [Function],
                   "placeholder": "test",
@@ -501,6 +507,7 @@ ShallowWrapper {
               "defaultValue": "",
               "input": true,
               "inputProps": Object {
+                "disabled": false,
                 "id": "Tooltip1_input",
                 "onKeyPress": [Function],
                 "placeholder": "test",

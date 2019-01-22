@@ -63,7 +63,7 @@ ShallowWrapper {
                 }
               >
                 <TooltipButton
-                  active={true}
+                  active={false}
                   className="mr-2"
                   disabled={false}
                   label="Vybírat"
@@ -141,7 +141,7 @@ ShallowWrapper {
               onDelete={[Function]}
               onEdit={[Function]}
               onSelect={[Function]}
-              selectEvents={true}
+              selectEvents={false}
               selected={Array []}
             />
           </div>
@@ -205,7 +205,7 @@ ShallowWrapper {
                 }
               >
                 <TooltipButton
-                  active={true}
+                  active={false}
                   className="mr-2"
                   disabled={false}
                   label="Vybírat"
@@ -283,7 +283,7 @@ ShallowWrapper {
               onDelete={[Function]}
               onEdit={[Function]}
               onSelect={[Function]}
-              selectEvents={true}
+              selectEvents={false}
               selected={Array []}
             />
           </div>,
@@ -332,7 +332,7 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={true}
+                    active={false}
                     className="mr-2"
                     disabled={false}
                     label="Vybírat"
@@ -410,7 +410,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
-                selectEvents={true}
+                selectEvents={false}
                 selected={Array []}
               />,
             ],
@@ -496,7 +496,7 @@ ShallowWrapper {
                     }
                   >
                     <TooltipButton
-                      active={true}
+                      active={false}
                       className="mr-2"
                       disabled={false}
                       label="Vybírat"
@@ -573,7 +573,7 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <TooltipButton
-                        active={true}
+                        active={false}
                         className="mr-2"
                         disabled={false}
                         label="Vybírat"
@@ -605,7 +605,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "active": true,
+                        "active": false,
                         "className": "mr-2",
                         "disabled": false,
                         "label": "Vybírat",
@@ -814,7 +814,7 @@ ShallowWrapper {
                 "onDelete": [Function],
                 "onEdit": [Function],
                 "onSelect": [Function],
-                "selectEvents": true,
+                "selectEvents": false,
                 "selected": Array [],
               },
               "ref": null,
@@ -882,7 +882,7 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={true}
+                    active={false}
                     className="mr-2"
                     disabled={false}
                     label="Vybírat"
@@ -960,7 +960,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
-                selectEvents={true}
+                selectEvents={false}
                 selected={Array []}
               />
             </div>
@@ -1024,7 +1024,7 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={true}
+                    active={false}
                     className="mr-2"
                     disabled={false}
                     label="Vybírat"
@@ -1102,7 +1102,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
-                selectEvents={true}
+                selectEvents={false}
                 selected={Array []}
               />
             </div>,
@@ -1151,7 +1151,7 @@ ShallowWrapper {
                     }
                   >
                     <TooltipButton
-                      active={true}
+                      active={false}
                       className="mr-2"
                       disabled={false}
                       label="Vybírat"
@@ -1229,7 +1229,7 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onEdit={[Function]}
                   onSelect={[Function]}
-                  selectEvents={true}
+                  selectEvents={false}
                   selected={Array []}
                 />,
               ],
@@ -1315,7 +1315,7 @@ ShallowWrapper {
                       }
                     >
                       <TooltipButton
-                        active={true}
+                        active={false}
                         className="mr-2"
                         disabled={false}
                         label="Vybírat"
@@ -1392,7 +1392,7 @@ ShallowWrapper {
                     "props": Object {
                       "children": Array [
                         <TooltipButton
-                          active={true}
+                          active={false}
                           className="mr-2"
                           disabled={false}
                           label="Vybírat"
@@ -1424,7 +1424,7 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "active": true,
+                          "active": false,
                           "className": "mr-2",
                           "disabled": false,
                           "label": "Vybírat",
@@ -1633,7 +1633,7 @@ ShallowWrapper {
                   "onDelete": [Function],
                   "onEdit": [Function],
                   "onSelect": [Function],
-                  "selectEvents": true,
+                  "selectEvents": false,
                   "selected": Array [],
                 },
                 "ref": null,

@@ -12,6 +12,7 @@ import LabeledDatetime from "../formitems/LabeledDatetime";
 import LabeledInput from "../formitems/LabeledInput";
 import Tab from "../navs/Tab";
 import TooltipButton from "../buttons/TooltipButton";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 import TooltipGroup from "../util/TooltipGroup";
 
 // util imports
@@ -24,24 +25,22 @@ import Util from "../../util/Util";
  */
 class MassageBatchAddModal extends Component {
   state = {
-    rules: [
-      {
-        days: [],
-        weeks: "1",
-        masseuse: "",
-        startDate: moment(),
-        startTime: moment("08:00", "HH:mm"),
-        massageDuration: moment("00:30", "HH:mm"),
-        massagesPerDay: "10",
-        normalPause: moment("00:10", "HH:mm"),
-        bigPause: moment("01:00", "HH:mm"),
-        bigPauseAfter: "5"
-      }
-    ],
+    rules: [],
+    settings: true,
+    thisMonth: false,
+    masseuse: "",
+    massageDuration: moment("00:30", "HH:mm"),
+    normalPause: moment("00:10", "HH:mm"),
+    activeDropdown: -1,
     index: 0
   };
 
-  weekdays = _t.translate("Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday").split("_");
+  weekdays = _t
+    .translate("Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday")
+    .split("_")
+    .splice(0, 5);
+
+  radios = ["this month", "next month"];
 
   yesterday = moment().subtract(1, "day");
 
@@ -49,30 +48,22 @@ class MassageBatchAddModal extends Component {
 
   tooltipLabels = [
     _t.translate("Import previously downloaded rules"),
-    _t.translate("The days on which the defined massages should be created"),
-    _t.translate("Information about the massages that should be created"),
-    _t.translate("Information about breaks between individual massages")
+    _t.translate("When set to another day, copies the schedule from it")
   ];
 
-  getMinutes = from => 60 * from.get("hour", "hours") + from.get("minute", "minutes");
+  getBigPause = () => ({
+    start: moment("12:00", "HH:mm"),
+    end: moment("13:00", "HH:mm")
+  });
 
-  changeStartDate = date => {
-    if (typeof date === "string") {
-      return;
-    }
-
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].startDate = date.isBefore(
-        moment()
-          .startOf("minute")
-          .subtract(1, "days")
-      )
-        ? moment()
-        : date;
-      return rules;
-    });
-  };
+  getRule = id => ({
+    day: id === 0 ? "–" : this.weekdays[0],
+    for: this.weekdays[id],
+    disabled: false,
+    startTime: moment("08:00", "HH:mm"),
+    endTime: moment("18:00", "HH:mm"),
+    bigPauses: [this.getBigPause()]
+  });
 
   changeStartTime = time => {
     if (typeof time === "string") {
@@ -86,172 +77,173 @@ class MassageBatchAddModal extends Component {
     });
   };
 
-  changeNormalPause = duration => {
-    if (typeof duration === "string") {
+  changeEndTime = time => {
+    if (typeof time === "string") {
       return;
     }
+
     this.setState(prevState => {
       const rules = [...prevState.rules];
-      rules[prevState.index].normalPause = duration;
+      rules[prevState.index].endTime = time;
       return rules;
     });
   };
 
-  changeBigPause = duration => {
-    if (typeof duration === "string") {
+  changeNormalPause = normalPause => {
+    if (typeof normalPause === "string") {
       return;
     }
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].bigPause = duration;
-      return rules;
-    });
+    this.setState({ normalPause });
   };
 
-  changeMassageDuration = duration => {
-    if (typeof duration === "string") {
-      return;
-    }
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].massageDuration = duration;
-      return rules;
-    });
-  };
-
-  changeMassagesPerDay = event => {
-    if (
-      Util.isEmpty(event.target.value) ||
-      parseInt(event.target.value, 10) < 1 ||
-      parseInt(event.target.value, 10) > 100
-    ) {
-      return;
-    }
-    const { value } = event.target;
-
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      if (parseInt(rules[prevState.index].bigPauseAfter, 10) > parseInt(value, 10)) {
-        rules[prevState.index].bigPauseAfter = value;
+  changeSettings = () => {
+    if (this.state.settings) {
+      if (Util.isEmpty(this.state.masseuse)) {
+        Util.notify("error", _t.translate("Masseuse is required!"), _t.translate("Schedule"));
+        return;
       }
 
-      rules[prevState.index].massagesPerDay = value;
+      const rules = [];
 
-      return rules;
-    });
+      for (let i = 0; i < this.weekdays.length; i++) {
+        rules.push(this.getRule(i));
+      }
+
+      this.setState({ rules, settings: false });
+    } else {
+      this.setState({ settings: true });
+    }
   };
 
-  changeBigPauseAfter = event => {
-    if (
-      Util.isEmpty(event.target.value) ||
-      parseInt(event.target.value, 10) < 1 ||
-      parseInt(event.target.value, 10) > 100
-    ) {
-      return;
-    }
-    const { value } = event.target;
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].bigPauseAfter = value;
-      return rules;
-    });
-  };
-
-  changeWeeks = event => {
-    if (
-      Util.isEmpty(event.target.value) ||
-      parseInt(event.target.value, 10) < 1 ||
-      parseInt(event.target.value, 10) > 54
-    ) {
-      return;
-    }
-    const { value } = event.target;
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].weeks = value;
-      return rules;
-    });
+  changeThisMonth = () => {
+    this.setState(prevState => ({ thisMonth: !prevState.thisMonth }));
   };
 
   changeMasseuse = event => {
-    const { value } = event.target;
-    this.setState(prevState => {
-      const rules = [...prevState.rules];
-      rules[prevState.index].masseuse = value;
-      return rules;
-    });
+    this.setState({ masseuse: event.target.value });
+  };
+
+  changeMassageDuration = massageDuration => {
+    if (typeof massageDuration !== "string") {
+      this.setState({ massageDuration });
+    }
   };
 
   changeTabIndex = index => {
     this.setState({ index });
   };
 
-  addRule = () => {
+  changeDisabled = () => {
     this.setState(prevState => {
       const rules = [...prevState.rules];
-      rules.push({
-        days: [],
-        weeks: "1",
-        masseuse: "",
-        startDate: moment(),
-        startTime: moment("08:00", "HH:mm"),
-        massageDuration: moment("00:30", "HH:mm"),
-        massagesPerDay: "10",
-        normalPause: moment("00:10", "HH:mm"),
-        bigPause: moment("01:00", "HH:mm"),
-        bigPauseAfter: "5"
-      });
-      return { rules, index: rules.length - 1 };
+      rules[prevState.index].disabled = !rules[prevState.index].disabled;
+      return rules;
     });
   };
 
-  removeRule = index => {
+  changeDay = event => {
+    const { value } = event.target;
     this.setState(prevState => {
       const rules = [...prevState.rules];
-      rules.splice(index, 1);
-      return {
-        rules,
-        index: prevState.index > rules.length - 1 ? rules.length - 1 : prevState.index
-      };
+      rules[prevState.index].day = value;
+      return rules;
     });
   };
 
-  changeDays = (event, day) => {
-    const { checked } = event.target;
+  changeBigPauseStart = (id, start) => {
+    if (typeof start === "string") {
+      return;
+    }
     this.setState(prevState => {
       const rules = [...prevState.rules];
-      const days = [...prevState.rules[prevState.index].days];
-      if (checked) {
-        days.push(day);
-      } else {
-        days.splice(days.indexOf(day), 1);
-      }
-      rules[prevState.index].days = days;
+      rules[prevState.index].bigPauses[id].start = start;
+      return rules;
+    });
+  };
+
+  changeBigPauseEnd = (id, end) => {
+    if (typeof end === "string") {
+      return;
+    }
+    this.setState(prevState => {
+      const rules = [...prevState.rules];
+      rules[prevState.index].bigPauses[id].end = end;
+      return rules;
+    });
+  };
+
+  addBigPause = () => {
+    this.setState(prevState => {
+      const rules = [...prevState.rules];
+      rules[prevState.index].bigPauses.push(this.getBigPause());
+      return rules;
+    });
+  };
+
+  removeBigPause = id => {
+    this.setState(prevState => {
+      const rules = [...prevState.rules];
+      rules[prevState.index].bigPauses.splice(id, 1);
       return rules;
     });
   };
 
   /**
-   * Calculates the date/ending based on day offset.
+   * Returns the source rule index for massage creation based on role copy settings.
    */
-  getDate = (isEnding, index, day, count) => {
-    const date = moment(this.state.rules[index].startDate)
-      .add(day, "days")
-      .startOf("day");
-
-    const startMinutes = this.getMinutes(this.state.rules[index].startTime);
-    const massageMinutes = this.getMinutes(this.state.rules[index].massageDuration);
-    const pauseMinutes = this.getMinutes(this.state.rules[index].normalPause);
-    const bigPauseMinutes =
-      count >= this.state.rules[index].bigPauseAfter
-        ? this.getMinutes(this.state.rules[index].bigPause) - pauseMinutes
-        : 0;
-
-    let minutes = startMinutes + bigPauseMinutes + (massageMinutes + pauseMinutes) * count;
-    if (isEnding) {
-      minutes += massageMinutes;
+  getSourceIndex = index => {
+    if (this.state.rules[index].disabled) {
+      return -1;
     }
-    return moment(date).add(minutes, "minutes");
+    if (this.state.rules[index].day === "–") {
+      return index;
+    }
+    return this.getSourceIndex(this.weekdays.indexOf(this.state.rules[index].day));
+  };
+
+  /**
+   * Checks whether a given time window is inside an array of pauses.
+   */
+  isInPauseWindow = (startTime, endTime, pauses) => {
+    for (let i = 0; i < pauses.length; i++) {
+      const pauseStart = this.cloneOverwritingDaytime(startTime, pauses[i].start);
+      const pauseEnd = this.cloneOverwritingDaytime(startTime, pauses[i].end);
+      if (startTime.isBetween(pauseStart, pauseEnd) || endTime.isBetween(pauseStart, pauseEnd)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  /**
+   * Clones a given moment date and copies its daytime values from another moment.
+   */
+  cloneOverwritingDaytime = (date, by) =>
+    date.clone().set({
+      hour: by.hours(),
+      minute: by.minutes(),
+      second: by.second(),
+      millisecond: by.millisecond()
+    });
+
+  /**
+   * Checks whether a date at a given day offset belongs to creation month limit.
+   */
+  isDayOfMonth = offset => {
+    let comparissonDate;
+    let offsetDate;
+    if (this.state.thisMonth) {
+      comparissonDate = moment().endOf("month");
+      offsetDate = moment().add(offset, "days");
+    } else {
+      comparissonDate = moment()
+        .add(1, "months")
+        .endOf("month");
+      offsetDate = moment()
+        .endOf("month")
+        .add(offset + 1, "days");
+    }
+    return !offsetDate.isAfter(comparissonDate);
   };
 
   /**
@@ -259,52 +251,50 @@ class MassageBatchAddModal extends Component {
    */
   addMassages = () => {
     const postArray = [];
-
-    let informed = false;
-    for (let i = 0; i < this.state.rules.length; i++) {
-      if (Util.isEmpty(this.state.rules[i].masseuse)) {
-        Util.notify("error", _t.translate("Masseuse is required!"), _t.translate("Rule #") + (i + 1));
-        return;
-      }
-      if (this.state.rules[i].days.length === 0) {
-        Util.notify("error", _t.translate("At least one repeat day is required!"), _t.translate("Rule #") + (i + 1));
-        return;
-      }
-    }
+    const massageHours = this.state.massageDuration.hours();
+    const massageMins = this.state.massageDuration.minutes();
+    const pauseHours = this.state.normalPause.hours();
+    const pauseMins = this.state.normalPause.minutes();
 
     for (let i = 0; i < this.state.rules.length; i++) {
-      for (let j = 0; j < this.state.rules[i].weeks * 7; j++) {
+      const date = this.state.thisMonth ? moment() : moment().endOf("month");
+
+      for (let j = 0; this.isDayOfMonth(j); j++) {
         if (
-          this.state.rules[i].days.indexOf(
-            moment(this.state.rules[i].startDate)
-              .add(j, "days")
-              .format("dddd")
-          ) !== -1
+          date.add(1, "days").isoWeekday() !== 6 &&
+          date.isoWeekday() !== 7 &&
+          this.state.rules[i].for === date.format("dddd")
         ) {
-          for (let k = 0; k < this.state.rules[i].massagesPerDay; k++) {
-            if (this.getDate(false, i, j, k).isAfter(moment())) {
-              if (!informed) {
-                Util.notify(
-                  "warning",
-                  _t.translate(
-                    "Not all massages were edited as in some cases the new date would have been before now."
-                  ),
-                  _t.translate("Warning")
-                );
-                informed = true;
+          const sourceIndex = this.getSourceIndex(i);
+
+          if (sourceIndex !== -1) {
+            const currentStartTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].startTime);
+            const endTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].endTime);
+            let startTime = currentStartTime.clone();
+
+            while (
+              !currentStartTime
+                .add(massageHours, "hours")
+                .add(massageMins, "minutes")
+                .isAfter(endTime)
+            ) {
+              if (!this.isInPauseWindow(startTime, currentStartTime, this.state.rules[sourceIndex].bigPauses)) {
+                postArray.push({
+                  date: startTime.toDate(),
+                  ending: currentStartTime.toDate(),
+                  masseuse: this.state.masseuse,
+                  client: null,
+                  facility: { id: this.props.facilityId }
+                });
+                currentStartTime.add(pauseHours, "hours").add(pauseMins, "minutes");
               }
-              postArray.push({
-                date: this.getDate(false, i, j, k).toDate(),
-                ending: this.getDate(true, i, j, k).toDate(),
-                masseuse: this.state.rules[i].masseuse,
-                client: null,
-                facility: { id: this.props.facilityId }
-              });
+              startTime = currentStartTime.clone();
             }
           }
         }
       }
     }
+
     if (postArray.length > 0) {
       Fetch.post(Util.MASSAGES_URL, postArray, () => {
         this.props.getCallback();
@@ -315,75 +305,81 @@ class MassageBatchAddModal extends Component {
 
   /**
    * Checks all rule values in the imported file. Any incorrectly supplied values
-   * are replaced by default rule values.
+   * are replaced by default values.
    */
-  handleImportedFile = rules => {
-    if (!Array.isArray(rules) || rules.length === 0) {
+  handleImportedFile = importData => {
+    if (!Array.isArray(importData.rules) || importData.rules.length !== this.weekdays.length) {
       Util.notify("error", "", _t.translate("Invalid import file."));
       return null;
     }
 
-    for (let i = 0; i < rules.length; i++) {
-      if (!Array.isArray(rules[i].days)) {
-        rules[i].days = [];
+    for (let i = 0; i < this.weekdays.length; i++) {
+      if (Util.isEmpty(importData.rules[i].day)) {
+        importData.rules[i].day = "–";
       }
-      if (Util.isEmpty(rules[i].weeks) || parseInt(rules[i].weeks, 10) < 1 || parseInt(rules[i].weeks, 10) > 54) {
-        rules[i].weeks = "1";
+
+      if (Util.isEmpty(importData.rules[i].for)) {
+        importData.rules[i].for = this.weekdays[i];
       }
-      if (Util.isEmpty(rules[i].masseuse)) {
-        rules[i].masseuse = "";
+
+      if (Util.isEmpty(importData.rules[i].disabled)) {
+        importData.rules[i].disabled = false;
       }
-      if (
-        Util.isEmpty(rules[i].startDate) ||
-        moment(rules[i].startDate).isBefore(
-          moment()
-            .startOf("minute")
-            .subtract(1, "days")
-        )
-      ) {
-        rules[i].startDate = moment();
+
+      if (Util.isEmpty(importData.rules[i].startTime)) {
+        importData.rules[i].startTime = moment("08:00", "HH:mm");
       } else {
-        rules[i].startDate = moment(rules[i].startDate);
+        importData.rules[i].startTime = moment(importData.rules[i].startTime);
       }
-      if (Util.isEmpty(rules[i].startTime)) {
-        rules[i].startTime = moment("08:00", "HH:mm");
+
+      if (Util.isEmpty(importData.rules[i].endTime)) {
+        importData.rules[i].endTime = moment("18:00", "HH:mm");
       } else {
-        rules[i].startTime = moment(rules[i].startTime);
+        importData.rules[i].endTime = moment(importData.rules[i].endTime);
       }
-      if (Util.isEmpty(rules[i].massageDuration)) {
-        rules[i].massageDuration = moment("00:30", "HH:mm");
-      } else {
-        rules[i].massageDuration = moment(rules[i].massageDuration);
+
+      if (!Array.isArray(importData.rules[i].bigPauses)) {
+        importData.rules[i].bigPauses = [];
       }
-      if (
-        Util.isEmpty(rules[i].massagesPerDay) ||
-        parseInt(rules[i].massagesPerDay, 10) < 1 ||
-        parseInt(rules[i].massagesPerDay, 10) > 100
-      ) {
-        rules[i].massagesPerDay = "10";
-      }
-      if (Util.isEmpty(rules[i].normalPause)) {
-        rules[i].normalPause = moment("00:10", "HH:mm");
-      } else {
-        rules[i].normalPause = moment(rules[i].normalPause);
-      }
-      if (Util.isEmpty(rules[i].bigPause)) {
-        rules[i].bigPause = moment("01:00", "HH:mm");
-      } else {
-        rules[i].bigPause = moment(rules[i].bigPause);
-      }
-      if (
-        Util.isEmpty(rules[i].bigPauseAfter) ||
-        parseInt(rules[i].bigPauseAfter, 10) < 1 ||
-        parseInt(rules[i].bigPauseAfter, 10) > 100
-      ) {
-        rules[i].bigPauseAfter = "5";
-        if (parseInt(rules[i].bigPauseAfter, 10) < parseInt(rules[i].massagesPerDay, 10)) {
-          rules[i].bigPauseAfter = rules[i].massagesPerDay;
+
+      for (let j = 0; j < importData.rules[i].bigPauses.length; j++) {
+        if (Util.isEmpty(importData.rules[i].bigPauses[j].start)) {
+          importData.rules[i].bigPauses[j].start = moment("12:00", "HH:mm");
+          importData.rules[i].bigPauses[j].end = moment("13:00", "HH:mm");
+        } else {
+          importData.rules[i].bigPauses[j].start = moment(importData.rules[i].bigPauses[j].start);
+        }
+
+        if (Util.isEmpty(importData.rules[i].bigPauses[j].end)) {
+          importData.rules[i].bigPauses[j].start = moment("12:00", "HH:mm");
+          importData.rules[i].bigPauses[j].end = moment("13:00", "HH:mm");
+        } else {
+          importData.rules[i].bigPauses[j].end = moment(importData.rules[i].bigPauses[j].end);
         }
       }
     }
-    return rules;
+
+    if (Util.isEmpty(importData.thisMonth)) {
+      importData.thisMonth = false;
+    }
+
+    if (Util.isEmpty(importData.masseuse)) {
+      importData.masseuse = "N/A";
+    }
+
+    if (Util.isEmpty(importData.massageDuration)) {
+      importData.massageDuration = moment("00:30", "HH:mm");
+    } else {
+      importData.massageDuration = moment(importData.massageDuration);
+    }
+
+    if (Util.isEmpty(importData.normalPause)) {
+      importData.normalPause = moment("00:10", "HH:mm");
+    } else {
+      importData.normalPause = moment(importData.normalPause);
+    }
+
+    return importData;
   };
 
   /**
@@ -398,9 +394,15 @@ class MassageBatchAddModal extends Component {
     const fileReader = new FileReader();
     fileReader.onload = (reader => () => {
       const content = reader.result;
-      const rules = this.handleImportedFile(JSON.parse(content));
-      if (rules !== null) {
-        this.setState({ rules });
+      const importData = this.handleImportedFile(JSON.parse(content));
+      if (importData !== null) {
+        this.setState({
+          rules: importData.rules,
+          thisMonth: importData.thisMonth,
+          masseuse: importData.masseuse,
+          massageDuration: importData.massageDuration,
+          normalPause: importData.normalPause
+        });
       }
     })(fileReader);
     fileReader.readAsText(event.target.files[0]);
@@ -411,8 +413,14 @@ class MassageBatchAddModal extends Component {
    * The file is automatically downloaded.
    */
   exportRules = () => {
-    const rulesJson = JSON.stringify(this.state.rules);
-    const blob = new Blob([rulesJson], { type: "application/json" });
+    const exportJson = JSON.stringify({
+      rules: this.state.rules,
+      thisMonth: this.state.thisMonth,
+      masseuse: this.state.masseuse,
+      massageDuration: this.state.massageDuration,
+      normalPause: this.state.normalPause
+    });
+    const blob = new Blob([exportJson], { type: "application/json" });
 
     const e = document.createEvent("MouseEvents");
 
@@ -422,6 +430,14 @@ class MassageBatchAddModal extends Component {
     a.dataset.downloadurl = ["application/json", a.download, a.href].join(":");
     e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
+  };
+
+  toggleDropdown = index => {
+    if (this.state.activeDropdown !== index) {
+      this.setState({ activeDropdown: index });
+    } else {
+      this.setState({ activeDropdown: -1 });
+    }
   };
 
   handleModalKeyPress = event => {
@@ -436,250 +452,269 @@ class MassageBatchAddModal extends Component {
     }
   };
 
-  createInsides = () => (
+  createHeader = () => (
+    <Row>
+      <Col md="12">
+        <h3>
+          {_t.translate("Add schedule")}
+          <div className="float-right">
+            <Button id={this.tooltipTargets[0]} tag="label" outline htmlFor="fileImport">
+              {_t.translate("Import")}
+            </Button>
+            <Input id="fileImport" className="d-none" type="file" onChange={this.importRules} accept=".json" />
+            <TooltipButton
+              className="ml-2 mb-2"
+              onClick={this.exportRules}
+              label={_t.translate("Export")}
+              tooltip={_t.translate(
+                "Download a configuration file that you can use to import these rules at a later date"
+              )}
+            />
+          </div>
+        </h3>
+        <hr />
+      </Col>
+    </Row>
+  );
+
+  createSettingInputs = () => (
     <ModalBody>
+      {this.createHeader()}
+
       <Row>
         <Col md="12">
-          <h3>
-            {_t.translate("Create Massages")}
-            <div className="float-right">
-              <Button id={this.tooltipTargets[0]} tag="label" outline htmlFor="fileImport">
-                {_t.translate("Import")}
-              </Button>
-              <Input id="fileImport" className="d-none" type="file" onChange={this.importRules} accept=".json" />
-              <TooltipButton
-                className="ml-2 mb-2"
-                onClick={this.exportRules}
-                label={_t.translate("Export")}
-                tooltip={_t.translate(
-                  "Download a configuration file that you can use to import these rules at a later date"
-                )}
-              />
+          <FormGroup check inline>
+            <Label className="mr-2">{_t.translate("For:")}</Label>
+            <div className="mt-2">
+              {this.radios.map((item, index) => (
+                <Label key={index} for={item}>
+                  <Input
+                    id={item}
+                    type="radio"
+                    onChange={this.changeThisMonth}
+                    onKeyPress={this.changeSettings}
+                    checked={this.state.thisMonth === !index}
+                  />
+                  <Label className="mr-2" for={item}>
+                    {_t.translate(item)}
+                  </Label>
+                </Label>
+              ))}
             </div>
-          </h3>
-          <hr />
+          </FormGroup>
         </Col>
       </Row>
 
-      {this.state.rules.length > 0 ? (
-        <div>
-          <Row>
-            <Col md="12">
-              <Nav tabs className="mb-3">
-                {this.state.rules.map((item, index) => (
-                  <Tab
-                    key={_t.translate("Rule #") + (index + 1)}
-                    active={index === this.state.index}
-                    label={_t.translate("Rule #") + (index + 1)}
-                    onClick={() => this.changeTabIndex(index)}
-                    onRemoveClick={() => this.removeRule(index)}
-                  />
-                ))}
-                {this.state.rules.length < 5 && <Tab active={false} label="+" onClick={this.addRule} />}
-              </Nav>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Label id={this.tooltipTargets[1]}>{_t.translate("Repeat each")}</Label>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="10">
-              <FormGroup check inline>
-                <div>
-                  {this.weekdays.map(item => (
-                    <Label key={item} for={`weekday${item}`}>
-                      <Input
-                        id={`weekday${item}`}
-                        type="checkbox"
-                        onChange={event => this.changeDays(event, item)}
-                        onKeyPress={this.handleInputKeyPress}
-                        checked={this.state.rules[this.state.index].days.indexOf(item) > -1}
-                      />
-                      <Label className="mr-2" for={`weekday${item}`}>
-                        {item.toLowerCase()}
-                      </Label>
-                    </Label>
-                  ))}
-                </div>
-              </FormGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <LabeledInput
-              size="8"
-              label={_t.translate("Masseur/Masseuse")}
-              value={this.state.rules[this.state.index].masseuse}
-              onChange={this.changeMasseuse}
-              onEnterPress={this.addMassages}
-              type="text"
-              maxLength="64"
-              options={this.props.masseuses}
-              tooltip={_t.translate("The name of the masseur or massuese providing this rule's massages")}
-            />
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Row>
-                <LabeledDatetime
-                  size="4"
-                  label={_t.translate("Rule applies after")}
-                  value={this.state.rules[this.state.index].startDate}
-                  onChange={this.changeStartDate}
-                  onEnterPress={this.addMassages}
-                  timeFormat={false}
-                  isValidDate={current => current.isAfter(this.yesterday)}
-                  tooltip={_t.translate("The date after which the defined massages should be created")}
-                />
-                <LabeledInput
-                  size="4"
-                  label={_t.translate("Number of repetitions (weekly)")}
-                  value={this.state.rules[this.state.index].weeks}
-                  onChange={this.changeWeeks}
-                  onEnterPress={this.addMassages}
-                  type="number"
-                  min="1"
-                  max="54"
-                  tooltip={_t.translate("The number of weeks (after the start date) this rule should be applied to")}
-                />
-              </Row>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Label id={this.tooltipTargets[2]}>{_t.translate("Massages")}</Label>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="12">
-              <Row>
-                <LabeledDatetime
-                  size="3"
-                  label={_t.translate("Shift start")}
-                  value={this.state.rules[this.state.index].startTime}
-                  onChange={this.changeStartTime}
-                  onEnterPress={this.addMassages}
-                  dateFormat={false}
-                  tooltip={_t.translate("The time after which massages will start to be created each day")}
-                />
-                <LabeledDatetime
-                  size="3"
-                  label={_t.translate("Duration")}
-                  value={this.state.rules[this.state.index].massageDuration}
-                  onChange={this.changeMassageDuration}
-                  onEnterPress={this.addMassages}
-                  dateFormat={false}
-                  tooltip={_t.translate("How long should each of the created massages be")}
-                />
-                <LabeledInput
-                  size="3"
-                  label={_t.translate("Number of massages per day")}
-                  value={this.state.rules[this.state.index].massagesPerDay}
-                  onChange={this.changeMassagesPerDay}
-                  onEnterPress={this.addMassages}
-                  type="number"
-                  min="1"
-                  max="100"
-                  tooltip={_t.translate("How many massages should be created per day")}
-                />
-              </Row>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Label id={this.tooltipTargets[3]}>{_t.translate("Breaks")}</Label>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Row>
-                <LabeledDatetime
-                  size="3"
-                  label={_t.translate("Normal break")}
-                  value={this.state.rules[this.state.index].normalPause}
-                  onChange={this.changeNormalPause}
-                  onEnterPress={this.addMassages}
-                  dateFormat={false}
-                  tooltip={_t.translate(
-                    "Length of the default break after each massage (not included the prelunch massage)"
-                  )}
-                />
-                <LabeledDatetime
-                  size="3"
-                  label={_t.translate("Lunch break")}
-                  value={this.state.rules[this.state.index].bigPause}
-                  onChange={this.changeBigPause}
-                  onEnterPress={this.addMassages}
-                  dateFormat={false}
-                  tooltip={_t.translate("Length of the lunch break")}
-                />
-                <LabeledInput
-                  size="3"
-                  label={_t.translate("Massages before lunch")}
-                  value={this.state.rules[this.state.index].bigPauseAfter}
-                  onChange={this.changeBigPauseAfter}
-                  onEnterPress={this.addMassages}
-                  type="number"
-                  min="1"
-                  max={this.state.rules[this.state.index].massagesPerDay}
-                  tooltip={_t.translate("Number of massages before the lunch break")}
-                />
-              </Row>
-            </Col>
-            <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
-          </Row>
-        </div>
-      ) : (
-        <Row>
-          <Col md="2">
-            <TooltipButton
-              onClick={this.addRule}
-              disabled={false}
-              label={_t.translate("Create rule")}
-              tooltip={_t.translate("Add a new creation macro")}
-            />
-          </Col>
-        </Row>
-      )}
+      <Row>
+        <LabeledInput
+          size="6"
+          label={_t.translate("Masseur/Masseuse")}
+          value={this.state.masseuse}
+          onChange={this.changeMasseuse}
+          onEnterPress={this.chnageSettings}
+          type="text"
+          maxLength="64"
+          options={this.props.masseuses}
+        />
+        <LabeledDatetime
+          size="3"
+          label={_t.translate("Massage duration")}
+          value={this.state.massageDuration}
+          onChange={this.changeMassageDuration}
+          onEnterPress={this.changeSettings}
+          dateFormat={false}
+        />
+        <LabeledDatetime
+          size="3"
+          label={_t.translate("Break")}
+          value={this.state.normalPause}
+          onChange={this.changeNormalPause}
+          onEnterPress={this.changeSettings}
+          dateFormat={false}
+          tooltip={_t.translate("Length of the standard break after a massage")}
+        />
+      </Row>
 
       <ModalActions
-        primaryLabel={_t.translate("Create")}
-        onProceed={this.addMassages}
+        primaryLabel={_t.translate("Next")}
+        onProceed={this.changeSettings}
         onClose={() => this.props.onToggle(false)}
       />
     </ModalBody>
   );
 
-  createModal = () =>
-    this.props.withPortal ? (
-      <Modal
-        size="lg"
-        isOpen
-        toggle={() => this.props.onToggle(false)}
-        tabIndex="-1"
-        onKeyPress={this.handleModalKeyPress}
+  createMassageInputs = () => (
+    <ModalBody>
+      {this.createHeader()}
+
+      <Row>
+        <Col md="12">
+          <Nav tabs className="mb-3">
+            {this.weekdays.map((item, index) => (
+              <Tab
+                key={item}
+                active={index === this.state.index}
+                label={item}
+                onClick={() => this.changeTabIndex(index)}
+              />
+            ))}
+          </Nav>
+        </Col>
+      </Row>
+      <Row>
+        <Col md="12">
+          <Label id={this.tooltipTargets[1]}>{_t.translate("Same as")}</Label>
+        </Col>
+      </Row>
+      <Row>
+        <Col md="10">
+          <FormGroup>
+            <Input
+              type="select"
+              value={this.state.rules[this.state.index].day}
+              onChange={this.changeDay}
+              onKeyPress={this.handleInputKeyPress}
+              disabled={this.state.rules[this.state.index].disabled}
+            >
+              {this.weekdays.map(
+                item => item !== this.weekdays[this.state.index] && <option key={item}>{item}</option>
+              )}
+              <option>–</option>
+            </Input>
+          </FormGroup>
+        </Col>
+        <Col md="2">
+          <TooltipButton
+            className="mr-3 float-right"
+            label={_t.translate("Ignore")}
+            onClick={this.changeDisabled}
+            active={this.state.rules[this.state.index].disabled}
+            tooltip={_t.translate("Ignore this day when creating the massages")}
+          />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col md="12">
+          <Row>
+            <LabeledDatetime
+              size="3"
+              label={_t.translate("Shift start")}
+              value={this.state.rules[this.state.index].startTime}
+              onChange={this.changeStartTime}
+              onEnterPress={this.addMassages}
+              dateFormat={false}
+              disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+            />
+            <LabeledDatetime
+              size="3"
+              label={_t.translate("Shift end")}
+              value={this.state.rules[this.state.index].endTime}
+              onChange={this.changeEndTime}
+              onEnterPress={this.addMassages}
+              dateFormat={false}
+              disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+            />
+          </Row>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col md="12">
+          <Label>{_t.translate("Breaks")}</Label>
+          <TooltipIconButton
+            className="ml-1"
+            icon="plus"
+            onClick={this.addBigPause}
+            tooltip={_t.translate("Add")}
+            disabled={
+              this.state.rules[this.state.index].day !== "–" ||
+              this.state.rules[this.state.index].bigPauses.length > 4 ||
+              this.state.rules[this.state.index].disabled
+            }
+          />
+        </Col>
+      </Row>
+
+      {this.state.rules[this.state.index].bigPauses.map((item, index) => (
+        <Row key={item.start + index}>
+          <Col md="12">
+            <Row>
+              <LabeledDatetime
+                size="3"
+                label={_t.translate("Break start")}
+                value={item.start}
+                onChange={start => this.changeBigPauseStart(index, start)}
+                onEnterPress={this.addMassages}
+                dateFormat={false}
+                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+              />
+              <LabeledDatetime
+                size="3"
+                label={_t.translate("Break end")}
+                value={item.end}
+                onChange={end => this.changeBigPauseEnd(index, end)}
+                onEnterPress={this.addMassages}
+                dateFormat={false}
+                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+              />
+              <TooltipIconButton
+                className="ml-1"
+                style={{ marginTop: "35px", border: "0px solid transparent" }}
+                icon="times"
+                onClick={() => this.removeBigPause(index)}
+                tooltip={_t.translate("Remove")}
+                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+              />
+            </Row>
+          </Col>
+        </Row>
+      ))}
+      <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
+
+      <ModalActions
+        primaryLabel={_t.translate("Create")}
+        onProceed={this.addMassages}
+        onClose={() => this.props.onToggle(false)}
       >
-        {this.createInsides()}
-      </Modal>
-    ) : (
-      this.createInsides()
-    );
+        <TooltipButton className="mr-2" onClick={this.changeSettings} label={_t.translate("Previous")} />
+      </ModalActions>
+    </ModalBody>
+  );
+
+  createModal = () => {
+    if (this.props.withPortal) {
+      return (
+        <Modal
+          size="lg"
+          isOpen
+          toggle={() => this.props.onToggle(false)}
+          tabIndex="-1"
+          onKeyPress={this.handleModalKeyPress}
+        >
+          {this.state.settings ? this.createSettingInputs() : this.createMassageInputs()}
+        </Modal>
+      );
+    }
+    if (this.state.settings) {
+      return this.createSettingInputs();
+    }
+    return this.createMassageInputs();
+  };
 
   render() {
     const { facilityId, getCallback, onToggle, active, masseuses, withPortal, ...rest } = this.props;
+    if (this.state.rules.length === 0 && this.props.masseuses.length > 0) {
+      for (let i = 0; i < this.props.masseuses.length; i++) {
+        this.state.rules.push(this.getRule(this.props.masseuses[i]));
+      }
+    }
     return (
       <span>
         <TooltipButton
           {...rest}
           onClick={() => this.props.onToggle(false)}
-          label={_t.translate("Add more")}
+          label={_t.translate("Add schedule")}
           tooltip={_t.translate("Create multiple massages at once")}
         />
 
