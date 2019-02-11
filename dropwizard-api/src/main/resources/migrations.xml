@@ -28,7 +28,7 @@
             <column name="ending" type="TIMESTAMP(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
-            <column name="masseuse" type="VARCHAR(64)">
+            <column name="masseuse_sub" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
             <column name="client_sub" type="VARCHAR(64)">
@@ -53,6 +53,9 @@
             <column name="surname" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
+            <column name="masseur" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
             <column name="subscribed" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
@@ -68,6 +71,12 @@
         <addForeignKeyConstraint baseColumnNames="client_sub"
                                  baseTableName="massages" constraintName="fk_address_client"
                                  deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" referencedColumnNames="sub" referencedTableName="clients"/>
+    </changeSet>
+    <changeSet id="6" author="psilling">
+        <addForeignKeyConstraint baseColumnNames="masseuse_sub"
+                                 baseTableName="massages" constraintName="fk_address_masseur"
+                                 deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
                                  onUpdate="NO ACTION" referencedColumnNames="sub" referencedTableName="clients"/>
     </changeSet>
 </databaseChangeLog>

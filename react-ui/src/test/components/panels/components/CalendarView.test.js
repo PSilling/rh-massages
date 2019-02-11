@@ -14,7 +14,14 @@ test("renders content with correct props", () => {
         id: 1,
         date: new Date(0),
         ending: new Date(1000),
-        masseuse: "test",
+        masseuse: {
+          sub: "m-sub",
+          name: "Masseuse",
+          surname: "Test",
+          email: "test@masseuse.org",
+          subscribed: false,
+          masseur: true
+        },
         client: null,
         facility: { id: 1, name: "test" }
       }
@@ -24,6 +31,14 @@ test("renders content with correct props", () => {
         id: 2,
         date: new Date(1000),
         ending: new Date(2000),
+        masseuse: {
+          sub: "m-sub2",
+          name: "Masseuse",
+          surname: "Test2",
+          email: "test2@masseuse.org",
+          subscribed: true,
+          masseur: true
+        },
         client: { sub: "test" },
         facility: { id: 1, name: "test" }
       }

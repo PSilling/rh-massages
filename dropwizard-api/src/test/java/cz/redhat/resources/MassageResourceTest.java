@@ -17,14 +17,17 @@ package cz.redhat.resources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
+import cz.redhat.auth.TestAuthenticator;
+import cz.redhat.auth.TestAuthorizer;
 import cz.redhat.auth.TestUser;
 import cz.redhat.auth.User;
+import cz.redhat.core.Client;
 import cz.redhat.core.Facility;
+import cz.redhat.core.Massage;
 import cz.redhat.db.MassageDao;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -32,22 +35,14 @@ import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import cz.redhat.auth.TestAuthenticator;
-import cz.redhat.auth.TestAuthorizer;
-import cz.redhat.core.Massage;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.mockito.stubbing.Answer;
 
 /**
  * {@link MassageResource} JUnit resource test for /massages endpoint.
@@ -81,14 +76,17 @@ public class MassageResourceTest {
           .build();
   private final long milliseconds = new Date().getTime(); // current time milliseconds
   private final Facility facility = new Facility("Facility"); // test Facility
+  private final Client masseuse =
+      new Client("Subject", "example@email.com", "FName",
+          "SName", true, true); // test masseuse Client
   private final Massage massage =
-      new Massage(new Date(0), new Date(1), "Great Masseuse", null, facility); // test
+      new Massage(new Date(0), new Date(1), masseuse, null, facility); // test
   // Massage
   private final Massage newMassage =
       new Massage(
           new Date(milliseconds + 10000),
           new Date(milliseconds + 10001),
-          "Super Masseuse",
+          masseuse,
           null,
           facility); // test Massage for creation and updating
 
@@ -104,22 +102,6 @@ public class MassageResourceTest {
     when(massageDao.findById((long) 1)).thenReturn(massage);
     when(massageDao.findById((long) 0)).thenReturn(newMassage);
     when(massageDao.findById((long) 2)).thenReturn(newMassage);
-
-    doAnswer(
-        (Answer<Massage>) invocation -> {
-          massages.add(newMassage);
-          return newMassage;
-        })
-        .when(massageDao)
-        .create(newMassage);
-
-    doAnswer(
-        (Answer<Void>) invocation -> {
-          massages.remove(newMassage);
-          return null;
-        })
-        .when(massageDao)
-        .delete(newMassage);
   }
 
   /**
@@ -151,43 +133,6 @@ public class MassageResourceTest {
     List<Massage> massages = fetchAll();
 
     assertNotNull(massages);
-    assertEquals(1, massages.size());
-    assertEquals(massage, massages.get(0));
-  }
-
-  /**
-   * Tests whether creation and follow up removal of a new {@link Massage} work as intended.
-   */
-  @Test
-  public void createDeleteTest() {
-    List<Massage> massages = new LinkedList<>();
-    massages.add(newMassage);
-
-    // Test the creation
-    Response response =
-        RULE.target("/massages")
-            .request(MediaType.APPLICATION_JSON_TYPE)
-            .header("Authorization", "Bearer TOKEN")
-            .post(Entity.json(massages));
-    massages = fetchAll();
-
-    assertNotNull(response);
-    assertEquals(200, response.getStatus());
-    assertEquals(2, massages.size());
-    assertEquals(massage, massages.get(0));
-    assertEquals(newMassage, massages.get(1));
-
-    // Test the removal
-    response =
-        RULE.target("/massages")
-            .queryParam("ids", 2)
-            .request()
-            .header("Authorization", "Bearer TOKEN")
-            .delete();
-    massages = fetchAll();
-
-    assertNotNull(response);
-    assertEquals(204, response.getStatus());
     assertEquals(1, massages.size());
     assertEquals(massage, massages.get(0));
   }

@@ -48,7 +48,7 @@ class EventRow extends Component {
             {_t.translate("Massage in ") + this.props.event.massage.facility.name}
           </strong>
           <br />
-          {this.props.event.massage.masseuse}
+          {`${this.props.event.massage.masseuse.name} ${this.props.event.massage.masseuse.surname}`}
 
           {this.state.active && (
             <MassageEventModal
@@ -75,7 +75,14 @@ EventRow.propTypes = {
     bgColor: PropTypes.string,
     massage: PropTypes.shape({
       id: PropTypes.number,
-      masseuse: PropTypes.string,
+      masseuse: PropTypes.shape({
+        email: PropTypes.string,
+        masseur: PropTypes.bool,
+        name: PropTypes.string,
+        sub: PropTypes.string,
+        subscribed: PropTypes.bool,
+        surname: PropTypes.string
+      }),
       date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
       ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
       client: PropTypes.shape({

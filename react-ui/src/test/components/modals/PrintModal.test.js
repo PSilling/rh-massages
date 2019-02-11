@@ -22,9 +22,26 @@ afterEach(() => {
 
 test("renders inside content with correct props and functionality", () => {
   const testFunction = jest.fn();
-  const testMasseuses = ["test"];
+  const testMasseuses = [
+    {
+      sub: "m-sub",
+      name: "Masseuse",
+      surname: "Test",
+      email: "test@masseuse.org",
+      subscribed: false,
+      masseur: true
+    }
+  ];
+  const testMasseuseNames = ["Masseuse Test"];
   const wrapper = shallow(
-    <PrintModal masseuses={testMasseuses} facilityId={1} date={moment(0)} onPrint={testFunction} withPortal={false} />
+    <PrintModal
+      masseuses={testMasseuses}
+      masseuseNames={testMasseuseNames}
+      facilityId={1}
+      date={moment(0)}
+      onPrint={testFunction}
+      withPortal={false}
+    />
   );
   const button = wrapper.find(TooltipButton);
 
@@ -35,7 +52,7 @@ test("renders inside content with correct props and functionality", () => {
   const input = wrapper.find(LabeledInput);
 
   expect(actions.props().onClose).toBe(button.props().onClick);
-  expect(input.props().options).toBe(testMasseuses);
+  expect(input.props().options).toBe(testMasseuseNames);
 
   actions.props().onProceed();
 

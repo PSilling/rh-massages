@@ -21,7 +21,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
+import cz.redhat.auth.TestAuthenticator;
+import cz.redhat.auth.TestAuthorizer;
+import cz.redhat.auth.TestUser;
 import cz.redhat.auth.User;
+import cz.redhat.core.Client;
 import cz.redhat.db.ClientDao;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -30,10 +34,6 @@ import io.dropwizard.testing.junit.ResourceTestRule;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
-import cz.redhat.auth.TestAuthenticator;
-import cz.redhat.auth.TestAuthorizer;
-import cz.redhat.auth.TestUser;
-import cz.redhat.core.Client;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.After;
@@ -72,7 +72,9 @@ public class ClientResourceTest {
           .addResource(new ClientResource(clientDao))
           .build();
   private final Client client =
-      new Client("Subject", "example@email.com", "FName", "SName", true); // test Client
+      new Client("Subject1", "example1@email.com", "FName", "SName", false, true); // test Client
+  private final Client masseur =
+      new Client("Subject2", "example2@email.com", "Name", "Surname", true, false); // test masseur Client
 
   /**
    * Configures mocks before each test.
@@ -80,9 +82,13 @@ public class ClientResourceTest {
   @Before
   public void setup() {
     List<Client> clients = new ArrayList<>();
+    List<Client> masseurs = new ArrayList<>();
     clients.add(client);
+    clients.add(masseur);
+    masseurs.add(masseur);
 
     when(clientDao.findAll()).thenReturn(clients);
+    when(clientDao.findAllMasseurs()).thenReturn(masseurs);
   }
 
   /**
@@ -100,6 +106,22 @@ public class ClientResourceTest {
   public void fetchTest() {
     List<Client> clients =
         RULE.target("/clients")
+            .request()
+            .header("Authorization", "Bearer TOKEN")
+            .get(new GenericType<List<Client>>() {
+            });
+
+    assertNotNull(clients);
+    assertEquals(2, clients.size());
+  }
+
+  /**
+   * Tests whether fetch request for all masseur {@link Client}s works as intended.
+   */
+  @Test
+  public void masseuseFetchTest() {
+    List<Client> clients =
+        RULE.target("/clients/masseuses")
             .request()
             .header("Authorization", "Bearer TOKEN")
             .get(new GenericType<List<Client>>() {

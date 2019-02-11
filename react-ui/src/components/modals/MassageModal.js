@@ -3,17 +3,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
-import { Row, Col, Modal, ModalBody } from "reactstrap";
+import { Row, Col, FormGroup, Input, Label, Modal, ModalBody } from "reactstrap";
 import moment from "moment";
 
 // component imports
 import LabeledDatetime from "../formitems/LabeledDatetime";
-import LabeledInput from "../formitems/LabeledInput";
 import ModalActions from "../buttons/ModalActions";
 import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
+import Auth from "../../util/Auth";
 import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
@@ -22,9 +22,17 @@ import Util from "../../util/Util";
  * Based on given values can be used for both creating and editing of Massages.
  */
 class MassageModal extends Component {
-  state = { date: moment().add(1, "hours"), time: moment("00:30", "HH:mm"), masseuse: "" };
+  state = {
+    date: moment().add(1, "hours"),
+    time: moment("00:30", "HH:mm"),
+    masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true }
+  };
 
   yesterday = moment().subtract(1, "day");
+
+  componentDidMount() {
+    this.setState({ masseuse: this.getMasseuse() });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props === nextProps) return;
@@ -35,12 +43,26 @@ class MassageModal extends Component {
         nextProps.massage === null
           ? moment("00:30", "HH:mm")
           : moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))),
-      masseuse: nextProps.massage === null ? "" : nextProps.massage.masseuse
+      masseuse: nextProps.massage === null ? this.getMasseuse() : nextProps.massage.masseuse
     });
   }
 
+  getMasseuse = () => {
+    if (this.props.masseuses.length === 0) {
+      return { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true };
+    }
+
+    if (!Auth.isAdmin()) {
+      return Auth.getClient();
+    }
+
+    return this.props.masseuses[0];
+  };
+
   changeMasseuse = event => {
-    this.setState({ masseuse: event.target.value });
+    this.setState({
+      masseuse: this.props.masseuses[this.props.masseuseNames.indexOf(event.target.value)]
+    });
   };
 
   changeDate = date => {
@@ -67,10 +89,6 @@ class MassageModal extends Component {
   };
 
   addMassage = () => {
-    if (Util.isEmpty(this.state.masseuse)) {
-      Util.notify("error", "", _t.translate("Masseuse is required!"));
-      return;
-    }
     const date = this.getStartingDate();
     Fetch.post(
       Util.MASSAGES_URL,
@@ -94,10 +112,6 @@ class MassageModal extends Component {
   };
 
   editMassage = () => {
-    if (Util.isEmpty(this.state.masseuse)) {
-      Util.notify("error", "", _t.translate("Masseuse is required!"));
-      return;
-    }
     const date = this.getStartingDate();
     Fetch.put(
       Util.MASSAGES_URL,
@@ -152,18 +166,25 @@ class MassageModal extends Component {
         </Col>
       </Row>
 
-      <Row>
-        <LabeledInput
-          label={_t.translate("Masseur/Masseuse")}
-          value={this.state.masseuse}
-          onChange={this.changeMasseuse}
-          onEnterPress={this.handleEnterPress}
-          tooltip={_t.translate("The name of the masseur or massuese providing this massage")}
-          type="text"
-          maxLength="64"
-          options={this.props.masseuses}
-        />
-      </Row>
+      {Auth.isAdmin() && (
+        <Row>
+          <Col md="4">
+            <FormGroup>
+              <Label for="masseuseNameSelect">{_t.translate("Masseur/Masseuse")}</Label>
+              <Input
+                id="masseuseNameSelect"
+                type="select"
+                value={`${this.state.masseuse.name} ${this.state.masseuse.surname}`}
+                onChange={this.changeMasseuse}
+              >
+                {this.props.masseuseNames.map(item => (
+                  <option key={item}>{item}</option>
+                ))}
+              </Input>
+            </FormGroup>
+          </Col>
+        </Row>
+      )}
 
       <Row>
         <LabeledDatetime
@@ -235,7 +256,14 @@ MassageModal.propTypes = {
   /** Massage to be possibly edited or null when adding */
   massage: PropTypes.shape({
     id: PropTypes.number,
-    masseuse: PropTypes.string,
+    masseuse: PropTypes.shape({
+      email: PropTypes.string,
+      masseur: PropTypes.bool,
+      name: PropTypes.string,
+      sub: PropTypes.string,
+      subscribed: PropTypes.bool,
+      surname: PropTypes.string
+    }),
     date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
     ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
     client: PropTypes.shape({
@@ -251,8 +279,19 @@ MassageModal.propTypes = {
     }),
     generated: PropTypes.bool
   }),
-  /** unique Massage masseuses of the given Facility */
-  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** names of Massage masseuses in the portal */
+  masseuseNames: PropTypes.arrayOf(PropTypes.string),
+  /** Massage masseuses in the portal */
+  masseuses: PropTypes.arrayOf(
+    PropTypes.shape({
+      email: PropTypes.string,
+      masseur: PropTypes.bool,
+      name: PropTypes.string,
+      sub: PropTypes.string,
+      subscribed: PropTypes.bool,
+      surname: PropTypes.string
+    })
+  ),
   /** whether ModalContainer should be used; useful for testing to avoid portals */
   withPortal: PropTypes.bool
 };
@@ -260,7 +299,8 @@ MassageModal.propTypes = {
 MassageModal.defaultProps = {
   facilityId: null,
   massage: null,
-  masseuses: null,
+  masseuseNames: [],
+  masseuses: [],
   withPortal: true
 };
 

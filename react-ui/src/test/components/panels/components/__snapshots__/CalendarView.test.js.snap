@@ -16,7 +16,14 @@ ShallowWrapper {
               "name": "test",
             },
             "id": 1,
-            "masseuse": "test",
+            "masseuse": Object {
+              "email": "test@masseuse.org",
+              "masseur": true,
+              "name": "Masseuse",
+              "sub": "m-sub",
+              "subscribed": false,
+              "surname": "Test",
+            },
           },
         },
         Object {
@@ -31,6 +38,14 @@ ShallowWrapper {
               "name": "test",
             },
             "id": 2,
+            "masseuse": Object {
+              "email": "test2@masseuse.org",
+              "masseur": true,
+              "name": "Masseuse",
+              "sub": "m-sub2",
+              "subscribed": true,
+              "surname": "Test2",
+            },
           },
         },
       ]
@@ -82,7 +97,14 @@ ShallowWrapper {
                     "name": "test",
                   },
                   "id": 1,
-                  "masseuse": "test",
+                  "masseuse": Object {
+                    "email": "test@masseuse.org",
+                    "masseur": true,
+                    "name": "Masseuse",
+                    "sub": "m-sub",
+                    "subscribed": false,
+                    "surname": "Test",
+                  },
                 },
               }
             }
@@ -102,6 +124,14 @@ ShallowWrapper {
                     "name": "test",
                   },
                   "id": 2,
+                  "masseuse": Object {
+                    "email": "test2@masseuse.org",
+                    "masseur": true,
+                    "name": "Masseuse",
+                    "sub": "m-sub2",
+                    "subscribed": true,
+                    "surname": "Test2",
+                  },
                 },
               }
             }
@@ -199,7 +229,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 1,
-                    "masseuse": "test",
+                    "masseuse": Object {
+                      "email": "test@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub",
+                      "subscribed": false,
+                      "surname": "Test",
+                    },
                   },
                 }
               }
@@ -219,6 +256,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 2,
+                    "masseuse": Object {
+                      "email": "test2@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub2",
+                      "subscribed": true,
+                      "surname": "Test2",
+                    },
                   },
                 }
               }
@@ -243,7 +288,14 @@ ShallowWrapper {
                     "name": "test",
                   },
                   "id": 1,
-                  "masseuse": "test",
+                  "masseuse": Object {
+                    "email": "test@masseuse.org",
+                    "masseur": true,
+                    "name": "Masseuse",
+                    "sub": "m-sub",
+                    "subscribed": false,
+                    "surname": "Test",
+                  },
                 },
               },
               "onCancel": [MockFunction],
@@ -269,6 +321,14 @@ ShallowWrapper {
                     "name": "test",
                   },
                   "id": 2,
+                  "masseuse": Object {
+                    "email": "test2@masseuse.org",
+                    "masseur": true,
+                    "name": "Masseuse",
+                    "sub": "m-sub2",
+                    "subscribed": true,
+                    "surname": "Test2",
+                  },
                 },
               },
               "onCancel": [MockFunction],
@@ -310,7 +370,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 1,
-                    "masseuse": "test",
+                    "masseuse": Object {
+                      "email": "test@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub",
+                      "subscribed": false,
+                      "surname": "Test",
+                    },
                   },
                 }
               }
@@ -330,6 +397,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 2,
+                    "masseuse": Object {
+                      "email": "test2@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub2",
+                      "subscribed": true,
+                      "surname": "Test2",
+                    },
                   },
                 }
               }
@@ -427,7 +502,14 @@ ShallowWrapper {
                         "name": "test",
                       },
                       "id": 1,
-                      "masseuse": "test",
+                      "masseuse": Object {
+                        "email": "test@masseuse.org",
+                        "masseur": true,
+                        "name": "Masseuse",
+                        "sub": "m-sub",
+                        "subscribed": false,
+                        "surname": "Test",
+                      },
                     },
                   }
                 }
@@ -447,6 +529,14 @@ ShallowWrapper {
                         "name": "test",
                       },
                       "id": 2,
+                      "masseuse": Object {
+                        "email": "test2@masseuse.org",
+                        "masseur": true,
+                        "name": "Masseuse",
+                        "sub": "m-sub2",
+                        "subscribed": true,
+                        "surname": "Test2",
+                      },
                     },
                   }
                 }
@@ -471,7 +561,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 1,
-                    "masseuse": "test",
+                    "masseuse": Object {
+                      "email": "test@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub",
+                      "subscribed": false,
+                      "surname": "Test",
+                    },
                   },
                 },
                 "onCancel": [MockFunction],
@@ -497,6 +594,14 @@ ShallowWrapper {
                       "name": "test",
                     },
                     "id": 2,
+                    "masseuse": Object {
+                      "email": "test2@masseuse.org",
+                      "masseur": true,
+                      "name": "Masseuse",
+                      "sub": "m-sub2",
+                      "subscribed": true,
+                      "surname": "Test2",
+                    },
                   },
                 },
                 "onCancel": [MockFunction],

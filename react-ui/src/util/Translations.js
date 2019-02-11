@@ -93,6 +93,12 @@ const myLocalize = new Localize({
   "Change masseur/masseuse": {
     cs: "Změnit maséra/masérku"
   },
+  Contact: {
+    cs: "Kontakt"
+  },
+  Unknown: {
+    cs: "Není známo"
+  },
   Later: {
     cs: "Později"
   },
@@ -503,6 +509,9 @@ const myLocalize = new Localize({
   "Scheduling of new and cancellation of assigned massages": {
     cs: "Rozpis nových a zrušení připsaných masáží"
   },
+  "Cannot select an unowned massage!": {
+    cs: "Nelze vybrat nevlastní masáž!"
+  },
 
   // tooltips
   "View per week": {
@@ -571,8 +580,8 @@ const myLocalize = new Localize({
   "Select multiple massages for batch operations": {
     cs: "Výběr více masáží pro hromadné operace"
   },
-  "Display only free (green) massages": {
-    cs: "Zobrazit pouze volné (zelené) masáže"
+  "Display only free massages": {
+    cs: "Zobrazit pouze volné masáže"
   },
   "Workdays of the massuer/masseuse": {
     cs: "Pracovní dny maséra/masérky"

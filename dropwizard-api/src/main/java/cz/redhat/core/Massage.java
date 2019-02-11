@@ -18,7 +18,6 @@ package cz.redhat.core;
 import java.util.Date;
 import java.util.Objects;
 import javax.annotation.Nullable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +29,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Massage representation class.
@@ -78,9 +76,10 @@ public class Massage {
   @NotNull
   private Date ending; // ending date of the Massage
 
-  @Column(length = 64)
-  @NotEmpty
-  private String masseuse; // masseur or masseuse that does the Massage
+  @ManyToOne
+  @NotNull
+  @OnDelete(action = OnDeleteAction.CASCADE)
+  private Client masseuse; // masseur or masseuse that does the Massage
 
   @ManyToOne
   @Nullable
@@ -106,7 +105,7 @@ public class Massage {
    * @param client   the {@link Client} taking the Massage
    * @param facility {@link Facility} where the Massage is stationed
    */
-  public Massage(Date date, Date ending, String masseuse, @Nullable Client client,
+  public Massage(Date date, Date ending, Client masseuse, @Nullable Client client,
                  Facility facility) {
     this.date = date;
     this.ending = ending;
@@ -153,14 +152,14 @@ public class Massage {
   /**
    * @return current value of {@link Massage} masseuse
    */
-  public String getMasseuse() {
+  public Client getMasseuse() {
     return masseuse;
   }
 
   /**
    * @param masseuse new {@link Massage} masseuse to be set
    */
-  public void setMasseuse(String masseuse) {
+  public void setMasseuse(Client masseuse) {
     this.masseuse = masseuse;
   }
 
@@ -222,7 +221,7 @@ public class Massage {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, date, ending, masseuse, facility.toString());
+    return Objects.hash(id, date, ending, masseuse.toString(), facility.toString());
   }
 
   /**
@@ -247,7 +246,7 @@ public class Massage {
   @Override
   public String toString() {
     return String.format(
-        "Massage[id=%s, date=%s, ending=%s, masseuse=%s, clientSub=%s, facility=%s]",
-        id, date, ending, masseuse, client != null ? client.getSub() : null, facility.toString());
+        "Massage[id=%s, date=%s, ending=%s, masseuse=%s, clientSub=%s, facility=%s]", id, date,
+        ending, masseuse.toString(), client != null ? client.getSub() : null, facility.toString());
   }
 }

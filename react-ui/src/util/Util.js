@@ -73,7 +73,9 @@ Util.getEventLink = massage =>
     .format("YYYYMMDDTHHmmssZ")
     .replace("+00:00", "Z")}` +
   `&location=Red%20Hat%20Czech%20${massage.facility.name}` +
-  `&details=${_t.translate("Masseur/Masseuse")}: ${massage.masseuse}`;
+  `&details=${_t.translate("Masseur/Masseuse")}: ${massage.masseuse.name} ${massage.masseuse.surname} (${
+    massage.masseuse.email
+  })`;
 
 /**
  * Creates a new contact info String from a given Client.
@@ -121,11 +123,18 @@ Util.GITHUB_URL = process.env.REACT_APP_GITHUB_URL || "https://github.com/";
 /** refresh time for authorization tokens in milliseconds */
 Util.REFRESH_MIN_TIME = parseInt(process.env.REACT_APP_MIN_REFRESH_TIME, 10) || 150;
 /** automatic update interval for Massages view in milliseconds */
-Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) || 1000;
+Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) || 5000;
 /** cancellation limit before the start of a Massage in minutes */
 Util.CANCELLATION_LIMIT = parseInt(process.env.REACT_APP_CANCELLATION_LIMIT, 10) || 30;
 /** maximum minute time of Massages per Client */
 Util.MAX_MASSAGE_MINS = parseInt(process.env.REACT_APP_MASSAGE_TIME_LIMIT, 10) || 120;
+/** display color of success events */
+Util.SUCCESS_COLOR = process.env.REACT_APP_SUCCESS_COLOR || "#2fad2f";
+/** display color of warning events */
+Util.WARNING_COLOR = process.env.REACT_APP_WARNING_COLOR || "#ee9d2a";
+/** display color of error events */
+Util.ERROR_COLOR = process.env.REACT_APP_ERROR_COLOR || "#d10a14";
+
 /** current number of tooltips (needed for correct ID placement) */
 Util.tooltipCount = 1;
 

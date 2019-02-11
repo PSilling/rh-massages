@@ -5,13 +5,13 @@ import { shallow } from "enzyme";
 // test imports
 import moment from "moment";
 import LabeledDatetime from "../../../components/formitems/LabeledDatetime";
-import LabeledInput from "../../../components/formitems/LabeledInput";
 import MassageModal from "../../../components/modals/MassageModal";
 import ModalActions from "../../../components/buttons/ModalActions";
 import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
 import _t from "../../../util/Translations";
 
 // test mocks
+jest.mock("../../../util/Auth");
 jest.mock("../../../util/Fetch");
 
 beforeAll(() => {
@@ -25,13 +25,24 @@ afterAll(() => {
 test("renders inside content with correct props", () => {
   const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
-  const testMasseuses = ["test"];
+  const testMasseuses = [
+    {
+      sub: "m-sub",
+      name: "Masseuse",
+      surname: "Test",
+      email: "test@masseuse.org",
+      subscribed: false,
+      masseur: true
+    }
+  ];
+  const testMasseuseNames = ["Masseuse Test"];
   const wrapper = shallow(
     <MassageModal
       active
       massage={null}
       facilityId={1}
       masseuses={testMasseuses}
+      masseuseNames={testMasseuseNames}
       getCallback={testGetFunction}
       onToggle={testToggleFunction}
       withPortal={false}
@@ -40,7 +51,6 @@ test("renders inside content with correct props", () => {
   const button = wrapper.find(TooltipIconButton);
   const actions = wrapper.find(ModalActions);
   const heading = wrapper.find("h3");
-  const input = wrapper.find(LabeledInput);
   const datetimes = wrapper.find(LabeledDatetime);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
@@ -49,8 +59,6 @@ test("renders inside content with correct props", () => {
   expect(actions.props().onProceed).toBe(wrapper.instance().addMassage);
   expect(actions.props().onClose).toBe(testToggleFunction);
   expect(heading.props().children).toEqual(_t.translate("New Massage"));
-  expect(input.props().value).toBe("");
-  expect(input.props().options).toBe(testMasseuses);
   expect(datetimes.get(0).props.value).toEqual(moment("00:30", "HH:mm"));
   expect(datetimes.get(1).props.value).toEqual(moment().add(1, "hours"));
   expect(wrapper).toMatchSnapshot();
@@ -63,7 +71,14 @@ test("switches to edit mode when a Massage is given", () => {
     id: 1,
     date: new Date(0),
     ending: new Date(1000),
-    masseuse: "test",
+    masseuse: {
+      sub: "m-sub",
+      name: "Masseuse",
+      surname: "Test",
+      email: "test@masseuse.org",
+      subscribed: false,
+      masseur: true
+    },
     client: null,
     facility: { id: 1, name: "test" }
   };
@@ -72,7 +87,6 @@ test("switches to edit mode when a Massage is given", () => {
       active
       massage={testMassage}
       facilityId={1}
-      masseuses={[]}
       getCallback={testGetFunction}
       onToggle={testToggleFunction}
       withPortal={false}
@@ -87,7 +101,6 @@ test("switches to edit mode when a Massage is given", () => {
 
   const actions = wrapper.find(ModalActions);
   const heading = wrapper.find("h3");
-  const input = wrapper.find(LabeledInput);
   const datetimes = wrapper.find(LabeledDatetime);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
@@ -95,7 +108,6 @@ test("switches to edit mode when a Massage is given", () => {
   expect(heading.props().children).toEqual(_t.translate("Edit Massage"));
   expect(actions.props().primaryLabel).toBe(_t.translate("Edit"));
   expect(actions.props().onProceed).toBe(wrapper.instance().editMassage);
-  expect(input.props().value).toBe("test");
   expect(datetimes.get(0).props.value).toEqual(moment.utc(moment(testMassage.ending).diff(moment(testMassage.date))));
   expect(datetimes.get(1).props.value).not.toBe(null);
 });

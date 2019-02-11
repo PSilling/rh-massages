@@ -26,7 +26,10 @@ class MyMassagePanel extends Component {
   };
 
   generateTitle = event =>
-    _t.translate("Massage in ") + event.massage.facility.name + _t.translate(" with ") + event.massage.masseuse;
+    `${_t.translate("Massage in ") +
+      event.massage.facility.name +
+      _t.translate(" with ") +
+      event.massage.masseuse.name} ${event.massage.masseuse.surname}`;
 
   render() {
     return (
@@ -63,7 +66,14 @@ MyMassagePanel.propTypes = {
       bgColor: PropTypes.string,
       massage: PropTypes.shape({
         id: PropTypes.number,
-        masseuse: PropTypes.string,
+        masseuse: PropTypes.shape({
+          email: PropTypes.string,
+          masseur: PropTypes.bool,
+          name: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool,
+          surname: PropTypes.string
+        }),
         date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         client: PropTypes.shape({

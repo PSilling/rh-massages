@@ -72,7 +72,9 @@ class MassageEventModal extends Component {
           className="mr-2"
           tag="a"
           color="primary"
-          disabled={this.props.disabled}
+          disabled={
+            this.props.disabled || (Auth.isMasseur() && Auth.getSub() === this.props.event.massage.masseuse.sub)
+          }
           onClick={onConfirm}
           target="_blank"
           rel="noopener noreferrer"
@@ -98,7 +100,7 @@ class MassageEventModal extends Component {
         <Col md="12">
           <h3>
             {_t.translate("Details")}
-            {Auth.isAdmin() && (
+            {(Auth.isAdmin() || (Auth.isMasseur() && Auth.getSub() === this.props.event.massage.masseuse.sub)) && (
               <div className="float-right">
                 {this.props.allowEditation && (
                   <TooltipIconButton icon="edit" onClick={this.props.onEdit} tooltip={_t.translate("Edit")} />
@@ -156,7 +158,9 @@ class MassageEventModal extends Component {
         <Col md="4">
           <dl>
             <dt>{_t.translate("Masseur/Masseuse")}</dt>
-            <dd className={this.definitionClass}>{this.props.event.massage.masseuse}</dd>
+            <dd className={this.definitionClass}>
+              {`${this.props.event.massage.masseuse.name} ${this.props.event.massage.masseuse.surname}`}
+            </dd>
             <dt>{_t.translate("Duration")}</dt>
             <dd className={this.definitionClass}>
               {`${moment
@@ -168,14 +172,22 @@ class MassageEventModal extends Component {
 
         <Col md="4">
           <dl>
+            <dt>{_t.translate("Contact")}</dt>
+            <dd className={this.definitionClass}>{this.props.event.massage.masseuse.email}</dd>
             <dt>{_t.translate("Date")}</dt>
             <dd className={this.definitionClass}>{moment(this.props.event.massage.date).format("L")}</dd>
           </dl>
         </Col>
       </Row>
+
       <ModalActions
         primaryLabel={this.props.label}
-        disabled={this.props.disabled}
+        disabled={
+          this.props.disabled ||
+          (Auth.isMasseur() &&
+            Auth.getSub() === this.props.event.massage.masseuse.sub &&
+            this.props.event.massage.client === null)
+        }
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >
@@ -201,11 +213,19 @@ MassageEventModal.propTypes = {
     bgColor: PropTypes.string,
     massage: PropTypes.shape({
       id: PropTypes.number,
-      masseuse: PropTypes.string,
+      masseuse: PropTypes.shape({
+        email: PropTypes.string,
+        masseur: PropTypes.bool,
+        name: PropTypes.string,
+        sub: PropTypes.string,
+        subscribed: PropTypes.bool,
+        surname: PropTypes.string
+      }),
       date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
       ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
       client: PropTypes.shape({
         email: PropTypes.string,
+        masseur: PropTypes.bool,
         name: PropTypes.string,
         surname: PropTypes.string,
         sub: PropTypes.string,

@@ -35,7 +35,14 @@ test("renders content with correct props and funcionality", () => {
         id: 1,
         date: new Date(0),
         ending: new Date(1000),
-        masseuse: "test",
+        masseuse: {
+          sub: "m-sub",
+          name: "Masseuse",
+          surname: "Test",
+          email: "test@masseuse.org",
+          subscribed: false,
+          masseur: true
+        },
         client: null,
         facility: { id: 1, name: "test" }
       }
@@ -46,6 +53,14 @@ test("renders content with correct props and funcionality", () => {
         id: 2,
         date: new Date(1000),
         ending: new Date(2000),
+        masseuse: {
+          sub: "m-sub2",
+          name: "Masseuse2",
+          surname: "Test2",
+          email: "test2@masseuse.org",
+          subscribed: true,
+          masseur: true
+        },
         client: { sub: "test" },
         facility: { id: 1, name: "test" }
       }
@@ -56,6 +71,14 @@ test("renders content with correct props and funcionality", () => {
         id: 3,
         date: new Date(2000),
         ending: new Date(3000),
+        masseuse: {
+          sub: "m-sub3",
+          name: "Masseuse3",
+          surname: "Test3",
+          email: "test3@masseuse.org",
+          subscribed: false,
+          masseur: true
+        },
         client: { sub: "test2" },
         facility: { id: 1, name: "test" }
       }
@@ -96,7 +119,7 @@ test("renders content with correct props and funcionality", () => {
   calendar.props().onView(null);
   calendar.props().onNavigate(null, null);
   expect(testDateChangeFunction).toHaveBeenCalledTimes(5);
-  expect(calendar.props().titleAccessor(testEvents[0])).toBe(testEvents[0].massage.masseuse);
+  expect(calendar.props().titleAccessor(testEvents[0])).toBe(testEvents[0].massage.masseuse.name);
   expect(calendar.props().startAccessor(testEvents[0])).toEqual(testEvents[0].massage.date);
   expect(calendar.props().endAccessor(testEvents[0])).toEqual(testEvents[0].massage.ending);
   expect(calendar.props().onSelectSlot).toBe(testAddFunction);

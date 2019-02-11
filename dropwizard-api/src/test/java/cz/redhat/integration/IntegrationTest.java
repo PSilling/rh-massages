@@ -17,11 +17,11 @@ package cz.redhat.integration;
 
 import cz.redhat.MassagesApplication;
 import cz.redhat.MassagesConfiguration;
+import cz.redhat.resources.LogoutResource;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.GenericType;
-import cz.redhat.resources.LogoutResource;
 import org.junit.ClassRule;
 import org.junit.Test;
 

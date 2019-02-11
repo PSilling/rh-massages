@@ -28,9 +28,8 @@ Auth.keycloak = Keycloak({
  * Register new and update old Clients after Keycloak authorization success.
  */
 Auth.keycloak.onAuthSuccess = () => {
-  Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
+  Fetch.get(`${Util.CLIENTS_URL}retrieve-info`, json => {
     Auth.subscribed = json;
-    Fetch.put(Util.CLIENTS_URL, Auth.getClient(), () => {}, false);
   });
 };
 
@@ -38,6 +37,8 @@ Auth.subscribed = true;
 
 Auth.isAuthenticated = () => Auth.keycloak.authenticated;
 Auth.isAdmin = () => Auth.keycloak.hasRealmRole("admin");
+Auth.isMasseur = () => Auth.keycloak.hasRealmRole("masseur");
+Auth.isAdminOrMasseur = () => Auth.keycloak.hasRealmRole("admin") || Auth.keycloak.hasRealmRole("masseur");
 Auth.getToken = () => Auth.keycloak.token;
 Auth.getSub = () => Auth.keycloak.subject;
 
@@ -49,6 +50,7 @@ Auth.getClient = () => ({
   email: Auth.keycloak.idTokenParsed.email,
   name: Auth.keycloak.idTokenParsed.given_name,
   surname: Auth.keycloak.idTokenParsed.family_name,
+  masseur: Auth.isMasseur(),
   subscribed: Auth.subscribed
 });
 

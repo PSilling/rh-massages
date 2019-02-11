@@ -9,7 +9,7 @@ import { Col, FormGroup, Label, Input, Tooltip } from "reactstrap";
 import Util from "../../util/Util";
 
 /**
- * A combined formgroup component with a label (can have a tooltip) and a input.
+ * A combined formgroup component with a label (can have a tooltip) and an input.
  * A column is included to set input size.
  */
 class LabeledInput extends Component {

@@ -19,9 +19,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
+import cz.redhat.core.Client;
 import io.dropwizard.testing.junit.DAOTestRule;
 import java.util.List;
-import cz.redhat.core.Client;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class ClientDaoTest {
    */
   @Test
   public void testCreate() {
-    final Client client = new Client("Subject", "example@email.com", "FName", "SName", true);
+    final Client client = new Client("Subject", "example@email.com", "FName", "SName", false, true);
     final Client createdClient = daoTestRule.inTransaction(() -> clientDao.create(client));
 
     assertEquals(client, createdClient);
@@ -64,7 +64,7 @@ public class ClientDaoTest {
    */
   @Test
   public void testUpdate() {
-    final Client client = new Client("Subject", "example@email.com", "FName", "SName", true);
+    final Client client = new Client("Subject", "example@email.com", "FName", "SName", true, true);
     final Client updatedClient =
         daoTestRule.inTransaction(
             () -> {
@@ -73,6 +73,7 @@ public class ClientDaoTest {
               client.setEmail("new@email.com");
               client.setName("Updated FName");
               client.setSurname("Updated SName");
+              client.setMasseur(false);
               client.setSubscribed(false);
               return clientDao.update(client);
             });
@@ -81,6 +82,7 @@ public class ClientDaoTest {
     assertEquals("new@email.com", updatedClient.getEmail());
     assertEquals("Updated FName", updatedClient.getName());
     assertEquals("Updated SName", updatedClient.getSurname());
+    assertFalse(updatedClient.isMasseur());
     assertFalse(updatedClient.isSubscribed());
     assertEquals(client, updatedClient);
   }
@@ -90,7 +92,7 @@ public class ClientDaoTest {
    */
   @Test
   public void testDelete() {
-    final Client client = new Client("Subject", "example@email.com", "FName", "SName", true);
+    final Client client = new Client("Subject", "example@email.com", "FName", "SName", false, true);
     Client removedClient =
         daoTestRule.inTransaction(
             () -> {
@@ -110,8 +112,8 @@ public class ClientDaoTest {
    */
   @Test
   public void testFind() {
-    final Client client1 = new Client("Subject", "example@email.com", "FName", "SName", true);
-    final Client client2 = new Client("Sub", "another@email.com", "Name", "Surname", false);
+    final Client client1 = new Client("Subject", "example@email.com", "FName", "SName", true, true);
+    final Client client2 = new Client("Sub", "another@email.com", "Name", "Surname", false, false);
     daoTestRule.inTransaction(
         () -> {
           clientDao.create(client1);
@@ -119,11 +121,14 @@ public class ClientDaoTest {
         });
 
     Client clientBySub = clientDao.findBySub("Subject");
+    List<Client> masseurs = clientDao.findAllMasseurs();
     List<Client> subscribedClients = clientDao.findAllSubscribed();
     List<Client> clients = clientDao.findAll();
 
     assertEquals(client1, clientBySub);
+    assertEquals(1, masseurs.size());
     assertEquals(1, subscribedClients.size());
+    assertEquals(masseurs.get(0), subscribedClients.get(0));
     assertEquals(2, clients.size());
   }
 }

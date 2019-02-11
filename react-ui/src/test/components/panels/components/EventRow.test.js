@@ -13,7 +13,14 @@ test("renders content with correct props", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
-      masseuse: "test",
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: null,
       facility: { id: 1, name: "test" }
     }

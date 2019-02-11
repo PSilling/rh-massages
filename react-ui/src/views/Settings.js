@@ -33,7 +33,7 @@ class Settings extends Component {
     this.getSettings();
     setInterval(() => {
       this.getSettings();
-    }, Util.AUTO_REFRESH_TIME * 600);
+    }, Util.AUTO_REFRESH_TIME * 200);
   }
 
   componentWillUnmount() {
@@ -42,7 +42,7 @@ class Settings extends Component {
   }
 
   getSettings = () => {
-    Fetch.get(`${Util.CLIENTS_URL}my/subscribed`, json => {
+    Fetch.get(`${Util.CLIENTS_URL}retrieve-info`, json => {
       if (this.state.mounted && json !== undefined) {
         this.setState({ notify: json, loading: false });
       }

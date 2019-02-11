@@ -3,10 +3,12 @@ import React from "react";
 import { shallow } from "enzyme";
 
 // test imports
-import LabeledInput from "../../../components/formitems/LabeledInput";
 import MassageBatchAddModal from "../../../components/modals/MassageBatchAddModal";
 import ModalActions from "../../../components/buttons/ModalActions";
 import TooltipButton from "../../../components/buttons/TooltipButton";
+
+// test mocks
+jest.mock("../../../util/Auth");
 
 beforeAll(() => {
   Date.now = jest.fn(() => 0);
@@ -19,12 +21,23 @@ afterAll(() => {
 test("renders inside content with correct props", () => {
   const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
-  const testMasseuses = ["test"];
+  const testMasseuses = [
+    {
+      sub: "m-sub",
+      name: "Masseuse",
+      surname: "Test",
+      email: "test@masseuse.org",
+      subscribed: false,
+      masseur: true
+    }
+  ];
+  const testMasseuseNames = ["Masseuse Test"];
   const wrapper = shallow(
     <MassageBatchAddModal
       active
       facilityId={1}
       masseuses={testMasseuses}
+      masseuseNames={testMasseuseNames}
       getCallback={testGetFunction}
       onToggle={testToggleFunction}
       withPortal={false}
@@ -32,7 +45,6 @@ test("renders inside content with correct props", () => {
   );
   const buttons = wrapper.find(TooltipButton);
   const actions = wrapper.find(ModalActions);
-  const inputs = wrapper.find(LabeledInput);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
 
@@ -50,6 +62,5 @@ test("renders inside content with correct props", () => {
 
   expect(testToggleFunction).toHaveBeenCalledTimes(2);
   expect(testGetFunction).not.toHaveBeenCalled();
-  expect(inputs.get(0).props.options).toBe(testMasseuses);
   expect(wrapper).toMatchSnapshot();
 });

@@ -94,7 +94,7 @@ class CalendarPanel extends Component {
         label: _t.translate("Unassign me"),
         overtime: false
       });
-    } else if (Auth.isAdmin()) {
+    } else if (Auth.isAdmin() || (Auth.isMasseur() && Auth.getSub() === event.massage.masseuse.sub)) {
       this.setState({
         active: true,
         action: "cancel",
@@ -130,9 +130,9 @@ class CalendarPanel extends Component {
 
   generateTitle = event => {
     if (this.props.allowEditation) {
-      return event.massage.masseuse;
+      return event.massage.masseuse.name;
     }
-    return `${event.massage.facility.name}: ${event.massage.masseuse}`;
+    return `${event.massage.facility.name}: ${event.massage.masseuse.name}`;
   };
 
   handleToggle = () => {
@@ -201,7 +201,7 @@ class CalendarPanel extends Component {
               titleAccessor={this.generateTitle}
               startAccessor={event => new Date(event.massage.date)}
               endAccessor={event => new Date(event.massage.ending)}
-              selectable={Auth.isAdmin() && this.props.allowEditation && this.state.view === "work_week"}
+              selectable={Auth.isAdminOrMasseur() && this.props.allowEditation && this.state.view === "work_week"}
               onSelectSlot={this.props.onAdd}
               min={new Date("2018-01-01T08:30:00")}
               max={new Date("2018-01-01T18:00:00")}
@@ -215,15 +215,19 @@ class CalendarPanel extends Component {
         <Row className="text-center mt-3">
           <Col md="12">
             <strong>{_t.translate("Legend:")}</strong>
-            <span style={{ backgroundColor: "#2fad2f", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
+            <span
+              style={{ backgroundColor: Util.SUCCESS_COLOR, borderRadius: "4px", padding: "8px", marginLeft: "8px" }}
+            >
               {_t.translate("Free massage")}
             </span>
             {this.props.allowEditation && (
-              <span style={{ backgroundColor: "#ee9d2a", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
+              <span
+                style={{ backgroundColor: Util.WARNING_COLOR, borderRadius: "4px", padding: "8px", marginLeft: "8px" }}
+              >
                 {_t.translate("My massage")}
               </span>
             )}
-            <span style={{ backgroundColor: "#d10a14", borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
+            <span style={{ backgroundColor: Util.ERROR_COLOR, borderRadius: "4px", padding: "8px", marginLeft: "8px" }}>
               {_t.translate("Assigned massage")}
             </span>
           </Col>
@@ -234,8 +238,6 @@ class CalendarPanel extends Component {
             event={this.state.selectedEvent}
             label={this.state.label}
             disabled={this.state.overtime}
-            allowEditation={this.props.allowEditation}
-            allowDeletion={this.props.allowDeletion}
             onClose={this.handleToggle}
             onEdit={this.editEvent}
             onDelete={this.deleteEvent}
@@ -269,7 +271,14 @@ CalendarPanel.propTypes = {
       bgColor: PropTypes.string,
       massage: PropTypes.shape({
         id: PropTypes.number,
-        masseuse: PropTypes.string,
+        masseuse: PropTypes.shape({
+          email: PropTypes.string,
+          masseur: PropTypes.bool,
+          name: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool,
+          surname: PropTypes.string
+        }),
         date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         client: PropTypes.shape({
@@ -298,7 +307,14 @@ CalendarPanel.propTypes = {
       bgColor: PropTypes.string,
       massage: PropTypes.shape({
         id: PropTypes.number,
-        masseuse: PropTypes.string,
+        masseuse: PropTypes.shape({
+          email: PropTypes.string,
+          masseur: PropTypes.bool,
+          name: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool,
+          surname: PropTypes.string
+        }),
         date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
         client: PropTypes.shape({

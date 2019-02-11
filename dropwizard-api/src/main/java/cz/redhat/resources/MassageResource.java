@@ -96,12 +96,13 @@ public class MassageResource {
    * @return on creation OK {@link Response}
    * @throws WebApplicationException if {@link Massage} could not be found after creation or its
    *                                 ending is before now or when massage time collides with other
-   *                                 {@link Massage}s with the same masseuse
+   *                                 {@link Massage}s with the same masseuse or when masseurs try
+   *                                 to create other than their {@link Massage}s
    */
   @POST
-  @RolesAllowed("admin")
+  @RolesAllowed({"admin", "masseur"})
   @UnitOfWork
-  public Response createMassage(@NotNull @Valid List<Massage> massages) {
+  public Response createMassage(@NotNull @Valid List<Massage> massages, @Auth User user) {
     // Validate Massage timing information.
     for (Massage massage : massages) {
       massage.checkDates();
@@ -112,6 +113,11 @@ public class MassageResource {
 
     // Create the given Massages.
     for (Massage massage : massages) {
+      // Masseur can only create own massages.
+      if (!user.isAdmin() && !user.getSubject().equals(massage.getMasseuse().getSub())) {
+        throw new WebApplicationException(Status.FORBIDDEN);
+      }
+
       // Check for Date collision for the given masseuse. Removes a colliding Massage
       // only if the Massage has no Client.
       List<Massage> daoMassages = massageDao.findAllByMasseuse(massage.getMasseuse());
@@ -215,12 +221,13 @@ public class MassageResource {
    *
    * @param ids {@link List} of {@link Massage} IDs
    * @return on delete {@link Response}
-   * @throws WebApplicationException if any of the IDs could not be found
+   * @throws WebApplicationException if any of the IDs could not be found or when masseurs try
+   *                                 to delete other than their {@link Massage}
    */
   @DELETE
-  @RolesAllowed("admin")
+  @RolesAllowed({"admin", "masseur"})
   @UnitOfWork
-  public Response delete(@NotNull @QueryParam("ids") List<Long> ids) {
+  public Response delete(@NotNull @QueryParam("ids") List<Long> ids, @Auth User user) {
     // Validate given Massage IDs.
     for (long id : ids) {
       if (massageDao.findById(id) == null) {
@@ -230,9 +237,14 @@ public class MassageResource {
 
     // Delete the given Massages.
     for (long id : ids) {
-      // If a Massage with a subscribed Client is being deleted, send a notification
-      // email.
       Massage daoMassage = massageDao.findById(id);
+
+      // Masseur can only delete own massages.
+      if (!user.isAdmin() && !user.getSubject().equals(daoMassage.getMasseuse().getSub())) {
+        throw new WebApplicationException(Status.FORBIDDEN);
+      }
+
+      // If a Massage with a subscribed Client is being deleted, send a notification email.
       if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
         mailClient.sendEmail(
             daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null);
@@ -323,21 +335,26 @@ public class MassageResource {
   private void validateMassageEditRights(
       User user, Client daoClient, Massage massage, Massage daoMassage) {
     // Forbid normal Users to edit anything other than the Client and even then the
-    // Client has to be the User himself or a null when it was himself. Normal User
-    // is also forbidden to cancel a Massage after maxOffset.
-    if (!user.getRoles().contains("admin")) {
+    // Client has to be the User himself or a null when it was him. Normal User is
+    // also forbidden to cancel a Massage after maxOffset. Masseurs have admin-like
+    // edit privileges, unless they try to change the value of masseur.
+    if (!user.isAdmin()) {
       // time limit for User Massage cancellation
       long maxOffset = 1810000;
-      if (!daoMassage.equals(massage)
-          || (!daoClient.equals(massage.getClient()) && !daoClient.equals(daoMassage.getClient()))
-          || (massage.getClient() != null && !massage.getClient().equals(daoClient))
-          || ((massage.getDate().before(new Date(new Date().getTime() + maxOffset)))
-          && daoMassage.getClient() != null)) {
-        throw new WebApplicationException(Status.FORBIDDEN);
+
+      if (!user.isMasseur() || !user.getSubject().equals(massage.getMasseuse().getSub())
+          || !user.getSubject().equals(daoMassage.getMasseuse().getSub())) {
+        if (!daoMassage.equals(massage)
+            || (!daoClient.equals(massage.getClient()) && !daoClient.equals(daoMassage.getClient()))
+            || (massage.getClient() != null && !massage.getClient().equals(daoClient))
+            || ((massage.getDate().before(new Date(new Date().getTime() + maxOffset)))
+            && daoMassage.getClient() != null)) {
+          throw new WebApplicationException(Status.FORBIDDEN);
+        }
       }
-      // If an administrator cancels a Massage with a subscribed Client, send a
-      // notification email.
-    } else if (daoMassage.getClient() != null
+    }
+
+    if (daoMassage.getClient() != null
         && massage.getClient() == null
         && !user.getSubject().equals(daoMassage.getClient().getSub())
         && daoMassage.getClient().isSubscribed()) {

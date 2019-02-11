@@ -8,9 +8,21 @@ ShallowWrapper {
     facilityId={1}
     getCallback={[MockFunction]}
     massage={null}
+    masseuseNames={
+      Array [
+        "Masseuse Test",
+      ]
+    }
     masseuses={
       Array [
-        "test",
+        Object {
+          "email": "test@masseuse.org",
+          "masseur": true,
+          "name": "Masseuse",
+          "sub": "m-sub",
+          "subscribed": false,
+          "surname": "Test",
+        },
       ]
     }
     onToggle={[MockFunction]}
@@ -66,21 +78,49 @@ ShallowWrapper {
           <Row
             tag="div"
           >
-            <LabeledInput
-              label="Masér/Masérka"
-              maxLength="64"
-              onChange={[Function]}
-              onEnterPress={[Function]}
-              options={
+            <Col
+              md="4"
+              tag="div"
+              widths={
                 Array [
-                  "test",
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
                 ]
               }
-              size="12"
-              tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-              type="text"
-              value=""
-            />
+            >
+              <FormGroup
+                tag="div"
+              >
+                <Label
+                  for="masseuseNameSelect"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Masér/Masérka
+                </Label>
+                <Input
+                  id="masseuseNameSelect"
+                  onChange={[Function]}
+                  type="select"
+                  value="Masseuse Test"
+                >
+                  <option>
+                    Masseuse Test
+                  </option>
+                </Input>
+              </FormGroup>
+            </Col>
           </Row>
           <Row
             tag="div"
@@ -168,21 +208,49 @@ ShallowWrapper {
             <Row
               tag="div"
             >
-              <LabeledInput
-                label="Masér/Masérka"
-                maxLength="64"
-                onChange={[Function]}
-                onEnterPress={[Function]}
-                options={
+              <Col
+                md="4"
+                tag="div"
+                widths={
                   Array [
-                    "test",
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
                   ]
                 }
-                size="12"
-                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                type="text"
-                value=""
-              />
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="masseuseNameSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Masér/Masérka
+                  </Label>
+                  <Input
+                    id="masseuseNameSelect"
+                    onChange={[Function]}
+                    type="select"
+                    value="Masseuse Test"
+                  >
+                    <option>
+                      Masseuse Test
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>
             </Row>,
             <Row
               tag="div"
@@ -302,43 +370,187 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": <LabeledInput
-                label="Masér/Masérka"
-                maxLength="64"
-                onChange={[Function]}
-                onEnterPress={[Function]}
-                options={
+              "children": <Col
+                md="4"
+                tag="div"
+                widths={
                   Array [
-                    "test",
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
                   ]
                 }
-                size="12"
-                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                type="text"
-                value=""
-              />,
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="masseuseNameSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Masér/Masérka
+                  </Label>
+                  <Input
+                    id="masseuseNameSelect"
+                    onChange={[Function]}
+                    type="select"
+                    value="Masseuse Test"
+                  >
+                    <option>
+                      Masseuse Test
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>,
               "tag": "div",
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "label": "Masér/Masérka",
-                "maxLength": "64",
-                "onChange": [Function],
-                "onEnterPress": [Function],
-                "options": Array [
-                  "test",
+                "children": <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="masseuseNameSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Masér/Masérka
+                  </Label>
+                  <Input
+                    id="masseuseNameSelect"
+                    onChange={[Function]}
+                    type="select"
+                    value="Masseuse Test"
+                  >
+                    <option>
+                      Masseuse Test
+                    </option>
+                  </Input>
+                </FormGroup>,
+                "md": "4",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
                 ],
-                "size": "12",
-                "tooltip": "Jméno maséra anebo masérky, který/á vykonává tuto masáž",
-                "type": "text",
-                "value": "",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Label
+                      for="masseuseNameSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Masér/Masérka
+                    </Label>,
+                    <Input
+                      id="masseuseNameSelect"
+                      onChange={[Function]}
+                      type="select"
+                      value="Masseuse Test"
+                    >
+                      <option>
+                        Masseuse Test
+                      </option>
+                    </Input>,
+                  ],
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Masér/Masérka",
+                      "for": "masseuseNameSelect",
+                      "tag": "label",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": "Masér/Masérka",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        <option>
+                          Masseuse Test
+                        </option>,
+                      ],
+                      "id": "masseuseNameSelect",
+                      "onChange": [Function],
+                      "type": "select",
+                      "value": "Masseuse Test",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "Masseuse Test",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Masseuse Test",
+                        },
+                        "ref": null,
+                        "rendered": "Masseuse Test",
+                        "type": "option",
+                      },
+                    ],
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             "type": [Function],
@@ -483,21 +695,49 @@ ShallowWrapper {
             <Row
               tag="div"
             >
-              <LabeledInput
-                label="Masér/Masérka"
-                maxLength="64"
-                onChange={[Function]}
-                onEnterPress={[Function]}
-                options={
+              <Col
+                md="4"
+                tag="div"
+                widths={
                   Array [
-                    "test",
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
                   ]
                 }
-                size="12"
-                tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                type="text"
-                value=""
-              />
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="masseuseNameSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Masér/Masérka
+                  </Label>
+                  <Input
+                    id="masseuseNameSelect"
+                    onChange={[Function]}
+                    type="select"
+                    value="Masseuse Test"
+                  >
+                    <option>
+                      Masseuse Test
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>
             </Row>
             <Row
               tag="div"
@@ -585,21 +825,49 @@ ShallowWrapper {
               <Row
                 tag="div"
               >
-                <LabeledInput
-                  label="Masér/Masérka"
-                  maxLength="64"
-                  onChange={[Function]}
-                  onEnterPress={[Function]}
-                  options={
+                <Col
+                  md="4"
+                  tag="div"
+                  widths={
                     Array [
-                      "test",
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
                     ]
                   }
-                  size="12"
-                  tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                  type="text"
-                  value=""
-                />
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="masseuseNameSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Masér/Masérka
+                    </Label>
+                    <Input
+                      id="masseuseNameSelect"
+                      onChange={[Function]}
+                      type="select"
+                      value="Masseuse Test"
+                    >
+                      <option>
+                        Masseuse Test
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>
               </Row>,
               <Row
                 tag="div"
@@ -719,43 +987,187 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": <LabeledInput
-                  label="Masér/Masérka"
-                  maxLength="64"
-                  onChange={[Function]}
-                  onEnterPress={[Function]}
-                  options={
+                "children": <Col
+                  md="4"
+                  tag="div"
+                  widths={
                     Array [
-                      "test",
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
                     ]
                   }
-                  size="12"
-                  tooltip="Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-                  type="text"
-                  value=""
-                />,
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="masseuseNameSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Masér/Masérka
+                    </Label>
+                    <Input
+                      id="masseuseNameSelect"
+                      onChange={[Function]}
+                      type="select"
+                      value="Masseuse Test"
+                    >
+                      <option>
+                        Masseuse Test
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>,
                 "tag": "div",
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "label": "Masér/Masérka",
-                  "maxLength": "64",
-                  "onChange": [Function],
-                  "onEnterPress": [Function],
-                  "options": Array [
-                    "test",
+                  "children": <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="masseuseNameSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Masér/Masérka
+                    </Label>
+                    <Input
+                      id="masseuseNameSelect"
+                      onChange={[Function]}
+                      type="select"
+                      value="Masseuse Test"
+                    >
+                      <option>
+                        Masseuse Test
+                      </option>
+                    </Input>
+                  </FormGroup>,
+                  "md": "4",
+                  "tag": "div",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
                   ],
-                  "size": "12",
-                  "tooltip": "Jméno maséra anebo masérky, který/á vykonává tuto masáž",
-                  "type": "text",
-                  "value": "",
                 },
                 "ref": null,
-                "rendered": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": Array [
+                      <Label
+                        for="masseuseNameSelect"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        Masér/Masérka
+                      </Label>,
+                      <Input
+                        id="masseuseNameSelect"
+                        onChange={[Function]}
+                        type="select"
+                        value="Masseuse Test"
+                      >
+                        <option>
+                          Masseuse Test
+                        </option>
+                      </Input>,
+                    ],
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "Masér/Masérka",
+                        "for": "masseuseNameSelect",
+                        "tag": "label",
+                        "widths": Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": "Masér/Masérka",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          <option>
+                            Masseuse Test
+                          </option>,
+                        ],
+                        "id": "masseuseNameSelect",
+                        "onChange": [Function],
+                        "type": "select",
+                        "value": "Masseuse Test",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": "Masseuse Test",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Masseuse Test",
+                          },
+                          "ref": null,
+                          "rendered": "Masseuse Test",
+                          "type": "option",
+                        },
+                      ],
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],

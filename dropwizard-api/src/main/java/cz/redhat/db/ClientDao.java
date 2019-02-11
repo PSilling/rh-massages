@@ -79,6 +79,16 @@ public class ClientDao extends AbstractDAO<Client> {
   }
 
   /**
+   * Creates a new session that finds masseur {@link Client}s in the database.
+   *
+   * @return {@link List} of all found {@link Client}s
+   */
+  @SuppressWarnings("unchecked")
+  public List<Client> findAllMasseurs() {
+    return list(namedQuery("Client.findAllMasseurs"));
+  }
+
+  /**
    * Creates a new session that finds all subscribed {@link Client}s in the database.
    *
    * @return {@link List} of all found {@link Client}s

@@ -38,6 +38,9 @@ import org.hibernate.validator.constraints.Email;
         name = "Client.findAll",
         query = "SELECT client FROM Client client ORDER BY client.surname ASC"),
     @NamedQuery(
+        name = "Client.findAllMasseurs",
+        query = "SELECT client FROM Client client WHERE client.masseur = true"),
+    @NamedQuery(
         name = "Client.findAllSubscribed",
         query = "SELECT client FROM Client client WHERE client.subscribed = true")
 })
@@ -62,6 +65,9 @@ public class Client {
   private String surname; // surname of the Client
 
   @NotNull
+  private boolean masseur; // whether the Client is one of the masseurs or masseuses
+
+  @NotNull
   private boolean subscribed; // whether the Client is subscribed to server messaging
 
   /**
@@ -77,13 +83,16 @@ public class Client {
    * @param email      email of the Client
    * @param name       name of the Client
    * @param surname    surname of the Client
+   * @param masseur    whether the Client is one of the masseurs or masseuses
    * @param subscribed whether the Client is subscribed to server messaging
    */
-  public Client(String sub, String email, String name, String surname, boolean subscribed) {
+  public Client(String sub, String email, String name, String surname, boolean masseur,
+                boolean subscribed) {
     this.sub = sub;
     this.email = email;
     this.name = name;
     this.surname = surname;
+    this.masseur = masseur;
     this.subscribed = subscribed;
   }
 
@@ -144,6 +153,20 @@ public class Client {
   }
 
   /**
+   * @return current value of {@link Client} masseur
+   */
+  public boolean isMasseur() {
+    return masseur;
+  }
+
+  /**
+   * @param masseur new {@link Client} masseur to be set
+   */
+  public void setMasseur(boolean masseur) {
+    this.masseur = masseur;
+  }
+
+  /**
    * @return current value of {@link Client} subscription
    */
   public boolean isSubscribed() {
@@ -171,7 +194,7 @@ public class Client {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(sub, email, name, surname, subscribed);
+    return Objects.hash(sub, email, name, surname, masseur, subscribed);
   }
 
   /**
@@ -191,12 +214,12 @@ public class Client {
 
   /**
    * @return {@link Client} converted to a String with format Client[subject, name, surname, email,
-   *     subscribed]
+   *     masseur, subscribed]
    */
   @Override
   public String toString() {
     return String.format(
-        "Client[subject=%s, name=%s, surname=%s, email=%s, subscribed=%s]",
-        sub, name, surname, email, subscribed);
+        "Client[subject=%s, name=%s, surname=%s, email=%s, masseur=%s, subscribed=%s]",
+        sub, name, surname, email, masseur, subscribed);
   }
 }

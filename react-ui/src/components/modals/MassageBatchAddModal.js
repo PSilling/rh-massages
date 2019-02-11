@@ -9,7 +9,6 @@ import moment from "moment";
 // component imports
 import ModalActions from "../buttons/ModalActions";
 import LabeledDatetime from "../formitems/LabeledDatetime";
-import LabeledInput from "../formitems/LabeledInput";
 import Tab from "../navs/Tab";
 import TooltipButton from "../buttons/TooltipButton";
 import TooltipIconButton from "../iconbuttons/TooltipIconButton";
@@ -17,6 +16,7 @@ import TooltipGroup from "../util/TooltipGroup";
 
 // util imports
 import _t from "../../util/Translations";
+import Auth from "../../util/Auth";
 import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
@@ -28,7 +28,7 @@ class MassageBatchAddModal extends Component {
     rules: [],
     settings: true,
     thisMonth: false,
-    masseuse: "",
+    masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true },
     massageDuration: moment("00:30", "HH:mm"),
     normalPause: moment("00:10", "HH:mm"),
     activeDropdown: -1,
@@ -50,6 +50,22 @@ class MassageBatchAddModal extends Component {
     _t.translate("Import previously downloaded rules"),
     _t.translate("When set to another day, copies the schedule from it")
   ];
+
+  componentDidMount() {
+    this.setState({ masseuse: this.getMasseuse() });
+  }
+
+  getMasseuse = () => {
+    if (this.props.masseuses.length === 0) {
+      return { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true };
+    }
+
+    if (!Auth.isAdmin()) {
+      return Auth.getClient();
+    }
+
+    return this.props.masseuses[0];
+  };
 
   getBigPause = () => ({
     start: moment("12:00", "HH:mm"),
@@ -98,15 +114,14 @@ class MassageBatchAddModal extends Component {
 
   changeSettings = () => {
     if (this.state.settings) {
-      if (Util.isEmpty(this.state.masseuse)) {
-        Util.notify("error", _t.translate("Masseuse is required!"), _t.translate("Schedule"));
-        return;
-      }
+      let rules = [];
 
-      const rules = [];
-
-      for (let i = 0; i < this.weekdays.length; i++) {
-        rules.push(this.getRule(i));
+      if (this.state.rules.length === 0) {
+        for (let i = 0; i < this.weekdays.length; i++) {
+          rules.push(this.getRule(i));
+        }
+      } else {
+        rules = [...this.state.rules];
       }
 
       this.setState({ rules, settings: false });
@@ -120,7 +135,9 @@ class MassageBatchAddModal extends Component {
   };
 
   changeMasseuse = event => {
-    this.setState({ masseuse: event.target.value });
+    this.setState({
+      masseuse: this.props.masseuses[this.props.masseuseNames.indexOf(event.target.value)]
+    });
   };
 
   changeMassageDuration = massageDuration => {
@@ -191,14 +208,15 @@ class MassageBatchAddModal extends Component {
   /**
    * Returns the source rule index for massage creation based on role copy settings.
    */
-  getSourceIndex = index => {
-    if (this.state.rules[index].disabled) {
+  getSourceIndex = (index, prevIndexes = []) => {
+    if (this.state.rules[index].disabled || prevIndexes.indexOf(index) !== -1) {
       return -1;
     }
     if (this.state.rules[index].day === "–") {
       return index;
     }
-    return this.getSourceIndex(this.weekdays.indexOf(this.state.rules[index].day));
+    prevIndexes.push(index);
+    return this.getSourceIndex(this.weekdays.indexOf(this.state.rules[index].day), prevIndexes);
   };
 
   /**
@@ -266,7 +284,6 @@ class MassageBatchAddModal extends Component {
           this.state.rules[i].for === date.format("dddd")
         ) {
           const sourceIndex = this.getSourceIndex(i);
-
           if (sourceIndex !== -1) {
             const currentStartTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].startTime);
             const endTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].endTime);
@@ -296,11 +313,9 @@ class MassageBatchAddModal extends Component {
     }
 
     if (postArray.length > 0) {
-      Fetch.post(Util.MASSAGES_URL, postArray, () => {
-        this.props.getCallback();
-        this.props.onToggle(true);
-      });
+      Fetch.post(Util.MASSAGES_URL, postArray, this.props.getCallback);
     }
+    this.props.onToggle(true);
   };
 
   /**
@@ -364,7 +379,7 @@ class MassageBatchAddModal extends Component {
     }
 
     if (Util.isEmpty(importData.masseuse)) {
-      importData.masseuse = "N/A";
+      importData.masseuse = this.getMasseuse();
     }
 
     if (Util.isEmpty(importData.massageDuration)) {
@@ -399,7 +414,7 @@ class MassageBatchAddModal extends Component {
         this.setState({
           rules: importData.rules,
           thisMonth: importData.thisMonth,
-          masseuse: importData.masseuse,
+          masseuse: Auth.isAdmin() ? importData.masseuse : this.getMasseuse(),
           massageDuration: importData.massageDuration,
           normalPause: importData.normalPause
         });
@@ -425,7 +440,7 @@ class MassageBatchAddModal extends Component {
     const e = document.createEvent("MouseEvents");
 
     const a = document.createElement("a");
-    a.download = "massage_rules.json";
+    a.download = "massages.json";
     a.href = window.URL.createObjectURL(blob);
     a.dataset.downloadurl = ["application/json", a.download, a.href].join(":");
     e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
@@ -446,10 +461,12 @@ class MassageBatchAddModal extends Component {
     }
   };
 
-  handleInputKeyPress = event => {
-    if (event.key === "Enter") {
-      this.addMassages();
+  handleToggle = () => {
+    if (!this.props.active) {
+      this.setState({ masseuse: this.getMasseuse() });
     }
+
+    this.props.onToggle(false);
   };
 
   createHeader = () => (
@@ -462,14 +479,16 @@ class MassageBatchAddModal extends Component {
               {_t.translate("Import")}
             </Button>
             <Input id="fileImport" className="d-none" type="file" onChange={this.importRules} accept=".json" />
-            <TooltipButton
-              className="ml-2 mb-2"
-              onClick={this.exportRules}
-              label={_t.translate("Export")}
-              tooltip={_t.translate(
-                "Download a configuration file that you can use to import these rules at a later date"
-              )}
-            />
+            {!this.state.settings && (
+              <TooltipButton
+                className="ml-2 mb-2"
+                onClick={this.exportRules}
+                label={_t.translate("Export")}
+                tooltip={_t.translate(
+                  "Download a configuration file that you can use to import these rules at a later date"
+                )}
+              />
+            )}
           </div>
         </h3>
         <hr />
@@ -506,16 +525,23 @@ class MassageBatchAddModal extends Component {
       </Row>
 
       <Row>
-        <LabeledInput
-          size="6"
-          label={_t.translate("Masseur/Masseuse")}
-          value={this.state.masseuse}
-          onChange={this.changeMasseuse}
-          onEnterPress={this.chnageSettings}
-          type="text"
-          maxLength="64"
-          options={this.props.masseuses}
-        />
+        {Auth.isAdmin() && (
+          <Col md="6">
+            <FormGroup>
+              <Label for="masseuseNameSelect">{_t.translate("Masseur/Masseuse")}</Label>
+              <Input
+                id="masseuseNameSelect"
+                type="select"
+                value={`${this.state.masseuse.name} ${this.state.masseuse.surname}`}
+                onChange={this.changeMasseuse}
+              >
+                {this.props.masseuseNames.map(item => (
+                  <option key={item}>{item}</option>
+                ))}
+              </Input>
+            </FormGroup>
+          </Col>
+        )}
         <LabeledDatetime
           size="3"
           label={_t.translate("Massage duration")}
@@ -672,11 +698,7 @@ class MassageBatchAddModal extends Component {
       ))}
       <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
 
-      <ModalActions
-        primaryLabel={_t.translate("Create")}
-        onProceed={this.addMassages}
-        onClose={() => this.props.onToggle(false)}
-      >
+      <ModalActions primaryLabel={_t.translate("Create")} onProceed={this.addMassages} onClose={this.handleToggle}>
         <TooltipButton className="mr-2" onClick={this.changeSettings} label={_t.translate("Previous")} />
       </ModalActions>
     </ModalBody>
@@ -685,13 +707,7 @@ class MassageBatchAddModal extends Component {
   createModal = () => {
     if (this.props.withPortal) {
       return (
-        <Modal
-          size="lg"
-          isOpen
-          toggle={() => this.props.onToggle(false)}
-          tabIndex="-1"
-          onKeyPress={this.handleModalKeyPress}
-        >
+        <Modal size="lg" isOpen toggle={this.handleToggle} tabIndex="-1" onKeyPress={this.handleModalKeyPress}>
           {this.state.settings ? this.createSettingInputs() : this.createMassageInputs()}
         </Modal>
       );
@@ -703,17 +719,12 @@ class MassageBatchAddModal extends Component {
   };
 
   render() {
-    const { facilityId, getCallback, onToggle, active, masseuses, withPortal, ...rest } = this.props;
-    if (this.state.rules.length === 0 && this.props.masseuses.length > 0) {
-      for (let i = 0; i < this.props.masseuses.length; i++) {
-        this.state.rules.push(this.getRule(this.props.masseuses[i]));
-      }
-    }
+    const { facilityId, getCallback, onToggle, active, masseuses, masseuseNames, withPortal, ...rest } = this.props;
     return (
       <span>
         <TooltipButton
           {...rest}
-          onClick={() => this.props.onToggle(false)}
+          onClick={this.handleToggle}
           label={_t.translate("Add schedule")}
           tooltip={_t.translate("Create multiple massages at once")}
         />
@@ -733,14 +744,26 @@ MassageBatchAddModal.propTypes = {
   onToggle: PropTypes.func.isRequired,
   /** whether the dialog should be shown */
   active: PropTypes.bool,
-  /** unique Massage masseuses of the given Facility */
-  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** names of Massage masseuses in the portal */
+  masseuseNames: PropTypes.arrayOf(PropTypes.string),
+  /** Massage masseuses in the portal */
+  masseuses: PropTypes.arrayOf(
+    PropTypes.shape({
+      email: PropTypes.string,
+      masseur: PropTypes.bool,
+      name: PropTypes.string,
+      sub: PropTypes.string,
+      subscribed: PropTypes.bool,
+      surname: PropTypes.string
+    })
+  ),
   /** whether ModalContainer should be used; useful for testing to avoid portals */
   withPortal: PropTypes.bool
 };
 
 MassageBatchAddModal.defaultProps = {
   active: false,
+  masseuseNames: [],
   masseuses: [],
   withPortal: true
 };

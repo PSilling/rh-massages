@@ -44,6 +44,25 @@ public class User extends AbstractUser {
   }
 
   /**
+   * Checks whether the {@link User} has admin role.
+   *
+   * @return true if admin role is present, false otherwise
+   */
+  @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+  public boolean isAdmin() {
+    return getRoles().contains("admin");
+  }
+
+  /**
+   * Checks whether the {@link User} has masseur role.
+   *
+   * @return true if masseur role is present, false otherwise
+   */
+  public boolean isMasseur() {
+    return getRoles().contains("masseur");
+  }
+
+  /**
    * Checks whether the {@link User} has a given role.
    *
    * @param role role to be checked

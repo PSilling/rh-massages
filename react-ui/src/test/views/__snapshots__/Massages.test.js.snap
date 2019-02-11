@@ -75,7 +75,7 @@ ShallowWrapper {
                   disabled={false}
                   label="Jen volné"
                   onClick={[Function]}
-                  tooltip="Zobrazit pouze volné (zelené) masáže"
+                  tooltip="Zobrazit pouze volné masáže"
                 />
               </Col>
               <Col
@@ -96,7 +96,7 @@ ShallowWrapper {
                   className="mr-2"
                   date={null}
                   facilityId={1}
-                  masseuses={Array []}
+                  masseuseNames={Array []}
                   onPrint={[Function]}
                   withPortal={true}
                 />
@@ -113,6 +113,7 @@ ShallowWrapper {
                     className="mx-2"
                     facilityId={1}
                     getCallback={[Function]}
+                    masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -122,6 +123,7 @@ ShallowWrapper {
                     facilityId={1}
                     getCallback={[Function]}
                     massage={null}
+                    masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -217,7 +219,7 @@ ShallowWrapper {
                   disabled={false}
                   label="Jen volné"
                   onClick={[Function]}
-                  tooltip="Zobrazit pouze volné (zelené) masáže"
+                  tooltip="Zobrazit pouze volné masáže"
                 />
               </Col>
               <Col
@@ -238,7 +240,7 @@ ShallowWrapper {
                   className="mr-2"
                   date={null}
                   facilityId={1}
-                  masseuses={Array []}
+                  masseuseNames={Array []}
                   onPrint={[Function]}
                   withPortal={true}
                 />
@@ -255,6 +257,7 @@ ShallowWrapper {
                     className="mx-2"
                     facilityId={1}
                     getCallback={[Function]}
+                    masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -264,6 +267,7 @@ ShallowWrapper {
                     facilityId={1}
                     getCallback={[Function]}
                     massage={null}
+                    masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -344,7 +348,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Jen volné"
                     onClick={[Function]}
-                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                    tooltip="Zobrazit pouze volné masáže"
                   />
                 </Col>
                 <Col
@@ -365,7 +369,7 @@ ShallowWrapper {
                     className="mr-2"
                     date={null}
                     facilityId={1}
-                    masseuses={Array []}
+                    masseuseNames={Array []}
                     onPrint={[Function]}
                     withPortal={true}
                   />
@@ -382,6 +386,7 @@ ShallowWrapper {
                       className="mx-2"
                       facilityId={1}
                       getCallback={[Function]}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -391,6 +396,7 @@ ShallowWrapper {
                       facilityId={1}
                       getCallback={[Function]}
                       massage={null}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -508,7 +514,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Jen volné"
                       onClick={[Function]}
-                      tooltip="Zobrazit pouze volné (zelené) masáže"
+                      tooltip="Zobrazit pouze volné masáže"
                     />
                   </Col>,
                   <Col
@@ -529,7 +535,7 @@ ShallowWrapper {
                       className="mr-2"
                       date={null}
                       facilityId={1}
-                      masseuses={Array []}
+                      masseuseNames={Array []}
                       onPrint={[Function]}
                       withPortal={true}
                     />
@@ -546,6 +552,7 @@ ShallowWrapper {
                         className="mx-2"
                         facilityId={1}
                         getCallback={[Function]}
+                        masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -555,6 +562,7 @@ ShallowWrapper {
                         facilityId={1}
                         getCallback={[Function]}
                         massage={null}
+                        masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -585,7 +593,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Jen volné"
                         onClick={[Function]}
-                        tooltip="Zobrazit pouze volné (zelené) masáže"
+                        tooltip="Zobrazit pouze volné masáže"
                       />,
                     ],
                     "md": "6",
@@ -625,7 +633,7 @@ ShallowWrapper {
                         "disabled": false,
                         "label": "Jen volné",
                         "onClick": [Function],
-                        "tooltip": "Zobrazit pouze volné (zelené) masáže",
+                        "tooltip": "Zobrazit pouze volné masáže",
                       },
                       "ref": null,
                       "rendered": null,
@@ -644,7 +652,7 @@ ShallowWrapper {
                         className="mr-2"
                         date={null}
                         facilityId={1}
-                        masseuses={Array []}
+                        masseuseNames={Array []}
                         onPrint={[Function]}
                         withPortal={true}
                       />,
@@ -661,6 +669,7 @@ ShallowWrapper {
                           className="mx-2"
                           facilityId={1}
                           getCallback={[Function]}
+                          masseuseNames={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -670,6 +679,7 @@ ShallowWrapper {
                           facilityId={1}
                           getCallback={[Function]}
                           massage={null}
+                          masseuseNames={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -697,7 +707,7 @@ ShallowWrapper {
                         "className": "mr-2",
                         "date": null,
                         "facilityId": 1,
-                        "masseuses": Array [],
+                        "masseuseNames": Array [],
                         "onPrint": [Function],
                         "withPortal": true,
                       },
@@ -723,6 +733,7 @@ ShallowWrapper {
                             className="mx-2"
                             facilityId={1}
                             getCallback={[Function]}
+                            masseuseNames={Array []}
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
@@ -732,6 +743,7 @@ ShallowWrapper {
                             facilityId={1}
                             getCallback={[Function]}
                             massage={null}
+                            masseuseNames={Array []}
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
@@ -764,6 +776,7 @@ ShallowWrapper {
                             "className": "mx-2",
                             "facilityId": 1,
                             "getCallback": [Function],
+                            "masseuseNames": Array [],
                             "masseuses": Array [],
                             "onToggle": [Function],
                             "withPortal": true,
@@ -781,6 +794,7 @@ ShallowWrapper {
                             "facilityId": 1,
                             "getCallback": [Function],
                             "massage": null,
+                            "masseuseNames": Array [],
                             "masseuses": Array [],
                             "onToggle": [Function],
                             "withPortal": true,
@@ -894,7 +908,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Jen volné"
                     onClick={[Function]}
-                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                    tooltip="Zobrazit pouze volné masáže"
                   />
                 </Col>
                 <Col
@@ -915,7 +929,7 @@ ShallowWrapper {
                     className="mr-2"
                     date={null}
                     facilityId={1}
-                    masseuses={Array []}
+                    masseuseNames={Array []}
                     onPrint={[Function]}
                     withPortal={true}
                   />
@@ -932,6 +946,7 @@ ShallowWrapper {
                       className="mx-2"
                       facilityId={1}
                       getCallback={[Function]}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -941,6 +956,7 @@ ShallowWrapper {
                       facilityId={1}
                       getCallback={[Function]}
                       massage={null}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -1036,7 +1052,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Jen volné"
                     onClick={[Function]}
-                    tooltip="Zobrazit pouze volné (zelené) masáže"
+                    tooltip="Zobrazit pouze volné masáže"
                   />
                 </Col>
                 <Col
@@ -1057,7 +1073,7 @@ ShallowWrapper {
                     className="mr-2"
                     date={null}
                     facilityId={1}
-                    masseuses={Array []}
+                    masseuseNames={Array []}
                     onPrint={[Function]}
                     withPortal={true}
                   />
@@ -1074,6 +1090,7 @@ ShallowWrapper {
                       className="mx-2"
                       facilityId={1}
                       getCallback={[Function]}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -1083,6 +1100,7 @@ ShallowWrapper {
                       facilityId={1}
                       getCallback={[Function]}
                       massage={null}
+                      masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -1163,7 +1181,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Jen volné"
                       onClick={[Function]}
-                      tooltip="Zobrazit pouze volné (zelené) masáže"
+                      tooltip="Zobrazit pouze volné masáže"
                     />
                   </Col>
                   <Col
@@ -1184,7 +1202,7 @@ ShallowWrapper {
                       className="mr-2"
                       date={null}
                       facilityId={1}
-                      masseuses={Array []}
+                      masseuseNames={Array []}
                       onPrint={[Function]}
                       withPortal={true}
                     />
@@ -1201,6 +1219,7 @@ ShallowWrapper {
                         className="mx-2"
                         facilityId={1}
                         getCallback={[Function]}
+                        masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -1210,6 +1229,7 @@ ShallowWrapper {
                         facilityId={1}
                         getCallback={[Function]}
                         massage={null}
+                        masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -1327,7 +1347,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Jen volné"
                         onClick={[Function]}
-                        tooltip="Zobrazit pouze volné (zelené) masáže"
+                        tooltip="Zobrazit pouze volné masáže"
                       />
                     </Col>,
                     <Col
@@ -1348,7 +1368,7 @@ ShallowWrapper {
                         className="mr-2"
                         date={null}
                         facilityId={1}
-                        masseuses={Array []}
+                        masseuseNames={Array []}
                         onPrint={[Function]}
                         withPortal={true}
                       />
@@ -1365,6 +1385,7 @@ ShallowWrapper {
                           className="mx-2"
                           facilityId={1}
                           getCallback={[Function]}
+                          masseuseNames={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -1374,6 +1395,7 @@ ShallowWrapper {
                           facilityId={1}
                           getCallback={[Function]}
                           massage={null}
+                          masseuseNames={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -1404,7 +1426,7 @@ ShallowWrapper {
                           disabled={false}
                           label="Jen volné"
                           onClick={[Function]}
-                          tooltip="Zobrazit pouze volné (zelené) masáže"
+                          tooltip="Zobrazit pouze volné masáže"
                         />,
                       ],
                       "md": "6",
@@ -1444,7 +1466,7 @@ ShallowWrapper {
                           "disabled": false,
                           "label": "Jen volné",
                           "onClick": [Function],
-                          "tooltip": "Zobrazit pouze volné (zelené) masáže",
+                          "tooltip": "Zobrazit pouze volné masáže",
                         },
                         "ref": null,
                         "rendered": null,
@@ -1463,7 +1485,7 @@ ShallowWrapper {
                           className="mr-2"
                           date={null}
                           facilityId={1}
-                          masseuses={Array []}
+                          masseuseNames={Array []}
                           onPrint={[Function]}
                           withPortal={true}
                         />,
@@ -1480,6 +1502,7 @@ ShallowWrapper {
                             className="mx-2"
                             facilityId={1}
                             getCallback={[Function]}
+                            masseuseNames={Array []}
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
@@ -1489,6 +1512,7 @@ ShallowWrapper {
                             facilityId={1}
                             getCallback={[Function]}
                             massage={null}
+                            masseuseNames={Array []}
                             masseuses={Array []}
                             onToggle={[Function]}
                             withPortal={true}
@@ -1516,7 +1540,7 @@ ShallowWrapper {
                           "className": "mr-2",
                           "date": null,
                           "facilityId": 1,
-                          "masseuses": Array [],
+                          "masseuseNames": Array [],
                           "onPrint": [Function],
                           "withPortal": true,
                         },
@@ -1542,6 +1566,7 @@ ShallowWrapper {
                               className="mx-2"
                               facilityId={1}
                               getCallback={[Function]}
+                              masseuseNames={Array []}
                               masseuses={Array []}
                               onToggle={[Function]}
                               withPortal={true}
@@ -1551,6 +1576,7 @@ ShallowWrapper {
                               facilityId={1}
                               getCallback={[Function]}
                               massage={null}
+                              masseuseNames={Array []}
                               masseuses={Array []}
                               onToggle={[Function]}
                               withPortal={true}
@@ -1583,6 +1609,7 @@ ShallowWrapper {
                               "className": "mx-2",
                               "facilityId": 1,
                               "getCallback": [Function],
+                              "masseuseNames": Array [],
                               "masseuses": Array [],
                               "onToggle": [Function],
                               "withPortal": true,
@@ -1600,6 +1627,7 @@ ShallowWrapper {
                               "facilityId": 1,
                               "getCallback": [Function],
                               "massage": null,
+                              "masseuseNames": Array [],
                               "masseuses": Array [],
                               "onToggle": [Function],
                               "withPortal": true,
@@ -1749,7 +1777,9 @@ ShallowWrapper {
                 <td>
                   01:00–01:00
                 </td>
-                <td />
+                <td>
+                  Masseuse Test
+                </td>
                 <td>
                   Volno
                 </td>
@@ -1889,7 +1919,9 @@ ShallowWrapper {
                   <td>
                     01:00–01:00
                   </td>
-                  <td />
+                  <td>
+                    Masseuse Test
+                  </td>
                   <td>
                     Volno
                   </td>
@@ -1951,7 +1983,9 @@ ShallowWrapper {
                     <td>
                       01:00–01:00
                     </td>
-                    <td />
+                    <td>
+                      Masseuse Test
+                    </td>
                     <td>
                       Volno
                     </td>
@@ -2091,7 +2125,9 @@ ShallowWrapper {
                       <td>
                         01:00–01:00
                       </td>
-                      <td />
+                      <td>
+                        Masseuse Test
+                      </td>
                       <td>
                         Volno
                       </td>
@@ -2112,7 +2148,9 @@ ShallowWrapper {
                         <td>
                           01:00–01:00
                         </td>,
-                        <td />,
+                        <td>
+                          Masseuse Test
+                        </td>,
                         <td>
                           Volno
                         </td>,
@@ -2147,10 +2185,10 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "host",
                         "props": Object {
-                          "children": undefined,
+                          "children": "Masseuse Test",
                         },
                         "ref": null,
-                        "rendered": null,
+                        "rendered": "Masseuse Test",
                         "type": "td",
                       },
                       Object {
@@ -2247,7 +2285,9 @@ ShallowWrapper {
                   <td>
                     01:00–01:00
                   </td>
-                  <td />
+                  <td>
+                    Masseuse Test
+                  </td>
                   <td>
                     Volno
                   </td>
@@ -2387,7 +2427,9 @@ ShallowWrapper {
                     <td>
                       01:00–01:00
                     </td>
-                    <td />
+                    <td>
+                      Masseuse Test
+                    </td>
                     <td>
                       Volno
                     </td>
@@ -2449,7 +2491,9 @@ ShallowWrapper {
                       <td>
                         01:00–01:00
                       </td>
-                      <td />
+                      <td>
+                        Masseuse Test
+                      </td>
                       <td>
                         Volno
                       </td>
@@ -2589,7 +2633,9 @@ ShallowWrapper {
                         <td>
                           01:00–01:00
                         </td>
-                        <td />
+                        <td>
+                          Masseuse Test
+                        </td>
                         <td>
                           Volno
                         </td>
@@ -2610,7 +2656,9 @@ ShallowWrapper {
                           <td>
                             01:00–01:00
                           </td>,
-                          <td />,
+                          <td>
+                            Masseuse Test
+                          </td>,
                           <td>
                             Volno
                           </td>,
@@ -2645,10 +2693,10 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "host",
                           "props": Object {
-                            "children": undefined,
+                            "children": "Masseuse Test",
                           },
                           "ref": null,
-                          "rendered": null,
+                          "rendered": "Masseuse Test",
                           "type": "td",
                         },
                         Object {

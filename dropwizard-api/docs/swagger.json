@@ -2,7 +2,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.4.8",
+        "version": "1.4.9",
         "title": "Red Hat Massages Server"
     },
     "host": "localhost:8080",
@@ -82,9 +82,35 @@
                 }
             }
         },
-        "/clients/my/subscribed": {
+        "/clients/masseuses": {
             "get": {
-                "description": "GETs a {@link Client} subscription value. For new {@link User}s also creates their {@link\n Client} representation and returns true.",
+                "description": "GETs all {@link Client}s that are registered as masseurs.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/retrieve-info": {
+            "get": {
+                "description": "GETs local information of a {@link Client} (currently only his subscription value). For new\n {@link User}s creates their {@link Client} representation while returning {@link User}s get\n their {@link Client} representation updated if a change is detected.",
                 "consumes": [
                     "application/json"
                 ],
@@ -536,11 +562,24 @@
                         "in": "query",
                         "required": true,
                         "description": "{@link List} of {@link Massage} IDs"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
                     }
                 ],
                 "responses": {
                     "204": {
                         "description": "No Content",
+                        "headers": {
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
                         "headers": {
                         }
                     },
@@ -698,6 +737,9 @@
                 "email": {
                     "type": "string"
                 },
+                "masseur": {
+                    "type": "boolean"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -740,17 +782,23 @@
                     "type": "integer"
                 },
                 "masseuse": {
-                    "type": "string"
+                    "$ref": "#/definitions/Client"
                 }
             }
         },
         "User": {
             "properties": {
+                "admin": {
+                    "type": "boolean"
+                },
                 "email": {
                     "type": "string"
                 },
                 "firstName": {
                     "type": "string"
+                },
+                "masseur": {
+                    "type": "boolean"
                 },
                 "name": {
                     "type": "string"

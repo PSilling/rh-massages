@@ -6,9 +6,21 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <PrintModal
     date={"1970-01-01T00:00:00.000Z"}
     facilityId={1}
+    masseuseNames={
+      Array [
+        "Masseuse Test",
+      ]
+    }
     masseuses={
       Array [
-        "test",
+        Object {
+          "email": "test@masseuse.org",
+          "masseur": true,
+          "name": "Masseuse",
+          "sub": "m-sub",
+          "subscribed": false,
+          "surname": "Test",
+        },
       ]
     }
     onPrint={[MockFunction]}
@@ -32,6 +44,18 @@ ShallowWrapper {
           active={false}
           disabled={false}
           label="Vytisknout"
+          masseuses={
+            Array [
+              Object {
+                "email": "test@masseuse.org",
+                "masseur": true,
+                "name": "Masseuse",
+                "sub": "m-sub",
+                "subscribed": false,
+                "surname": "Test",
+              },
+            ]
+          }
           onClick={[Function]}
           tooltip="Ukázat možnosti tisku rozpisu masáží"
         />,
@@ -48,6 +72,16 @@ ShallowWrapper {
           "active": false,
           "disabled": false,
           "label": "Vytisknout",
+          "masseuses": Array [
+            Object {
+              "email": "test@masseuse.org",
+              "masseur": true,
+              "name": "Masseuse",
+              "sub": "m-sub",
+              "subscribed": false,
+              "surname": "Test",
+            },
+          ],
           "onClick": [Function],
           "tooltip": "Ukázat možnosti tisku rozpisu masáží",
         },
@@ -70,6 +104,18 @@ ShallowWrapper {
             active={false}
             disabled={false}
             label="Vytisknout"
+            masseuses={
+              Array [
+                Object {
+                  "email": "test@masseuse.org",
+                  "masseur": true,
+                  "name": "Masseuse",
+                  "sub": "m-sub",
+                  "subscribed": false,
+                  "surname": "Test",
+                },
+              ]
+            }
             onClick={[Function]}
             tooltip="Ukázat možnosti tisku rozpisu masáží"
           />,
@@ -86,6 +132,16 @@ ShallowWrapper {
             "active": false,
             "disabled": false,
             "label": "Vytisknout",
+            "masseuses": Array [
+              Object {
+                "email": "test@masseuse.org",
+                "masseur": true,
+                "name": "Masseuse",
+                "sub": "m-sub",
+                "subscribed": false,
+                "surname": "Test",
+              },
+            ],
             "onClick": [Function],
             "tooltip": "Ukázat možnosti tisku rozpisu masáží",
           },

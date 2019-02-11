@@ -47,7 +47,7 @@ class MassagesArchive extends Component {
     this.getMassages();
     setInterval(() => {
       this.getMassages();
-    }, Util.AUTO_REFRESH_TIME);
+    }, Util.AUTO_REFRESH_TIME * 2);
   }
 
   componentWillUnmount() {
@@ -73,9 +73,9 @@ class MassagesArchive extends Component {
 
     for (let i = 0; i < massages.length; i++) {
       if (Util.isEmpty(massages[i].client)) {
-        color = "#00ac46"; // Bootsrap warning color (buttons)
+        color = Util.SUCCESS_COLOR;
       } else {
-        color = "#e2001d"; // Bootsrap danger color (buttons)
+        color = Util.ERROR_COLOR;
       }
       events.push({ massage: massages[i], bgColor: color });
     }

@@ -70,6 +70,19 @@ public class ClientResource {
   }
 
   /**
+   * GETs all {@link Client}s that are registered as masseurs.
+   *
+   * @return {@link List} of all {@link Client}s
+   */
+  @GET
+  @Path("/masseuses")
+  @PermitAll
+  @UnitOfWork
+  public List<Client> getMasseurs() {
+    return clientDao.findAllMasseurs();
+  }
+
+  /**
    * Updates a {@link Client} to an updated value.
    *
    * @param client updated {@link Client}
@@ -89,12 +102,16 @@ public class ClientResource {
 
     Client daoClient = clientDao.findBySub(client.getSub());
 
-    if (!user.getRoles().contains("admin") && !user.getSubject().equals(client.getSub())) {
+    if (!user.isAdmin() && !user.getSubject().equals(client.getSub())) {
       throw new WebApplicationException(Status.FORBIDDEN);
     }
 
     if (daoClient == null) {
       throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    if (!user.isAdmin()) {
+      client.setMasseur(user.isMasseur());
     }
 
     // Update only if a change is detected.
@@ -107,30 +124,33 @@ public class ClientResource {
   }
 
   /**
-   * GETs a {@link Client} subscription value. For new {@link User}s also creates their {@link
-   * Client} representation and returns true.
+   * GETs local information of a {@link Client} (currently only his subscription value). For new
+   * {@link User}s creates their {@link Client} representation while returning {@link User}s get
+   * their {@link Client} representation updated if a change is detected.
    *
    * @param user authenticated {@link User}
    * @return true if subscribed, false otherwise
    * @throws WebApplicationException if the {@link Client} could not be found after creation
    */
   @GET
-  @Path("/my/subscribed")
+  @Path("/retrieve-info")
   @PermitAll
   @UnitOfWork
-  public boolean getSubscription(@Auth User user) {
-    Client client = clientDao.findBySub(user.getSubject());
+  public boolean retrieveInfo(@Auth User user) {
+    Client daoClient = clientDao.findBySub(user.getSubject());
+    Client client =
+        new Client(user.getSubject(), user.getEmail(), user.getFirstName(), user.getSurname(),
+            user.isMasseur(), daoClient == null || daoClient.isSubscribed());
 
     // Create a new Client the User doesn't have its Client representation instance.
-    if (client == null) {
-      client =
-          new Client(
-              user.getSubject(), user.getEmail(), user.getFirstName(), user.getSurname(), true);
+    if (daoClient == null) {
       clientDao.create(client);
 
       if (clientDao.findBySub(user.getSubject()) == null) {
         throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
       }
+    } else if (!daoClient.equals(client)) {
+      clientDao.update(client);
     }
 
     return client.isSubscribed();

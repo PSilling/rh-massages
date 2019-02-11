@@ -28,6 +28,14 @@ test("renders inside content with correct props", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: null,
       facility: { id: 1, name: "test" }
     }
@@ -67,6 +75,14 @@ test("applies correct non-editation mode changes", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: { sub: "test" },
       facility: { id: 1, name: "test" }
     }
@@ -97,6 +113,14 @@ test("hides non-admin buttons properly", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: null,
       facility: { id: 1, name: "test" }
     }

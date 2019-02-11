@@ -15,7 +15,14 @@ ShallowWrapper {
             "name": "test",
           },
           "id": 1,
-          "masseuse": "test",
+          "masseuse": Object {
+            "email": "test@masseuse.org",
+            "masseur": true,
+            "name": "Masseuse",
+            "sub": "m-sub",
+            "subscribed": false,
+            "surname": "Test",
+          },
         },
       }
     }
@@ -32,7 +39,14 @@ ShallowWrapper {
                 "name": "test",
               },
               "id": 1,
-              "masseuse": "test",
+              "masseuse": Object {
+                "email": "test@masseuse.org",
+                "masseur": true,
+                "name": "Masseuse",
+                "sub": "m-sub",
+                "subscribed": false,
+                "surname": "Test",
+              },
             },
           ],
         ],
@@ -80,7 +94,7 @@ ShallowWrapper {
             Masáž v test
           </strong>
           <br />
-          test
+          Masseuse Test
         </td>,
       ],
     },
@@ -128,7 +142,7 @@ ShallowWrapper {
               Masáž v test
             </strong>,
             <br />,
-            "test",
+            "Masseuse Test",
             false,
           ],
         },
@@ -161,7 +175,7 @@ ShallowWrapper {
             "rendered": null,
             "type": "br",
           },
-          "test",
+          "Masseuse Test",
           false,
         ],
         "type": "td",
@@ -197,7 +211,7 @@ ShallowWrapper {
               Masáž v test
             </strong>
             <br />
-            test
+            Masseuse Test
           </td>,
         ],
       },
@@ -245,7 +259,7 @@ ShallowWrapper {
                 Masáž v test
               </strong>,
               <br />,
-              "test",
+              "Masseuse Test",
               false,
             ],
           },
@@ -278,7 +292,7 @@ ShallowWrapper {
               "rendered": null,
               "type": "br",
             },
-            "test",
+            "Masseuse Test",
             false,
           ],
           "type": "td",

@@ -31,6 +31,7 @@ class Massages extends Component {
   state = {
     facilities: [],
     masseuses: [],
+    masseuseNames: [],
     selected: [],
     index: 0,
     selectEvents: false,
@@ -61,6 +62,7 @@ class Massages extends Component {
 
     this.setState({ mounted: true });
     this.getFacilities();
+    this.getMasseuses();
     setInterval(() => {
       if (this.state.modalActive || this.state.batchAddModalActive) return;
       this.getMassages();
@@ -77,6 +79,20 @@ class Massages extends Component {
       if (this.state.mounted) {
         this.setState({ facilities: json });
         this.getMassages();
+      }
+    });
+  };
+
+  getMasseuses = () => {
+    Fetch.get(`${Util.CLIENTS_URL}masseuses`, json => {
+      if (this.state.mounted && json !== undefined) {
+        const masseuseNames = [];
+
+        for (let i = 0; i < json.length; i++) {
+          masseuseNames.push(`${json[i].name} ${json[i].surname}`);
+        }
+
+        this.setState({ masseuses: json, masseuseNames });
       }
     });
   };
@@ -103,22 +119,17 @@ class Massages extends Component {
 
   updateEvents = (massages, minutes) => {
     const events = [];
-    const masseuses = [];
 
     let color;
     for (let i = 0; i < massages.length; i++) {
       if (Util.isEmpty(massages[i].client)) {
-        color = "#2fad2f"; // Bootsrap warning color (buttons)
+        color = Util.SUCCESS_COLOR;
       } else if (Auth.getSub() === massages[i].client.sub) {
-        color = "#ee9d2a"; // Bootsrap warning color (buttons)
+        color = Util.WARNING_COLOR;
       } else {
-        color = "#d10a14"; // Bootsrap danger color (buttons)
+        color = Util.ERROR_COLOR;
       }
       events.push({ massage: massages[i], bgColor: color });
-
-      if (masseuses.indexOf(massages[i].masseuse) === -1) {
-        masseuses.push(massages[i].masseuse);
-      }
     }
 
     this.setState(prevState => {
@@ -132,12 +143,23 @@ class Massages extends Component {
 
       return {
         events,
-        masseuses,
         massageMinutes: minutes,
         selected,
         loading: false
       };
     });
+  };
+
+  getMasseuse = () => {
+    if (this.state.masseuses.length === 0) {
+      return { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true };
+    }
+
+    if (!Auth.isAdmin()) {
+      return Auth.getClient();
+    }
+
+    return this.state.masseuses[0];
   };
 
   assignMassage = massage => {
@@ -195,6 +217,11 @@ class Massages extends Component {
   handleEventSelect = event => {
     if (event === null) {
       this.setState({ selected: [] });
+      return;
+    }
+
+    if (!Auth.isAdmin() && event.massage.masseuse.sub !== Auth.getSub()) {
+      Util.notify("warning", "", _t.translate("Cannot select an unowned massage!"));
       return;
     }
 
@@ -276,7 +303,7 @@ class Massages extends Component {
                 this.state.printMassages[i].ending
               ).format("HH:mm")}`}
             </td>
-            <td>{this.state.printMassages[i].masseuse}</td>
+            <td>{`${this.state.printMassages[i].masseuse.name} ${this.state.printMassages[i].masseuse.surname}`}</td>
             <td>
               {Util.isEmpty(this.state.printMassages[i].client)
                 ? _t.translate("Free")
@@ -308,7 +335,7 @@ class Massages extends Component {
       generated: true,
       date: slot.start,
       ending: slot.end,
-      masseuse: "",
+      masseuse: this.getMasseuse(),
       client: null,
       facility: { id: this.state.facilities[this.state.index].id }
     };
@@ -357,7 +384,7 @@ class Massages extends Component {
               </Nav>
               <Row>
                 <Col md="6">
-                  {Auth.isAdmin() && (
+                  {Auth.isAdminOrMasseur() && (
                     <TooltipButton
                       className="mr-2"
                       label={_t.translate("Select")}
@@ -370,18 +397,18 @@ class Massages extends Component {
                     label={_t.translate("Just free")}
                     onClick={this.changeFreeOnly}
                     active={this.state.freeOnly}
-                    tooltip={_t.translate("Display only free (green) massages")}
+                    tooltip={_t.translate("Display only free massages")}
                   />
                 </Col>
                 <Col md="6" className="text-right">
                   <PrintModal
                     className="mr-2"
-                    masseuses={this.state.masseuses}
+                    masseuseNames={this.state.masseuseNames}
                     facilityId={this.state.facilities[this.state.index].id}
                     date={this.state.selectedDate}
                     onPrint={this.setPrintMassages}
                   />
-                  {Auth.isAdmin() && (
+                  {Auth.isAdminOrMasseur() && (
                     <span>
                       <ConfirmationButton
                         onConfirm={this.deleteSelectedMassages}
@@ -393,6 +420,7 @@ class Massages extends Component {
                         className="mx-2"
                         active={this.state.batchAddModalActive}
                         masseuses={this.state.masseuses}
+                        masseuseNames={this.state.masseuseNames}
                         facilityId={this.state.facilities[this.state.index].id}
                         getCallback={this.getMassages}
                         onToggle={deselect => this.toggleBatchAddModal(deselect)}
@@ -401,6 +429,7 @@ class Massages extends Component {
                         active={this.state.modalActive}
                         massage={this.state.editMassage}
                         masseuses={this.state.masseuses}
+                        masseuseNames={this.state.masseuseNames}
                         facilityId={this.state.facilities[this.state.index].id}
                         getCallback={this.getMassages}
                         onToggle={() => this.toggleModal(null)}

@@ -45,6 +45,14 @@ test("renders print content correctly", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: null,
       facility: { id: 1, name: "test" }
     }
@@ -70,6 +78,14 @@ test("properly changes state variables", () => {
       id: 1,
       date: new Date(0),
       ending: new Date(1000),
+      masseuse: {
+        sub: "m-sub",
+        name: "Masseuse",
+        surname: "Test",
+        email: "test@masseuse.org",
+        subscribed: false,
+        masseur: true
+      },
       client: null,
       facility: { id: 1, name: "test" }
     }
@@ -80,10 +96,10 @@ test("properly changes state variables", () => {
   };
   const wrapper = shallow(<Massages />);
 
-  expect(Fetch.get).toHaveBeenCalledTimes(3);
+  expect(Fetch.get).toHaveBeenCalledTimes(6);
   wrapper.instance().setState({ facilities: testFacilities, massages: testMassages });
   wrapper.instance().getFacilities();
-  expect(Fetch.get).toHaveBeenCalledTimes(4);
+  expect(Fetch.get).toHaveBeenCalledTimes(7);
   expect(wrapper.instance().state.facilities).toEqual([]);
   expect(wrapper.instance().state.massages).toBe(testMassages);
   wrapper.instance().setState({ facilities: testFacilities });
@@ -121,7 +137,7 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.batchAddModalActive).toBe(false);
   expect(wrapper.instance().state.modalActive).toBe(false);
   expect(deleteButton.props().disabled).toBe(true);
-  expect(printModal.props().masseuses).toEqual([]);
+  expect(printModal.props().masseuseNames).toEqual([]);
   expect(addModal.props().facilityId).toBe(testFacilities[0].id);
   expect(massageModal.props().getCallback).toBe(wrapper.instance().getMassages);
   addModal.props().onToggle();

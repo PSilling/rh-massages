@@ -26,7 +26,7 @@ class PrintModal extends Component {
     checkedRadio: 0,
     filter: "",
     from: moment(),
-    to: moment().add(1, "day")
+    to: moment().endOf("day")
   };
 
   radios = ["just today", "this week", "this month", "chosen month", "custom:"];
@@ -37,7 +37,7 @@ class PrintModal extends Component {
     switch (this.state.checkedRadio) {
       case 0:
         from = moment();
-        to = moment();
+        to = moment().endOf("day");
         break;
       case 1:
         from = moment().startOf("isoWeek");
@@ -176,7 +176,7 @@ class PrintModal extends Component {
           tooltip={_t.translate("Masseuse, masseur or client name to use as a massages filter")}
           type="text"
           maxLength="128"
-          options={this.props.masseuses}
+          options={this.props.masseuseNames}
         />
       </Row>
 
@@ -194,7 +194,7 @@ class PrintModal extends Component {
     );
 
   render() {
-    const { date, facilityId, onPrint, masseuses, withPortal, ...rest } = this.props;
+    const { date, facilityId, onPrint, masseuseNames, withPortal, ...rest } = this.props;
     return (
       <span>
         <TooltipButton
@@ -217,14 +217,14 @@ PrintModal.propTypes = {
   facilityId: PropTypes.number.isRequired,
   /** function called on print action */
   onPrint: PropTypes.func.isRequired,
-  /** unique Massage masseuses of the given Facility */
-  masseuses: PropTypes.arrayOf(PropTypes.string),
+  /** names of Massage masseuses in the portal */
+  masseuseNames: PropTypes.arrayOf(PropTypes.string),
   /** whether ModalContainer should be used; useful for testing to avoid portals */
   withPortal: PropTypes.bool
 };
 
 PrintModal.defaultProps = {
-  masseuses: null,
+  masseuseNames: [],
   withPortal: true
 };
 

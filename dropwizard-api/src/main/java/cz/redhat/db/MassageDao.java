@@ -126,8 +126,9 @@ public class MassageDao extends AbstractDAO<Massage> {
       search = convertToCiAi(search);
       String searchString;
       for (int i = 0; i < massages.size(); i++) {
-        // Compare with the value of masseuse, Facility name and generated contact.
-        searchString = massages.get(i).getMasseuse() + massages.get(i).getFacility().getName();
+        // Compare with the value of masseuse name, Facility name and generated contact.
+        searchString = massages.get(i).getMasseuse().createContact()
+            + massages.get(i).getFacility().getName();
 
         Client client = massages.get(i).getClient();
         if (client != null) {
@@ -177,7 +178,7 @@ public class MassageDao extends AbstractDAO<Massage> {
    * @return {@link List} of all found {@link Massage}s
    */
   @SuppressWarnings("unchecked")
-  public List<Massage> findAllByMasseuse(String masseuse) {
+  public List<Massage> findAllByMasseuse(Client masseuse) {
     return list(namedQuery("Massage.findAllByMasseuse").setParameter("masseuse", masseuse));
   }
 
@@ -238,7 +239,7 @@ public class MassageDao extends AbstractDAO<Massage> {
       String searchString;
       for (int i = 0; i < massages.size(); i++) {
         // Compare with the value of masseuse and generated contact.
-        searchString = massages.get(i).getMasseuse();
+        searchString = massages.get(i).getMasseuse().createContact();
 
         Client client = massages.get(i).getClient();
         if (client != null) {
