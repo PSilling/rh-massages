@@ -59,7 +59,7 @@ test("renders inside content with correct props", () => {
   expect(actions.props().onProceed).toBe(wrapper.instance().addMassage);
   expect(actions.props().onClose).toBe(testToggleFunction);
   expect(heading.props().children).toEqual(_t.translate("New Massage"));
-  expect(datetimes.get(0).props.value).toEqual(moment("00:30", "HH:mm"));
+  expect(datetimes.get(0).props.value).toEqual(moment("00:30", "H:mm"));
   expect(datetimes.get(1).props.value).toEqual(moment().add(1, "hours"));
   expect(wrapper).toMatchSnapshot();
 });

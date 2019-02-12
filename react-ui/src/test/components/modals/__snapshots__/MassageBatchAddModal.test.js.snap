@@ -302,6 +302,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip=""
                   value={"1970-01-01T07:00:00.000Z"}
                 />
@@ -312,6 +313,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip=""
                   value={"1970-01-01T17:00:00.000Z"}
                 />
@@ -389,6 +391,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip=""
                   value={"1970-01-01T11:00:00.000Z"}
                 />
@@ -399,6 +402,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip=""
                   value={"1970-01-01T12:00:00.000Z"}
                 />
@@ -706,6 +710,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T07:00:00.000Z"}
                   />
@@ -716,6 +721,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T17:00:00.000Z"}
                   />
@@ -794,6 +800,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T11:00:00.000Z"}
                     />
@@ -804,6 +811,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T12:00:00.000Z"}
                     />
@@ -1747,6 +1755,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T07:00:00.000Z"}
                   />
@@ -1757,6 +1766,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T17:00:00.000Z"}
                   />
@@ -1780,6 +1790,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T07:00:00.000Z"}
                   />
@@ -1790,6 +1801,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T17:00:00.000Z"}
                   />
@@ -1818,6 +1830,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T07:00:00.000Z"}
                     />,
@@ -1828,6 +1841,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T17:00:00.000Z"}
                     />,
@@ -1847,6 +1861,7 @@ ShallowWrapper {
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
+                      "timeFormat": "H:mm",
                       "tooltip": "",
                       "value": "1970-01-01T07:00:00.000Z",
                     },
@@ -1865,6 +1880,7 @@ ShallowWrapper {
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
+                      "timeFormat": "H:mm",
                       "tooltip": "",
                       "value": "1970-01-01T17:00:00.000Z",
                     },
@@ -2019,7 +2035,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "39600000",
+            "key": "0_pause_0",
             "nodeType": "function",
             "props": Object {
               "children": <Col
@@ -2045,6 +2061,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T11:00:00.000Z"}
                   />
@@ -2055,6 +2072,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T12:00:00.000Z"}
                   />
@@ -2092,6 +2110,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T11:00:00.000Z"}
                   />
@@ -2102,6 +2121,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T12:00:00.000Z"}
                   />
@@ -2144,6 +2164,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T11:00:00.000Z"}
                     />,
@@ -2154,6 +2175,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T12:00:00.000Z"}
                     />,
@@ -2187,6 +2209,7 @@ ShallowWrapper {
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
+                      "timeFormat": "H:mm",
                       "tooltip": "",
                       "value": "1970-01-01T11:00:00.000Z",
                     },
@@ -2205,6 +2228,7 @@ ShallowWrapper {
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
+                      "timeFormat": "H:mm",
                       "tooltip": "",
                       "value": "1970-01-01T12:00:00.000Z",
                     },
@@ -2549,6 +2573,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T07:00:00.000Z"}
                   />
@@ -2559,6 +2584,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T17:00:00.000Z"}
                   />
@@ -2636,6 +2662,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T11:00:00.000Z"}
                   />
@@ -2646,6 +2673,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
+                    timeFormat="H:mm"
                     tooltip=""
                     value={"1970-01-01T12:00:00.000Z"}
                   />
@@ -2953,6 +2981,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T07:00:00.000Z"}
                     />
@@ -2963,6 +2992,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T17:00:00.000Z"}
                     />
@@ -3041,6 +3071,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T11:00:00.000Z"}
                       />
@@ -3051,6 +3082,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T12:00:00.000Z"}
                       />
@@ -3994,6 +4026,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T07:00:00.000Z"}
                     />
@@ -4004,6 +4037,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T17:00:00.000Z"}
                     />
@@ -4027,6 +4061,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T07:00:00.000Z"}
                     />
@@ -4037,6 +4072,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T17:00:00.000Z"}
                     />
@@ -4065,6 +4101,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T07:00:00.000Z"}
                       />,
@@ -4075,6 +4112,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T17:00:00.000Z"}
                       />,
@@ -4094,6 +4132,7 @@ ShallowWrapper {
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
+                        "timeFormat": "H:mm",
                         "tooltip": "",
                         "value": "1970-01-01T07:00:00.000Z",
                       },
@@ -4112,6 +4151,7 @@ ShallowWrapper {
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
+                        "timeFormat": "H:mm",
                         "tooltip": "",
                         "value": "1970-01-01T17:00:00.000Z",
                       },
@@ -4266,7 +4306,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "39600000",
+              "key": "0_pause_0",
               "nodeType": "function",
               "props": Object {
                 "children": <Col
@@ -4292,6 +4332,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T11:00:00.000Z"}
                     />
@@ -4302,6 +4343,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T12:00:00.000Z"}
                     />
@@ -4339,6 +4381,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T11:00:00.000Z"}
                     />
@@ -4349,6 +4392,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
+                      timeFormat="H:mm"
                       tooltip=""
                       value={"1970-01-01T12:00:00.000Z"}
                     />
@@ -4391,6 +4435,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T11:00:00.000Z"}
                       />,
@@ -4401,6 +4446,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
+                        timeFormat="H:mm"
                         tooltip=""
                         value={"1970-01-01T12:00:00.000Z"}
                       />,
@@ -4434,6 +4480,7 @@ ShallowWrapper {
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
+                        "timeFormat": "H:mm",
                         "tooltip": "",
                         "value": "1970-01-01T11:00:00.000Z",
                       },
@@ -4452,6 +4499,7 @@ ShallowWrapper {
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
+                        "timeFormat": "H:mm",
                         "tooltip": "",
                         "value": "1970-01-01T12:00:00.000Z",
                       },

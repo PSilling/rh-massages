@@ -132,6 +132,7 @@ ShallowWrapper {
               onChange={[Function]}
               onEnterPress={[Function]}
               size="3"
+              timeFormat="H:mm"
               tooltip="Jak dlouhá by měla masáž být"
               value={"1969-12-31T23:30:00.000Z"}
             />
@@ -262,6 +263,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
+                timeFormat="H:mm"
                 tooltip="Jak dlouhá by měla masáž být"
                 value={"1969-12-31T23:30:00.000Z"}
               />
@@ -567,6 +569,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
+                timeFormat="H:mm"
                 tooltip="Jak dlouhá by měla masáž být"
                 value={"1969-12-31T23:30:00.000Z"}
               />,
@@ -584,6 +587,7 @@ ShallowWrapper {
                 "onChange": [Function],
                 "onEnterPress": [Function],
                 "size": "3",
+                "timeFormat": "H:mm",
                 "tooltip": "Jak dlouhá by měla masáž být",
                 "value": "1969-12-31T23:30:00.000Z",
               },
@@ -749,6 +753,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
+                timeFormat="H:mm"
                 tooltip="Jak dlouhá by měla masáž být"
                 value={"1969-12-31T23:30:00.000Z"}
               />
@@ -879,6 +884,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip="Jak dlouhá by měla masáž být"
                   value={"1969-12-31T23:30:00.000Z"}
                 />
@@ -1184,6 +1190,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
+                  timeFormat="H:mm"
                   tooltip="Jak dlouhá by měla masáž být"
                   value={"1969-12-31T23:30:00.000Z"}
                 />,
@@ -1201,6 +1208,7 @@ ShallowWrapper {
                   "onChange": [Function],
                   "onEnterPress": [Function],
                   "size": "3",
+                  "timeFormat": "H:mm",
                   "tooltip": "Jak dlouhá by měla masáž být",
                   "value": "1969-12-31T23:30:00.000Z",
                 },

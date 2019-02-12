@@ -612,8 +612,8 @@ const myLocalize = new Localize({
   Su_Mo_Tu_We_Th_Fr_Sa: {
     cs: "Ne_Po_Út_St_Čt_Pá_So"
   },
-  "hh:mm A": {
-    cs: "HH:mm"
+  "h:mm A": {
+    cs: "H:mm"
   },
   "DD/MM/YYYY": {
     cs: "DD. MM. YYYY"

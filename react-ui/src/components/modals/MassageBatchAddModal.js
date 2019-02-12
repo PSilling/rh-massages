@@ -548,6 +548,7 @@ class MassageBatchAddModal extends Component {
           value={this.state.massageDuration}
           onChange={this.changeMassageDuration}
           onEnterPress={this.changeSettings}
+          timeFormat="H:mm"
           dateFormat={false}
         />
         <LabeledDatetime
@@ -557,6 +558,7 @@ class MassageBatchAddModal extends Component {
           onChange={this.changeNormalPause}
           onEnterPress={this.changeSettings}
           dateFormat={false}
+          timeFormat="H:mm"
           tooltip={_t.translate("Length of the standard break after a massage")}
         />
       </Row>
@@ -629,6 +631,7 @@ class MassageBatchAddModal extends Component {
               value={this.state.rules[this.state.index].startTime}
               onChange={this.changeStartTime}
               onEnterPress={this.addMassages}
+              timeFormat="H:mm"
               dateFormat={false}
               disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
             />
@@ -638,6 +641,7 @@ class MassageBatchAddModal extends Component {
               value={this.state.rules[this.state.index].endTime}
               onChange={this.changeEndTime}
               onEnterPress={this.addMassages}
+              timeFormat="H:mm"
               dateFormat={false}
               disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
             />
@@ -663,7 +667,7 @@ class MassageBatchAddModal extends Component {
       </Row>
 
       {this.state.rules[this.state.index].bigPauses.map((item, index) => (
-        <Row key={item.start + index}>
+        <Row key={`${this.state.index}_pause_${index}`}>
           <Col md="12">
             <Row>
               <LabeledDatetime
@@ -672,6 +676,7 @@ class MassageBatchAddModal extends Component {
                 value={item.start}
                 onChange={start => this.changeBigPauseStart(index, start)}
                 onEnterPress={this.addMassages}
+                timeFormat="H:mm"
                 dateFormat={false}
                 disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
               />
@@ -681,6 +686,7 @@ class MassageBatchAddModal extends Component {
                 value={item.end}
                 onChange={end => this.changeBigPauseEnd(index, end)}
                 onEnterPress={this.addMassages}
+                timeFormat="H:mm"
                 dateFormat={false}
                 disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
               />

@@ -41,7 +41,7 @@ moment.updateLocale("en", {
   weekdaysShort: _t.translate("Sun_Mon_Tue_Wed_Thu_Fri_Sat").split("_"),
   weekdaysMin: _t.translate("Su_Mo_Tu_We_Th_Fr_Sa").split("_"),
   longDateFormat: {
-    LT: _t.translate("hh:mm A"),
+    LT: _t.translate("h:mm A"),
     L: _t.translate("DD/MM/YYYY")
   },
   week: {

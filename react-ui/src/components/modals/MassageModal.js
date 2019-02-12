@@ -24,7 +24,7 @@ import Util from "../../util/Util";
 class MassageModal extends Component {
   state = {
     date: moment().add(1, "hours"),
-    time: moment("00:30", "HH:mm"),
+    time: moment("00:30", "H:mm"),
     masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true }
   };
 
@@ -194,6 +194,7 @@ class MassageModal extends Component {
           onChange={this.changeTime}
           onEnterPress={this.handleEnterPress}
           tooltip={_t.translate("How long should the massage be")}
+          timeFormat="H:mm"
           dateFormat={false}
         />
       </Row>

@@ -151,4 +151,19 @@ public class MassageResourceTest {
     assertNotNull(massage);
     assertEquals(this.massage, massage);
   }
+
+  /**
+   * Test whether fetch request for a given {@link Massage} works as intended.
+   */
+  @Test
+  public void delete() {
+    Massage massage =
+        RULE.target("/massages/1")
+            .request()
+            .header("Authorization", "Bearer TOKEN")
+            .get(Massage.class);
+
+    assertNotNull(massage);
+    assertEquals(this.massage, massage);
+  }
 }
