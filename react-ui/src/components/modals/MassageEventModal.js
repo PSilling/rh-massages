@@ -134,19 +134,20 @@ class MassageEventModal extends Component {
             <dt>{_t.translate("Client")}</dt>
             {Util.isEmpty(this.props.event.massage.client) ? (
               <dd className={this.definitionClass}>
-                <p className="text-success">
+                <p style={{ color: Util.SUCCESS_COLOR }}>
                   <strong>{_t.translate("Free")}</strong>
                 </p>
               </dd>
             ) : (
               <dd className={this.definitionClass}>
                 <p
-                  className={
-                    !this.props.allowDeletion ||
-                    (this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub())
-                      ? "text-warning"
-                      : "text-danger"
-                  }
+                  style={{
+                    color:
+                      !this.props.allowDeletion ||
+                      (this.props.allowEditation && this.props.event.massage.client.sub === Auth.getSub())
+                        ? Util.WARNING_COLOR
+                        : Util.ERROR_COLOR
+                  }}
                 >
                   <strong>{this.props.event.massage.client.email}</strong>
                 </p>
@@ -243,9 +244,9 @@ MassageEventModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   /** function called on primary label action */
   onConfirm: PropTypes.func.isRequired,
-  /** whether the delete button should be shown (Admin only) */
+  /** whether the delete button should be shown */
   allowDeletion: PropTypes.bool,
-  /** whether the edit button should be shown (Admin only) */
+  /** whether the edit button should be shown */
   allowEditation: PropTypes.bool,
   /** whether the primary button should be disabled */
   disabled: PropTypes.bool,

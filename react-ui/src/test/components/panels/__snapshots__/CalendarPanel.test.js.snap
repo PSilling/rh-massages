@@ -4,7 +4,6 @@ exports[`renders content with correct props and funcionality 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CalendarPanel
-    allowDeletion={true}
     allowEditation={true}
     events={
       Array [
@@ -132,6 +131,7 @@ ShallowWrapper {
       }
     }
     onSelect={[MockFunction]}
+    onSelectDay={[MockFunction]}
     selectEvents={true}
     selected={Array []}
   />,
@@ -168,14 +168,21 @@ ShallowWrapper {
             <CalendarToolbar
               leftAction={[Function]}
               leftDisabled={false}
-              month="Invalid date"
+              month="January 1970"
               monthActive={true}
               onViewChange={[Function]}
               rightAction={[Function]}
               rightDisabled={false}
             />
             <ForwardRef
-              date={null}
+              components={
+                Object {
+                  "work_week": Object {
+                    "header": [Function],
+                  },
+                }
+              }
+              date={1970-01-01T00:00:00.000Z}
               endAccessor={[Function]}
               eventPropGetter={[Function]}
               events={
@@ -248,6 +255,11 @@ ShallowWrapper {
                     },
                   },
                 ]
+              }
+              formats={
+                Object {
+                  "dayFormat": [Function],
+                }
               }
               localizer={
                 DateLocalizer {
@@ -394,14 +406,21 @@ ShallowWrapper {
             <CalendarToolbar
               leftAction={[Function]}
               leftDisabled={false}
-              month="Invalid date"
+              month="January 1970"
               monthActive={true}
               onViewChange={[Function]}
               rightAction={[Function]}
               rightDisabled={false}
             />
             <ForwardRef
-              date={null}
+              components={
+                Object {
+                  "work_week": Object {
+                    "header": [Function],
+                  },
+                }
+              }
+              date={1970-01-01T00:00:00.000Z}
               endAccessor={[Function]}
               eventPropGetter={[Function]}
               events={
@@ -475,6 +494,11 @@ ShallowWrapper {
                   },
                 ]
               }
+              formats={
+                Object {
+                  "dayFormat": [Function],
+                }
+              }
               localizer={
                 DateLocalizer {
                   "format": [Function],
@@ -546,14 +570,21 @@ ShallowWrapper {
               <CalendarToolbar
                 leftAction={[Function]}
                 leftDisabled={false}
-                month="Invalid date"
+                month="January 1970"
                 monthActive={true}
                 onViewChange={[Function]}
                 rightAction={[Function]}
                 rightDisabled={false}
               />,
               <ForwardRef
-                date={null}
+                components={
+                  Object {
+                    "work_week": Object {
+                      "header": [Function],
+                    },
+                  }
+                }
+                date={1970-01-01T00:00:00.000Z}
                 endAccessor={[Function]}
                 eventPropGetter={[Function]}
                 events={
@@ -626,6 +657,11 @@ ShallowWrapper {
                       },
                     },
                   ]
+                }
+                formats={
+                  Object {
+                    "dayFormat": [Function],
+                  }
                 }
                 localizer={
                   DateLocalizer {
@@ -705,7 +741,7 @@ ShallowWrapper {
               "props": Object {
                 "leftAction": [Function],
                 "leftDisabled": false,
-                "month": "Invalid date",
+                "month": "January 1970",
                 "monthActive": true,
                 "onViewChange": [Function],
                 "rightAction": [Function],
@@ -720,7 +756,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "date": null,
+                "components": Object {
+                  "work_week": Object {
+                    "header": [Function],
+                  },
+                },
+                "date": 1970-01-01T00:00:00.000Z,
                 "endAccessor": [Function],
                 "eventPropGetter": [Function],
                 "events": Array [
@@ -792,6 +833,9 @@ ShallowWrapper {
                     },
                   },
                 ],
+                "formats": Object {
+                  "dayFormat": [Function],
+                },
                 "localizer": DateLocalizer {
                   "format": [Function],
                   "formats": Object {
@@ -1103,14 +1147,21 @@ ShallowWrapper {
               <CalendarToolbar
                 leftAction={[Function]}
                 leftDisabled={false}
-                month="Invalid date"
+                month="January 1970"
                 monthActive={true}
                 onViewChange={[Function]}
                 rightAction={[Function]}
                 rightDisabled={false}
               />
               <ForwardRef
-                date={null}
+                components={
+                  Object {
+                    "work_week": Object {
+                      "header": [Function],
+                    },
+                  }
+                }
+                date={1970-01-01T00:00:00.000Z}
                 endAccessor={[Function]}
                 eventPropGetter={[Function]}
                 events={
@@ -1183,6 +1234,11 @@ ShallowWrapper {
                       },
                     },
                   ]
+                }
+                formats={
+                  Object {
+                    "dayFormat": [Function],
+                  }
                 }
                 localizer={
                   DateLocalizer {
@@ -1329,14 +1385,21 @@ ShallowWrapper {
               <CalendarToolbar
                 leftAction={[Function]}
                 leftDisabled={false}
-                month="Invalid date"
+                month="January 1970"
                 monthActive={true}
                 onViewChange={[Function]}
                 rightAction={[Function]}
                 rightDisabled={false}
               />
               <ForwardRef
-                date={null}
+                components={
+                  Object {
+                    "work_week": Object {
+                      "header": [Function],
+                    },
+                  }
+                }
+                date={1970-01-01T00:00:00.000Z}
                 endAccessor={[Function]}
                 eventPropGetter={[Function]}
                 events={
@@ -1410,6 +1473,11 @@ ShallowWrapper {
                     },
                   ]
                 }
+                formats={
+                  Object {
+                    "dayFormat": [Function],
+                  }
+                }
                 localizer={
                   DateLocalizer {
                     "format": [Function],
@@ -1481,14 +1549,21 @@ ShallowWrapper {
                 <CalendarToolbar
                   leftAction={[Function]}
                   leftDisabled={false}
-                  month="Invalid date"
+                  month="January 1970"
                   monthActive={true}
                   onViewChange={[Function]}
                   rightAction={[Function]}
                   rightDisabled={false}
                 />,
                 <ForwardRef
-                  date={null}
+                  components={
+                    Object {
+                      "work_week": Object {
+                        "header": [Function],
+                      },
+                    }
+                  }
+                  date={1970-01-01T00:00:00.000Z}
                   endAccessor={[Function]}
                   eventPropGetter={[Function]}
                   events={
@@ -1561,6 +1636,11 @@ ShallowWrapper {
                         },
                       },
                     ]
+                  }
+                  formats={
+                    Object {
+                      "dayFormat": [Function],
+                    }
                   }
                   localizer={
                     DateLocalizer {
@@ -1640,7 +1720,7 @@ ShallowWrapper {
                 "props": Object {
                   "leftAction": [Function],
                   "leftDisabled": false,
-                  "month": "Invalid date",
+                  "month": "January 1970",
                   "monthActive": true,
                   "onViewChange": [Function],
                   "rightAction": [Function],
@@ -1655,7 +1735,12 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "date": null,
+                  "components": Object {
+                    "work_week": Object {
+                      "header": [Function],
+                    },
+                  },
+                  "date": 1970-01-01T00:00:00.000Z,
                   "endAccessor": [Function],
                   "eventPropGetter": [Function],
                   "events": Array [
@@ -1727,6 +1812,9 @@ ShallowWrapper {
                       },
                     },
                   ],
+                  "formats": Object {
+                    "dayFormat": [Function],
+                  },
                   "localizer": DateLocalizer {
                     "format": [Function],
                     "formats": Object {

@@ -150,6 +150,25 @@ class MassagesArchive extends Component {
     });
   };
 
+  handleDayEventSelect = date => {
+    const start = moment(date);
+    const end = moment(date)
+      .clone()
+      .endOf("day");
+
+    this.setState(prevState => {
+      const selected = [...prevState.selected];
+
+      for (let i = 0; i < prevState.events.length; i++) {
+        if (moment(prevState.events[i].massage.date).isBetween(start, end)) {
+          selected.push(prevState.events[i].massage);
+        }
+      }
+
+      return { selected };
+    });
+  };
+
   changeSelectEvents = () => {
     this.setState(prevState => ({ selected: [], selectEvents: !prevState.selectEvents }));
   };
@@ -232,6 +251,7 @@ class MassagesArchive extends Component {
           onDelete={this.deleteMassage}
           onDateChange={this.changeTimeRange}
           onSelect={this.handleEventSelect}
+          onSelectDay={this.handleDayEventSelect}
         />
       </div>
     );

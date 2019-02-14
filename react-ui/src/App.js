@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-notifications/lib/notifications.css";
 import "react-datetime/css/react-datetime.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./styles/components/react-big-calendar.css";
 
 // view imports
 import Facilities from "./views/Facilities";

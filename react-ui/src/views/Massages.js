@@ -238,6 +238,27 @@ class Massages extends Component {
     });
   };
 
+  handleDayEventSelect = date => {
+    const start = moment(date);
+    const end = moment(date)
+      .clone()
+      .endOf("day");
+
+    this.setState(prevState => {
+      const selected = [...prevState.selected];
+
+      for (let i = 0; i < prevState.events.length; i++) {
+        if (Auth.isAdmin() || Auth.getSub() === prevState.events[i].massage.masseuse.sub) {
+          if (moment(prevState.events[i].massage.date).isBetween(start, end)) {
+            selected.push(prevState.events[i].massage);
+          }
+        }
+      }
+
+      return { selected };
+    });
+  };
+
   changeFreeOnly = () => {
     this.setState(prevState => ({ freeOnly: !prevState.freeOnly, loading: true }));
     setTimeout(() => this.getMassages(), 3);
@@ -331,6 +352,10 @@ class Massages extends Component {
       return;
     }
 
+    if (moment(slot.start).isSame(slot.end)) {
+      return;
+    }
+
     const exampleMassage = {
       generated: true,
       date: slot.start,
@@ -339,6 +364,7 @@ class Massages extends Component {
       client: null,
       facility: { id: this.state.facilities[this.state.index].id }
     };
+
     setTimeout(
       () =>
         this.setState(prevState => ({
@@ -450,6 +476,7 @@ class Massages extends Component {
                 onDelete={this.deleteMassage}
                 onDateChange={this.changeTimeRange}
                 onSelect={this.handleEventSelect}
+                onSelectDay={this.handleDayEventSelect}
               />
             </div>
           ) : (

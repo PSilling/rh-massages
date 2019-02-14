@@ -10,6 +10,7 @@ import BigCalendar from "react-big-calendar";
 // component imports
 import CalendarToolbar from "../util/CalendarToolbar";
 import MassageEventModal from "../modals/MassageEventModal";
+import WeekdayHeader from "./components/WeekdayHeader";
 
 // util imports
 import Auth from "../../util/Auth";
@@ -38,6 +39,10 @@ class CalendarPanel extends Component {
     time: _t.translate("Time"),
     event: _t.translate("Event"),
     showMore: total => `+ ${_t.translate("Show more")} (${total})`
+  };
+
+  formats = {
+    dayFormat: (date, culture, local) => local.format(date, _t.translate("DD ddd"), culture)
   };
 
   eventStyler = event => ({
@@ -113,11 +118,6 @@ class CalendarPanel extends Component {
     }
   };
 
-  onNavigate = (date, view) => {
-    this.props.onDateChange(moment(date), view);
-    this.setState({ date });
-  };
-
   editEvent = () => {
     this.props.onEdit(this.state.selectedEvent.massage);
     this.setState({ active: false });
@@ -191,7 +191,7 @@ class CalendarPanel extends Component {
               date={this.state.date}
               events={this.props.events}
               onView={view => this.props.onDateChange(moment(this.state.date), view)}
-              onNavigate={this.onNavigate}
+              onNavigate={() => {}}
               view={this.state.view}
               views={["work_week", "month"]}
               style={{ height: "85vh" }}
@@ -208,6 +208,13 @@ class CalendarPanel extends Component {
               popup
               toolbar={false}
               localizer={localizer}
+              formats={this.formats}
+              components={{
+                work_week: {
+                  header: props =>
+                    WeekdayHeader(props, Auth.isAdminOrMasseur() && this.props.selectEvents, this.props.onSelectDay)
+                }
+              }}
             />
           </Col>
         </Row>
@@ -301,6 +308,8 @@ CalendarPanel.propTypes = {
   onDelete: PropTypes.func.isRequired,
   /** function called on event selection */
   onSelect: PropTypes.func.isRequired,
+  /** function called on full day event selection */
+  onSelectDay: PropTypes.func.isRequired,
   /** all currently selected events */
   selected: PropTypes.arrayOf(
     PropTypes.shape({
@@ -333,8 +342,6 @@ CalendarPanel.propTypes = {
   ).isRequired,
   /** whether multi event selection should be activated */
   selectEvents: PropTypes.bool.isRequired,
-  /** whether the delete button should be shown (Admin only) */
-  allowDeletion: PropTypes.bool,
   /** whether the edit button should be shown (Admin only) */
   allowEditation: PropTypes.bool,
   /** number of currently used Massage time in minutes */
@@ -350,7 +357,6 @@ CalendarPanel.propTypes = {
 };
 
 CalendarPanel.defaultProps = {
-  allowDeletion: true,
   allowEditation: true,
   massageMinutes: 0,
   onAdd() {},

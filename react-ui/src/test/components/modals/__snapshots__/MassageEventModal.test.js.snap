@@ -136,7 +136,11 @@ ShallowWrapper {
                 className="mb-3"
               >
                 <p
-                  className="text-success"
+                  style={
+                    Object {
+                      "color": "#2fad2f",
+                    }
+                  }
                 >
                   <strong>
                     Volno
@@ -511,7 +515,11 @@ ShallowWrapper {
                   className="mb-3"
                 >
                   <p
-                    className="text-success"
+                    style={
+                      Object {
+                        "color": "#2fad2f",
+                      }
+                    }
                   >
                     <strong>
                       Volno
@@ -618,7 +626,11 @@ ShallowWrapper {
                   className="mb-3"
                 >
                   <p
-                    className="text-success"
+                    style={
+                      Object {
+                        "color": "#2fad2f",
+                      }
+                    }
                   >
                     <strong>
                       Volno
@@ -666,7 +678,11 @@ ShallowWrapper {
                     className="mb-3"
                   >
                     <p
-                      className="text-success"
+                      style={
+                        Object {
+                          "color": "#2fad2f",
+                        }
+                      }
                     >
                       <strong>
                         Volno
@@ -740,7 +756,11 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": <p
-                      className="text-success"
+                      style={
+                        Object {
+                          "color": "#2fad2f",
+                        }
+                      }
                     >
                       <strong>
                         Volno
@@ -757,7 +777,9 @@ ShallowWrapper {
                       "children": <strong>
                         Volno
                       </strong>,
-                      "className": "text-success",
+                      "style": Object {
+                        "color": "#2fad2f",
+                      },
                     },
                     "ref": null,
                     "rendered": Object {
@@ -1233,7 +1255,11 @@ ShallowWrapper {
                   className="mb-3"
                 >
                   <p
-                    className="text-success"
+                    style={
+                      Object {
+                        "color": "#2fad2f",
+                      }
+                    }
                   >
                     <strong>
                       Volno
@@ -1608,7 +1634,11 @@ ShallowWrapper {
                     className="mb-3"
                   >
                     <p
-                      className="text-success"
+                      style={
+                        Object {
+                          "color": "#2fad2f",
+                        }
+                      }
                     >
                       <strong>
                         Volno
@@ -1715,7 +1745,11 @@ ShallowWrapper {
                     className="mb-3"
                   >
                     <p
-                      className="text-success"
+                      style={
+                        Object {
+                          "color": "#2fad2f",
+                        }
+                      }
                     >
                       <strong>
                         Volno
@@ -1763,7 +1797,11 @@ ShallowWrapper {
                       className="mb-3"
                     >
                       <p
-                        className="text-success"
+                        style={
+                          Object {
+                            "color": "#2fad2f",
+                          }
+                        }
                       >
                         <strong>
                           Volno
@@ -1837,7 +1875,11 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": <p
-                        className="text-success"
+                        style={
+                          Object {
+                            "color": "#2fad2f",
+                          }
+                        }
                       >
                         <strong>
                           Volno
@@ -1854,7 +1896,9 @@ ShallowWrapper {
                         "children": <strong>
                           Volno
                         </strong>,
-                        "className": "text-success",
+                        "style": Object {
+                          "color": "#2fad2f",
+                        },
                       },
                       "ref": null,
                       "rendered": Object {

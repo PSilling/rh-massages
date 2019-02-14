@@ -618,6 +618,9 @@ const myLocalize = new Localize({
   "DD/MM/YYYY": {
     cs: "DD. MM. YYYY"
   },
+  "DD ddd": {
+    cs: "ddd DD."
+  },
   "7": {
     cs: "1"
   },

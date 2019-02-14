@@ -97,6 +97,7 @@ test("renders content with correct props and funcionality", () => {
       onDelete={testDeleteFunction}
       onDateChange={testDateChangeFunction}
       onSelect={testSelectFunction}
+      onSelectDay={testSelectFunction}
     />
   );
 
@@ -117,8 +118,7 @@ test("renders content with correct props and funcionality", () => {
   expect(calendar.props().events).toBe(testEvents);
   expect(calendar.props().views).toEqual(["work_week", "month"]);
   calendar.props().onView(null);
-  calendar.props().onNavigate(null, null);
-  expect(testDateChangeFunction).toHaveBeenCalledTimes(5);
+  expect(testDateChangeFunction).toHaveBeenCalledTimes(4);
   expect(calendar.props().titleAccessor(testEvents[0])).toBe(testEvents[0].massage.masseuse.name);
   expect(calendar.props().startAccessor(testEvents[0])).toEqual(testEvents[0].massage.date);
   expect(calendar.props().endAccessor(testEvents[0])).toEqual(testEvents[0].massage.ending);
@@ -146,6 +146,7 @@ test("renders content with correct props and funcionality", () => {
   expect(testDeleteFunction).toHaveBeenLastCalledWith(testEvents[2].massage.id);
   expect(modal.props().onClose).toBe(wrapper.instance().handleToggle);
 
+  wrapper.instance().setState({ date: new Date(0) });
   testDateChangeFunction.mockClear();
 
   expect(wrapper).toMatchSnapshot();

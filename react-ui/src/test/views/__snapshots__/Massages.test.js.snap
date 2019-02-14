@@ -132,7 +132,6 @@ ShallowWrapper {
               </Col>
             </Row>
             <CalendarPanel
-              allowDeletion={true}
               allowEditation={true}
               events={Array []}
               massageMinutes={0}
@@ -143,6 +142,7 @@ ShallowWrapper {
               onDelete={[Function]}
               onEdit={[Function]}
               onSelect={[Function]}
+              onSelectDay={[Function]}
               selectEvents={false}
               selected={Array []}
             />
@@ -276,7 +276,6 @@ ShallowWrapper {
               </Col>
             </Row>
             <CalendarPanel
-              allowDeletion={true}
               allowEditation={true}
               events={Array []}
               massageMinutes={0}
@@ -287,6 +286,7 @@ ShallowWrapper {
               onDelete={[Function]}
               onEdit={[Function]}
               onSelect={[Function]}
+              onSelectDay={[Function]}
               selectEvents={false}
               selected={Array []}
             />
@@ -405,7 +405,6 @@ ShallowWrapper {
                 </Col>
               </Row>,
               <CalendarPanel
-                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -416,6 +415,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
+                onSelectDay={[Function]}
                 selectEvents={false}
                 selected={Array []}
               />,
@@ -817,7 +817,6 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "allowDeletion": true,
                 "allowEditation": true,
                 "events": Array [],
                 "massageMinutes": 0,
@@ -828,6 +827,7 @@ ShallowWrapper {
                 "onDelete": [Function],
                 "onEdit": [Function],
                 "onSelect": [Function],
+                "onSelectDay": [Function],
                 "selectEvents": false,
                 "selected": Array [],
               },
@@ -965,7 +965,6 @@ ShallowWrapper {
                 </Col>
               </Row>
               <CalendarPanel
-                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -976,6 +975,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
+                onSelectDay={[Function]}
                 selectEvents={false}
                 selected={Array []}
               />
@@ -1109,7 +1109,6 @@ ShallowWrapper {
                 </Col>
               </Row>
               <CalendarPanel
-                allowDeletion={true}
                 allowEditation={true}
                 events={Array []}
                 massageMinutes={0}
@@ -1120,6 +1119,7 @@ ShallowWrapper {
                 onDelete={[Function]}
                 onEdit={[Function]}
                 onSelect={[Function]}
+                onSelectDay={[Function]}
                 selectEvents={false}
                 selected={Array []}
               />
@@ -1238,7 +1238,6 @@ ShallowWrapper {
                   </Col>
                 </Row>,
                 <CalendarPanel
-                  allowDeletion={true}
                   allowEditation={true}
                   events={Array []}
                   massageMinutes={0}
@@ -1249,6 +1248,7 @@ ShallowWrapper {
                   onDelete={[Function]}
                   onEdit={[Function]}
                   onSelect={[Function]}
+                  onSelectDay={[Function]}
                   selectEvents={false}
                   selected={Array []}
                 />,
@@ -1650,7 +1650,6 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "allowDeletion": true,
                   "allowEditation": true,
                   "events": Array [],
                   "massageMinutes": 0,
@@ -1661,6 +1660,7 @@ ShallowWrapper {
                   "onDelete": [Function],
                   "onEdit": [Function],
                   "onSelect": [Function],
+                  "onSelectDay": [Function],
                   "selectEvents": false,
                   "selected": Array [],
                 },

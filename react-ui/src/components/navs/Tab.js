@@ -28,19 +28,18 @@ class Tab extends Component {
           onClick={this.props.active ? () => {} : this.props.onClick}
         >
           {this.props.label}
-          {this.props.onRemoveClick !== null &&
-            this.props.active && (
-              <span
-                className="ml-2"
-                style={{ cursor: "pointer" }}
-                role="button"
-                tabIndex="-2"
-                onClick={this.props.onRemoveClick}
-                onKeyPress={this.handleKeyPress}
-              >
-                &times;
-              </span>
-            )}
+          {this.props.onRemoveClick !== null && this.props.active && (
+            <span
+              className="ml-2"
+              style={{ cursor: "pointer" }}
+              role="button"
+              tabIndex="-2"
+              onClick={this.props.onRemoveClick}
+              onKeyPress={this.handleKeyPress}
+            >
+              &times;
+            </span>
+          )}
         </NavLink>
       </NavItem>
     );
