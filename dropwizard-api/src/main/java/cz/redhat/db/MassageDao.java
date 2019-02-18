@@ -183,6 +183,18 @@ public class MassageDao extends AbstractDAO<Massage> {
   }
 
   /**
+   * Creates a new session that finds a {@link Massage} in the database based on their masseuse.
+   * The {@link List} is ordered by date and doesn't include old {@link Massage}s.
+   *
+   * @param masseuse masseuse of the {@link Massage}s that are to be found
+   * @return {@link List} of all found {@link Massage}s
+   */
+  @SuppressWarnings("unchecked")
+  public List<Massage> findNewByMasseuse(Client masseuse) {
+    return list(namedQuery("Massage.findNewByMasseuse").setParameter("masseuse", masseuse));
+  }
+
+  /**
    * Creates a new session that finds a {@link Massage} in the database based on their {@link
    * Client}. The {@link List} is ordered by date and doesn't include old {@link Massage}s.
    *

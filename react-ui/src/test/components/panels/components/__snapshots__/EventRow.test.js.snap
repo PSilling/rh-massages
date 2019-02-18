@@ -79,7 +79,9 @@ ShallowWrapper {
         <td>
           1:00 AM – 1:00 AM
         </td>,
-        <td>
+        <td
+          colSpan="2"
+        >
           <strong
             onClick={[Function]}
             onKeyPress={[Function]}
@@ -94,7 +96,9 @@ ShallowWrapper {
             Masáž v test
           </strong>
           <br />
-          Masseuse Test
+          <span>
+            Masseuse Test
+          </span>
         </td>,
       ],
     },
@@ -142,9 +146,12 @@ ShallowWrapper {
               Masáž v test
             </strong>,
             <br />,
-            "Masseuse Test",
+            <span>
+              Masseuse Test
+            </span>,
             false,
           ],
+          "colSpan": "2",
         },
         "ref": null,
         "rendered": Array [
@@ -175,7 +182,17 @@ ShallowWrapper {
             "rendered": null,
             "type": "br",
           },
-          "Masseuse Test",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Masseuse Test",
+            },
+            "ref": null,
+            "rendered": "Masseuse Test",
+            "type": "span",
+          },
           false,
         ],
         "type": "td",
@@ -196,7 +213,9 @@ ShallowWrapper {
           <td>
             1:00 AM – 1:00 AM
           </td>,
-          <td>
+          <td
+            colSpan="2"
+          >
             <strong
               onClick={[Function]}
               onKeyPress={[Function]}
@@ -211,7 +230,9 @@ ShallowWrapper {
               Masáž v test
             </strong>
             <br />
-            Masseuse Test
+            <span>
+              Masseuse Test
+            </span>
           </td>,
         ],
       },
@@ -259,9 +280,12 @@ ShallowWrapper {
                 Masáž v test
               </strong>,
               <br />,
-              "Masseuse Test",
+              <span>
+                Masseuse Test
+              </span>,
               false,
             ],
+            "colSpan": "2",
           },
           "ref": null,
           "rendered": Array [
@@ -292,7 +316,17 @@ ShallowWrapper {
               "rendered": null,
               "type": "br",
             },
-            "Masseuse Test",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Masseuse Test",
+              },
+              "ref": null,
+              "rendered": "Masseuse Test",
+              "type": "span",
+            },
             false,
           ],
           "type": "td",

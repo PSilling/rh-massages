@@ -205,11 +205,11 @@ const myLocalize = new Localize({
   "this month": {
     cs: "tento měsíc"
   },
-  "chosen month": {
-    cs: "zvolený měsíc"
-  },
   "next month": {
     cs: "další měsíc"
+  },
+  all: {
+    cs: "všechny"
   },
   "custom:": {
     cs: "vlastní:"
@@ -246,9 +246,6 @@ const myLocalize = new Localize({
   },
   Previous: {
     cs: "Předchozí"
-  },
-  Filtering: {
-    cs: "Filtrování"
   },
   "Legend:": {
     cs: "Legenda:"
@@ -350,8 +347,8 @@ const myLocalize = new Localize({
   "Length of the standard break after a massage": {
     cs: "Délka standardní přestávky po masáží"
   },
-  "Print massage schedule": {
-    cs: "Tisk rozpisu masáží"
+  "Print my massage schedule": {
+    cs: "Tisk rozpisu mých masáží"
   },
   "Delete selected massages": {
     cs: "Smazat vybrané masáže"
@@ -364,9 +361,6 @@ const myLocalize = new Localize({
   },
   "Display only free massages": {
     cs: "Zobrazit pouze volné masáže"
-  },
-  "Masseuse, masseur or client name to use as a massages filter": {
-    cs: "Masérka, masér anebo klient pro filtrování masáží"
   },
   "Ignore this day when creating the massages": {
     cs: "Ignorovat tento den při tvorbě masáží"

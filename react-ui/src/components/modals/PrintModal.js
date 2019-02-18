@@ -8,13 +8,11 @@ import Datetime from "react-datetime";
 import moment from "moment";
 
 // component imports
-import LabeledInput from "../formitems/LabeledInput";
 import ModalActions from "../buttons/ModalActions";
 import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
-import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
@@ -24,16 +22,17 @@ class PrintModal extends Component {
   state = {
     active: false,
     checkedRadio: 0,
-    filter: "",
     from: moment(),
     to: moment().endOf("day")
   };
 
-  radios = ["just today", "this week", "this month", "chosen month", "custom:"];
+  radios = ["just today", "this week", "this month", "all", "custom:"];
 
   printMassages = () => {
     let from;
     let to;
+    let skipTimeCheck = false;
+
     switch (this.state.checkedRadio) {
       case 0:
         from = moment();
@@ -48,8 +47,7 @@ class PrintModal extends Component {
         to = moment().endOf("month");
         break;
       case 3:
-        from = this.props.date.clone().startOf("month");
-        to = this.props.date.endOf("month");
+        skipTimeCheck = true;
         break;
       case 4:
         ({ to, from } = this.state);
@@ -58,26 +56,22 @@ class PrintModal extends Component {
         Util.notify("error", "", _t.translate("An error occured!"));
     }
 
-    Fetch.get(
-      `${Util.FACILITIES_URL + this.props.facilityId}/massages?search=${this.state.filter}&from=${moment(from).unix() *
-        1000}&to=${moment(to).unix() * 1000}`,
-      json => {
-        if (json !== undefined && json.length !== 0) {
-          this.props.onPrint(json.massages);
-          setTimeout(() => window.print(), 5);
-          setTimeout(() => this.props.onPrint(null), 10);
-        }
-        this.toggleModal();
+    const printMassages = [];
+
+    for (let i = 0; i < this.props.events.length; i++) {
+      if (skipTimeCheck || moment(this.props.events[i].massage.date).isBetween(from, to)) {
+        printMassages.push(this.props.events[i].massage);
       }
-    );
+    }
+
+    this.props.onPrint(printMassages);
+    setTimeout(() => window.print(), 10);
+    setTimeout(() => this.props.onPrint(null), 15);
+    this.toggleModal();
   };
 
   changeCheck = id => {
     this.setState({ checkedRadio: id });
-  };
-
-  changeFilter = event => {
-    this.setState({ filter: event.target.value });
   };
 
   changeFrom = date => {
@@ -166,20 +160,6 @@ class PrintModal extends Component {
         </Col>
       </Row>
 
-      <Row>
-        <LabeledInput
-          size="8"
-          label={_t.translate("Filtering")}
-          value={this.state.filter}
-          onChange={this.changeFilter}
-          onEnterPress={this.printMassages}
-          tooltip={_t.translate("Masseuse, masseur or client name to use as a massages filter")}
-          type="text"
-          maxLength="128"
-          options={this.props.masseuseNames}
-        />
-      </Row>
-
       <ModalActions primaryLabel={_t.translate("Print")} onProceed={this.printMassages} onClose={this.toggleModal} />
     </ModalBody>
   );
@@ -194,37 +174,60 @@ class PrintModal extends Component {
     );
 
   render() {
-    const { date, facilityId, onPrint, masseuseNames, withPortal, ...rest } = this.props;
+    const { events, onPrint, withPortal, ...rest } = this.props;
     return (
-      <span>
+      <div className="no-print float-right">
         <TooltipIconButton
           {...rest}
           icon="print"
-          tooltip={_t.translate("Print massage schedule")}
+          tooltip={_t.translate("Print my massage schedule")}
           onClick={this.toggleModal}
         />
 
         {this.state.active && this.createModal()}
-      </span>
+      </div>
     );
   }
 }
 
 PrintModal.propTypes = {
-  /** current date selected in the calendar */
-  date: PropTypes.instanceOf(moment).isRequired,
-  /** ID of the selected Facility */
-  facilityId: PropTypes.number.isRequired,
+  /** massage events available for printing */
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      bgColor: PropTypes.string,
+      massage: PropTypes.shape({
+        id: PropTypes.number,
+        masseuse: PropTypes.shape({
+          email: PropTypes.string,
+          masseur: PropTypes.bool,
+          name: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool,
+          surname: PropTypes.string
+        }),
+        date: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
+        ending: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Date)]),
+        client: PropTypes.shape({
+          email: PropTypes.string,
+          name: PropTypes.string,
+          surname: PropTypes.string,
+          sub: PropTypes.string,
+          subscribed: PropTypes.bool
+        }),
+        facility: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        })
+      })
+    })
+  ).isRequired,
   /** function called on print action */
   onPrint: PropTypes.func.isRequired,
-  /** names of Massage masseuses in the portal */
-  masseuseNames: PropTypes.arrayOf(PropTypes.string),
   /** whether ModalContainer should be used; useful for testing to avoid portals */
   withPortal: PropTypes.bool
 };
 
 PrintModal.defaultProps = {
-  masseuseNames: [],
   withPortal: true
 };
 

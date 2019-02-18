@@ -10,7 +10,6 @@ import ConfirmationButton from "../../components/buttons/ConfirmationButton";
 import CalendarPanel from "../../components/panels/CalendarPanel";
 import MassageBatchAddModal from "../../components/modals/MassageBatchAddModal";
 import MassageModal from "../../components/modals/MassageModal";
-import PrintModal from "../../components/modals/PrintModal";
 import Tab from "../../components/navs/Tab";
 import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
@@ -34,34 +33,6 @@ test("renders content correctly", () => {
   expect(wrapper.find(Tab).length).toBe(0);
   wrapper.instance().setState({ facilities: testFacilities });
   expect(wrapper.find(Tab).length).toBe(1);
-
-  expect(wrapper).toMatchSnapshot();
-});
-
-test("renders print content correctly", () => {
-  Date.now = jest.fn();
-  const testMassages = [
-    {
-      id: 1,
-      date: new Date(0),
-      ending: new Date(1000),
-      masseuse: {
-        sub: "m-sub",
-        name: "Masseuse",
-        surname: "Test",
-        email: "test@masseuse.org",
-        subscribed: false,
-        masseur: true
-      },
-      client: null,
-      facility: { id: 1, name: "test" }
-    }
-  ];
-  const wrapper = shallow(<Massages />);
-
-  expect(wrapper.find(".print-only").length).toBe(0);
-  wrapper.instance().setState({ printMassages: testMassages });
-  expect(wrapper.find(".print-only").length).toBe(1);
 
   expect(wrapper).toMatchSnapshot();
 });
@@ -96,10 +67,10 @@ test("properly changes state variables", () => {
   };
   const wrapper = shallow(<Massages />);
 
-  expect(Fetch.get).toHaveBeenCalledTimes(6);
+  expect(Fetch.get).toHaveBeenCalledTimes(4);
   wrapper.instance().setState({ facilities: testFacilities, massages: testMassages });
   wrapper.instance().getFacilities();
-  expect(Fetch.get).toHaveBeenCalledTimes(7);
+  expect(Fetch.get).toHaveBeenCalledTimes(5);
   expect(wrapper.instance().state.facilities).toEqual([]);
   expect(wrapper.instance().state.massages).toBe(testMassages);
   wrapper.instance().setState({ facilities: testFacilities });
@@ -107,7 +78,6 @@ test("properly changes state variables", () => {
   const tabs = wrapper.find(Tab);
   const tooltipButtons = wrapper.find(TooltipButton);
   const deleteButton = wrapper.find(ConfirmationButton);
-  const printModal = wrapper.find(PrintModal);
   const addModal = wrapper.find(MassageBatchAddModal);
   const massageModal = wrapper.find(MassageModal);
   const panel = wrapper.find(CalendarPanel);
@@ -137,16 +107,12 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.batchAddModalActive).toBe(false);
   expect(wrapper.instance().state.modalActive).toBe(false);
   expect(deleteButton.props().disabled).toBe(true);
-  expect(printModal.props().masseuseNames).toEqual([]);
   expect(addModal.props().facilityId).toBe(testFacilities[0].id);
   expect(massageModal.props().getCallback).toBe(wrapper.instance().getMassages);
   addModal.props().onToggle();
   massageModal.props().onToggle();
   expect(wrapper.instance().state.batchAddModalActive).toBe(true);
   expect(wrapper.instance().state.modalActive).toBe(true);
-  printModal.props().onPrint(testMassages);
-  expect(wrapper.instance().state.printMassages).toBe(testMassages);
-  expect(wrapper.instance().createPrintRows().length).toBe(1);
 
   deleteButton.props().onConfirm();
   expect(Fetch.delete).toHaveBeenCalledTimes(1);

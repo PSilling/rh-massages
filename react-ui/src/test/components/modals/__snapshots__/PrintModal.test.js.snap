@@ -4,26 +4,46 @@ exports[`renders inside content with correct props and functionality 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PrintModal
-    date={"1970-01-01T00:00:00.000Z"}
-    facilityId={1}
-    masseuseNames={
-      Array [
-        "Masseuse Test",
-      ]
-    }
-    masseuses={
+    events={
       Array [
         Object {
-          "email": "test@masseuse.org",
-          "masseur": true,
-          "name": "Masseuse",
-          "sub": "m-sub",
-          "subscribed": false,
-          "surname": "Test",
+          "bgColor": "white",
+          "massage": Object {
+            "client": null,
+            "date": 1970-01-01T00:00:00.000Z,
+            "ending": 1970-01-01T00:00:01.000Z,
+            "facility": Object {
+              "id": 1,
+              "name": "test",
+            },
+            "id": 1,
+            "masseuse": Object {
+              "email": "test@masseuse.org",
+              "masseur": true,
+              "name": "Masseuse",
+              "sub": "m-sub",
+              "subscribed": false,
+              "surname": "Test",
+            },
+          },
         },
       ]
     }
-    onPrint={[MockFunction]}
+    onPrint={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Array [],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     withPortal={false}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -43,18 +63,6 @@ ShallowWrapper {
         <TooltipIconButton
           disabled={false}
           icon="print"
-          masseuses={
-            Array [
-              Object {
-                "email": "test@masseuse.org",
-                "masseur": true,
-                "name": "Masseuse",
-                "sub": "m-sub",
-                "subscribed": false,
-                "surname": "Test",
-              },
-            ]
-          }
           onClick={[Function]}
           size="sm"
           style={
@@ -62,10 +70,11 @@ ShallowWrapper {
               "border": "0px solid transparent",
             }
           }
-          tooltip="Tisk rozpisu masáží"
+          tooltip="Tisk rozpisu mých masáží"
         />,
         false,
       ],
+      "className": "no-print float-right",
     },
     "ref": null,
     "rendered": Array [
@@ -76,22 +85,12 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "icon": "print",
-          "masseuses": Array [
-            Object {
-              "email": "test@masseuse.org",
-              "masseur": true,
-              "name": "Masseuse",
-              "sub": "m-sub",
-              "subscribed": false,
-              "surname": "Test",
-            },
-          ],
           "onClick": [Function],
           "size": "sm",
           "style": Object {
             "border": "0px solid transparent",
           },
-          "tooltip": "Tisk rozpisu masáží",
+          "tooltip": "Tisk rozpisu mých masáží",
         },
         "ref": null,
         "rendered": null,
@@ -99,7 +98,7 @@ ShallowWrapper {
       },
       false,
     ],
-    "type": "span",
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -111,18 +110,6 @@ ShallowWrapper {
           <TooltipIconButton
             disabled={false}
             icon="print"
-            masseuses={
-              Array [
-                Object {
-                  "email": "test@masseuse.org",
-                  "masseur": true,
-                  "name": "Masseuse",
-                  "sub": "m-sub",
-                  "subscribed": false,
-                  "surname": "Test",
-                },
-              ]
-            }
             onClick={[Function]}
             size="sm"
             style={
@@ -130,10 +117,11 @@ ShallowWrapper {
                 "border": "0px solid transparent",
               }
             }
-            tooltip="Tisk rozpisu masáží"
+            tooltip="Tisk rozpisu mých masáží"
           />,
           false,
         ],
+        "className": "no-print float-right",
       },
       "ref": null,
       "rendered": Array [
@@ -144,22 +132,12 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "icon": "print",
-            "masseuses": Array [
-              Object {
-                "email": "test@masseuse.org",
-                "masseur": true,
-                "name": "Masseuse",
-                "sub": "m-sub",
-                "subscribed": false,
-                "surname": "Test",
-              },
-            ],
             "onClick": [Function],
             "size": "sm",
             "style": Object {
               "border": "0px solid transparent",
             },
-            "tooltip": "Tisk rozpisu masáží",
+            "tooltip": "Tisk rozpisu mých masáží",
           },
           "ref": null,
           "rendered": null,
@@ -167,7 +145,7 @@ ShallowWrapper {
         },
         false,
       ],
-      "type": "span",
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

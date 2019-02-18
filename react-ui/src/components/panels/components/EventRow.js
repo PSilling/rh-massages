@@ -10,6 +10,8 @@ import MassageEventModal from "../../modals/MassageEventModal";
 
 // util imports
 import _t from "../../../util/Translations";
+import Auth from "../../../util/Auth";
+import Util from "../../../util/Util";
 
 /**
  * Custom component event for MyMassages agenda calendar view.
@@ -27,6 +29,21 @@ class EventRow extends Component {
     }
   };
 
+  getUserInfo = () => {
+    if (Auth.isMasseur()) {
+      if (this.props.event.massage.client === null) {
+        return <strong style={{ color: Util.SUCCESS_COLOR }}>{_t.translate("Free")}</strong>;
+      }
+      return (
+        <strong style={{ color: Util.ERROR_COLOR }}>
+          {`${this.props.event.massage.client.name} ${this.props.event.massage.client.surname}`}
+        </strong>
+      );
+    }
+
+    return <span>{`${this.props.event.massage.masseuse.name} ${this.props.event.massage.masseuse.surname}`}</span>;
+  };
+
   render() {
     const dateString = moment(this.props.event.massage.date).format("L");
     return (
@@ -37,7 +54,7 @@ class EventRow extends Component {
             "LT"
           )}`}
         </td>
-        <td>
+        <td colSpan="2">
           <strong
             onClick={this.handleToggle}
             role="button"
@@ -48,12 +65,12 @@ class EventRow extends Component {
             {_t.translate("Massage in ") + this.props.event.massage.facility.name}
           </strong>
           <br />
-          {`${this.props.event.massage.masseuse.name} ${this.props.event.massage.masseuse.surname}`}
+          {this.getUserInfo()}
 
           {this.state.active && (
             <MassageEventModal
               event={this.props.event}
-              label={_t.translate("Unassign me")}
+              label={Auth.isMasseur() ? _t.translate("Force cancel") : _t.translate("Unassign me")}
               allowEditation={false}
               allowDeletion={false}
               onClose={this.handleToggle}

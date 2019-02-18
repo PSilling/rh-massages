@@ -321,6 +321,9 @@ public class MassageResource {
   @PermitAll
   @UnitOfWork
   public List<Massage> findAllByClient(@Auth User user) {
+    if (user.isMasseur()) {
+      return massageDao.findNewByMasseuse(clientDao.findBySub(user.getSubject()));
+    }
     return massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
   }
 

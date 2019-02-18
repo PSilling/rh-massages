@@ -210,6 +210,7 @@ public class MassageDaoTest {
     final Map<String, Object> oldMassages = massageDao.searchOld("Masseuse", false,
         null, null, 1, 2);
     final List<Massage> massagesByMasseuse = massageDao.findAllByMasseuse(masseuse1);
+    final List<Massage> newMassagesByMasseuse = massageDao.findNewByMasseuse(masseuse1);
     final List<Massage> futureMassagesByClient =
         massageDao.findAllByClient(
             new Client("subject", "email@example.com", "Name", "Surname", false, false));
@@ -220,6 +221,7 @@ public class MassageDaoTest {
     assertEquals(massage1, massageById);
     assertEquals(2, oldMassages.get("totalCount"));
     assertEquals(1, massagesByMasseuse.size());
+    assertEquals(0, newMassagesByMasseuse.size());
     assertEquals(0, futureMassagesByClient.size());
     assertEquals(0, futureMassagesByFacility.get("totalCount"));
     assertEquals(2, massages.size());

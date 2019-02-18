@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 // module imports
-import { Row, Col, Nav, Table } from "reactstrap";
+import { Row, Col, Nav } from "reactstrap";
 import moment from "moment";
 
 // component imports
@@ -12,7 +12,6 @@ import CalendarPanel from "../components/panels/CalendarPanel";
 import InfoAlert from "../components/util/InfoAlert";
 import MassageModal from "../components/modals/MassageModal";
 import MassageBatchAddModal from "../components/modals/MassageBatchAddModal";
-import PrintModal from "../components/modals/PrintModal";
 import Tab from "../components/navs/Tab";
 import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import "../styles/components/loader.css";
@@ -42,8 +41,6 @@ class Massages extends Component {
     batchAddModalActive: false,
     events: [],
     freeOnly: false,
-    printMassages: null,
-    selectedDate: moment(),
     from: moment()
       .startOf("isoWeek")
       .subtract(7, "days"),
@@ -278,8 +275,7 @@ class Massages extends Component {
           .endOf("month")
           .add(37, "days"),
         loading: true,
-        selected: [],
-        selectedDate: moment(date)
+        selected: []
       });
     } else {
       this.setState({
@@ -290,8 +286,7 @@ class Massages extends Component {
           .endOf("isoWeek")
           .add(5, "days"),
         loading: true,
-        selected: [],
-        selectedDate: moment(date)
+        selected: []
       });
     }
     setTimeout(() => this.getMassages(), 3);
@@ -300,41 +295,6 @@ class Massages extends Component {
   changeTabIndex = index => {
     this.setState({ index, loading: true });
     setTimeout(() => this.getMassages(), 3);
-  };
-
-  setPrintMassages = massages => {
-    this.setState({ printMassages: massages });
-  };
-
-  createPrintRows = () => {
-    const rows = [];
-    if (this.state.printMassages.length === 0) {
-      rows.push(
-        <tr key="info">
-          <td colSpan="4">{_t.translate("None")}</td>
-        </tr>
-      );
-    } else {
-      for (let i = 0; i < this.state.printMassages.length; i++) {
-        rows.push(
-          <tr key={i}>
-            <td>{moment(this.state.printMassages[i].date).format("L")}</td>
-            <td>
-              {`${moment(this.state.printMassages[i].date).format("HH:mm")}–${moment(
-                this.state.printMassages[i].ending
-              ).format("HH:mm")}`}
-            </td>
-            <td>{`${this.state.printMassages[i].masseuse.name} ${this.state.printMassages[i].masseuse.surname}`}</td>
-            <td>
-              {Util.isEmpty(this.state.printMassages[i].client)
-                ? _t.translate("Free")
-                : Util.getContactInfo(this.state.printMassages[i].client)}
-            </td>
-          </tr>
-        );
-      }
-    }
-    return rows;
   };
 
   closeAlert = () => {
@@ -393,19 +353,10 @@ class Massages extends Component {
         {!localStorage.getItem("closeMassagesAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
-        <div className="my-3 no-print">
+        <div className="my-3">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              <div className="float-right" style={{ minHeight: "100px" }}>
-                <PrintModal
-                  className="ml-1 mt-1"
-                  masseuseNames={this.state.masseuseNames}
-                  facilityId={this.state.facilities[this.state.index].id}
-                  date={this.state.selectedDate}
-                  onPrint={this.setPrintMassages}
-                />
-                {this.state.loading && <div className="loader" />}
-              </div>
+              {this.state.loading && <div className="loader float-right" />}
               <h1>{_t.translate("Massages in ") + this.state.facilities[this.state.index].name}</h1>
               <Nav tabs className="mb-3 mt-4">
                 {this.state.facilities.map((item, index) => (
@@ -489,24 +440,6 @@ class Massages extends Component {
             </div>
           )}
         </div>
-        {this.state.printMassages !== null && (
-          <div className="print-only">
-            <h1>{_t.translate("Schedule")}</h1>
-            <Table>
-              <thead>
-                <tr>
-                  <th scope="col">{_t.translate("Date")}</th>
-                  <th scope="col">{_t.translate("Time")}</th>
-                  <th scope="col">{_t.translate("Masseur/Masseuse")}</th>
-                  <th scope="col" width="40%">
-                    {_t.translate("Client")}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>{this.createPrintRows()}</tbody>
-            </Table>
-          </div>
-        )}
       </div>
     );
   }
