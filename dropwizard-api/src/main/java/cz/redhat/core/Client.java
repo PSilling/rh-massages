@@ -41,6 +41,9 @@ import org.hibernate.validator.constraints.Email;
         name = "Client.findAllMasseurs",
         query = "SELECT client FROM Client client WHERE client.masseur = true"),
     @NamedQuery(
+        name = "Client.findAllNonMasseurs",
+        query = "SELECT client FROM Client client WHERE client.masseur = false"),
+    @NamedQuery(
         name = "Client.findAllSubscribed",
         query = "SELECT client FROM Client client WHERE client.subscribed = true")
 })

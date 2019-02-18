@@ -25,13 +25,18 @@ class MassageModal extends Component {
   state = {
     date: moment().add(1, "hours"),
     time: moment("00:30", "H:mm"),
-    masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true }
+    masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true },
+    user: {},
+    users: []
   };
 
   yesterday = moment().subtract(1, "day");
 
+  freeUser = { sub: "free", email: _t.translate("None") };
+
   componentDidMount() {
     this.setState({ masseuse: this.getMasseuse() });
+    this.getUsers();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +48,8 @@ class MassageModal extends Component {
         nextProps.massage === null
           ? moment("00:30", "HH:mm")
           : moment.utc(moment(nextProps.massage.ending).diff(moment(nextProps.massage.date))),
-      masseuse: nextProps.massage === null ? this.getMasseuse() : nextProps.massage.masseuse
+      masseuse: nextProps.massage === null ? this.getMasseuse() : nextProps.massage.masseuse,
+      user: nextProps.massage === null || nextProps.massage.client === null ? this.freeUser : nextProps.massage.client
     });
   }
 
@@ -59,10 +65,29 @@ class MassageModal extends Component {
     return this.props.masseuses[0];
   };
 
+  getUsers = () => {
+    Fetch.get(`${Util.CLIENTS_URL}/users`, json => {
+      json.push(this.freeUser);
+      this.setState({ users: json });
+    });
+  };
+
   changeMasseuse = event => {
     this.setState({
       masseuse: this.props.masseuses[this.props.masseuseNames.indexOf(event.target.value)]
     });
+  };
+
+  changeUser = event => {
+    for (let i = 0; i < this.state.users.length; i++) {
+      if (this.state.users[i].email === event.target.value) {
+        this.setState(prevState => ({
+          user: prevState.users[i]
+        }));
+
+        return;
+      }
+    }
   };
 
   changeDate = date => {
@@ -100,7 +125,7 @@ class MassageModal extends Component {
             .add(this.state.time.get("minute"), "minutes")
             .toDate(),
           masseuse: this.state.masseuse,
-          client: null,
+          client: this.state.user === this.freeUser ? null : this.state.user,
           facility: { id: this.props.facilityId }
         }
       ],
@@ -124,7 +149,7 @@ class MassageModal extends Component {
             .add(this.state.time.get("minute"), "minutes")
             .toDate(),
           masseuse: this.state.masseuse,
-          client: this.props.massage.client,
+          client: this.state.user === this.freeUser ? null : this.state.user,
           facility: this.props.massage.facility
         }
       ],
@@ -207,6 +232,19 @@ class MassageModal extends Component {
           onEnterPress={this.handleEnterPress}
           isValidDate={current => current.isAfter(this.yesterday)}
         />
+      </Row>
+
+      <Row>
+        <Col md="4">
+          <FormGroup>
+            <Label for="userSelect">{_t.translate("Client")}</Label>
+            <Input id="userSelect" type="select" value={this.state.user.email} onChange={this.changeUser}>
+              {this.state.users.map(item => (
+                <option key={item.email}>{item.email}</option>
+              ))}
+            </Input>
+          </FormGroup>
+        </Col>
       </Row>
 
       {this.props.massage === null || this.props.massage.generated ? (

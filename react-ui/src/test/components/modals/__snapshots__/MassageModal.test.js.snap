@@ -150,6 +150,52 @@ ShallowWrapper {
               value={"1970-01-01T01:00:00.000Z"}
             />
           </Row>
+          <Row
+            tag="div"
+          >
+            <Col
+              md="4"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <FormGroup
+                tag="div"
+              >
+                <Label
+                  for="userSelect"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Klient
+                </Label>
+                <Input
+                  id="userSelect"
+                  onChange={[Function]}
+                  type="select"
+                >
+                  <option>
+                    Žádné
+                  </option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
           <ModalActions
             disabled={false}
             onClose={[MockFunction]}
@@ -279,6 +325,52 @@ ShallowWrapper {
                 tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />
+            </Row>,
+            <Row
+              tag="div"
+            >
+              <Col
+                md="4"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="userSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Klient
+                  </Label>
+                  <Input
+                    id="userSelect"
+                    onChange={[Function]}
+                    type="select"
+                  >
+                    <option>
+                      Žádné
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>
             </Row>,
             <ModalActions
               disabled={false}
@@ -638,6 +730,193 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "children": <Col
+                md="4"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="userSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Klient
+                  </Label>
+                  <Input
+                    id="userSelect"
+                    onChange={[Function]}
+                    type="select"
+                  >
+                    <option>
+                      Žádné
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="userSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Klient
+                  </Label>
+                  <Input
+                    id="userSelect"
+                    onChange={[Function]}
+                    type="select"
+                  >
+                    <option>
+                      Žádné
+                    </option>
+                  </Input>
+                </FormGroup>,
+                "md": "4",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Label
+                      for="userSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Klient
+                    </Label>,
+                    <Input
+                      id="userSelect"
+                      onChange={[Function]}
+                      type="select"
+                    >
+                      <option>
+                        Žádné
+                      </option>
+                    </Input>,
+                  ],
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Klient",
+                      "for": "userSelect",
+                      "tag": "label",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": "Klient",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        <option>
+                          Žádné
+                        </option>,
+                      ],
+                      "id": "userSelect",
+                      "onChange": [Function],
+                      "type": "select",
+                      "value": undefined,
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "Žádné",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Žádné",
+                        },
+                        "ref": null,
+                        "rendered": "Žádné",
+                        "type": "option",
+                      },
+                    ],
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
               "children": null,
               "disabled": false,
               "onClose": [MockFunction],
@@ -769,6 +1048,52 @@ ShallowWrapper {
                 value={"1970-01-01T01:00:00.000Z"}
               />
             </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="4"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <FormGroup
+                  tag="div"
+                >
+                  <Label
+                    for="userSelect"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Klient
+                  </Label>
+                  <Input
+                    id="userSelect"
+                    onChange={[Function]}
+                    type="select"
+                  >
+                    <option>
+                      Žádné
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>
+            </Row>
             <ModalActions
               disabled={false}
               onClose={[MockFunction]}
@@ -898,6 +1223,52 @@ ShallowWrapper {
                   tooltip=""
                   value={"1970-01-01T01:00:00.000Z"}
                 />
+              </Row>,
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="4"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="userSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Klient
+                    </Label>
+                    <Input
+                      id="userSelect"
+                      onChange={[Function]}
+                      type="select"
+                    >
+                      <option>
+                        Žádné
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>
               </Row>,
               <ModalActions
                 disabled={false}
@@ -1248,6 +1619,193 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Col
+                  md="4"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="userSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Klient
+                    </Label>
+                    <Input
+                      id="userSelect"
+                      onChange={[Function]}
+                      type="select"
+                    >
+                      <option>
+                        Žádné
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <FormGroup
+                    tag="div"
+                  >
+                    <Label
+                      for="userSelect"
+                      tag="label"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Klient
+                    </Label>
+                    <Input
+                      id="userSelect"
+                      onChange={[Function]}
+                      type="select"
+                    >
+                      <option>
+                        Žádné
+                      </option>
+                    </Input>
+                  </FormGroup>,
+                  "md": "4",
+                  "tag": "div",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": Array [
+                      <Label
+                        for="userSelect"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        Klient
+                      </Label>,
+                      <Input
+                        id="userSelect"
+                        onChange={[Function]}
+                        type="select"
+                      >
+                        <option>
+                          Žádné
+                        </option>
+                      </Input>,
+                    ],
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "Klient",
+                        "for": "userSelect",
+                        "tag": "label",
+                        "widths": Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": "Klient",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          <option>
+                            Žádné
+                          </option>,
+                        ],
+                        "id": "userSelect",
+                        "onChange": [Function],
+                        "type": "select",
+                        "value": undefined,
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": "Žádné",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Žádné",
+                          },
+                          "ref": null,
+                          "rendered": "Žádné",
+                          "type": "option",
+                        },
+                      ],
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],

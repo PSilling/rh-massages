@@ -215,7 +215,7 @@ ShallowWrapper {
           </Col>
         </Row>,
         <ModalActions
-          disabled={false}
+          disabled={true}
           onClose={[MockFunction]}
           onProceed={[MockFunction]}
           primaryLabel="Zapsat se"
@@ -224,7 +224,7 @@ ShallowWrapper {
             <Button
               className="mr-2"
               color="primary"
-              disabled={false}
+              disabled={true}
               id="Tooltip1"
               onClick={[Function]}
               rel="noopener noreferrer"
@@ -1036,7 +1036,7 @@ ShallowWrapper {
             <Button
               className="mr-2"
               color="primary"
-              disabled={false}
+              disabled={true}
               id="Tooltip1"
               onClick={[Function]}
               rel="noopener noreferrer"
@@ -1065,7 +1065,7 @@ ShallowWrapper {
               Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
             </Tooltip>
           </span>,
-          "disabled": false,
+          "disabled": true,
           "onClose": [MockFunction],
           "onProceed": [MockFunction],
           "primaryLabel": "Zapsat se",
@@ -1080,7 +1080,7 @@ ShallowWrapper {
               <Button
                 className="mr-2"
                 color="primary"
-                disabled={false}
+                disabled={true}
                 id="Tooltip1"
                 onClick={[Function]}
                 rel="noopener noreferrer"
@@ -1120,7 +1120,7 @@ ShallowWrapper {
                 "children": "Zapsat a přidat do kalendáře",
                 "className": "mr-2",
                 "color": "primary",
-                "disabled": false,
+                "disabled": true,
                 "id": "Tooltip1",
                 "onClick": [Function],
                 "rel": "noopener noreferrer",
@@ -1334,7 +1334,7 @@ ShallowWrapper {
             </Col>
           </Row>,
           <ModalActions
-            disabled={false}
+            disabled={true}
             onClose={[MockFunction]}
             onProceed={[MockFunction]}
             primaryLabel="Zapsat se"
@@ -1343,7 +1343,7 @@ ShallowWrapper {
               <Button
                 className="mr-2"
                 color="primary"
-                disabled={false}
+                disabled={true}
                 id="Tooltip1"
                 onClick={[Function]}
                 rel="noopener noreferrer"
@@ -2155,7 +2155,7 @@ ShallowWrapper {
               <Button
                 className="mr-2"
                 color="primary"
-                disabled={false}
+                disabled={true}
                 id="Tooltip1"
                 onClick={[Function]}
                 rel="noopener noreferrer"
@@ -2184,7 +2184,7 @@ ShallowWrapper {
                 Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
               </Tooltip>
             </span>,
-            "disabled": false,
+            "disabled": true,
             "onClose": [MockFunction],
             "onProceed": [MockFunction],
             "primaryLabel": "Zapsat se",
@@ -2199,7 +2199,7 @@ ShallowWrapper {
                 <Button
                   className="mr-2"
                   color="primary"
-                  disabled={false}
+                  disabled={true}
                   id="Tooltip1"
                   onClick={[Function]}
                   rel="noopener noreferrer"
@@ -2239,7 +2239,7 @@ ShallowWrapper {
                   "children": "Zapsat a přidat do kalendáře",
                   "className": "mr-2",
                   "color": "primary",
-                  "disabled": false,
+                  "disabled": true,
                   "id": "Tooltip1",
                   "onClick": [Function],
                   "rel": "noopener noreferrer",

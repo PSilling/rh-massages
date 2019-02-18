@@ -72,7 +72,7 @@ public class ClientResource {
   /**
    * GETs all {@link Client}s that are registered as masseurs.
    *
-   * @return {@link List} of all {@link Client}s
+   * @return {@link List} of all masseur {@link Client}s
    */
   @GET
   @Path("/masseuses")
@@ -80,6 +80,19 @@ public class ClientResource {
   @UnitOfWork
   public List<Client> getMasseurs() {
     return clientDao.findAllMasseurs();
+  }
+
+  /**
+   * GETs all {@link Client}s that are registered as normal users (non-masseurs).
+   *
+   * @return {@link List} of all non-masseur {@link Client}s
+   */
+  @GET
+  @Path("/users")
+  @PermitAll
+  @UnitOfWork
+  public List<Client> getNonMasseurs() {
+    return clientDao.findAllNonMasseurs();
   }
 
   /**

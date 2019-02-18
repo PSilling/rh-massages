@@ -122,13 +122,17 @@ public class ClientDaoTest {
 
     Client clientBySub = clientDao.findBySub("Subject");
     List<Client> masseurs = clientDao.findAllMasseurs();
+    List<Client> users = clientDao.findAllNonMasseurs();
     List<Client> subscribedClients = clientDao.findAllSubscribed();
     List<Client> clients = clientDao.findAll();
 
     assertEquals(client1, clientBySub);
     assertEquals(1, masseurs.size());
+    assertEquals(clients.get(0), masseurs.get(0));
+    assertEquals(1, users.size());
+    assertEquals(clients.get(1), users.get(0));
     assertEquals(1, subscribedClients.size());
-    assertEquals(masseurs.get(0), subscribedClients.get(0));
+    assertEquals(clients.get(0), subscribedClients.get(0));
     assertEquals(2, clients.size());
   }
 }

@@ -83,12 +83,15 @@ public class ClientResourceTest {
   public void setup() {
     List<Client> clients = new ArrayList<>();
     List<Client> masseurs = new ArrayList<>();
+    List<Client> users = new ArrayList<>();
     clients.add(client);
     clients.add(masseur);
     masseurs.add(masseur);
+    users.add(client);
 
     when(clientDao.findAll()).thenReturn(clients);
     when(clientDao.findAllMasseurs()).thenReturn(masseurs);
+    when(clientDao.findAllNonMasseurs()).thenReturn(users);
   }
 
   /**
@@ -129,5 +132,23 @@ public class ClientResourceTest {
 
     assertNotNull(clients);
     assertEquals(1, clients.size());
+    assertEquals(clients.get(0), masseur);
+  }
+
+  /**
+   * Tests whether fetch request for all non-masseur {@link Client}s works as intended.
+   */
+  @Test
+  public void userFetchTest() {
+    List<Client> clients =
+        RULE.target("/clients/users")
+            .request()
+            .header("Authorization", "Bearer TOKEN")
+            .get(new GenericType<List<Client>>() {
+            });
+
+    assertNotNull(clients);
+    assertEquals(1, clients.size());
+    assertEquals(clients.get(0), client);
   }
 }

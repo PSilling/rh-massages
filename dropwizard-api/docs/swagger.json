@@ -2,7 +2,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.4.9",
+        "version": "1.5.2",
         "title": "Red Hat Massages Server"
     },
     "host": "localhost:8080",
@@ -140,6 +140,32 @@
                     "500": {
                         "description": "Internal Server Error",
                         "headers": {
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/users": {
+            "get": {
+                "description": "GETs all {@link Client}s that are registered as normal users (non-masseurs).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Client"
+                            }
                         }
                     }
                 }

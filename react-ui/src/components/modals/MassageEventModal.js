@@ -72,9 +72,7 @@ class MassageEventModal extends Component {
           className="mr-2"
           tag="a"
           color="primary"
-          disabled={
-            this.props.disabled || (Auth.isMasseur() && Auth.getSub() === this.props.event.massage.masseuse.sub)
-          }
+          disabled={this.props.disabled || Auth.isMasseur()}
           onClick={onConfirm}
           target="_blank"
           rel="noopener noreferrer"
@@ -183,12 +181,7 @@ class MassageEventModal extends Component {
 
       <ModalActions
         primaryLabel={this.props.label}
-        disabled={
-          this.props.disabled ||
-          (Auth.isMasseur() &&
-            Auth.getSub() === this.props.event.massage.masseuse.sub &&
-            this.props.event.massage.client === null)
-        }
+        disabled={this.props.disabled || (Auth.isMasseur() && this.props.event.massage.client === null)}
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >
