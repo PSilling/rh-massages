@@ -220,23 +220,21 @@ class MassagesArchive extends Component {
         </h1>
         <hr />
         <Row>
-          <Col md="6">
+          <Col md="12" className="text-right">
             <TooltipButton
               label={_t.translate("Select")}
               onClick={this.changeSelectEvents}
               active={this.state.selectEvents}
               tooltip={_t.translate("Select multiple massages for batch operations")}
             />
-          </Col>
-          <Col md="6" className="text-right">
             <ConfirmationButton
+              className="mx-2"
               onConfirm={this.deleteSelectedMassages}
               label={_t.translate("Delete selected")}
               disabled={this.state.selected.length === 0}
               tooltip={_t.translate("Delete selected massages")}
             />
             <ConfirmationButton
-              className="ml-2"
               onConfirm={this.deleteAllMassages}
               label={_t.translate("Delete all")}
               tooltip={_t.translate("Clear the massage history")}

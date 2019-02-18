@@ -82,7 +82,7 @@ class FacilityModal extends Component {
     <ModalBody>
       <Row>
         <Col md="12">
-          <h3>{this.props.facility === null ? _t.translate("New Facility") : _t.translate("Edit Facility")}</h3>
+          <h3>{this.props.facility === null ? _t.translate("New facility") : _t.translate("Edit facility")}</h3>
           <hr />
         </Col>
       </Row>
@@ -93,7 +93,6 @@ class FacilityModal extends Component {
           value={this.state.name}
           onChange={this.changeName}
           onEnterPress={this.props.facility === null ? this.addFacility : this.editFacility}
-          tooltip={_t.translate("How the facility should be called")}
           type="text"
           maxLength="64"
         />

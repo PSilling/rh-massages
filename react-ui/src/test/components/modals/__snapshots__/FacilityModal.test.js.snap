@@ -95,7 +95,7 @@ ShallowWrapper {
               onEnterPress={[Function]}
               options={Array []}
               size="12"
-              tooltip="Jak by se tato budova měla jmenovat"
+              tooltip=""
               type="text"
               value=""
             />
@@ -190,7 +190,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 options={Array []}
                 size="12"
-                tooltip="Jak by se tato budova měla jmenovat"
+                tooltip=""
                 type="text"
                 value=""
               />
@@ -304,7 +304,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 options={Array []}
                 size="12"
-                tooltip="Jak by se tato budova měla jmenovat"
+                tooltip=""
                 type="text"
                 value=""
               />,
@@ -322,7 +322,7 @@ ShallowWrapper {
                 "onEnterPress": [Function],
                 "options": Array [],
                 "size": "12",
-                "tooltip": "Jak by se tato budova měla jmenovat",
+                "tooltip": "",
                 "type": "text",
                 "value": "",
               },
@@ -429,7 +429,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 options={Array []}
                 size="12"
-                tooltip="Jak by se tato budova měla jmenovat"
+                tooltip=""
                 type="text"
                 value=""
               />
@@ -524,7 +524,7 @@ ShallowWrapper {
                   onEnterPress={[Function]}
                   options={Array []}
                   size="12"
-                  tooltip="Jak by se tato budova měla jmenovat"
+                  tooltip=""
                   type="text"
                   value=""
                 />
@@ -638,7 +638,7 @@ ShallowWrapper {
                   onEnterPress={[Function]}
                   options={Array []}
                   size="12"
-                  tooltip="Jak by se tato budova měla jmenovat"
+                  tooltip=""
                   type="text"
                   value=""
                 />,
@@ -656,7 +656,7 @@ ShallowWrapper {
                   "onEnterPress": [Function],
                   "options": Array [],
                   "size": "12",
-                  "tooltip": "Jak by se tato budova měla jmenovat",
+                  "tooltip": "",
                   "type": "text",
                   "value": "",
                 },

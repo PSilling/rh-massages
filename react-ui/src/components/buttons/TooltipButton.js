@@ -27,17 +27,16 @@ class TooltipButton extends Component {
         <Button {...rest} id={this.tooltipTarget} outline disabled={this.props.disabled}>
           {this.props.label}
         </Button>
-        {this.props.tooltip !== "" &&
-          !this.props.disabled && (
-            <Tooltip
-              isOpen={this.state.tooltipActive}
-              target={this.tooltipTarget}
-              toggle={this.toggleTooltip}
-              trigger="hover"
-            >
-              {this.props.tooltip}
-            </Tooltip>
-          )}
+        {this.props.tooltip !== "" && !this.props.disabled && (
+          <Tooltip
+            isOpen={this.state.tooltipActive}
+            target={this.tooltipTarget}
+            toggle={this.toggleTooltip}
+            trigger="hover"
+          >
+            {this.props.tooltip}
+          </Tooltip>
+        )}
       </span>
     );
   }

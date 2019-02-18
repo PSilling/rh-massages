@@ -7,9 +7,9 @@ import moment from "moment";
 import LabeledDatetime from "../../../components/formitems/LabeledDatetime";
 import MassageModal from "../../../components/modals/MassageModal";
 import ModalActions from "../../../components/buttons/ModalActions";
-import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
-import _t from "../../../util/Translations";
+import TooltipButton from "../../../components/buttons/TooltipButton";
 
+import _t from "../../../util/Translations";
 // test mocks
 jest.mock("../../../util/Auth");
 jest.mock("../../../util/Fetch");
@@ -48,7 +48,7 @@ test("renders inside content with correct props", () => {
       withPortal={false}
     />
   );
-  const button = wrapper.find(TooltipIconButton);
+  const button = wrapper.find(TooltipButton);
   const actions = wrapper.find(ModalActions);
   const heading = wrapper.find("h3");
   const datetimes = wrapper.find(LabeledDatetime);
@@ -58,7 +58,7 @@ test("renders inside content with correct props", () => {
   expect(button.props().onClick).toBe(testToggleFunction);
   expect(actions.props().onProceed).toBe(wrapper.instance().addMassage);
   expect(actions.props().onClose).toBe(testToggleFunction);
-  expect(heading.props().children).toEqual(_t.translate("New Massage"));
+  expect(heading.props().children).toEqual(_t.translate("New massage"));
   expect(datetimes.get(0).props.value).toEqual(moment("00:30", "H:mm"));
   expect(datetimes.get(1).props.value).toEqual(moment().add(1, "hours"));
   expect(wrapper).toMatchSnapshot();
@@ -105,7 +105,7 @@ test("switches to edit mode when a Massage is given", () => {
 
   expect(testToggleFunction).not.toHaveBeenCalled();
   expect(testGetFunction).not.toHaveBeenCalled();
-  expect(heading.props().children).toEqual(_t.translate("Edit Massage"));
+  expect(heading.props().children).toEqual(_t.translate("Edit massage"));
   expect(actions.props().primaryLabel).toBe(_t.translate("Edit"));
   expect(actions.props().onProceed).toBe(wrapper.instance().editMassage);
   expect(datetimes.get(0).props.value).toEqual(moment.utc(moment(testMassage.ending).diff(moment(testMassage.date))));

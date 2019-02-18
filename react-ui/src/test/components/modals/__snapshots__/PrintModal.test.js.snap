@@ -40,10 +40,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <TooltipButton
-          active={false}
+        <TooltipIconButton
           disabled={false}
-          label="Vytisknout"
+          icon="print"
           masseuses={
             Array [
               Object {
@@ -57,7 +56,13 @@ ShallowWrapper {
             ]
           }
           onClick={[Function]}
-          tooltip="Ukázat možnosti tisku rozpisu masáží"
+          size="sm"
+          style={
+            Object {
+              "border": "0px solid transparent",
+            }
+          }
+          tooltip="Tisk rozpisu masáží"
         />,
         false,
       ],
@@ -69,9 +74,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "active": false,
           "disabled": false,
-          "label": "Vytisknout",
+          "icon": "print",
           "masseuses": Array [
             Object {
               "email": "test@masseuse.org",
@@ -83,7 +87,11 @@ ShallowWrapper {
             },
           ],
           "onClick": [Function],
-          "tooltip": "Ukázat možnosti tisku rozpisu masáží",
+          "size": "sm",
+          "style": Object {
+            "border": "0px solid transparent",
+          },
+          "tooltip": "Tisk rozpisu masáží",
         },
         "ref": null,
         "rendered": null,
@@ -100,10 +108,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <TooltipButton
-            active={false}
+          <TooltipIconButton
             disabled={false}
-            label="Vytisknout"
+            icon="print"
             masseuses={
               Array [
                 Object {
@@ -117,7 +124,13 @@ ShallowWrapper {
               ]
             }
             onClick={[Function]}
-            tooltip="Ukázat možnosti tisku rozpisu masáží"
+            size="sm"
+            style={
+              Object {
+                "border": "0px solid transparent",
+              }
+            }
+            tooltip="Tisk rozpisu masáží"
           />,
           false,
         ],
@@ -129,9 +142,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "active": false,
             "disabled": false,
-            "label": "Vytisknout",
+            "icon": "print",
             "masseuses": Array [
               Object {
                 "email": "test@masseuse.org",
@@ -143,7 +155,11 @@ ShallowWrapper {
               },
             ],
             "onClick": [Function],
-            "tooltip": "Ukázat možnosti tisku rozpisu masáží",
+            "size": "sm",
+            "style": Object {
+              "border": "0px solid transparent",
+            },
+            "tooltip": "Tisk rozpisu masáží",
           },
           "ref": null,
           "rendered": null,

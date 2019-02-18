@@ -10,7 +10,7 @@ import moment from "moment";
 // component imports
 import LabeledInput from "../formitems/LabeledInput";
 import ModalActions from "../buttons/ModalActions";
-import TooltipButton from "../buttons/TooltipButton";
+import TooltipIconButton from "../iconbuttons/TooltipIconButton";
 
 // util imports
 import _t from "../../util/Translations";
@@ -197,10 +197,10 @@ class PrintModal extends Component {
     const { date, facilityId, onPrint, masseuseNames, withPortal, ...rest } = this.props;
     return (
       <span>
-        <TooltipButton
+        <TooltipIconButton
           {...rest}
-          label={_t.translate("Print")}
-          tooltip={_t.translate("Show massage schedule print options")}
+          icon="print"
+          tooltip={_t.translate("Print massage schedule")}
           onClick={this.toggleModal}
         />
 

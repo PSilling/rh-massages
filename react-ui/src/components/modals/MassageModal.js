@@ -9,7 +9,7 @@ import moment from "moment";
 // component imports
 import LabeledDatetime from "../formitems/LabeledDatetime";
 import ModalActions from "../buttons/ModalActions";
-import TooltipIconButton from "../iconbuttons/TooltipIconButton";
+import TooltipButton from "../buttons/TooltipButton";
 
 // util imports
 import _t from "../../util/Translations";
@@ -159,8 +159,8 @@ class MassageModal extends Component {
         <Col md="12">
           <h3>
             {this.props.massage === null || this.props.massage.generated
-              ? _t.translate("New Massage")
-              : _t.translate("Edit Massage")}
+              ? _t.translate("New massage")
+              : _t.translate("Edit massage")}
           </h3>
           <hr />
         </Col>
@@ -193,7 +193,6 @@ class MassageModal extends Component {
           value={this.state.time}
           onChange={this.changeTime}
           onEnterPress={this.handleEnterPress}
-          tooltip={_t.translate("How long should the massage be")}
           timeFormat="H:mm"
           dateFormat={false}
         />
@@ -206,7 +205,6 @@ class MassageModal extends Component {
           value={this.state.date}
           onChange={this.changeDate}
           onEnterPress={this.handleEnterPress}
-          tooltip={_t.translate("When should the massage be provided")}
           isValidDate={current => current.isAfter(this.yesterday)}
         />
       </Row>
@@ -231,12 +229,10 @@ class MassageModal extends Component {
   render() {
     return (
       <span>
-        <TooltipIconButton
-          icon="plus"
+        <TooltipButton
           onClick={this.props.onToggle}
+          label={_t.translate("New massage")}
           tooltip={_t.translate("Create a new massage")}
-          size="md"
-          style={{}}
         />
 
         {this.props.active && this.createModal()}

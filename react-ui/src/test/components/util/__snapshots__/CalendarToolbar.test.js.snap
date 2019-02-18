@@ -121,7 +121,6 @@ ShallowWrapper {
                 active={false}
                 className="ml-2"
                 color="secondary"
-                id="Tooltip1"
                 onClick={[Function]}
                 outline={true}
                 tag="button"
@@ -131,7 +130,6 @@ ShallowWrapper {
               <Button
                 active={true}
                 color="secondary"
-                id="Tooltip2"
                 onClick={[Function]}
                 outline={true}
                 tag="button"
@@ -139,20 +137,6 @@ ShallowWrapper {
                 Měsíc
               </Button>
             </ButtonGroup>
-            <TooltipGroup
-              labels={
-                Array [
-                  "Zobrazit po týdnech",
-                  "Zobrazit po měsících",
-                ]
-              }
-              targets={
-                Array [
-                  "Tooltip1",
-                  "Tooltip2",
-                ]
-              }
-            />
           </Col>
           <Col
             className="text-right"
@@ -301,7 +285,6 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   color="secondary"
-                  id="Tooltip1"
                   onClick={[Function]}
                   outline={true}
                   tag="button"
@@ -311,7 +294,6 @@ ShallowWrapper {
                 <Button
                   active={true}
                   color="secondary"
-                  id="Tooltip2"
                   onClick={[Function]}
                   outline={true}
                   tag="button"
@@ -319,20 +301,6 @@ ShallowWrapper {
                   Měsíc
                 </Button>
               </ButtonGroup>
-              <TooltipGroup
-                labels={
-                  Array [
-                    "Zobrazit po týdnech",
-                    "Zobrazit po měsících",
-                  ]
-                }
-                targets={
-                  Array [
-                    "Tooltip1",
-                    "Tooltip2",
-                  ]
-                }
-              />
             </Col>,
             <Col
               className="text-right"
@@ -420,48 +388,30 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": Array [
-                <ButtonGroup
-                  role="group"
-                  tag="div"
+              "children": <ButtonGroup
+                role="group"
+                tag="div"
+              >
+                <Button
+                  active={false}
+                  className="ml-2"
+                  color="secondary"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
                 >
-                  <Button
-                    active={false}
-                    className="ml-2"
-                    color="secondary"
-                    id="Tooltip1"
-                    onClick={[Function]}
-                    outline={true}
-                    tag="button"
-                  >
-                    Týden
-                  </Button>
-                  <Button
-                    active={true}
-                    color="secondary"
-                    id="Tooltip2"
-                    onClick={[Function]}
-                    outline={true}
-                    tag="button"
-                  >
-                    Měsíc
-                  </Button>
-                </ButtonGroup>,
-                <TooltipGroup
-                  labels={
-                    Array [
-                      "Zobrazit po týdnech",
-                      "Zobrazit po měsících",
-                    ]
-                  }
-                  targets={
-                    Array [
-                      "Tooltip1",
-                      "Tooltip2",
-                    ]
-                  }
-                />,
-              ],
+                  Týden
+                </Button>
+                <Button
+                  active={true}
+                  color="secondary"
+                  onClick={[Function]}
+                  outline={true}
+                  tag="button"
+                >
+                  Měsíc
+                </Button>
+              </ButtonGroup>,
               "className": "text-center",
               "md": "10",
               "tag": "div",
@@ -474,97 +424,73 @@ ShallowWrapper {
               ],
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": Array [
-                    <Button
-                      active={false}
-                      className="ml-2"
-                      color="secondary"
-                      id="Tooltip1"
-                      onClick={[Function]}
-                      outline={true}
-                      tag="button"
-                    >
-                      Týden
-                    </Button>,
-                    <Button
-                      active={true}
-                      color="secondary"
-                      id="Tooltip2"
-                      onClick={[Function]}
-                      outline={true}
-                      tag="button"
-                    >
-                      Měsíc
-                    </Button>,
-                  ],
-                  "role": "group",
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "active": false,
-                      "children": "Týden",
-                      "className": "ml-2",
-                      "color": "secondary",
-                      "id": "Tooltip1",
-                      "onClick": [Function],
-                      "outline": true,
-                      "tag": "button",
-                    },
-                    "ref": null,
-                    "rendered": "Týden",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "active": true,
-                      "children": "Měsíc",
-                      "color": "secondary",
-                      "id": "Tooltip2",
-                      "onClick": [Function],
-                      "outline": true,
-                      "tag": "button",
-                    },
-                    "ref": null,
-                    "rendered": "Měsíc",
-                    "type": [Function],
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <Button
+                    active={false}
+                    className="ml-2"
+                    color="secondary"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
+                  >
+                    Týden
+                  </Button>,
+                  <Button
+                    active={true}
+                    color="secondary"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
+                  >
+                    Měsíc
+                  </Button>,
                 ],
-                "type": [Function],
+                "role": "group",
+                "tag": "div",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "labels": Array [
-                    "Zobrazit po týdnech",
-                    "Zobrazit po měsících",
-                  ],
-                  "targets": Array [
-                    "Tooltip1",
-                    "Tooltip2",
-                  ],
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": false,
+                    "children": "Týden",
+                    "className": "ml-2",
+                    "color": "secondary",
+                    "onClick": [Function],
+                    "outline": true,
+                    "tag": "button",
+                  },
+                  "ref": null,
+                  "rendered": "Týden",
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": true,
+                    "children": "Měsíc",
+                    "color": "secondary",
+                    "onClick": [Function],
+                    "outline": true,
+                    "tag": "button",
+                  },
+                  "ref": null,
+                  "rendered": "Měsíc",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -703,7 +629,6 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   color="secondary"
-                  id="Tooltip1"
                   onClick={[Function]}
                   outline={true}
                   tag="button"
@@ -713,7 +638,6 @@ ShallowWrapper {
                 <Button
                   active={true}
                   color="secondary"
-                  id="Tooltip2"
                   onClick={[Function]}
                   outline={true}
                   tag="button"
@@ -721,20 +645,6 @@ ShallowWrapper {
                   Měsíc
                 </Button>
               </ButtonGroup>
-              <TooltipGroup
-                labels={
-                  Array [
-                    "Zobrazit po týdnech",
-                    "Zobrazit po měsících",
-                  ]
-                }
-                targets={
-                  Array [
-                    "Tooltip1",
-                    "Tooltip2",
-                  ]
-                }
-              />
             </Col>
             <Col
               className="text-right"
@@ -883,7 +793,6 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     color="secondary"
-                    id="Tooltip1"
                     onClick={[Function]}
                     outline={true}
                     tag="button"
@@ -893,7 +802,6 @@ ShallowWrapper {
                   <Button
                     active={true}
                     color="secondary"
-                    id="Tooltip2"
                     onClick={[Function]}
                     outline={true}
                     tag="button"
@@ -901,20 +809,6 @@ ShallowWrapper {
                     Měsíc
                   </Button>
                 </ButtonGroup>
-                <TooltipGroup
-                  labels={
-                    Array [
-                      "Zobrazit po týdnech",
-                      "Zobrazit po měsících",
-                    ]
-                  }
-                  targets={
-                    Array [
-                      "Tooltip1",
-                      "Tooltip2",
-                    ]
-                  }
-                />
               </Col>,
               <Col
                 className="text-right"
@@ -1002,48 +896,30 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": Array [
-                  <ButtonGroup
-                    role="group"
-                    tag="div"
+                "children": <ButtonGroup
+                  role="group"
+                  tag="div"
+                >
+                  <Button
+                    active={false}
+                    className="ml-2"
+                    color="secondary"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
                   >
-                    <Button
-                      active={false}
-                      className="ml-2"
-                      color="secondary"
-                      id="Tooltip1"
-                      onClick={[Function]}
-                      outline={true}
-                      tag="button"
-                    >
-                      Týden
-                    </Button>
-                    <Button
-                      active={true}
-                      color="secondary"
-                      id="Tooltip2"
-                      onClick={[Function]}
-                      outline={true}
-                      tag="button"
-                    >
-                      Měsíc
-                    </Button>
-                  </ButtonGroup>,
-                  <TooltipGroup
-                    labels={
-                      Array [
-                        "Zobrazit po týdnech",
-                        "Zobrazit po měsících",
-                      ]
-                    }
-                    targets={
-                      Array [
-                        "Tooltip1",
-                        "Tooltip2",
-                      ]
-                    }
-                  />,
-                ],
+                    Týden
+                  </Button>
+                  <Button
+                    active={true}
+                    color="secondary"
+                    onClick={[Function]}
+                    outline={true}
+                    tag="button"
+                  >
+                    Měsíc
+                  </Button>
+                </ButtonGroup>,
                 "className": "text-center",
                 "md": "10",
                 "tag": "div",
@@ -1056,97 +932,73 @@ ShallowWrapper {
                 ],
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": Array [
-                      <Button
-                        active={false}
-                        className="ml-2"
-                        color="secondary"
-                        id="Tooltip1"
-                        onClick={[Function]}
-                        outline={true}
-                        tag="button"
-                      >
-                        Týden
-                      </Button>,
-                      <Button
-                        active={true}
-                        color="secondary"
-                        id="Tooltip2"
-                        onClick={[Function]}
-                        outline={true}
-                        tag="button"
-                      >
-                        Měsíc
-                      </Button>,
-                    ],
-                    "role": "group",
-                    "tag": "div",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "active": false,
-                        "children": "Týden",
-                        "className": "ml-2",
-                        "color": "secondary",
-                        "id": "Tooltip1",
-                        "onClick": [Function],
-                        "outline": true,
-                        "tag": "button",
-                      },
-                      "ref": null,
-                      "rendered": "Týden",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "active": true,
-                        "children": "Měsíc",
-                        "color": "secondary",
-                        "id": "Tooltip2",
-                        "onClick": [Function],
-                        "outline": true,
-                        "tag": "button",
-                      },
-                      "ref": null,
-                      "rendered": "Měsíc",
-                      "type": [Function],
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Button
+                      active={false}
+                      className="ml-2"
+                      color="secondary"
+                      onClick={[Function]}
+                      outline={true}
+                      tag="button"
+                    >
+                      Týden
+                    </Button>,
+                    <Button
+                      active={true}
+                      color="secondary"
+                      onClick={[Function]}
+                      outline={true}
+                      tag="button"
+                    >
+                      Měsíc
+                    </Button>,
                   ],
-                  "type": [Function],
+                  "role": "group",
+                  "tag": "div",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "labels": Array [
-                      "Zobrazit po týdnech",
-                      "Zobrazit po měsících",
-                    ],
-                    "targets": Array [
-                      "Tooltip1",
-                      "Tooltip2",
-                    ],
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "children": "Týden",
+                      "className": "ml-2",
+                      "color": "secondary",
+                      "onClick": [Function],
+                      "outline": true,
+                      "tag": "button",
+                    },
+                    "ref": null,
+                    "rendered": "Týden",
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": true,
+                      "children": "Měsíc",
+                      "color": "secondary",
+                      "onClick": [Function],
+                      "outline": true,
+                      "tag": "button",
+                    },
+                    "ref": null,
+                    "rendered": "Měsíc",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {

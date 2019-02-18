@@ -9,7 +9,7 @@
     <parent>
         <groupId>cz.redhat</groupId>
         <artifactId>parent</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
     </parent>
 
     <name>Red Hat Massages React Client</name>

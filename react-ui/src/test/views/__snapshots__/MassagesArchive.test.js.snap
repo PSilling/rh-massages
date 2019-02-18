@@ -34,7 +34,8 @@ ShallowWrapper {
           tag="div"
         >
           <Col
-            md="6"
+            className="text-right"
+            md="12"
             tag="div"
             widths={
               Array [
@@ -53,22 +54,8 @@ ShallowWrapper {
               onClick={[Function]}
               tooltip="Výběr více masáží pro hromadné operace"
             />
-          </Col>
-          <Col
-            className="text-right"
-            md="6"
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
             <ConfirmationButton
+              className="mx-2"
               dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
               disabled={true}
               label="Smazat vybrané"
@@ -76,7 +63,6 @@ ShallowWrapper {
               tooltip="Smazat vybrané masáže"
             />
             <ConfirmationButton
-              className="ml-2"
               dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
               disabled={false}
               label="Smazat vše"
@@ -160,87 +146,89 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <Col
-              md="6"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
+          "children": <Col
+            className="text-right"
+            md="12"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <TooltipButton
+              active={false}
+              disabled={false}
+              label="Vybírat"
+              onClick={[Function]}
+              tooltip="Výběr více masáží pro hromadné operace"
+            />
+            <ConfirmationButton
+              className="mx-2"
+              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              disabled={true}
+              label="Smazat vybrané"
+              onConfirm={[Function]}
+              tooltip="Smazat vybrané masáže"
+            />
+            <ConfirmationButton
+              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              disabled={false}
+              label="Smazat vše"
+              onConfirm={[Function]}
+              tooltip="Vyčistit historii masáží"
+            />
+          </Col>,
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
               <TooltipButton
                 active={false}
                 disabled={false}
                 label="Vybírat"
                 onClick={[Function]}
                 tooltip="Výběr více masáží pro hromadné operace"
-              />
-            </Col>,
-            <Col
-              className="text-right"
-              md="6"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
+              />,
               <ConfirmationButton
+                className="mx-2"
                 dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                 disabled={true}
                 label="Smazat vybrané"
                 onConfirm={[Function]}
                 tooltip="Smazat vybrané masáže"
-              />
+              />,
               <ConfirmationButton
-                className="ml-2"
                 dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                 disabled={false}
                 label="Smazat vše"
                 onConfirm={[Function]}
                 tooltip="Vyčistit historii masáží"
-              />
-            </Col>,
-          ],
-          "tag": "div",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": <TooltipButton
-                active={false}
-                disabled={false}
-                label="Vybírat"
-                onClick={[Function]}
-                tooltip="Výběr více masáží pro hromadné operace"
               />,
-              "md": "6",
-              "tag": "div",
-              "widths": Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ],
-            },
-            "ref": null,
-            "rendered": Object {
+            ],
+            "className": "text-right",
+            "md": "12",
+            "tag": "div",
+            "widths": Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
@@ -255,78 +243,40 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <ConfirmationButton
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                  disabled={true}
-                  label="Smazat vybrané"
-                  onConfirm={[Function]}
-                  tooltip="Smazat vybrané masáže"
-                />,
-                <ConfirmationButton
-                  className="ml-2"
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                  disabled={false}
-                  label="Smazat vše"
-                  onConfirm={[Function]}
-                  tooltip="Vyčistit historii masáží"
-                />,
-              ],
-              "className": "text-right",
-              "md": "6",
-              "tag": "div",
-              "widths": Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ],
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "mx-2",
+                "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                "disabled": true,
+                "label": "Smazat vybrané",
+                "onConfirm": [Function],
+                "tooltip": "Smazat vybrané masáže",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
-                  "disabled": true,
-                  "label": "Smazat vybrané",
-                  "onConfirm": [Function],
-                  "tooltip": "Smazat vybrané masáže",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                "disabled": false,
+                "label": "Smazat vše",
+                "onConfirm": [Function],
+                "tooltip": "Vyčistit historii masáží",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "className": "ml-2",
-                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
-                  "disabled": false,
-                  "label": "Smazat vše",
-                  "onConfirm": [Function],
-                  "tooltip": "Vyčistit historii masáží",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-        ],
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
         "type": [Function],
       },
       Object {
@@ -378,7 +328,8 @@ ShallowWrapper {
             tag="div"
           >
             <Col
-              md="6"
+              className="text-right"
+              md="12"
               tag="div"
               widths={
                 Array [
@@ -397,22 +348,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 tooltip="Výběr více masáží pro hromadné operace"
               />
-            </Col>
-            <Col
-              className="text-right"
-              md="6"
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               <ConfirmationButton
+                className="mx-2"
                 dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                 disabled={true}
                 label="Smazat vybrané"
@@ -420,7 +357,6 @@ ShallowWrapper {
                 tooltip="Smazat vybrané masáže"
               />
               <ConfirmationButton
-                className="ml-2"
                 dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                 disabled={false}
                 label="Smazat vše"
@@ -504,87 +440,89 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <Col
-                md="6"
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
+            "children": <Col
+              className="text-right"
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <TooltipButton
+                active={false}
+                disabled={false}
+                label="Vybírat"
+                onClick={[Function]}
+                tooltip="Výběr více masáží pro hromadné operace"
+              />
+              <ConfirmationButton
+                className="mx-2"
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={true}
+                label="Smazat vybrané"
+                onConfirm={[Function]}
+                tooltip="Smazat vybrané masáže"
+              />
+              <ConfirmationButton
+                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                disabled={false}
+                label="Smazat vše"
+                onConfirm={[Function]}
+                tooltip="Vyčistit historii masáží"
+              />
+            </Col>,
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
                 <TooltipButton
                   active={false}
                   disabled={false}
                   label="Vybírat"
                   onClick={[Function]}
                   tooltip="Výběr více masáží pro hromadné operace"
-                />
-              </Col>,
-              <Col
-                className="text-right"
-                md="6"
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
-              >
+                />,
                 <ConfirmationButton
+                  className="mx-2"
                   dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                   disabled={true}
                   label="Smazat vybrané"
                   onConfirm={[Function]}
                   tooltip="Smazat vybrané masáže"
-                />
+                />,
                 <ConfirmationButton
-                  className="ml-2"
                   dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
                   disabled={false}
                   label="Smazat vše"
                   onConfirm={[Function]}
                   tooltip="Vyčistit historii masáží"
-                />
-              </Col>,
-            ],
-            "tag": "div",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": <TooltipButton
-                  active={false}
-                  disabled={false}
-                  label="Vybírat"
-                  onClick={[Function]}
-                  tooltip="Výběr více masáží pro hromadné operace"
                 />,
-                "md": "6",
-                "tag": "div",
-                "widths": Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ],
-              },
-              "ref": null,
-              "rendered": Object {
+              ],
+              "className": "text-right",
+              "md": "12",
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
@@ -599,78 +537,40 @@ ShallowWrapper {
                 "rendered": null,
                 "type": [Function],
               },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": Array [
-                  <ConfirmationButton
-                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                    disabled={true}
-                    label="Smazat vybrané"
-                    onConfirm={[Function]}
-                    tooltip="Smazat vybrané masáže"
-                  />,
-                  <ConfirmationButton
-                    className="ml-2"
-                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
-                    disabled={false}
-                    label="Smazat vše"
-                    onConfirm={[Function]}
-                    tooltip="Vyčistit historii masáží"
-                  />,
-                ],
-                "className": "text-right",
-                "md": "6",
-                "tag": "div",
-                "widths": Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ],
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "className": "mx-2",
+                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                  "disabled": true,
+                  "label": "Smazat vybrané",
+                  "onConfirm": [Function],
+                  "tooltip": "Smazat vybrané masáže",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
-                    "disabled": true,
-                    "label": "Smazat vybrané",
-                    "onConfirm": [Function],
-                    "tooltip": "Smazat vybrané masáže",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                  "disabled": false,
+                  "label": "Smazat vše",
+                  "onConfirm": [Function],
+                  "tooltip": "Vyčistit historii masáží",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "className": "ml-2",
-                    "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
-                    "disabled": false,
-                    "label": "Smazat vše",
-                    "onConfirm": [Function],
-                    "tooltip": "Vyčistit historii masáží",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
-          ],
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {

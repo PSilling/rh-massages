@@ -41,7 +41,7 @@ test("renders inside content with correct props", () => {
   expect(testToggleFunction).toHaveBeenCalledTimes(1);
   expect(testGetFunction).not.toHaveBeenCalled();
   expect(button.props().onClick).toBe(testToggleFunction);
-  expect(heading.props().children).toEqual(_t.translate("New Facility"));
+  expect(heading.props().children).toEqual(_t.translate("New facility"));
   expect(input.props().value).toBe("");
   expect(wrapper).toMatchSnapshot();
 });
@@ -72,7 +72,7 @@ test("switches to edit mode when a Facility is given", () => {
 
   expect(testToggleFunction).toHaveBeenCalledTimes(1);
   expect(testGetFunction).toHaveBeenCalledTimes(1);
-  expect(heading.props().children).toEqual(_t.translate("Edit Facility"));
+  expect(heading.props().children).toEqual(_t.translate("Edit facility"));
   expect(actions.props().primaryLabel).toBe(_t.translate("Edit"));
   expect(input.props().value).toBe("test");
   jest.resetAllMocks();

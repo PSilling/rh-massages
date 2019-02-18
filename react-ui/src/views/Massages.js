@@ -396,9 +396,18 @@ class Massages extends Component {
         <div className="my-3 no-print">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              {this.state.loading && <div className="loader float-right" />}
+              <div className="float-right" style={{ minHeight: "100px" }}>
+                <PrintModal
+                  className="ml-1 mt-1"
+                  masseuseNames={this.state.masseuseNames}
+                  facilityId={this.state.facilities[this.state.index].id}
+                  date={this.state.selectedDate}
+                  onPrint={this.setPrintMassages}
+                />
+                {this.state.loading && <div className="loader" />}
+              </div>
               <h1>{_t.translate("Massages in ") + this.state.facilities[this.state.index].name}</h1>
-              <Nav tabs className="mb-3">
+              <Nav tabs className="mb-3 mt-4">
                 {this.state.facilities.map((item, index) => (
                   <Tab
                     active={index === this.state.index}
@@ -410,32 +419,25 @@ class Massages extends Component {
               </Nav>
               <Row>
                 <Col md="6">
-                  {Auth.isAdminOrMasseur() && (
-                    <TooltipButton
-                      className="mr-2"
-                      label={_t.translate("Select")}
-                      onClick={this.changeSelectEvents}
-                      active={this.state.selectEvents}
-                      tooltip={_t.translate("Select multiple massages for batch operations")}
-                    />
-                  )}
                   <TooltipButton
-                    label={_t.translate("Just free")}
+                    label={_t.translate("Only free")}
                     onClick={this.changeFreeOnly}
                     active={this.state.freeOnly}
                     tooltip={_t.translate("Display only free massages")}
                   />
                 </Col>
                 <Col md="6" className="text-right">
-                  <PrintModal
-                    className="mr-2"
-                    masseuseNames={this.state.masseuseNames}
-                    facilityId={this.state.facilities[this.state.index].id}
-                    date={this.state.selectedDate}
-                    onPrint={this.setPrintMassages}
-                  />
                   {Auth.isAdminOrMasseur() && (
                     <span>
+                      {Auth.isAdminOrMasseur() && (
+                        <TooltipButton
+                          className="mr-2"
+                          label={_t.translate("Select")}
+                          onClick={this.changeSelectEvents}
+                          active={this.state.selectEvents}
+                          tooltip={_t.translate("Select multiple massages for batch operations")}
+                        />
+                      )}
                       <ConfirmationButton
                         onConfirm={this.deleteSelectedMassages}
                         label={_t.translate("Delete selected")}

@@ -737,7 +737,7 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
                 "leftAction": [Function],
                 "leftDisabled": false,
@@ -1716,7 +1716,7 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
                   "leftAction": [Function],
                   "leftDisabled": false,

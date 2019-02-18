@@ -28,38 +28,108 @@ const myLocalize = new Localize({
   Settings: {
     cs: "Nastavení"
   },
+  "User settings": {
+    cs: "Uživatelská nastavení"
+  },
+  About: {
+    cs: "O portálu"
+  },
   Schedule: {
     cs: "Rozpis"
   },
+  Unauthorized: {
+    cs: "Neautorizováno"
+  },
 
-  // other titles
-  "New Massage": {
+  // modal titles
+  "New massage": {
     cs: "Nová masáž"
   },
-  "Create Massages": {
-    cs: "Vytvořit masáže"
-  },
-  "Create a new facility": {
-    cs: "Vytvořit novou budovu"
-  },
-  "Create a new massage": {
-    cs: "Vytvořit novou masáž"
-  },
-  "Edit Massage": {
+  "Edit massage": {
     cs: "Upravit masáž"
   },
-  "Edit Massages": {
-    cs: "Upravit masáže"
-  },
-  "Copy Massages": {
-    cs: "Zkopírovat masáže"
-  },
-  "New Facility": {
+  "New facility": {
     cs: "Nová budova"
   },
-  "Edit Facility": {
+  "Edit facility": {
     cs: "Upravit budovu"
   },
+  Details: {
+    cs: "Podrobnosti"
+  },
+  "Print settings": {
+    cs: "Nastavení tisku"
+  },
+  "Action confirmation": {
+    cs: "Potvrzení akce"
+  },
+
+  // button labels
+  Profile: {
+    cs: "Profil"
+  },
+  Logout: {
+    cs: "Odhlásit"
+  },
+  Delete: {
+    cs: "Smazat"
+  },
+  "Delete all": {
+    cs: "Smazat vše"
+  },
+  "Delete selected": {
+    cs: "Smazat vybrané"
+  },
+  Remove: {
+    cs: "Odstranit"
+  },
+  Edit: {
+    cs: "Upravit"
+  },
+  Add: {
+    cs: "Přidat"
+  },
+  Print: {
+    cs: "Tisk"
+  },
+  Create: {
+    cs: "Vytvořit"
+  },
+  "New schedule": {
+    cs: "Zadat rozpis"
+  },
+  "Force cancel": {
+    cs: "Vynutit zrušení"
+  },
+  Dismiss: {
+    cs: "Zrušit"
+  },
+  Proceed: {
+    cs: "Pokračovat"
+  },
+  "Assign and add to calendar": {
+    cs: "Zapsat a přidat do kalendáře"
+  },
+  "Assign me": {
+    cs: "Zapsat se"
+  },
+  "Unassign me": {
+    cs: "Odepsat se"
+  },
+  "Reload page": {
+    cs: "Načíst znovu"
+  },
+  Import: {
+    cs: "Importovat"
+  },
+  Export: {
+    cs: "Exportovat"
+  },
+  "Add to Google Calendar": {
+    cs: "Přidat do Google kalendáře"
+  },
+
+  // other labels and titles
   "Massage time": {
     cs: "Čas masáže"
   },
@@ -69,68 +139,8 @@ const myLocalize = new Localize({
   "Massage duration": {
     cs: "Délka masáže"
   },
-  "Number of repetitions": {
-    cs: "Počet opakování"
-  },
-  "Number of repetitions (weekly)": {
-    cs: "Počet opakování (týdně)"
-  },
-  "Day step per repetition": {
-    cs: "Denní skok na opakování"
-  },
-  Profile: {
-    cs: "Profil"
-  },
-  Logout: {
-    cs: "Odhlásit"
-  },
-  "Change language to czech": {
-    cs: "Změnit jazyk na angličtinu"
-  },
-  "Show Keycloak profile": {
-    cs: "Zobrazit Keycloak profil"
-  },
-  "Change masseur/masseuse": {
-    cs: "Změnit maséra/masérku"
-  },
   Contact: {
     cs: "Kontakt"
-  },
-  Unknown: {
-    cs: "Není známo"
-  },
-  Later: {
-    cs: "Později"
-  },
-  Earlier: {
-    cs: "Dříve"
-  },
-  "Shift massage date (day and time)": {
-    cs: "Posunout datum masáže (den a čas)"
-  },
-  "Day change": {
-    cs: "Změna dne"
-  },
-  "Duration change": {
-    cs: "Změna trvání"
-  },
-  Days: {
-    cs: "Dny"
-  },
-  "Also remove all assigned clients": {
-    cs: "Také odstranit všechny zapsané klienty"
-  },
-  "Maximal simultaneous massage time per user would be exceeded": {
-    cs: "Maximální čas masáží na uživatele najednou by byl přesažen"
-  },
-  "Assigns this massage and opens a predefined Google event editor in a new tab": {
-    cs: "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce"
-  },
-  "Opens a predefined Google event editor in a new tab": {
-    cs: "Otevře předdefinovaný editor Google událostí v nové záložce"
-  },
-  "Too late to cancel this massage": {
-    cs: "Příliš pozdě na zrušení této masáže"
   },
   "Same as": {
     cs: "Stejně jako"
@@ -153,112 +163,26 @@ const myLocalize = new Localize({
   Breaks: {
     cs: "Přestávky"
   },
-  "Lunch break": {
-    cs: "Obědová přestávka"
-  },
-  "Massages before lunch": {
-    cs: "Masáží před obědem"
-  },
-  "Massages per day": {
-    cs: "Masáží denně"
-  },
-  "Create rule": {
-    cs: "Vytvořit vzor"
-  },
-  "Remove rule": {
-    cs: "Odstranit vzor"
-  },
-  "Rule applies after": {
-    cs: "Vzor platí od"
-  },
-  Import: {
-    cs: "Importovat"
-  },
-  Export: {
-    cs: "Exportovat"
-  },
-  More: {
-    cs: "Více"
-  },
-  Less: {
-    cs: "Méně"
-  },
-  "Show all": {
-    cs: "Zobrazit vše"
-  },
-  "Collapse all": {
-    cs: "Sbalit vše"
-  },
-  Details: {
-    cs: "Podrobnosti"
-  },
-  Information: {
-    cs: "Informace"
-  },
-  Editation: {
-    cs: "Editace"
-  },
-  "User settings": {
-    cs: "Uživatelská nastavení"
-  },
-  About: {
-    cs: "O portálu"
-  },
-  "Visit our ": {
-    cs: "Navštivte náš "
-  },
-  " and our ": {
-    cs: "a naši "
-  },
-  "Report issues ": {
-    cs: "Hlaste chyby "
-  },
-  here: {
-    cs: "zde"
-  },
-
-  // table items
-  Date: {
-    cs: "Datum"
-  },
-  Time: {
-    cs: "Čas"
-  },
   "Masseur/Masseuse": {
     cs: "Masér/Masérka"
   },
   Facility: {
     cs: "Budova"
   },
-  Status: {
-    cs: "Status"
+  Date: {
+    cs: "Datum"
   },
-  "Add to Google Calendar": {
-    cs: "Přidat do Google kalendáře"
+  Time: {
+    cs: "Čas"
   },
   Free: {
     cs: "Volno"
   },
-  Full: {
-    cs: "Plno"
-  },
   Name: {
     cs: "Název"
   },
-  Unauthorized: {
-    cs: "Neautorizováno"
-  },
-  Assigned: {
-    cs: "Zapsáno"
-  },
-  "View as a table": {
-    cs: "Zobrazit jako tabulku"
-  },
-  "View as panels": {
-    cs: "Zobrazit jako panely"
-  },
-  "Just free": {
-    cs: "Jen volné"
+  "Only free": {
+    cs: "Pouze volné"
   },
   Select: {
     cs: "Vybírat"
@@ -293,126 +217,14 @@ const myLocalize = new Localize({
   "For:": {
     cs: "Na:"
   },
-
-  // actions
-  Delete: {
-    cs: "Smazat"
-  },
-  "Delete all": {
-    cs: "Smazat vše"
-  },
-  "Delete selected": {
-    cs: "Smazat vybrané"
-  },
-  Remove: {
-    cs: "Odstranit"
-  },
-  Edit: {
-    cs: "Upravit"
-  },
-  "Edit selected": {
-    cs: "Upravit vybrané"
-  },
-  Add: {
-    cs: "Přidat"
-  },
-  Create: {
-    cs: "Vytvořit"
-  },
-  "Add schedule": {
-    cs: "Přidat rozpis"
-  },
-  Copy: {
-    cs: "Zkopírovat"
-  },
-  Cancel: {
-    cs: "Zrušit"
-  },
-  "Force cancel": {
-    cs: "Vynutit zrušení"
-  },
-  Dismiss: {
-    cs: "Zrušit"
-  },
-  Close: {
-    cs: "Zavřít"
-  },
-  Now: {
-    cs: "Nyní"
-  },
-  Proceed: {
-    cs: "Pokračovat"
-  },
-  "Assign and add to calendar": {
-    cs: "Zapsat a přidat do kalendáře"
-  },
-  "Assign me": {
-    cs: "Zapsat se"
-  },
-  "Unassign me": {
-    cs: "Odepsat se"
-  },
-  "Copy selected": {
-    cs: "Kopírovat vybrané"
-  },
-  Print: {
-    cs: "Vytisknout"
-  },
-  "Print settings": {
-    cs: "Nastavení tisku"
-  },
-  "Reload page": {
-    cs: "Načíst znovu"
-  },
-
-  // notification messages
-  "Your request has been successful.": {
-    cs: "Váš požadavek byl úspěšný."
-  },
-  "Your request has ended unsuccessfully.": {
-    cs: "Váš požadavek skončil neúspěšně."
-  },
-  "Cannot create a new massage in the past.": {
-    cs: "Nelze vytvořit novou masáž v minulosti."
-  },
-  "An error occurred!": {
-    cs: "Nastala chyba!"
-  },
-  "An unexpected error occurred during the 'GET' request!": {
-    cs: "Při požadavku 'GET' nastala neočekávaná chyba!"
-  },
-  Warning: {
-    cs: "Upozornění"
-  },
-  "Not all massages were edited as in some cases the new date would have been before now.": {
-    cs: "Ne všechny masáže byly změněny, protože v některých případech by byl nový termín před nynějškem."
-  },
   " (page doesn't exist): ": {
     cs: " (stránka neexistuje): "
   },
   "Back to main page": {
     cs: "Zpět na hlavní stránku"
   },
-  None: {
-    cs: "Žádné"
-  },
   "Go to massages": {
     cs: "Jít na masáže"
-  },
-  "Name is required!": {
-    cs: "Název je vyžadován!"
-  },
-  "Masseuse is required!": {
-    cs: "Jméno masérky je vyžadováno!"
-  },
-  "At least one repeat day is required!": {
-    cs: "Alespoň jeden opakovací den je vyžadován!"
-  },
-  Search: {
-    cs: "Hledat"
-  },
-  Filtering: {
-    cs: "Filtrování"
   },
   Today: {
     cs: "Dnes"
@@ -435,20 +247,14 @@ const myLocalize = new Localize({
   Previous: {
     cs: "Předchozí"
   },
-  "Later than next week": {
-    cs: "Později než další týden"
-  },
-  "Later than next month": {
-    cs: "Později než další měsíc"
-  },
-  Unassigned: {
-    cs: "Nepřiřazeno"
-  },
-  "select events": {
-    cs: "vybírat události"
+  Filtering: {
+    cs: "Filtrování"
   },
   "Legend:": {
     cs: "Legenda:"
+  },
+  None: {
+    cs: "Žádné"
   },
   Massage: {
     cs: "Masáž"
@@ -471,25 +277,46 @@ const myLocalize = new Localize({
   "Assigned massage": {
     cs: "Přiřazená masáž"
   },
-  "Masseuse, masseur or client name": {
-    cs: "Jméno masérky, maséra anebo klienta"
+  "I want to recieve information about ": {
+    cs: "Chci dostávat informace o "
+  },
+  "massage changes": {
+    cs: "změnách masáží"
+  },
+  "Visit our ": {
+    cs: "Navštivte náš "
+  },
+  " and our ": {
+    cs: "a naši "
+  },
+  "Report issues ": {
+    cs: "Hlaste chyby "
+  },
+  here: {
+    cs: "zde"
   },
 
-  // text messages
-  "Action confirmation": {
-    cs: "Potvrzení akce"
+  // notification messages
+  Warning: {
+    cs: "Upozornění"
   },
-  "Are you sure? This action cannot be reverted.": {
-    cs: "Jste si jisti? Tato akce nemůže být navrácena."
+  "Your request has been successful.": {
+    cs: "Váš požadavek byl úspěšný."
   },
-  "Are you sure you want to assign yourself to this massage?": {
-    cs: "Jste si jisti, že se chcete zapsat na tuto masáž?"
+  "Your request has ended unsuccessfully.": {
+    cs: "Váš požadavek skončil neúspěšně."
   },
-  "Are you sure you want to unassign yourself from this massage?": {
-    cs: "Jste si jisti, že chcete se chcete odepsat z této masáže?"
+  "Cannot create a new massage in the past.": {
+    cs: "Nelze vytvořit novou masáž v minulosti."
   },
-  "Are you sure you want to unassign a massage that is already assigned to someone else?": {
-    cs: "Jste si jisti, že chcete odepsat masáž, kterou již má někdo další zapsanou?"
+  "An error occurred!": {
+    cs: "Nastala chyba!"
+  },
+  "An unexpected error occurred during the 'GET' request!": {
+    cs: "Při požadavku 'GET' nastala neočekávaná chyba!"
+  },
+  "Name is required!": {
+    cs: "Název je vyžadován!"
   },
   "FileReader API isn't supported by your browser.": {
     cs: "FileReader API není vaším prohlížeči podporované."
@@ -500,76 +327,31 @@ const myLocalize = new Localize({
   "An error occured!": {
     cs: "Došlo k chybě!"
   },
-  "I want to recieve information about ": {
-    cs: "Chci dostávat informace o "
-  },
-  "massage changes": {
-    cs: "změnách masáží"
-  },
-  "Scheduling of new and cancellation of assigned massages": {
-    cs: "Rozpis nových a zrušení připsaných masáží"
+  "Are you sure? This action cannot be reverted.": {
+    cs: "Jste si jisti? Tato akce nemůže být navrácena."
   },
   "Cannot select an unowned massage!": {
     cs: "Nelze vybrat nevlastní masáž!"
   },
 
   // tooltips
-  "View per week": {
-    cs: "Zobrazit po týdnech"
-  },
-  "View per month": {
-    cs: "Zobrazit po měsících"
-  },
-  "How the facility should be called": {
-    cs: "Jak by se tato budova měla jmenovat"
-  },
-  "The name of the masseur or massuese providing this massage": {
-    cs: "Jméno maséra anebo masérky, který/á vykonává tuto masáž"
-  },
-  "How long should the massage be": {
-    cs: "Jak dlouhá by měla masáž být"
-  },
-  "When should the massage be provided": {
-    cs: "Kdy by se měla masáž konat"
-  },
   "Create multiple massages at once": {
     cs: "Vytvořit více masáží najednou"
   },
   "Import previously downloaded rules": {
     cs: "Importovat dříve stažená pravidla"
   },
-  "When set to another day, copies the schedule from it": {
-    cs: "Při nastavení na jiný den podle něj okopíruje rozpis"
-  },
   "Download a configuration file that you can use to import these rules at a later date": {
     cs: "Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
   },
-  "Add a new creation macro": {
-    cs: "Přidat nový vzor"
-  },
-  "Remove this creation macro": {
-    cs: "Odstranit tento vzor"
-  },
-  "Information about massages": {
-    cs: "Informace o masážích"
-  },
-  "Information about breaks between individual massages": {
-    cs: "Informace o přestávkách mezi jednotlivými masážemi"
+  "When set to another day, copies the schedule from it": {
+    cs: "Při nastavení na jiný den podle něj okopíruje rozpis"
   },
   "Length of the standard break after a massage": {
     cs: "Délka standardní přestávky po masáží"
   },
-  "Length of the lunch break": {
-    cs: "Délka obědové přestávky"
-  },
-  "Number of massages before the lunch break": {
-    cs: "Počet masáží před obědovou přestávkou"
-  },
-  "Unassign from this massage": {
-    cs: "Odepsat se z této masáže"
-  },
-  "Show massage schedule print options": {
-    cs: "Ukázat možnosti tisku rozpisu masáží"
+  "Print massage schedule": {
+    cs: "Tisk rozpisu masáží"
   },
   "Delete selected massages": {
     cs: "Smazat vybrané masáže"
@@ -583,14 +365,38 @@ const myLocalize = new Localize({
   "Display only free massages": {
     cs: "Zobrazit pouze volné masáže"
   },
-  "Workdays of the massuer/masseuse": {
-    cs: "Pracovní dny maséra/masérky"
-  },
   "Masseuse, masseur or client name to use as a massages filter": {
     cs: "Masérka, masér anebo klient pro filtrování masáží"
   },
   "Ignore this day when creating the massages": {
     cs: "Ignorovat tento den při tvorbě masáží"
+  },
+  "Create a new facility": {
+    cs: "Vytvořit novou budovu"
+  },
+  "Create a new massage": {
+    cs: "Vytvořit novou masáž"
+  },
+  "Change language to czech": {
+    cs: "Změnit jazyk na angličtinu"
+  },
+  "Show Keycloak profile": {
+    cs: "Zobrazit Keycloak profil"
+  },
+  "Maximal simultaneous massage time per user would be exceeded": {
+    cs: "Maximální čas masáží na uživatele najednou by byl přesažen"
+  },
+  "Assigns this massage and opens a predefined Google event editor in a new tab": {
+    cs: "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce"
+  },
+  "Opens a predefined Google event editor in a new tab": {
+    cs: "Otevře předdefinovaný editor Google událostí v nové záložce"
+  },
+  "Too late to cancel this massage": {
+    cs: "Příliš pozdě na zrušení této masáže"
+  },
+  "Scheduling of new and cancellation of assigned massages": {
+    cs: "Rozpis nových a zrušení připsaných masáží"
   },
 
   // moment localization
@@ -639,7 +445,7 @@ const myLocalize = new Localize({
     cs: "Událost"
   },
   "Show more": {
-    cs: "Zobrazit další"
+    cs: "Více"
   },
 
   // alert messages

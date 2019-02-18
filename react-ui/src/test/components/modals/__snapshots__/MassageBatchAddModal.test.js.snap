@@ -65,7 +65,7 @@ ShallowWrapper {
         <TooltipButton
           active={false}
           disabled={false}
-          label="Přidat rozpis"
+          label="Rozpis"
           onClick={[Function]}
           tooltip="Vytvořit více masáží najednou"
         />,
@@ -89,7 +89,7 @@ ShallowWrapper {
               }
             >
               <h3>
-                Přidat rozpis
+                Zadat rozpis
                 <div
                   className="float-right"
                 >
@@ -466,7 +466,7 @@ ShallowWrapper {
         "props": Object {
           "active": false,
           "disabled": false,
-          "label": "Přidat rozpis",
+          "label": "Rozpis",
           "onClick": [Function],
           "tooltip": "Vytvořit více masáží najednou",
         },
@@ -497,7 +497,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Přidat rozpis
+                  Zadat rozpis
                   <div
                     className="float-right"
                   >
@@ -888,7 +888,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Přidat rozpis
+                  Zadat rozpis
                   <div
                     className="float-right"
                   >
@@ -930,7 +930,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <h3>
-                    Přidat rozpis
+                    Zadat rozpis
                     <div
                       className="float-right"
                     >
@@ -980,7 +980,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "Přidat rozpis",
+                      "Zadat rozpis",
                       <div
                         className="float-right"
                       >
@@ -1013,7 +1013,7 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
-                    "Přidat rozpis",
+                    "Zadat rozpis",
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -2336,7 +2336,7 @@ ShallowWrapper {
           <TooltipButton
             active={false}
             disabled={false}
-            label="Přidat rozpis"
+            label="Rozpis"
             onClick={[Function]}
             tooltip="Vytvořit více masáží najednou"
           />,
@@ -2360,7 +2360,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Přidat rozpis
+                  Zadat rozpis
                   <div
                     className="float-right"
                   >
@@ -2737,7 +2737,7 @@ ShallowWrapper {
           "props": Object {
             "active": false,
             "disabled": false,
-            "label": "Přidat rozpis",
+            "label": "Rozpis",
             "onClick": [Function],
             "tooltip": "Vytvořit více masáží najednou",
           },
@@ -2768,7 +2768,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Přidat rozpis
+                    Zadat rozpis
                     <div
                       className="float-right"
                     >
@@ -3159,7 +3159,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Přidat rozpis
+                    Zadat rozpis
                     <div
                       className="float-right"
                     >
@@ -3201,7 +3201,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <h3>
-                      Přidat rozpis
+                      Zadat rozpis
                       <div
                         className="float-right"
                       >
@@ -3251,7 +3251,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "Přidat rozpis",
+                        "Zadat rozpis",
                         <div
                           className="float-right"
                         >
@@ -3284,7 +3284,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "Přidat rozpis",
+                      "Zadat rozpis",
                       Object {
                         "instance": null,
                         "key": undefined,

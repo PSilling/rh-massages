@@ -473,7 +473,7 @@ class MassageBatchAddModal extends Component {
     <Row>
       <Col md="12">
         <h3>
-          {_t.translate("Add schedule")}
+          {_t.translate("New schedule")}
           <div className="float-right">
             <Button id={this.tooltipTargets[0]} tag="label" outline htmlFor="fileImport">
               {_t.translate("Import")}
@@ -731,7 +731,7 @@ class MassageBatchAddModal extends Component {
         <TooltipButton
           {...rest}
           onClick={this.handleToggle}
-          label={_t.translate("Add schedule")}
+          label={_t.translate("Schedule")}
           tooltip={_t.translate("Create multiple massages at once")}
         />
 

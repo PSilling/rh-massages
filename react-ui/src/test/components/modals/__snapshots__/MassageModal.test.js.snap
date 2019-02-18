@@ -42,12 +42,11 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <TooltipIconButton
+        <TooltipButton
+          active={false}
           disabled={false}
-          icon="plus"
+          label="Nová masáž"
           onClick={[MockFunction]}
-          size="md"
-          style={Object {}}
           tooltip="Vytvořit novou masáž"
         />,
         <ModalBody
@@ -133,7 +132,7 @@ ShallowWrapper {
               onEnterPress={[Function]}
               size="3"
               timeFormat="H:mm"
-              tooltip="Jak dlouhá by měla masáž být"
+              tooltip=""
               value={"1969-12-31T23:30:00.000Z"}
             />
           </Row>
@@ -147,7 +146,7 @@ ShallowWrapper {
               onChange={[Function]}
               onEnterPress={[Function]}
               size="4"
-              tooltip="Kdy by se měla masáž konat"
+              tooltip=""
               value={"1970-01-01T01:00:00.000Z"}
             />
           </Row>
@@ -167,11 +166,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "active": false,
           "disabled": false,
-          "icon": "plus",
+          "label": "Nová masáž",
           "onClick": [MockFunction],
-          "size": "md",
-          "style": Object {},
           "tooltip": "Vytvořit novou masáž",
         },
         "ref": null,
@@ -264,7 +262,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 size="3"
                 timeFormat="H:mm"
-                tooltip="Jak dlouhá by měla masáž být"
+                tooltip=""
                 value={"1969-12-31T23:30:00.000Z"}
               />
             </Row>,
@@ -278,7 +276,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="4"
-                tooltip="Kdy by se měla masáž konat"
+                tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />
             </Row>,
@@ -570,7 +568,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 size="3"
                 timeFormat="H:mm"
-                tooltip="Jak dlouhá by měla masáž být"
+                tooltip=""
                 value={"1969-12-31T23:30:00.000Z"}
               />,
               "tag": "div",
@@ -588,7 +586,7 @@ ShallowWrapper {
                 "onEnterPress": [Function],
                 "size": "3",
                 "timeFormat": "H:mm",
-                "tooltip": "Jak dlouhá by měla masáž být",
+                "tooltip": "",
                 "value": "1969-12-31T23:30:00.000Z",
               },
               "ref": null,
@@ -609,7 +607,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="4"
-                tooltip="Kdy by se měla masáž konat"
+                tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />,
               "tag": "div",
@@ -626,7 +624,7 @@ ShallowWrapper {
                 "onChange": [Function],
                 "onEnterPress": [Function],
                 "size": "4",
-                "tooltip": "Kdy by se měla masáž konat",
+                "tooltip": "",
                 "value": "1970-01-01T01:00:00.000Z",
               },
               "ref": null,
@@ -663,12 +661,11 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <TooltipIconButton
+          <TooltipButton
+            active={false}
             disabled={false}
-            icon="plus"
+            label="Nová masáž"
             onClick={[MockFunction]}
-            size="md"
-            style={Object {}}
             tooltip="Vytvořit novou masáž"
           />,
           <ModalBody
@@ -754,7 +751,7 @@ ShallowWrapper {
                 onEnterPress={[Function]}
                 size="3"
                 timeFormat="H:mm"
-                tooltip="Jak dlouhá by měla masáž být"
+                tooltip=""
                 value={"1969-12-31T23:30:00.000Z"}
               />
             </Row>
@@ -768,7 +765,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="4"
-                tooltip="Kdy by se měla masáž konat"
+                tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />
             </Row>
@@ -788,11 +785,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "active": false,
             "disabled": false,
-            "icon": "plus",
+            "label": "Nová masáž",
             "onClick": [MockFunction],
-            "size": "md",
-            "style": Object {},
             "tooltip": "Vytvořit novou masáž",
           },
           "ref": null,
@@ -885,7 +881,7 @@ ShallowWrapper {
                   onEnterPress={[Function]}
                   size="3"
                   timeFormat="H:mm"
-                  tooltip="Jak dlouhá by měla masáž být"
+                  tooltip=""
                   value={"1969-12-31T23:30:00.000Z"}
                 />
               </Row>,
@@ -899,7 +895,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="4"
-                  tooltip="Kdy by se měla masáž konat"
+                  tooltip=""
                   value={"1970-01-01T01:00:00.000Z"}
                 />
               </Row>,
@@ -1191,7 +1187,7 @@ ShallowWrapper {
                   onEnterPress={[Function]}
                   size="3"
                   timeFormat="H:mm"
-                  tooltip="Jak dlouhá by měla masáž být"
+                  tooltip=""
                   value={"1969-12-31T23:30:00.000Z"}
                 />,
                 "tag": "div",
@@ -1209,7 +1205,7 @@ ShallowWrapper {
                   "onEnterPress": [Function],
                   "size": "3",
                   "timeFormat": "H:mm",
-                  "tooltip": "Jak dlouhá by měla masáž být",
+                  "tooltip": "",
                   "value": "1969-12-31T23:30:00.000Z",
                 },
                 "ref": null,
@@ -1230,7 +1226,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="4"
-                  tooltip="Kdy by se měla masáž konat"
+                  tooltip=""
                   value={"1970-01-01T01:00:00.000Z"}
                 />,
                 "tag": "div",
@@ -1247,7 +1243,7 @@ ShallowWrapper {
                   "onChange": [Function],
                   "onEnterPress": [Function],
                   "size": "4",
-                  "tooltip": "Kdy by se měla masáž konat",
+                  "tooltip": "",
                   "value": "1970-01-01T01:00:00.000Z",
                 },
                 "ref": null,

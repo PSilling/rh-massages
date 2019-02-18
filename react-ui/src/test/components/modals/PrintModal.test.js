@@ -7,7 +7,7 @@ import moment from "moment";
 import LabeledInput from "../../../components/formitems/LabeledInput";
 import ModalActions from "../../../components/buttons/ModalActions";
 import PrintModal from "../../../components/modals/PrintModal";
-import TooltipButton from "../../../components/buttons/TooltipButton";
+import TooltipIconButton from "../../../components/iconbuttons/TooltipIconButton";
 
 // test mocks
 jest.mock("../../../util/Fetch");
@@ -43,7 +43,7 @@ test("renders inside content with correct props and functionality", () => {
       withPortal={false}
     />
   );
-  const button = wrapper.find(TooltipButton);
+  const button = wrapper.find(TooltipIconButton);
 
   button.props().onClick();
   expect(wrapper.instance().state.active).toBe(true);
