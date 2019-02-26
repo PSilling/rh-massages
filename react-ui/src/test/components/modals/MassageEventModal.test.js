@@ -59,7 +59,7 @@ test("renders inside content with correct props", () => {
   expect(editButton.props().onClick).toBe(testEditFunction);
   expect(deleteButton.props().onConfirm).toBe(testDeleteFunction);
   expect(actions.props().children).not.toEqual("");
-  expect(actions.props().disabled).toBe(true);
+  expect(actions.props().disabled).toBe(false);
   expect(actions.props().onProceed).toBe(testConfirmFunction);
   expect(actions.props().onClose).toBe(testCloseFunction);
   expect(definitions.get(0).props.children).toEqual(testEvent.massage.facility.name);

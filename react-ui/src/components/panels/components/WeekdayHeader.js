@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 /**
  * Calendar day header for week view.
  */
-class Header extends Component {
+export class Header extends Component {
   handleKeyPress = event => {
     if (event.key === "Space") {
       this.props.onClick(this.props.date);

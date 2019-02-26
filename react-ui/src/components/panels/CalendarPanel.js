@@ -9,6 +9,7 @@ import BigCalendar from "react-big-calendar";
 
 // component imports
 import CalendarToolbar from "../util/CalendarToolbar";
+import MassageEvent from "./components/MassageEvent";
 import MassageEventModal from "../modals/MassageEventModal";
 import WeekdayHeader from "./components/WeekdayHeader";
 
@@ -42,8 +43,11 @@ class CalendarPanel extends Component {
   };
 
   formats = {
-    dayFormat: (date, culture, local) => local.format(date, _t.translate("DD ddd"), culture)
+    dayFormat: (date, culture, local) => local.format(date, _t.translate("DD ddd"), culture),
+    eventTimeRangeFormat: () => null
   };
+
+  doubleClick = false;
 
   eventStyler = event => ({
     style: {
@@ -60,10 +64,33 @@ class CalendarPanel extends Component {
     if (this.props.selectEvents) {
       this.props.onSelect(event);
     } else if (this.props.allowEditation) {
+      this.props.onTooltipTrigger(`MassageEventID${event.massage.id}`);
+    } else {
+      this.setState({ active: true, action: "none", label: "none", selectedEvent: event });
+      this.props.onTooltipTrigger(null);
+    }
+  };
+
+  onEventDoubleClick = event => {
+    if (this.props.allowEditation) {
       this.configureModalActions(event);
     } else {
       this.setState({ active: true, action: "none", label: "none", selectedEvent: event });
     }
+    this.props.onTooltipTrigger(null);
+  };
+
+  handleEventSelect = event => {
+    setTimeout(() => {
+      this.doubleClick = false;
+    }, 500);
+
+    if (this.doubleClick) {
+      this.onEventDoubleClick(event);
+    }
+
+    this.onSelectEvent(event);
+    this.doubleClick = !this.doubleClick;
   };
 
   /**
@@ -128,15 +155,9 @@ class CalendarPanel extends Component {
     this.setState({ active: false });
   };
 
-  generateTitle = event => {
-    if (this.props.allowEditation) {
-      return event.massage.masseuse.name;
-    }
-    return `${event.massage.facility.name}: ${event.massage.masseuse.name}`;
-  };
-
   handleToggle = () => {
     this.setState(prevState => ({ active: !prevState.active }));
+    this.props.onTooltipTrigger(null);
   };
 
   changeView = view => {
@@ -197,8 +218,7 @@ class CalendarPanel extends Component {
               style={{ height: "85vh" }}
               timeslots={1}
               eventPropGetter={this.eventStyler}
-              onSelectEvent={this.onSelectEvent}
-              titleAccessor={this.generateTitle}
+              onSelectEvent={this.handleEventSelect}
               startAccessor={event => new Date(event.massage.date)}
               endAccessor={event => new Date(event.massage.ending)}
               selectable={Auth.isAdminOrMasseur() && this.props.allowEditation && this.state.view === "work_week"}
@@ -210,6 +230,20 @@ class CalendarPanel extends Component {
               localizer={localizer}
               formats={this.formats}
               components={{
+                event: props => (
+                  <MassageEvent
+                    event={props.event}
+                    archived={!this.props.allowEditation}
+                    activeTooltip={this.props.activeEventTooltip}
+                    massageMinutes={this.props.massageMinutes}
+                    onAssign={this.props.onAssign}
+                    onCancel={this.props.onCancel}
+                    onDelete={this.props.onDelete}
+                    onEdit={this.props.onEdit}
+                    onShowMore={this.onEventDoubleClick}
+                    view={this.state.view}
+                  />
+                ),
                 work_week: {
                   header: props =>
                     WeekdayHeader(props, Auth.isAdminOrMasseur() && this.props.selectEvents, this.props.onSelectDay)
@@ -248,6 +282,7 @@ class CalendarPanel extends Component {
             onClose={this.handleToggle}
             onEdit={this.editEvent}
             onDelete={this.deleteEvent}
+            allowEditation={this.props.allowEditation}
             onConfirm={() => {
               this.handleToggle();
               switch (this.state.action) {
@@ -342,6 +377,8 @@ CalendarPanel.propTypes = {
   ).isRequired,
   /** whether multi event selection should be activated */
   selectEvents: PropTypes.bool.isRequired,
+  /** currently active event tooltip target */
+  activeEventTooltip: PropTypes.string,
   /** whether the edit button should be shown (Admin only) */
   allowEditation: PropTypes.bool,
   /** number of currently used Massage time in minutes */
@@ -353,16 +390,20 @@ CalendarPanel.propTypes = {
   /** function called on event cancellation */
   onCancel: PropTypes.func,
   /** function called on event editation */
-  onEdit: PropTypes.func
+  onEdit: PropTypes.func,
+  /** function called on event tooltip toggle trigger */
+  onTooltipTrigger: PropTypes.func
 };
 
 CalendarPanel.defaultProps = {
+  activeEventTooltip: null,
   allowEditation: true,
   massageMinutes: 0,
   onAdd() {},
   onAssign() {},
   onCancel() {},
-  onEdit() {}
+  onEdit() {},
+  onTooltipTrigger() {}
 };
 
 export default CalendarPanel;

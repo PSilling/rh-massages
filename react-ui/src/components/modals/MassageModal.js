@@ -66,7 +66,7 @@ class MassageModal extends Component {
   };
 
   getUsers = () => {
-    Fetch.get(`${Util.CLIENTS_URL}/users`, json => {
+    Fetch.get(`${Util.CLIENTS_URL}users`, json => {
       json.push(this.freeUser);
       this.setState({ users: json });
     });

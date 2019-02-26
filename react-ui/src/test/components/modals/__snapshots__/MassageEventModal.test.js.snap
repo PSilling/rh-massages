@@ -215,45 +215,11 @@ ShallowWrapper {
           </Col>
         </Row>,
         <ModalActions
-          disabled={true}
+          disabled={false}
           onClose={[MockFunction]}
           onProceed={[MockFunction]}
-          primaryLabel="Zapsat se"
-        >
-          <span>
-            <Button
-              className="mr-2"
-              color="primary"
-              disabled={true}
-              id="Tooltip1"
-              onClick={[Function]}
-              rel="noopener noreferrer"
-              tabIndex="-1"
-              tag="a"
-              target="_blank"
-            >
-              Zapsat a přidat do kalendáře
-            </Button>
-            <Tooltip
-              autohide={true}
-              delay={
-                Object {
-                  "hide": 250,
-                  "show": 0,
-                }
-              }
-              hideArrow={false}
-              isOpen={false}
-              placement="top"
-              placementPrefix="bs-tooltip"
-              target="Tooltip1"
-              toggle={[Function]}
-              trigger="hover"
-            >
-              Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-            </Tooltip>
-          </span>
-        </ModalActions>,
+          primaryLabel="none"
+        />,
       ],
       "tag": "div",
     },
@@ -1032,132 +998,14 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": <span>
-            <Button
-              className="mr-2"
-              color="primary"
-              disabled={true}
-              id="Tooltip1"
-              onClick={[Function]}
-              rel="noopener noreferrer"
-              tabIndex="-1"
-              tag="a"
-              target="_blank"
-            >
-              Zapsat a přidat do kalendáře
-            </Button>
-            <Tooltip
-              autohide={true}
-              delay={
-                Object {
-                  "hide": 250,
-                  "show": 0,
-                }
-              }
-              hideArrow={false}
-              isOpen={false}
-              placement="top"
-              placementPrefix="bs-tooltip"
-              target="Tooltip1"
-              toggle={[Function]}
-              trigger="hover"
-            >
-              Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-            </Tooltip>
-          </span>,
-          "disabled": true,
+          "children": null,
+          "disabled": false,
           "onClose": [MockFunction],
           "onProceed": [MockFunction],
-          "primaryLabel": "Zapsat se",
+          "primaryLabel": "none",
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Button
-                className="mr-2"
-                color="primary"
-                disabled={true}
-                id="Tooltip1"
-                onClick={[Function]}
-                rel="noopener noreferrer"
-                tabIndex="-1"
-                tag="a"
-                target="_blank"
-              >
-                Zapsat a přidat do kalendáře
-              </Button>,
-              <Tooltip
-                autohide={true}
-                delay={
-                  Object {
-                    "hide": 250,
-                    "show": 0,
-                  }
-                }
-                hideArrow={false}
-                isOpen={false}
-                placement="top"
-                placementPrefix="bs-tooltip"
-                target="Tooltip1"
-                toggle={[Function]}
-                trigger="hover"
-              >
-                Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-              </Tooltip>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Zapsat a přidat do kalendáře",
-                "className": "mr-2",
-                "color": "primary",
-                "disabled": true,
-                "id": "Tooltip1",
-                "onClick": [Function],
-                "rel": "noopener noreferrer",
-                "tabIndex": "-1",
-                "tag": "a",
-                "target": "_blank",
-              },
-              "ref": null,
-              "rendered": "Zapsat a přidat do kalendáře",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "autohide": true,
-                "children": "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce",
-                "delay": Object {
-                  "hide": 250,
-                  "show": 0,
-                },
-                "hideArrow": false,
-                "isOpen": false,
-                "placement": "top",
-                "placementPrefix": "bs-tooltip",
-                "target": "Tooltip1",
-                "toggle": [Function],
-                "trigger": "hover",
-              },
-              "ref": null,
-              "rendered": "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce",
-              "type": [Function],
-            },
-          ],
-          "type": "span",
-        },
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -1334,45 +1182,11 @@ ShallowWrapper {
             </Col>
           </Row>,
           <ModalActions
-            disabled={true}
+            disabled={false}
             onClose={[MockFunction]}
             onProceed={[MockFunction]}
-            primaryLabel="Zapsat se"
-          >
-            <span>
-              <Button
-                className="mr-2"
-                color="primary"
-                disabled={true}
-                id="Tooltip1"
-                onClick={[Function]}
-                rel="noopener noreferrer"
-                tabIndex="-1"
-                tag="a"
-                target="_blank"
-              >
-                Zapsat a přidat do kalendáře
-              </Button>
-              <Tooltip
-                autohide={true}
-                delay={
-                  Object {
-                    "hide": 250,
-                    "show": 0,
-                  }
-                }
-                hideArrow={false}
-                isOpen={false}
-                placement="top"
-                placementPrefix="bs-tooltip"
-                target="Tooltip1"
-                toggle={[Function]}
-                trigger="hover"
-              >
-                Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-              </Tooltip>
-            </span>
-          </ModalActions>,
+            primaryLabel="none"
+          />,
         ],
         "tag": "div",
       },
@@ -2151,132 +1965,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": <span>
-              <Button
-                className="mr-2"
-                color="primary"
-                disabled={true}
-                id="Tooltip1"
-                onClick={[Function]}
-                rel="noopener noreferrer"
-                tabIndex="-1"
-                tag="a"
-                target="_blank"
-              >
-                Zapsat a přidat do kalendáře
-              </Button>
-              <Tooltip
-                autohide={true}
-                delay={
-                  Object {
-                    "hide": 250,
-                    "show": 0,
-                  }
-                }
-                hideArrow={false}
-                isOpen={false}
-                placement="top"
-                placementPrefix="bs-tooltip"
-                target="Tooltip1"
-                toggle={[Function]}
-                trigger="hover"
-              >
-                Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-              </Tooltip>
-            </span>,
-            "disabled": true,
+            "children": null,
+            "disabled": false,
             "onClose": [MockFunction],
             "onProceed": [MockFunction],
-            "primaryLabel": "Zapsat se",
+            "primaryLabel": "none",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Button
-                  className="mr-2"
-                  color="primary"
-                  disabled={true}
-                  id="Tooltip1"
-                  onClick={[Function]}
-                  rel="noopener noreferrer"
-                  tabIndex="-1"
-                  tag="a"
-                  target="_blank"
-                >
-                  Zapsat a přidat do kalendáře
-                </Button>,
-                <Tooltip
-                  autohide={true}
-                  delay={
-                    Object {
-                      "hide": 250,
-                      "show": 0,
-                    }
-                  }
-                  hideArrow={false}
-                  isOpen={false}
-                  placement="top"
-                  placementPrefix="bs-tooltip"
-                  target="Tooltip1"
-                  toggle={[Function]}
-                  trigger="hover"
-                >
-                  Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce
-                </Tooltip>,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Zapsat a přidat do kalendáře",
-                  "className": "mr-2",
-                  "color": "primary",
-                  "disabled": true,
-                  "id": "Tooltip1",
-                  "onClick": [Function],
-                  "rel": "noopener noreferrer",
-                  "tabIndex": "-1",
-                  "tag": "a",
-                  "target": "_blank",
-                },
-                "ref": null,
-                "rendered": "Zapsat a přidat do kalendáře",
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "autohide": true,
-                  "children": "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce",
-                  "delay": Object {
-                    "hide": 250,
-                    "show": 0,
-                  },
-                  "hideArrow": false,
-                  "isOpen": false,
-                  "placement": "top",
-                  "placementPrefix": "bs-tooltip",
-                  "target": "Tooltip1",
-                  "toggle": [Function],
-                  "trigger": "hover",
-                },
-                "ref": null,
-                "rendered": "Přiřadí zvolenou masáž a otevře předdefinovaný editor Google událostí v nové záložce",
-                "type": [Function],
-              },
-            ],
-            "type": "span",
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],

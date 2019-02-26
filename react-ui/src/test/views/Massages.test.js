@@ -88,6 +88,12 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.massageMinutes).toBe(0);
   expect(wrapper.instance().state.loading).toBe(false);
 
+  expect(wrapper.instance().state.activeEventTooltip).toBe(null);
+  wrapper.instance().changeTooltipActive("testTooltip");
+  expect(wrapper.instance().state.activeEventTooltip).toBe("testTooltip");
+  wrapper.instance().changeTooltipActive(null);
+  expect(wrapper.instance().state.activeEventTooltip).toBe(null);
+
   expect(tabs.length).toBe(1);
   expect(tabs.get(0).props.active).toBe(true);
   expect(tabs.get(0).props.label).toBe(testFacilities[0].name);

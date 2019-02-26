@@ -47,6 +47,10 @@ class MassageEventModal extends Component {
     let label;
     let tooltip;
 
+    if (Auth.isMasseur() && this.props.event.massage.client === null) {
+      return null;
+    }
+
     if (this.props.label === _t.translate("Assign me")) {
       onConfirm = this.onCalendarConfirm;
       label = _t.translate("Assign and add to calendar");
@@ -72,7 +76,7 @@ class MassageEventModal extends Component {
           className="mr-2"
           tag="a"
           color="primary"
-          disabled={this.props.disabled || Auth.isMasseur()}
+          disabled={this.props.disabled}
           onClick={onConfirm}
           target="_blank"
           rel="noopener noreferrer"
@@ -180,8 +184,8 @@ class MassageEventModal extends Component {
       </Row>
 
       <ModalActions
-        primaryLabel={this.props.label}
-        disabled={this.props.disabled || (Auth.isMasseur() && this.props.event.massage.client === null)}
+        primaryLabel={Auth.isMasseur() && this.props.event.massage.client === null ? "none" : this.props.label}
+        disabled={this.props.disabled}
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >

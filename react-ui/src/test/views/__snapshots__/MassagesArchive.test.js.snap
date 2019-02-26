@@ -72,6 +72,7 @@ ShallowWrapper {
           </Col>
         </Row>,
         <CalendarPanel
+          activeEventTooltip={null}
           allowEditation={false}
           events={Array []}
           massageMinutes={0}
@@ -83,6 +84,7 @@ ShallowWrapper {
           onEdit={[Function]}
           onSelect={[Function]}
           onSelectDay={[Function]}
+          onTooltipTrigger={[Function]}
           selectEvents={false}
           selected={Array []}
         />,
@@ -284,6 +286,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "activeEventTooltip": null,
           "allowEditation": false,
           "events": Array [],
           "massageMinutes": 0,
@@ -295,6 +298,7 @@ ShallowWrapper {
           "onEdit": [Function],
           "onSelect": [Function],
           "onSelectDay": [Function],
+          "onTooltipTrigger": [Function],
           "selectEvents": false,
           "selected": Array [],
         },
@@ -366,6 +370,7 @@ ShallowWrapper {
             </Col>
           </Row>,
           <CalendarPanel
+            activeEventTooltip={null}
             allowEditation={false}
             events={Array []}
             massageMinutes={0}
@@ -377,6 +382,7 @@ ShallowWrapper {
             onEdit={[Function]}
             onSelect={[Function]}
             onSelectDay={[Function]}
+            onTooltipTrigger={[Function]}
             selectEvents={false}
             selected={Array []}
           />,
@@ -578,6 +584,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "activeEventTooltip": null,
             "allowEditation": false,
             "events": Array [],
             "massageMinutes": 0,
@@ -589,6 +596,7 @@ ShallowWrapper {
             "onEdit": [Function],
             "onSelect": [Function],
             "onSelectDay": [Function],
+            "onTooltipTrigger": [Function],
             "selectEvents": false,
             "selected": Array [],
           },

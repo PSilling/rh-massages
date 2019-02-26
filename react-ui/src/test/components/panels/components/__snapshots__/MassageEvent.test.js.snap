@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content with correct props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MassageEvent
+    activeTooltip={null}
+    archived={false}
+    event={
+      Object {
+        "massage": Object {
+          "client": null,
+          "date": 1970-01-01T00:00:00.000Z,
+          "ending": 1970-01-01T00:00:01.000Z,
+          "facility": Object {
+            "id": 1,
+            "name": "test",
+          },
+          "id": 1,
+          "masseuse": Object {
+            "email": "test@masseuse.org",
+            "masseur": true,
+            "name": "Masseuse",
+            "sub": "m-sub",
+            "subscribed": false,
+            "surname": "Test",
+          },
+        },
+      }
+    }
+    massageMinutes={0}
+    onAssign={[Function]}
+    onCancel={[Function]}
+    onDelete={[Function]}
+    onEdit={[Function]}
+    onShowMore={[Function]}
+    view="work_week"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <span
+          className="rbc-event-label"
+          style={
+            Object {
+              "marginBottom": "3px",
+              "marginTop": "2px",
+            }
+          }
+        >
+          1:00 AM — 1:00 AM
+        </span>,
+        <span>
+          Masseuse
+        </span>,
+        false,
+        false,
+      ],
+      "id": "MassageEventID1",
+      "style": Object {
+        "minHeight": "100%",
+        "minWidth": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "1:00 AM — 1:00 AM",
+          "className": "rbc-event-label",
+          "style": Object {
+            "marginBottom": "3px",
+            "marginTop": "2px",
+          },
+        },
+        "ref": null,
+        "rendered": "1:00 AM — 1:00 AM",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            false,
+            "Masseuse",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          false,
+          "Masseuse",
+        ],
+        "type": "span",
+      },
+      false,
+      false,
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <span
+            className="rbc-event-label"
+            style={
+              Object {
+                "marginBottom": "3px",
+                "marginTop": "2px",
+              }
+            }
+          >
+            1:00 AM — 1:00 AM
+          </span>,
+          <span>
+            Masseuse
+          </span>,
+          false,
+          false,
+        ],
+        "id": "MassageEventID1",
+        "style": Object {
+          "minHeight": "100%",
+          "minWidth": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "1:00 AM — 1:00 AM",
+            "className": "rbc-event-label",
+            "style": Object {
+              "marginBottom": "3px",
+              "marginTop": "2px",
+            },
+          },
+          "ref": null,
+          "rendered": "1:00 AM — 1:00 AM",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              false,
+              "Masseuse",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            false,
+            "Masseuse",
+          ],
+          "type": "span",
+        },
+        false,
+        false,
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

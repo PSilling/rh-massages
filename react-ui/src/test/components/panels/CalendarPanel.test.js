@@ -119,7 +119,6 @@ test("renders content with correct props and funcionality", () => {
   expect(calendar.props().views).toEqual(["work_week", "month"]);
   calendar.props().onView(null);
   expect(testDateChangeFunction).toHaveBeenCalledTimes(4);
-  expect(calendar.props().titleAccessor(testEvents[0])).toBe(testEvents[0].massage.masseuse.name);
   expect(calendar.props().startAccessor(testEvents[0])).toEqual(testEvents[0].massage.date);
   expect(calendar.props().endAccessor(testEvents[0])).toEqual(testEvents[0].massage.ending);
   expect(calendar.props().onSelectSlot).toBe(testAddFunction);

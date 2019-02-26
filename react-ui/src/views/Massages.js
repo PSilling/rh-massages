@@ -39,6 +39,7 @@ class Massages extends Component {
     loading: true,
     modalActive: false,
     batchAddModalActive: false,
+    activeEventTooltip: null,
     events: [],
     freeOnly: false,
     from: moment()
@@ -61,7 +62,7 @@ class Massages extends Component {
     this.getFacilities();
     this.getMasseuses();
     setInterval(() => {
-      if (this.state.modalActive || this.state.batchAddModalActive) return;
+      if (this.state.modalActive || this.state.batchAddModalActive || this.state.activeEventTooltip !== null) return;
       this.getMassages();
     }, Util.AUTO_REFRESH_TIME);
   }
@@ -174,6 +175,7 @@ class Massages extends Component {
       ],
       this.getMassages
     );
+    this.setState({ activeEventTooltip: null });
   };
 
   cancelMassage = massage => {
@@ -191,6 +193,7 @@ class Massages extends Component {
       ],
       this.getMassages
     );
+    this.setState({ activeEventTooltip: null });
   };
 
   deleteMassage = id => {
@@ -252,7 +255,7 @@ class Massages extends Component {
         }
       }
 
-      return { selected };
+      return { selected, activeEventTooltip: null };
     });
   };
 
@@ -275,7 +278,8 @@ class Massages extends Component {
           .endOf("month")
           .add(37, "days"),
         loading: true,
-        selected: []
+        selected: [],
+        activeEventTooltip: null
       });
     } else {
       this.setState({
@@ -286,14 +290,15 @@ class Massages extends Component {
           .endOf("isoWeek")
           .add(5, "days"),
         loading: true,
-        selected: []
+        selected: [],
+        activeEventTooltip: null
       });
     }
     setTimeout(() => this.getMassages(), 3);
   };
 
   changeTabIndex = index => {
-    this.setState({ index, loading: true });
+    this.setState({ index, loading: true, activeEventTooltip: null });
     setTimeout(() => this.getMassages(), 3);
   };
 
@@ -302,8 +307,16 @@ class Massages extends Component {
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
+  changeTooltipActive = activeEventTooltip => {
+    this.setState({ activeEventTooltip });
+  };
+
   toggleModal = massage => {
-    this.setState(prevState => ({ modalActive: !prevState.modalActive, editMassage: massage }));
+    this.setState(prevState => ({
+      modalActive: !prevState.modalActive,
+      editMassage: massage,
+      activeEventTooltip: null
+    }));
   };
 
   toggleModalWithTime = slot => {
@@ -329,7 +342,8 @@ class Massages extends Component {
       () =>
         this.setState(prevState => ({
           modalActive: !prevState.modalActive,
-          editMassage: exampleMassage
+          editMassage: exampleMassage,
+          activeEventTooltip: null
         })),
       1
     );
@@ -337,9 +351,13 @@ class Massages extends Component {
 
   toggleBatchAddModal = deselect => {
     if (deselect) {
-      this.setState(prevState => ({ selected: [], batchAddModalActive: !prevState.batchAddModalActive }));
+      this.setState(prevState => ({
+        selected: [],
+        batchAddModalActive: !prevState.batchAddModalActive,
+        activeEventTooltip: null
+      }));
     } else {
-      this.setState(prevState => ({ batchAddModalActive: !prevState.batchAddModalActive }));
+      this.setState(prevState => ({ batchAddModalActive: !prevState.batchAddModalActive, activeEventTooltip: null }));
     }
   };
 
@@ -422,6 +440,7 @@ class Massages extends Component {
                 selectEvents={this.state.selectEvents}
                 selected={this.state.selected}
                 massageMinutes={this.state.massageMinutes}
+                activeEventTooltip={this.state.activeEventTooltip}
                 onAssign={this.assignMassage}
                 onCancel={this.cancelMassage}
                 onAdd={this.toggleModalWithTime}
@@ -430,6 +449,7 @@ class Massages extends Component {
                 onDateChange={this.changeTimeRange}
                 onSelect={this.handleEventSelect}
                 onSelectDay={this.handleDayEventSelect}
+                onTooltipTrigger={this.changeTooltipActive}
               />
             </div>
           ) : (
