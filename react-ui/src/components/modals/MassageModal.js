@@ -156,7 +156,14 @@ class MassageModal extends Component {
       () => {
         this.props.onToggle();
         this.props.getCallback();
-      }
+      },
+      true,
+      () =>
+        Util.notify(
+          "error",
+          _t.translate("It is possible that the selected client does not have enough massage time."),
+          _t.translate("Failed to finish the request")
+        )
     );
   };
 

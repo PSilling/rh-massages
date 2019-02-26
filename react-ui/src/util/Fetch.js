@@ -97,8 +97,9 @@ Fetch.post = (url, data, update, notify = true) => {
  * @param data            data to send
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
+ * @param onError         function that replaces (if not null) standard error notification
  */
-Fetch.put = (url, data, update, notify = true) => {
+Fetch.put = (url, data, update, notify = true, onError = null) => {
   Auth.keycloak
     .updateToken(Util.REFRESH_MIN_TIME)
     .success(() => {
@@ -117,11 +118,15 @@ Fetch.put = (url, data, update, notify = true) => {
           }
           update();
         } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
+          if (onError == null) {
+            Util.notify(
+              "error",
+              _t.translate("Your request has ended unsuccessfully."),
+              _t.translate("An error occured!")
+            );
+          } else {
+            onError();
+          }
           console.error("Server responsed with an error response:", response); /* eslint-disable-line */
         }
       });

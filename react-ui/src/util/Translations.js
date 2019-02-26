@@ -330,6 +330,12 @@ const myLocalize = new Localize({
   "Cannot select an unowned massage!": {
     cs: "Nelze vybrat nevlastní masáž!"
   },
+  "Failed to finish the request": {
+    cs: "Nešlo dokončit požadavek"
+  },
+  "It is possible that the selected client does not have enough massage time.": {
+    cs: "Je možné, že zvolený klient nemá dostatek volného času pro masáže."
+  },
 
   // tooltips
   "Create multiple massages at once": {
