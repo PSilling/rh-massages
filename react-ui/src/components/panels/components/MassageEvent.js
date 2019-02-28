@@ -27,8 +27,85 @@ class MassageEvent extends Component {
     this.setState({ mounted: false });
   }
 
+  assignWithCalendar = () => {
+    window.open(Util.getEventLink(this.props.event.massage), "_blank");
+    this.props.onAssign(this.props.event.massage);
+  };
+
   handleToggle = () => {
     this.setState(prevState => ({ active: !prevState.active }));
+  };
+
+  createIcons = () => {
+    const icons = [];
+
+    if (!Auth.isMasseur() && Util.isEmpty(this.props.event.massage.client)) {
+      const assignDisabled =
+        this.props.massageMinutes +
+          moment(this.props.event.massage.ending).diff(moment(this.props.event.massage.date), "minutes") >
+        Util.MAX_MASSAGE_MINS;
+      icons.push(
+        <TooltipIconButton
+          key="assignCal"
+          icon="calendar-plus"
+          size="md"
+          onClick={this.assignWithCalendar}
+          disabled={assignDisabled}
+        />
+      );
+      icons.push(
+        <TooltipIconButton
+          key="assign"
+          icon="check"
+          size="md"
+          onClick={() => this.props.onAssign(this.props.event.massage)}
+          disabled={assignDisabled}
+        />
+      );
+    } else if (
+      !Util.isEmpty(this.props.event.massage.client) &&
+      Auth.getSub() === this.props.event.massage.client.sub
+    ) {
+      icons.push(
+        <TooltipIconButton
+          key="onlyCal"
+          icon="calendar-plus"
+          size="md"
+          onClick={() => window.open(Util.getEventLink(this.props.event.massage), "_blank")}
+        />
+      );
+      icons.push(
+        <TooltipIconButton
+          key="cancel"
+          icon="times"
+          size="md"
+          onClick={() => this.props.onCancel(this.props.event.massage)}
+        />
+      );
+    }
+
+    if (Auth.isAdmin() || (Auth.isMasseur() && this.props.event.massage.masseuse.sub === Auth.getSub())) {
+      icons.push(
+        <TooltipIconButton
+          key="edit"
+          icon="edit"
+          size="md"
+          onClick={() => this.props.onEdit(this.props.event.massage)}
+        />
+      );
+      icons.push(<TooltipIconButton key="delete" icon="trash" size="md" onClick={this.handleToggle} />);
+    }
+
+    icons.push(
+      <TooltipIconButton
+        key="more"
+        icon="ellipsis-v"
+        size="md"
+        onClick={() => this.props.onShowMore(this.props.event)}
+      />
+    );
+
+    return icons;
   };
 
   render() {
@@ -52,39 +129,7 @@ class MassageEvent extends Component {
           this.state.mounted &&
           !this.props.archived && (
             <UncontrolledTooltip target={this.tooltipTarget} autohide={false} delay={{ show: 0, hide: 3500 }}>
-              <TooltipIconButton icon="ellipsis-v" size="md" onClick={() => this.props.onShowMore(this.props.event)} />
-              {!Auth.isMasseur() && Util.isEmpty(this.props.event.massage.client) && (
-                <TooltipIconButton
-                  icon="calendar-plus"
-                  size="md"
-                  onClick={() => this.props.onAssign(this.props.event.massage)}
-                  disabled={
-                    this.props.massageMinutes +
-                      moment(this.props.event.massage.ending).diff(moment(this.props.event.massage.date), "minutes") >
-                    Util.MAX_MASSAGE_MINS
-                  }
-                  tooltip={_t.translate("Assign me")}
-                />
-              )}
-              {!Util.isEmpty(this.props.event.massage.client) &&
-                Auth.getSub() === this.props.event.massage.client.sub && (
-                  <TooltipIconButton
-                    icon="calendar-times"
-                    size="md"
-                    onClick={() => this.props.onCancel(this.props.event.massage)}
-                    tooltip={_t.translate("Unassign me")}
-                  />
-                )}
-              {(Auth.isAdmin() || (Auth.isMasseur() && this.props.event.massage.masseuse.sub === Auth.getSub())) && (
-                <span>
-                  <TooltipIconButton
-                    icon="edit"
-                    size="md"
-                    onClick={() => this.props.onEdit(this.props.event.massage)}
-                  />
-                  <TooltipIconButton icon="trash" size="md" onClick={this.handleToggle} />
-                </span>
-              )}
+              <div style={{ marginLeft: "-2px", marginRight: "-2px" }}>{this.createIcons()}</div>
             </UncontrolledTooltip>
           )}
         {this.state.active && (
