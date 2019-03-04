@@ -4,7 +4,7 @@ Red Hat massages management site.
 
 ## Travis CI
 
-[![Build Status](https://travis-ci.org/PSilling/rh-massages.svg?branch=master)](https://travis-ci.org/PSilling/rh-massages)
+[![Build Status](https://travis-ci.org/redhat-massages/rh-massages.svg?branch=master)](https://travis-ci.org/redhat-massages/rh-massages)
 
 ## Starting up the application
 
