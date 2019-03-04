@@ -219,6 +219,7 @@ ShallowWrapper {
           onClose={[MockFunction]}
           onProceed={[MockFunction]}
           primaryLabel="none"
+          title=""
         />,
       ],
       "tag": "div",
@@ -1003,6 +1004,7 @@ ShallowWrapper {
           "onClose": [MockFunction],
           "onProceed": [MockFunction],
           "primaryLabel": "none",
+          "title": "",
         },
         "ref": null,
         "rendered": null,
@@ -1186,6 +1188,7 @@ ShallowWrapper {
             onClose={[MockFunction]}
             onProceed={[MockFunction]}
             primaryLabel="none"
+            title=""
           />,
         ],
         "tag": "div",
@@ -1970,6 +1973,7 @@ ShallowWrapper {
             "onClose": [MockFunction],
             "onProceed": [MockFunction],
             "primaryLabel": "none",
+            "title": "",
           },
           "ref": null,
           "rendered": null,

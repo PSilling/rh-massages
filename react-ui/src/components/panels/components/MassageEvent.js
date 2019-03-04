@@ -55,23 +55,26 @@ class MassageEvent extends Component {
         this.props.massageMinutes +
           moment(this.props.event.massage.ending).diff(moment(this.props.event.massage.date), "minutes") >
         Util.MAX_MASSAGE_MINS;
+      const title = assignDisabled ? _t.translate("Over the limit") : "";
       icons.push(
-        <TooltipIconButton
-          key="assignCal"
-          icon="calendar-plus"
-          size="md"
-          onClick={this.assignWithCalendar}
-          disabled={assignDisabled}
-        />
+        <span key="assignCal" title={title}>
+          <TooltipIconButton
+            icon="calendar-plus"
+            size="md"
+            onClick={this.assignWithCalendar}
+            disabled={assignDisabled}
+          />
+        </span>
       );
       icons.push(
-        <TooltipIconButton
-          key="assign"
-          icon="check"
-          size="md"
-          onClick={() => this.props.onAssign(this.props.event.massage)}
-          disabled={assignDisabled}
-        />
+        <span key="assign" title={title}>
+          <TooltipIconButton
+            icon="check"
+            size="md"
+            onClick={() => this.props.onAssign(this.props.event.massage)}
+            disabled={assignDisabled}
+          />
+        </span>
       );
     } else if (
       !Util.isEmpty(this.props.event.massage.client) &&

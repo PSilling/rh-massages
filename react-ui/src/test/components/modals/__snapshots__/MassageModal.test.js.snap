@@ -201,6 +201,7 @@ ShallowWrapper {
             onClose={[MockFunction]}
             onProceed={[Function]}
             primaryLabel="Přidat"
+            title=""
           />
         </ModalBody>,
       ],
@@ -377,6 +378,7 @@ ShallowWrapper {
               onClose={[MockFunction]}
               onProceed={[Function]}
               primaryLabel="Přidat"
+              title=""
             />,
           ],
           "tag": "div",
@@ -922,6 +924,7 @@ ShallowWrapper {
               "onClose": [MockFunction],
               "onProceed": [Function],
               "primaryLabel": "Přidat",
+              "title": "",
             },
             "ref": null,
             "rendered": null,
@@ -1099,6 +1102,7 @@ ShallowWrapper {
               onClose={[MockFunction]}
               onProceed={[Function]}
               primaryLabel="Přidat"
+              title=""
             />
           </ModalBody>,
         ],
@@ -1275,6 +1279,7 @@ ShallowWrapper {
                 onClose={[MockFunction]}
                 onProceed={[Function]}
                 primaryLabel="Přidat"
+                title=""
               />,
             ],
             "tag": "div",
@@ -1820,6 +1825,7 @@ ShallowWrapper {
                 "onClose": [MockFunction],
                 "onProceed": [Function],
                 "primaryLabel": "Přidat",
+                "title": "",
               },
               "ref": null,
               "rendered": null,

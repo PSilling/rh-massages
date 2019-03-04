@@ -444,6 +444,7 @@ ShallowWrapper {
             onClose={[Function]}
             onProceed={[Function]}
             primaryLabel="Vytvořit"
+            title=""
           >
             <TooltipButton
               active={false}
@@ -854,6 +855,7 @@ ShallowWrapper {
               onClose={[Function]}
               onProceed={[Function]}
               primaryLabel="Vytvořit"
+              title=""
             >
               <TooltipButton
                 active={false}
@@ -2300,6 +2302,7 @@ ShallowWrapper {
               "onClose": [Function],
               "onProceed": [Function],
               "primaryLabel": "Vytvořit",
+              "title": "",
             },
             "ref": null,
             "rendered": Object {
@@ -2715,6 +2718,7 @@ ShallowWrapper {
               onClose={[Function]}
               onProceed={[Function]}
               primaryLabel="Vytvořit"
+              title=""
             >
               <TooltipButton
                 active={false}
@@ -3125,6 +3129,7 @@ ShallowWrapper {
                 onClose={[Function]}
                 onProceed={[Function]}
                 primaryLabel="Vytvořit"
+                title=""
               >
                 <TooltipButton
                   active={false}
@@ -4571,6 +4576,7 @@ ShallowWrapper {
                 "onClose": [Function],
                 "onProceed": [Function],
                 "primaryLabel": "Vytvořit",
+                "title": "",
               },
               "ref": null,
               "rendered": Object {

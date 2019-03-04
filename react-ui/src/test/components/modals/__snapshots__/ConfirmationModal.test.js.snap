@@ -32,15 +32,19 @@ exports[`renders inside content with correct props 1`] = `
       className="col-md-12"
     >
       <hr />
-      <button
-        aria-label={null}
-        className="mr-2 btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        title=""
       >
-        Pokračovat
-      </button>
+        <button
+          aria-label={null}
+          className="mr-2 btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Pokračovat
+        </button>
+      </span>
       <button
         aria-label={null}
         className="btn btn-secondary"

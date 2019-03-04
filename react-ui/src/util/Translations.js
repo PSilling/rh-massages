@@ -398,6 +398,9 @@ const myLocalize = new Localize({
   "Scheduling of new and cancellation of assigned massages": {
     cs: "Rozpis nových a zrušení připsaných masáží"
   },
+  "Over the limit": {
+    cs: "Nad limit"
+  },
 
   // moment localization
   January_February_March_April_May_June_July_August_September_October_November_December: {

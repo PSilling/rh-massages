@@ -19,9 +19,11 @@ const ModalActions = function ModalActions(props) {
         <hr />
         {props.children}
         {props.primaryLabel !== "none" && (
-          <Button className="mr-2" color="primary" onClick={props.onProceed} disabled={props.disabled}>
-            {props.primaryLabel}
-          </Button>
+          <span title={props.title}>
+            <Button className="mr-2" color="primary" onClick={props.onProceed} disabled={props.disabled}>
+              {props.primaryLabel}
+            </Button>
+          </span>
         )}
         <Button onClick={props.onClose}>{_t.translate("Dismiss")}</Button>
       </Col>
@@ -39,13 +41,16 @@ ModalActions.propTypes = {
   /** whether the primary button should be disabled */
   disabled: PropTypes.bool,
   /** primary button label to be displayed */
-  primaryLabel: PropTypes.string
+  primaryLabel: PropTypes.string,
+  /** title displyaed over the primary label */
+  title: PropTypes.string
 };
 
 ModalActions.defaultProps = {
   children: null,
   disabled: false,
-  primaryLabel: _t.translate("Proceed")
+  primaryLabel: _t.translate("Proceed"),
+  title: ""
 };
 
 export default ModalActions;

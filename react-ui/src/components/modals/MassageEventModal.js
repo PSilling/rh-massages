@@ -70,7 +70,7 @@ class MassageEventModal extends Component {
       return null;
     }
     return (
-      <span>
+      <span title={this.props.disabled ? _t.translate("Over the limit") : ""}>
         <Button
           id={this.tooltipTarget}
           className="mr-2"
@@ -185,6 +185,7 @@ class MassageEventModal extends Component {
 
       <ModalActions
         primaryLabel={Auth.isMasseur() && this.props.event.massage.client === null ? "none" : this.props.label}
+        title={this.props.disabled ? _t.translate("Over the limit") : ""}
         disabled={this.props.disabled}
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
