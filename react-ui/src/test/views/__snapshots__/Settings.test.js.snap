@@ -124,7 +124,7 @@ ShallowWrapper {
           >
             Navštivte náš 
             <a
-              href="https://github.com/PSilling/rh-massages/"
+              href="https://github.com/redhat-massages/rh-massages/"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -134,7 +134,7 @@ ShallowWrapper {
             <del>
               a naši 
               <a
-                href="https://github.com/PSilling/rh-massages/wiki"
+                href="https://github.com/redhat-massages/rh-massages/wiki"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -162,7 +162,7 @@ ShallowWrapper {
           >
             Hlaste chyby 
             <a
-              href="https://github.com/PSilling/rh-massages/issues"
+              href="https://github.com/redhat-massages/rh-massages/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -549,7 +549,7 @@ ShallowWrapper {
           >
             Navštivte náš 
             <a
-              href="https://github.com/PSilling/rh-massages/"
+              href="https://github.com/redhat-massages/rh-massages/"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -559,7 +559,7 @@ ShallowWrapper {
             <del>
               a naši 
               <a
-                href="https://github.com/PSilling/rh-massages/wiki"
+                href="https://github.com/redhat-massages/rh-massages/wiki"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -579,7 +579,7 @@ ShallowWrapper {
             "children": Array [
               "Navštivte náš ",
               <a
-                href="https://github.com/PSilling/rh-massages/"
+                href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -589,7 +589,7 @@ ShallowWrapper {
               <del>
                 a naši 
                 <a
-                  href="https://github.com/PSilling/rh-massages/wiki"
+                  href="https://github.com/redhat-massages/rh-massages/wiki"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -617,7 +617,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "GitHub",
-                "href": "https://github.com/PSilling/rh-massages/",
+                "href": "https://github.com/redhat-massages/rh-massages/",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
@@ -634,7 +634,7 @@ ShallowWrapper {
                 "children": Array [
                   "a naši ",
                   <a
-                    href="https://github.com/PSilling/rh-massages/wiki"
+                    href="https://github.com/redhat-massages/rh-massages/wiki"
                     rel="noreferrer noopener"
                     target="_blank"
                   >
@@ -651,7 +651,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "wiki",
-                    "href": "https://github.com/PSilling/rh-massages/wiki",
+                    "href": "https://github.com/redhat-massages/rh-massages/wiki",
                     "rel": "noreferrer noopener",
                     "target": "_blank",
                   },
@@ -688,7 +688,7 @@ ShallowWrapper {
           >
             Hlaste chyby 
             <a
-              href="https://github.com/PSilling/rh-massages/issues"
+              href="https://github.com/redhat-massages/rh-massages/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -707,7 +707,7 @@ ShallowWrapper {
             "children": Array [
               "Hlaste chyby ",
               <a
-                href="https://github.com/PSilling/rh-massages/issues"
+                href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -734,7 +734,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "zde",
-                "href": "https://github.com/PSilling/rh-massages/issues",
+                "href": "https://github.com/redhat-massages/rh-massages/issues",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
@@ -864,7 +864,7 @@ ShallowWrapper {
             >
               Navštivte náš 
               <a
-                href="https://github.com/PSilling/rh-massages/"
+                href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -874,7 +874,7 @@ ShallowWrapper {
               <del>
                 a naši 
                 <a
-                  href="https://github.com/PSilling/rh-massages/wiki"
+                  href="https://github.com/redhat-massages/rh-massages/wiki"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -902,7 +902,7 @@ ShallowWrapper {
             >
               Hlaste chyby 
               <a
-                href="https://github.com/PSilling/rh-massages/issues"
+                href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1289,7 +1289,7 @@ ShallowWrapper {
             >
               Navštivte náš 
               <a
-                href="https://github.com/PSilling/rh-massages/"
+                href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1299,7 +1299,7 @@ ShallowWrapper {
               <del>
                 a naši 
                 <a
-                  href="https://github.com/PSilling/rh-massages/wiki"
+                  href="https://github.com/redhat-massages/rh-massages/wiki"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1319,7 +1319,7 @@ ShallowWrapper {
               "children": Array [
                 "Navštivte náš ",
                 <a
-                  href="https://github.com/PSilling/rh-massages/"
+                  href="https://github.com/redhat-massages/rh-massages/"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1329,7 +1329,7 @@ ShallowWrapper {
                 <del>
                   a naši 
                   <a
-                    href="https://github.com/PSilling/rh-massages/wiki"
+                    href="https://github.com/redhat-massages/rh-massages/wiki"
                     rel="noreferrer noopener"
                     target="_blank"
                   >
@@ -1357,7 +1357,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "GitHub",
-                  "href": "https://github.com/PSilling/rh-massages/",
+                  "href": "https://github.com/redhat-massages/rh-massages/",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },
@@ -1374,7 +1374,7 @@ ShallowWrapper {
                   "children": Array [
                     "a naši ",
                     <a
-                      href="https://github.com/PSilling/rh-massages/wiki"
+                      href="https://github.com/redhat-massages/rh-massages/wiki"
                       rel="noreferrer noopener"
                       target="_blank"
                     >
@@ -1391,7 +1391,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": "wiki",
-                      "href": "https://github.com/PSilling/rh-massages/wiki",
+                      "href": "https://github.com/redhat-massages/rh-massages/wiki",
                       "rel": "noreferrer noopener",
                       "target": "_blank",
                     },
@@ -1428,7 +1428,7 @@ ShallowWrapper {
             >
               Hlaste chyby 
               <a
-                href="https://github.com/PSilling/rh-massages/issues"
+                href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1447,7 +1447,7 @@ ShallowWrapper {
               "children": Array [
                 "Hlaste chyby ",
                 <a
-                  href="https://github.com/PSilling/rh-massages/issues"
+                  href="https://github.com/redhat-massages/rh-massages/issues"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1474,7 +1474,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "zde",
-                  "href": "https://github.com/PSilling/rh-massages/issues",
+                  "href": "https://github.com/redhat-massages/rh-massages/issues",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // module imports
-import { UncontrolledTooltip } from "reactstrap";
+import { Tooltip } from "reactstrap";
 import moment from "moment";
 
 // component imports
@@ -19,12 +19,16 @@ import Util from "../../../util/Util";
  * Custom component event for Massages calendar view.
  */
 class MassageEvent extends Component {
-  state = { active: false, mounted: true };
-
   tooltipTarget = `MassageEventID${this.props.event.massage.id}`;
 
+  constructor(props) {
+    super(props);
+
+    this.state = { modalActive: false, tooltipOpen: false };
+  }
+
   componentWillUnmount() {
-    this.setState({ mounted: false });
+    this.setState({ modalActive: false, tooltipOpen: false });
   }
 
   assignWithCalendar = () => {
@@ -32,8 +36,15 @@ class MassageEvent extends Component {
     this.props.onAssign(this.props.event.massage);
   };
 
-  handleToggle = () => {
-    this.setState(prevState => ({ active: !prevState.active }));
+  toggleTooltip = () => {
+    this.setState(prevState => ({ tooltipOpen: !prevState.tooltipOpen }));
+  };
+
+  toggleModal = () => {
+    this.setState(prevState => ({
+      modalActive: !prevState.modalActive,
+      tooltipOpen: prevState.modalActive ? prevState.tooltipOpen : false
+    }));
   };
 
   createIcons = () => {
@@ -93,7 +104,7 @@ class MassageEvent extends Component {
           onClick={() => this.props.onEdit(this.props.event.massage)}
         />
       );
-      icons.push(<TooltipIconButton key="delete" icon="trash" size="md" onClick={this.handleToggle} />);
+      icons.push(<TooltipIconButton key="delete" icon="trash" size="md" onClick={this.toggleModal} />);
     }
 
     icons.push(
@@ -124,20 +135,22 @@ class MassageEvent extends Component {
           {this.props.event.massage.masseuse.name}
         </span>
 
-        {this.props.activeTooltip === this.tooltipTarget &&
-          !this.state.active &&
-          this.state.mounted &&
-          !this.props.archived && (
-            <UncontrolledTooltip target={this.tooltipTarget} autohide={false} delay={{ show: 0, hide: 3500 }}>
-              <div style={{ marginLeft: "-2px", marginRight: "-2px" }}>{this.createIcons()}</div>
-            </UncontrolledTooltip>
-          )}
-        {this.state.active && (
+        {this.props.activeTooltip === this.tooltipTarget && !this.props.archived && (
+          <Tooltip
+            isOpen={this.state.tooltipOpen}
+            toggle={this.toggleTooltip}
+            target={this.tooltipTarget}
+            autohide={false}
+          >
+            <div style={{ marginLeft: "-2px", marginRight: "-2px" }}>{this.createIcons()}</div>
+          </Tooltip>
+        )}
+        {this.state.modalActive && (
           <ConfirmationModal
             message={_t.translate("Are you sure? This action cannot be reverted.")}
-            onClose={this.handleToggle}
+            onClose={this.toggleModal}
             onConfirm={() => {
-              this.handleToggle();
+              this.toggleModal();
               this.props.onDelete(this.props.event.massage.id);
             }}
           />
