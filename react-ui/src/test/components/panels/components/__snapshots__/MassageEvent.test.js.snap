@@ -67,7 +67,7 @@ ShallowWrapper {
         false,
         false,
       ],
-      "id": "MassageEventID1",
+      "id": "Tooltip1",
       "style": Object {
         "minHeight": "100%",
         "minWidth": "100%",
@@ -137,7 +137,7 @@ ShallowWrapper {
           false,
           false,
         ],
-        "id": "MassageEventID1",
+        "id": "Tooltip1",
         "style": Object {
           "minHeight": "100%",
           "minWidth": "100%",

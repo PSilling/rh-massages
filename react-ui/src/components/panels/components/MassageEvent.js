@@ -19,16 +19,13 @@ import Util from "../../../util/Util";
  * Custom component event for Massages calendar view.
  */
 class MassageEvent extends Component {
-  tooltipTarget = `MassageEventID${this.props.event.massage.id}`;
+  // note that this can cause re-render issues (number overflow); haven't found a better solution though
+  tooltipTarget = Util.getTooltipTargets(1)[0];
 
   constructor(props) {
     super(props);
 
     this.state = { modalActive: false, tooltipOpen: false };
-  }
-
-  componentWillUnmount() {
-    this.setState({ modalActive: false, tooltipOpen: false });
   }
 
   assignWithCalendar = () => {
@@ -138,7 +135,7 @@ class MassageEvent extends Component {
           {this.props.event.massage.masseuse.name}
         </span>
 
-        {this.props.activeTooltip === this.tooltipTarget && !this.props.archived && (
+        {this.props.activeTooltip === `MassageEventID${this.props.event.massage.id}` && !this.props.archived && (
           <Tooltip
             isOpen={this.state.tooltipOpen}
             toggle={this.toggleTooltip}
