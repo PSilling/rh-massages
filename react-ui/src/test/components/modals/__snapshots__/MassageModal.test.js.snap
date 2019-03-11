@@ -190,7 +190,7 @@ ShallowWrapper {
                   type="select"
                 >
                   <option>
-                    Žádné
+                    Nikdo
                   </option>
                 </Input>
               </FormGroup>
@@ -367,7 +367,7 @@ ShallowWrapper {
                     type="select"
                   >
                     <option>
-                      Žádné
+                      Nikdo
                     </option>
                   </Input>
                 </FormGroup>
@@ -769,7 +769,7 @@ ShallowWrapper {
                     type="select"
                   >
                     <option>
-                      Žádné
+                      Nikdo
                     </option>
                   </Input>
                 </FormGroup>
@@ -806,7 +806,7 @@ ShallowWrapper {
                     type="select"
                   >
                     <option>
-                      Žádné
+                      Nikdo
                     </option>
                   </Input>
                 </FormGroup>,
@@ -848,7 +848,7 @@ ShallowWrapper {
                       type="select"
                     >
                       <option>
-                        Žádné
+                        Nikdo
                       </option>
                     </Input>,
                   ],
@@ -883,7 +883,7 @@ ShallowWrapper {
                     "props": Object {
                       "children": Array [
                         <option>
-                          Žádné
+                          Nikdo
                         </option>,
                       ],
                       "id": "userSelect",
@@ -895,13 +895,13 @@ ShallowWrapper {
                     "rendered": Array [
                       Object {
                         "instance": null,
-                        "key": "Žádné",
+                        "key": "Nikdo",
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Žádné",
+                          "children": "Nikdo",
                         },
                         "ref": null,
-                        "rendered": "Žádné",
+                        "rendered": "Nikdo",
                         "type": "option",
                       },
                     ],
@@ -1091,7 +1091,7 @@ ShallowWrapper {
                     type="select"
                   >
                     <option>
-                      Žádné
+                      Nikdo
                     </option>
                   </Input>
                 </FormGroup>
@@ -1268,7 +1268,7 @@ ShallowWrapper {
                       type="select"
                     >
                       <option>
-                        Žádné
+                        Nikdo
                       </option>
                     </Input>
                   </FormGroup>
@@ -1670,7 +1670,7 @@ ShallowWrapper {
                       type="select"
                     >
                       <option>
-                        Žádné
+                        Nikdo
                       </option>
                     </Input>
                   </FormGroup>
@@ -1707,7 +1707,7 @@ ShallowWrapper {
                       type="select"
                     >
                       <option>
-                        Žádné
+                        Nikdo
                       </option>
                     </Input>
                   </FormGroup>,
@@ -1749,7 +1749,7 @@ ShallowWrapper {
                         type="select"
                       >
                         <option>
-                          Žádné
+                          Nikdo
                         </option>
                       </Input>,
                     ],
@@ -1784,7 +1784,7 @@ ShallowWrapper {
                       "props": Object {
                         "children": Array [
                           <option>
-                            Žádné
+                            Nikdo
                           </option>,
                         ],
                         "id": "userSelect",
@@ -1796,13 +1796,13 @@ ShallowWrapper {
                       "rendered": Array [
                         Object {
                           "instance": null,
-                          "key": "Žádné",
+                          "key": "Nikdo",
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Žádné",
+                            "children": "Nikdo",
                           },
                           "ref": null,
-                          "rendered": "Žádné",
+                          "rendered": "Nikdo",
                           "type": "option",
                         },
                       ],

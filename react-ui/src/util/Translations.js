@@ -253,6 +253,9 @@ const myLocalize = new Localize({
   None: {
     cs: "Žádné"
   },
+  "No one": {
+    cs: "Nikdo"
+  },
   Massage: {
     cs: "Masáž"
   },

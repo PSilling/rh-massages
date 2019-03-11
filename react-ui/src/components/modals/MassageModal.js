@@ -32,7 +32,7 @@ class MassageModal extends Component {
 
   yesterday = moment().subtract(1, "day");
 
-  freeUser = { sub: "free", email: _t.translate("None") };
+  freeUser = { sub: "free", email: _t.translate("No one") };
 
   componentDidMount() {
     this.setState({ masseuse: this.getMasseuse() });

@@ -107,13 +107,11 @@ class Settings extends Component {
               GitHub
             </a>
             &nbsp;
-            <del>
-              {_t.translate(" and our ")}
-              <a href={`${Util.GITHUB_URL}wiki`} target="_blank" rel="noreferrer noopener">
-                wiki
-              </a>
-            </del>
-            ! (WIP)
+            {_t.translate(" and our ")}
+            <a href={`${Util.GITHUB_URL}wiki`} target="_blank" rel="noreferrer noopener">
+              wiki
+            </a>
+            !
           </Col>
         </Row>
         <Row>

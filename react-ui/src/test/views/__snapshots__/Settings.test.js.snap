@@ -131,17 +131,15 @@ ShallowWrapper {
               GitHub
             </a>
              
-            <del>
-              a naši 
-              <a
-                href="https://github.com/redhat-massages/rh-massages/wiki"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                wiki
-              </a>
-            </del>
-            ! (WIP)
+            a naši 
+            <a
+              href="https://github.com/redhat-massages/rh-massages/wiki"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              wiki
+            </a>
+            !
           </Col>
         </Row>,
         <Row
@@ -556,17 +554,15 @@ ShallowWrapper {
               GitHub
             </a>
              
-            <del>
-              a naši 
-              <a
-                href="https://github.com/redhat-massages/rh-massages/wiki"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                wiki
-              </a>
-            </del>
-            ! (WIP)
+            a naši 
+            <a
+              href="https://github.com/redhat-massages/rh-massages/wiki"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              wiki
+            </a>
+            !
           </Col>,
           "tag": "div",
         },
@@ -586,17 +582,15 @@ ShallowWrapper {
                 GitHub
               </a>,
               " ",
-              <del>
-                a naši 
-                <a
-                  href="https://github.com/redhat-massages/rh-massages/wiki"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                >
-                  wiki
-                </a>
-              </del>,
-              "! (WIP)",
+              "a naši ",
+              <a
+                href="https://github.com/redhat-massages/rh-massages/wiki"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                wiki
+              </a>,
+              "!",
             ],
             "md": "12",
             "tag": "div",
@@ -626,43 +620,22 @@ ShallowWrapper {
               "type": "a",
             },
             " ",
+            "a naši ",
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  "a naši ",
-                  <a
-                    href="https://github.com/redhat-massages/rh-massages/wiki"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                  >
-                    wiki
-                  </a>,
-                ],
+                "children": "wiki",
+                "href": "https://github.com/redhat-massages/rh-massages/wiki",
+                "rel": "noreferrer noopener",
+                "target": "_blank",
               },
               "ref": null,
-              "rendered": Array [
-                "a naši ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "wiki",
-                    "href": "https://github.com/redhat-massages/rh-massages/wiki",
-                    "rel": "noreferrer noopener",
-                    "target": "_blank",
-                  },
-                  "ref": null,
-                  "rendered": "wiki",
-                  "type": "a",
-                },
-              ],
-              "type": "del",
+              "rendered": "wiki",
+              "type": "a",
             },
-            "! (WIP)",
+            "!",
           ],
           "type": [Function],
         },
@@ -871,17 +844,15 @@ ShallowWrapper {
                 GitHub
               </a>
                
-              <del>
-                a naši 
-                <a
-                  href="https://github.com/redhat-massages/rh-massages/wiki"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                >
-                  wiki
-                </a>
-              </del>
-              ! (WIP)
+              a naši 
+              <a
+                href="https://github.com/redhat-massages/rh-massages/wiki"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                wiki
+              </a>
+              !
             </Col>
           </Row>,
           <Row
@@ -1296,17 +1267,15 @@ ShallowWrapper {
                 GitHub
               </a>
                
-              <del>
-                a naši 
-                <a
-                  href="https://github.com/redhat-massages/rh-massages/wiki"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                >
-                  wiki
-                </a>
-              </del>
-              ! (WIP)
+              a naši 
+              <a
+                href="https://github.com/redhat-massages/rh-massages/wiki"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                wiki
+              </a>
+              !
             </Col>,
             "tag": "div",
           },
@@ -1326,17 +1295,15 @@ ShallowWrapper {
                   GitHub
                 </a>,
                 " ",
-                <del>
-                  a naši 
-                  <a
-                    href="https://github.com/redhat-massages/rh-massages/wiki"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                  >
-                    wiki
-                  </a>
-                </del>,
-                "! (WIP)",
+                "a naši ",
+                <a
+                  href="https://github.com/redhat-massages/rh-massages/wiki"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  wiki
+                </a>,
+                "!",
               ],
               "md": "12",
               "tag": "div",
@@ -1366,43 +1333,22 @@ ShallowWrapper {
                 "type": "a",
               },
               " ",
+              "a naši ",
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
-                    "a naši ",
-                    <a
-                      href="https://github.com/redhat-massages/rh-massages/wiki"
-                      rel="noreferrer noopener"
-                      target="_blank"
-                    >
-                      wiki
-                    </a>,
-                  ],
+                  "children": "wiki",
+                  "href": "https://github.com/redhat-massages/rh-massages/wiki",
+                  "rel": "noreferrer noopener",
+                  "target": "_blank",
                 },
                 "ref": null,
-                "rendered": Array [
-                  "a naši ",
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "wiki",
-                      "href": "https://github.com/redhat-massages/rh-massages/wiki",
-                      "rel": "noreferrer noopener",
-                      "target": "_blank",
-                    },
-                    "ref": null,
-                    "rendered": "wiki",
-                    "type": "a",
-                  },
-                ],
-                "type": "del",
+                "rendered": "wiki",
+                "type": "a",
               },
-              "! (WIP)",
+              "!",
             ],
             "type": [Function],
           },
