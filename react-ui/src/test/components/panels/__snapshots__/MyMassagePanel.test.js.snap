@@ -114,10 +114,10 @@ ShallowWrapper {
             }
             messages={
               Object {
-                "allDay": "Celý den",
-                "date": "Datum",
-                "event": "Událost",
-                "time": "Čas",
+                "allDay": "All day",
+                "date": "Date",
+                "event": "Event",
+                "time": "Time",
               }
             }
             onCancel={[MockFunction]}
@@ -213,10 +213,10 @@ ShallowWrapper {
             }
             messages={
               Object {
-                "allDay": "Celý den",
-                "date": "Datum",
-                "event": "Událost",
-                "time": "Čas",
+                "allDay": "All day",
+                "date": "Date",
+                "event": "Event",
+                "time": "Time",
               }
             }
             onCancel={[MockFunction]}
@@ -298,10 +298,10 @@ ShallowWrapper {
             }
             messages={
               Object {
-                "allDay": "Celý den",
-                "date": "Datum",
-                "event": "Událost",
-                "time": "Čas",
+                "allDay": "All day",
+                "date": "Date",
+                "event": "Event",
+                "time": "Time",
               }
             }
             onCancel={[MockFunction]}
@@ -384,10 +384,10 @@ ShallowWrapper {
               "startOfWeek": [Function],
             },
             "messages": Object {
-              "allDay": "Celý den",
-              "date": "Datum",
-              "event": "Událost",
-              "time": "Čas",
+              "allDay": "All day",
+              "date": "Date",
+              "event": "Event",
+              "time": "Time",
             },
             "onCancel": [MockFunction],
             "slotPropGetter": undefined,
@@ -523,10 +523,10 @@ ShallowWrapper {
               }
               messages={
                 Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
-                  "time": "Čas",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
+                  "time": "Time",
                 }
               }
               onCancel={[MockFunction]}
@@ -622,10 +622,10 @@ ShallowWrapper {
               }
               messages={
                 Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
-                  "time": "Čas",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
+                  "time": "Time",
                 }
               }
               onCancel={[MockFunction]}
@@ -707,10 +707,10 @@ ShallowWrapper {
               }
               messages={
                 Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
-                  "time": "Čas",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
+                  "time": "Time",
                 }
               }
               onCancel={[MockFunction]}
@@ -793,10 +793,10 @@ ShallowWrapper {
                 "startOfWeek": [Function],
               },
               "messages": Object {
-                "allDay": "Celý den",
-                "date": "Datum",
-                "event": "Událost",
-                "time": "Čas",
+                "allDay": "All day",
+                "date": "Date",
+                "event": "Event",
+                "time": "Time",
               },
               "onCancel": [MockFunction],
               "slotPropGetter": undefined,

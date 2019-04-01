@@ -21,13 +21,13 @@ ShallowWrapper {
         <InfoAlert
           onClose={[Function]}
         >
-          Na této stránce můžete prohlížet dokončené, archivované masáže.
+          On this page you can view finished, archived massages.
         </InfoAlert>,
         <h1>
           <div
             className="loader float-right"
           />
-          Archiv masáží
+          Massages Archive
         </h1>,
         <hr />,
         <Row
@@ -50,24 +50,24 @@ ShallowWrapper {
             <TooltipButton
               active={false}
               disabled={false}
-              label="Vybírat"
+              label="Select"
               onClick={[Function]}
-              tooltip="Výběr více masáží pro hromadné operace"
+              tooltip="Select multiple massages for batch operations"
             />
             <ConfirmationButton
               className="mx-2"
-              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              dialogMessage="Are you sure? This action cannot be reverted."
               disabled={true}
-              label="Smazat vybrané"
+              label="Delete selected"
               onConfirm={[Function]}
-              tooltip="Smazat vybrané masáže"
+              tooltip="Delete selected massages"
             />
             <ConfirmationButton
-              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              dialogMessage="Are you sure? This action cannot be reverted."
               disabled={false}
-              label="Smazat vše"
+              label="Delete all"
               onConfirm={[Function]}
-              tooltip="Vyčistit historii masáží"
+              tooltip="Clear the massage history"
             />
           </Col>
         </Row>,
@@ -98,11 +98,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Na této stránce můžete prohlížet dokončené, archivované masáže.",
+          "children": "On this page you can view finished, archived massages.",
           "onClose": [Function],
         },
         "ref": null,
-        "rendered": "Na této stránce můžete prohlížet dokončené, archivované masáže.",
+        "rendered": "On this page you can view finished, archived massages.",
         "type": [Function],
       },
       Object {
@@ -114,7 +114,7 @@ ShallowWrapper {
             <div
               className="loader float-right"
             />,
-            "Archiv masáží",
+            "Massages Archive",
           ],
         },
         "ref": null,
@@ -130,7 +130,7 @@ ShallowWrapper {
             "rendered": null,
             "type": "div",
           },
-          "Archiv masáží",
+          "Massages Archive",
         ],
         "type": "h1",
       },
@@ -165,24 +165,24 @@ ShallowWrapper {
             <TooltipButton
               active={false}
               disabled={false}
-              label="Vybírat"
+              label="Select"
               onClick={[Function]}
-              tooltip="Výběr více masáží pro hromadné operace"
+              tooltip="Select multiple massages for batch operations"
             />
             <ConfirmationButton
               className="mx-2"
-              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              dialogMessage="Are you sure? This action cannot be reverted."
               disabled={true}
-              label="Smazat vybrané"
+              label="Delete selected"
               onConfirm={[Function]}
-              tooltip="Smazat vybrané masáže"
+              tooltip="Delete selected massages"
             />
             <ConfirmationButton
-              dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+              dialogMessage="Are you sure? This action cannot be reverted."
               disabled={false}
-              label="Smazat vše"
+              label="Delete all"
               onConfirm={[Function]}
-              tooltip="Vyčistit historii masáží"
+              tooltip="Clear the massage history"
             />
           </Col>,
           "tag": "div",
@@ -197,24 +197,24 @@ ShallowWrapper {
               <TooltipButton
                 active={false}
                 disabled={false}
-                label="Vybírat"
+                label="Select"
                 onClick={[Function]}
-                tooltip="Výběr více masáží pro hromadné operace"
+                tooltip="Select multiple massages for batch operations"
               />,
               <ConfirmationButton
                 className="mx-2"
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={true}
-                label="Smazat vybrané"
+                label="Delete selected"
                 onConfirm={[Function]}
-                tooltip="Smazat vybrané masáže"
+                tooltip="Delete selected massages"
               />,
               <ConfirmationButton
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={false}
-                label="Smazat vše"
+                label="Delete all"
                 onConfirm={[Function]}
-                tooltip="Vyčistit historii masáží"
+                tooltip="Clear the massage history"
               />,
             ],
             "className": "text-right",
@@ -237,9 +237,9 @@ ShallowWrapper {
               "props": Object {
                 "active": false,
                 "disabled": false,
-                "label": "Vybírat",
+                "label": "Select",
                 "onClick": [Function],
-                "tooltip": "Výběr více masáží pro hromadné operace",
+                "tooltip": "Select multiple massages for batch operations",
               },
               "ref": null,
               "rendered": null,
@@ -251,11 +251,11 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "className": "mx-2",
-                "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                "dialogMessage": "Are you sure? This action cannot be reverted.",
                 "disabled": true,
-                "label": "Smazat vybrané",
+                "label": "Delete selected",
                 "onConfirm": [Function],
-                "tooltip": "Smazat vybrané masáže",
+                "tooltip": "Delete selected massages",
               },
               "ref": null,
               "rendered": null,
@@ -266,11 +266,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                "dialogMessage": "Are you sure? This action cannot be reverted.",
                 "disabled": false,
-                "label": "Smazat vše",
+                "label": "Delete all",
                 "onConfirm": [Function],
-                "tooltip": "Vyčistit historii masáží",
+                "tooltip": "Clear the massage history",
               },
               "ref": null,
               "rendered": null,
@@ -319,13 +319,13 @@ ShallowWrapper {
           <InfoAlert
             onClose={[Function]}
           >
-            Na této stránce můžete prohlížet dokončené, archivované masáže.
+            On this page you can view finished, archived massages.
           </InfoAlert>,
           <h1>
             <div
               className="loader float-right"
             />
-            Archiv masáží
+            Massages Archive
           </h1>,
           <hr />,
           <Row
@@ -348,24 +348,24 @@ ShallowWrapper {
               <TooltipButton
                 active={false}
                 disabled={false}
-                label="Vybírat"
+                label="Select"
                 onClick={[Function]}
-                tooltip="Výběr více masáží pro hromadné operace"
+                tooltip="Select multiple massages for batch operations"
               />
               <ConfirmationButton
                 className="mx-2"
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={true}
-                label="Smazat vybrané"
+                label="Delete selected"
                 onConfirm={[Function]}
-                tooltip="Smazat vybrané masáže"
+                tooltip="Delete selected massages"
               />
               <ConfirmationButton
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={false}
-                label="Smazat vše"
+                label="Delete all"
                 onConfirm={[Function]}
-                tooltip="Vyčistit historii masáží"
+                tooltip="Clear the massage history"
               />
             </Col>
           </Row>,
@@ -396,11 +396,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Na této stránce můžete prohlížet dokončené, archivované masáže.",
+            "children": "On this page you can view finished, archived massages.",
             "onClose": [Function],
           },
           "ref": null,
-          "rendered": "Na této stránce můžete prohlížet dokončené, archivované masáže.",
+          "rendered": "On this page you can view finished, archived massages.",
           "type": [Function],
         },
         Object {
@@ -412,7 +412,7 @@ ShallowWrapper {
               <div
                 className="loader float-right"
               />,
-              "Archiv masáží",
+              "Massages Archive",
             ],
           },
           "ref": null,
@@ -428,7 +428,7 @@ ShallowWrapper {
               "rendered": null,
               "type": "div",
             },
-            "Archiv masáží",
+            "Massages Archive",
           ],
           "type": "h1",
         },
@@ -463,24 +463,24 @@ ShallowWrapper {
               <TooltipButton
                 active={false}
                 disabled={false}
-                label="Vybírat"
+                label="Select"
                 onClick={[Function]}
-                tooltip="Výběr více masáží pro hromadné operace"
+                tooltip="Select multiple massages for batch operations"
               />
               <ConfirmationButton
                 className="mx-2"
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={true}
-                label="Smazat vybrané"
+                label="Delete selected"
                 onConfirm={[Function]}
-                tooltip="Smazat vybrané masáže"
+                tooltip="Delete selected massages"
               />
               <ConfirmationButton
-                dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                dialogMessage="Are you sure? This action cannot be reverted."
                 disabled={false}
-                label="Smazat vše"
+                label="Delete all"
                 onConfirm={[Function]}
-                tooltip="Vyčistit historii masáží"
+                tooltip="Clear the massage history"
               />
             </Col>,
             "tag": "div",
@@ -495,24 +495,24 @@ ShallowWrapper {
                 <TooltipButton
                   active={false}
                   disabled={false}
-                  label="Vybírat"
+                  label="Select"
                   onClick={[Function]}
-                  tooltip="Výběr více masáží pro hromadné operace"
+                  tooltip="Select multiple massages for batch operations"
                 />,
                 <ConfirmationButton
                   className="mx-2"
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  dialogMessage="Are you sure? This action cannot be reverted."
                   disabled={true}
-                  label="Smazat vybrané"
+                  label="Delete selected"
                   onConfirm={[Function]}
-                  tooltip="Smazat vybrané masáže"
+                  tooltip="Delete selected massages"
                 />,
                 <ConfirmationButton
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  dialogMessage="Are you sure? This action cannot be reverted."
                   disabled={false}
-                  label="Smazat vše"
+                  label="Delete all"
                   onConfirm={[Function]}
-                  tooltip="Vyčistit historii masáží"
+                  tooltip="Clear the massage history"
                 />,
               ],
               "className": "text-right",
@@ -535,9 +535,9 @@ ShallowWrapper {
                 "props": Object {
                   "active": false,
                   "disabled": false,
-                  "label": "Vybírat",
+                  "label": "Select",
                   "onClick": [Function],
-                  "tooltip": "Výběr více masáží pro hromadné operace",
+                  "tooltip": "Select multiple massages for batch operations",
                 },
                 "ref": null,
                 "rendered": null,
@@ -549,11 +549,11 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "className": "mx-2",
-                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                  "dialogMessage": "Are you sure? This action cannot be reverted.",
                   "disabled": true,
-                  "label": "Smazat vybrané",
+                  "label": "Delete selected",
                   "onConfirm": [Function],
-                  "tooltip": "Smazat vybrané masáže",
+                  "tooltip": "Delete selected massages",
                 },
                 "ref": null,
                 "rendered": null,
@@ -564,11 +564,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                  "dialogMessage": "Are you sure? This action cannot be reverted.",
                   "disabled": false,
-                  "label": "Smazat vše",
+                  "label": "Delete all",
                   "onConfirm": [Function],
-                  "tooltip": "Vyčistit historii masáží",
+                  "tooltip": "Clear the massage history",
                 },
                 "ref": null,
                 "rendered": null,

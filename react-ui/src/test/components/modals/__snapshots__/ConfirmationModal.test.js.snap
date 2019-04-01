@@ -11,7 +11,7 @@ exports[`renders inside content with correct props 1`] = `
       className="col-md-12"
     >
       <h3>
-        Potvrzení akce
+        Action confirmation
       </h3>
       <hr />
     </div>
@@ -42,7 +42,7 @@ exports[`renders inside content with correct props 1`] = `
           onClick={[Function]}
           type="button"
         >
-          Pokračovat
+          Proceed
         </button>
       </span>
       <button
@@ -51,7 +51,7 @@ exports[`renders inside content with correct props 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Zrušit
+        Dismiss
       </button>
     </div>
   </div>

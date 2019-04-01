@@ -21,14 +21,14 @@ ShallowWrapper {
         <InfoAlert
           onClose={[Function]}
         >
-          Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
+          On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.
         </InfoAlert>,
         <h1>
-          Nastavení
+          Settings
         </h1>,
         <hr />,
         <h3>
-          Uživatelská nastavení
+          User settings
         </h3>,
         <Row
           tag="div"
@@ -70,7 +70,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   type="checkbox"
                 />
-                Chci dostávat informace o 
+                I want to recieve information about 
                 <span
                   id="Tooltip1"
                   style={
@@ -80,7 +80,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  změnách masáží
+                  massage changes
                 </span>
               </Label>
             </FormGroup>
@@ -99,12 +99,12 @@ ShallowWrapper {
               target="Tooltip1"
               toggle={[Function]}
             >
-              Rozpis nových a zrušení připsaných masáží
+              Scheduling of new and cancellation of assigned massages
             </Tooltip>
           </Col>
         </Row>,
         <h3>
-          O portálu
+          About
         </h3>,
         <Row
           tag="div"
@@ -122,7 +122,7 @@ ShallowWrapper {
               ]
             }
           >
-            Navštivte náš 
+            Visit our 
             <a
               href="https://github.com/redhat-massages/rh-massages/"
               rel="noreferrer noopener"
@@ -131,7 +131,7 @@ ShallowWrapper {
               GitHub
             </a>
              
-            a naši 
+             and our 
             <a
               href="https://github.com/redhat-massages/rh-massages/wiki"
               rel="noreferrer noopener"
@@ -158,13 +158,13 @@ ShallowWrapper {
               ]
             }
           >
-            Hlaste chyby 
+            Report issues 
             <a
               href="https://github.com/redhat-massages/rh-massages/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
-              zde
+              here
             </a>
             .
           </Col>
@@ -179,11 +179,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+          "children": "On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.",
           "onClose": [Function],
         },
         "ref": null,
-        "rendered": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+        "rendered": "On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.",
         "type": [Function],
       },
       Object {
@@ -193,13 +193,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "Nastavení",
+            "Settings",
           ],
         },
         "ref": null,
         "rendered": Array [
           false,
-          "Nastavení",
+          "Settings",
         ],
         "type": "h1",
       },
@@ -217,10 +217,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "Uživatelská nastavení",
+          "children": "User settings",
         },
         "ref": null,
-        "rendered": "Uživatelská nastavení",
+        "rendered": "User settings",
         "type": "h3",
       },
       Object {
@@ -265,7 +265,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   type="checkbox"
                 />
-                Chci dostávat informace o 
+                I want to recieve information about 
                 <span
                   id="Tooltip1"
                   style={
@@ -275,7 +275,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  změnách masáží
+                  massage changes
                 </span>
               </Label>
             </FormGroup>
@@ -294,7 +294,7 @@ ShallowWrapper {
               target="Tooltip1"
               toggle={[Function]}
             >
-              Rozpis nových a zrušení připsaných masáží
+              Scheduling of new and cancellation of assigned massages
             </Tooltip>
           </Col>,
           "tag": "div",
@@ -330,7 +330,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     type="checkbox"
                   />
-                  Chci dostávat informace o 
+                  I want to recieve information about 
                   <span
                     id="Tooltip1"
                     style={
@@ -340,7 +340,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    změnách masáží
+                    massage changes
                   </span>
                 </Label>
               </FormGroup>,
@@ -359,7 +359,7 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Rozpis nových a zrušení připsaných masáží
+                Scheduling of new and cancellation of assigned massages
               </Tooltip>,
             ],
             "md": "12",
@@ -399,7 +399,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     type="checkbox"
                   />
-                  Chci dostávat informace o 
+                  I want to recieve information about 
                   <span
                     id="Tooltip1"
                     style={
@@ -409,7 +409,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    změnách masáží
+                    massage changes
                   </span>
                 </Label>,
                 "inline": true,
@@ -428,7 +428,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       type="checkbox"
                     />,
-                    "Chci dostávat informace o ",
+                    "I want to recieve information about ",
                     <span
                       id="Tooltip1"
                       style={
@@ -438,7 +438,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      změnách masáží
+                      massage changes
                     </span>,
                   ],
                   "for": "notifyInput",
@@ -467,13 +467,13 @@ ShallowWrapper {
                     "rendered": null,
                     "type": [Function],
                   },
-                  "Chci dostávat informace o ",
+                  "I want to recieve information about ",
                   Object {
                     "instance": null,
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "změnách masáží",
+                      "children": "massage changes",
                       "id": "Tooltip1",
                       "style": Object {
                         "borderBottom": "1px dotted",
@@ -481,7 +481,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "změnách masáží",
+                    "rendered": "massage changes",
                     "type": "span",
                   },
                 ],
@@ -495,7 +495,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "autohide": true,
-                "children": "Rozpis nových a zrušení připsaných masáží",
+                "children": "Scheduling of new and cancellation of assigned massages",
                 "delay": Object {
                   "hide": 250,
                   "show": 0,
@@ -508,7 +508,7 @@ ShallowWrapper {
                 "toggle": [Function],
               },
               "ref": null,
-              "rendered": "Rozpis nových a zrušení připsaných masáží",
+              "rendered": "Scheduling of new and cancellation of assigned massages",
               "type": [Function],
             },
           ],
@@ -521,10 +521,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "O portálu",
+          "children": "About",
         },
         "ref": null,
-        "rendered": "O portálu",
+        "rendered": "About",
         "type": "h3",
       },
       Object {
@@ -545,7 +545,7 @@ ShallowWrapper {
               ]
             }
           >
-            Navštivte náš 
+            Visit our 
             <a
               href="https://github.com/redhat-massages/rh-massages/"
               rel="noreferrer noopener"
@@ -554,7 +554,7 @@ ShallowWrapper {
               GitHub
             </a>
              
-            a naši 
+             and our 
             <a
               href="https://github.com/redhat-massages/rh-massages/wiki"
               rel="noreferrer noopener"
@@ -573,7 +573,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              "Navštivte náš ",
+              "Visit our ",
               <a
                 href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
@@ -582,7 +582,7 @@ ShallowWrapper {
                 GitHub
               </a>,
               " ",
-              "a naši ",
+              " and our ",
               <a
                 href="https://github.com/redhat-massages/rh-massages/wiki"
                 rel="noreferrer noopener"
@@ -604,7 +604,7 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
-            "Navštivte náš ",
+            "Visit our ",
             Object {
               "instance": null,
               "key": undefined,
@@ -620,7 +620,7 @@ ShallowWrapper {
               "type": "a",
             },
             " ",
-            "a naši ",
+            " and our ",
             Object {
               "instance": null,
               "key": undefined,
@@ -659,13 +659,13 @@ ShallowWrapper {
               ]
             }
           >
-            Hlaste chyby 
+            Report issues 
             <a
               href="https://github.com/redhat-massages/rh-massages/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
-              zde
+              here
             </a>
             .
           </Col>,
@@ -678,13 +678,13 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              "Hlaste chyby ",
+              "Report issues ",
               <a
                 href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
-                zde
+                here
               </a>,
               ".",
             ],
@@ -700,19 +700,19 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
-            "Hlaste chyby ",
+            "Report issues ",
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "zde",
+                "children": "here",
                 "href": "https://github.com/redhat-massages/rh-massages/issues",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
               "ref": null,
-              "rendered": "zde",
+              "rendered": "here",
               "type": "a",
             },
             ".",
@@ -734,14 +734,14 @@ ShallowWrapper {
           <InfoAlert
             onClose={[Function]}
           >
-            Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.
+            On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.
           </InfoAlert>,
           <h1>
-            Nastavení
+            Settings
           </h1>,
           <hr />,
           <h3>
-            Uživatelská nastavení
+            User settings
           </h3>,
           <Row
             tag="div"
@@ -783,7 +783,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     type="checkbox"
                   />
-                  Chci dostávat informace o 
+                  I want to recieve information about 
                   <span
                     id="Tooltip1"
                     style={
@@ -793,7 +793,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    změnách masáží
+                    massage changes
                   </span>
                 </Label>
               </FormGroup>
@@ -812,12 +812,12 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Rozpis nových a zrušení připsaných masáží
+                Scheduling of new and cancellation of assigned massages
               </Tooltip>
             </Col>
           </Row>,
           <h3>
-            O portálu
+            About
           </h3>,
           <Row
             tag="div"
@@ -835,7 +835,7 @@ ShallowWrapper {
                 ]
               }
             >
-              Navštivte náš 
+              Visit our 
               <a
                 href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
@@ -844,7 +844,7 @@ ShallowWrapper {
                 GitHub
               </a>
                
-              a naši 
+               and our 
               <a
                 href="https://github.com/redhat-massages/rh-massages/wiki"
                 rel="noreferrer noopener"
@@ -871,13 +871,13 @@ ShallowWrapper {
                 ]
               }
             >
-              Hlaste chyby 
+              Report issues 
               <a
                 href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
-                zde
+                here
               </a>
               .
             </Col>
@@ -892,11 +892,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+            "children": "On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.",
             "onClose": [Function],
           },
           "ref": null,
-          "rendered": "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. Také lze tuto stránku použít k přístupu k našemu repozitáři na GitHubu.",
+          "rendered": "On this page you can manage your local user settings. You can also use this page to access our repository on GitHub.",
           "type": [Function],
         },
         Object {
@@ -906,13 +906,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "Nastavení",
+              "Settings",
             ],
           },
           "ref": null,
           "rendered": Array [
             false,
-            "Nastavení",
+            "Settings",
           ],
           "type": "h1",
         },
@@ -930,10 +930,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Uživatelská nastavení",
+            "children": "User settings",
           },
           "ref": null,
-          "rendered": "Uživatelská nastavení",
+          "rendered": "User settings",
           "type": "h3",
         },
         Object {
@@ -978,7 +978,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     type="checkbox"
                   />
-                  Chci dostávat informace o 
+                  I want to recieve information about 
                   <span
                     id="Tooltip1"
                     style={
@@ -988,7 +988,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    změnách masáží
+                    massage changes
                   </span>
                 </Label>
               </FormGroup>
@@ -1007,7 +1007,7 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Rozpis nových a zrušení připsaných masáží
+                Scheduling of new and cancellation of assigned massages
               </Tooltip>
             </Col>,
             "tag": "div",
@@ -1043,7 +1043,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       type="checkbox"
                     />
-                    Chci dostávat informace o 
+                    I want to recieve information about 
                     <span
                       id="Tooltip1"
                       style={
@@ -1053,7 +1053,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      změnách masáží
+                      massage changes
                     </span>
                   </Label>
                 </FormGroup>,
@@ -1072,7 +1072,7 @@ ShallowWrapper {
                   target="Tooltip1"
                   toggle={[Function]}
                 >
-                  Rozpis nových a zrušení připsaných masáží
+                  Scheduling of new and cancellation of assigned massages
                 </Tooltip>,
               ],
               "md": "12",
@@ -1112,7 +1112,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       type="checkbox"
                     />
-                    Chci dostávat informace o 
+                    I want to recieve information about 
                     <span
                       id="Tooltip1"
                       style={
@@ -1122,7 +1122,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      změnách masáží
+                      massage changes
                     </span>
                   </Label>,
                   "inline": true,
@@ -1141,7 +1141,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         type="checkbox"
                       />,
-                      "Chci dostávat informace o ",
+                      "I want to recieve information about ",
                       <span
                         id="Tooltip1"
                         style={
@@ -1151,7 +1151,7 @@ ShallowWrapper {
                           }
                         }
                       >
-                        změnách masáží
+                        massage changes
                       </span>,
                     ],
                     "for": "notifyInput",
@@ -1180,13 +1180,13 @@ ShallowWrapper {
                       "rendered": null,
                       "type": [Function],
                     },
-                    "Chci dostávat informace o ",
+                    "I want to recieve information about ",
                     Object {
                       "instance": null,
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "změnách masáží",
+                        "children": "massage changes",
                         "id": "Tooltip1",
                         "style": Object {
                           "borderBottom": "1px dotted",
@@ -1194,7 +1194,7 @@ ShallowWrapper {
                         },
                       },
                       "ref": null,
-                      "rendered": "změnách masáží",
+                      "rendered": "massage changes",
                       "type": "span",
                     },
                   ],
@@ -1208,7 +1208,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "autohide": true,
-                  "children": "Rozpis nových a zrušení připsaných masáží",
+                  "children": "Scheduling of new and cancellation of assigned massages",
                   "delay": Object {
                     "hide": 250,
                     "show": 0,
@@ -1221,7 +1221,7 @@ ShallowWrapper {
                   "toggle": [Function],
                 },
                 "ref": null,
-                "rendered": "Rozpis nových a zrušení připsaných masáží",
+                "rendered": "Scheduling of new and cancellation of assigned massages",
                 "type": [Function],
               },
             ],
@@ -1234,10 +1234,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "O portálu",
+            "children": "About",
           },
           "ref": null,
-          "rendered": "O portálu",
+          "rendered": "About",
           "type": "h3",
         },
         Object {
@@ -1258,7 +1258,7 @@ ShallowWrapper {
                 ]
               }
             >
-              Navštivte náš 
+              Visit our 
               <a
                 href="https://github.com/redhat-massages/rh-massages/"
                 rel="noreferrer noopener"
@@ -1267,7 +1267,7 @@ ShallowWrapper {
                 GitHub
               </a>
                
-              a naši 
+               and our 
               <a
                 href="https://github.com/redhat-massages/rh-massages/wiki"
                 rel="noreferrer noopener"
@@ -1286,7 +1286,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": Array [
-                "Navštivte náš ",
+                "Visit our ",
                 <a
                   href="https://github.com/redhat-massages/rh-massages/"
                   rel="noreferrer noopener"
@@ -1295,7 +1295,7 @@ ShallowWrapper {
                   GitHub
                 </a>,
                 " ",
-                "a naši ",
+                " and our ",
                 <a
                   href="https://github.com/redhat-massages/rh-massages/wiki"
                   rel="noreferrer noopener"
@@ -1317,7 +1317,7 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
-              "Navštivte náš ",
+              "Visit our ",
               Object {
                 "instance": null,
                 "key": undefined,
@@ -1333,7 +1333,7 @@ ShallowWrapper {
                 "type": "a",
               },
               " ",
-              "a naši ",
+              " and our ",
               Object {
                 "instance": null,
                 "key": undefined,
@@ -1372,13 +1372,13 @@ ShallowWrapper {
                 ]
               }
             >
-              Hlaste chyby 
+              Report issues 
               <a
                 href="https://github.com/redhat-massages/rh-massages/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
-                zde
+                here
               </a>
               .
             </Col>,
@@ -1391,13 +1391,13 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": Array [
-                "Hlaste chyby ",
+                "Report issues ",
                 <a
                   href="https://github.com/redhat-massages/rh-massages/issues"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
-                  zde
+                  here
                 </a>,
                 ".",
               ],
@@ -1413,19 +1413,19 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
-              "Hlaste chyby ",
+              "Report issues ",
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "zde",
+                  "children": "here",
                   "href": "https://github.com/redhat-massages/rh-massages/issues",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },
                 "ref": null,
-                "rendered": "zde",
+                "rendered": "here",
                 "type": "a",
               },
               ".",

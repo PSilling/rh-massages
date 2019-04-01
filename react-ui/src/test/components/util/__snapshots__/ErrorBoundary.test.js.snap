@@ -23,7 +23,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <h2>
-          Došlo k chybě!
+          An error occured!
           <Button
             className="float-right"
             color="secondary"
@@ -31,7 +31,7 @@ ShallowWrapper {
             outline={true}
             tag="button"
           >
-            Načíst znovu
+            Reload page
           </Button>
         </h2>,
         <hr />,
@@ -57,7 +57,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            "Došlo k chybě!",
+            "An error occured!",
             <Button
               className="float-right"
               color="secondary"
@@ -65,19 +65,19 @@ ShallowWrapper {
               outline={true}
               tag="button"
             >
-              Načíst znovu
+              Reload page
             </Button>,
           ],
         },
         "ref": null,
         "rendered": Array [
-          "Došlo k chybě!",
+          "An error occured!",
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Načíst znovu",
+              "children": "Reload page",
               "className": "float-right",
               "color": "secondary",
               "onClick": [Function],
@@ -85,7 +85,7 @@ ShallowWrapper {
               "tag": "button",
             },
             "ref": null,
-            "rendered": "Načíst znovu",
+            "rendered": "Reload page",
             "type": [Function],
           },
         ],
@@ -141,7 +141,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <h2>
-            Došlo k chybě!
+            An error occured!
             <Button
               className="float-right"
               color="secondary"
@@ -149,7 +149,7 @@ ShallowWrapper {
               outline={true}
               tag="button"
             >
-              Načíst znovu
+              Reload page
             </Button>
           </h2>,
           <hr />,
@@ -175,7 +175,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              "Došlo k chybě!",
+              "An error occured!",
               <Button
                 className="float-right"
                 color="secondary"
@@ -183,19 +183,19 @@ ShallowWrapper {
                 outline={true}
                 tag="button"
               >
-                Načíst znovu
+                Reload page
               </Button>,
             ],
           },
           "ref": null,
           "rendered": Array [
-            "Došlo k chybě!",
+            "An error occured!",
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Načíst znovu",
+                "children": "Reload page",
                 "className": "float-right",
                 "color": "secondary",
                 "onClick": [Function],
@@ -203,7 +203,7 @@ ShallowWrapper {
                 "tag": "button",
               },
               "ref": null,
-              "rendered": "Načíst znovu",
+              "rendered": "Reload page",
               "type": [Function],
             },
           ],

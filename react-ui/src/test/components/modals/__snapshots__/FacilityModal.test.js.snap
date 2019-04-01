@@ -58,7 +58,7 @@ ShallowWrapper {
               "border": "0px solid transparent",
             }
           }
-          tooltip="Vytvořit novou budovu"
+          tooltip="Create a new facility"
         />,
         <ModalBody
           tag="div"
@@ -80,7 +80,7 @@ ShallowWrapper {
               }
             >
               <h3>
-                Nová budova
+                New facility
               </h3>
               <hr />
             </Col>
@@ -89,7 +89,7 @@ ShallowWrapper {
             tag="div"
           >
             <LabeledInput
-              label="Název"
+              label="Name"
               maxLength="64"
               onChange={[Function]}
               onEnterPress={[Function]}
@@ -116,7 +116,7 @@ ShallowWrapper {
               }
             }
             onProceed={[Function]}
-            primaryLabel="Přidat"
+            primaryLabel="Add"
             title=""
           />
         </ModalBody>,
@@ -147,7 +147,7 @@ ShallowWrapper {
           "style": Object {
             "border": "0px solid transparent",
           },
-          "tooltip": "Vytvořit novou budovu",
+          "tooltip": "Create a new facility",
         },
         "ref": null,
         "rendered": null,
@@ -176,7 +176,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Nová budova
+                  New facility
                 </h3>
                 <hr />
               </Col>
@@ -185,7 +185,7 @@ ShallowWrapper {
               tag="div"
             >
               <LabeledInput
-                label="Název"
+                label="Name"
                 maxLength="64"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -212,7 +212,7 @@ ShallowWrapper {
                 }
               }
               onProceed={[Function]}
-              primaryLabel="Přidat"
+              primaryLabel="Add"
               title=""
             />,
           ],
@@ -239,7 +239,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Nová budova
+                  New facility
                 </h3>
                 <hr />
               </Col>,
@@ -253,7 +253,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <h3>
-                    Nová budova
+                    New facility
                   </h3>,
                   <hr />,
                 ],
@@ -274,10 +274,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Nová budova",
+                    "children": "New facility",
                   },
                   "ref": null,
-                  "rendered": "Nová budova",
+                  "rendered": "New facility",
                   "type": "h3",
                 },
                 Object {
@@ -300,7 +300,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": <LabeledInput
-                label="Název"
+                label="Name"
                 maxLength="64"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -318,7 +318,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Název",
+                "label": "Name",
                 "maxLength": "64",
                 "onChange": [Function],
                 "onEnterPress": [Function],
@@ -353,7 +353,7 @@ ShallowWrapper {
                 ],
               },
               "onProceed": [Function],
-              "primaryLabel": "Přidat",
+              "primaryLabel": "Add",
               "title": "",
             },
             "ref": null,
@@ -395,7 +395,7 @@ ShallowWrapper {
                 "border": "0px solid transparent",
               }
             }
-            tooltip="Vytvořit novou budovu"
+            tooltip="Create a new facility"
           />,
           <ModalBody
             tag="div"
@@ -417,7 +417,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Nová budova
+                  New facility
                 </h3>
                 <hr />
               </Col>
@@ -426,7 +426,7 @@ ShallowWrapper {
               tag="div"
             >
               <LabeledInput
-                label="Název"
+                label="Name"
                 maxLength="64"
                 onChange={[Function]}
                 onEnterPress={[Function]}
@@ -453,7 +453,7 @@ ShallowWrapper {
                 }
               }
               onProceed={[Function]}
-              primaryLabel="Přidat"
+              primaryLabel="Add"
               title=""
             />
           </ModalBody>,
@@ -484,7 +484,7 @@ ShallowWrapper {
             "style": Object {
               "border": "0px solid transparent",
             },
-            "tooltip": "Vytvořit novou budovu",
+            "tooltip": "Create a new facility",
           },
           "ref": null,
           "rendered": null,
@@ -513,7 +513,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Nová budova
+                    New facility
                   </h3>
                   <hr />
                 </Col>
@@ -522,7 +522,7 @@ ShallowWrapper {
                 tag="div"
               >
                 <LabeledInput
-                  label="Název"
+                  label="Name"
                   maxLength="64"
                   onChange={[Function]}
                   onEnterPress={[Function]}
@@ -549,7 +549,7 @@ ShallowWrapper {
                   }
                 }
                 onProceed={[Function]}
-                primaryLabel="Přidat"
+                primaryLabel="Add"
                 title=""
               />,
             ],
@@ -576,7 +576,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Nová budova
+                    New facility
                   </h3>
                   <hr />
                 </Col>,
@@ -590,7 +590,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <h3>
-                      Nová budova
+                      New facility
                     </h3>,
                     <hr />,
                   ],
@@ -611,10 +611,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Nová budova",
+                      "children": "New facility",
                     },
                     "ref": null,
-                    "rendered": "Nová budova",
+                    "rendered": "New facility",
                     "type": "h3",
                   },
                   Object {
@@ -637,7 +637,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": <LabeledInput
-                  label="Název"
+                  label="Name"
                   maxLength="64"
                   onChange={[Function]}
                   onEnterPress={[Function]}
@@ -655,7 +655,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "label": "Název",
+                  "label": "Name",
                   "maxLength": "64",
                   "onChange": [Function],
                   "onEnterPress": [Function],
@@ -690,7 +690,7 @@ ShallowWrapper {
                   ],
                 },
                 "onProceed": [Function],
-                "primaryLabel": "Přidat",
+                "primaryLabel": "Add",
                 "title": "",
               },
               "ref": null,

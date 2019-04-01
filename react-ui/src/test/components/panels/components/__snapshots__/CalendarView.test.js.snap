@@ -2036,23 +2036,23 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
-                  Datum
+                  Date
                 </th>
                 <th
                   scope="col"
                 >
-                  Čas
+                  Time
                 </th>
                 <th
                   scope="col"
                 >
-                  Masér/Masérka
+                  Masseur/Masseuse
                 </th>
                 <th
                   scope="col"
                   width="40%"
                 >
-                  Klient
+                  Client
                 </th>
               </tr>
             </thead>
@@ -2803,23 +2803,23 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
-                  Datum
+                  Date
                 </th>
                 <th
                   scope="col"
                 >
-                  Čas
+                  Time
                 </th>
                 <th
                   scope="col"
                 >
-                  Masér/Masérka
+                  Masseur/Masseuse
                 </th>
                 <th
                   scope="col"
                   width="40%"
                 >
-                  Klient
+                  Client
                 </th>
               </tr>
             </thead>
@@ -2854,23 +2854,23 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Datum
+                    Date
                   </th>
                   <th
                     scope="col"
                   >
-                    Čas
+                    Time
                   </th>
                   <th
                     scope="col"
                   >
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </th>
                   <th
                     scope="col"
                     width="40%"
                   >
-                    Klient
+                    Client
                   </th>
                 </tr>
               </thead>,
@@ -2905,23 +2905,23 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Datum
+                    Date
                   </th>
                   <th
                     scope="col"
                   >
-                    Čas
+                    Time
                   </th>
                   <th
                     scope="col"
                   >
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </th>
                   <th
                     scope="col"
                     width="40%"
                   >
-                    Klient
+                    Client
                   </th>
                 </tr>,
               },
@@ -2935,23 +2935,23 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
-                      Datum
+                      Date
                     </th>,
                     <th
                       scope="col"
                     >
-                      Čas
+                      Time
                     </th>,
                     <th
                       scope="col"
                     >
-                      Masér/Masérka
+                      Masseur/Masseuse
                     </th>,
                     <th
                       scope="col"
                       width="40%"
                     >
-                      Klient
+                      Client
                     </th>,
                   ],
                 },
@@ -2962,11 +2962,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Datum",
+                      "children": "Date",
                       "scope": "col",
                     },
                     "ref": null,
-                    "rendered": "Datum",
+                    "rendered": "Date",
                     "type": "th",
                   },
                   Object {
@@ -2974,11 +2974,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Čas",
+                      "children": "Time",
                       "scope": "col",
                     },
                     "ref": null,
-                    "rendered": "Čas",
+                    "rendered": "Time",
                     "type": "th",
                   },
                   Object {
@@ -2986,11 +2986,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Masér/Masérka",
+                      "children": "Masseur/Masseuse",
                       "scope": "col",
                     },
                     "ref": null,
-                    "rendered": "Masér/Masérka",
+                    "rendered": "Masseur/Masseuse",
                     "type": "th",
                   },
                   Object {
@@ -2998,12 +2998,12 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Klient",
+                      "children": "Client",
                       "scope": "col",
                       "width": "40%",
                     },
                     "ref": null,
-                    "rendered": "Klient",
+                    "rendered": "Client",
                     "type": "th",
                   },
                 ],
@@ -3268,23 +3268,23 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Datum
+                    Date
                   </th>
                   <th
                     scope="col"
                   >
-                    Čas
+                    Time
                   </th>
                   <th
                     scope="col"
                   >
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </th>
                   <th
                     scope="col"
                     width="40%"
                   >
-                    Klient
+                    Client
                   </th>
                 </tr>
               </thead>
@@ -4035,23 +4035,23 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Datum
+                    Date
                   </th>
                   <th
                     scope="col"
                   >
-                    Čas
+                    Time
                   </th>
                   <th
                     scope="col"
                   >
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </th>
                   <th
                     scope="col"
                     width="40%"
                   >
-                    Klient
+                    Client
                   </th>
                 </tr>
               </thead>
@@ -4086,23 +4086,23 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
-                      Datum
+                      Date
                     </th>
                     <th
                       scope="col"
                     >
-                      Čas
+                      Time
                     </th>
                     <th
                       scope="col"
                     >
-                      Masér/Masérka
+                      Masseur/Masseuse
                     </th>
                     <th
                       scope="col"
                       width="40%"
                     >
-                      Klient
+                      Client
                     </th>
                   </tr>
                 </thead>,
@@ -4137,23 +4137,23 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
-                      Datum
+                      Date
                     </th>
                     <th
                       scope="col"
                     >
-                      Čas
+                      Time
                     </th>
                     <th
                       scope="col"
                     >
-                      Masér/Masérka
+                      Masseur/Masseuse
                     </th>
                     <th
                       scope="col"
                       width="40%"
                     >
-                      Klient
+                      Client
                     </th>
                   </tr>,
                 },
@@ -4167,23 +4167,23 @@ ShallowWrapper {
                       <th
                         scope="col"
                       >
-                        Datum
+                        Date
                       </th>,
                       <th
                         scope="col"
                       >
-                        Čas
+                        Time
                       </th>,
                       <th
                         scope="col"
                       >
-                        Masér/Masérka
+                        Masseur/Masseuse
                       </th>,
                       <th
                         scope="col"
                         width="40%"
                       >
-                        Klient
+                        Client
                       </th>,
                     ],
                   },
@@ -4194,11 +4194,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Datum",
+                        "children": "Date",
                         "scope": "col",
                       },
                       "ref": null,
-                      "rendered": "Datum",
+                      "rendered": "Date",
                       "type": "th",
                     },
                     Object {
@@ -4206,11 +4206,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Čas",
+                        "children": "Time",
                         "scope": "col",
                       },
                       "ref": null,
-                      "rendered": "Čas",
+                      "rendered": "Time",
                       "type": "th",
                     },
                     Object {
@@ -4218,11 +4218,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Masér/Masérka",
+                        "children": "Masseur/Masseuse",
                         "scope": "col",
                       },
                       "ref": null,
-                      "rendered": "Masér/Masérka",
+                      "rendered": "Masseur/Masseuse",
                       "type": "th",
                     },
                     Object {
@@ -4230,12 +4230,12 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Klient",
+                        "children": "Client",
                         "scope": "col",
                         "width": "40%",
                       },
                       "ref": null,
-                      "rendered": "Klient",
+                      "rendered": "Client",
                       "type": "th",
                     },
                   ],

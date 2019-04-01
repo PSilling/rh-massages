@@ -65,9 +65,9 @@ ShallowWrapper {
         <TooltipButton
           active={false}
           disabled={false}
-          label="Rozpis"
+          label="Schedule"
           onClick={[Function]}
-          tooltip="Vytvořit více masáží najednou"
+          tooltip="Create multiple massages at once"
         />,
         <ModalBody
           tag="div"
@@ -89,7 +89,7 @@ ShallowWrapper {
               }
             >
               <h3>
-                Zadat rozpis
+                New schedule
                 <div
                   className="float-right"
                 >
@@ -100,7 +100,7 @@ ShallowWrapper {
                     outline={true}
                     tag="label"
                   >
-                    Importovat
+                    Import
                   </Button>
                   <Input
                     accept=".json"
@@ -113,9 +113,9 @@ ShallowWrapper {
                     active={false}
                     className="ml-2 mb-2"
                     disabled={false}
-                    label="Exportovat"
+                    label="Export"
                     onClick={[Function]}
-                    tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                    tooltip="Download a configuration file that you can use to import these rules at a later date"
                   />
                 </div>
               </h3>
@@ -146,31 +146,31 @@ ShallowWrapper {
               >
                 <Tab
                   active={true}
-                  label="Pondělí"
+                  label="Monday"
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
                 <Tab
                   active={false}
-                  label="Úterý"
+                  label="Tuesday"
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
                 <Tab
                   active={false}
-                  label="Středa"
+                  label="Wednesday"
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
                 <Tab
                   active={false}
-                  label="Čtvrtek"
+                  label="Thursday"
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
                 <Tab
                   active={false}
-                  label="Pátek"
+                  label="Friday"
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
@@ -206,7 +206,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                Stejně jako
+                Same as
               </Label>
             </Col>
           </Row>
@@ -236,16 +236,16 @@ ShallowWrapper {
                   value="–"
                 >
                   <option>
-                    Úterý
+                    Tuesday
                   </option>
                   <option>
-                    Středa
+                    Wednesday
                   </option>
                   <option>
-                    Čtvrtek
+                    Thursday
                   </option>
                   <option>
-                    Pátek
+                    Friday
                   </option>
                   <option>
                     –
@@ -270,9 +270,9 @@ ShallowWrapper {
                 active={false}
                 className="mr-3 float-right"
                 disabled={false}
-                label="Ignorovat"
+                label="Ignore"
                 onClick={[Function]}
-                tooltip="Ignorovat tento den při tvorbě masáží"
+                tooltip="Ignore this day when creating the massages"
               />
             </Col>
           </Row>
@@ -298,7 +298,7 @@ ShallowWrapper {
                 <LabeledDatetime
                   dateFormat={false}
                   disabled={false}
-                  label="Začátek směny"
+                  label="Shift start"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -309,7 +309,7 @@ ShallowWrapper {
                 <LabeledDatetime
                   dateFormat={false}
                   disabled={false}
-                  label="Konec směny"
+                  label="Shift end"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -348,7 +348,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                Přestávky
+                Breaks
               </Label>
               <TooltipIconButton
                 className="ml-1"
@@ -361,7 +361,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Přidat"
+                tooltip="Add"
               />
             </Col>
           </Row>
@@ -387,7 +387,7 @@ ShallowWrapper {
                 <LabeledDatetime
                   dateFormat={false}
                   disabled={false}
-                  label="Začátek přestávky"
+                  label="Break start"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -398,7 +398,7 @@ ShallowWrapper {
                 <LabeledDatetime
                   dateFormat={false}
                   disabled={false}
-                  label="Konec přestávky"
+                  label="Break end"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -418,7 +418,7 @@ ShallowWrapper {
                       "marginTop": "35px",
                     }
                   }
-                  tooltip="Odstranit"
+                  tooltip="Remove"
                 />
               </Row>
             </Col>
@@ -426,8 +426,8 @@ ShallowWrapper {
           <TooltipGroup
             labels={
               Array [
-                "Importovat dříve stažená pravidla",
-                "Při nastavení na jiný den podle něj okopíruje rozpis",
+                "Import previously downloaded rules",
+                "When set to another day, copies the schedule from it",
               ]
             }
             targets={
@@ -443,14 +443,14 @@ ShallowWrapper {
             disabled={false}
             onClose={[Function]}
             onProceed={[Function]}
-            primaryLabel="Vytvořit"
+            primaryLabel="Create"
             title=""
           >
             <TooltipButton
               active={false}
               className="mr-2"
               disabled={false}
-              label="Předchozí"
+              label="Previous"
               onClick={[Function]}
               tooltip=""
             />
@@ -467,9 +467,9 @@ ShallowWrapper {
         "props": Object {
           "active": false,
           "disabled": false,
-          "label": "Rozpis",
+          "label": "Schedule",
           "onClick": [Function],
-          "tooltip": "Vytvořit více masáží najednou",
+          "tooltip": "Create multiple massages at once",
         },
         "ref": null,
         "rendered": null,
@@ -498,7 +498,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Zadat rozpis
+                  New schedule
                   <div
                     className="float-right"
                   >
@@ -509,7 +509,7 @@ ShallowWrapper {
                       outline={true}
                       tag="label"
                     >
-                      Importovat
+                      Import
                     </Button>
                     <Input
                       accept=".json"
@@ -522,9 +522,9 @@ ShallowWrapper {
                       active={false}
                       className="ml-2 mb-2"
                       disabled={false}
-                      label="Exportovat"
+                      label="Export"
                       onClick={[Function]}
-                      tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                      tooltip="Download a configuration file that you can use to import these rules at a later date"
                     />
                   </div>
                 </h3>
@@ -555,31 +555,31 @@ ShallowWrapper {
                 >
                   <Tab
                     active={true}
-                    label="Pondělí"
+                    label="Monday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Úterý"
+                    label="Tuesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Středa"
+                    label="Wednesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Čtvrtek"
+                    label="Thursday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Pátek"
+                    label="Friday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
@@ -615,7 +615,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Stejně jako
+                  Same as
                 </Label>
               </Col>
             </Row>,
@@ -645,16 +645,16 @@ ShallowWrapper {
                     value="–"
                   >
                     <option>
-                      Úterý
+                      Tuesday
                     </option>
                     <option>
-                      Středa
+                      Wednesday
                     </option>
                     <option>
-                      Čtvrtek
+                      Thursday
                     </option>
                     <option>
-                      Pátek
+                      Friday
                     </option>
                     <option>
                       –
@@ -679,9 +679,9 @@ ShallowWrapper {
                   active={false}
                   className="mr-3 float-right"
                   disabled={false}
-                  label="Ignorovat"
+                  label="Ignore"
                   onClick={[Function]}
-                  tooltip="Ignorovat tento den při tvorbě masáží"
+                  tooltip="Ignore this day when creating the massages"
                 />
               </Col>
             </Row>,
@@ -707,7 +707,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek směny"
+                    label="Shift start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -718,7 +718,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec směny"
+                    label="Shift end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -757,7 +757,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Přestávky
+                  Breaks
                 </Label>
                 <TooltipIconButton
                   className="ml-1"
@@ -770,7 +770,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Přidat"
+                  tooltip="Add"
                 />
               </Col>
             </Row>,
@@ -797,7 +797,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek přestávky"
+                      label="Break start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -808,7 +808,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec přestávky"
+                      label="Break end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -828,7 +828,7 @@ ShallowWrapper {
                           "marginTop": "35px",
                         }
                       }
-                      tooltip="Odstranit"
+                      tooltip="Remove"
                     />
                   </Row>
                 </Col>
@@ -837,8 +837,8 @@ ShallowWrapper {
             <TooltipGroup
               labels={
                 Array [
-                  "Importovat dříve stažená pravidla",
-                  "Při nastavení na jiný den podle něj okopíruje rozpis",
+                  "Import previously downloaded rules",
+                  "When set to another day, copies the schedule from it",
                 ]
               }
               targets={
@@ -854,14 +854,14 @@ ShallowWrapper {
               disabled={false}
               onClose={[Function]}
               onProceed={[Function]}
-              primaryLabel="Vytvořit"
+              primaryLabel="Create"
               title=""
             >
               <TooltipButton
                 active={false}
                 className="mr-2"
                 disabled={false}
-                label="Předchozí"
+                label="Previous"
                 onClick={[Function]}
                 tooltip=""
               />
@@ -890,7 +890,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Zadat rozpis
+                  New schedule
                   <div
                     className="float-right"
                   >
@@ -901,7 +901,7 @@ ShallowWrapper {
                       outline={true}
                       tag="label"
                     >
-                      Importovat
+                      Import
                     </Button>
                     <Input
                       accept=".json"
@@ -914,9 +914,9 @@ ShallowWrapper {
                       active={false}
                       className="ml-2 mb-2"
                       disabled={false}
-                      label="Exportovat"
+                      label="Export"
                       onClick={[Function]}
-                      tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                      tooltip="Download a configuration file that you can use to import these rules at a later date"
                     />
                   </div>
                 </h3>
@@ -932,7 +932,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <h3>
-                    Zadat rozpis
+                    New schedule
                     <div
                       className="float-right"
                     >
@@ -943,7 +943,7 @@ ShallowWrapper {
                         outline={true}
                         tag="label"
                       >
-                        Importovat
+                        Import
                       </Button>
                       <Input
                         accept=".json"
@@ -956,9 +956,9 @@ ShallowWrapper {
                         active={false}
                         className="ml-2 mb-2"
                         disabled={false}
-                        label="Exportovat"
+                        label="Export"
                         onClick={[Function]}
-                        tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                        tooltip="Download a configuration file that you can use to import these rules at a later date"
                       />
                     </div>
                   </h3>,
@@ -982,7 +982,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "Zadat rozpis",
+                      "New schedule",
                       <div
                         className="float-right"
                       >
@@ -993,7 +993,7 @@ ShallowWrapper {
                           outline={true}
                           tag="label"
                         >
-                          Importovat
+                          Import
                         </Button>
                         <Input
                           accept=".json"
@@ -1006,16 +1006,16 @@ ShallowWrapper {
                           active={false}
                           className="ml-2 mb-2"
                           disabled={false}
-                          label="Exportovat"
+                          label="Export"
                           onClick={[Function]}
-                          tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                          tooltip="Download a configuration file that you can use to import these rules at a later date"
                         />
                       </div>,
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
-                    "Zadat rozpis",
+                    "New schedule",
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -1029,7 +1029,7 @@ ShallowWrapper {
                             outline={true}
                             tag="label"
                           >
-                            Importovat
+                            Import
                           </Button>,
                           <Input
                             accept=".json"
@@ -1042,9 +1042,9 @@ ShallowWrapper {
                             active={false}
                             className="ml-2 mb-2"
                             disabled={false}
-                            label="Exportovat"
+                            label="Export"
                             onClick={[Function]}
-                            tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                            tooltip="Download a configuration file that you can use to import these rules at a later date"
                           />,
                         ],
                         "className": "float-right",
@@ -1056,7 +1056,7 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": "Importovat",
+                            "children": "Import",
                             "color": "secondary",
                             "htmlFor": "fileImport",
                             "id": "Tooltip1",
@@ -1064,7 +1064,7 @@ ShallowWrapper {
                             "tag": "label",
                           },
                           "ref": null,
-                          "rendered": "Importovat",
+                          "rendered": "Import",
                           "type": [Function],
                         },
                         Object {
@@ -1090,9 +1090,9 @@ ShallowWrapper {
                             "active": false,
                             "className": "ml-2 mb-2",
                             "disabled": false,
-                            "label": "Exportovat",
+                            "label": "Export",
                             "onClick": [Function],
-                            "tooltip": "Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel",
+                            "tooltip": "Download a configuration file that you can use to import these rules at a later date",
                           },
                           "ref": null,
                           "rendered": null,
@@ -1144,31 +1144,31 @@ ShallowWrapper {
                 >
                   <Tab
                     active={true}
-                    label="Pondělí"
+                    label="Monday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Úterý"
+                    label="Tuesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Středa"
+                    label="Wednesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Čtvrtek"
+                    label="Thursday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Pátek"
+                    label="Friday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
@@ -1190,31 +1190,31 @@ ShallowWrapper {
                 >
                   <Tab
                     active={true}
-                    label="Pondělí"
+                    label="Monday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Úterý"
+                    label="Tuesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Středa"
+                    label="Wednesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Čtvrtek"
+                    label="Thursday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Pátek"
+                    label="Friday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
@@ -1238,31 +1238,31 @@ ShallowWrapper {
                   "children": Array [
                     <Tab
                       active={true}
-                      label="Pondělí"
+                      label="Monday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />,
                     <Tab
                       active={false}
-                      label="Úterý"
+                      label="Tuesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />,
                     <Tab
                       active={false}
-                      label="Středa"
+                      label="Wednesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />,
                     <Tab
                       active={false}
-                      label="Čtvrtek"
+                      label="Thursday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />,
                     <Tab
                       active={false}
-                      label="Pátek"
+                      label="Friday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />,
@@ -1276,11 +1276,11 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "Pondělí",
+                    "key": "Monday",
                     "nodeType": "class",
                     "props": Object {
                       "active": true,
-                      "label": "Pondělí",
+                      "label": "Monday",
                       "onClick": [Function],
                       "onRemoveClick": null,
                     },
@@ -1290,11 +1290,11 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "Úterý",
+                    "key": "Tuesday",
                     "nodeType": "class",
                     "props": Object {
                       "active": false,
-                      "label": "Úterý",
+                      "label": "Tuesday",
                       "onClick": [Function],
                       "onRemoveClick": null,
                     },
@@ -1304,11 +1304,11 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "Středa",
+                    "key": "Wednesday",
                     "nodeType": "class",
                     "props": Object {
                       "active": false,
-                      "label": "Středa",
+                      "label": "Wednesday",
                       "onClick": [Function],
                       "onRemoveClick": null,
                     },
@@ -1318,11 +1318,11 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "Čtvrtek",
+                    "key": "Thursday",
                     "nodeType": "class",
                     "props": Object {
                       "active": false,
-                      "label": "Čtvrtek",
+                      "label": "Thursday",
                       "onClick": [Function],
                       "onRemoveClick": null,
                     },
@@ -1332,11 +1332,11 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "Pátek",
+                    "key": "Friday",
                     "nodeType": "class",
                     "props": Object {
                       "active": false,
-                      "label": "Pátek",
+                      "label": "Friday",
                       "onClick": [Function],
                       "onRemoveClick": null,
                     },
@@ -1382,7 +1382,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Stejně jako
+                  Same as
                 </Label>
               </Col>,
               "tag": "div",
@@ -1406,7 +1406,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Stejně jako
+                  Same as
                 </Label>,
                 "md": "12",
                 "tag": "div",
@@ -1424,7 +1424,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "Stejně jako",
+                  "children": "Same as",
                   "id": "Tooltip2",
                   "tag": "label",
                   "widths": Array [
@@ -1436,7 +1436,7 @@ ShallowWrapper {
                   ],
                 },
                 "ref": null,
-                "rendered": "Stejně jako",
+                "rendered": "Same as",
                 "type": [Function],
               },
               "type": [Function],
@@ -1472,16 +1472,16 @@ ShallowWrapper {
                       value="–"
                     >
                       <option>
-                        Úterý
+                        Tuesday
                       </option>
                       <option>
-                        Středa
+                        Wednesday
                       </option>
                       <option>
-                        Čtvrtek
+                        Thursday
                       </option>
                       <option>
-                        Pátek
+                        Friday
                       </option>
                       <option>
                         –
@@ -1506,9 +1506,9 @@ ShallowWrapper {
                     active={false}
                     className="mr-3 float-right"
                     disabled={false}
-                    label="Ignorovat"
+                    label="Ignore"
                     onClick={[Function]}
-                    tooltip="Ignorovat tento den při tvorbě masáží"
+                    tooltip="Ignore this day when creating the massages"
                   />
                 </Col>,
               ],
@@ -1531,16 +1531,16 @@ ShallowWrapper {
                       value="–"
                     >
                       <option>
-                        Úterý
+                        Tuesday
                       </option>
                       <option>
-                        Středa
+                        Wednesday
                       </option>
                       <option>
-                        Čtvrtek
+                        Thursday
                       </option>
                       <option>
-                        Pátek
+                        Friday
                       </option>
                       <option>
                         –
@@ -1570,16 +1570,16 @@ ShallowWrapper {
                       value="–"
                     >
                       <option>
-                        Úterý
+                        Tuesday
                       </option>
                       <option>
-                        Středa
+                        Wednesday
                       </option>
                       <option>
-                        Čtvrtek
+                        Thursday
                       </option>
                       <option>
-                        Pátek
+                        Friday
                       </option>
                       <option>
                         –
@@ -1597,16 +1597,16 @@ ShallowWrapper {
                         Array [
                           false,
                           <option>
-                            Úterý
+                            Tuesday
                           </option>,
                           <option>
-                            Středa
+                            Wednesday
                           </option>,
                           <option>
-                            Čtvrtek
+                            Thursday
                           </option>,
                           <option>
-                            Pátek
+                            Friday
                           </option>,
                         ],
                         <option>
@@ -1624,46 +1624,46 @@ ShallowWrapper {
                       false,
                       Object {
                         "instance": null,
-                        "key": "Úterý",
+                        "key": "Tuesday",
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Úterý",
+                          "children": "Tuesday",
                         },
                         "ref": null,
-                        "rendered": "Úterý",
+                        "rendered": "Tuesday",
                         "type": "option",
                       },
                       Object {
                         "instance": null,
-                        "key": "Středa",
+                        "key": "Wednesday",
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Středa",
+                          "children": "Wednesday",
                         },
                         "ref": null,
-                        "rendered": "Středa",
+                        "rendered": "Wednesday",
                         "type": "option",
                       },
                       Object {
                         "instance": null,
-                        "key": "Čtvrtek",
+                        "key": "Thursday",
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Čtvrtek",
+                          "children": "Thursday",
                         },
                         "ref": null,
-                        "rendered": "Čtvrtek",
+                        "rendered": "Thursday",
                         "type": "option",
                       },
                       Object {
                         "instance": null,
-                        "key": "Pátek",
+                        "key": "Friday",
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Pátek",
+                          "children": "Friday",
                         },
                         "ref": null,
-                        "rendered": "Pátek",
+                        "rendered": "Friday",
                         "type": "option",
                       },
                       Object {
@@ -1693,9 +1693,9 @@ ShallowWrapper {
                     active={false}
                     className="mr-3 float-right"
                     disabled={false}
-                    label="Ignorovat"
+                    label="Ignore"
                     onClick={[Function]}
-                    tooltip="Ignorovat tento den při tvorbě masáží"
+                    tooltip="Ignore this day when creating the massages"
                   />,
                   "md": "2",
                   "tag": "div",
@@ -1716,9 +1716,9 @@ ShallowWrapper {
                     "active": false,
                     "className": "mr-3 float-right",
                     "disabled": false,
-                    "label": "Ignorovat",
+                    "label": "Ignore",
                     "onClick": [Function],
-                    "tooltip": "Ignorovat tento den při tvorbě masáží",
+                    "tooltip": "Ignore this day when creating the massages",
                   },
                   "ref": null,
                   "rendered": null,
@@ -1753,7 +1753,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek směny"
+                    label="Shift start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1764,7 +1764,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec směny"
+                    label="Shift end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1788,7 +1788,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek směny"
+                    label="Shift start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1799,7 +1799,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec směny"
+                    label="Shift end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1828,7 +1828,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek směny"
+                      label="Shift start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -1839,7 +1839,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec směny"
+                      label="Shift end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -1859,7 +1859,7 @@ ShallowWrapper {
                     "props": Object {
                       "dateFormat": false,
                       "disabled": false,
-                      "label": "Začátek směny",
+                      "label": "Shift start",
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
@@ -1878,7 +1878,7 @@ ShallowWrapper {
                     "props": Object {
                       "dateFormat": false,
                       "disabled": false,
-                      "label": "Konec směny",
+                      "label": "Shift end",
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
@@ -1927,7 +1927,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Přestávky
+                  Breaks
                 </Label>
                 <TooltipIconButton
                   className="ml-1"
@@ -1940,7 +1940,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Přidat"
+                  tooltip="Add"
                 />
               </Col>,
               "tag": "div",
@@ -1964,7 +1964,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Přestávky
+                    Breaks
                   </Label>,
                   <TooltipIconButton
                     className="ml-1"
@@ -1977,7 +1977,7 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Přidat"
+                    tooltip="Add"
                   />,
                 ],
                 "md": "12",
@@ -1997,7 +1997,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "Přestávky",
+                    "children": "Breaks",
                     "tag": "label",
                     "widths": Array [
                       "xs",
@@ -2008,7 +2008,7 @@ ShallowWrapper {
                     ],
                   },
                   "ref": null,
-                  "rendered": "Přestávky",
+                  "rendered": "Breaks",
                   "type": [Function],
                 },
                 Object {
@@ -2024,7 +2024,7 @@ ShallowWrapper {
                     "style": Object {
                       "border": "0px solid transparent",
                     },
-                    "tooltip": "Přidat",
+                    "tooltip": "Add",
                   },
                   "ref": null,
                   "rendered": null,
@@ -2059,7 +2059,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek přestávky"
+                    label="Break start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2070,7 +2070,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec přestávky"
+                    label="Break end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2090,7 +2090,7 @@ ShallowWrapper {
                         "marginTop": "35px",
                       }
                     }
-                    tooltip="Odstranit"
+                    tooltip="Remove"
                   />
                 </Row>
               </Col>,
@@ -2108,7 +2108,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek přestávky"
+                    label="Break start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2119,7 +2119,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec přestávky"
+                    label="Break end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2139,7 +2139,7 @@ ShallowWrapper {
                         "marginTop": "35px",
                       }
                     }
-                    tooltip="Odstranit"
+                    tooltip="Remove"
                   />
                 </Row>,
                 "md": "12",
@@ -2162,7 +2162,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek přestávky"
+                      label="Break start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -2173,7 +2173,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec přestávky"
+                      label="Break end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -2193,7 +2193,7 @@ ShallowWrapper {
                           "marginTop": "35px",
                         }
                       }
-                      tooltip="Odstranit"
+                      tooltip="Remove"
                     />,
                   ],
                   "tag": "div",
@@ -2207,7 +2207,7 @@ ShallowWrapper {
                     "props": Object {
                       "dateFormat": false,
                       "disabled": false,
-                      "label": "Začátek přestávky",
+                      "label": "Break start",
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
@@ -2226,7 +2226,7 @@ ShallowWrapper {
                     "props": Object {
                       "dateFormat": false,
                       "disabled": false,
-                      "label": "Konec přestávky",
+                      "label": "Break end",
                       "onChange": [Function],
                       "onEnterPress": [Function],
                       "size": "3",
@@ -2252,7 +2252,7 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                         "marginTop": "35px",
                       },
-                      "tooltip": "Odstranit",
+                      "tooltip": "Remove",
                     },
                     "ref": null,
                     "rendered": null,
@@ -2271,8 +2271,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "labels": Array [
-                "Importovat dříve stažená pravidla",
-                "Při nastavení na jiný den podle něj okopíruje rozpis",
+                "Import previously downloaded rules",
+                "When set to another day, copies the schedule from it",
               ],
               "targets": Array [
                 "Tooltip1",
@@ -2294,14 +2294,14 @@ ShallowWrapper {
                 active={false}
                 className="mr-2"
                 disabled={false}
-                label="Předchozí"
+                label="Previous"
                 onClick={[Function]}
                 tooltip=""
               />,
               "disabled": false,
               "onClose": [Function],
               "onProceed": [Function],
-              "primaryLabel": "Vytvořit",
+              "primaryLabel": "Create",
               "title": "",
             },
             "ref": null,
@@ -2313,7 +2313,7 @@ ShallowWrapper {
                 "active": false,
                 "className": "mr-2",
                 "disabled": false,
-                "label": "Předchozí",
+                "label": "Previous",
                 "onClick": [Function],
                 "tooltip": "",
               },
@@ -2339,9 +2339,9 @@ ShallowWrapper {
           <TooltipButton
             active={false}
             disabled={false}
-            label="Rozpis"
+            label="Schedule"
             onClick={[Function]}
-            tooltip="Vytvořit více masáží najednou"
+            tooltip="Create multiple massages at once"
           />,
           <ModalBody
             tag="div"
@@ -2363,7 +2363,7 @@ ShallowWrapper {
                 }
               >
                 <h3>
-                  Zadat rozpis
+                  New schedule
                   <div
                     className="float-right"
                   >
@@ -2374,7 +2374,7 @@ ShallowWrapper {
                       outline={true}
                       tag="label"
                     >
-                      Importovat
+                      Import
                     </Button>
                     <Input
                       accept=".json"
@@ -2387,9 +2387,9 @@ ShallowWrapper {
                       active={false}
                       className="ml-2 mb-2"
                       disabled={false}
-                      label="Exportovat"
+                      label="Export"
                       onClick={[Function]}
-                      tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                      tooltip="Download a configuration file that you can use to import these rules at a later date"
                     />
                   </div>
                 </h3>
@@ -2420,31 +2420,31 @@ ShallowWrapper {
                 >
                   <Tab
                     active={true}
-                    label="Pondělí"
+                    label="Monday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Úterý"
+                    label="Tuesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Středa"
+                    label="Wednesday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Čtvrtek"
+                    label="Thursday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
                   <Tab
                     active={false}
-                    label="Pátek"
+                    label="Friday"
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
@@ -2480,7 +2480,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Stejně jako
+                  Same as
                 </Label>
               </Col>
             </Row>
@@ -2510,16 +2510,16 @@ ShallowWrapper {
                     value="–"
                   >
                     <option>
-                      Úterý
+                      Tuesday
                     </option>
                     <option>
-                      Středa
+                      Wednesday
                     </option>
                     <option>
-                      Čtvrtek
+                      Thursday
                     </option>
                     <option>
-                      Pátek
+                      Friday
                     </option>
                     <option>
                       –
@@ -2544,9 +2544,9 @@ ShallowWrapper {
                   active={false}
                   className="mr-3 float-right"
                   disabled={false}
-                  label="Ignorovat"
+                  label="Ignore"
                   onClick={[Function]}
-                  tooltip="Ignorovat tento den při tvorbě masáží"
+                  tooltip="Ignore this day when creating the massages"
                 />
               </Col>
             </Row>
@@ -2572,7 +2572,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek směny"
+                    label="Shift start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2583,7 +2583,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec směny"
+                    label="Shift end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2622,7 +2622,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  Přestávky
+                  Breaks
                 </Label>
                 <TooltipIconButton
                   className="ml-1"
@@ -2635,7 +2635,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Přidat"
+                  tooltip="Add"
                 />
               </Col>
             </Row>
@@ -2661,7 +2661,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Začátek přestávky"
+                    label="Break start"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2672,7 +2672,7 @@ ShallowWrapper {
                   <LabeledDatetime
                     dateFormat={false}
                     disabled={false}
-                    label="Konec přestávky"
+                    label="Break end"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -2692,7 +2692,7 @@ ShallowWrapper {
                         "marginTop": "35px",
                       }
                     }
-                    tooltip="Odstranit"
+                    tooltip="Remove"
                   />
                 </Row>
               </Col>
@@ -2700,8 +2700,8 @@ ShallowWrapper {
             <TooltipGroup
               labels={
                 Array [
-                  "Importovat dříve stažená pravidla",
-                  "Při nastavení na jiný den podle něj okopíruje rozpis",
+                  "Import previously downloaded rules",
+                  "When set to another day, copies the schedule from it",
                 ]
               }
               targets={
@@ -2717,14 +2717,14 @@ ShallowWrapper {
               disabled={false}
               onClose={[Function]}
               onProceed={[Function]}
-              primaryLabel="Vytvořit"
+              primaryLabel="Create"
               title=""
             >
               <TooltipButton
                 active={false}
                 className="mr-2"
                 disabled={false}
-                label="Předchozí"
+                label="Previous"
                 onClick={[Function]}
                 tooltip=""
               />
@@ -2741,9 +2741,9 @@ ShallowWrapper {
           "props": Object {
             "active": false,
             "disabled": false,
-            "label": "Rozpis",
+            "label": "Schedule",
             "onClick": [Function],
-            "tooltip": "Vytvořit více masáží najednou",
+            "tooltip": "Create multiple massages at once",
           },
           "ref": null,
           "rendered": null,
@@ -2772,7 +2772,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Zadat rozpis
+                    New schedule
                     <div
                       className="float-right"
                     >
@@ -2783,7 +2783,7 @@ ShallowWrapper {
                         outline={true}
                         tag="label"
                       >
-                        Importovat
+                        Import
                       </Button>
                       <Input
                         accept=".json"
@@ -2796,9 +2796,9 @@ ShallowWrapper {
                         active={false}
                         className="ml-2 mb-2"
                         disabled={false}
-                        label="Exportovat"
+                        label="Export"
                         onClick={[Function]}
-                        tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                        tooltip="Download a configuration file that you can use to import these rules at a later date"
                       />
                     </div>
                   </h3>
@@ -2829,31 +2829,31 @@ ShallowWrapper {
                   >
                     <Tab
                       active={true}
-                      label="Pondělí"
+                      label="Monday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Úterý"
+                      label="Tuesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Středa"
+                      label="Wednesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Čtvrtek"
+                      label="Thursday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Pátek"
+                      label="Friday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
@@ -2889,7 +2889,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Stejně jako
+                    Same as
                   </Label>
                 </Col>
               </Row>,
@@ -2919,16 +2919,16 @@ ShallowWrapper {
                       value="–"
                     >
                       <option>
-                        Úterý
+                        Tuesday
                       </option>
                       <option>
-                        Středa
+                        Wednesday
                       </option>
                       <option>
-                        Čtvrtek
+                        Thursday
                       </option>
                       <option>
-                        Pátek
+                        Friday
                       </option>
                       <option>
                         –
@@ -2953,9 +2953,9 @@ ShallowWrapper {
                     active={false}
                     className="mr-3 float-right"
                     disabled={false}
-                    label="Ignorovat"
+                    label="Ignore"
                     onClick={[Function]}
-                    tooltip="Ignorovat tento den při tvorbě masáží"
+                    tooltip="Ignore this day when creating the massages"
                   />
                 </Col>
               </Row>,
@@ -2981,7 +2981,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek směny"
+                      label="Shift start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -2992,7 +2992,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec směny"
+                      label="Shift end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -3031,7 +3031,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Přestávky
+                    Breaks
                   </Label>
                   <TooltipIconButton
                     className="ml-1"
@@ -3044,7 +3044,7 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Přidat"
+                    tooltip="Add"
                   />
                 </Col>
               </Row>,
@@ -3071,7 +3071,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Začátek přestávky"
+                        label="Break start"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -3082,7 +3082,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Konec přestávky"
+                        label="Break end"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -3102,7 +3102,7 @@ ShallowWrapper {
                             "marginTop": "35px",
                           }
                         }
-                        tooltip="Odstranit"
+                        tooltip="Remove"
                       />
                     </Row>
                   </Col>
@@ -3111,8 +3111,8 @@ ShallowWrapper {
               <TooltipGroup
                 labels={
                   Array [
-                    "Importovat dříve stažená pravidla",
-                    "Při nastavení na jiný den podle něj okopíruje rozpis",
+                    "Import previously downloaded rules",
+                    "When set to another day, copies the schedule from it",
                   ]
                 }
                 targets={
@@ -3128,14 +3128,14 @@ ShallowWrapper {
                 disabled={false}
                 onClose={[Function]}
                 onProceed={[Function]}
-                primaryLabel="Vytvořit"
+                primaryLabel="Create"
                 title=""
               >
                 <TooltipButton
                   active={false}
                   className="mr-2"
                   disabled={false}
-                  label="Předchozí"
+                  label="Previous"
                   onClick={[Function]}
                   tooltip=""
                 />
@@ -3164,7 +3164,7 @@ ShallowWrapper {
                   }
                 >
                   <h3>
-                    Zadat rozpis
+                    New schedule
                     <div
                       className="float-right"
                     >
@@ -3175,7 +3175,7 @@ ShallowWrapper {
                         outline={true}
                         tag="label"
                       >
-                        Importovat
+                        Import
                       </Button>
                       <Input
                         accept=".json"
@@ -3188,9 +3188,9 @@ ShallowWrapper {
                         active={false}
                         className="ml-2 mb-2"
                         disabled={false}
-                        label="Exportovat"
+                        label="Export"
                         onClick={[Function]}
-                        tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                        tooltip="Download a configuration file that you can use to import these rules at a later date"
                       />
                     </div>
                   </h3>
@@ -3206,7 +3206,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <h3>
-                      Zadat rozpis
+                      New schedule
                       <div
                         className="float-right"
                       >
@@ -3217,7 +3217,7 @@ ShallowWrapper {
                           outline={true}
                           tag="label"
                         >
-                          Importovat
+                          Import
                         </Button>
                         <Input
                           accept=".json"
@@ -3230,9 +3230,9 @@ ShallowWrapper {
                           active={false}
                           className="ml-2 mb-2"
                           disabled={false}
-                          label="Exportovat"
+                          label="Export"
                           onClick={[Function]}
-                          tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                          tooltip="Download a configuration file that you can use to import these rules at a later date"
                         />
                       </div>
                     </h3>,
@@ -3256,7 +3256,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "Zadat rozpis",
+                        "New schedule",
                         <div
                           className="float-right"
                         >
@@ -3267,7 +3267,7 @@ ShallowWrapper {
                             outline={true}
                             tag="label"
                           >
-                            Importovat
+                            Import
                           </Button>
                           <Input
                             accept=".json"
@@ -3280,16 +3280,16 @@ ShallowWrapper {
                             active={false}
                             className="ml-2 mb-2"
                             disabled={false}
-                            label="Exportovat"
+                            label="Export"
                             onClick={[Function]}
-                            tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                            tooltip="Download a configuration file that you can use to import these rules at a later date"
                           />
                         </div>,
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
-                      "Zadat rozpis",
+                      "New schedule",
                       Object {
                         "instance": null,
                         "key": undefined,
@@ -3303,7 +3303,7 @@ ShallowWrapper {
                               outline={true}
                               tag="label"
                             >
-                              Importovat
+                              Import
                             </Button>,
                             <Input
                               accept=".json"
@@ -3316,9 +3316,9 @@ ShallowWrapper {
                               active={false}
                               className="ml-2 mb-2"
                               disabled={false}
-                              label="Exportovat"
+                              label="Export"
                               onClick={[Function]}
-                              tooltip="Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+                              tooltip="Download a configuration file that you can use to import these rules at a later date"
                             />,
                           ],
                           "className": "float-right",
@@ -3330,7 +3330,7 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": "Importovat",
+                              "children": "Import",
                               "color": "secondary",
                               "htmlFor": "fileImport",
                               "id": "Tooltip1",
@@ -3338,7 +3338,7 @@ ShallowWrapper {
                               "tag": "label",
                             },
                             "ref": null,
-                            "rendered": "Importovat",
+                            "rendered": "Import",
                             "type": [Function],
                           },
                           Object {
@@ -3364,9 +3364,9 @@ ShallowWrapper {
                               "active": false,
                               "className": "ml-2 mb-2",
                               "disabled": false,
-                              "label": "Exportovat",
+                              "label": "Export",
                               "onClick": [Function],
-                              "tooltip": "Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel",
+                              "tooltip": "Download a configuration file that you can use to import these rules at a later date",
                             },
                             "ref": null,
                             "rendered": null,
@@ -3418,31 +3418,31 @@ ShallowWrapper {
                   >
                     <Tab
                       active={true}
-                      label="Pondělí"
+                      label="Monday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Úterý"
+                      label="Tuesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Středa"
+                      label="Wednesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Čtvrtek"
+                      label="Thursday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Pátek"
+                      label="Friday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
@@ -3464,31 +3464,31 @@ ShallowWrapper {
                   >
                     <Tab
                       active={true}
-                      label="Pondělí"
+                      label="Monday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Úterý"
+                      label="Tuesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Středa"
+                      label="Wednesday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Čtvrtek"
+                      label="Thursday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
                     <Tab
                       active={false}
-                      label="Pátek"
+                      label="Friday"
                       onClick={[Function]}
                       onRemoveClick={null}
                     />
@@ -3512,31 +3512,31 @@ ShallowWrapper {
                     "children": Array [
                       <Tab
                         active={true}
-                        label="Pondělí"
+                        label="Monday"
                         onClick={[Function]}
                         onRemoveClick={null}
                       />,
                       <Tab
                         active={false}
-                        label="Úterý"
+                        label="Tuesday"
                         onClick={[Function]}
                         onRemoveClick={null}
                       />,
                       <Tab
                         active={false}
-                        label="Středa"
+                        label="Wednesday"
                         onClick={[Function]}
                         onRemoveClick={null}
                       />,
                       <Tab
                         active={false}
-                        label="Čtvrtek"
+                        label="Thursday"
                         onClick={[Function]}
                         onRemoveClick={null}
                       />,
                       <Tab
                         active={false}
-                        label="Pátek"
+                        label="Friday"
                         onClick={[Function]}
                         onRemoveClick={null}
                       />,
@@ -3550,11 +3550,11 @@ ShallowWrapper {
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "Pondělí",
+                      "key": "Monday",
                       "nodeType": "class",
                       "props": Object {
                         "active": true,
-                        "label": "Pondělí",
+                        "label": "Monday",
                         "onClick": [Function],
                         "onRemoveClick": null,
                       },
@@ -3564,11 +3564,11 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "Úterý",
+                      "key": "Tuesday",
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
-                        "label": "Úterý",
+                        "label": "Tuesday",
                         "onClick": [Function],
                         "onRemoveClick": null,
                       },
@@ -3578,11 +3578,11 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "Středa",
+                      "key": "Wednesday",
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
-                        "label": "Středa",
+                        "label": "Wednesday",
                         "onClick": [Function],
                         "onRemoveClick": null,
                       },
@@ -3592,11 +3592,11 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "Čtvrtek",
+                      "key": "Thursday",
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
-                        "label": "Čtvrtek",
+                        "label": "Thursday",
                         "onClick": [Function],
                         "onRemoveClick": null,
                       },
@@ -3606,11 +3606,11 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "Pátek",
+                      "key": "Friday",
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
-                        "label": "Pátek",
+                        "label": "Friday",
                         "onClick": [Function],
                         "onRemoveClick": null,
                       },
@@ -3656,7 +3656,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Stejně jako
+                    Same as
                   </Label>
                 </Col>,
                 "tag": "div",
@@ -3680,7 +3680,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Stejně jako
+                    Same as
                   </Label>,
                   "md": "12",
                   "tag": "div",
@@ -3698,7 +3698,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "Stejně jako",
+                    "children": "Same as",
                     "id": "Tooltip2",
                     "tag": "label",
                     "widths": Array [
@@ -3710,7 +3710,7 @@ ShallowWrapper {
                     ],
                   },
                   "ref": null,
-                  "rendered": "Stejně jako",
+                  "rendered": "Same as",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -3746,16 +3746,16 @@ ShallowWrapper {
                         value="–"
                       >
                         <option>
-                          Úterý
+                          Tuesday
                         </option>
                         <option>
-                          Středa
+                          Wednesday
                         </option>
                         <option>
-                          Čtvrtek
+                          Thursday
                         </option>
                         <option>
-                          Pátek
+                          Friday
                         </option>
                         <option>
                           –
@@ -3780,9 +3780,9 @@ ShallowWrapper {
                       active={false}
                       className="mr-3 float-right"
                       disabled={false}
-                      label="Ignorovat"
+                      label="Ignore"
                       onClick={[Function]}
-                      tooltip="Ignorovat tento den při tvorbě masáží"
+                      tooltip="Ignore this day when creating the massages"
                     />
                   </Col>,
                 ],
@@ -3805,16 +3805,16 @@ ShallowWrapper {
                         value="–"
                       >
                         <option>
-                          Úterý
+                          Tuesday
                         </option>
                         <option>
-                          Středa
+                          Wednesday
                         </option>
                         <option>
-                          Čtvrtek
+                          Thursday
                         </option>
                         <option>
-                          Pátek
+                          Friday
                         </option>
                         <option>
                           –
@@ -3844,16 +3844,16 @@ ShallowWrapper {
                         value="–"
                       >
                         <option>
-                          Úterý
+                          Tuesday
                         </option>
                         <option>
-                          Středa
+                          Wednesday
                         </option>
                         <option>
-                          Čtvrtek
+                          Thursday
                         </option>
                         <option>
-                          Pátek
+                          Friday
                         </option>
                         <option>
                           –
@@ -3871,16 +3871,16 @@ ShallowWrapper {
                           Array [
                             false,
                             <option>
-                              Úterý
+                              Tuesday
                             </option>,
                             <option>
-                              Středa
+                              Wednesday
                             </option>,
                             <option>
-                              Čtvrtek
+                              Thursday
                             </option>,
                             <option>
-                              Pátek
+                              Friday
                             </option>,
                           ],
                           <option>
@@ -3898,46 +3898,46 @@ ShallowWrapper {
                         false,
                         Object {
                           "instance": null,
-                          "key": "Úterý",
+                          "key": "Tuesday",
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Úterý",
+                            "children": "Tuesday",
                           },
                           "ref": null,
-                          "rendered": "Úterý",
+                          "rendered": "Tuesday",
                           "type": "option",
                         },
                         Object {
                           "instance": null,
-                          "key": "Středa",
+                          "key": "Wednesday",
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Středa",
+                            "children": "Wednesday",
                           },
                           "ref": null,
-                          "rendered": "Středa",
+                          "rendered": "Wednesday",
                           "type": "option",
                         },
                         Object {
                           "instance": null,
-                          "key": "Čtvrtek",
+                          "key": "Thursday",
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Čtvrtek",
+                            "children": "Thursday",
                           },
                           "ref": null,
-                          "rendered": "Čtvrtek",
+                          "rendered": "Thursday",
                           "type": "option",
                         },
                         Object {
                           "instance": null,
-                          "key": "Pátek",
+                          "key": "Friday",
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Pátek",
+                            "children": "Friday",
                           },
                           "ref": null,
-                          "rendered": "Pátek",
+                          "rendered": "Friday",
                           "type": "option",
                         },
                         Object {
@@ -3967,9 +3967,9 @@ ShallowWrapper {
                       active={false}
                       className="mr-3 float-right"
                       disabled={false}
-                      label="Ignorovat"
+                      label="Ignore"
                       onClick={[Function]}
-                      tooltip="Ignorovat tento den při tvorbě masáží"
+                      tooltip="Ignore this day when creating the massages"
                     />,
                     "md": "2",
                     "tag": "div",
@@ -3990,9 +3990,9 @@ ShallowWrapper {
                       "active": false,
                       "className": "mr-3 float-right",
                       "disabled": false,
-                      "label": "Ignorovat",
+                      "label": "Ignore",
                       "onClick": [Function],
-                      "tooltip": "Ignorovat tento den při tvorbě masáží",
+                      "tooltip": "Ignore this day when creating the massages",
                     },
                     "ref": null,
                     "rendered": null,
@@ -4027,7 +4027,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek směny"
+                      label="Shift start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4038,7 +4038,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec směny"
+                      label="Shift end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4062,7 +4062,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek směny"
+                      label="Shift start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4073,7 +4073,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec směny"
+                      label="Shift end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4102,7 +4102,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Začátek směny"
+                        label="Shift start"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -4113,7 +4113,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Konec směny"
+                        label="Shift end"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -4133,7 +4133,7 @@ ShallowWrapper {
                       "props": Object {
                         "dateFormat": false,
                         "disabled": false,
-                        "label": "Začátek směny",
+                        "label": "Shift start",
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
@@ -4152,7 +4152,7 @@ ShallowWrapper {
                       "props": Object {
                         "dateFormat": false,
                         "disabled": false,
-                        "label": "Konec směny",
+                        "label": "Shift end",
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
@@ -4201,7 +4201,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    Přestávky
+                    Breaks
                   </Label>
                   <TooltipIconButton
                     className="ml-1"
@@ -4214,7 +4214,7 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Přidat"
+                    tooltip="Add"
                   />
                 </Col>,
                 "tag": "div",
@@ -4238,7 +4238,7 @@ ShallowWrapper {
                         ]
                       }
                     >
-                      Přestávky
+                      Breaks
                     </Label>,
                     <TooltipIconButton
                       className="ml-1"
@@ -4251,7 +4251,7 @@ ShallowWrapper {
                           "border": "0px solid transparent",
                         }
                       }
-                      tooltip="Přidat"
+                      tooltip="Add"
                     />,
                   ],
                   "md": "12",
@@ -4271,7 +4271,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "Přestávky",
+                      "children": "Breaks",
                       "tag": "label",
                       "widths": Array [
                         "xs",
@@ -4282,7 +4282,7 @@ ShallowWrapper {
                       ],
                     },
                     "ref": null,
-                    "rendered": "Přestávky",
+                    "rendered": "Breaks",
                     "type": [Function],
                   },
                   Object {
@@ -4298,7 +4298,7 @@ ShallowWrapper {
                       "style": Object {
                         "border": "0px solid transparent",
                       },
-                      "tooltip": "Přidat",
+                      "tooltip": "Add",
                     },
                     "ref": null,
                     "rendered": null,
@@ -4333,7 +4333,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek přestávky"
+                      label="Break start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4344,7 +4344,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec přestávky"
+                      label="Break end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4364,7 +4364,7 @@ ShallowWrapper {
                           "marginTop": "35px",
                         }
                       }
-                      tooltip="Odstranit"
+                      tooltip="Remove"
                     />
                   </Row>
                 </Col>,
@@ -4382,7 +4382,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Začátek přestávky"
+                      label="Break start"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4393,7 +4393,7 @@ ShallowWrapper {
                     <LabeledDatetime
                       dateFormat={false}
                       disabled={false}
-                      label="Konec přestávky"
+                      label="Break end"
                       onChange={[Function]}
                       onEnterPress={[Function]}
                       size="3"
@@ -4413,7 +4413,7 @@ ShallowWrapper {
                           "marginTop": "35px",
                         }
                       }
-                      tooltip="Odstranit"
+                      tooltip="Remove"
                     />
                   </Row>,
                   "md": "12",
@@ -4436,7 +4436,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Začátek přestávky"
+                        label="Break start"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -4447,7 +4447,7 @@ ShallowWrapper {
                       <LabeledDatetime
                         dateFormat={false}
                         disabled={false}
-                        label="Konec přestávky"
+                        label="Break end"
                         onChange={[Function]}
                         onEnterPress={[Function]}
                         size="3"
@@ -4467,7 +4467,7 @@ ShallowWrapper {
                             "marginTop": "35px",
                           }
                         }
-                        tooltip="Odstranit"
+                        tooltip="Remove"
                       />,
                     ],
                     "tag": "div",
@@ -4481,7 +4481,7 @@ ShallowWrapper {
                       "props": Object {
                         "dateFormat": false,
                         "disabled": false,
-                        "label": "Začátek přestávky",
+                        "label": "Break start",
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
@@ -4500,7 +4500,7 @@ ShallowWrapper {
                       "props": Object {
                         "dateFormat": false,
                         "disabled": false,
-                        "label": "Konec přestávky",
+                        "label": "Break end",
                         "onChange": [Function],
                         "onEnterPress": [Function],
                         "size": "3",
@@ -4526,7 +4526,7 @@ ShallowWrapper {
                           "border": "0px solid transparent",
                           "marginTop": "35px",
                         },
-                        "tooltip": "Odstranit",
+                        "tooltip": "Remove",
                       },
                       "ref": null,
                       "rendered": null,
@@ -4545,8 +4545,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "labels": Array [
-                  "Importovat dříve stažená pravidla",
-                  "Při nastavení na jiný den podle něj okopíruje rozpis",
+                  "Import previously downloaded rules",
+                  "When set to another day, copies the schedule from it",
                 ],
                 "targets": Array [
                   "Tooltip1",
@@ -4568,14 +4568,14 @@ ShallowWrapper {
                   active={false}
                   className="mr-2"
                   disabled={false}
-                  label="Předchozí"
+                  label="Previous"
                   onClick={[Function]}
                   tooltip=""
                 />,
                 "disabled": false,
                 "onClose": [Function],
                 "onProceed": [Function],
-                "primaryLabel": "Vytvořit",
+                "primaryLabel": "Create",
                 "title": "",
               },
               "ref": null,
@@ -4587,7 +4587,7 @@ ShallowWrapper {
                   "active": false,
                   "className": "mr-2",
                   "disabled": false,
-                  "label": "Předchozí",
+                  "label": "Previous",
                   "onClick": [Function],
                   "tooltip": "",
                 },

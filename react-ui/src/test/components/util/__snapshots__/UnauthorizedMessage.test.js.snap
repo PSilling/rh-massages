@@ -9,7 +9,7 @@ exports[`renders content with correct props 1`] = `
   </h2>
   <hr />
   <h3>
-    Neautorizováno
+    Unauthorized
   </h3>
 </div>
 `;

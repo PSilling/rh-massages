@@ -292,11 +292,11 @@ ShallowWrapper {
               max={2018-01-01T17:00:00.000Z}
               messages={
                 Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
                   "showMore": [Function],
-                  "time": "Čas",
+                  "time": "Time",
                 }
               }
               min={2018-01-01T07:30:00.000Z}
@@ -342,7 +342,7 @@ ShallowWrapper {
             }
           >
             <strong>
-              Legenda:
+              Legend:
             </strong>
             <span
               style={
@@ -354,7 +354,7 @@ ShallowWrapper {
                 }
               }
             >
-              Volná masáž
+              Free massage
             </span>
             <span
               style={
@@ -366,7 +366,7 @@ ShallowWrapper {
                 }
               }
             >
-              Moje masáž
+              My massage
             </span>
             <span
               style={
@@ -378,7 +378,7 @@ ShallowWrapper {
                 }
               }
             >
-              Přiřazená masáž
+              Assigned massage
             </span>
           </Col>
         </Row>,
@@ -531,11 +531,11 @@ ShallowWrapper {
               max={2018-01-01T17:00:00.000Z}
               messages={
                 Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
                   "showMore": [Function],
-                  "time": "Čas",
+                  "time": "Time",
                 }
               }
               min={2018-01-01T07:30:00.000Z}
@@ -696,11 +696,11 @@ ShallowWrapper {
                 max={2018-01-01T17:00:00.000Z}
                 messages={
                   Object {
-                    "allDay": "Celý den",
-                    "date": "Datum",
-                    "event": "Událost",
+                    "allDay": "All day",
+                    "date": "Date",
+                    "event": "Event",
                     "showMore": [Function],
-                    "time": "Čas",
+                    "time": "Time",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -867,11 +867,11 @@ ShallowWrapper {
                 },
                 "max": 2018-01-01T17:00:00.000Z,
                 "messages": Object {
-                  "allDay": "Celý den",
-                  "date": "Datum",
-                  "event": "Událost",
+                  "allDay": "All day",
+                  "date": "Date",
+                  "event": "Event",
                   "showMore": [Function],
-                  "time": "Čas",
+                  "time": "Time",
                 },
                 "min": 2018-01-01T07:30:00.000Z,
                 "onNavigate": [Function],
@@ -955,7 +955,7 @@ ShallowWrapper {
             }
           >
             <strong>
-              Legenda:
+              Legend:
             </strong>
             <span
               style={
@@ -967,7 +967,7 @@ ShallowWrapper {
                 }
               }
             >
-              Volná masáž
+              Free massage
             </span>
             <span
               style={
@@ -979,7 +979,7 @@ ShallowWrapper {
                 }
               }
             >
-              Moje masáž
+              My massage
             </span>
             <span
               style={
@@ -991,7 +991,7 @@ ShallowWrapper {
                 }
               }
             >
-              Přiřazená masáž
+              Assigned massage
             </span>
           </Col>,
           "className": "text-center mt-3",
@@ -1005,7 +1005,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <strong>
-                Legenda:
+                Legend:
               </strong>,
               <span
                 style={
@@ -1017,7 +1017,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Volná masáž
+                Free massage
               </span>,
               <span
                 style={
@@ -1029,7 +1029,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Moje masáž
+                My massage
               </span>,
               <span
                 style={
@@ -1041,7 +1041,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Přiřazená masáž
+                Assigned massage
               </span>,
             ],
             "md": "12",
@@ -1061,10 +1061,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Legenda:",
+                "children": "Legend:",
               },
               "ref": null,
-              "rendered": "Legenda:",
+              "rendered": "Legend:",
               "type": "strong",
             },
             Object {
@@ -1072,7 +1072,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Volná masáž",
+                "children": "Free massage",
                 "style": Object {
                   "backgroundColor": "#2fad2f",
                   "borderRadius": "4px",
@@ -1081,7 +1081,7 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": "Volná masáž",
+              "rendered": "Free massage",
               "type": "span",
             },
             Object {
@@ -1089,7 +1089,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Moje masáž",
+                "children": "My massage",
                 "style": Object {
                   "backgroundColor": "#ee9d2a",
                   "borderRadius": "4px",
@@ -1098,7 +1098,7 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": "Moje masáž",
+              "rendered": "My massage",
               "type": "span",
             },
             Object {
@@ -1106,7 +1106,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Přiřazená masáž",
+                "children": "Assigned massage",
                 "style": Object {
                   "backgroundColor": "#d10a14",
                   "borderRadius": "4px",
@@ -1115,7 +1115,7 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": "Přiřazená masáž",
+              "rendered": "Assigned massage",
               "type": "span",
             },
           ],
@@ -1275,11 +1275,11 @@ ShallowWrapper {
                 max={2018-01-01T17:00:00.000Z}
                 messages={
                   Object {
-                    "allDay": "Celý den",
-                    "date": "Datum",
-                    "event": "Událost",
+                    "allDay": "All day",
+                    "date": "Date",
+                    "event": "Event",
                     "showMore": [Function],
-                    "time": "Čas",
+                    "time": "Time",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -1325,7 +1325,7 @@ ShallowWrapper {
               }
             >
               <strong>
-                Legenda:
+                Legend:
               </strong>
               <span
                 style={
@@ -1337,7 +1337,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Volná masáž
+                Free massage
               </span>
               <span
                 style={
@@ -1349,7 +1349,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Moje masáž
+                My massage
               </span>
               <span
                 style={
@@ -1361,7 +1361,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Přiřazená masáž
+                Assigned massage
               </span>
             </Col>
           </Row>,
@@ -1514,11 +1514,11 @@ ShallowWrapper {
                 max={2018-01-01T17:00:00.000Z}
                 messages={
                   Object {
-                    "allDay": "Celý den",
-                    "date": "Datum",
-                    "event": "Událost",
+                    "allDay": "All day",
+                    "date": "Date",
+                    "event": "Event",
                     "showMore": [Function],
-                    "time": "Čas",
+                    "time": "Time",
                   }
                 }
                 min={2018-01-01T07:30:00.000Z}
@@ -1679,11 +1679,11 @@ ShallowWrapper {
                   max={2018-01-01T17:00:00.000Z}
                   messages={
                     Object {
-                      "allDay": "Celý den",
-                      "date": "Datum",
-                      "event": "Událost",
+                      "allDay": "All day",
+                      "date": "Date",
+                      "event": "Event",
                       "showMore": [Function],
-                      "time": "Čas",
+                      "time": "Time",
                     }
                   }
                   min={2018-01-01T07:30:00.000Z}
@@ -1850,11 +1850,11 @@ ShallowWrapper {
                   },
                   "max": 2018-01-01T17:00:00.000Z,
                   "messages": Object {
-                    "allDay": "Celý den",
-                    "date": "Datum",
-                    "event": "Událost",
+                    "allDay": "All day",
+                    "date": "Date",
+                    "event": "Event",
                     "showMore": [Function],
-                    "time": "Čas",
+                    "time": "Time",
                   },
                   "min": 2018-01-01T07:30:00.000Z,
                   "onNavigate": [Function],
@@ -1938,7 +1938,7 @@ ShallowWrapper {
               }
             >
               <strong>
-                Legenda:
+                Legend:
               </strong>
               <span
                 style={
@@ -1950,7 +1950,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Volná masáž
+                Free massage
               </span>
               <span
                 style={
@@ -1962,7 +1962,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Moje masáž
+                My massage
               </span>
               <span
                 style={
@@ -1974,7 +1974,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Přiřazená masáž
+                Assigned massage
               </span>
             </Col>,
             "className": "text-center mt-3",
@@ -1988,7 +1988,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <strong>
-                  Legenda:
+                  Legend:
                 </strong>,
                 <span
                   style={
@@ -2000,7 +2000,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  Volná masáž
+                  Free massage
                 </span>,
                 <span
                   style={
@@ -2012,7 +2012,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  Moje masáž
+                  My massage
                 </span>,
                 <span
                   style={
@@ -2024,7 +2024,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  Přiřazená masáž
+                  Assigned massage
                 </span>,
               ],
               "md": "12",
@@ -2044,10 +2044,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Legenda:",
+                  "children": "Legend:",
                 },
                 "ref": null,
-                "rendered": "Legenda:",
+                "rendered": "Legend:",
                 "type": "strong",
               },
               Object {
@@ -2055,7 +2055,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Volná masáž",
+                  "children": "Free massage",
                   "style": Object {
                     "backgroundColor": "#2fad2f",
                     "borderRadius": "4px",
@@ -2064,7 +2064,7 @@ ShallowWrapper {
                   },
                 },
                 "ref": null,
-                "rendered": "Volná masáž",
+                "rendered": "Free massage",
                 "type": "span",
               },
               Object {
@@ -2072,7 +2072,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Moje masáž",
+                  "children": "My massage",
                   "style": Object {
                     "backgroundColor": "#ee9d2a",
                     "borderRadius": "4px",
@@ -2081,7 +2081,7 @@ ShallowWrapper {
                   },
                 },
                 "ref": null,
-                "rendered": "Moje masáž",
+                "rendered": "My massage",
                 "type": "span",
               },
               Object {
@@ -2089,7 +2089,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Přiřazená masáž",
+                  "children": "Assigned massage",
                   "style": Object {
                     "backgroundColor": "#d10a14",
                     "borderRadius": "4px",
@@ -2098,7 +2098,7 @@ ShallowWrapper {
                   },
                 },
                 "ref": null,
-                "rendered": "Přiřazená masáž",
+                "rendered": "Assigned massage",
                 "type": "span",
               },
             ],

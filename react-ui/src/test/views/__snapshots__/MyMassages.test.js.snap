@@ -21,10 +21,10 @@ ShallowWrapper {
         <InfoAlert
           onClose={[Function]}
         >
-          Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.
+          On this page you can view all your assigned massages. To view massage details click on the event name.
         </InfoAlert>,
         <h1>
-          Moje masáže
+          My Massages
         </h1>,
         <MyMassagePanel
           events={
@@ -55,11 +55,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+          "children": "On this page you can view all your assigned massages. To view massage details click on the event name.",
           "onClose": [Function],
         },
         "ref": null,
-        "rendered": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+        "rendered": "On this page you can view all your assigned massages. To view massage details click on the event name.",
         "type": [Function],
       },
       Object {
@@ -69,13 +69,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "Moje masáže",
+            "My Massages",
           ],
         },
         "ref": null,
         "rendered": Array [
           false,
-          "Moje masáže",
+          "My Massages",
         ],
         "type": "h1",
       },
@@ -117,10 +117,10 @@ ShallowWrapper {
           <InfoAlert
             onClose={[Function]}
           >
-            Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.
+            On this page you can view all your assigned massages. To view massage details click on the event name.
           </InfoAlert>,
           <h1>
-            Moje masáže
+            My Massages
           </h1>,
           <MyMassagePanel
             events={
@@ -151,11 +151,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+            "children": "On this page you can view all your assigned massages. To view massage details click on the event name.",
             "onClose": [Function],
           },
           "ref": null,
-          "rendered": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+          "rendered": "On this page you can view all your assigned massages. To view massage details click on the event name.",
           "type": [Function],
         },
         Object {
@@ -165,13 +165,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "Moje masáže",
+              "My Massages",
             ],
           },
           "ref": null,
           "rendered": Array [
             false,
-            "Moje masáže",
+            "My Massages",
           ],
           "type": "h1",
         },
@@ -245,13 +245,13 @@ ShallowWrapper {
         <InfoAlert
           onClose={[Function]}
         >
-          Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.
+          On this page you can view all your assigned massages. To view massage details click on the event name.
         </InfoAlert>,
         <h1>
-          Moje masáže
+          My Massages
         </h1>,
         <h3>
-          Žádné – 
+          None – 
           <Link
             replace={false}
             style={
@@ -261,7 +261,7 @@ ShallowWrapper {
             }
             to="/"
           >
-            Jít na masáže
+            Go to massages
           </Link>
         </h3>,
       ],
@@ -274,11 +274,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+          "children": "On this page you can view all your assigned massages. To view massage details click on the event name.",
           "onClose": [Function],
         },
         "ref": null,
-        "rendered": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+        "rendered": "On this page you can view all your assigned massages. To view massage details click on the event name.",
         "type": [Function],
       },
       Object {
@@ -288,13 +288,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "Moje masáže",
+            "My Massages",
           ],
         },
         "ref": null,
         "rendered": Array [
           false,
-          "Moje masáže",
+          "My Massages",
         ],
         "type": "h1",
       },
@@ -304,7 +304,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            "Žádné – ",
+            "None – ",
             <Link
               replace={false}
               style={
@@ -314,19 +314,19 @@ ShallowWrapper {
               }
               to="/"
             >
-              Jít na masáže
+              Go to massages
             </Link>,
           ],
         },
         "ref": null,
         "rendered": Array [
-          "Žádné – ",
+          "None – ",
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Jít na masáže",
+              "children": "Go to massages",
               "replace": false,
               "style": Object {
                 "color": "#595959",
@@ -334,7 +334,7 @@ ShallowWrapper {
               "to": "/",
             },
             "ref": null,
-            "rendered": "Jít na masáže",
+            "rendered": "Go to massages",
             "type": [Function],
           },
         ],
@@ -353,13 +353,13 @@ ShallowWrapper {
           <InfoAlert
             onClose={[Function]}
           >
-            Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.
+            On this page you can view all your assigned massages. To view massage details click on the event name.
           </InfoAlert>,
           <h1>
-            Moje masáže
+            My Massages
           </h1>,
           <h3>
-            Žádné – 
+            None – 
             <Link
               replace={false}
               style={
@@ -369,7 +369,7 @@ ShallowWrapper {
               }
               to="/"
             >
-              Jít na masáže
+              Go to massages
             </Link>
           </h3>,
         ],
@@ -382,11 +382,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+            "children": "On this page you can view all your assigned massages. To view massage details click on the event name.",
             "onClose": [Function],
           },
           "ref": null,
-          "rendered": "Na této stránce můžete vidět své zapsané masáže. Pro zobrazení podrobností o masáži klikněte na název dané události.",
+          "rendered": "On this page you can view all your assigned massages. To view massage details click on the event name.",
           "type": [Function],
         },
         Object {
@@ -396,13 +396,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "Moje masáže",
+              "My Massages",
             ],
           },
           "ref": null,
           "rendered": Array [
             false,
-            "Moje masáže",
+            "My Massages",
           ],
           "type": "h1",
         },
@@ -412,7 +412,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              "Žádné – ",
+              "None – ",
               <Link
                 replace={false}
                 style={
@@ -422,19 +422,19 @@ ShallowWrapper {
                 }
                 to="/"
               >
-                Jít na masáže
+                Go to massages
               </Link>,
             ],
           },
           "ref": null,
           "rendered": Array [
-            "Žádné – ",
+            "None – ",
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Jít na masáže",
+                "children": "Go to massages",
                 "replace": false,
                 "style": Object {
                   "color": "#595959",
@@ -442,7 +442,7 @@ ShallowWrapper {
                 "to": "/",
               },
               "ref": null,
-              "rendered": "Jít na masáže",
+              "rendered": "Go to massages",
               "type": [Function],
             },
           ],

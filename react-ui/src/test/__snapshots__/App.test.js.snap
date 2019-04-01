@@ -723,7 +723,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "title": "Masáže",
+      "title": "Massages",
     },
     "ref": null,
     "rendered": null,
@@ -735,7 +735,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "title": "Masáže",
+        "title": "Massages",
       },
       "ref": null,
       "rendered": null,

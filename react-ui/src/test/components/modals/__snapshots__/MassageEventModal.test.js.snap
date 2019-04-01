@@ -30,7 +30,7 @@ ShallowWrapper {
         },
       }
     }
-    label="Zapsat se"
+    label="Assign me"
     onClose={[MockFunction]}
     onConfirm={[MockFunction]}
     onDelete={[MockFunction]}
@@ -68,7 +68,7 @@ ShallowWrapper {
             }
           >
             <h3>
-              Podrobnosti
+              Details
               <div
                 className="float-right"
               >
@@ -82,14 +82,14 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Upravit"
+                  tooltip="Edit"
                 />
                 <ConfirmationIconButton
                   className="ml-2"
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  dialogMessage="Are you sure? This action cannot be reverted."
                   icon="trash"
                   onConfirm={[MockFunction]}
-                  tooltip="Smazat"
+                  tooltip="Delete"
                 />
               </div>
             </h3>
@@ -114,7 +114,7 @@ ShallowWrapper {
           >
             <dl>
               <dt>
-                Budova
+                Facility
               </dt>
               <dd
                 className="mb-3"
@@ -122,7 +122,7 @@ ShallowWrapper {
                 test
               </dd>
               <dt>
-                Čas
+                Time
               </dt>
               <dd
                 className="mb-3"
@@ -130,7 +130,7 @@ ShallowWrapper {
                 1:00 AM – 1:00 AM
               </dd>
               <dt>
-                Klient
+                Client
               </dt>
               <dd
                 className="mb-3"
@@ -143,7 +143,7 @@ ShallowWrapper {
                   }
                 >
                   <strong>
-                    Volno
+                    Free
                   </strong>
                 </p>
               </dd>
@@ -164,7 +164,7 @@ ShallowWrapper {
           >
             <dl>
               <dt>
-                Masér/Masérka
+                Masseur/Masseuse
               </dt>
               <dd
                 className="mb-3"
@@ -172,12 +172,12 @@ ShallowWrapper {
                 Masseuse Test
               </dd>
               <dt>
-                Délka trvání
+                Duration
               </dt>
               <dd
                 className="mb-3"
               >
-                0.016666666666666666 minut
+                0.016666666666666666 minutes
               </dd>
             </dl>
           </Col>
@@ -196,7 +196,7 @@ ShallowWrapper {
           >
             <dl>
               <dt>
-                Kontakt
+                Contact
               </dt>
               <dd
                 className="mb-3"
@@ -204,7 +204,7 @@ ShallowWrapper {
                 test@masseuse.org
               </dd>
               <dt>
-                Datum
+                Date
               </dt>
               <dd
                 className="mb-3"
@@ -245,7 +245,7 @@ ShallowWrapper {
             }
           >
             <h3>
-              Podrobnosti
+              Details
               <div
                 className="float-right"
               >
@@ -259,14 +259,14 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Upravit"
+                  tooltip="Edit"
                 />
                 <ConfirmationIconButton
                   className="ml-2"
-                  dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                  dialogMessage="Are you sure? This action cannot be reverted."
                   icon="trash"
                   onConfirm={[MockFunction]}
-                  tooltip="Smazat"
+                  tooltip="Delete"
                 />
               </div>
             </h3>
@@ -282,7 +282,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <h3>
-                Podrobnosti
+                Details
                 <div
                   className="float-right"
                 >
@@ -296,14 +296,14 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Upravit"
+                    tooltip="Edit"
                   />
                   <ConfirmationIconButton
                     className="ml-2"
-                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    dialogMessage="Are you sure? This action cannot be reverted."
                     icon="trash"
                     onConfirm={[MockFunction]}
-                    tooltip="Smazat"
+                    tooltip="Delete"
                   />
                 </div>
               </h3>,
@@ -327,7 +327,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  "Podrobnosti",
+                  "Details",
                   <div
                     className="float-right"
                   >
@@ -341,21 +341,21 @@ ShallowWrapper {
                           "border": "0px solid transparent",
                         }
                       }
-                      tooltip="Upravit"
+                      tooltip="Edit"
                     />
                     <ConfirmationIconButton
                       className="ml-2"
-                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                      dialogMessage="Are you sure? This action cannot be reverted."
                       icon="trash"
                       onConfirm={[MockFunction]}
-                      tooltip="Smazat"
+                      tooltip="Delete"
                     />
                   </div>,
                 ],
               },
               "ref": null,
               "rendered": Array [
-                "Podrobnosti",
+                "Details",
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -372,14 +372,14 @@ ShallowWrapper {
                             "border": "0px solid transparent",
                           }
                         }
-                        tooltip="Upravit"
+                        tooltip="Edit"
                       />,
                       <ConfirmationIconButton
                         className="ml-2"
-                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                        dialogMessage="Are you sure? This action cannot be reverted."
                         icon="trash"
                         onConfirm={[MockFunction]}
-                        tooltip="Smazat"
+                        tooltip="Delete"
                       />,
                     ],
                     "className": "float-right",
@@ -398,7 +398,7 @@ ShallowWrapper {
                         "style": Object {
                           "border": "0px solid transparent",
                         },
-                        "tooltip": "Upravit",
+                        "tooltip": "Edit",
                       },
                       "ref": null,
                       "rendered": null,
@@ -410,10 +410,10 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "className": "ml-2",
-                        "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                        "dialogMessage": "Are you sure? This action cannot be reverted.",
                         "icon": "trash",
                         "onConfirm": [MockFunction],
-                        "tooltip": "Smazat",
+                        "tooltip": "Delete",
                       },
                       "ref": null,
                       "rendered": null,
@@ -460,7 +460,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Budova
+                  Facility
                 </dt>
                 <dd
                   className="mb-3"
@@ -468,7 +468,7 @@ ShallowWrapper {
                   test
                 </dd>
                 <dt>
-                  Čas
+                  Time
                 </dt>
                 <dd
                   className="mb-3"
@@ -476,7 +476,7 @@ ShallowWrapper {
                   1:00 AM – 1:00 AM
                 </dd>
                 <dt>
-                  Klient
+                  Client
                 </dt>
                 <dd
                   className="mb-3"
@@ -489,7 +489,7 @@ ShallowWrapper {
                     }
                   >
                     <strong>
-                      Volno
+                      Free
                     </strong>
                   </p>
                 </dd>
@@ -510,7 +510,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Masér/Masérka
+                  Masseur/Masseuse
                 </dt>
                 <dd
                   className="mb-3"
@@ -518,12 +518,12 @@ ShallowWrapper {
                   Masseuse Test
                 </dd>
                 <dt>
-                  Délka trvání
+                  Duration
                 </dt>
                 <dd
                   className="mb-3"
                 >
-                  0.016666666666666666 minut
+                  0.016666666666666666 minutes
                 </dd>
               </dl>
             </Col>,
@@ -542,7 +542,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Kontakt
+                  Contact
                 </dt>
                 <dd
                   className="mb-3"
@@ -550,7 +550,7 @@ ShallowWrapper {
                   test@masseuse.org
                 </dd>
                 <dt>
-                  Datum
+                  Date
                 </dt>
                 <dd
                   className="mb-3"
@@ -571,7 +571,7 @@ ShallowWrapper {
             "props": Object {
               "children": <dl>
                 <dt>
-                  Budova
+                  Facility
                 </dt>
                 <dd
                   className="mb-3"
@@ -579,7 +579,7 @@ ShallowWrapper {
                   test
                 </dd>
                 <dt>
-                  Čas
+                  Time
                 </dt>
                 <dd
                   className="mb-3"
@@ -587,7 +587,7 @@ ShallowWrapper {
                   1:00 AM – 1:00 AM
                 </dd>
                 <dt>
-                  Klient
+                  Client
                 </dt>
                 <dd
                   className="mb-3"
@@ -600,7 +600,7 @@ ShallowWrapper {
                     }
                   >
                     <strong>
-                      Volno
+                      Free
                     </strong>
                   </p>
                 </dd>
@@ -623,7 +623,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <dt>
-                    Budova
+                    Facility
                   </dt>,
                   <dd
                     className="mb-3"
@@ -631,7 +631,7 @@ ShallowWrapper {
                     test
                   </dd>,
                   <dt>
-                    Čas
+                    Time
                   </dt>,
                   <dd
                     className="mb-3"
@@ -639,7 +639,7 @@ ShallowWrapper {
                     1:00 AM – 1:00 AM
                   </dd>,
                   <dt>
-                    Klient
+                    Client
                   </dt>,
                   <dd
                     className="mb-3"
@@ -652,7 +652,7 @@ ShallowWrapper {
                       }
                     >
                       <strong>
-                        Volno
+                        Free
                       </strong>
                     </p>
                   </dd>,
@@ -665,10 +665,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Budova",
+                    "children": "Facility",
                   },
                   "ref": null,
-                  "rendered": "Budova",
+                  "rendered": "Facility",
                   "type": "dt",
                 },
                 Object {
@@ -688,10 +688,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Čas",
+                    "children": "Time",
                   },
                   "ref": null,
-                  "rendered": "Čas",
+                  "rendered": "Time",
                   "type": "dt",
                 },
                 Object {
@@ -711,10 +711,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Klient",
+                    "children": "Client",
                   },
                   "ref": null,
-                  "rendered": "Klient",
+                  "rendered": "Client",
                   "type": "dt",
                 },
                 Object {
@@ -730,7 +730,7 @@ ShallowWrapper {
                       }
                     >
                       <strong>
-                        Volno
+                        Free
                       </strong>
                     </p>,
                     "className": "mb-3",
@@ -742,7 +742,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": <strong>
-                        Volno
+                        Free
                       </strong>,
                       "style": Object {
                         "color": "#2fad2f",
@@ -754,10 +754,10 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Volno",
+                        "children": "Free",
                       },
                       "ref": null,
-                      "rendered": "Volno",
+                      "rendered": "Free",
                       "type": "strong",
                     },
                     "type": "p",
@@ -776,7 +776,7 @@ ShallowWrapper {
             "props": Object {
               "children": <dl>
                 <dt>
-                  Masér/Masérka
+                  Masseur/Masseuse
                 </dt>
                 <dd
                   className="mb-3"
@@ -784,12 +784,12 @@ ShallowWrapper {
                   Masseuse Test
                 </dd>
                 <dt>
-                  Délka trvání
+                  Duration
                 </dt>
                 <dd
                   className="mb-3"
                 >
-                  0.016666666666666666 minut
+                  0.016666666666666666 minutes
                 </dd>
               </dl>,
               "md": "4",
@@ -810,7 +810,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <dt>
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </dt>,
                   <dd
                     className="mb-3"
@@ -818,12 +818,12 @@ ShallowWrapper {
                     Masseuse Test
                   </dd>,
                   <dt>
-                    Délka trvání
+                    Duration
                   </dt>,
                   <dd
                     className="mb-3"
                   >
-                    0.016666666666666666 minut
+                    0.016666666666666666 minutes
                   </dd>,
                 ],
               },
@@ -834,10 +834,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Masér/Masérka",
+                    "children": "Masseur/Masseuse",
                   },
                   "ref": null,
-                  "rendered": "Masér/Masérka",
+                  "rendered": "Masseur/Masseuse",
                   "type": "dt",
                 },
                 Object {
@@ -857,10 +857,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Délka trvání",
+                    "children": "Duration",
                   },
                   "ref": null,
-                  "rendered": "Délka trvání",
+                  "rendered": "Duration",
                   "type": "dt",
                 },
                 Object {
@@ -868,11 +868,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "0.016666666666666666 minut",
+                    "children": "0.016666666666666666 minutes",
                     "className": "mb-3",
                   },
                   "ref": null,
-                  "rendered": "0.016666666666666666 minut",
+                  "rendered": "0.016666666666666666 minutes",
                   "type": "dd",
                 },
               ],
@@ -887,7 +887,7 @@ ShallowWrapper {
             "props": Object {
               "children": <dl>
                 <dt>
-                  Kontakt
+                  Contact
                 </dt>
                 <dd
                   className="mb-3"
@@ -895,7 +895,7 @@ ShallowWrapper {
                   test@masseuse.org
                 </dd>
                 <dt>
-                  Datum
+                  Date
                 </dt>
                 <dd
                   className="mb-3"
@@ -921,7 +921,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <dt>
-                    Kontakt
+                    Contact
                   </dt>,
                   <dd
                     className="mb-3"
@@ -929,7 +929,7 @@ ShallowWrapper {
                     test@masseuse.org
                   </dd>,
                   <dt>
-                    Datum
+                    Date
                   </dt>,
                   <dd
                     className="mb-3"
@@ -945,10 +945,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Kontakt",
+                    "children": "Contact",
                   },
                   "ref": null,
-                  "rendered": "Kontakt",
+                  "rendered": "Contact",
                   "type": "dt",
                 },
                 Object {
@@ -968,10 +968,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Datum",
+                    "children": "Date",
                   },
                   "ref": null,
-                  "rendered": "Datum",
+                  "rendered": "Date",
                   "type": "dt",
                 },
                 Object {
@@ -1037,7 +1037,7 @@ ShallowWrapper {
               }
             >
               <h3>
-                Podrobnosti
+                Details
                 <div
                   className="float-right"
                 >
@@ -1051,14 +1051,14 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Upravit"
+                    tooltip="Edit"
                   />
                   <ConfirmationIconButton
                     className="ml-2"
-                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    dialogMessage="Are you sure? This action cannot be reverted."
                     icon="trash"
                     onConfirm={[MockFunction]}
-                    tooltip="Smazat"
+                    tooltip="Delete"
                   />
                 </div>
               </h3>
@@ -1083,7 +1083,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Budova
+                  Facility
                 </dt>
                 <dd
                   className="mb-3"
@@ -1091,7 +1091,7 @@ ShallowWrapper {
                   test
                 </dd>
                 <dt>
-                  Čas
+                  Time
                 </dt>
                 <dd
                   className="mb-3"
@@ -1099,7 +1099,7 @@ ShallowWrapper {
                   1:00 AM – 1:00 AM
                 </dd>
                 <dt>
-                  Klient
+                  Client
                 </dt>
                 <dd
                   className="mb-3"
@@ -1112,7 +1112,7 @@ ShallowWrapper {
                     }
                   >
                     <strong>
-                      Volno
+                      Free
                     </strong>
                   </p>
                 </dd>
@@ -1133,7 +1133,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Masér/Masérka
+                  Masseur/Masseuse
                 </dt>
                 <dd
                   className="mb-3"
@@ -1141,12 +1141,12 @@ ShallowWrapper {
                   Masseuse Test
                 </dd>
                 <dt>
-                  Délka trvání
+                  Duration
                 </dt>
                 <dd
                   className="mb-3"
                 >
-                  0.016666666666666666 minut
+                  0.016666666666666666 minutes
                 </dd>
               </dl>
             </Col>
@@ -1165,7 +1165,7 @@ ShallowWrapper {
             >
               <dl>
                 <dt>
-                  Kontakt
+                  Contact
                 </dt>
                 <dd
                   className="mb-3"
@@ -1173,7 +1173,7 @@ ShallowWrapper {
                   test@masseuse.org
                 </dd>
                 <dt>
-                  Datum
+                  Date
                 </dt>
                 <dd
                   className="mb-3"
@@ -1214,7 +1214,7 @@ ShallowWrapper {
               }
             >
               <h3>
-                Podrobnosti
+                Details
                 <div
                   className="float-right"
                 >
@@ -1228,14 +1228,14 @@ ShallowWrapper {
                         "border": "0px solid transparent",
                       }
                     }
-                    tooltip="Upravit"
+                    tooltip="Edit"
                   />
                   <ConfirmationIconButton
                     className="ml-2"
-                    dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                    dialogMessage="Are you sure? This action cannot be reverted."
                     icon="trash"
                     onConfirm={[MockFunction]}
-                    tooltip="Smazat"
+                    tooltip="Delete"
                   />
                 </div>
               </h3>
@@ -1251,7 +1251,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <h3>
-                  Podrobnosti
+                  Details
                   <div
                     className="float-right"
                   >
@@ -1265,14 +1265,14 @@ ShallowWrapper {
                           "border": "0px solid transparent",
                         }
                       }
-                      tooltip="Upravit"
+                      tooltip="Edit"
                     />
                     <ConfirmationIconButton
                       className="ml-2"
-                      dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                      dialogMessage="Are you sure? This action cannot be reverted."
                       icon="trash"
                       onConfirm={[MockFunction]}
-                      tooltip="Smazat"
+                      tooltip="Delete"
                     />
                   </div>
                 </h3>,
@@ -1296,7 +1296,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    "Podrobnosti",
+                    "Details",
                     <div
                       className="float-right"
                     >
@@ -1310,21 +1310,21 @@ ShallowWrapper {
                             "border": "0px solid transparent",
                           }
                         }
-                        tooltip="Upravit"
+                        tooltip="Edit"
                       />
                       <ConfirmationIconButton
                         className="ml-2"
-                        dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                        dialogMessage="Are you sure? This action cannot be reverted."
                         icon="trash"
                         onConfirm={[MockFunction]}
-                        tooltip="Smazat"
+                        tooltip="Delete"
                       />
                     </div>,
                   ],
                 },
                 "ref": null,
                 "rendered": Array [
-                  "Podrobnosti",
+                  "Details",
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -1341,14 +1341,14 @@ ShallowWrapper {
                               "border": "0px solid transparent",
                             }
                           }
-                          tooltip="Upravit"
+                          tooltip="Edit"
                         />,
                         <ConfirmationIconButton
                           className="ml-2"
-                          dialogMessage="Jste si jisti? Tato akce nemůže být navrácena."
+                          dialogMessage="Are you sure? This action cannot be reverted."
                           icon="trash"
                           onConfirm={[MockFunction]}
-                          tooltip="Smazat"
+                          tooltip="Delete"
                         />,
                       ],
                       "className": "float-right",
@@ -1367,7 +1367,7 @@ ShallowWrapper {
                           "style": Object {
                             "border": "0px solid transparent",
                           },
-                          "tooltip": "Upravit",
+                          "tooltip": "Edit",
                         },
                         "ref": null,
                         "rendered": null,
@@ -1379,10 +1379,10 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "className": "ml-2",
-                          "dialogMessage": "Jste si jisti? Tato akce nemůže být navrácena.",
+                          "dialogMessage": "Are you sure? This action cannot be reverted.",
                           "icon": "trash",
                           "onConfirm": [MockFunction],
-                          "tooltip": "Smazat",
+                          "tooltip": "Delete",
                         },
                         "ref": null,
                         "rendered": null,
@@ -1429,7 +1429,7 @@ ShallowWrapper {
               >
                 <dl>
                   <dt>
-                    Budova
+                    Facility
                   </dt>
                   <dd
                     className="mb-3"
@@ -1437,7 +1437,7 @@ ShallowWrapper {
                     test
                   </dd>
                   <dt>
-                    Čas
+                    Time
                   </dt>
                   <dd
                     className="mb-3"
@@ -1445,7 +1445,7 @@ ShallowWrapper {
                     1:00 AM – 1:00 AM
                   </dd>
                   <dt>
-                    Klient
+                    Client
                   </dt>
                   <dd
                     className="mb-3"
@@ -1458,7 +1458,7 @@ ShallowWrapper {
                       }
                     >
                       <strong>
-                        Volno
+                        Free
                       </strong>
                     </p>
                   </dd>
@@ -1479,7 +1479,7 @@ ShallowWrapper {
               >
                 <dl>
                   <dt>
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </dt>
                   <dd
                     className="mb-3"
@@ -1487,12 +1487,12 @@ ShallowWrapper {
                     Masseuse Test
                   </dd>
                   <dt>
-                    Délka trvání
+                    Duration
                   </dt>
                   <dd
                     className="mb-3"
                   >
-                    0.016666666666666666 minut
+                    0.016666666666666666 minutes
                   </dd>
                 </dl>
               </Col>,
@@ -1511,7 +1511,7 @@ ShallowWrapper {
               >
                 <dl>
                   <dt>
-                    Kontakt
+                    Contact
                   </dt>
                   <dd
                     className="mb-3"
@@ -1519,7 +1519,7 @@ ShallowWrapper {
                     test@masseuse.org
                   </dd>
                   <dt>
-                    Datum
+                    Date
                   </dt>
                   <dd
                     className="mb-3"
@@ -1540,7 +1540,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <dl>
                   <dt>
-                    Budova
+                    Facility
                   </dt>
                   <dd
                     className="mb-3"
@@ -1548,7 +1548,7 @@ ShallowWrapper {
                     test
                   </dd>
                   <dt>
-                    Čas
+                    Time
                   </dt>
                   <dd
                     className="mb-3"
@@ -1556,7 +1556,7 @@ ShallowWrapper {
                     1:00 AM – 1:00 AM
                   </dd>
                   <dt>
-                    Klient
+                    Client
                   </dt>
                   <dd
                     className="mb-3"
@@ -1569,7 +1569,7 @@ ShallowWrapper {
                       }
                     >
                       <strong>
-                        Volno
+                        Free
                       </strong>
                     </p>
                   </dd>
@@ -1592,7 +1592,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <dt>
-                      Budova
+                      Facility
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1600,7 +1600,7 @@ ShallowWrapper {
                       test
                     </dd>,
                     <dt>
-                      Čas
+                      Time
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1608,7 +1608,7 @@ ShallowWrapper {
                       1:00 AM – 1:00 AM
                     </dd>,
                     <dt>
-                      Klient
+                      Client
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1621,7 +1621,7 @@ ShallowWrapper {
                         }
                       >
                         <strong>
-                          Volno
+                          Free
                         </strong>
                       </p>
                     </dd>,
@@ -1634,10 +1634,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Budova",
+                      "children": "Facility",
                     },
                     "ref": null,
-                    "rendered": "Budova",
+                    "rendered": "Facility",
                     "type": "dt",
                   },
                   Object {
@@ -1657,10 +1657,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Čas",
+                      "children": "Time",
                     },
                     "ref": null,
-                    "rendered": "Čas",
+                    "rendered": "Time",
                     "type": "dt",
                   },
                   Object {
@@ -1680,10 +1680,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Klient",
+                      "children": "Client",
                     },
                     "ref": null,
-                    "rendered": "Klient",
+                    "rendered": "Client",
                     "type": "dt",
                   },
                   Object {
@@ -1699,7 +1699,7 @@ ShallowWrapper {
                         }
                       >
                         <strong>
-                          Volno
+                          Free
                         </strong>
                       </p>,
                       "className": "mb-3",
@@ -1711,7 +1711,7 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "children": <strong>
-                          Volno
+                          Free
                         </strong>,
                         "style": Object {
                           "color": "#2fad2f",
@@ -1723,10 +1723,10 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "host",
                         "props": Object {
-                          "children": "Volno",
+                          "children": "Free",
                         },
                         "ref": null,
-                        "rendered": "Volno",
+                        "rendered": "Free",
                         "type": "strong",
                       },
                       "type": "p",
@@ -1745,7 +1745,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <dl>
                   <dt>
-                    Masér/Masérka
+                    Masseur/Masseuse
                   </dt>
                   <dd
                     className="mb-3"
@@ -1753,12 +1753,12 @@ ShallowWrapper {
                     Masseuse Test
                   </dd>
                   <dt>
-                    Délka trvání
+                    Duration
                   </dt>
                   <dd
                     className="mb-3"
                   >
-                    0.016666666666666666 minut
+                    0.016666666666666666 minutes
                   </dd>
                 </dl>,
                 "md": "4",
@@ -1779,7 +1779,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <dt>
-                      Masér/Masérka
+                      Masseur/Masseuse
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1787,12 +1787,12 @@ ShallowWrapper {
                       Masseuse Test
                     </dd>,
                     <dt>
-                      Délka trvání
+                      Duration
                     </dt>,
                     <dd
                       className="mb-3"
                     >
-                      0.016666666666666666 minut
+                      0.016666666666666666 minutes
                     </dd>,
                   ],
                 },
@@ -1803,10 +1803,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Masér/Masérka",
+                      "children": "Masseur/Masseuse",
                     },
                     "ref": null,
-                    "rendered": "Masér/Masérka",
+                    "rendered": "Masseur/Masseuse",
                     "type": "dt",
                   },
                   Object {
@@ -1826,10 +1826,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Délka trvání",
+                      "children": "Duration",
                     },
                     "ref": null,
-                    "rendered": "Délka trvání",
+                    "rendered": "Duration",
                     "type": "dt",
                   },
                   Object {
@@ -1837,11 +1837,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "0.016666666666666666 minut",
+                      "children": "0.016666666666666666 minutes",
                       "className": "mb-3",
                     },
                     "ref": null,
-                    "rendered": "0.016666666666666666 minut",
+                    "rendered": "0.016666666666666666 minutes",
                     "type": "dd",
                   },
                 ],
@@ -1856,7 +1856,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <dl>
                   <dt>
-                    Kontakt
+                    Contact
                   </dt>
                   <dd
                     className="mb-3"
@@ -1864,7 +1864,7 @@ ShallowWrapper {
                     test@masseuse.org
                   </dd>
                   <dt>
-                    Datum
+                    Date
                   </dt>
                   <dd
                     className="mb-3"
@@ -1890,7 +1890,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <dt>
-                      Kontakt
+                      Contact
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1898,7 +1898,7 @@ ShallowWrapper {
                       test@masseuse.org
                     </dd>,
                     <dt>
-                      Datum
+                      Date
                     </dt>,
                     <dd
                       className="mb-3"
@@ -1914,10 +1914,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Kontakt",
+                      "children": "Contact",
                     },
                     "ref": null,
-                    "rendered": "Kontakt",
+                    "rendered": "Contact",
                     "type": "dt",
                   },
                   Object {
@@ -1937,10 +1937,10 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Datum",
+                      "children": "Date",
                     },
                     "ref": null,
-                    "rendered": "Datum",
+                    "rendered": "Date",
                     "type": "dt",
                   },
                   Object {

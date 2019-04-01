@@ -481,11 +481,11 @@ const myLocalize = new Localize({
   }
 });
 
-if (localStorage.getItem("sh-locale") === "en") {
-  myLocalize.setLocale("en");
-} else {
+if (localStorage.getItem("sh-locale") === "cs") {
   myLocalize.setLocale("cs");
-  localStorage.setItem("sh-locale", "cs");
+} else {
+  myLocalize.setLocale("en");
+  localStorage.setItem("sh-locale", "en");
 }
 
 export default myLocalize;

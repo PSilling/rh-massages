@@ -21,10 +21,10 @@ ShallowWrapper {
         <InfoAlert
           onClose={[Function]}
         >
-          Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
+          On this page you can manage facilities in which massages take place.
         </InfoAlert>,
         <h1>
-          Budovy
+          Facilities
         </h1>,
         <Table
           hover={true}
@@ -39,7 +39,7 @@ ShallowWrapper {
               <th
                 scope="col"
               >
-                Název
+                Name
               </th>
               <th
                 scope="col"
@@ -76,11 +76,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+          "children": "On this page you can manage facilities in which massages take place.",
           "onClose": [Function],
         },
         "ref": null,
-        "rendered": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+        "rendered": "On this page you can manage facilities in which massages take place.",
         "type": [Function],
       },
       Object {
@@ -90,13 +90,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "Budovy",
+            "Facilities",
           ],
         },
         "ref": null,
         "rendered": Array [
           false,
-          "Budovy",
+          "Facilities",
         ],
         "type": "h1",
       },
@@ -111,7 +111,7 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
-                  Název
+                  Name
                 </th>
                 <th
                   scope="col"
@@ -157,7 +157,7 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
-                  Název
+                  Name
                 </th>
                 <th
                   scope="col"
@@ -182,7 +182,7 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Název
+                    Name
                   </th>,
                   <th
                     scope="col"
@@ -204,11 +204,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Název",
+                    "children": "Name",
                     "scope": "col",
                   },
                   "ref": null,
-                  "rendered": "Název",
+                  "rendered": "Name",
                   "type": "th",
                 },
                 Object {
@@ -303,10 +303,10 @@ ShallowWrapper {
           <InfoAlert
             onClose={[Function]}
           >
-            Na této stránce můžete spravovat budovy, ve kterých se konají masáže.
+            On this page you can manage facilities in which massages take place.
           </InfoAlert>,
           <h1>
-            Budovy
+            Facilities
           </h1>,
           <Table
             hover={true}
@@ -321,7 +321,7 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
-                  Název
+                  Name
                 </th>
                 <th
                   scope="col"
@@ -358,11 +358,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+            "children": "On this page you can manage facilities in which massages take place.",
             "onClose": [Function],
           },
           "ref": null,
-          "rendered": "Na této stránce můžete spravovat budovy, ve kterých se konají masáže.",
+          "rendered": "On this page you can manage facilities in which massages take place.",
           "type": [Function],
         },
         Object {
@@ -372,13 +372,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "Budovy",
+              "Facilities",
             ],
           },
           "ref": null,
           "rendered": Array [
             false,
-            "Budovy",
+            "Facilities",
           ],
           "type": "h1",
         },
@@ -393,7 +393,7 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Název
+                    Name
                   </th>
                   <th
                     scope="col"
@@ -439,7 +439,7 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
-                    Název
+                    Name
                   </th>
                   <th
                     scope="col"
@@ -464,7 +464,7 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
-                      Název
+                      Name
                     </th>,
                     <th
                       scope="col"
@@ -486,11 +486,11 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Název",
+                      "children": "Name",
                       "scope": "col",
                     },
                     "ref": null,
-                    "rendered": "Název",
+                    "rendered": "Name",
                     "type": "th",
                   },
                   Object {

@@ -34,7 +34,7 @@ exports[`renders content with correct props 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Pokračovat
+        Proceed
       </button>
     </span>
     <button
@@ -43,7 +43,7 @@ exports[`renders content with correct props 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Zrušit
+      Dismiss
     </button>
   </div>
 </div>
