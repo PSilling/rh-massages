@@ -333,6 +333,9 @@ const myLocalize = new Localize({
   "It is possible that the selected client does not have enough massage time.": {
     cs: "Je možné, že zvolený klient nemá dostatek volného času pro masáže."
   },
+  "Are you sure you want to create this schedule?": {
+    cs: "Jste si jisti, že chcete vytvořit zadaný rozpis?"
+  },
 
   // tooltips
   "Create multiple massages at once": {

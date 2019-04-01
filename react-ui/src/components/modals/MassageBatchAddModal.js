@@ -7,6 +7,7 @@ import { Button, Nav, Row, Col, FormGroup, Label, Input, Modal, ModalBody } from
 import moment from "moment";
 
 // component imports
+import ConfirmationButton from "../buttons/ConfirmationButton";
 import ModalActions from "../buttons/ModalActions";
 import LabeledDatetime from "../formitems/LabeledDatetime";
 import Tab from "../navs/Tab";
@@ -455,12 +456,6 @@ class MassageBatchAddModal extends Component {
     }
   };
 
-  handleModalKeyPress = event => {
-    if (event.charCode === 13 && document.activeElement.tabIndex === -1) {
-      this.addMassages();
-    }
-  };
-
   handleToggle = () => {
     if (!this.props.active) {
       this.setState({ masseuse: this.getMasseuse() });
@@ -630,7 +625,6 @@ class MassageBatchAddModal extends Component {
               label={_t.translate("Shift start")}
               value={this.state.rules[this.state.index].startTime}
               onChange={this.changeStartTime}
-              onEnterPress={this.addMassages}
               timeFormat="H:mm"
               dateFormat={false}
               disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
@@ -640,7 +634,6 @@ class MassageBatchAddModal extends Component {
               label={_t.translate("Shift end")}
               value={this.state.rules[this.state.index].endTime}
               onChange={this.changeEndTime}
-              onEnterPress={this.addMassages}
               timeFormat="H:mm"
               dateFormat={false}
               disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
@@ -675,7 +668,6 @@ class MassageBatchAddModal extends Component {
                 label={_t.translate("Break start")}
                 value={item.start}
                 onChange={start => this.changeBigPauseStart(index, start)}
-                onEnterPress={this.addMassages}
                 timeFormat="H:mm"
                 dateFormat={false}
                 disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
@@ -685,7 +677,6 @@ class MassageBatchAddModal extends Component {
                 label={_t.translate("Break end")}
                 value={item.end}
                 onChange={end => this.changeBigPauseEnd(index, end)}
-                onEnterPress={this.addMassages}
                 timeFormat="H:mm"
                 dateFormat={false}
                 disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
@@ -704,16 +695,29 @@ class MassageBatchAddModal extends Component {
       ))}
       <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
 
-      <ModalActions primaryLabel={_t.translate("Create")} onProceed={this.addMassages} onClose={this.handleToggle}>
-        <TooltipButton className="mr-2" onClick={this.changeSettings} label={_t.translate("Previous")} />
-      </ModalActions>
+      <Row className="text-right">
+        <Col md="12">
+          <hr />
+          <TooltipButton className="mr-2" onClick={this.changeSettings} label={_t.translate("Previous")} />
+          <ConfirmationButton
+            className="mr-2"
+            color="primary"
+            onConfirm={this.addMassages}
+            dialogMessage={_t.translate("Are you sure you want to create this schedule?")}
+            label={_t.translate("Create")}
+            outline={false}
+            tooltip=""
+          />
+          <Button onClick={this.handleToggle}>{_t.translate("Dismiss")}</Button>
+        </Col>
+      </Row>
     </ModalBody>
   );
 
   createModal = () => {
     if (this.props.withPortal) {
       return (
-        <Modal size="lg" isOpen toggle={this.handleToggle} tabIndex="-1" onKeyPress={this.handleModalKeyPress}>
+        <Modal size="lg" isOpen toggle={this.handleToggle} tabIndex="-1">
           {this.state.settings ? this.createSettingInputs() : this.createMassageInputs()}
         </Modal>
       );

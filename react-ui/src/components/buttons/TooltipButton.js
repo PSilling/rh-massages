@@ -9,7 +9,7 @@ import { Button, Tooltip } from "reactstrap";
 import Util from "../../util/Util";
 
 /**
- * An outline button component with an attached tooltip.
+ * A button component with an attached tooltip.
  */
 class TooltipButton extends Component {
   state = { tooltipActive: false };
@@ -24,7 +24,7 @@ class TooltipButton extends Component {
     const { disabled, label, tooltip, ...rest } = this.props;
     return (
       <span className="no-print">
-        <Button {...rest} id={this.tooltipTarget} outline disabled={this.props.disabled}>
+        <Button {...rest} id={this.tooltipTarget} outline={this.props.outline} disabled={this.props.disabled}>
           {this.props.label}
         </Button>
         {this.props.tooltip !== "" && !this.props.disabled && (
@@ -51,6 +51,8 @@ TooltipButton.propTypes = {
   disabled: PropTypes.bool,
   /** button label to be displayed */
   label: PropTypes.string,
+  /** whether the button should be outlined or not */
+  outline: PropTypes.bool,
   /** tooltip shown over the button */
   tooltip: PropTypes.string
 };
@@ -59,6 +61,7 @@ TooltipButton.defaultProps = {
   active: false,
   disabled: false,
   label: "Click me",
+  outline: true,
   tooltip: ""
 };
 

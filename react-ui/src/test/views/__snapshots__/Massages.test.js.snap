@@ -69,6 +69,7 @@ ShallowWrapper {
                   disabled={false}
                   label="Only free"
                   onClick={[Function]}
+                  outline={true}
                   tooltip="Display only free massages"
                 />
               </Col>
@@ -93,6 +94,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Select"
                     onClick={[Function]}
+                    outline={true}
                     tooltip="Select multiple massages for batch operations"
                   />
                   <ConfirmationButton
@@ -208,6 +210,7 @@ ShallowWrapper {
                   disabled={false}
                   label="Only free"
                   onClick={[Function]}
+                  outline={true}
                   tooltip="Display only free massages"
                 />
               </Col>
@@ -232,6 +235,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Select"
                     onClick={[Function]}
+                    outline={true}
                     tooltip="Select multiple massages for batch operations"
                   />
                   <ConfirmationButton
@@ -333,6 +337,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Only free"
                     onClick={[Function]}
+                    outline={true}
                     tooltip="Display only free massages"
                   />
                 </Col>
@@ -357,6 +362,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Select"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Select multiple massages for batch operations"
                     />
                     <ConfirmationButton
@@ -485,6 +491,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Only free"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Display only free massages"
                     />
                   </Col>,
@@ -509,6 +516,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Select"
                         onClick={[Function]}
+                        outline={true}
                         tooltip="Select multiple massages for batch operations"
                       />
                       <ConfirmationButton
@@ -555,6 +563,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Only free"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Display only free massages"
                     />,
                     "md": "6",
@@ -577,6 +586,7 @@ ShallowWrapper {
                       "disabled": false,
                       "label": "Only free",
                       "onClick": [Function],
+                      "outline": true,
                       "tooltip": "Display only free massages",
                     },
                     "ref": null,
@@ -597,6 +607,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Select"
                         onClick={[Function]}
+                        outline={true}
                         tooltip="Select multiple massages for batch operations"
                       />
                       <ConfirmationButton
@@ -651,6 +662,7 @@ ShallowWrapper {
                           disabled={false}
                           label="Select"
                           onClick={[Function]}
+                          outline={true}
                           tooltip="Select multiple massages for batch operations"
                         />,
                         <ConfirmationButton
@@ -694,6 +706,7 @@ ShallowWrapper {
                           "disabled": false,
                           "label": "Select",
                           "onClick": [Function],
+                          "outline": true,
                           "tooltip": "Select multiple massages for batch operations",
                         },
                         "ref": null,
@@ -850,6 +863,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Only free"
                     onClick={[Function]}
+                    outline={true}
                     tooltip="Display only free massages"
                   />
                 </Col>
@@ -874,6 +888,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Select"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Select multiple massages for batch operations"
                     />
                     <ConfirmationButton
@@ -989,6 +1004,7 @@ ShallowWrapper {
                     disabled={false}
                     label="Only free"
                     onClick={[Function]}
+                    outline={true}
                     tooltip="Display only free massages"
                   />
                 </Col>
@@ -1013,6 +1029,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Select"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Select multiple massages for batch operations"
                     />
                     <ConfirmationButton
@@ -1114,6 +1131,7 @@ ShallowWrapper {
                       disabled={false}
                       label="Only free"
                       onClick={[Function]}
+                      outline={true}
                       tooltip="Display only free massages"
                     />
                   </Col>
@@ -1138,6 +1156,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Select"
                         onClick={[Function]}
+                        outline={true}
                         tooltip="Select multiple massages for batch operations"
                       />
                       <ConfirmationButton
@@ -1266,6 +1285,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Only free"
                         onClick={[Function]}
+                        outline={true}
                         tooltip="Display only free massages"
                       />
                     </Col>,
@@ -1290,6 +1310,7 @@ ShallowWrapper {
                           disabled={false}
                           label="Select"
                           onClick={[Function]}
+                          outline={true}
                           tooltip="Select multiple massages for batch operations"
                         />
                         <ConfirmationButton
@@ -1336,6 +1357,7 @@ ShallowWrapper {
                         disabled={false}
                         label="Only free"
                         onClick={[Function]}
+                        outline={true}
                         tooltip="Display only free massages"
                       />,
                       "md": "6",
@@ -1358,6 +1380,7 @@ ShallowWrapper {
                         "disabled": false,
                         "label": "Only free",
                         "onClick": [Function],
+                        "outline": true,
                         "tooltip": "Display only free massages",
                       },
                       "ref": null,
@@ -1378,6 +1401,7 @@ ShallowWrapper {
                           disabled={false}
                           label="Select"
                           onClick={[Function]}
+                          outline={true}
                           tooltip="Select multiple massages for batch operations"
                         />
                         <ConfirmationButton
@@ -1432,6 +1456,7 @@ ShallowWrapper {
                             disabled={false}
                             label="Select"
                             onClick={[Function]}
+                            outline={true}
                             tooltip="Select multiple massages for batch operations"
                           />,
                           <ConfirmationButton
@@ -1475,6 +1500,7 @@ ShallowWrapper {
                             "disabled": false,
                             "label": "Select",
                             "onClick": [Function],
+                            "outline": true,
                             "tooltip": "Select multiple massages for batch operations",
                           },
                           "ref": null,

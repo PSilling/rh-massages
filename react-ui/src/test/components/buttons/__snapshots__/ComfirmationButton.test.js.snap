@@ -41,6 +41,7 @@ ShallowWrapper {
           disabled={false}
           label="test"
           onClick={[Function]}
+          outline={true}
           tooltip="Delete"
         />,
         false,
@@ -57,6 +58,7 @@ ShallowWrapper {
           "disabled": false,
           "label": "test",
           "onClick": [Function],
+          "outline": true,
           "tooltip": "Delete",
         },
         "ref": null,
@@ -79,6 +81,7 @@ ShallowWrapper {
             disabled={false}
             label="test"
             onClick={[Function]}
+            outline={true}
             tooltip="Delete"
           />,
           false,
@@ -95,6 +98,7 @@ ShallowWrapper {
             "disabled": false,
             "label": "test",
             "onClick": [Function],
+            "outline": true,
             "tooltip": "Delete",
           },
           "ref": null,
