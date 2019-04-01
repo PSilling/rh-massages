@@ -9,7 +9,7 @@
 
     <groupId>cz.redhat</groupId>
     <artifactId>parent</artifactId>
-    <version>1.6.4</version>
+    <version>1.6.5</version>
     <packaging>pom</packaging>
 
     <name>Red Hat Massages</name>

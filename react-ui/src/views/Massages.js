@@ -374,8 +374,7 @@ class Massages extends Component {
         <div className="my-3">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              {this.state.loading && <div className="loader float-right" />}
-              <h1>{_t.translate("Massages in ") + this.state.facilities[this.state.index].name}</h1>
+              {this.state.loading && <div className="loader float-right" style={{ marginTop: "-1.4em" }} />}
               <Nav tabs className="mb-3 mt-4">
                 {this.state.facilities.map((item, index) => (
                   <Tab

@@ -29,10 +29,12 @@ ShallowWrapper {
           <div>
             <div
               className="loader float-right"
+              style={
+                Object {
+                  "marginTop": "-1.4em",
+                }
+              }
             />
-            <h1>
-              Masáže v test
-            </h1>
             <Nav
               className="mb-3 mt-4"
               tabs={true}
@@ -166,10 +168,12 @@ ShallowWrapper {
           "children": <div>
             <div
               className="loader float-right"
+              style={
+                Object {
+                  "marginTop": "-1.4em",
+                }
+              }
             />
-            <h1>
-              Masáže v test
-            </h1>
             <Nav
               className="mb-3 mt-4"
               tabs={true}
@@ -289,10 +293,12 @@ ShallowWrapper {
             "children": Array [
               <div
                 className="loader float-right"
+                style={
+                  Object {
+                    "marginTop": "-1.4em",
+                  }
+                }
               />,
-              <h1>
-                Masáže v test
-              </h1>,
               <Nav
                 className="mb-3 mt-4"
                 tabs={true}
@@ -410,21 +416,13 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "className": "loader float-right",
+                "style": Object {
+                  "marginTop": "-1.4em",
+                },
               },
               "ref": null,
               "rendered": null,
               "type": "div",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Masáže v test",
-              },
-              "ref": null,
-              "rendered": "Masáže v test",
-              "type": "h1",
             },
             Object {
               "instance": null,
@@ -812,10 +810,12 @@ ShallowWrapper {
             <div>
               <div
                 className="loader float-right"
+                style={
+                  Object {
+                    "marginTop": "-1.4em",
+                  }
+                }
               />
-              <h1>
-                Masáže v test
-              </h1>
               <Nav
                 className="mb-3 mt-4"
                 tabs={true}
@@ -949,10 +949,12 @@ ShallowWrapper {
             "children": <div>
               <div
                 className="loader float-right"
+                style={
+                  Object {
+                    "marginTop": "-1.4em",
+                  }
+                }
               />
-              <h1>
-                Masáže v test
-              </h1>
               <Nav
                 className="mb-3 mt-4"
                 tabs={true}
@@ -1072,10 +1074,12 @@ ShallowWrapper {
               "children": Array [
                 <div
                   className="loader float-right"
+                  style={
+                    Object {
+                      "marginTop": "-1.4em",
+                    }
+                  }
                 />,
-                <h1>
-                  Masáže v test
-                </h1>,
                 <Nav
                   className="mb-3 mt-4"
                   tabs={true}
@@ -1193,21 +1197,13 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "className": "loader float-right",
+                  "style": Object {
+                    "marginTop": "-1.4em",
+                  },
                 },
                 "ref": null,
                 "rendered": null,
                 "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Masáže v test",
-                },
-                "ref": null,
-                "rendered": "Masáže v test",
-                "type": "h1",
               },
               Object {
                 "instance": null,
