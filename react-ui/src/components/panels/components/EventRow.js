@@ -32,12 +32,12 @@ class EventRow extends Component {
   getUserInfo = () => {
     if (Auth.isMasseur()) {
       if (this.props.event.massage.client === null) {
-        return <strong style={{ color: Util.SUCCESS_COLOR }}>{_t.translate("Free")}</strong>;
+        return <span style={{ color: Util.SUCCESS_COLOR }}>{_t.translate("Free")}</span>;
       }
       return (
-        <strong style={{ color: Util.ERROR_COLOR }}>
+        <span style={{ color: Util.ERROR_COLOR }}>
           {`${this.props.event.massage.client.name} ${this.props.event.massage.client.surname}`}
-        </strong>
+        </span>
       );
     }
 
@@ -48,6 +48,7 @@ class EventRow extends Component {
     const dateString = moment(this.props.event.massage.date).format("L");
     return (
       <tr>
+        <td>{this.props.event.massage.facility.name}</td>
         <td>{dateString.substring(0, dateString.length - 5)}</td>
         <td>
           {`${moment(this.props.event.massage.date).format("LT")} – ${moment(this.props.event.massage.ending).format(
@@ -62,10 +63,10 @@ class EventRow extends Component {
             tabIndex="-1"
             onKeyPress={this.handleKeyPress}
           >
-            {_t.translate("Massage in ") + this.props.event.massage.facility.name}
+            {`${_t.translate("Massage")}: `}
+            {this.getUserInfo()}
           </strong>
           <br />
-          {this.getUserInfo()}
 
           {this.state.active && (
             <MassageEventModal

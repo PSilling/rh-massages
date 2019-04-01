@@ -34,13 +34,14 @@ class CalendarView extends Component {
     if (this.state.printMassages.length === 0) {
       rows.push(
         <tr key="info">
-          <td colSpan="4">{_t.translate("None")}</td>
+          <td colSpan="5">{_t.translate("None")}</td>
         </tr>
       );
     } else {
       for (let i = 0; i < this.state.printMassages.length; i++) {
         rows.push(
           <tr key={i}>
+            <td>{this.state.printMassages[i].facility.name}</td>
             <td>{moment(this.state.printMassages[i].date).format("L")}</td>
             <td>
               {`${moment(this.state.printMassages[i].date).format("H:mm")}–${moment(
@@ -67,6 +68,7 @@ class CalendarView extends Component {
           <Table hover responsive striped size="sm">
             <thead>
               <tr>
+                <th scope="col">{this.props.localizer.messages.facility}</th>
                 <th scope="col">{this.props.localizer.messages.date}</th>
                 <th scope="col">{this.props.localizer.messages.time}</th>
                 <th scope="col">{this.props.localizer.messages.event}</th>
@@ -88,6 +90,7 @@ class CalendarView extends Component {
             <Table>
               <thead>
                 <tr>
+                  <th scope="col">{_t.translate("Facility")}</th>
                   <th scope="col">{_t.translate("Date")}</th>
                   <th scope="col">{_t.translate("Time")}</th>
                   <th scope="col">{_t.translate("Masseur/Masseuse")}</th>
@@ -140,6 +143,7 @@ CalendarView.propTypes = {
   localizer: PropTypes.shape({
     messages: PropTypes.shape({
       date: PropTypes.string,
+      facility: PropTypes.string,
       time: PropTypes.string,
       event: PropTypes.string
     })

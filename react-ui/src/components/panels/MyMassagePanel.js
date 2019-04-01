@@ -21,15 +21,13 @@ class MyMassagePanel extends Component {
   localization = {
     allDay: _t.translate("All day"),
     date: _t.translate("Date"),
+    facility: _t.translate("Facility"),
     time: _t.translate("Time"),
     event: _t.translate("Event")
   };
 
   generateTitle = event =>
-    `${_t.translate("Massage in ") +
-      event.massage.facility.name +
-      _t.translate(" with ") +
-      event.massage.masseuse.name} ${event.massage.masseuse.surname}`;
+    `${_t.translate("Massage")}: ${event.massage.masseuse.name} ${event.massage.masseuse.surname}`;
 
   render() {
     return (

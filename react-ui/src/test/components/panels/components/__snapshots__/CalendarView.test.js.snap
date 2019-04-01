@@ -101,6 +101,9 @@ ShallowWrapper {
                 />
                 <th
                   scope="col"
+                />
+                <th
+                  scope="col"
                 >
                   <PrintModal
                     events={
@@ -242,6 +245,9 @@ ShallowWrapper {
                 />
                 <th
                   scope="col"
+                />
+                <th
+                  scope="col"
                 >
                   <PrintModal
                     events={
@@ -362,6 +368,9 @@ ShallowWrapper {
             "children": Array [
               <thead>
                 <tr>
+                  <th
+                    scope="col"
+                  />
                   <th
                     scope="col"
                   />
@@ -508,6 +517,9 @@ ShallowWrapper {
                   />
                   <th
                     scope="col"
+                  />
+                  <th
+                    scope="col"
                   >
                     <PrintModal
                       events={
@@ -580,6 +592,9 @@ ShallowWrapper {
                     />,
                     <th
                       scope="col"
+                    />,
+                    <th
+                      scope="col"
                     >
                       <PrintModal
                         events={
@@ -636,6 +651,18 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                      "scope": "col",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "th",
+                  },
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -962,6 +989,9 @@ ShallowWrapper {
                   />
                   <th
                     scope="col"
+                  />
+                  <th
+                    scope="col"
                   >
                     <PrintModal
                       events={
@@ -1103,6 +1133,9 @@ ShallowWrapper {
                   />
                   <th
                     scope="col"
+                  />
+                  <th
+                    scope="col"
                   >
                     <PrintModal
                       events={
@@ -1223,6 +1256,9 @@ ShallowWrapper {
               "children": Array [
                 <thead>
                   <tr>
+                    <th
+                      scope="col"
+                    />
                     <th
                       scope="col"
                     />
@@ -1369,6 +1405,9 @@ ShallowWrapper {
                     />
                     <th
                       scope="col"
+                    />
+                    <th
+                      scope="col"
                     >
                       <PrintModal
                         events={
@@ -1441,6 +1480,9 @@ ShallowWrapper {
                       />,
                       <th
                         scope="col"
+                      />,
+                      <th
+                        scope="col"
                       >
                         <PrintModal
                           events={
@@ -1497,6 +1539,18 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": undefined,
+                        "scope": "col",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "th",
+                    },
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -1914,6 +1968,9 @@ ShallowWrapper {
                 />
                 <th
                   scope="col"
+                />
+                <th
+                  scope="col"
                 >
                   <PrintModal
                     events={
@@ -2036,6 +2093,11 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
+                  Facility
+                </th>
+                <th
+                  scope="col"
+                >
                   Date
                 </th>
                 <th
@@ -2058,6 +2120,9 @@ ShallowWrapper {
             </thead>
             <tbody>
               <tr>
+                <td>
+                  test
+                </td>
                 <td>
                   01/01/1970
                 </td>
@@ -2093,6 +2158,9 @@ ShallowWrapper {
           >
             <thead>
               <tr>
+                <th
+                  scope="col"
+                />
                 <th
                   scope="col"
                 />
@@ -2224,6 +2292,9 @@ ShallowWrapper {
             "children": Array [
               <thead>
                 <tr>
+                  <th
+                    scope="col"
+                  />
                   <th
                     scope="col"
                   />
@@ -2370,6 +2441,9 @@ ShallowWrapper {
                   />
                   <th
                     scope="col"
+                  />
+                  <th
+                    scope="col"
                   >
                     <PrintModal
                       events={
@@ -2442,6 +2516,9 @@ ShallowWrapper {
                     />,
                     <th
                       scope="col"
+                    />,
+                    <th
+                      scope="col"
                     >
                       <PrintModal
                         events={
@@ -2498,6 +2575,18 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": undefined,
+                      "scope": "col",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "th",
+                  },
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -2803,6 +2892,11 @@ ShallowWrapper {
                 <th
                   scope="col"
                 >
+                  Facility
+                </th>
+                <th
+                  scope="col"
+                >
                   Date
                 </th>
                 <th
@@ -2825,6 +2919,9 @@ ShallowWrapper {
             </thead>
             <tbody>
               <tr>
+                <td>
+                  test
+                </td>
                 <td>
                   01/01/1970
                 </td>
@@ -2854,6 +2951,11 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
+                    Facility
+                  </th>
+                  <th
+                    scope="col"
+                  >
                     Date
                   </th>
                   <th
@@ -2876,6 +2978,9 @@ ShallowWrapper {
               </thead>,
               <tbody>
                 <tr>
+                  <td>
+                    test
+                  </td>
                   <td>
                     01/01/1970
                   </td>
@@ -2902,6 +3007,11 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": <tr>
+                  <th
+                    scope="col"
+                  >
+                    Facility
+                  </th>
                   <th
                     scope="col"
                   >
@@ -2935,6 +3045,11 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
+                      Facility
+                    </th>,
+                    <th
+                      scope="col"
+                    >
                       Date
                     </th>,
                     <th
@@ -2957,6 +3072,18 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Facility",
+                      "scope": "col",
+                    },
+                    "ref": null,
+                    "rendered": "Facility",
+                    "type": "th",
+                  },
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -3019,6 +3146,9 @@ ShallowWrapper {
                 "children": Array [
                   <tr>
                     <td>
+                      test
+                    </td>
+                    <td>
                       01/01/1970
                     </td>
                     <td>
@@ -3042,6 +3172,9 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
+                        test
+                      </td>,
+                      <td>
                         01/01/1970
                       </td>,
                       <td>
@@ -3057,6 +3190,17 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "test",
+                      },
+                      "ref": null,
+                      "rendered": "test",
+                      "type": "td",
+                    },
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -3135,6 +3279,9 @@ ShallowWrapper {
             >
               <thead>
                 <tr>
+                  <th
+                    scope="col"
+                  />
                   <th
                     scope="col"
                   />
@@ -3268,6 +3415,11 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
+                    Facility
+                  </th>
+                  <th
+                    scope="col"
+                  >
                     Date
                   </th>
                   <th
@@ -3290,6 +3442,9 @@ ShallowWrapper {
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    test
+                  </td>
                   <td>
                     01/01/1970
                   </td>
@@ -3325,6 +3480,9 @@ ShallowWrapper {
             >
               <thead>
                 <tr>
+                  <th
+                    scope="col"
+                  />
                   <th
                     scope="col"
                   />
@@ -3456,6 +3614,9 @@ ShallowWrapper {
               "children": Array [
                 <thead>
                   <tr>
+                    <th
+                      scope="col"
+                    />
                     <th
                       scope="col"
                     />
@@ -3602,6 +3763,9 @@ ShallowWrapper {
                     />
                     <th
                       scope="col"
+                    />
+                    <th
+                      scope="col"
                     >
                       <PrintModal
                         events={
@@ -3674,6 +3838,9 @@ ShallowWrapper {
                       />,
                       <th
                         scope="col"
+                      />,
+                      <th
+                        scope="col"
                       >
                         <PrintModal
                           events={
@@ -3730,6 +3897,18 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": undefined,
+                        "scope": "col",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "th",
+                    },
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -4035,6 +4214,11 @@ ShallowWrapper {
                   <th
                     scope="col"
                   >
+                    Facility
+                  </th>
+                  <th
+                    scope="col"
+                  >
                     Date
                   </th>
                   <th
@@ -4057,6 +4241,9 @@ ShallowWrapper {
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    test
+                  </td>
                   <td>
                     01/01/1970
                   </td>
@@ -4086,6 +4273,11 @@ ShallowWrapper {
                     <th
                       scope="col"
                     >
+                      Facility
+                    </th>
+                    <th
+                      scope="col"
+                    >
                       Date
                     </th>
                     <th
@@ -4108,6 +4300,9 @@ ShallowWrapper {
                 </thead>,
                 <tbody>
                   <tr>
+                    <td>
+                      test
+                    </td>
                     <td>
                       01/01/1970
                     </td>
@@ -4134,6 +4329,11 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": <tr>
+                    <th
+                      scope="col"
+                    >
+                      Facility
+                    </th>
                     <th
                       scope="col"
                     >
@@ -4167,6 +4367,11 @@ ShallowWrapper {
                       <th
                         scope="col"
                       >
+                        Facility
+                      </th>,
+                      <th
+                        scope="col"
+                      >
                         Date
                       </th>,
                       <th
@@ -4189,6 +4394,18 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Facility",
+                        "scope": "col",
+                      },
+                      "ref": null,
+                      "rendered": "Facility",
+                      "type": "th",
+                    },
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -4251,6 +4468,9 @@ ShallowWrapper {
                   "children": Array [
                     <tr>
                       <td>
+                        test
+                      </td>
+                      <td>
                         01/01/1970
                       </td>
                       <td>
@@ -4274,6 +4494,9 @@ ShallowWrapper {
                     "props": Object {
                       "children": Array [
                         <td>
+                          test
+                        </td>,
+                        <td>
                           01/01/1970
                         </td>,
                         <td>
@@ -4289,6 +4512,17 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "test",
+                        },
+                        "ref": null,
+                        "rendered": "test",
+                        "type": "td",
+                      },
                       Object {
                         "instance": null,
                         "key": undefined,

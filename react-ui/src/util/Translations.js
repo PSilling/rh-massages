@@ -259,12 +259,6 @@ const myLocalize = new Localize({
   Massage: {
     cs: "Masáž"
   },
-  "Massage in ": {
-    cs: "Masáž v "
-  },
-  " with ": {
-    cs: " s "
-  },
   Ignore: {
     cs: "Ignorovat"
   },

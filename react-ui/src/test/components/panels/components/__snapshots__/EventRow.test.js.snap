@@ -74,6 +74,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <td>
+          test
+        </td>,
+        <td>
           01/01
         </td>,
         <td>
@@ -93,17 +96,28 @@ ShallowWrapper {
             }
             tabIndex="-1"
           >
-            Massage in test
+            Massage: 
+            <span>
+              Masseuse Test
+            </span>
           </strong>
           <br />
-          <span>
-            Masseuse Test
-          </span>
         </td>,
       ],
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "test",
+        },
+        "ref": null,
+        "rendered": "test",
+        "type": "td",
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -143,12 +157,12 @@ ShallowWrapper {
               }
               tabIndex="-1"
             >
-              Massage in test
+              Massage: 
+              <span>
+                Masseuse Test
+              </span>
             </strong>,
             <br />,
-            <span>
-              Masseuse Test
-            </span>,
             false,
           ],
           "colSpan": "2",
@@ -160,7 +174,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "Massage in test",
+              "children": Array [
+                "Massage: ",
+                <span>
+                  Masseuse Test
+                </span>,
+              ],
               "onClick": [Function],
               "onKeyPress": [Function],
               "role": "button",
@@ -170,7 +189,20 @@ ShallowWrapper {
               "tabIndex": "-1",
             },
             "ref": null,
-            "rendered": "Massage in test",
+            "rendered": Array [
+              "Massage: ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Masseuse Test",
+                },
+                "ref": null,
+                "rendered": "Masseuse Test",
+                "type": "span",
+              },
+            ],
             "type": "strong",
           },
           Object {
@@ -181,17 +213,6 @@ ShallowWrapper {
             "ref": null,
             "rendered": null,
             "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Masseuse Test",
-            },
-            "ref": null,
-            "rendered": "Masseuse Test",
-            "type": "span",
           },
           false,
         ],
@@ -207,6 +228,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <td>
+            test
+          </td>,
           <td>
             01/01
           </td>,
@@ -227,17 +251,28 @@ ShallowWrapper {
               }
               tabIndex="-1"
             >
-              Massage in test
+              Massage: 
+              <span>
+                Masseuse Test
+              </span>
             </strong>
             <br />
-            <span>
-              Masseuse Test
-            </span>
           </td>,
         ],
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "test",
+          },
+          "ref": null,
+          "rendered": "test",
+          "type": "td",
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -277,12 +312,12 @@ ShallowWrapper {
                 }
                 tabIndex="-1"
               >
-                Massage in test
+                Massage: 
+                <span>
+                  Masseuse Test
+                </span>
               </strong>,
               <br />,
-              <span>
-                Masseuse Test
-              </span>,
               false,
             ],
             "colSpan": "2",
@@ -294,7 +329,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Massage in test",
+                "children": Array [
+                  "Massage: ",
+                  <span>
+                    Masseuse Test
+                  </span>,
+                ],
                 "onClick": [Function],
                 "onKeyPress": [Function],
                 "role": "button",
@@ -304,7 +344,20 @@ ShallowWrapper {
                 "tabIndex": "-1",
               },
               "ref": null,
-              "rendered": "Massage in test",
+              "rendered": Array [
+                "Massage: ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Masseuse Test",
+                  },
+                  "ref": null,
+                  "rendered": "Masseuse Test",
+                  "type": "span",
+                },
+              ],
               "type": "strong",
             },
             Object {
@@ -315,17 +368,6 @@ ShallowWrapper {
               "ref": null,
               "rendered": null,
               "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Masseuse Test",
-              },
-              "ref": null,
-              "rendered": "Masseuse Test",
-              "type": "span",
             },
             false,
           ],

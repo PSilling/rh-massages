@@ -117,6 +117,7 @@ ShallowWrapper {
                 "allDay": "All day",
                 "date": "Date",
                 "event": "Event",
+                "facility": "Facility",
                 "time": "Time",
               }
             }
@@ -216,6 +217,7 @@ ShallowWrapper {
                 "allDay": "All day",
                 "date": "Date",
                 "event": "Event",
+                "facility": "Facility",
                 "time": "Time",
               }
             }
@@ -301,6 +303,7 @@ ShallowWrapper {
                 "allDay": "All day",
                 "date": "Date",
                 "event": "Event",
+                "facility": "Facility",
                 "time": "Time",
               }
             }
@@ -387,6 +390,7 @@ ShallowWrapper {
               "allDay": "All day",
               "date": "Date",
               "event": "Event",
+              "facility": "Facility",
               "time": "Time",
             },
             "onCancel": [MockFunction],
@@ -526,6 +530,7 @@ ShallowWrapper {
                   "allDay": "All day",
                   "date": "Date",
                   "event": "Event",
+                  "facility": "Facility",
                   "time": "Time",
                 }
               }
@@ -625,6 +630,7 @@ ShallowWrapper {
                   "allDay": "All day",
                   "date": "Date",
                   "event": "Event",
+                  "facility": "Facility",
                   "time": "Time",
                 }
               }
@@ -710,6 +716,7 @@ ShallowWrapper {
                   "allDay": "All day",
                   "date": "Date",
                   "event": "Event",
+                  "facility": "Facility",
                   "time": "Time",
                 }
               }
@@ -796,6 +803,7 @@ ShallowWrapper {
                 "allDay": "All day",
                 "date": "Date",
                 "event": "Event",
+                "facility": "Facility",
                 "time": "Time",
               },
               "onCancel": [MockFunction],
