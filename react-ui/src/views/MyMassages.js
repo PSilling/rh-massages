@@ -1,10 +1,12 @@
 // react imports
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Nav } from "reactstrap";
 
 // component imports
 import InfoAlert from "../components/util/InfoAlert";
 import MyMassagePanel from "../components/panels/MyMassagePanel";
+import Tab from "../components/navs/Tab";
 import "../styles/components/loader.css";
 
 // util imports
@@ -17,7 +19,7 @@ import Util from "../util/Util";
  * for better user experience.
  */
 class MyMassages extends Component {
-  state = { events: [], loading: true, mounted: false };
+  state = { events: [], filteredEvents: [], facilities: [], loading: true, index: 0, mounted: false };
 
   alertMessage =
     _t.translate("On this page you can view all your assigned massages. ") +
@@ -27,7 +29,7 @@ class MyMassages extends Component {
     Util.clearAllIntervals();
 
     this.setState({ mounted: true });
-    this.getMassages();
+    this.getFacilities();
     setInterval(() => {
       this.getMassages();
     }, Util.AUTO_REFRESH_TIME * 60);
@@ -37,6 +39,15 @@ class MyMassages extends Component {
     Util.clearAllIntervals();
     this.setState({ mounted: false });
   }
+
+  getFacilities = () => {
+    Fetch.get(Util.FACILITIES_URL, json => {
+      if (this.state.mounted) {
+        this.setState({ facilities: json });
+        this.getMassages();
+      }
+    });
+  };
 
   getMassages = () => {
     Fetch.get(`${Util.MASSAGES_URL}client`, json => {
@@ -53,7 +64,11 @@ class MyMassages extends Component {
       events.push({ massage: massages[i] });
     }
 
-    this.setState({ events, loading: false });
+    this.setState(prevState => ({
+      events,
+      filteredEvents: this.getFilteredEvents(events, prevState.index),
+      loading: false
+    }));
   };
 
   cancelMassage = massage => {
@@ -73,9 +88,28 @@ class MyMassages extends Component {
     );
   };
 
+  getFilteredEvents = (events, index) => {
+    const filteredEvents = [...events];
+
+    if (index !== 0) {
+      for (let i = 0; i < filteredEvents.length; i++) {
+        if (filteredEvents[i].massage.facility.id !== this.state.facilities[index - 1].id) {
+          filteredEvents.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+    return filteredEvents;
+  };
+
   closeAlert = () => {
     localStorage.setItem("closeMyMassagesAlert", true);
     this.setState(prevState => ({ loading: prevState.loading }));
+  };
+
+  changeTabIndex = index => {
+    this.setState(prevState => ({ index, filteredEvents: this.getFilteredEvents(prevState.events, index) }));
   };
 
   render() {
@@ -84,12 +118,22 @@ class MyMassages extends Component {
         {!localStorage.getItem("closeMyMassagesAlert") && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
-        <h1>
-          {this.state.loading && <div className="loader float-right" />}
-          {_t.translate("My Massages")}
-        </h1>
-        {this.state.events.length > 0 && this.state.events[0] !== undefined ? (
-          <MyMassagePanel events={this.state.events} onCancel={this.cancelMassage} />
+        <div className="no-print">
+          {this.state.loading && <div className="loader float-right" style={{ marginTop: "-1.4em" }} />}
+          <Nav tabs className="mb-3 mt-4">
+            <Tab active={this.state.index === 0} label={_t.translate("All")} onClick={() => this.changeTabIndex(0)} />
+            {this.state.facilities.map((item, index) => (
+              <Tab
+                active={index + 1 === this.state.index}
+                label={item.name}
+                key={item.id}
+                onClick={() => this.changeTabIndex(index + 1)}
+              />
+            ))}
+          </Nav>
+        </div>
+        {this.state.filteredEvents.length > 0 && this.state.events[0] !== undefined ? (
+          <MyMassagePanel events={this.state.filteredEvents} onCancel={this.cancelMassage} />
         ) : (
           <h3>
             {`${_t.translate("None")} – `}

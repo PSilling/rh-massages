@@ -21,7 +21,7 @@ import Util from "../../util/Util";
 class PrintModal extends Component {
   state = {
     active: false,
-    checkedRadio: 0,
+    checkedRadio: 3,
     from: moment(),
     to: moment().endOf("day")
   };

@@ -33,7 +33,26 @@ ShallowWrapper {
       [MockFunction] {
         "calls": Array [
           Array [
-            Array [],
+            Array [
+              Object {
+                "client": null,
+                "date": 1970-01-01T00:00:00.000Z,
+                "ending": 1970-01-01T00:00:01.000Z,
+                "facility": Object {
+                  "id": 1,
+                  "name": "test",
+                },
+                "id": 1,
+                "masseuse": Object {
+                  "email": "test@masseuse.org",
+                  "masseur": true,
+                  "name": "Masseuse",
+                  "sub": "m-sub",
+                  "subscribed": false,
+                  "surname": "Test",
+                },
+              },
+            ],
           ],
         ],
         "results": Array [

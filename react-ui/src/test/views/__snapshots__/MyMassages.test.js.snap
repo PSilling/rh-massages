@@ -23,9 +23,23 @@ ShallowWrapper {
         >
           On this page you can view all your assigned massages. To view massage details click on the event name.
         </InfoAlert>,
-        <h1>
-          My Massages
-        </h1>,
+        <div
+          className="no-print"
+        >
+          <Nav
+            className="mb-3 mt-4"
+            tabs={true}
+            tag="ul"
+            vertical={false}
+          >
+            <Tab
+              active={true}
+              label="All"
+              onClick={[Function]}
+              onRemoveClick={null}
+            />
+          </Nav>
+        </div>,
         <MyMassagePanel
           events={
             Array [
@@ -69,15 +83,65 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "My Massages",
+            <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+            </Nav>,
           ],
+          "className": "no-print",
         },
         "ref": null,
         "rendered": Array [
           false,
-          "My Massages",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <Tab
+                  active={true}
+                  label="All"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />,
+                Array [],
+              ],
+              "className": "mb-3 mt-4",
+              "tabs": true,
+              "tag": "ul",
+              "vertical": false,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "active": true,
+                  "label": "All",
+                  "onClick": [Function],
+                  "onRemoveClick": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
         ],
-        "type": "h1",
+        "type": "div",
       },
       Object {
         "instance": null,
@@ -119,9 +183,23 @@ ShallowWrapper {
           >
             On this page you can view all your assigned massages. To view massage details click on the event name.
           </InfoAlert>,
-          <h1>
-            My Massages
-          </h1>,
+          <div
+            className="no-print"
+          >
+            <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+            </Nav>
+          </div>,
           <MyMassagePanel
             events={
               Array [
@@ -165,15 +243,65 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "My Massages",
+              <Nav
+                className="mb-3 mt-4"
+                tabs={true}
+                tag="ul"
+                vertical={false}
+              >
+                <Tab
+                  active={true}
+                  label="All"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+              </Nav>,
             ],
+            "className": "no-print",
           },
           "ref": null,
           "rendered": Array [
             false,
-            "My Massages",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <Tab
+                    active={true}
+                    label="All"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />,
+                  Array [],
+                ],
+                "className": "mb-3 mt-4",
+                "tabs": true,
+                "tag": "ul",
+                "vertical": false,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": true,
+                    "label": "All",
+                    "onClick": [Function],
+                    "onRemoveClick": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
           ],
-          "type": "h1",
+          "type": "div",
         },
         Object {
           "instance": null,
@@ -247,9 +375,23 @@ ShallowWrapper {
         >
           On this page you can view all your assigned massages. To view massage details click on the event name.
         </InfoAlert>,
-        <h1>
-          My Massages
-        </h1>,
+        <div
+          className="no-print"
+        >
+          <Nav
+            className="mb-3 mt-4"
+            tabs={true}
+            tag="ul"
+            vertical={false}
+          >
+            <Tab
+              active={true}
+              label="All"
+              onClick={[Function]}
+              onRemoveClick={null}
+            />
+          </Nav>
+        </div>,
         <h3>
           None – 
           <Link
@@ -288,15 +430,65 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             false,
-            "My Massages",
+            <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+            </Nav>,
           ],
+          "className": "no-print",
         },
         "ref": null,
         "rendered": Array [
           false,
-          "My Massages",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <Tab
+                  active={true}
+                  label="All"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />,
+                Array [],
+              ],
+              "className": "mb-3 mt-4",
+              "tabs": true,
+              "tag": "ul",
+              "vertical": false,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "active": true,
+                  "label": "All",
+                  "onClick": [Function],
+                  "onRemoveClick": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
         ],
-        "type": "h1",
+        "type": "div",
       },
       Object {
         "instance": null,
@@ -355,9 +547,23 @@ ShallowWrapper {
           >
             On this page you can view all your assigned massages. To view massage details click on the event name.
           </InfoAlert>,
-          <h1>
-            My Massages
-          </h1>,
+          <div
+            className="no-print"
+          >
+            <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+            </Nav>
+          </div>,
           <h3>
             None – 
             <Link
@@ -396,15 +602,65 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               false,
-              "My Massages",
+              <Nav
+                className="mb-3 mt-4"
+                tabs={true}
+                tag="ul"
+                vertical={false}
+              >
+                <Tab
+                  active={true}
+                  label="All"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+              </Nav>,
             ],
+            "className": "no-print",
           },
           "ref": null,
           "rendered": Array [
             false,
-            "My Massages",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <Tab
+                    active={true}
+                    label="All"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />,
+                  Array [],
+                ],
+                "className": "mb-3 mt-4",
+                "tabs": true,
+                "tag": "ul",
+                "vertical": false,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": true,
+                    "label": "All",
+                    "onClick": [Function],
+                    "onRemoveClick": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
           ],
-          "type": "h1",
+          "type": "div",
         },
         Object {
           "instance": null,

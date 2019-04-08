@@ -211,6 +211,9 @@ const myLocalize = new Localize({
   all: {
     cs: "všechny"
   },
+  All: {
+    cs: "Vše"
+  },
   "custom:": {
     cs: "vlastní:"
   },

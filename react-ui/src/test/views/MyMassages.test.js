@@ -36,11 +36,11 @@ test("properly changes state variables", () => {
   ];
   const wrapper = shallow(<MyMassages />);
 
-  wrapper.instance().setState({ loading: true, events: testEvents });
+  wrapper.instance().setState({ loading: true, events: testEvents, filteredEvents: testEvents });
   wrapper.instance().getMassages();
   expect(wrapper.instance().state.events).toEqual([]);
   expect(wrapper.instance().state.loading).toBe(false);
-  wrapper.instance().setState({ events: testEvents });
+  wrapper.instance().setState({ events: testEvents, filteredEvents: testEvents });
 
   expect(wrapper).toMatchSnapshot();
 });
