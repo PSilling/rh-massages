@@ -227,7 +227,10 @@ class MassageBatchAddModal extends Component {
     for (let i = 0; i < pauses.length; i++) {
       const pauseStart = this.cloneOverwritingDaytime(startTime, pauses[i].start);
       const pauseEnd = this.cloneOverwritingDaytime(startTime, pauses[i].end);
-      if (startTime.isBetween(pauseStart, pauseEnd) || endTime.isBetween(pauseStart, pauseEnd)) {
+      if (
+        startTime.isBetween(pauseStart, pauseEnd, null, "[]") ||
+        endTime.isBetween(pauseStart, pauseEnd, null, "[]")
+      ) {
         return true;
       }
     }
