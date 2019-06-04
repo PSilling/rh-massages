@@ -184,7 +184,9 @@ public class MassageResource {
         throw new WebApplicationException(Status.FORBIDDEN);
       }
 
-      checkTimeAvailability(massage, daoMassage);
+      if (!user.isAdmin()) {
+        checkTimeAvailability(massage, daoMassage);
+      }
     }
 
     // Update the given Massages.
