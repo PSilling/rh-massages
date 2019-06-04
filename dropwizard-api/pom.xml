@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <version>1.6.6</version>
+        <version>1.7.0</version>
         <artifactId>parent</artifactId>
         <groupId>cz.redhat</groupId>
     </parent>
@@ -122,6 +122,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.liveperson</groupId>
+            <artifactId>dropwizard-websockets</artifactId>
+            <version>${dropwizard-websockets.version}</version>
         </dependency>
     </dependencies>
 

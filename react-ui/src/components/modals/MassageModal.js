@@ -40,7 +40,7 @@ class MassageModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props === nextProps) return;
+    if (this.props === nextProps || this.props.active) return;
 
     this.setState({
       date: nextProps.massage === null ? moment().add(1, "hours") : moment(nextProps.massage.date),
@@ -129,10 +129,7 @@ class MassageModal extends Component {
           facility: { id: this.props.facilityId }
         }
       ],
-      () => {
-        this.props.onToggle();
-        this.props.getCallback();
-      }
+      this.props.onToggle
     );
   };
 
@@ -153,10 +150,7 @@ class MassageModal extends Component {
           facility: this.props.massage.facility
         }
       ],
-      () => {
-        this.props.onToggle();
-        this.props.getCallback();
-      },
+      this.props.onToggle,
       true,
       () =>
         Util.notify(
@@ -289,8 +283,6 @@ class MassageModal extends Component {
 MassageModal.propTypes = {
   /** whether the dialog should be shown */
   active: PropTypes.bool.isRequired,
-  /** callback function for Massage list update */
-  getCallback: PropTypes.func.isRequired,
   /** function called on modal toggle */
   onToggle: PropTypes.func.isRequired,
   /** ID of the selected Facility */

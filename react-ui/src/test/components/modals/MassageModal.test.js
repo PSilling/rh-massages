@@ -23,7 +23,6 @@ afterAll(() => {
 });
 
 test("renders inside content with correct props", () => {
-  const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
   const testMasseuses = [
     {
@@ -43,7 +42,6 @@ test("renders inside content with correct props", () => {
       facilityId={1}
       masseuses={testMasseuses}
       masseuseNames={testMasseuseNames}
-      getCallback={testGetFunction}
       onToggle={testToggleFunction}
       withPortal={false}
     />
@@ -54,7 +52,6 @@ test("renders inside content with correct props", () => {
   const datetimes = wrapper.find(LabeledDatetime);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
-  expect(testGetFunction).not.toHaveBeenCalled();
   expect(button.props().onClick).toBe(testToggleFunction);
   expect(actions.props().onProceed).toBe(wrapper.instance().addMassage);
   expect(actions.props().onClose).toBe(testToggleFunction);
@@ -65,7 +62,6 @@ test("renders inside content with correct props", () => {
 });
 
 test("switches to edit mode when a Massage is given", () => {
-  const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
   const testMassage = {
     id: 1,
@@ -83,14 +79,7 @@ test("switches to edit mode when a Massage is given", () => {
     facility: { id: 1, name: "test" }
   };
   const wrapper = shallow(
-    <MassageModal
-      active
-      massage={testMassage}
-      facilityId={1}
-      getCallback={testGetFunction}
-      onToggle={testToggleFunction}
-      withPortal={false}
-    />
+    <MassageModal active massage={testMassage} facilityId={1} onToggle={testToggleFunction} withPortal={false} />
   );
   wrapper.instance().setState({
     date: testMassage.date,
@@ -104,7 +93,6 @@ test("switches to edit mode when a Massage is given", () => {
   const datetimes = wrapper.find(LabeledDatetime);
 
   expect(testToggleFunction).not.toHaveBeenCalled();
-  expect(testGetFunction).not.toHaveBeenCalled();
   expect(heading.props().children).toEqual(_t.translate("Edit massage"));
   expect(actions.props().primaryLabel).toBe(_t.translate("Edit"));
   expect(actions.props().onProceed).toBe(wrapper.instance().editMassage);

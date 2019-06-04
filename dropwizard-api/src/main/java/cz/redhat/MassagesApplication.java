@@ -30,6 +30,7 @@ import cz.redhat.resources.ClientResource;
 import cz.redhat.resources.FacilityResource;
 import cz.redhat.resources.LogoutResource;
 import cz.redhat.resources.MassageResource;
+import cz.redhat.websockets.WebSocketResource;
 import de.ahus1.keycloak.dropwizard.KeycloakBundle;
 import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
@@ -44,6 +45,7 @@ import io.dropwizard.hibernate.UnitOfWorkAwareProxyFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.websockets.WebsocketBundle;
 import java.security.Principal;
 import java.util.EnumSet;
 import javax.servlet.DispatcherType;
@@ -120,6 +122,8 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
             return configuration.getDataSourceFactory();
           }
         });
+
+    bootstrap.addBundle(new WebsocketBundle(WebSocketResource.class));
 
     // Add Keycloak implementation
     bootstrap.addBundle(

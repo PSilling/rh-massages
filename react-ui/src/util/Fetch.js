@@ -1,12 +1,15 @@
 /**
- * Utility class containing functions for client-server communication using the Fetch API.
+ * Utility class containing functions for client-server communication using the Fetch API or the WebSocket API.
  */
+
+// module imports
 
 // util imports
 import _t from "./Translations";
 import Auth from "./Auth";
 import Util from "./Util";
 
+// const WebSocket = require('ws');
 const Fetch = function Fetch() {};
 
 /**
@@ -14,7 +17,7 @@ const Fetch = function Fetch() {};
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  */
-Fetch.get = (url, update) => {
+Fetch.get = (url, update = () => {}) => {
   Auth.keycloak
     .updateToken(Util.REFRESH_MIN_TIME)
     .success(() => {
@@ -57,7 +60,7 @@ Fetch.get = (url, update) => {
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
  */
-Fetch.post = (url, data, update, notify = true) => {
+Fetch.post = (url, data, update = () => {}, notify = true) => {
   Auth.keycloak
     .updateToken(Util.REFRESH_MIN_TIME)
     .success(() => {
@@ -99,7 +102,7 @@ Fetch.post = (url, data, update, notify = true) => {
  * @param notify          false if success notifications should be suppressed
  * @param onError         function that replaces (if not null) standard error notification
  */
-Fetch.put = (url, data, update, notify = true, onError = null) => {
+Fetch.put = (url, data, update = () => {}, notify = true, onError = null) => {
   Auth.keycloak
     .updateToken(Util.REFRESH_MIN_TIME)
     .success(() => {
@@ -143,7 +146,7 @@ Fetch.put = (url, data, update, notify = true, onError = null) => {
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
  */
-Fetch.delete = (url, update, notify = true) => {
+Fetch.delete = (url, update = () => {}, notify = true) => {
   Auth.keycloak
     .updateToken(Util.REFRESH_MIN_TIME)
     .success(() => {
@@ -174,5 +177,67 @@ Fetch.delete = (url, update, notify = true) => {
       Auth.keycloak.login();
     });
 };
+
+/**
+ * Creates a new WebSocket connection, subscribing to a given URL address.
+ * @see https://github.com/sockjs/sockjs-client for more information about the library.
+ * @param webSocketUrl    end of the URL address to subscribe to
+ * @return                the created WebSocket
+ */
+Fetch.subscribeToUrl = webSocketUrl => {
+  const webSocket = new WebSocket(`ws://localhost:8080/${webSocketUrl}`);
+
+  webSocket.addEventListener("message", event => {
+    // parse the message; format: OPERATION_STATUS or OPERATION_SUBSCRIPTION_DATA
+    const operation = event.data.substring(0, event.data.indexOf("_"));
+    const remainder = event.data.substring(event.data.indexOf("_") + 1, event.data.length);
+    const subscription = remainder.substring(0, remainder.indexOf("_"));
+
+    // send the message to the subscription matching callback function
+    if (subscription !== "") {
+      const callback = Fetch.WEBSOCKET_CALLBACKS[subscription.toLowerCase()];
+      if (typeof callback === "function") {
+        callback(operation, JSON.parse(remainder.substring(remainder.indexOf("_") + 1)));
+      }
+    }
+  });
+
+  webSocket.addEventListener("error", event => {
+    console.log("WebSocket error. Message: ", event.data);  /* eslint-disable-line */
+  });
+
+  return webSocket;
+};
+
+/**
+ * Tries to send a message using the global WebSocket connection.
+ * Waits for the WebSocket to open if closed.
+ * @param message     the message to be sent
+ */
+Fetch.tryWebSocketSend = message => {
+  if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
+    Fetch.WEBSOCKET.send(message);
+  } else {
+    if (Fetch.WEBSOCKET.readyState !== WebSocket.CONNECTING) {
+      Fetch.WEBSOCKET = Fetch.subscribeToUrl(Util.SUBSCRIPTIONS_URL);
+    }
+    setTimeout(() => Fetch.WEBSOCKET.send(message), Util.WEBSOCKET_TIMEOUT_LIMIT);
+  }
+};
+
+/** global WebSocket connection */
+Fetch.WEBSOCKET = Fetch.subscribeToUrl(Util.SUBSCRIPTIONS_URL);
+/** global WebSocket callback object with subscription info before each callback */
+Fetch.WEBSOCKET_CALLBACKS = {
+  client: null,
+  facility: null,
+  massage: null
+};
+/** WebSocket ADD operation code (for POST) */
+Fetch.OPERATION_ADD = "ADD";
+/** WebSocket CHANGE operation code (for PUT) */
+Fetch.OPERATION_CHANGE = "CHANGE";
+/** WebSocket REMOVE operation code (for DELETE) */
+Fetch.OPERATION_REMOVE = "REMOVE";
 
 export default Fetch;

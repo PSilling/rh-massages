@@ -21,6 +21,8 @@ import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
 import cz.redhat.db.FacilityDao;
 import cz.redhat.db.MassageDao;
+import cz.redhat.websockets.OperationType;
+import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
@@ -101,10 +103,13 @@ public class FacilityResource {
   @UnitOfWork
   public Response createFacility(@NotNull @Valid Facility facility) {
     facilityDao.create(facility);
+    Facility daoFacility = facilityDao.findByName(facility.getName());
 
-    if (facilityDao.findByName(facility.getName()) == null) {
+    if (daoFacility == null) {
       throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
     }
+
+    WebSocketResource.informSubscribed("Facility", OperationType.ADD, daoFacility);
 
     return Response.created(
         UriBuilder.fromResource(FacilityResource.class).path("/{id}").build(facility.getId()))
@@ -124,11 +129,13 @@ public class FacilityResource {
   @PermitAll
   @UnitOfWork
   public Facility getById(@PathParam("id") LongParam id) {
-    if (facilityDao.findById(id.get()) == null) {
+    Facility daoFacility = facilityDao.findById(id.get());
+
+    if (daoFacility == null) {
       throw new WebApplicationException(Status.NOT_FOUND);
     }
 
-    return facilityDao.findById(id.get());
+    return daoFacility;
   }
 
   /**
@@ -151,6 +158,8 @@ public class FacilityResource {
     facility.setId(id.get());
     facilityDao.update(facility);
 
+    WebSocketResource.informSubscribed("Facility", OperationType.CHANGE, facility);
+
     return Response.ok(facility).build();
   }
 
@@ -166,11 +175,15 @@ public class FacilityResource {
   @RolesAllowed("admin")
   @UnitOfWork
   public Response delete(@PathParam("id") LongParam id) {
-    if (facilityDao.findById(id.get()) == null) {
+    Facility daoFacility = facilityDao.findById(id.get());
+
+    if (daoFacility == null) {
       throw new WebApplicationException(Status.NOT_FOUND);
     }
 
-    facilityDao.delete(facilityDao.findById(id.get()));
+    facilityDao.delete(daoFacility);
+
+    WebSocketResource.informSubscribed("Facility", OperationType.REMOVE, daoFacility);
 
     return Response.noContent().build();
   }

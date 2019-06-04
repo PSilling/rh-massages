@@ -5,6 +5,7 @@ import { shallow } from "enzyme";
 
 // test imports
 import MyMassages from "../../views/MyMassages";
+import Fetch from "../../util/Fetch";
 
 // test mocks
 jest.mock("../../util/Fetch");
@@ -16,6 +17,10 @@ afterAll(() => {
 
 test("renders content correctly", () => {
   const wrapper = shallow(<MyMassages />);
+
+  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(2);
+  expect(Fetch.send).toHaveBeenCalledTimes(2);
+
   const link = wrapper.find(Link);
 
   expect(link.length).toBe(1);

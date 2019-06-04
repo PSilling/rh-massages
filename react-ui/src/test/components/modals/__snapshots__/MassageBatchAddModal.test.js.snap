@@ -6,7 +6,6 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <MassageBatchAddModal
     active={true}
     facilityId={1}
-    getCallback={[MockFunction]}
     masseuseNames={
       Array [
         "Masseuse Test",

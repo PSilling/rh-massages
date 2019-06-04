@@ -17,6 +17,9 @@ afterAll(() => {
 test("renders content correctly", () => {
   const wrapper = shallow(<Settings />);
 
+  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(1);
+  expect(Fetch.send).toHaveBeenCalledTimes(1);
+
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -27,7 +30,7 @@ test("properly changes state variables", () => {
   const wrapper = shallow(<Settings />);
 
   wrapper.instance().setState({ loading: true, notify: false });
-  wrapper.instance().getSettings();
+  wrapper.instance().getNotify();
   expect(wrapper.instance().state.notify).toEqual(true);
   expect(wrapper.instance().state.loading).toBe(false);
   wrapper.find({ className: "row" });

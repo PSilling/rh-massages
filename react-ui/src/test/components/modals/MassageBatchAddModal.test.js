@@ -19,7 +19,6 @@ afterAll(() => {
 });
 
 test("renders inside content with correct props", () => {
-  const testGetFunction = jest.fn();
   const testToggleFunction = jest.fn();
   const testMasseuses = [
     {
@@ -38,7 +37,6 @@ test("renders inside content with correct props", () => {
       facilityId={1}
       masseuses={testMasseuses}
       masseuseNames={testMasseuseNames}
-      getCallback={testGetFunction}
       onToggle={testToggleFunction}
       withPortal={false}
     />
@@ -56,11 +54,9 @@ test("renders inside content with correct props", () => {
 
   expect(testToggleFunction).toHaveBeenLastCalledWith(false);
   expect(testToggleFunction).toHaveBeenCalledTimes(2);
-  expect(testGetFunction).not.toHaveBeenCalled();
 
   actions.props().onProceed();
 
   expect(testToggleFunction).toHaveBeenCalledTimes(2);
-  expect(testGetFunction).not.toHaveBeenCalled();
   expect(wrapper).toMatchSnapshot();
 });

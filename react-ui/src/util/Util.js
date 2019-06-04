@@ -98,6 +98,20 @@ Util.findInArrayById = (array, id) => {
 };
 
 /**
+ * Searches a massage event array for a given massage ID.
+ * @param array array to search in
+ * @param id id to search for
+ */
+Util.findInArrayByMassageId = (array, id) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].massage.id === id) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+/**
  * Returns an array of tooltip targets for unique tooltip ID use.
  * @param  count number of tooltip targets to generate
  * @return       array of generated tooltip targets
@@ -118,6 +132,8 @@ Util.MASSAGES_URL = process.env.REACT_APP_MASSAGES_URL || "api/massages/";
 Util.CLIENTS_URL = process.env.REACT_APP_CLIENTS_URL || "api/clients/";
 /** url of /logout endpoint */
 Util.LOGOUT_URL = process.env.REACT_APP_LOGOUT_URL || "api/logout/";
+/** url of /logout endpoint */
+Util.SUBSCRIPTIONS_URL = process.env.REACT_APP_SUBSCRIPTIONS_URL || "api/websockets";
 /** GitHub project url */
 Util.GITHUB_URL = process.env.REACT_APP_GITHUB_URL || "https://github.com/";
 /** refresh time for authorization tokens in milliseconds */
@@ -128,6 +144,8 @@ Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) |
 Util.CANCELLATION_LIMIT = parseInt(process.env.REACT_APP_CANCELLATION_LIMIT, 10) || 30;
 /** maximum minute time of Massages per Client */
 Util.MAX_MASSAGE_MINS = parseInt(process.env.REACT_APP_MASSAGE_TIME_LIMIT, 10) || 120;
+/** maximum wait time for WebSocket actions */
+Util.WEBSOCKET_TIMEOUT_LIMIT = 500;//process.env.REACT_APP_WEBSOCKET_TIMEOUT_LIMIT || 250;
 /** display color of success events */
 Util.SUCCESS_COLOR = process.env.REACT_APP_SUCCESS_COLOR || "#2fad2f";
 /** display color of warning events */
