@@ -339,6 +339,9 @@ const myLocalize = new Localize({
   "Are you sure you want to create this schedule?": {
     cs: "Jste si jisti, že chcete vytvořit zadaný rozpis?"
   },
+  "Failed to read the file. Please try reloading the page.": {
+    cs: "Nepovedlo se načíst zvolený soubor. Zkuste stránku načíst znovu."
+  },
 
   // tooltips
   "Create multiple massages at once": {

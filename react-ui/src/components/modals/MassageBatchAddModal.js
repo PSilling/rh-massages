@@ -41,6 +41,10 @@ class MassageBatchAddModal extends Component {
     .split("_")
     .splice(0, 5);
 
+  englishWeekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+  czechWeekdays = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek"];
+
   radios = ["this month", "next month"];
 
   yesterday = moment().subtract(1, "day");
@@ -228,8 +232,8 @@ class MassageBatchAddModal extends Component {
       const pauseStart = this.cloneOverwritingDaytime(startTime, pauses[i].start);
       const pauseEnd = this.cloneOverwritingDaytime(startTime, pauses[i].end);
       if (
-        startTime.isBetween(pauseStart, pauseEnd, null, "[]") ||
-        endTime.isBetween(pauseStart, pauseEnd, null, "[]")
+        startTime.isBetween(pauseStart, pauseEnd, null, "[)") ||
+        endTime.isBetween(pauseStart, pauseEnd, null, "(]")
       ) {
         return true;
       }
@@ -322,6 +326,20 @@ class MassageBatchAddModal extends Component {
     this.props.onToggle(true);
   };
 
+  convertDayToLocale = (day, defaultValue) => {
+    const englishIndex = this.englishWeekdays.indexOf(day);
+    if (englishIndex !== -1) {
+      return this.czechWeekdays[englishIndex];
+    }
+
+    const czechIndex = this.czechWeekdays.indexOf(day);
+    if (czechIndex !== -1) {
+      return this.englishWeekdays[czechIndex];
+    }
+
+    return defaultValue;
+  };
+
   /**
    * Checks all rule values in the imported file. Any incorrectly supplied values
    * are replaced by default values.
@@ -334,11 +352,15 @@ class MassageBatchAddModal extends Component {
 
     for (let i = 0; i < this.weekdays.length; i++) {
       if (Util.isEmpty(importData.rules[i].day)) {
-        importData.rules[i].day = "–";
+        importData.rules[i].importData.rules[i].day = "–";
+      } else if (this.weekdays.indexOf(importData.rules[i].day) === -1) {
+        importData.rules[i].day = this.convertDayToLocale(importData.rules[i].day, "–");
       }
 
       if (Util.isEmpty(importData.rules[i].for)) {
         importData.rules[i].for = this.weekdays[i];
+      } else if (this.weekdays.indexOf(importData.rules[i].for) === -1) {
+        importData.rules[i].for = this.convertDayToLocale(importData.rules[i].for, this.weekdays[i]);
       }
 
       if (Util.isEmpty(importData.rules[i].disabled)) {
@@ -382,8 +404,9 @@ class MassageBatchAddModal extends Component {
       importData.thisMonth = false;
     }
 
-    if (Util.isEmpty(importData.masseuse)) {
-      importData.masseuse = this.getMasseuse();
+    const masseuseName = `${importData.masseuse.name} ${importData.masseuse.surname}`;
+    if (Util.isEmpty(importData.masseuse) || this.props.masseuseNames.indexOf(masseuseName) === -1) {
+      importData.masseuse = null;
     }
 
     if (Util.isEmpty(importData.massageDuration)) {
@@ -410,21 +433,25 @@ class MassageBatchAddModal extends Component {
       return;
     }
 
-    const fileReader = new FileReader();
-    fileReader.onload = (reader => () => {
-      const content = reader.result;
-      const importData = this.handleImportedFile(JSON.parse(content));
-      if (importData !== null) {
-        this.setState({
-          rules: importData.rules,
-          thisMonth: importData.thisMonth,
-          masseuse: Auth.isAdmin() ? importData.masseuse : this.getMasseuse(),
-          massageDuration: importData.massageDuration,
-          normalPause: importData.normalPause
-        });
-      }
-    })(fileReader);
-    fileReader.readAsText(event.target.files[0]);
+    try {
+      const fileReader = new FileReader();
+      fileReader.onload = (reader => () => {
+        const content = reader.result;
+        const importData = this.handleImportedFile(JSON.parse(content));
+        if (importData !== null) {
+          this.setState(prevState => ({
+            rules: importData.rules,
+            thisMonth: importData.thisMonth,
+            masseuse: Auth.isAdmin() && importData.masseuse !== null ? importData.masseuse : prevState.masseuse,
+            massageDuration: importData.massageDuration,
+            normalPause: importData.normalPause
+          }));
+        }
+      })(fileReader);
+      fileReader.readAsText(event.target.files[0]);
+    } catch (e) {
+      Util.notify("error", "", _t.translate("Failed to read the file. Please try reloading the page."));
+    }
   };
 
   /**
