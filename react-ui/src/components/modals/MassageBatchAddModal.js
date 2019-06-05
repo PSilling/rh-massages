@@ -225,20 +225,21 @@ class MassageBatchAddModal extends Component {
   };
 
   /**
-   * Checks whether a given time window is inside an array of pauses.
+   * Checks whether a given time window is inside an array of pauses and if so, skips them.
    */
-  isInPauseWindow = (startTime, endTime, pauses) => {
+  skipPauses = (timeObject, pauses) => {
     for (let i = 0; i < pauses.length; i++) {
-      const pauseStart = this.cloneOverwritingDaytime(startTime, pauses[i].start);
-      const pauseEnd = this.cloneOverwritingDaytime(startTime, pauses[i].end);
+      const pauseStart = this.cloneOverwritingDaytime(timeObject.startTime, pauses[i].start);
+      const pauseEnd = this.cloneOverwritingDaytime(timeObject.startTime, pauses[i].end);
       if (
-        startTime.isBetween(pauseStart, pauseEnd, null, "[)") ||
-        endTime.isBetween(pauseStart, pauseEnd, null, "(]")
+        timeObject.startTime.isBetween(pauseStart, pauseEnd, null, "[)") ||
+        timeObject.endTime.isBetween(pauseStart, pauseEnd, null, "(]")
       ) {
-        return true;
+        timeObject.startTime = pauseEnd.clone();
+        pauseEnd.add(this.state.massageDuration.hours(), "hours").add(this.state.massageDuration.minutes(), "minutes");
+        timeObject.endTime = pauseEnd;
       }
     }
-    return false;
   };
 
   /**
@@ -293,9 +294,9 @@ class MassageBatchAddModal extends Component {
         ) {
           const sourceIndex = this.getSourceIndex(i);
           if (sourceIndex !== -1) {
-            const currentStartTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].startTime);
-            const endTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].endTime);
+            let currentStartTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].startTime);
             let startTime = currentStartTime.clone();
+            const endTime = this.cloneOverwritingDaytime(date, this.state.rules[sourceIndex].endTime);
 
             while (
               !currentStartTime
@@ -303,16 +304,19 @@ class MassageBatchAddModal extends Component {
                 .add(massageMins, "minutes")
                 .isAfter(endTime)
             ) {
-              if (!this.isInPauseWindow(startTime, currentStartTime, this.state.rules[sourceIndex].bigPauses)) {
-                postArray.push({
-                  date: startTime.toDate(),
-                  ending: currentStartTime.toDate(),
-                  masseuse: this.state.masseuse,
-                  client: null,
-                  facility: { id: this.props.facilityId }
-                });
-                currentStartTime.add(pauseHours, "hours").add(pauseMins, "minutes");
-              }
+              const timeObject = { startTime, endTime: currentStartTime };
+              this.skipPauses(timeObject, this.state.rules[sourceIndex].bigPauses);
+              ({ startTime } = timeObject);
+              currentStartTime = timeObject.endTime;
+
+              postArray.push({
+                date: startTime.toDate(),
+                ending: currentStartTime.toDate(),
+                masseuse: this.state.masseuse,
+                client: null,
+                facility: { id: this.props.facilityId }
+              });
+              currentStartTime.add(pauseHours, "hours").add(pauseMins, "minutes");
               startTime = currentStartTime.clone();
             }
           }
