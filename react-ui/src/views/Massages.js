@@ -41,7 +41,7 @@ class Massages extends Component {
     batchAddModalActive: false,
     activeEventTooltip: null,
     events: [],
-    freeOnly: false,
+    showAll: !JSON.parse(localStorage.getItem("hideAssignedMassages")),
     from: moment()
       .startOf("isoWeek")
       .subtract(7, "days"),
@@ -98,9 +98,8 @@ class Massages extends Component {
   getMassages = () => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
       Fetch.get(
-        `${Util.FACILITIES_URL + this.state.facilities[this.state.index].id}/massages?free=${
-          this.state.freeOnly
-        }&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
+        `${Util.FACILITIES_URL + this.state.facilities[this.state.index].id}/massages?free=${!this.state
+          .showAll}&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
         json => {
           if (
             this.state.mounted &&
@@ -281,8 +280,9 @@ class Massages extends Component {
     });
   };
 
-  changeFreeOnly = () => {
-    this.setState(prevState => ({ freeOnly: !prevState.freeOnly, loading: true }));
+  changeShowAll = () => {
+    localStorage.setItem("hideAssignedMassages", JSON.stringify(this.state.showAll));
+    this.setState(prevState => ({ showAll: !prevState.showAll, loading: true }));
     setTimeout(() => this.getMassages(), 3);
   };
 
@@ -410,10 +410,10 @@ class Massages extends Component {
               <Row>
                 <Col md="6">
                   <TooltipButton
-                    label={_t.translate("Only free")}
-                    onClick={this.changeFreeOnly}
-                    active={this.state.freeOnly}
-                    tooltip={_t.translate("Display only free massages")}
+                    label={_t.translate("Show all")}
+                    onClick={this.changeShowAll}
+                    active={this.state.showAll}
+                    tooltip={_t.translate("Show massages already taken by others")}
                   />
                 </Col>
                 <Col md="6" className="text-right">

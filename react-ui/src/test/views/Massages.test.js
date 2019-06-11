@@ -106,9 +106,9 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.selectEvents).toBe(true);
   tooltipButtons.get(1).props.onClick();
   expect(wrapper.instance().state.selectEvents).toBe(false);
-  expect(tooltipButtons.get(0).props.active).toBe(false);
+  expect(tooltipButtons.get(0).props.active).toBe(true);
   tooltipButtons.get(0).props.onClick();
-  expect(wrapper.instance().state.freeOnly).toBe(true);
+  expect(wrapper.instance().state.showAll).toBe(false);
 
   expect(wrapper.instance().state.batchAddModalActive).toBe(false);
   expect(wrapper.instance().state.modalActive).toBe(false);

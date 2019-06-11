@@ -65,12 +65,12 @@ ShallowWrapper {
                 }
               >
                 <TooltipButton
-                  active={false}
+                  active={true}
                   disabled={false}
-                  label="Only free"
+                  label="Show all"
                   onClick={[Function]}
                   outline={true}
-                  tooltip="Display only free massages"
+                  tooltip="Show massages already taken by others"
                 />
               </Col>
               <Col
@@ -206,12 +206,12 @@ ShallowWrapper {
                 }
               >
                 <TooltipButton
-                  active={false}
+                  active={true}
                   disabled={false}
-                  label="Only free"
+                  label="Show all"
                   onClick={[Function]}
                   outline={true}
-                  tooltip="Display only free massages"
+                  tooltip="Show massages already taken by others"
                 />
               </Col>
               <Col
@@ -333,12 +333,12 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={false}
+                    active={true}
                     disabled={false}
-                    label="Only free"
+                    label="Show all"
                     onClick={[Function]}
                     outline={true}
-                    tooltip="Display only free massages"
+                    tooltip="Show massages already taken by others"
                   />
                 </Col>
                 <Col
@@ -487,12 +487,12 @@ ShallowWrapper {
                     }
                   >
                     <TooltipButton
-                      active={false}
+                      active={true}
                       disabled={false}
-                      label="Only free"
+                      label="Show all"
                       onClick={[Function]}
                       outline={true}
-                      tooltip="Display only free massages"
+                      tooltip="Show massages already taken by others"
                     />
                   </Col>,
                   <Col
@@ -559,12 +559,12 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "children": <TooltipButton
-                      active={false}
+                      active={true}
                       disabled={false}
-                      label="Only free"
+                      label="Show all"
                       onClick={[Function]}
                       outline={true}
-                      tooltip="Display only free massages"
+                      tooltip="Show massages already taken by others"
                     />,
                     "md": "6",
                     "tag": "div",
@@ -582,12 +582,12 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "active": false,
+                      "active": true,
                       "disabled": false,
-                      "label": "Only free",
+                      "label": "Show all",
                       "onClick": [Function],
                       "outline": true,
-                      "tooltip": "Display only free massages",
+                      "tooltip": "Show massages already taken by others",
                     },
                     "ref": null,
                     "rendered": null,
@@ -859,12 +859,12 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={false}
+                    active={true}
                     disabled={false}
-                    label="Only free"
+                    label="Show all"
                     onClick={[Function]}
                     outline={true}
-                    tooltip="Display only free massages"
+                    tooltip="Show massages already taken by others"
                   />
                 </Col>
                 <Col
@@ -1000,12 +1000,12 @@ ShallowWrapper {
                   }
                 >
                   <TooltipButton
-                    active={false}
+                    active={true}
                     disabled={false}
-                    label="Only free"
+                    label="Show all"
                     onClick={[Function]}
                     outline={true}
-                    tooltip="Display only free massages"
+                    tooltip="Show massages already taken by others"
                   />
                 </Col>
                 <Col
@@ -1127,12 +1127,12 @@ ShallowWrapper {
                     }
                   >
                     <TooltipButton
-                      active={false}
+                      active={true}
                       disabled={false}
-                      label="Only free"
+                      label="Show all"
                       onClick={[Function]}
                       outline={true}
-                      tooltip="Display only free massages"
+                      tooltip="Show massages already taken by others"
                     />
                   </Col>
                   <Col
@@ -1281,12 +1281,12 @@ ShallowWrapper {
                       }
                     >
                       <TooltipButton
-                        active={false}
+                        active={true}
                         disabled={false}
-                        label="Only free"
+                        label="Show all"
                         onClick={[Function]}
                         outline={true}
-                        tooltip="Display only free massages"
+                        tooltip="Show massages already taken by others"
                       />
                     </Col>,
                     <Col
@@ -1353,12 +1353,12 @@ ShallowWrapper {
                     "nodeType": "function",
                     "props": Object {
                       "children": <TooltipButton
-                        active={false}
+                        active={true}
                         disabled={false}
-                        label="Only free"
+                        label="Show all"
                         onClick={[Function]}
                         outline={true}
-                        tooltip="Display only free massages"
+                        tooltip="Show massages already taken by others"
                       />,
                       "md": "6",
                       "tag": "div",
@@ -1376,12 +1376,12 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "active": false,
+                        "active": true,
                         "disabled": false,
-                        "label": "Only free",
+                        "label": "Show all",
                         "onClick": [Function],
                         "outline": true,
-                        "tooltip": "Display only free massages",
+                        "tooltip": "Show massages already taken by others",
                       },
                       "ref": null,
                       "rendered": null,

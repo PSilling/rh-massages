@@ -181,8 +181,8 @@ const myLocalize = new Localize({
   Name: {
     cs: "Název"
   },
-  "Only free": {
-    cs: "Pouze volné"
+  "Show all": {
+    cs: "Zobrazit vše"
   },
   Select: {
     cs: "Vybírat"
@@ -371,8 +371,8 @@ const myLocalize = new Localize({
   "Select multiple massages for batch operations": {
     cs: "Výběr více masáží pro hromadné operace"
   },
-  "Display only free massages": {
-    cs: "Zobrazit pouze volné masáže"
+  "Show massages already taken by others": {
+    cs: "Zobrazit masáže již přiřazené ostatním"
   },
   "Ignore this day when creating the massages": {
     cs: "Ignorovat tento den při tvorbě masáží"
