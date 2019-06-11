@@ -28,9 +28,6 @@ const CalendarToolbar = function CalendarToolbar(props) {
           <TooltipIconButton
             icon="chevron-circle-left"
             onClick={props.leftAction}
-            tooltip={`${_t.translate("Previous")} ${
-              props.monthActive ? _t.translate("Month").toLowerCase() : _t.translate("Week").toLowerCase()
-            }`}
             disabled={props.leftDisabled}
             size="md"
           />
@@ -54,9 +51,6 @@ const CalendarToolbar = function CalendarToolbar(props) {
           <TooltipIconButton
             icon="chevron-circle-right"
             onClick={props.rightAction}
-            tooltip={`${_t.translate("Next")} ${
-              props.monthActive ? _t.translate("Month").toLowerCase() : _t.translate("Week").toLowerCase()
-            }`}
             disabled={props.rightDisabled}
             size="md"
           />

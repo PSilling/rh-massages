@@ -119,7 +119,6 @@ class MyMassages extends Component {
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <div className="no-print">
-          {this.state.loading && <div className="loader float-right" style={{ marginTop: "-1.4em" }} />}
           <Nav tabs className="mb-3 mt-4">
             <Tab active={this.state.index === 0} label={_t.translate("All")} onClick={() => this.changeTabIndex(0)} />
             {this.state.facilities.map((item, index) => (
@@ -130,6 +129,9 @@ class MyMassages extends Component {
                 onClick={() => this.changeTabIndex(index + 1)}
               />
             ))}
+            <span style={{ width: "100%" }}>
+              {this.state.loading && <div className="loader float-right" style={{ marginTop: "-2.5em" }} />}
+            </span>
           </Nav>
         </div>
         {this.state.filteredEvents.length > 0 && this.state.events[0] !== undefined ? (

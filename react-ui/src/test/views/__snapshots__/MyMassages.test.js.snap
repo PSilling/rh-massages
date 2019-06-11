@@ -38,6 +38,13 @@ ShallowWrapper {
               onClick={[Function]}
               onRemoveClick={null}
             />
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
           </Nav>
         </div>,
         <MyMassagePanel
@@ -81,66 +88,88 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": Array [
-            false,
-            <Nav
-              className="mb-3 mt-4"
-              tabs={true}
-              tag="ul"
-              vertical={false}
-            >
+          "children": <Nav
+            className="mb-3 mt-4"
+            tabs={true}
+            tag="ul"
+            vertical={false}
+          >
+            <Tab
+              active={true}
+              label="All"
+              onClick={[Function]}
+              onRemoveClick={null}
+            />
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
+          </Nav>,
+          "className": "no-print",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
               <Tab
                 active={true}
                 label="All"
                 onClick={[Function]}
                 onRemoveClick={null}
-              />
-            </Nav>,
-          ],
-          "className": "no-print",
-        },
-        "ref": null,
-        "rendered": Array [
-          false,
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <Tab
-                  active={true}
-                  label="All"
-                  onClick={[Function]}
-                  onRemoveClick={null}
-                />,
-                Array [],
-              ],
-              "className": "mb-3 mt-4",
-              "tabs": true,
-              "tag": "ul",
-              "vertical": false,
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "active": true,
-                  "label": "All",
-                  "onClick": [Function],
-                  "onRemoveClick": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              />,
+              Array [],
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />,
             ],
-            "type": [Function],
+            "className": "mb-3 mt-4",
+            "tabs": true,
+            "tag": "ul",
+            "vertical": false,
           },
-        ],
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "active": true,
+                "label": "All",
+                "onClick": [Function],
+                "onRemoveClick": null,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": false,
+                "style": Object {
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": false,
+              "type": "span",
+            },
+          ],
+          "type": [Function],
+        },
         "type": "div",
       },
       Object {
@@ -198,6 +227,13 @@ ShallowWrapper {
                 onClick={[Function]}
                 onRemoveClick={null}
               />
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
             </Nav>
           </div>,
           <MyMassagePanel
@@ -241,66 +277,88 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": Array [
-              false,
-              <Nav
-                className="mb-3 mt-4"
-                tabs={true}
-                tag="ul"
-                vertical={false}
-              >
+            "children": <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
+            </Nav>,
+            "className": "no-print",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
                 <Tab
                   active={true}
                   label="All"
                   onClick={[Function]}
                   onRemoveClick={null}
-                />
-              </Nav>,
-            ],
-            "className": "no-print",
-          },
-          "ref": null,
-          "rendered": Array [
-            false,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": Array [
-                  <Tab
-                    active={true}
-                    label="All"
-                    onClick={[Function]}
-                    onRemoveClick={null}
-                  />,
-                  Array [],
-                ],
-                "className": "mb-3 mt-4",
-                "tabs": true,
-                "tag": "ul",
-                "vertical": false,
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "active": true,
-                    "label": "All",
-                    "onClick": [Function],
-                    "onRemoveClick": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
+                />,
+                Array [],
+                <span
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                />,
               ],
-              "type": [Function],
+              "className": "mb-3 mt-4",
+              "tabs": true,
+              "tag": "ul",
+              "vertical": false,
             },
-          ],
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "active": true,
+                  "label": "All",
+                  "onClick": [Function],
+                  "onRemoveClick": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": false,
+                  "style": Object {
+                    "width": "100%",
+                  },
+                },
+                "ref": null,
+                "rendered": false,
+                "type": "span",
+              },
+            ],
+            "type": [Function],
+          },
           "type": "div",
         },
         Object {
@@ -390,6 +448,13 @@ ShallowWrapper {
               onClick={[Function]}
               onRemoveClick={null}
             />
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
           </Nav>
         </div>,
         <h3>
@@ -428,66 +493,88 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": Array [
-            false,
-            <Nav
-              className="mb-3 mt-4"
-              tabs={true}
-              tag="ul"
-              vertical={false}
-            >
+          "children": <Nav
+            className="mb-3 mt-4"
+            tabs={true}
+            tag="ul"
+            vertical={false}
+          >
+            <Tab
+              active={true}
+              label="All"
+              onClick={[Function]}
+              onRemoveClick={null}
+            />
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
+          </Nav>,
+          "className": "no-print",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
               <Tab
                 active={true}
                 label="All"
                 onClick={[Function]}
                 onRemoveClick={null}
-              />
-            </Nav>,
-          ],
-          "className": "no-print",
-        },
-        "ref": null,
-        "rendered": Array [
-          false,
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <Tab
-                  active={true}
-                  label="All"
-                  onClick={[Function]}
-                  onRemoveClick={null}
-                />,
-                Array [],
-              ],
-              "className": "mb-3 mt-4",
-              "tabs": true,
-              "tag": "ul",
-              "vertical": false,
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "active": true,
-                  "label": "All",
-                  "onClick": [Function],
-                  "onRemoveClick": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              />,
+              Array [],
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />,
             ],
-            "type": [Function],
+            "className": "mb-3 mt-4",
+            "tabs": true,
+            "tag": "ul",
+            "vertical": false,
           },
-        ],
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "active": true,
+                "label": "All",
+                "onClick": [Function],
+                "onRemoveClick": null,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": false,
+                "style": Object {
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": false,
+              "type": "span",
+            },
+          ],
+          "type": [Function],
+        },
         "type": "div",
       },
       Object {
@@ -562,6 +649,13 @@ ShallowWrapper {
                 onClick={[Function]}
                 onRemoveClick={null}
               />
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
             </Nav>
           </div>,
           <h3>
@@ -600,66 +694,88 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": Array [
-              false,
-              <Nav
-                className="mb-3 mt-4"
-                tabs={true}
-                tag="ul"
-                vertical={false}
-              >
+            "children": <Nav
+              className="mb-3 mt-4"
+              tabs={true}
+              tag="ul"
+              vertical={false}
+            >
+              <Tab
+                active={true}
+                label="All"
+                onClick={[Function]}
+                onRemoveClick={null}
+              />
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
+            </Nav>,
+            "className": "no-print",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
                 <Tab
                   active={true}
                   label="All"
                   onClick={[Function]}
                   onRemoveClick={null}
-                />
-              </Nav>,
-            ],
-            "className": "no-print",
-          },
-          "ref": null,
-          "rendered": Array [
-            false,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": Array [
-                  <Tab
-                    active={true}
-                    label="All"
-                    onClick={[Function]}
-                    onRemoveClick={null}
-                  />,
-                  Array [],
-                ],
-                "className": "mb-3 mt-4",
-                "tabs": true,
-                "tag": "ul",
-                "vertical": false,
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "active": true,
-                    "label": "All",
-                    "onClick": [Function],
-                    "onRemoveClick": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
+                />,
+                Array [],
+                <span
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                />,
               ],
-              "type": [Function],
+              "className": "mb-3 mt-4",
+              "tabs": true,
+              "tag": "ul",
+              "vertical": false,
             },
-          ],
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "active": true,
+                  "label": "All",
+                  "onClick": [Function],
+                  "onRemoveClick": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": false,
+                  "style": Object {
+                    "width": "100%",
+                  },
+                },
+                "ref": null,
+                "rendered": false,
+                "type": "span",
+              },
+            ],
+            "type": [Function],
+          },
           "type": "div",
         },
         Object {

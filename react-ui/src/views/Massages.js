@@ -396,8 +396,7 @@ class Massages extends Component {
         <div className="my-3">
           {this.state.facilities !== undefined && this.state.facilities.length > 0 ? (
             <div>
-              {this.state.loading && <div className="loader float-right" style={{ marginTop: "-1.4em" }} />}
-              <Nav tabs className="mb-3 mt-4">
+              <Nav tabs className="mb-1 mt-4">
                 {this.state.facilities.map((item, index) => (
                   <Tab
                     active={index === this.state.index}
@@ -406,56 +405,59 @@ class Massages extends Component {
                     onClick={() => this.changeTabIndex(index)}
                   />
                 ))}
+                <span style={{ width: "100%" }}>
+                  <span className="float-right">
+                    <div style={{ marginTop: "-3em", marginLeft: "2.2em" }}>
+                      <TooltipButton
+                        label={_t.translate("Show all")}
+                        onClick={this.changeShowAll}
+                        active={this.state.showAll}
+                        tooltip={_t.translate("Show massages already taken by others")}
+                      />
+                    </div>
+                    {this.state.loading && <div className="loader" style={{ marginTop: "-1.9em" }} />}
+                  </span>
+                </span>
               </Nav>
-              <Row>
-                <Col md="6">
-                  <TooltipButton
-                    label={_t.translate("Show all")}
-                    onClick={this.changeShowAll}
-                    active={this.state.showAll}
-                    tooltip={_t.translate("Show massages already taken by others")}
-                  />
-                </Col>
-                <Col md="6" className="text-right">
-                  {Auth.isAdminOrMasseur() && (
-                    <span>
-                      {Auth.isAdminOrMasseur() && (
-                        <TooltipButton
-                          className="mr-2"
-                          label={_t.translate("Select")}
-                          onClick={this.changeSelectEvents}
-                          active={this.state.selectEvents}
-                          tooltip={_t.translate("Select multiple massages for batch operations")}
-                        />
-                      )}
-                      <ConfirmationButton
-                        onConfirm={this.deleteSelectedMassages}
-                        label={_t.translate("Delete selected")}
-                        disabled={this.state.selected.length === 0}
-                        tooltip={_t.translate("Delete selected massages")}
-                      />
-                      <MassageBatchAddModal
-                        className="mx-2"
-                        active={this.state.batchAddModalActive}
-                        masseuses={this.state.masseuses}
-                        masseuseNames={this.state.masseuseNames}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        getCallback={this.getMassages}
-                        onToggle={deselect => this.toggleBatchAddModal(deselect)}
-                      />
-                      <MassageModal
-                        active={this.state.modalActive}
-                        massage={this.state.editMassage}
-                        masseuses={this.state.masseuses}
-                        masseuseNames={this.state.masseuseNames}
-                        facilityId={this.state.facilities[this.state.index].id}
-                        getCallback={this.getMassages}
-                        onToggle={() => this.toggleModal(null)}
-                      />
-                    </span>
-                  )}
-                </Col>
-              </Row>
+              {Auth.isAdminOrMasseur() && (
+                <Row className="mt-3">
+                  <Col md="6">
+                    <MassageModal
+                      active={this.state.modalActive}
+                      massage={this.state.editMassage}
+                      masseuses={this.state.masseuses}
+                      masseuseNames={this.state.masseuseNames}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={() => this.toggleModal(null)}
+                    />
+                    <MassageBatchAddModal
+                      className="ml-2"
+                      active={this.state.batchAddModalActive}
+                      masseuses={this.state.masseuses}
+                      masseuseNames={this.state.masseuseNames}
+                      facilityId={this.state.facilities[this.state.index].id}
+                      getCallback={this.getMassages}
+                      onToggle={deselect => this.toggleBatchAddModal(deselect)}
+                    />
+                  </Col>
+                  <Col md="6" className="text-right">
+                    <TooltipButton
+                      className="mr-2"
+                      label={_t.translate("Select")}
+                      onClick={this.changeSelectEvents}
+                      active={this.state.selectEvents}
+                      tooltip={_t.translate("Select multiple massages for batch operations")}
+                    />
+                    <ConfirmationButton
+                      onConfirm={this.deleteSelectedMassages}
+                      label={_t.translate("Delete selected")}
+                      disabled={this.state.selected.length === 0}
+                      tooltip={_t.translate("Delete selected massages")}
+                    />
+                  </Col>
+                </Row>
+              )}
               <CalendarPanel
                 events={this.state.events}
                 selectEvents={this.state.selectEvents}

@@ -96,7 +96,7 @@ ShallowWrapper {
                   "border": "0px solid transparent",
                 }
               }
-              tooltip="Previous month"
+              tooltip=""
             />
           </Col>
           <Col
@@ -162,7 +162,7 @@ ShallowWrapper {
                   "border": "0px solid transparent",
                 }
               }
-              tooltip="Next month"
+              tooltip=""
             />
           </Col>
         </Row>,
@@ -260,7 +260,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Previous month"
+                tooltip=""
               />
             </Col>,
             <Col
@@ -326,7 +326,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Next month"
+                tooltip=""
               />
             </Col>,
           ],
@@ -350,7 +350,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Previous month"
+                tooltip=""
               />,
               "md": "1",
               "tag": "div",
@@ -375,7 +375,7 @@ ShallowWrapper {
                 "style": Object {
                   "border": "0px solid transparent",
                 },
-                "tooltip": "Previous month",
+                "tooltip": "",
               },
               "ref": null,
               "rendered": null,
@@ -508,7 +508,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Next month"
+                tooltip=""
               />,
               "className": "text-right",
               "md": "1",
@@ -534,7 +534,7 @@ ShallowWrapper {
                 "style": Object {
                   "border": "0px solid transparent",
                 },
-                "tooltip": "Next month",
+                "tooltip": "",
               },
               "ref": null,
               "rendered": null,
@@ -604,7 +604,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Previous month"
+                tooltip=""
               />
             </Col>
             <Col
@@ -670,7 +670,7 @@ ShallowWrapper {
                     "border": "0px solid transparent",
                   }
                 }
-                tooltip="Next month"
+                tooltip=""
               />
             </Col>
           </Row>,
@@ -768,7 +768,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Previous month"
+                  tooltip=""
                 />
               </Col>,
               <Col
@@ -834,7 +834,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Next month"
+                  tooltip=""
                 />
               </Col>,
             ],
@@ -858,7 +858,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Previous month"
+                  tooltip=""
                 />,
                 "md": "1",
                 "tag": "div",
@@ -883,7 +883,7 @@ ShallowWrapper {
                   "style": Object {
                     "border": "0px solid transparent",
                   },
-                  "tooltip": "Previous month",
+                  "tooltip": "",
                 },
                 "ref": null,
                 "rendered": null,
@@ -1016,7 +1016,7 @@ ShallowWrapper {
                       "border": "0px solid transparent",
                     }
                   }
-                  tooltip="Next month"
+                  tooltip=""
                 />,
                 "className": "text-right",
                 "md": "1",
@@ -1042,7 +1042,7 @@ ShallowWrapper {
                   "style": Object {
                     "border": "0px solid transparent",
                   },
-                  "tooltip": "Next month",
+                  "tooltip": "",
                 },
                 "ref": null,
                 "rendered": null,
