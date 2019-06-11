@@ -88,7 +88,7 @@ test("renders content with correct props and funcionality", () => {
     <CalendarPanel
       events={testEvents}
       selected={[]}
-      selectEvents
+      selectEvents={false}
       massageMinutes={0}
       onAssign={testAssignFunction}
       onCancel={testCancelFunction}
@@ -97,7 +97,7 @@ test("renders content with correct props and funcionality", () => {
       onDelete={testDeleteFunction}
       onDateChange={testDateChangeFunction}
       onSelect={testSelectFunction}
-      onSelectDay={testSelectFunction}
+      onMultiSelect={testSelectFunction}
     />
   );
 

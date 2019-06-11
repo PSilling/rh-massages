@@ -131,10 +131,10 @@ ShallowWrapper {
         ],
       }
     }
+    onMultiSelect={[MockFunction]}
     onSelect={[MockFunction]}
-    onSelectDay={[MockFunction]}
     onTooltipTrigger={[Function]}
-    selectEvents={true}
+    selectEvents={false}
     selected={Array []}
   />,
   Symbol(enzyme.__renderer__): Object {

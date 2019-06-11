@@ -249,7 +249,7 @@ class MassagesArchive extends Component {
           onDelete={this.deleteMassage}
           onDateChange={this.changeTimeRange}
           onSelect={this.handleEventSelect}
-          onSelectDay={this.handleDayEventSelect}
+          onMultiSelect={this.handleDayEventSelect}
         />
       </div>
     );

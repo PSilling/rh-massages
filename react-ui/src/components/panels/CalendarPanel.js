@@ -162,7 +162,12 @@ class CalendarPanel extends Component {
 
   changeView = view => {
     this.setState({ view });
-    this.props.onDateChange(this.state.date, view);
+
+    if (this.props.selectEvents && view === this.state.view) {
+      this.props.onMultiSelect(this.state.date, view === "month" ? "month" : "isoWeek");
+    } else {
+      this.props.onDateChange(this.state.date, view);
+    }
   };
 
   changeDate = left => {
@@ -246,7 +251,9 @@ class CalendarPanel extends Component {
                 ),
                 work_week: {
                   header: props =>
-                    WeekdayHeader(props, Auth.isAdminOrMasseur() && this.props.selectEvents, this.props.onSelectDay)
+                    WeekdayHeader(props, Auth.isAdminOrMasseur() && this.props.selectEvents, date =>
+                      this.props.onMultiSelect(date, "day")
+                    )
                 }
               }}
             />
@@ -343,8 +350,8 @@ CalendarPanel.propTypes = {
   onDelete: PropTypes.func.isRequired,
   /** function called on event selection */
   onSelect: PropTypes.func.isRequired,
-  /** function called on full day event selection */
-  onSelectDay: PropTypes.func.isRequired,
+  /** function called on full multiple event selection */
+  onMultiSelect: PropTypes.func.isRequired,
   /** all currently selected events */
   selected: PropTypes.arrayOf(
     PropTypes.shape({

@@ -138,8 +138,8 @@ ShallowWrapper {
               onDateChange={[Function]}
               onDelete={[Function]}
               onEdit={[Function]}
+              onMultiSelect={[Function]}
               onSelect={[Function]}
-              onSelectDay={[Function]}
               onTooltipTrigger={[Function]}
               selectEvents={false}
               selected={Array []}
@@ -279,8 +279,8 @@ ShallowWrapper {
               onDateChange={[Function]}
               onDelete={[Function]}
               onEdit={[Function]}
+              onMultiSelect={[Function]}
               onSelect={[Function]}
-              onSelectDay={[Function]}
               onTooltipTrigger={[Function]}
               selectEvents={false}
               selected={Array []}
@@ -406,8 +406,8 @@ ShallowWrapper {
                 onDateChange={[Function]}
                 onDelete={[Function]}
                 onEdit={[Function]}
+                onMultiSelect={[Function]}
                 onSelect={[Function]}
-                onSelectDay={[Function]}
                 onTooltipTrigger={[Function]}
                 selectEvents={false}
                 selected={Array []}
@@ -787,8 +787,8 @@ ShallowWrapper {
                 "onDateChange": [Function],
                 "onDelete": [Function],
                 "onEdit": [Function],
+                "onMultiSelect": [Function],
                 "onSelect": [Function],
-                "onSelectDay": [Function],
                 "onTooltipTrigger": [Function],
                 "selectEvents": false,
                 "selected": Array [],
@@ -932,8 +932,8 @@ ShallowWrapper {
                 onDateChange={[Function]}
                 onDelete={[Function]}
                 onEdit={[Function]}
+                onMultiSelect={[Function]}
                 onSelect={[Function]}
-                onSelectDay={[Function]}
                 onTooltipTrigger={[Function]}
                 selectEvents={false}
                 selected={Array []}
@@ -1073,8 +1073,8 @@ ShallowWrapper {
                 onDateChange={[Function]}
                 onDelete={[Function]}
                 onEdit={[Function]}
+                onMultiSelect={[Function]}
                 onSelect={[Function]}
-                onSelectDay={[Function]}
                 onTooltipTrigger={[Function]}
                 selectEvents={false}
                 selected={Array []}
@@ -1200,8 +1200,8 @@ ShallowWrapper {
                   onDateChange={[Function]}
                   onDelete={[Function]}
                   onEdit={[Function]}
+                  onMultiSelect={[Function]}
                   onSelect={[Function]}
-                  onSelectDay={[Function]}
                   onTooltipTrigger={[Function]}
                   selectEvents={false}
                   selected={Array []}
@@ -1581,8 +1581,8 @@ ShallowWrapper {
                   "onDateChange": [Function],
                   "onDelete": [Function],
                   "onEdit": [Function],
+                  "onMultiSelect": [Function],
                   "onSelect": [Function],
-                  "onSelectDay": [Function],
                   "onTooltipTrigger": [Function],
                   "selectEvents": false,
                   "selected": Array [],

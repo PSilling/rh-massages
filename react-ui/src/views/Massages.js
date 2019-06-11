@@ -238,20 +238,42 @@ class Massages extends Component {
     });
   };
 
-  handleDayEventSelect = date => {
-    const start = moment(date);
+  /**
+   * Enables dynamic event selection for longer period of time.
+   * If no massage is added using the given timeframe, removes the selection instead.
+   */
+  handleMultiEventSelect = (date, length) => {
+    const start = moment(date)
+      .clone()
+      .startOf(length);
     const end = moment(date)
       .clone()
-      .endOf("day");
+      .endOf(length);
+    const massages = [];
+    let removedCount = 0;
+    let index;
+    let massage;
 
     this.setState(prevState => {
       const selected = [...prevState.selected];
 
       for (let i = 0; i < prevState.events.length; i++) {
-        if (Auth.isAdmin() || Auth.getSub() === prevState.events[i].massage.masseuse.sub) {
-          if (moment(prevState.events[i].massage.date).isBetween(start, end)) {
-            selected.push(prevState.events[i].massage);
+        ({ massage } = prevState.events[i]);
+
+        if ((Auth.isAdmin() || Auth.getSub() === massage.masseuse.sub) && moment(massage.date).isBetween(start, end)) {
+          massages.push(massage);
+
+          index = Util.findInArrayById(selected, massage.id);
+          if (index !== -1) {
+            selected.splice(index, 1);
+            removedCount++;
           }
+        }
+      }
+
+      if (removedCount !== massages.length) {
+        for (let i = 0; i < massages.length; i++) {
+          selected.push(massages[i]);
         }
       }
 
@@ -447,7 +469,7 @@ class Massages extends Component {
                 onDelete={this.deleteMassage}
                 onDateChange={this.changeTimeRange}
                 onSelect={this.handleEventSelect}
-                onSelectDay={this.handleDayEventSelect}
+                onMultiSelect={this.handleMultiEventSelect}
                 onTooltipTrigger={this.changeTooltipActive}
               />
             </div>
