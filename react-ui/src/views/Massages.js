@@ -136,21 +136,25 @@ class Massages extends Component {
 
     const events = [...this.state.events];
     const index = Util.findInArrayByMassageId(events, massage.id);
-    let { selected } = this.state;
+    let { selected, massageMinutes } = this.state;
     let selectedIndex;
 
     switch (operation) {
       case Fetch.OPERATION_ADD:
+        massageMinutes += this.getMinutesChange(massage);
         events.push({ massage, bgColor: this.getBgColor(massage) });
         break;
       case Fetch.OPERATION_CHANGE:
         if (index !== -1) {
+          massageMinutes -= this.getMinutesChange(events[index].massage);
+          massageMinutes += this.getMinutesChange(massage);
           events[index].massage = massage;
           events[index].bgColor = this.getBgColor(massage);
         }
         break;
       case Fetch.OPERATION_REMOVE:
         if (index !== -1) {
+          massageMinutes -= this.getMinutesChange(events[index].massage);
           selected = [...this.state.selected];
           selectedIndex = Util.findInArrayById(selected, massage.id);
           if (selectedIndex !== 1) {
@@ -165,7 +169,7 @@ class Massages extends Component {
         break;
     }
 
-    this.setState(() => ({ events, selected }));
+    this.setState(() => ({ events, massageMinutes, selected }));
   };
 
   updateEvents = (massages, minutes) => {
@@ -213,6 +217,14 @@ class Massages extends Component {
       return Util.WARNING_COLOR;
     }
     return Util.ERROR_COLOR;
+  };
+
+  getMinutesChange = massage => {
+    if (!Util.isEmpty(massage.client) && Auth.getSub() === massage.client.sub) {
+      return moment.duration(moment(massage.ending).diff(massage.date)).asMinutes();
+    }
+
+    return 0;
   };
 
   assignMassage = massage => {
