@@ -144,8 +144,12 @@ Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) |
 Util.CANCELLATION_LIMIT = parseInt(process.env.REACT_APP_CANCELLATION_LIMIT, 10) || 30;
 /** maximum minute time of Massages per Client */
 Util.MAX_MASSAGE_MINS = parseInt(process.env.REACT_APP_MASSAGE_TIME_LIMIT, 10) || 120;
+/** protocol to use for WebSocket communication */
+Util.WEBSOCKET_PROTOCOL = process.env.WEBSOCKET_PROTOCOL || "ws";
+/** maximum amount of WebSocket handshake request retries; wait time increases exponentionally */
+Util.WEBSOCKET_RETRY_COUNT = process.env.WEBSOCKET_RETRY_COUNT || 3;
 /** maximum wait time for WebSocket actions */
-Util.WEBSOCKET_TIMEOUT_LIMIT = 500;//process.env.REACT_APP_WEBSOCKET_TIMEOUT_LIMIT || 250;
+Util.WEBSOCKET_TIMEOUT_LIMIT = process.env.REACT_APP_WEBSOCKET_TIMEOUT_LIMIT || 250;
 /** display color of success events */
 Util.SUCCESS_COLOR = process.env.REACT_APP_SUCCESS_COLOR || "#2fad2f";
 /** display color of warning events */

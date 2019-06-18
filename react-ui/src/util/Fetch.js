@@ -3,6 +3,7 @@
  */
 
 // module imports
+import moment from "moment";
 
 // util imports
 import _t from "./Translations";
@@ -179,12 +180,22 @@ Fetch.delete = (url, update = () => {}, notify = true) => {
 };
 
 /**
- * Creates a new WebSocket connection, subscribing to a given URL address.
+ * Creates a new WebSocket connection, subscribing to a given URL address. Drops the action if the active WebSocket
+ * is trying to connect and was created before the connection timeout limit expired.
  * @see https://github.com/sockjs/sockjs-client for more information about the library.
  * @param webSocketUrl    end of the URL address to subscribe to
  * @return                the created WebSocket
  */
 Fetch.subscribeToUrl = webSocketUrl => {
+  if (
+    Fetch.WEBSOCKET_START_TIME !== null &&
+    Fetch.WEBSOCKET.readyState === WebSocket.CONNECTING &&
+    moment.duration(moment().diff(Fetch.WEBSOCKET_START_TIME)).asMilliseconds() < Util.WEBSOCKET_TIMEOUT_LIMIT
+  ) {
+    return Fetch.WEBSOCKET;
+  }
+
+  Fetch.WEBSOCKET_START_TIME = moment();
   const webSocket = new WebSocket(`ws://localhost:8080/${webSocketUrl}`);
 
   webSocket.addEventListener("message", event => {
@@ -203,7 +214,7 @@ Fetch.subscribeToUrl = webSocketUrl => {
   });
 
   webSocket.addEventListener("error", event => {
-    console.log("WebSocket error. Message: ", event.data);  /* eslint-disable-line */
+    console.log("WebSocket error. Message: ", event.data); /* eslint-disable-line */
   });
 
   return webSocket;
@@ -211,20 +222,32 @@ Fetch.subscribeToUrl = webSocketUrl => {
 
 /**
  * Tries to send a message using the global WebSocket connection.
- * Waits for the WebSocket to open if closed.
+ * Waits for the WebSocket to open if closed (based on retry count and timeout limitations).
  * @param message     the message to be sent
  */
 Fetch.tryWebSocketSend = message => {
   if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
     Fetch.WEBSOCKET.send(message);
   } else {
-    if (Fetch.WEBSOCKET.readyState !== WebSocket.CONNECTING) {
-      Fetch.WEBSOCKET = Fetch.subscribeToUrl(Util.SUBSCRIPTIONS_URL);
+    const timeouts = [];
+
+    for (let i = 0; i <= Util.WEBSOCKET_RETRY_COUNT; i++) {
+      timeouts[i] = setTimeout(() => {
+        if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
+          Fetch.WEBSOCKET.send(message);
+          for (let j = i + 1; j < timeouts.length; j++) {
+            clearTimeout(timeouts[j]);
+          }
+        } else {
+          Fetch.WEBSOCKET = Fetch.subscribeToUrl(Util.SUBSCRIPTIONS_URL);
+        }
+      }, Util.WEBSOCKET_TIMEOUT_LIMIT * i * i);
     }
-    setTimeout(() => Fetch.WEBSOCKET.send(message), Util.WEBSOCKET_TIMEOUT_LIMIT);
   }
 };
 
+/** connection start time (as a moment) for the current WebSocket */
+Fetch.WEBSOCKET_START_TIME = null;
 /** global WebSocket connection */
 Fetch.WEBSOCKET = Fetch.subscribeToUrl(Util.SUBSCRIPTIONS_URL);
 /** global WebSocket callback object with subscription info before each callback */
