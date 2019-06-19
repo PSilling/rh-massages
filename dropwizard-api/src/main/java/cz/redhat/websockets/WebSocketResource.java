@@ -25,6 +25,7 @@ import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,13 +60,19 @@ public class WebSocketResource {
 
   /**
    * Adds a given {@link Session} inside the list and logs current state. Sessions are also pinged
-   * at regular intervals. After two heartbeat failures in a row the session gets closed.
+   * at regular intervals. After two heartbeat failures in a row the session gets closed. All new
+   * connections have to be first authenticated using the dedicated WebSocket resource endpoint.
+   * Simple hashing based on a generated number code and the session ID is used.
    *
    * @param session the {@link Session} that is currently opening
    */
   @OnOpen
   public void addSession(Session session) {
-    clients.put(session.getId(), new SubscriptionSession(session));
+    String authString = generateAuthString();
+    clients.put(session.getId(), new SubscriptionSession(session, authString));
+    session.getAsyncRemote().sendText(
+        session.getId() + "_" + String.valueOf(Objects.hash(session.getId(), authString))
+    );
     logger.info("Opened a new WebSocket. ID: {}.", session.getId());
 
     timer.scheduleAtFixedRate(new TimerTask() {
@@ -118,6 +125,7 @@ public class WebSocketResource {
    * Processes a message that should contain a subscription operation using the following format:
    * ADD_SubscriptionType to create a subscription or REMOVE_SubscriptionType to remove one. Sends
    * a return message containing OK or FAIL and the attempted operation (format: Operation_Status).
+   * Operation is skipped if the connection isn't authenticated.
    *
    * @param session the {@link Session} associated with the client
    * @param message the message received from the client
@@ -125,9 +133,15 @@ public class WebSocketResource {
   @OnMessage
   public void processMessage(Session session, String message) {
     String[] splitMessage = message.split("_");
+    SubscriptionSession subSession = clients.get(session.getId());
     Set<String> subscriptions;
 
-    synchronized ((subscriptions = clients.get(session.getId()).getSubscriptions())) {
+    if (!subSession.isAuthenticated()) {
+      session.getAsyncRemote().sendText("403");
+      return;
+    }
+
+    synchronized ((subscriptions = subSession.getSubscriptions())) {
       if (splitMessage[0].equalsIgnoreCase("ADD")) {
         if (subscriptions.add(splitMessage[1])) {
           session.getAsyncRemote().sendText("ADD_OK");
@@ -209,5 +223,25 @@ public class WebSocketResource {
         }
       }
     }
+  }
+
+  /**
+   * Generates a new WebSocket authentication string using randomized numbers.
+   *
+   * @return the generated string
+   */
+  private String generateAuthString() {
+    final int count = 64;
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0; i < count; i++) {
+      builder.append((int) (Math.random() * 9));
+    }
+
+    return builder.toString();
+  }
+
+  public static Map<String, SubscriptionSession> getClients() {
+    return clients;
   }
 }

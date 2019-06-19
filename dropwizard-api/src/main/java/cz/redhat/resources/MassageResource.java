@@ -102,7 +102,7 @@ public class MassageResource {
    *                                 to create other than their {@link Massage}s
    */
   @POST
-  @RolesAllowed({"admin", "masseur"})
+  @RolesAllowed({"admin", "masseur" })
   @UnitOfWork
   public Response createMassage(@NotNull @Valid List<Massage> massages, @Auth User user) {
     // Validate Massage timing information.
@@ -233,7 +233,7 @@ public class MassageResource {
    *                                 to delete other than their {@link Massage}
    */
   @DELETE
-  @RolesAllowed({"admin", "masseur"})
+  @RolesAllowed({"admin", "masseur" })
   @UnitOfWork
   public Response delete(@NotNull @QueryParam("ids") List<Long> ids, @Auth User user) {
     // Validate given Massage IDs.

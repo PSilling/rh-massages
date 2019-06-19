@@ -195,10 +195,23 @@ Fetch.subscribeToUrl = webSocketUrl => {
     return Fetch.WEBSOCKET;
   }
 
+  Fetch.WEBSOCKET_AUTHENTICATED = false;
   Fetch.WEBSOCKET_START_TIME = moment();
   const webSocket = new WebSocket(`ws://localhost:8080/${webSocketUrl}`);
 
   webSocket.addEventListener("message", event => {
+    if (!Fetch.WEBSOCKET_AUTHENTICATED) {
+      Fetch.post(
+        Util.WEBSOCKETS_URL,
+        event.data,
+        () => {
+          Fetch.WEBSOCKET_AUTHENTICATED = true;
+        },
+        false
+      );
+      return;
+    }
+
     // parse the message; format: OPERATION_STATUS or OPERATION_SUBSCRIPTION_DATA
     const operation = event.data.substring(0, event.data.indexOf("_"));
     const remainder = event.data.substring(event.data.indexOf("_") + 1, event.data.length);
@@ -221,15 +234,24 @@ Fetch.subscribeToUrl = webSocketUrl => {
 };
 
 /**
- * Tries to send a message using the global WebSocket connection.
- * Waits for the WebSocket to open if closed (based on retry count and timeout limitations).
+ * Tries to send a message using the global WebSocket connection. Waits until the WebSocket is ready
+ * if unauthenticated or closed (based on retry count and timeout limitations).
  * @param message     the message to be sent
  */
 Fetch.tryWebSocketSend = message => {
+  if (!Fetch.WEBSOCKET_AUTHENTICATED) {
+    setTimeout(() => Fetch.tryWebSocketSend(message), 50);
+    return;
+  }
+
   if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
     Fetch.WEBSOCKET.send(message);
   } else {
     const timeouts = [];
+
+    if (Fetch.WEBSOCKET.readyState === WebSocket.CLOSED) {
+      Fetch.WEBSOCKET_AUTHENTICATED = false;
+    }
 
     for (let i = 0; i <= Util.WEBSOCKET_RETRY_COUNT; i++) {
       timeouts[i] = setTimeout(() => {
@@ -246,6 +268,8 @@ Fetch.tryWebSocketSend = message => {
   }
 };
 
+/** whether the current WebSocket connection is authenticated */
+Fetch.WEBSOCKET_AUTHENTICATED = false;
 /** connection start time (as a moment) for the current WebSocket */
 Fetch.WEBSOCKET_START_TIME = null;
 /** global WebSocket connection */

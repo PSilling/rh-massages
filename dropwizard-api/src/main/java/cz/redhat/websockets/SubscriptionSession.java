@@ -2,6 +2,7 @@ package cz.redhat.websockets;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.websocket.Session;
 
@@ -11,14 +12,17 @@ import javax.websocket.Session;
  * @author psilling
  * @since 1.7.0
  */
-class SubscriptionSession {
+public class SubscriptionSession {
   private Session session; // session the client used for subscribing
   private Set<String> subscriptions = Collections.synchronizedSet(new HashSet<>()); // the sub. list
+  private String authString; // authentication string generated before creation
+  private boolean authenticated = false; // whether the connected client completed the handshake
   private boolean awaitsPong; // whether the server awaits a pong reply from the client
   private boolean failedPong; // whether the last sent ping was unanswered
 
-  SubscriptionSession(Session session) {
+  SubscriptionSession(Session session, String authString) {
     this.session = session;
+    this.authString = authString;
   }
 
   Session getSession() {
@@ -31,6 +35,10 @@ class SubscriptionSession {
 
   Set<String> getSubscriptions() {
     return subscriptions;
+  }
+
+  boolean isAuthenticated() {
+    return authenticated;
   }
 
   boolean awaitsPong() {
@@ -47,5 +55,22 @@ class SubscriptionSession {
 
   void setFailedPong(boolean failedPong) {
     this.failedPong = failedPong;
+  }
+
+  /**
+   * Tries to authenticate the WebSocket.
+   *
+   * @param key hashed authentication code
+   * @return true if the authentication was successful
+   */
+  public boolean authenticate(String key) {
+    String hashedAuthString = String.valueOf(Objects.hash(session.getId(), authString));
+
+    if (hashedAuthString.equals(key)) {
+      this.authenticated = true;
+      return true;
+    }
+
+    return false;
   }
 }
