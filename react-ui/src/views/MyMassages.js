@@ -11,6 +11,7 @@ import "../styles/components/loader.css";
 
 // util imports
 import _t from "../util/Translations";
+import Auth from "../util/Auth";
 import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
@@ -19,42 +20,110 @@ import Util from "../util/Util";
  * for better user experience.
  */
 class MyMassages extends Component {
-  state = { events: [], filteredEvents: [], facilities: [], loading: true, index: 0, mounted: false };
+  state = { events: [], filteredEvents: [], facilities: [], loading: true, index: 0 };
 
   alertMessage =
     _t.translate("On this page you can view all your assigned massages. ") +
     _t.translate("To view massage details click on the event name.");
 
   componentDidMount() {
-    Util.clearAllIntervals();
-
-    this.setState({ mounted: true });
     this.getFacilities();
-    setInterval(() => {
-      this.getMassages();
-    }, Util.AUTO_REFRESH_TIME * 60);
+    Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
+    Fetch.WEBSOCKET_CALLBACKS.massage = this.massageCallback;
+    Fetch.tryWebSocketSend("ADD_Facility");
+    Fetch.tryWebSocketSend("ADD_Massage");
   }
 
   componentWillUnmount() {
-    Util.clearAllIntervals();
-    this.setState({ mounted: false });
+    Fetch.WEBSOCKET_CALLBACKS.facility = null;
+    Fetch.WEBSOCKET_CALLBACKS.massage = null;
+    Fetch.tryWebSocketSend("REMOVE_Facility");
+    Fetch.tryWebSocketSend("REMOVE_Massage");
   }
 
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
-      if (this.state.mounted) {
-        this.setState({ facilities: json });
-        this.getMassages();
-      }
+      this.setState({ facilities: json });
+      this.getMassages();
     });
   };
 
   getMassages = () => {
     Fetch.get(`${Util.MASSAGES_URL}client`, json => {
-      if (this.state.mounted && json !== undefined) {
+      if (json !== undefined) {
         this.updateEvents(json);
       }
     });
+  };
+
+  facilityCallback = (operation, facility) => {
+    const facilities = [...this.state.facilities];
+    const index = Util.findInArrayById(facilities, facility.id);
+
+    if (index === -1 && operation !== Fetch.OPERATION_ADD) {
+      return;
+    }
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        facilities.push(facility);
+        break;
+      case Fetch.OPERATION_CHANGE:
+        facilities[index] = facility;
+        break;
+      case Fetch.OPERATION_REMOVE:
+        facilities.splice(index, 1);
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(() => ({ facilities }));
+  };
+
+  massageCallback = (operation, massage) => {
+    const events = [...this.state.events];
+    const index = Util.findInArrayByMassageId(events, massage.id);
+
+    if (
+      (Auth.isMasseur() && massage.masseuse.sub !== Auth.getSub()) ||
+      (!Auth.isMasseur() && (massage.client === null || Auth.getSub() !== massage.client.sub))
+    ) {
+      if (index !== -1) {
+        events.splice(index, 1);
+        this.setState(prevState => ({ events, filteredEvents: this.getFilteredEvents(events, prevState.index) }));
+      }
+      return;
+    }
+
+    const facilityIndex = Util.findInArrayById(this.state.facilities, massage.facility.id);
+    if (facilityIndex !== -1) {
+      massage.facility.name = this.state.facilities[facilityIndex].name;
+    }
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        events.push({ massage });
+        break;
+      case Fetch.OPERATION_CHANGE:
+        if (index === -1) {
+          events.push({ massage });
+        } else {
+          events[index].massage = massage;
+        }
+        break;
+      case Fetch.OPERATION_REMOVE:
+        if (index !== -1) {
+          events.splice(index, 1);
+        }
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(prevState => ({ events, filteredEvents: this.getFilteredEvents(events, prevState.index) }));
   };
 
   updateEvents = massages => {
@@ -71,23 +140,6 @@ class MyMassages extends Component {
     }));
   };
 
-  cancelMassage = massage => {
-    Fetch.put(
-      Util.MASSAGES_URL,
-      [
-        {
-          id: massage.id,
-          date: massage.date,
-          ending: massage.ending,
-          masseuse: massage.masseuse,
-          client: null,
-          facility: massage.facility
-        }
-      ],
-      this.getMassages
-    );
-  };
-
   getFilteredEvents = (events, index) => {
     const filteredEvents = [...events];
 
@@ -101,6 +153,19 @@ class MyMassages extends Component {
     }
 
     return filteredEvents;
+  };
+
+  cancelMassage = massage => {
+    Fetch.put(Util.MASSAGES_URL, [
+      {
+        id: massage.id,
+        date: massage.date,
+        ending: massage.ending,
+        masseuse: massage.masseuse,
+        client: null,
+        facility: massage.facility
+      }
+    ]);
   };
 
   closeAlert = () => {

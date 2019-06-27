@@ -60,6 +60,13 @@ import org.hibernate.annotations.OnDeleteAction;
             "SELECT massage FROM Massage massage WHERE massage.client = :client AND "
                 + "massage.ending > CURRENT_TIMESTAMP() ORDER BY massage.date ASC"),
     @NamedQuery(
+        name = "Massage.findAllNewByFacility",
+        query =
+            "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND "
+                + "massage.ending > CURRENT_TIMESTAMP() AND "
+                + "(massage.client IS NULL OR :free = false) "
+                + "ORDER BY massage.date ASC"),
+    @NamedQuery(
         name = "Massage.findNewByFacility",
         query =
             "SELECT massage FROM Massage massage WHERE massage.facility = :facility AND "

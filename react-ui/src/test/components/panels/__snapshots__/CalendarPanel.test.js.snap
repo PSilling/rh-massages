@@ -81,7 +81,7 @@ ShallowWrapper {
     onAdd={[MockFunction]}
     onAssign={[MockFunction]}
     onCancel={[MockFunction]}
-    onDateChange={[MockFunction]}
+    onDateChange={[Function]}
     onDelete={
       [MockFunction] {
         "calls": Array [
@@ -342,7 +342,7 @@ ShallowWrapper {
             }
           >
             <strong>
-              Legend:
+              Key:
             </strong>
             <span
               style={
@@ -955,7 +955,7 @@ ShallowWrapper {
             }
           >
             <strong>
-              Legend:
+              Key:
             </strong>
             <span
               style={
@@ -1005,7 +1005,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <strong>
-                Legend:
+                Key:
               </strong>,
               <span
                 style={
@@ -1061,10 +1061,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Legend:",
+                "children": "Key:",
               },
               "ref": null,
-              "rendered": "Legend:",
+              "rendered": "Key:",
               "type": "strong",
             },
             Object {
@@ -1325,7 +1325,7 @@ ShallowWrapper {
               }
             >
               <strong>
-                Legend:
+                Key:
               </strong>
               <span
                 style={
@@ -1938,7 +1938,7 @@ ShallowWrapper {
               }
             >
               <strong>
-                Legend:
+                Key:
               </strong>
               <span
                 style={
@@ -1988,7 +1988,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <strong>
-                  Legend:
+                  Key:
                 </strong>,
                 <span
                   style={
@@ -2044,10 +2044,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Legend:",
+                  "children": "Key:",
                 },
                 "ref": null,
-                "rendered": "Legend:",
+                "rendered": "Key:",
                 "type": "strong",
               },
               Object {

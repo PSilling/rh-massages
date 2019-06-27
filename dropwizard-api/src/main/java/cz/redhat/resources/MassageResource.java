@@ -21,6 +21,8 @@ import cz.redhat.core.Client;
 import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
 import cz.redhat.db.MassageDao;
+import cz.redhat.websockets.OperationType;
+import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
@@ -100,7 +102,7 @@ public class MassageResource {
    *                                 to create other than their {@link Massage}s
    */
   @POST
-  @RolesAllowed({"admin", "masseur"})
+  @RolesAllowed({"admin", "masseur" })
   @UnitOfWork
   public Response createMassage(@NotNull @Valid List<Massage> massages, @Auth User user) {
     // Validate Massage timing information.
@@ -125,6 +127,7 @@ public class MassageResource {
       for (Massage daoMassage : daoMassages) {
         if (massage.datesCollide(daoMassage) && daoMassage.getClient() == null) {
           massageDao.delete(daoMassage);
+          WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
         }
       }
 
@@ -133,6 +136,8 @@ public class MassageResource {
       if (massageDao.findById(massage.getId()) == null) {
         throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
       }
+
+      WebSocketResource.informSubscribed("Massage", OperationType.ADD, massage);
     }
 
     // Send an information email to subscribed Users if more than sendMailLimit
@@ -212,7 +217,10 @@ public class MassageResource {
       // Remove the colliding Massages (after update to avoid session clearing).
       for (Massage massageForRemoval : massagesForRemoval) {
         massageDao.delete(massageForRemoval);
+        WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
       }
+
+      WebSocketResource.informSubscribed("Massage", OperationType.CHANGE, massage);
     }
 
     return Response.ok(massages).build();
@@ -227,7 +235,7 @@ public class MassageResource {
    *                                 to delete other than their {@link Massage}
    */
   @DELETE
-  @RolesAllowed({"admin", "masseur"})
+  @RolesAllowed({"admin", "masseur" })
   @UnitOfWork
   public Response delete(@NotNull @QueryParam("ids") List<Long> ids, @Auth User user) {
     // Validate given Massage IDs.
@@ -252,6 +260,8 @@ public class MassageResource {
             daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null);
       }
       massageDao.delete(daoMassage);
+
+      WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
     }
 
     return Response.noContent().build();

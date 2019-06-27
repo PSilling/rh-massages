@@ -18,6 +18,8 @@ package cz.redhat.resources;
 import cz.redhat.auth.User;
 import cz.redhat.core.Client;
 import cz.redhat.db.ClientDao;
+import cz.redhat.websockets.OperationType;
+import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import java.util.List;
@@ -130,6 +132,7 @@ public class ClientResource {
     // Update only if a change is detected.
     if (!daoClient.equals(client)) {
       clientDao.update(client);
+      WebSocketResource.informSubscribed("Client", OperationType.CHANGE, client);
       return Response.ok(client).build();
     } else {
       return Response.noContent().build();

@@ -98,6 +98,20 @@ Util.findInArrayById = (array, id) => {
 };
 
 /**
+ * Searches a massage event array for a given massage ID.
+ * @param array array to search in
+ * @param id id to search for
+ */
+Util.findInArrayByMassageId = (array, id) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].massage.id === id) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+/**
  * Returns an array of tooltip targets for unique tooltip ID use.
  * @param  count number of tooltip targets to generate
  * @return       array of generated tooltip targets
@@ -116,18 +130,24 @@ Util.FACILITIES_URL = process.env.REACT_APP_FACILITIES_URL || "api/facilities/";
 Util.MASSAGES_URL = process.env.REACT_APP_MASSAGES_URL || "api/massages/";
 /** url of /clients endpoint */
 Util.CLIENTS_URL = process.env.REACT_APP_CLIENTS_URL || "api/clients/";
+/** url of /websockets authentication endpoint */
+Util.WEBSOCKETS_URL = process.env.REACT_APP_WEBSOCKETS_URL || "api/websockets";
 /** url of /logout endpoint */
 Util.LOGOUT_URL = process.env.REACT_APP_LOGOUT_URL || "api/logout/";
 /** GitHub project url */
 Util.GITHUB_URL = process.env.REACT_APP_GITHUB_URL || "https://github.com/";
 /** refresh time for authorization tokens in milliseconds */
 Util.REFRESH_MIN_TIME = parseInt(process.env.REACT_APP_MIN_REFRESH_TIME, 10) || 150;
-/** automatic update interval for Massages view in milliseconds */
-Util.AUTO_REFRESH_TIME = parseInt(process.env.REACT_APP_AUTO_REFRESH_TIME, 10) || 5000;
 /** cancellation limit before the start of a Massage in minutes */
 Util.CANCELLATION_LIMIT = parseInt(process.env.REACT_APP_CANCELLATION_LIMIT, 10) || 30;
 /** maximum minute time of Massages per Client */
 Util.MAX_MASSAGE_MINS = parseInt(process.env.REACT_APP_MASSAGE_TIME_LIMIT, 10) || 120;
+/** url of /websockets subscription endpoint with a possible proxy and Websocket protocol */
+Util.WEBSOCKET_PROTOCOL_URL = process.env.REACT_APP_WEBSOCKET_PROTOCOL_URL || "wss://api/websockets";
+/** maximum amount of WebSocket handshake request retries; wait time increases exponentionally */
+Util.WEBSOCKET_RETRY_COUNT = parseInt(process.env.REACT_APP_WEBSOCKET_RETRY_COUNT, 10) || 3;
+/** maximum wait time for WebSocket actions */
+Util.WEBSOCKET_TIMEOUT_LIMIT = process.env.REACT_APP_WEBSOCKET_TIMEOUT_LIMIT || 250;
 /** display color of success events */
 Util.SUCCESS_COLOR = process.env.REACT_APP_SUCCESS_COLOR || "#2fad2f";
 /** display color of warning events */

@@ -1,5 +1,5 @@
 // react imports
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -29,6 +29,7 @@ import UnauthorizedMessage from "./components/util/UnauthorizedMessage";
 // util imports
 import _t from "./util/Translations";
 import Auth from "./util/Auth";
+import Fetch from "./util/Fetch";
 
 // moment.js localization
 moment.updateLocale("en", {
@@ -133,35 +134,43 @@ const Footer = () => (
 /**
  * Main application component. Contains the Router, NotificationContainer and Navbar.
  */
-const App = function App() {
-  if (!Auth.isAuthenticated()) {
-    return <UnauthorizedMessage title={_t.translate("Massages")} />;
+class App extends Component {
+  componentWillUnmount() {
+    if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
+      Fetch.WEBSOCKET.close();
+    }
   }
 
-  return (
-    <Router>
-      <div>
-        <NotificationContainer />
+  render() {
+    if (!Auth.isAuthenticated()) {
+      return <UnauthorizedMessage title={_t.translate("Massages")} />;
+    }
 
-        <NavWithLinks />
+    return (
+      <Router>
+        <div>
+          <NotificationContainer />
 
-        <div className="container">
-          <ErrorBoundary>
-            <Switch>
-              <Route exact path="/" component={Massages} />
-              <Route exact path="/my-massages" component={MyMassages} />
-              <Route exact path="/facilities" component={Facilities} />
-              <Route exact path="/massages-archive" component={MassagesArchive} />
-              <Route exact path="/settings" component={Settings} />
-              <Route component={NoMatch} />
-            </Switch>
-          </ErrorBoundary>
+          <NavWithLinks />
+
+          <div className="container">
+            <ErrorBoundary>
+              <Switch>
+                <Route exact path="/" component={Massages} />
+                <Route exact path="/my-massages" component={MyMassages} />
+                <Route exact path="/facilities" component={Facilities} />
+                <Route exact path="/massages-archive" component={MassagesArchive} />
+                <Route exact path="/settings" component={Settings} />
+                <Route component={NoMatch} />
+              </Switch>
+            </ErrorBoundary>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </Router>
-  );
-};
+      </Router>
+    );
+  }
+}
 
 NoMatch.propTypes = {
   /** current router location */

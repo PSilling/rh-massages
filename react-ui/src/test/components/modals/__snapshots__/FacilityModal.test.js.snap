@@ -6,7 +6,6 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <FacilityModal
     active={true}
     facility={null}
-    getCallback={[MockFunction]}
     onToggle={
       [MockFunction] {
         "calls": Array [

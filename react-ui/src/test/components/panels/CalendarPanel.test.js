@@ -26,7 +26,6 @@ test("renders content with correct props and funcionality", () => {
   const testAddFunction = jest.fn();
   const testEditFunction = jest.fn();
   const testDeleteFunction = jest.fn();
-  const testDateChangeFunction = jest.fn();
   const testSelectFunction = jest.fn();
   const testEvents = [
     {
@@ -95,7 +94,6 @@ test("renders content with correct props and funcionality", () => {
       onAdd={testAddFunction}
       onEdit={testEditFunction}
       onDelete={testDeleteFunction}
-      onDateChange={testDateChangeFunction}
       onSelect={testSelectFunction}
       onMultiSelect={testSelectFunction}
     />
@@ -106,19 +104,12 @@ test("renders content with correct props and funcionality", () => {
 
   expect(toolbar.props().leftDisabled).toBe(false);
   expect(toolbar.props().rightDisabled).toBe(false);
-  wrapper.instance().changeDate(false);
-  expect(testDateChangeFunction).toHaveBeenCalledTimes(1);
-  wrapper.instance().changeDate(true);
-  expect(testDateChangeFunction).toHaveBeenCalledTimes(2);
   wrapper.instance().changeView("month");
-  expect(testDateChangeFunction).toHaveBeenCalledTimes(3);
-  expect(testDateChangeFunction).toHaveBeenLastCalledWith(wrapper.instance().state.date, "month");
 
   expect(calendar.props().messages).toBe(wrapper.instance().localization);
   expect(calendar.props().events).toBe(testEvents);
   expect(calendar.props().views).toEqual(["work_week", "month"]);
   calendar.props().onView(null);
-  expect(testDateChangeFunction).toHaveBeenCalledTimes(4);
   expect(calendar.props().startAccessor(testEvents[0])).toEqual(testEvents[0].massage.date);
   expect(calendar.props().endAccessor(testEvents[0])).toEqual(testEvents[0].massage.ending);
   expect(calendar.props().onSelectSlot).toBe(testAddFunction);
@@ -146,7 +137,6 @@ test("renders content with correct props and funcionality", () => {
   expect(modal.props().onClose).toBe(wrapper.instance().handleToggle);
 
   wrapper.instance().setState({ date: new Date(0) });
-  testDateChangeFunction.mockClear();
 
   expect(wrapper).toMatchSnapshot();
 });

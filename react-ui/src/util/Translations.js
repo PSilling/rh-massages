@@ -250,7 +250,7 @@ const myLocalize = new Localize({
   Previous: {
     cs: "Předchozí"
   },
-  "Legend:": {
+  "Key:": {
     cs: "Legenda:"
   },
   None: {

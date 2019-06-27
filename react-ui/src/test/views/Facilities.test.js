@@ -20,6 +20,10 @@ afterAll(() => {
 test("renders content correctly", () => {
   const testFacilities = [{ id: 1, name: "test" }];
   const wrapper = shallow(<Facilities />);
+
+  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(1);
+  expect(Fetch.send).toHaveBeenCalledTimes(1);
+
   wrapper.instance().setState({ facilities: testFacilities });
   const table = wrapper.find(Table);
 
@@ -28,7 +32,7 @@ test("renders content correctly", () => {
 });
 
 test("properly changes state variables", () => {
-  Fetch.delete = jest.fn((url, update) => {
+  Fetch.delete = jest.fn((url, update = () => {}) => {
     update();
   });
   const testFacilities = [{ id: 1, name: "test" }];
@@ -46,7 +50,6 @@ test("properly changes state variables", () => {
   rows = wrapper.find(FacilityRow);
   expect(rows.length).toBe(1);
 
-  expect(modal.props().getCallback).toBe(wrapper.instance().getFacilities);
   expect(modal.props().active).toBe(false);
   expect(modal.props().facility).toBe(null);
   rows.get(0).props.onEdit();
@@ -55,8 +58,4 @@ test("properly changes state variables", () => {
   modal.props().onToggle();
   expect(wrapper.instance().state.modalActive).toBe(false);
   expect(wrapper.instance().state.editId).toBe(-1);
-
-  rows.get(0).props.onDelete();
-  expect(Fetch.delete).toHaveBeenCalledTimes(1);
-  expect(wrapper.instance().state.facilities).toEqual([]);
 });

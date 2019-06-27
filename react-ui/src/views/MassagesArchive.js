@@ -34,36 +34,21 @@ class MassagesArchive extends Component {
       .subtract(37, "days"),
     to: moment()
       .endOf("month")
-      .add(37, "days"),
-    mounted: false
+      .add(37, "days")
   };
 
   alertMessage = _t.translate("On this page you can view finished, archived massages.");
 
   componentDidMount() {
-    Util.clearAllIntervals();
-
-    this.setState({ mounted: true });
     this.getMassages();
-    setInterval(() => {
-      this.getMassages();
-    }, Util.AUTO_REFRESH_TIME * 2);
   }
 
-  componentWillUnmount() {
-    Util.clearAllIntervals();
-    this.setState({ mounted: false });
-  }
-
-  getMassages = () => {
-    Fetch.get(
-      `${Util.MASSAGES_URL}old?from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
-      json => {
-        if (this.state.mounted && json !== undefined && json.massages !== undefined) {
-          this.updateEvents(json.massages);
-        }
+  getMassages = (from = this.state.from, to = this.state.to) => {
+    Fetch.get(`${Util.MASSAGES_URL}old?from=${moment(from).unix() * 1000}&to=${moment(to).unix() * 1000}`, json => {
+      if (json !== undefined && json.massages !== undefined) {
+        this.updateEvents(json.massages);
       }
-    );
+    });
   };
 
   updateEvents = massages => {
@@ -174,29 +159,32 @@ class MassagesArchive extends Component {
   };
 
   changeTimeRange = (date, view) => {
+    let from;
+    let to;
     if (view === "month") {
-      this.setState({
-        from: moment(date)
-          .startOf("month")
-          .subtract(37, "days"),
-        to: moment(date)
-          .endOf("month")
-          .add(37, "days"),
-        loading: true,
-        selected: []
-      });
+      from = moment(date)
+        .startOf("month")
+        .subtract(37, "days");
+      to = moment(date)
+        .endOf("month")
+        .add(37, "days");
     } else {
-      this.setState({
-        from: moment(date)
-          .startOf("isoWeek")
-          .subtract(7, "days"),
-        to: moment(date)
-          .endOf("isoWeek")
-          .add(5, "days"),
-        loading: true,
-        selected: []
-      });
+      from = moment(date)
+        .startOf("isoWeek")
+        .subtract(7, "days");
+      to = moment(date)
+        .endOf("isoWeek")
+        .add(5, "days");
     }
+
+    this.setState({
+      from,
+      to,
+      loading: true,
+      selected: []
+    });
+
+    this.getMassages(from, to);
   };
 
   closeAlert = () => {

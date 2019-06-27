@@ -325,7 +325,7 @@ class MassageBatchAddModal extends Component {
     }
 
     if (postArray.length > 0) {
-      Fetch.post(Util.MASSAGES_URL, postArray, this.props.getCallback);
+      Fetch.post(Util.MASSAGES_URL, postArray, () => {});
     }
     this.props.onToggle(true);
   };
@@ -763,7 +763,7 @@ class MassageBatchAddModal extends Component {
   };
 
   render() {
-    const { facilityId, getCallback, onToggle, active, masseuses, masseuseNames, withPortal, ...rest } = this.props;
+    const { facilityId, onToggle, active, masseuses, masseuseNames, withPortal, ...rest } = this.props;
     return (
       <span>
         <TooltipButton
@@ -782,8 +782,6 @@ class MassageBatchAddModal extends Component {
 MassageBatchAddModal.propTypes = {
   /** ID of the selected Facility */
   facilityId: PropTypes.number.isRequired,
-  /** callback function for Massage list update */
-  getCallback: PropTypes.func.isRequired,
   /** function called on modal toggle */
   onToggle: PropTypes.func.isRequired,
   /** whether the dialog should be shown */

@@ -23,7 +23,7 @@ class FacilityModal extends Component {
   state = { name: "" };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props === nextProps) return;
+    if (this.props === nextProps || this.props.active) return;
 
     this.setState({
       name: nextProps.facility === null ? "" : nextProps.facility.name
@@ -44,10 +44,7 @@ class FacilityModal extends Component {
       {
         name: this.state.name
       },
-      () => {
-        this.props.onToggle();
-        this.props.getCallback();
-      }
+      this.props.onToggle
     );
   };
 
@@ -61,10 +58,7 @@ class FacilityModal extends Component {
       {
         name: this.state.name
       },
-      () => {
-        this.props.onToggle();
-        this.props.getCallback();
-      }
+      this.props.onToggle
     );
   };
 
@@ -128,8 +122,6 @@ class FacilityModal extends Component {
 FacilityModal.propTypes = {
   /** whether the dialog should be shown */
   active: PropTypes.bool.isRequired,
-  /** callback function for Facility list update */
-  getCallback: PropTypes.func.isRequired,
   /** function called on modal toggle */
   onToggle: PropTypes.func.isRequired,
   /** Facility to be possibly edited or null when adding */

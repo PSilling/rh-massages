@@ -22,6 +22,8 @@ const getTooltipTargets = jest.fn(count => {
   return targets;
 });
 
+const WEBSOCKET_PROTOCOL_URL = "wss://api/websockets";
+
 module.exports = {
   notify,
   clearAllIntervals,
@@ -29,5 +31,6 @@ module.exports = {
   isEmpty,
   findInArrayById,
   tooltipCount,
-  getTooltipTargets
+  getTooltipTargets,
+  WEBSOCKET_PROTOCOL_URL
 };

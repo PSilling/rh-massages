@@ -6,7 +6,6 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <MassageModal
     active={true}
     facilityId={1}
-    getCallback={[MockFunction]}
     massage={null}
     masseuseNames={
       Array [

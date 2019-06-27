@@ -214,8 +214,8 @@ public class MassageDao extends AbstractDAO<Massage> {
    * @param facility {@link Facility} of the {@link Massage}s the are to be found
    * @param search   value of the search pattern; for -1 all results are returned
    * @param free     true if only unassigned {@link Massage}s should be found
-   * @param from     limits results to be after the given {@link Date}
-   * @param to       limits results to be before the given {@link Date}
+   * @param from     limits results to be after the given {@link Date}, set as null to skip this
+   * @param to       limits results to be before the given {@link Date}, set as null to skip this
    * @param page     current page number; for pages lower than 1 doesn't use pagination and returns
    *                 all results
    * @param perPage  number of {@link Massage}s to return per each page
@@ -227,22 +227,22 @@ public class MassageDao extends AbstractDAO<Massage> {
       Facility facility, String search, boolean free, Date from, Date to, int page, int perPage) {
     List<Massage> massages;
 
-    // Correct possible null from and to values.
-    if (from == null) {
-      from = new Date();
+    // Get all fitting Massages from database without applying the search pattern based on dates.
+    if (from == null || to == null) {
+      massages =
+          list(
+              namedQuery("Massage.findAllNewByFacility")
+                  .setParameter("facility", facility)
+                  .setParameter("free", free));
+    } else {
+      massages =
+          list(
+              namedQuery("Massage.findNewByFacility")
+                  .setParameter("facility", facility)
+                  .setParameter("free", free)
+                  .setParameter("from", from)
+                  .setParameter("to", to));
     }
-    if (to == null) {
-      to = new Date(from.getTime() + 86400000); // one day later
-    }
-
-    // Get all fitting Massages from database without applying the search pattern.
-    massages =
-        list(
-            namedQuery("Massage.findNewByFacility")
-                .setParameter("facility", facility)
-                .setParameter("free", free)
-                .setParameter("from", from)
-                .setParameter("to", to));
 
     // Search in the results given by the query (enables case and accent insensitive
     // comparison not supported by Hibernate).
