@@ -1,3 +1,18 @@
+/*
+  Copyright (C) 2019 Petr Silling
+
+  <p>This program is free software: you can redistribute it and/or modify it under the terms of the
+  GNU General Public License as published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  <p>You should have received a copy of the GNU General Public License along with this program. If
+  not, see <http://www.gnu.org/licenses/>.
+*/
+
 package cz.redhat.websockets;
 
 import java.util.Collections;
@@ -15,14 +30,14 @@ import javax.websocket.Session;
 public class SubscriptionSession {
   private Session session; // session the client used for subscribing
   private Set<String> subscriptions = Collections.synchronizedSet(new HashSet<>()); // the sub. list
-  private String authString; // authentication string generated before creation
+  private String authString; // authentication string hashed with session ID
   private boolean authenticated = false; // whether the connected client completed the handshake
   private boolean awaitsPong; // whether the server awaits a pong reply from the client
   private boolean failedPong; // whether the last sent ping was unanswered
 
-  SubscriptionSession(Session session, String authString) {
+  public SubscriptionSession(Session session, String authString) {
     this.session = session;
-    this.authString = authString;
+    this.authString = String.valueOf(Objects.hash(session.getId(), authString));
   }
 
   Session getSession() {
@@ -37,7 +52,7 @@ public class SubscriptionSession {
     return subscriptions;
   }
 
-  boolean isAuthenticated() {
+  public boolean isAuthenticated() {
     return authenticated;
   }
 
@@ -64,9 +79,7 @@ public class SubscriptionSession {
    * @return true if the authentication was successful
    */
   public boolean authenticate(String key) {
-    String hashedAuthString = String.valueOf(Objects.hash(session.getId(), authString));
-
-    if (hashedAuthString.equals(key)) {
+    if (authString.equals(key)) {
       this.authenticated = true;
       return true;
     }

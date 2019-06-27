@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2017 Petr Silling
+  Copyright (C) 2019 Petr Silling
 
   <p>This program is free software: you can redistribute it and/or modify it under the terms of the
   GNU General Public License as published by the Free Software Foundation, either version 3 of the
@@ -136,7 +136,7 @@ public class WebSocketResource {
     SubscriptionSession subSession = clients.get(session.getId());
     Set<String> subscriptions;
 
-    if (!subSession.isAuthenticated()) {
+    if (subSession == null || !subSession.isAuthenticated()) {
       session.getAsyncRemote().sendText("403");
       return;
     }
@@ -164,8 +164,11 @@ public class WebSocketResource {
    * @param pongMessage pong received from the client
    */
   @OnMessage
-  public void processPong(Session session, PongMessage pongMessage) {
-    clients.get(session.getId()).setAwaitsPong(false);
+  public void processPong(Session session, @SuppressWarnings("unused") PongMessage pongMessage) {
+    SubscriptionSession subSession = clients.get(session.getId());
+    if (subSession != null) {
+      subSession.setAwaitsPong(false);
+    }
   }
 
   /**
