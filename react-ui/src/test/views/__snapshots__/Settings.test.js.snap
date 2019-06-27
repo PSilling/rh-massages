@@ -124,7 +124,7 @@ ShallowWrapper {
           >
             Visit our 
             <a
-              href="https://github.com/redhat-massages/rh-massages/"
+              href="https://github.com/"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -133,7 +133,7 @@ ShallowWrapper {
              
              and our 
             <a
-              href="https://github.com/redhat-massages/rh-massages/wiki"
+              href="https://github.com/wiki"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -160,7 +160,7 @@ ShallowWrapper {
           >
             Report issues 
             <a
-              href="https://github.com/redhat-massages/rh-massages/issues"
+              href="https://github.com/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -547,7 +547,7 @@ ShallowWrapper {
           >
             Visit our 
             <a
-              href="https://github.com/redhat-massages/rh-massages/"
+              href="https://github.com/"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -556,7 +556,7 @@ ShallowWrapper {
              
              and our 
             <a
-              href="https://github.com/redhat-massages/rh-massages/wiki"
+              href="https://github.com/wiki"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -575,7 +575,7 @@ ShallowWrapper {
             "children": Array [
               "Visit our ",
               <a
-                href="https://github.com/redhat-massages/rh-massages/"
+                href="https://github.com/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -584,7 +584,7 @@ ShallowWrapper {
               " ",
               " and our ",
               <a
-                href="https://github.com/redhat-massages/rh-massages/wiki"
+                href="https://github.com/wiki"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -611,7 +611,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "GitHub",
-                "href": "https://github.com/redhat-massages/rh-massages/",
+                "href": "https://github.com/",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
@@ -627,7 +627,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "wiki",
-                "href": "https://github.com/redhat-massages/rh-massages/wiki",
+                "href": "https://github.com/wiki",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
@@ -661,7 +661,7 @@ ShallowWrapper {
           >
             Report issues 
             <a
-              href="https://github.com/redhat-massages/rh-massages/issues"
+              href="https://github.com/issues"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -680,7 +680,7 @@ ShallowWrapper {
             "children": Array [
               "Report issues ",
               <a
-                href="https://github.com/redhat-massages/rh-massages/issues"
+                href="https://github.com/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -707,7 +707,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "here",
-                "href": "https://github.com/redhat-massages/rh-massages/issues",
+                "href": "https://github.com/issues",
                 "rel": "noreferrer noopener",
                 "target": "_blank",
               },
@@ -837,7 +837,7 @@ ShallowWrapper {
             >
               Visit our 
               <a
-                href="https://github.com/redhat-massages/rh-massages/"
+                href="https://github.com/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -846,7 +846,7 @@ ShallowWrapper {
                
                and our 
               <a
-                href="https://github.com/redhat-massages/rh-massages/wiki"
+                href="https://github.com/wiki"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -873,7 +873,7 @@ ShallowWrapper {
             >
               Report issues 
               <a
-                href="https://github.com/redhat-massages/rh-massages/issues"
+                href="https://github.com/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1260,7 +1260,7 @@ ShallowWrapper {
             >
               Visit our 
               <a
-                href="https://github.com/redhat-massages/rh-massages/"
+                href="https://github.com/"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1269,7 +1269,7 @@ ShallowWrapper {
                
                and our 
               <a
-                href="https://github.com/redhat-massages/rh-massages/wiki"
+                href="https://github.com/wiki"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1288,7 +1288,7 @@ ShallowWrapper {
               "children": Array [
                 "Visit our ",
                 <a
-                  href="https://github.com/redhat-massages/rh-massages/"
+                  href="https://github.com/"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1297,7 +1297,7 @@ ShallowWrapper {
                 " ",
                 " and our ",
                 <a
-                  href="https://github.com/redhat-massages/rh-massages/wiki"
+                  href="https://github.com/wiki"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1324,7 +1324,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "GitHub",
-                  "href": "https://github.com/redhat-massages/rh-massages/",
+                  "href": "https://github.com/",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },
@@ -1340,7 +1340,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "wiki",
-                  "href": "https://github.com/redhat-massages/rh-massages/wiki",
+                  "href": "https://github.com/wiki",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },
@@ -1374,7 +1374,7 @@ ShallowWrapper {
             >
               Report issues 
               <a
-                href="https://github.com/redhat-massages/rh-massages/issues"
+                href="https://github.com/issues"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -1393,7 +1393,7 @@ ShallowWrapper {
               "children": Array [
                 "Report issues ",
                 <a
-                  href="https://github.com/redhat-massages/rh-massages/issues"
+                  href="https://github.com/issues"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -1420,7 +1420,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "here",
-                  "href": "https://github.com/redhat-massages/rh-massages/issues",
+                  "href": "https://github.com/issues",
                   "rel": "noreferrer noopener",
                   "target": "_blank",
                 },

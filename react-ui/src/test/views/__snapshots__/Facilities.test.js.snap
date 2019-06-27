@@ -47,7 +47,6 @@ ShallowWrapper {
                 <FacilityModal
                   active={false}
                   facility={null}
-                  getCallback={[Function]}
                   onToggle={[Function]}
                   withPortal={true}
                 />
@@ -119,7 +118,6 @@ ShallowWrapper {
                   <FacilityModal
                     active={false}
                     facility={null}
-                    getCallback={[Function]}
                     onToggle={[Function]}
                     withPortal={true}
                   />
@@ -165,7 +163,6 @@ ShallowWrapper {
                   <FacilityModal
                     active={false}
                     facility={null}
-                    getCallback={[Function]}
                     onToggle={[Function]}
                     withPortal={true}
                   />
@@ -190,7 +187,6 @@ ShallowWrapper {
                     <FacilityModal
                       active={false}
                       facility={null}
-                      getCallback={[Function]}
                       onToggle={[Function]}
                       withPortal={true}
                     />
@@ -219,7 +215,6 @@ ShallowWrapper {
                     "children": <FacilityModal
                       active={false}
                       facility={null}
-                      getCallback={[Function]}
                       onToggle={[Function]}
                       withPortal={true}
                     />,
@@ -233,7 +228,6 @@ ShallowWrapper {
                     "props": Object {
                       "active": false,
                       "facility": null,
-                      "getCallback": [Function],
                       "onToggle": [Function],
                       "withPortal": true,
                     },
@@ -271,7 +265,7 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": "1",
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
                   "facility": Object {
                     "id": 1,
@@ -329,7 +323,6 @@ ShallowWrapper {
                   <FacilityModal
                     active={false}
                     facility={null}
-                    getCallback={[Function]}
                     onToggle={[Function]}
                     withPortal={true}
                   />
@@ -401,7 +394,6 @@ ShallowWrapper {
                     <FacilityModal
                       active={false}
                       facility={null}
-                      getCallback={[Function]}
                       onToggle={[Function]}
                       withPortal={true}
                     />
@@ -447,7 +439,6 @@ ShallowWrapper {
                     <FacilityModal
                       active={false}
                       facility={null}
-                      getCallback={[Function]}
                       onToggle={[Function]}
                       withPortal={true}
                     />
@@ -472,7 +463,6 @@ ShallowWrapper {
                       <FacilityModal
                         active={false}
                         facility={null}
-                        getCallback={[Function]}
                         onToggle={[Function]}
                         withPortal={true}
                       />
@@ -501,7 +491,6 @@ ShallowWrapper {
                       "children": <FacilityModal
                         active={false}
                         facility={null}
-                        getCallback={[Function]}
                         onToggle={[Function]}
                         withPortal={true}
                       />,
@@ -515,7 +504,6 @@ ShallowWrapper {
                       "props": Object {
                         "active": false,
                         "facility": null,
-                        "getCallback": [Function],
                         "onToggle": [Function],
                         "withPortal": true,
                       },
@@ -553,7 +541,7 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": "1",
-                  "nodeType": "class",
+                  "nodeType": "function",
                   "props": Object {
                     "facility": Object {
                       "id": 1,

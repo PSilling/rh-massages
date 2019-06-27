@@ -81,7 +81,7 @@ ShallowWrapper {
     onAdd={[MockFunction]}
     onAssign={[MockFunction]}
     onCancel={[MockFunction]}
-    onDateChange={[MockFunction]}
+    onDateChange={[Function]}
     onDelete={
       [MockFunction] {
         "calls": Array [

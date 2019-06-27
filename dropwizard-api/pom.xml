@@ -123,6 +123,11 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.liveperson</groupId>
+            <artifactId>dropwizard-websockets</artifactId>
+            <version>${dropwizard-websockets.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

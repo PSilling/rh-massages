@@ -18,39 +18,56 @@ import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
- * Main view table component for Facility management. Viewable only for administrators.
+ * Main view table component for Facility management. Visible only administrator priviledges.
  */
 class Facilities extends Component {
-  state = { facilities: [], modalActive: false, editId: -1, loading: true, mounted: false };
+  state = { facilities: [], modalActive: false, editId: -1, loading: true };
 
   alertMessage = _t.translate("On this page you can manage facilities in which massages take place.");
 
   componentDidMount() {
-    Util.clearAllIntervals();
-
-    this.setState({ mounted: true });
     this.getFacilities();
-    setInterval(() => {
-      if (this.state.modalActive) return;
-      this.getFacilities();
-    }, Util.AUTO_REFRESH_TIME * 30);
+    Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
+    Fetch.tryWebSocketSend("ADD_Facility");
   }
 
   componentWillUnmount() {
-    Util.clearAllIntervals();
-    this.setState({ mounted: false });
+    Fetch.WEBSOCKET_CALLBACKS.facility = null;
+    Fetch.tryWebSocketSend("REMOVE_Facility");
   }
 
   getFacilities = () => {
     Fetch.get(Util.FACILITIES_URL, json => {
-      if (this.state.mounted && json !== undefined) {
+      if (json !== undefined) {
         this.setState({ facilities: json, loading: false });
       }
     });
   };
 
-  deleteFacility = id => {
-    Fetch.delete(Util.FACILITIES_URL + id, this.getFacilities);
+  facilityCallback = (operation, facility) => {
+    const facilities = [...this.state.facilities];
+    const index = Util.findInArrayById(facilities, facility.id);
+
+    if (index === -1 && operation !== Fetch.OPERATION_ADD) {
+      return;
+    }
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        facilities.push(facility);
+        break;
+      case Fetch.OPERATION_CHANGE:
+        facilities[index] = facility;
+        break;
+      case Fetch.OPERATION_REMOVE:
+        facilities.splice(index, 1);
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`);  /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(() => ({ facilities }));
   };
 
   closeAlert = () => {
@@ -84,7 +101,6 @@ class Facilities extends Component {
                 <FacilityModal
                   active={this.state.modalActive}
                   facility={this.state.editId === -1 ? null : this.state.facilities[this.state.editId]}
-                  getCallback={this.getFacilities}
                   onToggle={() => this.toggleModal(-1)}
                 />
               </th>
@@ -97,7 +113,7 @@ class Facilities extends Component {
                   key={item.id}
                   facility={item}
                   onEdit={() => this.toggleModal(index)}
-                  onDelete={() => this.deleteFacility(item.id)}
+                  onDelete={() => Fetch.delete(Util.FACILITIES_URL + item.id)}
                 />
               ))}
             </tbody>

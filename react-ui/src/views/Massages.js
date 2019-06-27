@@ -29,6 +29,7 @@ import Util from "../util/Util";
 class Massages extends Component {
   state = {
     facilities: [],
+    events: [],
     masseuses: [],
     masseuseNames: [],
     selected: [],
@@ -40,50 +41,37 @@ class Massages extends Component {
     modalActive: false,
     batchAddModalActive: false,
     activeEventTooltip: null,
-    events: [],
-    showAll: !JSON.parse(localStorage.getItem("hideAssignedMassages")),
-    from: moment()
-      .startOf("isoWeek")
-      .subtract(7, "days"),
-    to: moment()
-      .endOf("isoWeek")
-      .add(5, "days"),
-    mounted: false
+    showAll: !JSON.parse(localStorage.getItem("hideAssignedMassages"))
   };
 
   alertMessage =
     _t.translate("On this page you can view all upcoming massages. ") +
     _t.translate("To view details about or register a massage click on the appropriate event in the calendar below.");
 
+  //  if (this.state.modalActive || this.state.batchAddModalActive || this.state.activeEventTooltip !== null) return;
   componentDidMount() {
-    Util.clearAllIntervals();
-
-    this.setState({ mounted: true });
-    this.getFacilities();
     this.getMasseuses();
-    setInterval(() => {
-      if (this.state.modalActive || this.state.batchAddModalActive || this.state.activeEventTooltip !== null) return;
-      this.getMassages();
-    }, Util.AUTO_REFRESH_TIME);
+    this.getFacilities();
+    Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
+    Fetch.WEBSOCKET_CALLBACKS.massage = this.massageCallback;
+    Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
+    Fetch.tryWebSocketSend("ADD_Facility");
+    Fetch.tryWebSocketSend("ADD_Massage");
+    Fetch.tryWebSocketSend("ADD_Client");
   }
 
   componentWillUnmount() {
-    Util.clearAllIntervals();
-    this.setState({ mounted: false });
+    Fetch.WEBSOCKET_CALLBACKS.facility = null;
+    Fetch.WEBSOCKET_CALLBACKS.massage = null;
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
+    Fetch.tryWebSocketSend("REMOVE_Facility");
+    Fetch.tryWebSocketSend("REMOVE_Massage");
+    Fetch.tryWebSocketSend("REMOVE_Client");
   }
-
-  getFacilities = () => {
-    Fetch.get(Util.FACILITIES_URL, json => {
-      if (this.state.mounted) {
-        this.setState({ facilities: json });
-        this.getMassages();
-      }
-    });
-  };
 
   getMasseuses = () => {
     Fetch.get(`${Util.CLIENTS_URL}masseuses`, json => {
-      if (this.state.mounted && json !== undefined) {
+      if (json !== undefined) {
         const masseuseNames = [];
 
         for (let i = 0; i < json.length; i++) {
@@ -95,38 +83,89 @@ class Massages extends Component {
     });
   };
 
-  getMassages = () => {
+  getFacilities = () => {
+    Fetch.get(Util.FACILITIES_URL, json => {
+      this.setState({ facilities: json });
+      this.getMassages();
+    });
+  };
+
+  getMassages = (index = this.state.index, free = !this.state.showAll) => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
-      Fetch.get(
-        `${Util.FACILITIES_URL + this.state.facilities[this.state.index].id}/massages?free=${!this.state
-          .showAll}&from=${moment(this.state.from).unix() * 1000}&to=${moment(this.state.to).unix() * 1000}`,
-        json => {
-          if (
-            this.state.mounted &&
-            json !== undefined &&
-            json.massages !== undefined &&
-            json.clientTime !== undefined
-          ) {
-            this.updateEvents(json.massages, json.clientTime / 60000);
-          }
+      Fetch.get(`${Util.FACILITIES_URL + this.state.facilities[index].id}/massages?free=${free}`, json => {
+        if (json !== undefined && json.massages !== undefined && json.clientTime !== undefined) {
+          this.updateEvents(json.massages, json.clientTime / 60000);
         }
-      );
+      });
     }
+  };
+
+  facilityCallback = (operation, facility) => {
+    const facilities = [...this.state.facilities];
+    const index = Util.findInArrayById(facilities, facility.id);
+
+    if (index === -1 && operation !== Fetch.OPERATION_ADD) {
+      return;
+    }
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        facilities.push(facility);
+        break;
+      case Fetch.OPERATION_CHANGE:
+        facilities[index] = facility;
+        break;
+      case Fetch.OPERATION_REMOVE:
+        facilities.splice(index, 1);
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(() => ({ facilities }));
+  };
+
+  massageCallback = (operation, massage) => {
+    if (massage.facility.id !== this.state.facilities[this.state.index].id) {
+      return;
+    }
+
+    const resultState = {
+      events: [...this.state.events],
+      selected: [],
+      massageMinutes: this.state.massageMinutes,
+      index: Util.findInArrayByMassageId(this.state.events, massage.id)
+    };
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        this.handleAddOperation(resultState, massage);
+        break;
+      case Fetch.OPERATION_CHANGE:
+        this.handleRemoveOperation(resultState, massage);
+        this.handleAddOperation(resultState, massage);
+        break;
+      case Fetch.OPERATION_REMOVE:
+        this.handleRemoveOperation(resultState, massage);
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(() => ({
+      events: resultState.events,
+      massageMinutes: resultState.massageMinutes,
+      selected: resultState.selected
+    }));
   };
 
   updateEvents = (massages, minutes) => {
     const events = [];
 
-    let color;
     for (let i = 0; i < massages.length; i++) {
-      if (Util.isEmpty(massages[i].client)) {
-        color = Util.SUCCESS_COLOR;
-      } else if (Auth.getSub() === massages[i].client.sub) {
-        color = Util.WARNING_COLOR;
-      } else {
-        color = Util.ERROR_COLOR;
-      }
-      events.push({ massage: massages[i], bgColor: color });
+      events.push({ massage: massages[i], bgColor: this.getBgColor(massages[i]) });
     }
 
     this.setState(prevState => {
@@ -159,44 +198,76 @@ class Massages extends Component {
     return this.state.masseuses[0];
   };
 
+  getBgColor = massage => {
+    if (Util.isEmpty(massage.client)) {
+      return Util.SUCCESS_COLOR;
+    }
+    if (Auth.getSub() === massage.client.sub) {
+      return Util.WARNING_COLOR;
+    }
+    return Util.ERROR_COLOR;
+  };
+
+  getMinutesChange = massage => {
+    if (!Util.isEmpty(massage.client) && Auth.getSub() === massage.client.sub) {
+      return moment.duration(moment(massage.ending).diff(massage.date)).asMinutes();
+    }
+
+    return 0;
+  };
+
+  handleAddOperation = (resultState, massage) => {
+    if (this.state.facilities[this.state.index].id === massage.facility.id) {
+      resultState.massageMinutes += this.getMinutesChange(massage);
+      if (this.state.showAll || Util.isEmpty(massage.client) || Auth.getSub() === massage.client.sub) {
+        resultState.events.push({ massage, bgColor: this.getBgColor(massage) });
+      }
+    }
+  };
+
+  handleRemoveOperation = (resultState, massage) => {
+    if (resultState.index !== -1) {
+      resultState.massageMinutes -= this.getMinutesChange(resultState.events[resultState.index].massage);
+      resultState.selected = [...this.state.selected];
+
+      const selectedIndex = Util.findInArrayById(resultState.selected, massage.id);
+      if (selectedIndex !== 1) {
+        resultState.selected.splice(selectedIndex, 1);
+      }
+      resultState.events.splice(resultState.index, 1);
+    }
+  };
+
   assignMassage = massage => {
-    Fetch.put(
-      Util.MASSAGES_URL,
-      [
-        {
-          id: massage.id,
-          date: massage.date,
-          ending: massage.ending,
-          masseuse: massage.masseuse,
-          client: Auth.getClient(),
-          facility: massage.facility
-        }
-      ],
-      this.getMassages
-    );
+    Fetch.put(Util.MASSAGES_URL, [
+      {
+        id: massage.id,
+        date: massage.date,
+        ending: massage.ending,
+        masseuse: massage.masseuse,
+        client: Auth.getClient(),
+        facility: massage.facility
+      }
+    ]);
     this.setState({ activeEventTooltip: null });
   };
 
   cancelMassage = massage => {
-    Fetch.put(
-      Util.MASSAGES_URL,
-      [
-        {
-          id: massage.id,
-          date: massage.date,
-          ending: massage.ending,
-          masseuse: massage.masseuse,
-          client: null,
-          facility: massage.facility
-        }
-      ],
-      this.getMassages
-    );
+    Fetch.put(Util.MASSAGES_URL, [
+      {
+        id: massage.id,
+        date: massage.date,
+        ending: massage.ending,
+        masseuse: massage.masseuse,
+        client: null,
+        facility: massage.facility
+      }
+    ]);
     this.setState({ activeEventTooltip: null });
   };
 
   deleteMassage = id => {
-    Fetch.delete(`${Util.MASSAGES_URL}?ids=${id}`, this.getMassages);
+    Fetch.delete(`${Util.MASSAGES_URL}?ids=${id}`);
   };
 
   deleteSelectedMassages = () => {
@@ -209,7 +280,6 @@ class Massages extends Component {
     }
     Fetch.delete(Util.MASSAGES_URL + idString, () => {
       this.setState({ selected: [] });
-      this.getMassages();
     });
   };
 
@@ -281,47 +351,18 @@ class Massages extends Component {
   };
 
   changeShowAll = () => {
+    this.getMassages(this.state.index, this.state.showAll);
     localStorage.setItem("hideAssignedMassages", JSON.stringify(this.state.showAll));
-    this.setState(prevState => ({ showAll: !prevState.showAll, loading: true }));
-    setTimeout(() => this.getMassages(), 3);
+    this.setState(prevState => ({ showAll: !prevState.showAll }));
   };
 
   changeSelectEvents = () => {
     this.setState(prevState => ({ selected: [], selectEvents: !prevState.selectEvents }));
   };
 
-  changeTimeRange = (date, view) => {
-    if (view === "month") {
-      this.setState({
-        from: moment(date)
-          .startOf("month")
-          .subtract(37, "days"),
-        to: moment(date)
-          .endOf("month")
-          .add(37, "days"),
-        loading: true,
-        selected: [],
-        activeEventTooltip: null
-      });
-    } else {
-      this.setState({
-        from: moment(date)
-          .startOf("isoWeek")
-          .subtract(7, "days"),
-        to: moment(date)
-          .endOf("isoWeek")
-          .add(5, "days"),
-        loading: true,
-        selected: [],
-        activeEventTooltip: null
-      });
-    }
-    setTimeout(() => this.getMassages(), 3);
-  };
-
   changeTabIndex = index => {
     this.setState({ index, loading: true, activeEventTooltip: null });
-    setTimeout(() => this.getMassages(), 3);
+    this.getMassages(index);
   };
 
   closeAlert = () => {
@@ -428,7 +469,6 @@ class Massages extends Component {
                       masseuses={this.state.masseuses}
                       masseuseNames={this.state.masseuseNames}
                       facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
                       onToggle={() => this.toggleModal(null)}
                     />
                     <MassageBatchAddModal
@@ -437,7 +477,6 @@ class Massages extends Component {
                       masseuses={this.state.masseuses}
                       masseuseNames={this.state.masseuseNames}
                       facilityId={this.state.facilities[this.state.index].id}
-                      getCallback={this.getMassages}
                       onToggle={deselect => this.toggleBatchAddModal(deselect)}
                     />
                   </Col>
@@ -469,7 +508,6 @@ class Massages extends Component {
                 onAdd={this.toggleModalWithTime}
                 onEdit={this.toggleModal}
                 onDelete={this.deleteMassage}
-                onDateChange={this.changeTimeRange}
                 onSelect={this.handleEventSelect}
                 onMultiSelect={this.handleMultiEventSelect}
                 onTooltipTrigger={this.changeTooltipActive}

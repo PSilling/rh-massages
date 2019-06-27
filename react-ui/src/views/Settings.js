@@ -18,7 +18,7 @@ import Util from "../util/Util";
  * View containing portal and user settings.
  */
 class Settings extends Component {
-  state = { notify: false, loading: true, tooltipOpen: false, mounted: false };
+  state = { notify: true, loading: true, tooltipOpen: false };
 
   alertMessage =
     _t.translate("On this page you can manage your local user settings. ") +
@@ -27,38 +27,44 @@ class Settings extends Component {
   tooltipTarget = `Tooltip${Util.tooltipCount++}`;
 
   componentDidMount() {
-    Util.clearAllIntervals();
-
-    this.setState({ mounted: true });
-    this.getSettings();
-    setInterval(() => {
-      this.getSettings();
-    }, Util.AUTO_REFRESH_TIME * 200);
+    this.getNotify();
+    Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
+    Fetch.tryWebSocketSend("ADD_Client");
   }
 
   componentWillUnmount() {
-    Util.clearAllIntervals();
-    this.setState({ mounted: false });
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
+    Fetch.tryWebSocketSend("REMOVE_Client");
   }
 
-  getSettings = () => {
+  getNotify = () => {
     Fetch.get(`${Util.CLIENTS_URL}retrieve-info`, json => {
-      if (this.state.mounted && json !== undefined) {
+      if (json !== undefined) {
         this.setState({ notify: json, loading: false });
       }
     });
   };
 
+  clientCallback = (operation, json) => {
+    switch (operation) {
+      case "CHANGE":
+        Auth.subscribed = json.subscribed;
+        this.setState({ notify: json.subscribed });
+        break;
+      case Fetch.OPERATION_ADD:
+      case Fetch.OPERATION_REMOVE:
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`);  /* eslint-disable-line */
+        break;
+    }
+  };
+
   changeNotify = event => {
-    Auth.subscribed = event.target.checked;
-    Fetch.put(
-      Util.CLIENTS_URL,
-      Auth.getClient(),
-      () => {
-        this.setState({ notify: Auth.subscribed });
-      },
-      false
-    );
+    const client = Auth.getClient();
+    client.subscribed = event.target.checked;
+    Fetch.put(Util.CLIENTS_URL, client, () => {}, false);
+    this.setState({ notify: event.target.checked });
   };
 
   closeAlert = () => {

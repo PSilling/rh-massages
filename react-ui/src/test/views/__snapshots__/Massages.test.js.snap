@@ -97,7 +97,6 @@ ShallowWrapper {
                 <MassageModal
                   active={false}
                   facilityId={1}
-                  getCallback={[Function]}
                   massage={null}
                   masseuseNames={Array []}
                   masseuses={Array []}
@@ -108,7 +107,6 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   facilityId={1}
-                  getCallback={[Function]}
                   masseuseNames={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
@@ -258,7 +256,6 @@ ShallowWrapper {
                 <MassageModal
                   active={false}
                   facilityId={1}
-                  getCallback={[Function]}
                   massage={null}
                   masseuseNames={Array []}
                   masseuses={Array []}
@@ -269,7 +266,6 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   facilityId={1}
-                  getCallback={[Function]}
                   masseuseNames={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
@@ -405,7 +401,6 @@ ShallowWrapper {
                   <MassageModal
                     active={false}
                     facilityId={1}
-                    getCallback={[Function]}
                     massage={null}
                     masseuseNames={Array []}
                     masseuses={Array []}
@@ -416,7 +411,6 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    getCallback={[Function]}
                     masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
@@ -705,7 +699,6 @@ ShallowWrapper {
                     <MassageModal
                       active={false}
                       facilityId={1}
-                      getCallback={[Function]}
                       massage={null}
                       masseuseNames={Array []}
                       masseuses={Array []}
@@ -716,7 +709,6 @@ ShallowWrapper {
                       active={false}
                       className="ml-2"
                       facilityId={1}
-                      getCallback={[Function]}
                       masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
@@ -769,7 +761,6 @@ ShallowWrapper {
                       <MassageModal
                         active={false}
                         facilityId={1}
-                        getCallback={[Function]}
                         massage={null}
                         masseuseNames={Array []}
                         masseuses={Array []}
@@ -780,7 +771,6 @@ ShallowWrapper {
                         active={false}
                         className="ml-2"
                         facilityId={1}
-                        getCallback={[Function]}
                         masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
@@ -806,7 +796,6 @@ ShallowWrapper {
                       "props": Object {
                         "active": false,
                         "facilityId": 1,
-                        "getCallback": [Function],
                         "massage": null,
                         "masseuseNames": Array [],
                         "masseuses": Array [],
@@ -825,7 +814,6 @@ ShallowWrapper {
                         "active": false,
                         "className": "ml-2",
                         "facilityId": 1,
-                        "getCallback": [Function],
                         "masseuseNames": Array [],
                         "masseuses": Array [],
                         "onToggle": [Function],
@@ -1031,7 +1019,6 @@ ShallowWrapper {
                   <MassageModal
                     active={false}
                     facilityId={1}
-                    getCallback={[Function]}
                     massage={null}
                     masseuseNames={Array []}
                     masseuses={Array []}
@@ -1042,7 +1029,6 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    getCallback={[Function]}
                     masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
@@ -1192,7 +1178,6 @@ ShallowWrapper {
                   <MassageModal
                     active={false}
                     facilityId={1}
-                    getCallback={[Function]}
                     massage={null}
                     masseuseNames={Array []}
                     masseuses={Array []}
@@ -1203,7 +1188,6 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    getCallback={[Function]}
                     masseuseNames={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
@@ -1339,7 +1323,6 @@ ShallowWrapper {
                     <MassageModal
                       active={false}
                       facilityId={1}
-                      getCallback={[Function]}
                       massage={null}
                       masseuseNames={Array []}
                       masseuses={Array []}
@@ -1350,7 +1333,6 @@ ShallowWrapper {
                       active={false}
                       className="ml-2"
                       facilityId={1}
-                      getCallback={[Function]}
                       masseuseNames={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
@@ -1639,7 +1621,6 @@ ShallowWrapper {
                       <MassageModal
                         active={false}
                         facilityId={1}
-                        getCallback={[Function]}
                         massage={null}
                         masseuseNames={Array []}
                         masseuses={Array []}
@@ -1650,7 +1631,6 @@ ShallowWrapper {
                         active={false}
                         className="ml-2"
                         facilityId={1}
-                        getCallback={[Function]}
                         masseuseNames={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
@@ -1703,7 +1683,6 @@ ShallowWrapper {
                         <MassageModal
                           active={false}
                           facilityId={1}
-                          getCallback={[Function]}
                           massage={null}
                           masseuseNames={Array []}
                           masseuses={Array []}
@@ -1714,7 +1693,6 @@ ShallowWrapper {
                           active={false}
                           className="ml-2"
                           facilityId={1}
-                          getCallback={[Function]}
                           masseuseNames={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
@@ -1740,7 +1718,6 @@ ShallowWrapper {
                         "props": Object {
                           "active": false,
                           "facilityId": 1,
-                          "getCallback": [Function],
                           "massage": null,
                           "masseuseNames": Array [],
                           "masseuses": Array [],
@@ -1759,7 +1736,6 @@ ShallowWrapper {
                           "active": false,
                           "className": "ml-2",
                           "facilityId": 1,
-                          "getCallback": [Function],
                           "masseuseNames": Array [],
                           "masseuses": Array [],
                           "onToggle": [Function],

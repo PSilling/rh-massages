@@ -344,8 +344,6 @@ CalendarPanel.propTypes = {
       })
     })
   ).isRequired,
-  /** function called on view change */
-  onDateChange: PropTypes.func.isRequired,
   /** function called on event deletion */
   onDelete: PropTypes.func.isRequired,
   /** function called on event selection */
@@ -396,6 +394,8 @@ CalendarPanel.propTypes = {
   onAssign: PropTypes.func,
   /** function called on event cancellation */
   onCancel: PropTypes.func,
+  /** function called on view change */
+  onDateChange: PropTypes.func,
   /** function called on event editation */
   onEdit: PropTypes.func,
   /** function called on event tooltip toggle trigger */
@@ -409,6 +409,7 @@ CalendarPanel.defaultProps = {
   onAdd() {},
   onAssign() {},
   onCancel() {},
+  onDateChange() {},
   onEdit() {},
   onTooltipTrigger() {}
 };

@@ -30,6 +30,9 @@ test("renders content correctly", () => {
   const testFacilities = [{ id: 1, name: "test" }];
   const wrapper = shallow(<Massages />);
 
+  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(3);
+  expect(Fetch.send).toHaveBeenCalledTimes(3);
+
   expect(wrapper.find(Tab).length).toBe(0);
   wrapper.instance().setState({ facilities: testFacilities });
   expect(wrapper.find(Tab).length).toBe(1);
@@ -39,7 +42,7 @@ test("renders content correctly", () => {
 
 test("properly changes state variables", () => {
   Date.now = dateNow;
-  Fetch.delete = jest.fn((url, update) => {
+  Fetch.delete = jest.fn((url, update = () => {}) => {
     update();
   });
   const testMoment = moment().add(1, "days");
@@ -114,7 +117,6 @@ test("properly changes state variables", () => {
   expect(wrapper.instance().state.modalActive).toBe(false);
   expect(deleteButton.props().disabled).toBe(true);
   expect(addModal.props().facilityId).toBe(testFacilities[0].id);
-  expect(massageModal.props().getCallback).toBe(wrapper.instance().getMassages);
   addModal.props().onToggle();
   massageModal.props().onToggle();
   expect(wrapper.instance().state.batchAddModalActive).toBe(true);
@@ -137,27 +139,6 @@ test("properly changes state variables", () => {
   panel.props().onSelect(null);
   expect(wrapper.instance().state.selected).toEqual([]);
 
-  panel.props().onDateChange(testMoment.clone(), "month");
-  expect(wrapper.instance().state.from).toEqual(
-    testMoment
-      .clone()
-      .startOf("month")
-      .subtract(37, "days")
-  );
-  expect(wrapper.instance().state.to).toEqual(
-    testMoment
-      .clone()
-      .endOf("month")
-      .add(37, "days")
-  );
-  panel.props().onDateChange(testMoment.clone(), "");
-  expect(wrapper.instance().state.from).toEqual(
-    testMoment
-      .clone()
-      .startOf("isoWeek")
-      .subtract(7, "days")
-  );
-  expect(wrapper.instance().state.to).toEqual(testMoment.endOf("isoWeek").add(5, "days"));
   expect(wrapper.instance().state.loading).toBe(true);
   expect(wrapper.instance().state.selected).toEqual([]);
 });
