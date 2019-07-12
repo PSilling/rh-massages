@@ -2,7 +2,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.7.0",
+        "version": "1.7.1",
         "title": "Red Hat Massages Server"
     },
     "host": "localhost:8080",
@@ -166,6 +166,38 @@
                             "items": {
                                 "$ref": "#/definitions/Client"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/{sub}": {
+            "delete": {
+                "description": "Deletes a {@link Client} given by the subject. All massages assigned to that client are freed\n before the deletion or, if the client is a masseur, those massages are automatically removed.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "sub",
+                        "in": "path",
+                        "required": true,
+                        "description": "{@link Client} subject"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "headers": {
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {
                         }
                     }
                 }

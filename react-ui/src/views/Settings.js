@@ -29,12 +29,10 @@ class Settings extends Component {
   componentDidMount() {
     this.getNotify();
     Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
-    Fetch.tryWebSocketSend("ADD_Client");
   }
 
   componentWillUnmount() {
     Fetch.WEBSOCKET_CALLBACKS.client = null;
-    Fetch.tryWebSocketSend("REMOVE_Client");
   }
 
   getNotify = () => {
@@ -45,14 +43,17 @@ class Settings extends Component {
     });
   };
 
-  clientCallback = (operation, json) => {
+  clientCallback = (operation, client) => {
     switch (operation) {
       case "CHANGE":
-        Auth.subscribed = json.subscribed;
-        this.setState({ notify: json.subscribed });
+        Auth.subscribed = client.subscribed;
+        this.setState({ notify: client.subscribed });
         break;
       case Fetch.OPERATION_ADD:
       case Fetch.OPERATION_REMOVE:
+        if (client.sub === Auth.getSub()) {
+          Auth.keycloak.logout();
+        }
         break;
       default:
         console.log(`Invalid WebSocket operation. Found: ${operation}.`);  /* eslint-disable-line */

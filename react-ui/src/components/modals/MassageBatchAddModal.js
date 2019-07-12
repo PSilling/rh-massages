@@ -141,7 +141,7 @@ class MassageBatchAddModal extends Component {
 
   changeMasseuse = event => {
     this.setState({
-      masseuse: this.props.masseuses[this.props.masseuseNames.indexOf(event.target.value)]
+      masseuse: this.props.masseuses[this.props.masseuseTooltips.indexOf(event.target.value)]
     });
   };
 
@@ -409,7 +409,7 @@ class MassageBatchAddModal extends Component {
     }
 
     const masseuseName = `${importData.masseuse.name} ${importData.masseuse.surname}`;
-    if (Util.isEmpty(importData.masseuse) || this.props.masseuseNames.indexOf(masseuseName) === -1) {
+    if (Util.isEmpty(importData.masseuse) || this.props.masseuseTooltips.indexOf(masseuseName) === -1) {
       importData.masseuse = null;
     }
 
@@ -557,14 +557,14 @@ class MassageBatchAddModal extends Component {
         {Auth.isAdmin() && (
           <Col md="6">
             <FormGroup>
-              <Label for="masseuseNameSelect">{_t.translate("Masseur/Masseuse")}</Label>
+              <Label for="masseuseTooltipSelect">{_t.translate("Masseur/Masseuse")}</Label>
               <Input
-                id="masseuseNameSelect"
+                id="masseuseTooltipSelect"
                 type="select"
-                value={`${this.state.masseuse.name} ${this.state.masseuse.surname}`}
+                value={Util.getContactInfo(this.state.masseuse.email)}
                 onChange={this.changeMasseuse}
               >
-                {this.props.masseuseNames.map(item => (
+                {this.props.masseuseTooltips.map(item => (
                   <option key={item}>{item}</option>
                 ))}
               </Input>
@@ -763,14 +763,14 @@ class MassageBatchAddModal extends Component {
   };
 
   render() {
-    const { facilityId, onToggle, active, masseuses, masseuseNames, withPortal, ...rest } = this.props;
+    const { facilityId, onToggle, active, masseuses, masseuseTooltips, withPortal, ...rest } = this.props;
     return (
       <span>
         <TooltipButton
           {...rest}
           onClick={this.handleToggle}
           label={_t.translate("Schedule")}
-          tooltip={_t.translate("Create multiple massages at once")}
+          tooltip={_t.translate("Create multiple massages at once based on a schedule")}
         />
 
         {this.props.active && this.createModal()}
@@ -786,8 +786,8 @@ MassageBatchAddModal.propTypes = {
   onToggle: PropTypes.func.isRequired,
   /** whether the dialog should be shown */
   active: PropTypes.bool,
-  /** names of Massage masseuses in the portal */
-  masseuseNames: PropTypes.arrayOf(PropTypes.string),
+  /** tooltip strings consistings of all portal masseurs and masseuses' names and e-mails */
+  masseuseTooltips: PropTypes.arrayOf(PropTypes.string),
   /** Massage masseuses in the portal */
   masseuses: PropTypes.arrayOf(
     PropTypes.shape({
@@ -805,7 +805,7 @@ MassageBatchAddModal.propTypes = {
 
 MassageBatchAddModal.defaultProps = {
   active: false,
-  masseuseNames: [],
+  masseuseTooltips: [],
   masseuses: [],
   withPortal: true
 };

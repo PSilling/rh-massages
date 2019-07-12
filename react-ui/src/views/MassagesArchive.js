@@ -41,6 +41,11 @@ class MassagesArchive extends Component {
 
   componentDidMount() {
     this.getMassages();
+    Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
+  }
+
+  componentWillUnmount() {
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
   }
 
   getMassages = (from = this.state.from, to = this.state.to) => {
@@ -49,6 +54,12 @@ class MassagesArchive extends Component {
         this.updateEvents(json.massages);
       }
     });
+  };
+
+  clientCallback = (operation, client) => {
+    if (client.sub === Auth.getSub() && Fetch.OPERATION_REMOVE) {
+      Auth.keycloak.logout();
+    }
   };
 
   updateEvents = massages => {

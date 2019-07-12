@@ -5,6 +5,8 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MassageModal
     active={true}
+    clientTooltips={Array []}
+    clients={Array []}
     facilityId={1}
     massage={null}
     masseuseNames={
@@ -12,6 +14,7 @@ ShallowWrapper {
         "Masseuse Test",
       ]
     }
+    masseuseTooltips={Array []}
     masseuses={
       Array [
         Object {
@@ -78,7 +81,7 @@ ShallowWrapper {
             tag="div"
           >
             <Col
-              md="4"
+              md="6"
               tag="div"
               widths={
                 Array [
@@ -94,7 +97,7 @@ ShallowWrapper {
                 tag="div"
               >
                 <Label
-                  for="masseuseNameSelect"
+                  for="masseuseSelect"
                   tag="label"
                   widths={
                     Array [
@@ -109,15 +112,11 @@ ShallowWrapper {
                   Masseur/Masseuse
                 </Label>
                 <Input
-                  id="masseuseNameSelect"
+                  id="masseuseSelect"
                   onChange={[Function]}
                   type="select"
-                  value="Masseuse Test"
-                >
-                  <option>
-                    Masseuse Test
-                  </option>
-                </Input>
+                  value="Masseuse Test (test@masseuse.org)"
+                />
               </FormGroup>
             </Col>
           </Row>
@@ -135,17 +134,13 @@ ShallowWrapper {
               tooltip=""
               value={"1969-12-31T23:30:00.000Z"}
             />
-          </Row>
-          <Row
-            tag="div"
-          >
             <LabeledDatetime
               disabled={false}
               isValidDate={[Function]}
               label="Massage time"
               onChange={[Function]}
               onEnterPress={[Function]}
-              size="4"
+              size="3"
               tooltip=""
               value={"1970-01-01T01:00:00.000Z"}
             />
@@ -154,7 +149,7 @@ ShallowWrapper {
             tag="div"
           >
             <Col
-              md="4"
+              md="6"
               tag="div"
               widths={
                 Array [
@@ -188,6 +183,7 @@ ShallowWrapper {
                   id="userSelect"
                   onChange={[Function]}
                   type="select"
+                  value="No one"
                 >
                   <option>
                     No one
@@ -256,7 +252,7 @@ ShallowWrapper {
               tag="div"
             >
               <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -272,7 +268,7 @@ ShallowWrapper {
                   tag="div"
                 >
                   <Label
-                    for="masseuseNameSelect"
+                    for="masseuseSelect"
                     tag="label"
                     widths={
                       Array [
@@ -287,15 +283,11 @@ ShallowWrapper {
                     Masseur/Masseuse
                   </Label>
                   <Input
-                    id="masseuseNameSelect"
+                    id="masseuseSelect"
                     onChange={[Function]}
                     type="select"
-                    value="Masseuse Test"
-                  >
-                    <option>
-                      Masseuse Test
-                    </option>
-                  </Input>
+                    value="Masseuse Test (test@masseuse.org)"
+                  />
                 </FormGroup>
               </Col>
             </Row>,
@@ -313,17 +305,13 @@ ShallowWrapper {
                 tooltip=""
                 value={"1969-12-31T23:30:00.000Z"}
               />
-            </Row>,
-            <Row
-              tag="div"
-            >
               <LabeledDatetime
                 disabled={false}
                 isValidDate={[Function]}
                 label="Massage time"
                 onChange={[Function]}
                 onEnterPress={[Function]}
-                size="4"
+                size="3"
                 tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />
@@ -332,7 +320,7 @@ ShallowWrapper {
               tag="div"
             >
               <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -366,6 +354,7 @@ ShallowWrapper {
                     id="userSelect"
                     onChange={[Function]}
                     type="select"
+                    value="No one"
                   >
                     <option>
                       No one
@@ -466,7 +455,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -482,7 +471,7 @@ ShallowWrapper {
                   tag="div"
                 >
                   <Label
-                    for="masseuseNameSelect"
+                    for="masseuseSelect"
                     tag="label"
                     widths={
                       Array [
@@ -497,15 +486,11 @@ ShallowWrapper {
                     Masseur/Masseuse
                   </Label>
                   <Input
-                    id="masseuseNameSelect"
+                    id="masseuseSelect"
                     onChange={[Function]}
                     type="select"
-                    value="Masseuse Test"
-                  >
-                    <option>
-                      Masseuse Test
-                    </option>
-                  </Input>
+                    value="Masseuse Test (test@masseuse.org)"
+                  />
                 </FormGroup>
               </Col>,
               "tag": "div",
@@ -520,7 +505,7 @@ ShallowWrapper {
                   tag="div"
                 >
                   <Label
-                    for="masseuseNameSelect"
+                    for="masseuseSelect"
                     tag="label"
                     widths={
                       Array [
@@ -535,17 +520,13 @@ ShallowWrapper {
                     Masseur/Masseuse
                   </Label>
                   <Input
-                    id="masseuseNameSelect"
+                    id="masseuseSelect"
                     onChange={[Function]}
                     type="select"
-                    value="Masseuse Test"
-                  >
-                    <option>
-                      Masseuse Test
-                    </option>
-                  </Input>
+                    value="Masseuse Test (test@masseuse.org)"
+                  />
                 </FormGroup>,
-                "md": "4",
+                "md": "6",
                 "tag": "div",
                 "widths": Array [
                   "xs",
@@ -563,7 +544,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Label
-                      for="masseuseNameSelect"
+                      for="masseuseSelect"
                       tag="label"
                       widths={
                         Array [
@@ -578,15 +559,11 @@ ShallowWrapper {
                       Masseur/Masseuse
                     </Label>,
                     <Input
-                      id="masseuseNameSelect"
+                      id="masseuseSelect"
                       onChange={[Function]}
                       type="select"
-                      value="Masseuse Test"
-                    >
-                      <option>
-                        Masseuse Test
-                      </option>
-                    </Input>,
+                      value="Masseuse Test (test@masseuse.org)"
+                    />,
                   ],
                   "tag": "div",
                 },
@@ -598,7 +575,7 @@ ShallowWrapper {
                     "nodeType": "function",
                     "props": Object {
                       "children": "Masseur/Masseuse",
-                      "for": "masseuseNameSelect",
+                      "for": "masseuseSelect",
                       "tag": "label",
                       "widths": Array [
                         "xs",
@@ -617,30 +594,14 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": Array [
-                        <option>
-                          Masseuse Test
-                        </option>,
-                      ],
-                      "id": "masseuseNameSelect",
+                      "children": Array [],
+                      "id": "masseuseSelect",
                       "onChange": [Function],
                       "type": "select",
-                      "value": "Masseuse Test",
+                      "value": "Masseuse Test (test@masseuse.org)",
                     },
                     "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": "Masseuse Test",
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "Masseuse Test",
-                        },
-                        "ref": null,
-                        "rendered": "Masseuse Test",
-                        "type": "option",
-                      },
-                    ],
+                    "rendered": Array [],
                     "type": [Function],
                   },
                 ],
@@ -655,77 +616,71 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": <LabeledDatetime
-                dateFormat={false}
-                disabled={false}
-                label="Duration"
-                onChange={[Function]}
-                onEnterPress={[Function]}
-                size="3"
-                timeFormat="H:mm"
-                tooltip=""
-                value={"1969-12-31T23:30:00.000Z"}
-              />,
+              "children": Array [
+                <LabeledDatetime
+                  dateFormat={false}
+                  disabled={false}
+                  label="Duration"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  size="3"
+                  timeFormat="H:mm"
+                  tooltip=""
+                  value={"1969-12-31T23:30:00.000Z"}
+                />,
+                <LabeledDatetime
+                  disabled={false}
+                  isValidDate={[Function]}
+                  label="Massage time"
+                  onChange={[Function]}
+                  onEnterPress={[Function]}
+                  size="3"
+                  tooltip=""
+                  value={"1970-01-01T01:00:00.000Z"}
+                />,
+              ],
               "tag": "div",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "dateFormat": false,
-                "disabled": false,
-                "label": "Duration",
-                "onChange": [Function],
-                "onEnterPress": [Function],
-                "size": "3",
-                "timeFormat": "H:mm",
-                "tooltip": "",
-                "value": "1969-12-31T23:30:00.000Z",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "dateFormat": false,
+                  "disabled": false,
+                  "label": "Duration",
+                  "onChange": [Function],
+                  "onEnterPress": [Function],
+                  "size": "3",
+                  "timeFormat": "H:mm",
+                  "tooltip": "",
+                  "value": "1969-12-31T23:30:00.000Z",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": <LabeledDatetime
-                disabled={false}
-                isValidDate={[Function]}
-                label="Massage time"
-                onChange={[Function]}
-                onEnterPress={[Function]}
-                size="4"
-                tooltip=""
-                value={"1970-01-01T01:00:00.000Z"}
-              />,
-              "tag": "div",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "disabled": false,
-                "isValidDate": [Function],
-                "label": "Massage time",
-                "onChange": [Function],
-                "onEnterPress": [Function],
-                "size": "4",
-                "tooltip": "",
-                "value": "1970-01-01T01:00:00.000Z",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "disabled": false,
+                  "isValidDate": [Function],
+                  "label": "Massage time",
+                  "onChange": [Function],
+                  "onEnterPress": [Function],
+                  "size": "3",
+                  "tooltip": "",
+                  "value": "1970-01-01T01:00:00.000Z",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            ],
             "type": [Function],
           },
           Object {
@@ -734,7 +689,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "children": <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -768,6 +723,7 @@ ShallowWrapper {
                     id="userSelect"
                     onChange={[Function]}
                     type="select"
+                    value="No one"
                   >
                     <option>
                       No one
@@ -805,13 +761,14 @@ ShallowWrapper {
                     id="userSelect"
                     onChange={[Function]}
                     type="select"
+                    value="No one"
                   >
                     <option>
                       No one
                     </option>
                   </Input>
                 </FormGroup>,
-                "md": "4",
+                "md": "6",
                 "tag": "div",
                 "widths": Array [
                   "xs",
@@ -847,6 +804,7 @@ ShallowWrapper {
                       id="userSelect"
                       onChange={[Function]}
                       type="select"
+                      value="No one"
                     >
                       <option>
                         No one
@@ -883,6 +841,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
+                        Array [],
                         <option>
                           No one
                         </option>,
@@ -890,13 +849,13 @@ ShallowWrapper {
                       "id": "userSelect",
                       "onChange": [Function],
                       "type": "select",
-                      "value": undefined,
+                      "value": "No one",
                     },
                     "ref": null,
                     "rendered": Array [
                       Object {
                         "instance": null,
-                        "key": "No one",
+                        "key": undefined,
                         "nodeType": "host",
                         "props": Object {
                           "children": "No one",
@@ -981,7 +940,7 @@ ShallowWrapper {
               tag="div"
             >
               <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -997,7 +956,7 @@ ShallowWrapper {
                   tag="div"
                 >
                   <Label
-                    for="masseuseNameSelect"
+                    for="masseuseSelect"
                     tag="label"
                     widths={
                       Array [
@@ -1012,15 +971,11 @@ ShallowWrapper {
                     Masseur/Masseuse
                   </Label>
                   <Input
-                    id="masseuseNameSelect"
+                    id="masseuseSelect"
                     onChange={[Function]}
                     type="select"
-                    value="Masseuse Test"
-                  >
-                    <option>
-                      Masseuse Test
-                    </option>
-                  </Input>
+                    value="Masseuse Test (test@masseuse.org)"
+                  />
                 </FormGroup>
               </Col>
             </Row>
@@ -1038,17 +993,13 @@ ShallowWrapper {
                 tooltip=""
                 value={"1969-12-31T23:30:00.000Z"}
               />
-            </Row>
-            <Row
-              tag="div"
-            >
               <LabeledDatetime
                 disabled={false}
                 isValidDate={[Function]}
                 label="Massage time"
                 onChange={[Function]}
                 onEnterPress={[Function]}
-                size="4"
+                size="3"
                 tooltip=""
                 value={"1970-01-01T01:00:00.000Z"}
               />
@@ -1057,7 +1008,7 @@ ShallowWrapper {
               tag="div"
             >
               <Col
-                md="4"
+                md="6"
                 tag="div"
                 widths={
                   Array [
@@ -1091,6 +1042,7 @@ ShallowWrapper {
                     id="userSelect"
                     onChange={[Function]}
                     type="select"
+                    value="No one"
                   >
                     <option>
                       No one
@@ -1159,7 +1111,7 @@ ShallowWrapper {
                 tag="div"
               >
                 <Col
-                  md="4"
+                  md="6"
                   tag="div"
                   widths={
                     Array [
@@ -1175,7 +1127,7 @@ ShallowWrapper {
                     tag="div"
                   >
                     <Label
-                      for="masseuseNameSelect"
+                      for="masseuseSelect"
                       tag="label"
                       widths={
                         Array [
@@ -1190,15 +1142,11 @@ ShallowWrapper {
                       Masseur/Masseuse
                     </Label>
                     <Input
-                      id="masseuseNameSelect"
+                      id="masseuseSelect"
                       onChange={[Function]}
                       type="select"
-                      value="Masseuse Test"
-                    >
-                      <option>
-                        Masseuse Test
-                      </option>
-                    </Input>
+                      value="Masseuse Test (test@masseuse.org)"
+                    />
                   </FormGroup>
                 </Col>
               </Row>,
@@ -1216,17 +1164,13 @@ ShallowWrapper {
                   tooltip=""
                   value={"1969-12-31T23:30:00.000Z"}
                 />
-              </Row>,
-              <Row
-                tag="div"
-              >
                 <LabeledDatetime
                   disabled={false}
                   isValidDate={[Function]}
                   label="Massage time"
                   onChange={[Function]}
                   onEnterPress={[Function]}
-                  size="4"
+                  size="3"
                   tooltip=""
                   value={"1970-01-01T01:00:00.000Z"}
                 />
@@ -1235,7 +1179,7 @@ ShallowWrapper {
                 tag="div"
               >
                 <Col
-                  md="4"
+                  md="6"
                   tag="div"
                   widths={
                     Array [
@@ -1269,6 +1213,7 @@ ShallowWrapper {
                       id="userSelect"
                       onChange={[Function]}
                       type="select"
+                      value="No one"
                     >
                       <option>
                         No one
@@ -1369,7 +1314,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": <Col
-                  md="4"
+                  md="6"
                   tag="div"
                   widths={
                     Array [
@@ -1385,7 +1330,7 @@ ShallowWrapper {
                     tag="div"
                   >
                     <Label
-                      for="masseuseNameSelect"
+                      for="masseuseSelect"
                       tag="label"
                       widths={
                         Array [
@@ -1400,15 +1345,11 @@ ShallowWrapper {
                       Masseur/Masseuse
                     </Label>
                     <Input
-                      id="masseuseNameSelect"
+                      id="masseuseSelect"
                       onChange={[Function]}
                       type="select"
-                      value="Masseuse Test"
-                    >
-                      <option>
-                        Masseuse Test
-                      </option>
-                    </Input>
+                      value="Masseuse Test (test@masseuse.org)"
+                    />
                   </FormGroup>
                 </Col>,
                 "tag": "div",
@@ -1423,7 +1364,7 @@ ShallowWrapper {
                     tag="div"
                   >
                     <Label
-                      for="masseuseNameSelect"
+                      for="masseuseSelect"
                       tag="label"
                       widths={
                         Array [
@@ -1438,17 +1379,13 @@ ShallowWrapper {
                       Masseur/Masseuse
                     </Label>
                     <Input
-                      id="masseuseNameSelect"
+                      id="masseuseSelect"
                       onChange={[Function]}
                       type="select"
-                      value="Masseuse Test"
-                    >
-                      <option>
-                        Masseuse Test
-                      </option>
-                    </Input>
+                      value="Masseuse Test (test@masseuse.org)"
+                    />
                   </FormGroup>,
-                  "md": "4",
+                  "md": "6",
                   "tag": "div",
                   "widths": Array [
                     "xs",
@@ -1466,7 +1403,7 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <Label
-                        for="masseuseNameSelect"
+                        for="masseuseSelect"
                         tag="label"
                         widths={
                           Array [
@@ -1481,15 +1418,11 @@ ShallowWrapper {
                         Masseur/Masseuse
                       </Label>,
                       <Input
-                        id="masseuseNameSelect"
+                        id="masseuseSelect"
                         onChange={[Function]}
                         type="select"
-                        value="Masseuse Test"
-                      >
-                        <option>
-                          Masseuse Test
-                        </option>
-                      </Input>,
+                        value="Masseuse Test (test@masseuse.org)"
+                      />,
                     ],
                     "tag": "div",
                   },
@@ -1501,7 +1434,7 @@ ShallowWrapper {
                       "nodeType": "function",
                       "props": Object {
                         "children": "Masseur/Masseuse",
-                        "for": "masseuseNameSelect",
+                        "for": "masseuseSelect",
                         "tag": "label",
                         "widths": Array [
                           "xs",
@@ -1520,30 +1453,14 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [
-                          <option>
-                            Masseuse Test
-                          </option>,
-                        ],
-                        "id": "masseuseNameSelect",
+                        "children": Array [],
+                        "id": "masseuseSelect",
                         "onChange": [Function],
                         "type": "select",
-                        "value": "Masseuse Test",
+                        "value": "Masseuse Test (test@masseuse.org)",
                       },
                       "ref": null,
-                      "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": "Masseuse Test",
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "Masseuse Test",
-                          },
-                          "ref": null,
-                          "rendered": "Masseuse Test",
-                          "type": "option",
-                        },
-                      ],
+                      "rendered": Array [],
                       "type": [Function],
                     },
                   ],
@@ -1558,77 +1475,71 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": <LabeledDatetime
-                  dateFormat={false}
-                  disabled={false}
-                  label="Duration"
-                  onChange={[Function]}
-                  onEnterPress={[Function]}
-                  size="3"
-                  timeFormat="H:mm"
-                  tooltip=""
-                  value={"1969-12-31T23:30:00.000Z"}
-                />,
+                "children": Array [
+                  <LabeledDatetime
+                    dateFormat={false}
+                    disabled={false}
+                    label="Duration"
+                    onChange={[Function]}
+                    onEnterPress={[Function]}
+                    size="3"
+                    timeFormat="H:mm"
+                    tooltip=""
+                    value={"1969-12-31T23:30:00.000Z"}
+                  />,
+                  <LabeledDatetime
+                    disabled={false}
+                    isValidDate={[Function]}
+                    label="Massage time"
+                    onChange={[Function]}
+                    onEnterPress={[Function]}
+                    size="3"
+                    tooltip=""
+                    value={"1970-01-01T01:00:00.000Z"}
+                  />,
+                ],
                 "tag": "div",
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "dateFormat": false,
-                  "disabled": false,
-                  "label": "Duration",
-                  "onChange": [Function],
-                  "onEnterPress": [Function],
-                  "size": "3",
-                  "timeFormat": "H:mm",
-                  "tooltip": "",
-                  "value": "1969-12-31T23:30:00.000Z",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "dateFormat": false,
+                    "disabled": false,
+                    "label": "Duration",
+                    "onChange": [Function],
+                    "onEnterPress": [Function],
+                    "size": "3",
+                    "timeFormat": "H:mm",
+                    "tooltip": "",
+                    "value": "1969-12-31T23:30:00.000Z",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": <LabeledDatetime
-                  disabled={false}
-                  isValidDate={[Function]}
-                  label="Massage time"
-                  onChange={[Function]}
-                  onEnterPress={[Function]}
-                  size="4"
-                  tooltip=""
-                  value={"1970-01-01T01:00:00.000Z"}
-                />,
-                "tag": "div",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "disabled": false,
-                  "isValidDate": [Function],
-                  "label": "Massage time",
-                  "onChange": [Function],
-                  "onEnterPress": [Function],
-                  "size": "4",
-                  "tooltip": "",
-                  "value": "1970-01-01T01:00:00.000Z",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "disabled": false,
+                    "isValidDate": [Function],
+                    "label": "Massage time",
+                    "onChange": [Function],
+                    "onEnterPress": [Function],
+                    "size": "3",
+                    "tooltip": "",
+                    "value": "1970-01-01T01:00:00.000Z",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              ],
               "type": [Function],
             },
             Object {
@@ -1637,7 +1548,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": <Col
-                  md="4"
+                  md="6"
                   tag="div"
                   widths={
                     Array [
@@ -1671,6 +1582,7 @@ ShallowWrapper {
                       id="userSelect"
                       onChange={[Function]}
                       type="select"
+                      value="No one"
                     >
                       <option>
                         No one
@@ -1708,13 +1620,14 @@ ShallowWrapper {
                       id="userSelect"
                       onChange={[Function]}
                       type="select"
+                      value="No one"
                     >
                       <option>
                         No one
                       </option>
                     </Input>
                   </FormGroup>,
-                  "md": "4",
+                  "md": "6",
                   "tag": "div",
                   "widths": Array [
                     "xs",
@@ -1750,6 +1663,7 @@ ShallowWrapper {
                         id="userSelect"
                         onChange={[Function]}
                         type="select"
+                        value="No one"
                       >
                         <option>
                           No one
@@ -1786,6 +1700,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
+                          Array [],
                           <option>
                             No one
                           </option>,
@@ -1793,13 +1708,13 @@ ShallowWrapper {
                         "id": "userSelect",
                         "onChange": [Function],
                         "type": "select",
-                        "value": undefined,
+                        "value": "No one",
                       },
                       "ref": null,
                       "rendered": Array [
                         Object {
                           "instance": null,
-                          "key": "No one",
+                          "key": undefined,
                           "nodeType": "host",
                           "props": Object {
                             "children": "No one",

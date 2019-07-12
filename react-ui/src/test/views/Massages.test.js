@@ -30,8 +30,8 @@ test("renders content correctly", () => {
   const testFacilities = [{ id: 1, name: "test" }];
   const wrapper = shallow(<Massages />);
 
-  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(3);
-  expect(Fetch.send).toHaveBeenCalledTimes(3);
+  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(2);
+  expect(Fetch.send).toHaveBeenCalledTimes(2);
 
   expect(wrapper.find(Tab).length).toBe(0);
   wrapper.instance().setState({ facilities: testFacilities });

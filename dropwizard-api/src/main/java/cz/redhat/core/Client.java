@@ -24,6 +24,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Client representation class.
@@ -51,7 +52,7 @@ public class Client {
 
   @Id
   @Column(name = "sub", unique = true, length = 64)
-  @NotNull
+  @NotEmpty
   private String sub; // subject of the Client
 
   @Email
@@ -64,7 +65,7 @@ public class Client {
   private String name; // name of the Client
 
   @Column(length = 64)
-  @NotNull
+  @NotEmpty
   private String surname; // surname of the Client
 
   @NotNull

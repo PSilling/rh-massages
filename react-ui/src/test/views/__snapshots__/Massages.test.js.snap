@@ -63,7 +63,7 @@ ShallowWrapper {
                       label="Show all"
                       onClick={[Function]}
                       outline={true}
-                      tooltip="Show massages already taken by others"
+                      tooltip="Show massages already taken by someone else"
                     />
                   </div>
                   <div
@@ -96,9 +96,11 @@ ShallowWrapper {
               >
                 <MassageModal
                   active={false}
+                  clientTooltips={Array []}
+                  clients={Array []}
                   facilityId={1}
                   massage={null}
-                  masseuseNames={Array []}
+                  masseuseTooltips={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
                   withPortal={true}
@@ -107,7 +109,7 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   facilityId={1}
-                  masseuseNames={Array []}
+                  masseuseTooltips={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
                   withPortal={true}
@@ -222,7 +224,7 @@ ShallowWrapper {
                       label="Show all"
                       onClick={[Function]}
                       outline={true}
-                      tooltip="Show massages already taken by others"
+                      tooltip="Show massages already taken by someone else"
                     />
                   </div>
                   <div
@@ -255,9 +257,11 @@ ShallowWrapper {
               >
                 <MassageModal
                   active={false}
+                  clientTooltips={Array []}
+                  clients={Array []}
                   facilityId={1}
                   massage={null}
-                  masseuseNames={Array []}
+                  masseuseTooltips={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
                   withPortal={true}
@@ -266,7 +270,7 @@ ShallowWrapper {
                   active={false}
                   className="ml-2"
                   facilityId={1}
-                  masseuseNames={Array []}
+                  masseuseTooltips={Array []}
                   masseuses={Array []}
                   onToggle={[Function]}
                   withPortal={true}
@@ -367,7 +371,7 @@ ShallowWrapper {
                         label="Show all"
                         onClick={[Function]}
                         outline={true}
-                        tooltip="Show massages already taken by others"
+                        tooltip="Show massages already taken by someone else"
                       />
                     </div>
                     <div
@@ -400,9 +404,11 @@ ShallowWrapper {
                 >
                   <MassageModal
                     active={false}
+                    clientTooltips={Array []}
+                    clients={Array []}
                     facilityId={1}
                     massage={null}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -411,7 +417,7 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -508,7 +514,7 @@ ShallowWrapper {
                           label="Show all"
                           onClick={[Function]}
                           outline={true}
-                          tooltip="Show massages already taken by others"
+                          tooltip="Show massages already taken by someone else"
                         />
                       </div>
                       <div
@@ -565,7 +571,7 @@ ShallowWrapper {
                           label="Show all"
                           onClick={[Function]}
                           outline={true}
-                          tooltip="Show massages already taken by others"
+                          tooltip="Show massages already taken by someone else"
                         />
                       </div>
                       <div
@@ -602,7 +608,7 @@ ShallowWrapper {
                             label="Show all"
                             onClick={[Function]}
                             outline={true}
-                            tooltip="Show massages already taken by others"
+                            tooltip="Show massages already taken by someone else"
                           />
                         </div>,
                         <div
@@ -629,7 +635,7 @@ ShallowWrapper {
                             label="Show all"
                             onClick={[Function]}
                             outline={true}
-                            tooltip="Show massages already taken by others"
+                            tooltip="Show massages already taken by someone else"
                           />,
                           "style": Object {
                             "marginLeft": "2.2em",
@@ -647,7 +653,7 @@ ShallowWrapper {
                             "label": "Show all",
                             "onClick": [Function],
                             "outline": true,
-                            "tooltip": "Show massages already taken by others",
+                            "tooltip": "Show massages already taken by someone else",
                           },
                           "ref": null,
                           "rendered": null,
@@ -698,9 +704,11 @@ ShallowWrapper {
                   >
                     <MassageModal
                       active={false}
+                      clientTooltips={Array []}
+                      clients={Array []}
                       facilityId={1}
                       massage={null}
-                      masseuseNames={Array []}
+                      masseuseTooltips={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -709,7 +717,7 @@ ShallowWrapper {
                       active={false}
                       className="ml-2"
                       facilityId={1}
-                      masseuseNames={Array []}
+                      masseuseTooltips={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -760,9 +768,11 @@ ShallowWrapper {
                     "children": Array [
                       <MassageModal
                         active={false}
+                        clientTooltips={Array []}
+                        clients={Array []}
                         facilityId={1}
                         massage={null}
-                        masseuseNames={Array []}
+                        masseuseTooltips={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -771,7 +781,7 @@ ShallowWrapper {
                         active={false}
                         className="ml-2"
                         facilityId={1}
-                        masseuseNames={Array []}
+                        masseuseTooltips={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -795,9 +805,11 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "active": false,
+                        "clientTooltips": Array [],
+                        "clients": Array [],
                         "facilityId": 1,
                         "massage": null,
-                        "masseuseNames": Array [],
+                        "masseuseTooltips": Array [],
                         "masseuses": Array [],
                         "onToggle": [Function],
                         "withPortal": true,
@@ -814,7 +826,7 @@ ShallowWrapper {
                         "active": false,
                         "className": "ml-2",
                         "facilityId": 1,
-                        "masseuseNames": Array [],
+                        "masseuseTooltips": Array [],
                         "masseuses": Array [],
                         "onToggle": [Function],
                         "withPortal": true,
@@ -985,7 +997,7 @@ ShallowWrapper {
                         label="Show all"
                         onClick={[Function]}
                         outline={true}
-                        tooltip="Show massages already taken by others"
+                        tooltip="Show massages already taken by someone else"
                       />
                     </div>
                     <div
@@ -1018,9 +1030,11 @@ ShallowWrapper {
                 >
                   <MassageModal
                     active={false}
+                    clientTooltips={Array []}
+                    clients={Array []}
                     facilityId={1}
                     massage={null}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -1029,7 +1043,7 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -1144,7 +1158,7 @@ ShallowWrapper {
                         label="Show all"
                         onClick={[Function]}
                         outline={true}
-                        tooltip="Show massages already taken by others"
+                        tooltip="Show massages already taken by someone else"
                       />
                     </div>
                     <div
@@ -1177,9 +1191,11 @@ ShallowWrapper {
                 >
                   <MassageModal
                     active={false}
+                    clientTooltips={Array []}
+                    clients={Array []}
                     facilityId={1}
                     massage={null}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -1188,7 +1204,7 @@ ShallowWrapper {
                     active={false}
                     className="ml-2"
                     facilityId={1}
-                    masseuseNames={Array []}
+                    masseuseTooltips={Array []}
                     masseuses={Array []}
                     onToggle={[Function]}
                     withPortal={true}
@@ -1289,7 +1305,7 @@ ShallowWrapper {
                           label="Show all"
                           onClick={[Function]}
                           outline={true}
-                          tooltip="Show massages already taken by others"
+                          tooltip="Show massages already taken by someone else"
                         />
                       </div>
                       <div
@@ -1322,9 +1338,11 @@ ShallowWrapper {
                   >
                     <MassageModal
                       active={false}
+                      clientTooltips={Array []}
+                      clients={Array []}
                       facilityId={1}
                       massage={null}
-                      masseuseNames={Array []}
+                      masseuseTooltips={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -1333,7 +1351,7 @@ ShallowWrapper {
                       active={false}
                       className="ml-2"
                       facilityId={1}
-                      masseuseNames={Array []}
+                      masseuseTooltips={Array []}
                       masseuses={Array []}
                       onToggle={[Function]}
                       withPortal={true}
@@ -1430,7 +1448,7 @@ ShallowWrapper {
                             label="Show all"
                             onClick={[Function]}
                             outline={true}
-                            tooltip="Show massages already taken by others"
+                            tooltip="Show massages already taken by someone else"
                           />
                         </div>
                         <div
@@ -1487,7 +1505,7 @@ ShallowWrapper {
                             label="Show all"
                             onClick={[Function]}
                             outline={true}
-                            tooltip="Show massages already taken by others"
+                            tooltip="Show massages already taken by someone else"
                           />
                         </div>
                         <div
@@ -1524,7 +1542,7 @@ ShallowWrapper {
                               label="Show all"
                               onClick={[Function]}
                               outline={true}
-                              tooltip="Show massages already taken by others"
+                              tooltip="Show massages already taken by someone else"
                             />
                           </div>,
                           <div
@@ -1551,7 +1569,7 @@ ShallowWrapper {
                               label="Show all"
                               onClick={[Function]}
                               outline={true}
-                              tooltip="Show massages already taken by others"
+                              tooltip="Show massages already taken by someone else"
                             />,
                             "style": Object {
                               "marginLeft": "2.2em",
@@ -1569,7 +1587,7 @@ ShallowWrapper {
                               "label": "Show all",
                               "onClick": [Function],
                               "outline": true,
-                              "tooltip": "Show massages already taken by others",
+                              "tooltip": "Show massages already taken by someone else",
                             },
                             "ref": null,
                             "rendered": null,
@@ -1620,9 +1638,11 @@ ShallowWrapper {
                     >
                       <MassageModal
                         active={false}
+                        clientTooltips={Array []}
+                        clients={Array []}
                         facilityId={1}
                         massage={null}
-                        masseuseNames={Array []}
+                        masseuseTooltips={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -1631,7 +1651,7 @@ ShallowWrapper {
                         active={false}
                         className="ml-2"
                         facilityId={1}
-                        masseuseNames={Array []}
+                        masseuseTooltips={Array []}
                         masseuses={Array []}
                         onToggle={[Function]}
                         withPortal={true}
@@ -1682,9 +1702,11 @@ ShallowWrapper {
                       "children": Array [
                         <MassageModal
                           active={false}
+                          clientTooltips={Array []}
+                          clients={Array []}
                           facilityId={1}
                           massage={null}
-                          masseuseNames={Array []}
+                          masseuseTooltips={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -1693,7 +1715,7 @@ ShallowWrapper {
                           active={false}
                           className="ml-2"
                           facilityId={1}
-                          masseuseNames={Array []}
+                          masseuseTooltips={Array []}
                           masseuses={Array []}
                           onToggle={[Function]}
                           withPortal={true}
@@ -1717,9 +1739,11 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "active": false,
+                          "clientTooltips": Array [],
+                          "clients": Array [],
                           "facilityId": 1,
                           "massage": null,
-                          "masseuseNames": Array [],
+                          "masseuseTooltips": Array [],
                           "masseuses": Array [],
                           "onToggle": [Function],
                           "withPortal": true,
@@ -1736,7 +1760,7 @@ ShallowWrapper {
                           "active": false,
                           "className": "ml-2",
                           "facilityId": 1,
-                          "masseuseNames": Array [],
+                          "masseuseTooltips": Array [],
                           "masseuses": Array [],
                           "onToggle": [Function],
                           "withPortal": true,

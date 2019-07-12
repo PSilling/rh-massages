@@ -11,6 +11,7 @@ ShallowWrapper {
         "Masseuse Test",
       ]
     }
+    masseuseTooltips={Array []}
     masseuses={
       Array [
         Object {
@@ -65,9 +66,14 @@ ShallowWrapper {
           active={false}
           disabled={false}
           label="Schedule"
+          masseuseNames={
+            Array [
+              "Masseuse Test",
+            ]
+          }
           onClick={[Function]}
           outline={true}
-          tooltip="Create multiple massages at once"
+          tooltip="Create multiple massages at once based on a schedule"
         />,
         <ModalBody
           tag="div"
@@ -500,9 +506,12 @@ ShallowWrapper {
           "active": false,
           "disabled": false,
           "label": "Schedule",
+          "masseuseNames": Array [
+            "Masseuse Test",
+          ],
           "onClick": [Function],
           "outline": true,
-          "tooltip": "Create multiple massages at once",
+          "tooltip": "Create multiple massages at once based on a schedule",
         },
         "ref": null,
         "rendered": null,
@@ -2534,9 +2543,14 @@ ShallowWrapper {
             active={false}
             disabled={false}
             label="Schedule"
+            masseuseNames={
+              Array [
+                "Masseuse Test",
+              ]
+            }
             onClick={[Function]}
             outline={true}
-            tooltip="Create multiple massages at once"
+            tooltip="Create multiple massages at once based on a schedule"
           />,
           <ModalBody
             tag="div"
@@ -2969,9 +2983,12 @@ ShallowWrapper {
             "active": false,
             "disabled": false,
             "label": "Schedule",
+            "masseuseNames": Array [
+              "Masseuse Test",
+            ],
             "onClick": [Function],
             "outline": true,
-            "tooltip": "Create multiple massages at once",
+            "tooltip": "Create multiple massages at once based on a schedule",
           },
           "ref": null,
           "rendered": null,

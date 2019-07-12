@@ -57,6 +57,10 @@ import org.hibernate.annotations.OnDeleteAction;
     @NamedQuery(
         name = "Massage.findAllByClient",
         query =
+            "SELECT massage FROM Massage massage WHERE massage.client = :client"),
+    @NamedQuery(
+        name = "Massage.findNewByClient",
+        query =
             "SELECT massage FROM Massage massage WHERE massage.client = :client AND "
                 + "massage.ending > CURRENT_TIMESTAMP() ORDER BY massage.date ASC"),
     @NamedQuery(
@@ -169,10 +173,10 @@ public class Massage {
   }
 
   /**
-   * @param masseuse new {@link Massage} masseuse to be set
+   * @param client new {@link Client} to be set
    */
-  public void setMasseuse(Client masseuse) {
-    this.masseuse = masseuse;
+  public void setClient(Client client) {
+    this.client = client;
   }
 
   /**
@@ -181,6 +185,13 @@ public class Massage {
   @Nullable
   public Client getClient() {
     return client;
+  }
+
+  /**
+   * @param masseuse new {@link Massage} masseuse to be set
+   */
+  public void setMasseuse(Client masseuse) {
+    this.masseuse = masseuse;
   }
 
   /**

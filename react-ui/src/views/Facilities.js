@@ -18,7 +18,7 @@ import Fetch from "../util/Fetch";
 import Util from "../util/Util";
 
 /**
- * Main view table component for Facility management. Visible only administrator priviledges.
+ * Main view table component for Facility management. Visible only with administrator priviledges.
  */
 class Facilities extends Component {
   state = { facilities: [], modalActive: false, editId: -1, loading: true };
@@ -28,11 +28,13 @@ class Facilities extends Component {
   componentDidMount() {
     this.getFacilities();
     Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
+    Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
     Fetch.tryWebSocketSend("ADD_Facility");
   }
 
   componentWillUnmount() {
     Fetch.WEBSOCKET_CALLBACKS.facility = null;
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
     Fetch.tryWebSocketSend("REMOVE_Facility");
   }
 
@@ -68,6 +70,12 @@ class Facilities extends Component {
     }
 
     this.setState(() => ({ facilities }));
+  };
+
+  clientCallback = (operation, client) => {
+    if (client.sub === Auth.getSub() && Fetch.OPERATION_REMOVE) {
+      Auth.keycloak.logout();
+    }
   };
 
   closeAlert = () => {

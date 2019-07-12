@@ -151,6 +151,10 @@ class MassageEventModal extends Component {
                         : Util.ERROR_COLOR
                   }}
                 >
+                  <strong>
+                    {`${this.props.event.massage.client.name} ${this.props.event.massage.client.surname}`}
+                  </strong>
+                  <br />
                   <strong>{this.props.event.massage.client.email}</strong>
                 </p>
               </dd>

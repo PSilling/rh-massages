@@ -30,6 +30,7 @@ class MyMassages extends Component {
     this.getFacilities();
     Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
     Fetch.WEBSOCKET_CALLBACKS.massage = this.massageCallback;
+    Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
     Fetch.tryWebSocketSend("ADD_Facility");
     Fetch.tryWebSocketSend("ADD_Massage");
   }
@@ -37,6 +38,7 @@ class MyMassages extends Component {
   componentWillUnmount() {
     Fetch.WEBSOCKET_CALLBACKS.facility = null;
     Fetch.WEBSOCKET_CALLBACKS.massage = null;
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
     Fetch.tryWebSocketSend("REMOVE_Facility");
     Fetch.tryWebSocketSend("REMOVE_Massage");
   }
@@ -124,6 +126,12 @@ class MyMassages extends Component {
     }
 
     this.setState(prevState => ({ events, filteredEvents: this.getFilteredEvents(events, prevState.index) }));
+  };
+
+  clientCallback = (operation, client) => {
+    if (client.sub === Auth.getSub() && Fetch.OPERATION_REMOVE) {
+      Auth.keycloak.logout();
+    }
   };
 
   updateEvents = massages => {

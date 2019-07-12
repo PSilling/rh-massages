@@ -46,6 +46,11 @@ ShallowWrapper {
               <Route
                 component={[Function]}
                 exact={true}
+                path="/users"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
                 path="/massages-archive"
               />
               <Route
@@ -93,6 +98,11 @@ ShallowWrapper {
                   component={[Function]}
                   exact={true}
                   path="/facilities"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/users"
                 />
                 <Route
                   component={[Function]}
@@ -161,6 +171,11 @@ ShallowWrapper {
                 <Route
                   component={[Function]}
                   exact={true}
+                  path="/users"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
                   path="/massages-archive"
                 />
                 <Route
@@ -200,6 +215,11 @@ ShallowWrapper {
                 <Route
                   component={[Function]}
                   exact={true}
+                  path="/users"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
                   path="/massages-archive"
                 />
                 <Route
@@ -233,6 +253,11 @@ ShallowWrapper {
                     component={[Function]}
                     exact={true}
                     path="/facilities"
+                  />,
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/users"
                   />,
                   <Route
                     component={[Function]}
@@ -285,6 +310,19 @@ ShallowWrapper {
                     "component": [Function],
                     "exact": true,
                     "path": "/facilities",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "component": [Function],
+                    "exact": true,
+                    "path": "/users",
                   },
                   "ref": null,
                   "rendered": null,
@@ -383,6 +421,11 @@ ShallowWrapper {
                 <Route
                   component={[Function]}
                   exact={true}
+                  path="/users"
+                />
+                <Route
+                  component={[Function]}
+                  exact={true}
                   path="/massages-archive"
                 />
                 <Route
@@ -430,6 +473,11 @@ ShallowWrapper {
                     component={[Function]}
                     exact={true}
                     path="/facilities"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/users"
                   />
                   <Route
                     component={[Function]}
@@ -498,6 +546,11 @@ ShallowWrapper {
                   <Route
                     component={[Function]}
                     exact={true}
+                    path="/users"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
                     path="/massages-archive"
                   />
                   <Route
@@ -537,6 +590,11 @@ ShallowWrapper {
                   <Route
                     component={[Function]}
                     exact={true}
+                    path="/users"
+                  />
+                  <Route
+                    component={[Function]}
+                    exact={true}
                     path="/massages-archive"
                   />
                   <Route
@@ -570,6 +628,11 @@ ShallowWrapper {
                       component={[Function]}
                       exact={true}
                       path="/facilities"
+                    />,
+                    <Route
+                      component={[Function]}
+                      exact={true}
+                      path="/users"
                     />,
                     <Route
                       component={[Function]}
@@ -622,6 +685,19 @@ ShallowWrapper {
                       "component": [Function],
                       "exact": true,
                       "path": "/facilities",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "exact": true,
+                      "path": "/users",
                     },
                     "ref": null,
                     "rendered": null,

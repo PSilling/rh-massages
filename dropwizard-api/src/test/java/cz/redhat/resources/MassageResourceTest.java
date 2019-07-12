@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.After;
@@ -153,17 +154,17 @@ public class MassageResourceTest {
   }
 
   /**
-   * Test whether fetch request for a given {@link Massage} works as intended.
+   * Test whether a removal request for a given {@link Massage} error when unknown IDs are supplied.
    */
   @Test
   public void delete() {
-    Massage massage =
-        RULE.target("/massages/1")
+    Response response =
+        RULE.target("/massages?ids=10&3")
             .request()
             .header("Authorization", "Bearer TOKEN")
-            .get(Massage.class);
+            .delete();
 
-    assertNotNull(massage);
-    assertEquals(this.massage, massage);
+    assertNotNull(response);
+    assertEquals(404, response.getStatus());
   }
 }

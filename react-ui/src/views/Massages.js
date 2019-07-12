@@ -28,10 +28,12 @@ import Util from "../util/Util";
  */
 class Massages extends Component {
   state = {
+    clients: [],
+    clientTooltips: [],
     facilities: [],
     events: [],
     masseuses: [],
-    masseuseNames: [],
+    masseuseTooltips: [],
     selected: [],
     index: 0,
     selectEvents: false,
@@ -50,14 +52,13 @@ class Massages extends Component {
 
   //  if (this.state.modalActive || this.state.batchAddModalActive || this.state.activeEventTooltip !== null) return;
   componentDidMount() {
-    this.getMasseuses();
+    this.getUsers();
     this.getFacilities();
     Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
     Fetch.WEBSOCKET_CALLBACKS.massage = this.massageCallback;
     Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
     Fetch.tryWebSocketSend("ADD_Facility");
     Fetch.tryWebSocketSend("ADD_Massage");
-    Fetch.tryWebSocketSend("ADD_Client");
   }
 
   componentWillUnmount() {
@@ -66,19 +67,27 @@ class Massages extends Component {
     Fetch.WEBSOCKET_CALLBACKS.client = null;
     Fetch.tryWebSocketSend("REMOVE_Facility");
     Fetch.tryWebSocketSend("REMOVE_Massage");
-    Fetch.tryWebSocketSend("REMOVE_Client");
   }
 
-  getMasseuses = () => {
-    Fetch.get(`${Util.CLIENTS_URL}masseuses`, json => {
+  getUsers = () => {
+    Fetch.get(`${Util.CLIENTS_URL}`, json => {
       if (json !== undefined) {
-        const masseuseNames = [];
+        const clients = [];
+        const clientTooltips = [];
+        const masseuses = [];
+        const masseuseTooltips = [];
 
         for (let i = 0; i < json.length; i++) {
-          masseuseNames.push(`${json[i].name} ${json[i].surname}`);
+          if (json[i].masseur) {
+            masseuses.push(json[i]);
+            masseuseTooltips.push(Util.getContactInfo(json[i]));
+          } else {
+            clients.push(json[i]);
+            clientTooltips.push(Util.getContactInfo(json[i]));
+          }
         }
 
-        this.setState({ masseuses: json, masseuseNames });
+        this.setState({ clients, clientTooltips, masseuses, masseuseTooltips });
       }
     });
   };
@@ -159,6 +168,67 @@ class Massages extends Component {
       massageMinutes: resultState.massageMinutes,
       selected: resultState.selected
     }));
+  };
+
+  clientCallback = (operation, client) => {
+    if (client.sub === Auth.getSub() && operation === Fetch.OPERATION_REMOVE) {
+      Auth.keycloak.logout();
+    }
+
+    const clients = [...this.state.clients];
+    const clientTooltips = [...this.state.clientTooltips];
+    const masseuses = [...this.state.masseuses];
+    const masseuseTooltips = [...this.state.masseuseTooltips];
+
+    const clientsIndex = Util.findInArrayById(clients, client.sub, "sub");
+    const masseusesIndex = Util.findInArrayById(masseuses, client.sub, "sub");
+
+    switch (operation) {
+      case Fetch.OPERATION_ADD:
+        if (client.masseur) {
+          masseuses.push(client);
+          masseuseTooltips.push(Util.getContactInfo(client));
+        } else {
+          clients.push(client);
+          clientTooltips.push(Util.getContactInfo(client));
+        }
+        break;
+      case Fetch.OPERATION_CHANGE:
+        if (masseusesIndex === -1 && client.masseur) {
+          clients.splice(clientsIndex, 1);
+          clientTooltips.splice(clientsIndex, 1);
+          masseuses.push(client);
+          masseuseTooltips.push(Util.getContactInfo(client));
+        } else if (client.masseur) {
+          masseuses[masseusesIndex] = client;
+          masseuseTooltips[masseusesIndex] = Util.getContactInfo(client);
+        } else if (clientsIndex === -1) {
+          clients.push(client);
+          clientTooltips.push(Util.getContactInfo(client));
+          masseuses.splice(masseusesIndex, 1);
+          masseuseTooltips.splice(masseusesIndex, 1);
+        } else {
+          clients[clientsIndex] = client;
+          clientTooltips[clientsIndex] = Util.getContactInfo(client);
+        }
+        break;
+      case Fetch.OPERATION_REMOVE:
+        if (client.masseur) {
+          if (masseusesIndex !== -1) {
+            masseuses.splice(masseusesIndex, 1);
+            masseuseTooltips.splice(masseusesIndex, 1);
+          }
+        } else if (clientsIndex !== -1) {
+          clients.splice(clientsIndex, 1);
+          clientTooltips.splice(clientsIndex, 1);
+        }
+        break;
+      default:
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
+        break;
+    }
+
+    this.setState(() => ({ clients, clientTooltips, masseuses, masseuseTooltips }));
   };
 
   updateEvents = (massages, minutes) => {
@@ -453,7 +523,7 @@ class Massages extends Component {
                         label={_t.translate("Show all")}
                         onClick={this.changeShowAll}
                         active={this.state.showAll}
-                        tooltip={_t.translate("Show massages already taken by others")}
+                        tooltip={_t.translate("Show massages already taken by someone else")}
                       />
                     </div>
                     {this.state.loading && <div className="loader" style={{ marginTop: "-1.9em" }} />}
@@ -466,8 +536,10 @@ class Massages extends Component {
                     <MassageModal
                       active={this.state.modalActive}
                       massage={this.state.editMassage}
+                      clients={this.state.clients}
+                      clientTooltips={this.state.clientTooltips}
                       masseuses={this.state.masseuses}
-                      masseuseNames={this.state.masseuseNames}
+                      masseuseTooltips={this.state.masseuseTooltips}
                       facilityId={this.state.facilities[this.state.index].id}
                       onToggle={() => this.toggleModal(null)}
                     />
@@ -475,7 +547,7 @@ class Massages extends Component {
                       className="ml-2"
                       active={this.state.batchAddModalActive}
                       masseuses={this.state.masseuses}
-                      masseuseNames={this.state.masseuseNames}
+                      masseuseTooltips={this.state.masseuseTooltips}
                       facilityId={this.state.facilities[this.state.index].id}
                       onToggle={deselect => this.toggleBatchAddModal(deselect)}
                     />

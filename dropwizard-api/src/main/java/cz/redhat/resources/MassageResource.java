@@ -102,7 +102,7 @@ public class MassageResource {
    *                                 to create other than their {@link Massage}s
    */
   @POST
-  @RolesAllowed({"admin", "masseur" })
+  @RolesAllowed({"admin", "masseur"})
   @UnitOfWork
   public Response createMassage(@NotNull @Valid List<Massage> massages, @Auth User user) {
     // Validate Massage timing information.
@@ -235,7 +235,7 @@ public class MassageResource {
    *                                 to delete other than their {@link Massage}
    */
   @DELETE
-  @RolesAllowed({"admin", "masseur" })
+  @RolesAllowed({"admin", "masseur"})
   @UnitOfWork
   public Response delete(@NotNull @QueryParam("ids") List<Long> ids, @Auth User user) {
     // Validate given Massage IDs.
@@ -336,7 +336,7 @@ public class MassageResource {
     if (user.isMasseur()) {
       return massageDao.findNewByMasseuse(clientDao.findBySub(user.getSubject()));
     }
-    return massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
+    return massageDao.findNewByClient(clientDao.findBySub(user.getSubject()));
   }
 
   /**
@@ -388,7 +388,7 @@ public class MassageResource {
   private void checkTimeAvailability(Massage massage, Massage daoMassage) {
     if (massage.getClient() != null) {
       long massageTime = massage.calculateDuration();
-      List<Massage> daoMassagesClient = massageDao.findAllByClient(massage.getClient());
+      List<Massage> daoMassagesClient = massageDao.findNewByClient(massage.getClient());
 
       daoMassagesClient.remove(daoMassage);
 

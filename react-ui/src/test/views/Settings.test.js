@@ -17,9 +17,6 @@ afterAll(() => {
 test("renders content correctly", () => {
   const wrapper = shallow(<Settings />);
 
-  expect(Fetch.tryWebSocketSend).toHaveBeenCalledTimes(1);
-  expect(Fetch.send).toHaveBeenCalledTimes(1);
-
   expect(wrapper).toMatchSnapshot();
 });
 

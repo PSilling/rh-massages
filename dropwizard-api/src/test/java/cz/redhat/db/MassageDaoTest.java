@@ -212,7 +212,7 @@ public class MassageDaoTest {
     final List<Massage> massagesByMasseuse = massageDao.findAllByMasseuse(masseuse1);
     final List<Massage> newMassagesByMasseuse = massageDao.findNewByMasseuse(masseuse1);
     final List<Massage> futureMassagesByClient =
-        massageDao.findAllByClient(
+        massageDao.findNewByClient(
             new Client("subject", "email@example.com", "Name", "Surname", false, false));
     final Map<String, Object> futureMassagesByFacility =
         massageDao.searchNewByFacility(facility, "Masseuse", false, null, null, 0, 2);

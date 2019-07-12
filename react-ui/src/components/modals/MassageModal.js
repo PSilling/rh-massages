@@ -35,8 +35,7 @@ class MassageModal extends Component {
   freeUser = { sub: "free", email: _t.translate("No one") };
 
   componentDidMount() {
-    this.setState({ masseuse: this.getMasseuse() });
-    this.getUsers();
+    this.setState({ masseuse: this.getMasseuse(), user: this.freeUser });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,29 +64,21 @@ class MassageModal extends Component {
     return this.props.masseuses[0];
   };
 
-  getUsers = () => {
-    Fetch.get(`${Util.CLIENTS_URL}users`, json => {
-      json.push(this.freeUser);
-      this.setState({ users: json });
-    });
-  };
-
   changeMasseuse = event => {
     this.setState({
-      masseuse: this.props.masseuses[this.props.masseuseNames.indexOf(event.target.value)]
+      masseuse: this.props.masseuses[this.props.masseuseTooltips.indexOf(event.target.value)]
     });
   };
 
   changeUser = event => {
-    for (let i = 0; i < this.state.users.length; i++) {
-      if (this.state.users[i].email === event.target.value) {
-        this.setState(prevState => ({
-          user: prevState.users[i]
-        }));
-
-        return;
-      }
+    if (event.target.value === this.freeUser.email) {
+      this.setState({ user: this.freeUser });
+      return;
     }
+
+    this.setState({
+      user: this.props.clients[this.props.clientTooltips.indexOf(event.target.value)]
+    });
   };
 
   changeDate = date => {
@@ -113,7 +104,24 @@ class MassageModal extends Component {
     return moment(this.state.date);
   };
 
+  validateMasseuse = () => {
+    if (Util.isEmpty(this.state.masseuse) || Util.isEmpty(this.state.masseuse.sub)) {
+      Util.notify(
+        "error",
+        _t.translate("Please contact the administrator if none are available."),
+        _t.translate("A masseur or a masseuse needs to be selected!")
+      );
+      return false;
+    }
+
+    return true;
+  };
+
   addMassage = () => {
+    if (!this.validateMasseuse()) {
+      return;
+    }
+
     const date = this.getStartingDate();
     Fetch.post(
       Util.MASSAGES_URL,
@@ -134,6 +142,9 @@ class MassageModal extends Component {
   };
 
   editMassage = () => {
+    if (!this.validateMasseuse()) {
+      return;
+    }
     const date = this.getStartingDate();
     Fetch.put(
       Util.MASSAGES_URL,
@@ -194,16 +205,16 @@ class MassageModal extends Component {
 
       {Auth.isAdmin() && (
         <Row>
-          <Col md="4">
+          <Col md="6">
             <FormGroup>
-              <Label for="masseuseNameSelect">{_t.translate("Masseur/Masseuse")}</Label>
+              <Label for="masseuseSelect">{_t.translate("Masseur/Masseuse")}</Label>
               <Input
-                id="masseuseNameSelect"
+                id="masseuseSelect"
                 type="select"
-                value={`${this.state.masseuse.name} ${this.state.masseuse.surname}`}
+                value={Util.getContactInfo(this.state.masseuse)}
                 onChange={this.changeMasseuse}
               >
-                {this.props.masseuseNames.map(item => (
+                {this.props.masseuseTooltips.map(item => (
                   <option key={item}>{item}</option>
                 ))}
               </Input>
@@ -222,11 +233,9 @@ class MassageModal extends Component {
           timeFormat="H:mm"
           dateFormat={false}
         />
-      </Row>
 
-      <Row>
         <LabeledDatetime
-          size="4"
+          size="3"
           label={_t.translate("Massage time")}
           value={this.state.date}
           onChange={this.changeDate}
@@ -236,13 +245,23 @@ class MassageModal extends Component {
       </Row>
 
       <Row>
-        <Col md="4">
+        <Col md="6">
           <FormGroup>
             <Label for="userSelect">{_t.translate("Client")}</Label>
-            <Input id="userSelect" type="select" value={this.state.user.email} onChange={this.changeUser}>
-              {this.state.users.map(item => (
-                <option key={item.email}>{item.email}</option>
+            <Input
+              id="userSelect"
+              type="select"
+              value={
+                this.state.user.email === this.freeUser.email
+                  ? this.freeUser.email
+                  : Util.getContactInfo(this.state.user)
+              }
+              onChange={this.changeUser}
+            >
+              {this.props.clientTooltips.map(item => (
+                <option key={item}>{item}</option>
               ))}
+              <option>{this.freeUser.email}</option>
             </Input>
           </FormGroup>
         </Col>
@@ -285,6 +304,19 @@ MassageModal.propTypes = {
   active: PropTypes.bool.isRequired,
   /** function called on modal toggle */
   onToggle: PropTypes.func.isRequired,
+  /** normal clients in the portal */
+  clients: PropTypes.arrayOf(
+    PropTypes.shape({
+      email: PropTypes.string,
+      masseur: PropTypes.bool,
+      name: PropTypes.string,
+      sub: PropTypes.string,
+      subscribed: PropTypes.bool,
+      surname: PropTypes.string
+    })
+  ),
+  /** tooltip strings consistings of all normal clients' names and e-mails */
+  clientTooltips: PropTypes.arrayOf(PropTypes.string),
   /** ID of the selected Facility */
   facilityId: PropTypes.number,
   /** Massage to be possibly edited or null when adding */
@@ -313,8 +345,6 @@ MassageModal.propTypes = {
     }),
     generated: PropTypes.bool
   }),
-  /** names of Massage masseuses in the portal */
-  masseuseNames: PropTypes.arrayOf(PropTypes.string),
   /** Massage masseuses in the portal */
   masseuses: PropTypes.arrayOf(
     PropTypes.shape({
@@ -326,15 +356,19 @@ MassageModal.propTypes = {
       surname: PropTypes.string
     })
   ),
+  /** tooltip strings consistings of all portal masseurs and masseuses' names and e-mails */
+  masseuseTooltips: PropTypes.arrayOf(PropTypes.string),
   /** whether ModalContainer should be used; useful for testing to avoid portals */
   withPortal: PropTypes.bool
 };
 
 MassageModal.defaultProps = {
+  clients: [],
+  clientTooltips: [],
   facilityId: null,
   massage: null,
-  masseuseNames: [],
   masseuses: [],
+  masseuseTooltips: [],
   withPortal: true
 };
 

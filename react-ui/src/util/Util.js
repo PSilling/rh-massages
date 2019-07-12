@@ -73,9 +73,7 @@ Util.getEventLink = massage =>
     .format("YYYYMMDDTHHmmssZ")
     .replace("+00:00", "Z")}` +
   `&location=Red%20Hat%20Czech%20${massage.facility.name}` +
-  `&details=${_t.translate("Masseur/Masseuse")}: ${massage.masseuse.name} ${massage.masseuse.surname} (${
-    massage.masseuse.email
-  })`;
+  `&details=${_t.translate("Masseur/Masseuse")}: ${Util.getContactInfo(massage.masseuse)}`;
 
 /**
  * Creates a new contact info String from a given Client.
@@ -86,11 +84,12 @@ Util.getContactInfo = client => `${client.name} ${client.surname} (${client.emai
 /**
  * Searches an array for a given item ID.
  * @param array array to search in
- * @param id id to search for
+ * @param id ID to search for
+ * @param idKey attribute name of the ID
  */
-Util.findInArrayById = (array, id) => {
+Util.findInArrayById = (array, id, idKey = "id") => {
   for (let i = 0; i < array.length; i++) {
-    if (array[i].id === id) {
+    if (array[i][idKey] === id) {
       return i;
     }
   }

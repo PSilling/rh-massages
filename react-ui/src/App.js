@@ -18,6 +18,7 @@ import Massages from "./views/Massages";
 import MassagesArchive from "./views/MassagesArchive";
 import MyMassages from "./views/MyMassages";
 import Settings from "./views/Settings";
+import Users from "./views/Users";
 
 // component imports
 import ErrorBoundary from "./components/util/ErrorBoundary";
@@ -94,6 +95,13 @@ export const NavWithLinks = withRouter(({ location }) => (
         </NavItem>
       )}
       {Auth.isAdmin() && (
+        <NavItem active={location.pathname === "/users"}>
+          <NavLink tag={Link} to="/users" className="mr-1">
+            {_t.translate("Users")}
+          </NavLink>
+        </NavItem>
+      )}
+      {Auth.isAdmin() && (
         <NavItem active={location.pathname === "/massages-archive"}>
           <NavLink tag={Link} to="/massages-archive" className="mr-1">
             {_t.translate("Massages Archive")}
@@ -135,7 +143,14 @@ const Footer = () => (
  * Main application component. Contains the Router, NotificationContainer and Navbar.
  */
 class App extends Component {
+  componentDidMount() {
+    Fetch.tryWebSocketSend("ADD_Client");
+  }
+
   componentWillUnmount() {
+    Fetch.WEBSOCKET_CALLBACKS.client = null;
+    Fetch.tryWebSocketSend("REMOVE_Client");
+
     if (Fetch.WEBSOCKET.readyState === WebSocket.OPEN) {
       Fetch.WEBSOCKET.close();
     }
@@ -159,6 +174,7 @@ class App extends Component {
                 <Route exact path="/" component={Massages} />
                 <Route exact path="/my-massages" component={MyMassages} />
                 <Route exact path="/facilities" component={Facilities} />
+                <Route exact path="/users" component={Users} />
                 <Route exact path="/massages-archive" component={MassagesArchive} />
                 <Route exact path="/settings" component={Settings} />
                 <Route component={NoMatch} />

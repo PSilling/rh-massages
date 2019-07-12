@@ -249,7 +249,7 @@ public class FacilityResource {
     // Add total massage time to the response.
     long massageTime = 0;
     List<Massage> daoMassagesClient =
-        massageDao.findAllByClient(clientDao.findBySub(user.getSubject()));
+        massageDao.findNewByClient(clientDao.findBySub(user.getSubject()));
     for (Massage clientMassage : daoMassagesClient) {
       massageTime += clientMassage.calculateDuration();
 

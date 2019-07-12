@@ -16,8 +16,11 @@
 package cz.redhat.resources;
 
 import cz.redhat.auth.User;
+import cz.redhat.configuration.MailClient;
 import cz.redhat.core.Client;
+import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
+import cz.redhat.db.MassageDao;
 import cz.redhat.websockets.OperationType;
 import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.auth.Auth;
@@ -28,9 +31,11 @@ import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -48,15 +53,21 @@ import javax.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClientResource {
 
+  private final MassageDao massageDao; // Massage data access object
   private final ClientDao clientDao; // Client data access object
+  private final MailClient mailClient; // Mailing client
 
   /**
    * Constructor.
    *
-   * @param clientDao {@link ClientDao} to work with
+   * @param massageDao {@link MassageDao} to work with
+   * @param clientDao  {@link ClientDao} to work with
+   * @param mailClient {@link MailClient} to use for messaging
    */
-  public ClientResource(ClientDao clientDao) {
+  public ClientResource(MassageDao massageDao, ClientDao clientDao, MailClient mailClient) {
+    this.massageDao = massageDao;
     this.clientDao = clientDao;
+    this.mailClient = mailClient;
   }
 
   /**
@@ -65,7 +76,7 @@ public class ClientResource {
    * @return {@link List} of all {@link Client}s
    */
   @GET
-  @RolesAllowed("admin")
+  @PermitAll
   @UnitOfWork
   public List<Client> fetch() {
     return clientDao.findAll();
@@ -140,6 +151,49 @@ public class ClientResource {
   }
 
   /**
+   * Deletes a {@link Client} given by the subject. All massages assigned to that client are freed
+   * before the deletion or, if the client is a masseur, those massages are automatically removed.
+   *
+   * @param sub {@link Client} subject
+   * @return on delete {@link Response}
+   * @throws WebApplicationException if the subject could not be found
+   */
+  @DELETE
+  @Path("/{sub}")
+  @RolesAllowed("admin")
+  @UnitOfWork
+  public Response delete(@PathParam("sub") String sub) {
+    Client daoClient = clientDao.findBySub(sub);
+
+    if (daoClient == null) {
+      throw new WebApplicationException(Status.NOT_FOUND);
+    }
+
+    List<Massage> clientMassages;
+    if (daoClient.isMasseur()) {
+      clientMassages = massageDao.findAllByMasseuse(daoClient);
+      for (Massage daoMassage : clientMassages) {
+        if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
+          mailClient.sendEmail(
+              daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null
+          );
+        }
+        massageDao.delete(daoMassage);
+        WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
+      }
+    } else {
+      clientMassages = massageDao.findAllByClient(daoClient);
+      massageDao.clearClient(clientMassages);
+    }
+
+    clientDao.delete(daoClient);
+
+    WebSocketResource.informSubscribed("Client", OperationType.REMOVE, daoClient);
+
+    return Response.noContent().build();
+  }
+
+  /**
    * GETs local information of a {@link Client} (currently only his subscription value). For new
    * {@link User}s creates their {@link Client} representation while returning {@link User}s get
    * their {@link Client} representation updated if a change is detected.
@@ -162,11 +216,14 @@ public class ClientResource {
     if (daoClient == null) {
       clientDao.create(client);
 
+      WebSocketResource.informSubscribed("Client", OperationType.ADD, client);
+
       if (clientDao.findBySub(user.getSubject()) == null) {
         throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
       }
     } else if (!daoClient.equals(client)) {
       clientDao.update(client);
+      WebSocketResource.informSubscribed("Client", OperationType.CHANGE, client);
     }
 
     return client.isSubscribed();

@@ -16,6 +16,9 @@ const myLocalize = new Localize({
   Massages: {
     cs: "Masáže"
   },
+  Users: {
+    cs: "Uživatelé"
+  },
   "Massages in ": {
     cs: "Masáže v "
   },
@@ -181,6 +184,15 @@ const myLocalize = new Localize({
   Name: {
     cs: "Název"
   },
+  "Name and surname": {
+    cs: "Jméno a příjmení"
+  },
+  "E-mail": {
+    cs: "E-mail"
+  },
+  "Masseur role": {
+    cs: "Masérská role"
+  },
   "Show all": {
     cs: "Zobrazit vše"
   },
@@ -292,6 +304,12 @@ const myLocalize = new Localize({
   here: {
     cs: "zde"
   },
+  Yes: {
+    cs: "Ano"
+  },
+  No: {
+    cs: "Ne"
+  },
 
   // notification messages
   Warning: {
@@ -314,6 +332,12 @@ const myLocalize = new Localize({
   },
   "Name is required!": {
     cs: "Název je vyžadován!"
+  },
+  "A masseur or a masseuse needs to be selected!": {
+    cs: "Musí být vybrát masér či masérka!"
+  },
+  "Please contact the administrator if none are available.": {
+    cs: "Pokud nelze nikoho zvolit, kontaktujte prosím administrátora."
   },
   "FileReader API isn't supported by your browser.": {
     cs: "FileReader API není vaším prohlížeči podporované."
@@ -342,10 +366,13 @@ const myLocalize = new Localize({
   "Failed to read the file. Please try reloading the page.": {
     cs: "Nepovedlo se načíst zvolený soubor. Zkuste stránku načíst znovu."
   },
+  "Are you sure? This action will affect all affiliated massages.": {
+    cs: "Jste si jisti? Tato akce ovlivní všechny přidružené masáže."
+  },
 
   // tooltips
-  "Create multiple massages at once": {
-    cs: "Vytvořit více masáží najednou"
+  "Create multiple massages at once based on a schedule": {
+    cs: "Vytvořit více masáží najednou podle rozpisu"
   },
   "Import previously downloaded rules": {
     cs: "Importovat dříve stažená pravidla"
@@ -371,8 +398,8 @@ const myLocalize = new Localize({
   "Select multiple massages for batch operations": {
     cs: "Výběr více masáží pro hromadné operace"
   },
-  "Show massages already taken by others": {
-    cs: "Zobrazit masáže již přiřazené ostatním"
+  "Show massages already taken by someone else": {
+    cs: "Zobrazit masáže přiřazené někomu jinému"
   },
   "Ignore this day when creating the massages": {
     cs: "Ignorovat tento den při tvorbě masáží"
@@ -469,6 +496,21 @@ const myLocalize = new Localize({
   },
   "To view massage details click on the event name.": {
     cs: "Pro zobrazení podrobností o masáži klikněte na název dané události."
+  },
+  "Here you can control user visibility for client selection by removing users from the list. ": {
+    cs: "Zde můžete ovládat viditelnost uživatelů při výběru klientů jejich odstraněním ze seznamu. "
+  },
+  "Users are automatically added after they access the portal so that they can assign massages. ": {
+    cs: "Uživatelé jsou po přístupu na portál přidáni automaticky, aby si mohli zapisovat masáže. "
+  },
+  "However, keep in mind that removing a user will cancel all of the user's assignments or, ": {
+    cs: "Mějte ovšem na paměti, že odstraněním uživatele se rovněž uvolní všechny jemu přiřazené masáže. "
+  },
+  "if the user is a massuer or a masseuse, completely remove such massages. Removing a logged in ": {
+    cs: "Pokud je uživatel veden jako masér či masérka, dojde dokonce k úplněmu odstranění těchto masáží. Odstaněním "
+  },
+  "user will cause an automatic logout.": {
+    cs: "aktuálně přihlášeného uživatele dojde k automatickému odhlášení."
   },
   "On this page you can manage your local user settings. ": {
     cs: "Na této stránce můžete spravovat svoje lokální uživatelské nastavení. "

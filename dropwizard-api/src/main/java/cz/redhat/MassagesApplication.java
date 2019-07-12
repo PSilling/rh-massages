@@ -173,7 +173,7 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
 
     environment.jersey().register(new FacilityResource(facilityDao, massageDao, clientDao));
     environment.jersey().register(new MassageResource(massageDao, clientDao, mailClient));
-    environment.jersey().register(new ClientResource(clientDao));
+    environment.jersey().register(new ClientResource(massageDao, clientDao, mailClient));
     environment.jersey().register(new WebSocketAuthResource());
     environment.jersey().register(new LogoutResource());
 

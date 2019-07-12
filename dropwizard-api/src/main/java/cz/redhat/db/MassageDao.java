@@ -18,6 +18,8 @@ package cz.redhat.db;
 import cz.redhat.core.Client;
 import cz.redhat.core.Facility;
 import cz.redhat.core.Massage;
+import cz.redhat.websockets.OperationType;
+import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.text.Normalizer;
 import java.util.Date;
@@ -195,8 +197,8 @@ public class MassageDao extends AbstractDAO<Massage> {
   }
 
   /**
-   * Creates a new session that finds a {@link Massage} in the database based on their {@link
-   * Client}. The {@link List} is ordered by date and doesn't include old {@link Massage}s.
+   * Creates a new session that finds all {@link Massage}s in the database based on their {@link
+   * Client}.
    *
    * @param client {@link Client} of the {@link Massage}s the are to be found
    * @return {@link List} of all found {@link Massage}s
@@ -204,6 +206,18 @@ public class MassageDao extends AbstractDAO<Massage> {
   @SuppressWarnings("unchecked")
   public List<Massage> findAllByClient(Client client) {
     return list(namedQuery("Massage.findAllByClient").setParameter("client", client));
+  }
+
+  /**
+   * Creates a new session that finds {@link Massage}s in the database based on their {@link
+   * Client}. The {@link List} is ordered by date and doesn't include old {@link Massage}s.
+   *
+   * @param client {@link Client} of the {@link Massage}s the are to be found
+   * @return {@link List} of all found {@link Massage}s
+   */
+  @SuppressWarnings("unchecked")
+  public List<Massage> findNewByClient(Client client) {
+    return list(namedQuery("Massage.findNewByClient").setParameter("client", client));
   }
 
   /**
@@ -301,6 +315,22 @@ public class MassageDao extends AbstractDAO<Massage> {
    */
   public void delete(Massage massage) {
     currentSession().delete(massage);
+  }
+
+
+  /**
+   * Clears the client value of the given {@link Massage}s.
+   *
+   * @param massages {@link Massage}s which should have their client set to null
+   */
+  public void clearClient(List<Massage> massages) {
+    for (Massage massage : massages) {
+      massage.setClient(null);
+      currentSession().clear();
+      persist(massage);
+      currentSession().flush();
+      WebSocketResource.informSubscribed("Massage", OperationType.CHANGE, massage);
+    }
   }
 
   /**
