@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 // test imports
-import MassageBatchAddModal from "../../../components/modals/MassageBatchAddModal";
+import MassageScheduleModal from "../../../components/modals/MassageScheduleModal";
 import ModalActions from "../../../components/buttons/ModalActions";
 import TooltipButton from "../../../components/buttons/TooltipButton";
 
@@ -32,7 +32,7 @@ test("renders inside content with correct props", () => {
   ];
   const testMasseuseNames = ["Masseuse Test"];
   const wrapper = shallow(
-    <MassageBatchAddModal
+    <MassageScheduleModal
       active
       facilityId={1}
       masseuses={testMasseuses}

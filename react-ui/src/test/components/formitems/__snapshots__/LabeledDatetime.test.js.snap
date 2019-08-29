@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <LabeledDatetime
     disabled={false}
     label="test"
+    labelWidth="auto"
     onChange={
       [MockFunction] {
         "calls": Array [
@@ -43,6 +44,11 @@ ShallowWrapper {
         <Label
           for="Tooltip1_input"
           id="Tooltip1"
+          style={
+            Object {
+              "width": "auto",
+            }
+          }
           tag="label"
           widths={
             Array [
@@ -133,6 +139,11 @@ ShallowWrapper {
           <Label
             for="Tooltip1_input"
             id="Tooltip1"
+            style={
+              Object {
+                "width": "auto",
+              }
+            }
             tag="label"
             widths={
               Array [
@@ -215,6 +226,9 @@ ShallowWrapper {
             "children": "test",
             "for": "Tooltip1_input",
             "id": "Tooltip1",
+            "style": Object {
+              "width": "auto",
+            },
             "tag": "label",
             "widths": Array [
               "xs",
@@ -310,6 +324,11 @@ ShallowWrapper {
           <Label
             for="Tooltip1_input"
             id="Tooltip1"
+            style={
+              Object {
+                "width": "auto",
+              }
+            }
             tag="label"
             widths={
               Array [
@@ -400,6 +419,11 @@ ShallowWrapper {
             <Label
               for="Tooltip1_input"
               id="Tooltip1"
+              style={
+                Object {
+                  "width": "auto",
+                }
+              }
               tag="label"
               widths={
                 Array [
@@ -482,6 +506,9 @@ ShallowWrapper {
               "children": "test",
               "for": "Tooltip1_input",
               "id": "Tooltip1",
+              "style": Object {
+                "width": "auto",
+              },
               "tag": "label",
               "widths": Array [
                 "xs",

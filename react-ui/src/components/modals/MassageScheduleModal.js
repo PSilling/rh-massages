@@ -22,9 +22,9 @@ import Fetch from "../../util/Fetch";
 import Util from "../../util/Util";
 
 /**
- * Input Modal for creating multiple rules of Massages at once.
+ * Input Modal for creating a one month massage schedule.
  */
-class MassageBatchAddModal extends Component {
+class MassageScheduleModal extends Component {
   state = {
     rules: [],
     settings: true,
@@ -49,12 +49,9 @@ class MassageBatchAddModal extends Component {
 
   yesterday = moment().subtract(1, "day");
 
-  tooltipTargets = Util.getTooltipTargets(4);
+  tooltipTargets = Util.getTooltipTargets(1);
 
-  tooltipLabels = [
-    _t.translate("Import previously downloaded rules"),
-    _t.translate("When set to another day, copies the schedule from it")
-  ];
+  tooltipLabels = [_t.translate("Import previously downloaded rules")];
 
   componentDidMount() {
     this.setState({ masseuse: this.getMasseuse() });
@@ -80,11 +77,28 @@ class MassageBatchAddModal extends Component {
   getRule = id => ({
     day: id === 0 ? "–" : this.weekdays[0],
     for: this.weekdays[id],
-    disabled: false,
+    disabled: true,
     startTime: moment("08:00", "HH:mm"),
     endTime: moment("18:00", "HH:mm"),
     bigPauses: [this.getBigPause()]
   });
+
+  /**
+   * Creates default rules based on current schedule settings if none exists.
+   */
+  prepareRules = () => {
+    let rules = [];
+
+    if (this.state.rules.length === 0) {
+      for (let i = 0; i < this.weekdays.length; i++) {
+        rules.push(this.getRule(i));
+      }
+    } else {
+      rules = [...this.state.rules];
+    }
+
+    return rules;
+  };
 
   changeStartTime = time => {
     if (typeof time === "string") {
@@ -119,17 +133,7 @@ class MassageBatchAddModal extends Component {
 
   changeSettings = () => {
     if (this.state.settings) {
-      let rules = [];
-
-      if (this.state.rules.length === 0) {
-        for (let i = 0; i < this.weekdays.length; i++) {
-          rules.push(this.getRule(i));
-        }
-      } else {
-        rules = [...this.state.rules];
-      }
-
-      this.setState({ rules, settings: false });
+      this.setState({ rules: this.prepareRules(), settings: false });
     } else {
       this.setState({ settings: true });
     }
@@ -158,6 +162,7 @@ class MassageBatchAddModal extends Component {
   changeDisabled = () => {
     this.setState(prevState => {
       const rules = [...prevState.rules];
+      rules[prevState.index].day = "–";
       rules[prevState.index].disabled = !rules[prevState.index].disabled;
       return rules;
     });
@@ -214,7 +219,10 @@ class MassageBatchAddModal extends Component {
    * Returns the source rule index for massage creation based on role copy settings.
    */
   getSourceIndex = (index, prevIndexes = []) => {
-    if (this.state.rules[index].disabled || prevIndexes.indexOf(index) !== -1) {
+    if (
+      (this.state.rules[index].disabled && this.state.rules[index].day === "–") ||
+      prevIndexes.indexOf(index) !== -1
+    ) {
       return -1;
     }
     if (this.state.rules[index].day === "–") {
@@ -368,7 +376,7 @@ class MassageBatchAddModal extends Component {
       }
 
       if (Util.isEmpty(importData.rules[i].disabled)) {
-        importData.rules[i].disabled = false;
+        importData.rules[i].disabled = true;
       }
 
       if (Util.isEmpty(importData.rules[i].startTime)) {
@@ -408,8 +416,8 @@ class MassageBatchAddModal extends Component {
       importData.thisMonth = false;
     }
 
-    const masseuseName = `${importData.masseuse.name} ${importData.masseuse.surname}`;
-    if (Util.isEmpty(importData.masseuse) || this.props.masseuseTooltips.indexOf(masseuseName) === -1) {
+    const masseuseInfo = Util.getContactInfo(importData.masseuse);
+    if (Util.isEmpty(importData.masseuse) || this.props.masseuseTooltips.indexOf(masseuseInfo) === -1) {
       importData.masseuse = null;
     }
 
@@ -464,7 +472,7 @@ class MassageBatchAddModal extends Component {
    */
   exportRules = () => {
     const exportJson = JSON.stringify({
-      rules: this.state.rules,
+      rules: this.prepareRules(),
       thisMonth: this.state.thisMonth,
       masseuse: this.state.masseuse,
       massageDuration: this.state.massageDuration,
@@ -498,26 +506,36 @@ class MassageBatchAddModal extends Component {
     this.props.onToggle(false);
   };
 
+  createBreakEndLabel = index => (
+    <span>
+      {_t.translate("Break end")}
+      <TooltipIconButton
+        className="float-right"
+        icon="times"
+        onClick={() => this.removeBigPause(index)}
+        tooltip={_t.translate("Remove")}
+      />
+    </span>
+  );
+
   createHeader = () => (
     <Row>
       <Col md="12">
         <h3>
-          {_t.translate("New schedule")}
+          {this.state.settings ? _t.translate("General options") : _t.translate("Shifts")}
           <div className="float-right">
             <Button id={this.tooltipTargets[0]} tag="label" outline htmlFor="fileImport">
               {_t.translate("Import")}
             </Button>
             <Input id="fileImport" className="d-none" type="file" onChange={this.importRules} accept=".json" />
-            {!this.state.settings && (
-              <TooltipButton
-                className="ml-2 mb-2"
-                onClick={this.exportRules}
-                label={_t.translate("Export")}
-                tooltip={_t.translate(
-                  "Download a configuration file that you can use to import these rules at a later date"
-                )}
-              />
-            )}
+            <TooltipButton
+              className="ml-2 mb-2"
+              onClick={this.exportRules}
+              label={_t.translate("Export")}
+              tooltip={_t.translate(
+                "Download a configuration file that you can use to import the current schedule at a later date"
+              )}
+            />
           </div>
         </h3>
         <hr />
@@ -532,7 +550,7 @@ class MassageBatchAddModal extends Component {
       <Row>
         <Col md="12">
           <FormGroup check inline>
-            <Label className="mr-2">{_t.translate("For:")}</Label>
+            <Label className="mr-2">{_t.translate("I want to create the schedule for…")}</Label>
             <div className="mt-2">
               {this.radios.map((item, index) => (
                 <Label key={index} for={item}>
@@ -561,7 +579,7 @@ class MassageBatchAddModal extends Component {
               <Input
                 id="masseuseTooltipSelect"
                 type="select"
-                value={Util.getContactInfo(this.state.masseuse.email)}
+                value={Util.getContactInfo(this.state.masseuse)}
                 onChange={this.changeMasseuse}
               >
                 {this.props.masseuseTooltips.map(item => (
@@ -582,13 +600,13 @@ class MassageBatchAddModal extends Component {
         />
         <LabeledDatetime
           size="3"
-          label={_t.translate("Break")}
+          label={_t.translate("Break duration")}
           value={this.state.normalPause}
           onChange={this.changeNormalPause}
           onEnterPress={this.changeSettings}
           dateFormat={false}
           timeFormat="H:mm"
-          tooltip={_t.translate("Length of the standard break after a massage")}
+          tooltip={_t.translate("The duration of breaks between massages")}
         />
       </Row>
 
@@ -618,116 +636,131 @@ class MassageBatchAddModal extends Component {
           </Nav>
         </Col>
       </Row>
-      <Row>
-        <Col md="12">
-          <Label id={this.tooltipTargets[1]}>{_t.translate("Same as")}</Label>
-        </Col>
-      </Row>
-      <Row>
-        <Col md="10">
-          <FormGroup>
-            <Input
-              type="select"
-              value={this.state.rules[this.state.index].day}
-              onChange={this.changeDay}
-              onKeyPress={this.handleInputKeyPress}
-              disabled={this.state.rules[this.state.index].disabled}
-            >
-              {this.weekdays.map(
-                item => item !== this.weekdays[this.state.index] && <option key={item}>{item}</option>
-              )}
-              <option>–</option>
-            </Input>
-          </FormGroup>
-        </Col>
-        <Col md="2">
-          <TooltipButton
-            className="mr-3 float-right"
-            label={_t.translate("Ignore")}
-            onClick={this.changeDisabled}
-            active={this.state.rules[this.state.index].disabled}
-            tooltip={_t.translate("Ignore this day when creating the massages")}
-          />
-        </Col>
-      </Row>
 
-      <Row>
-        <Col md="12">
+      {this.state.rules[this.state.index].disabled ? (
+        <div>
           <Row>
-            <LabeledDatetime
-              size="3"
-              label={_t.translate("Shift start")}
-              value={this.state.rules[this.state.index].startTime}
-              onChange={this.changeStartTime}
-              timeFormat="H:mm"
-              dateFormat={false}
-              disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
-            />
-            <LabeledDatetime
-              size="3"
-              label={_t.translate("Shift end")}
-              value={this.state.rules[this.state.index].endTime}
-              onChange={this.changeEndTime}
-              timeFormat="H:mm"
-              dateFormat={false}
-              disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
-            />
+            <Col md="12">
+              {_t.translate("No shift has been set. If you want to create massages on this day, add a work shift:")}
+            </Col>
           </Row>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col md="12">
-          <Label>{_t.translate("Breaks")}</Label>
-          <TooltipIconButton
-            className="ml-1"
-            icon="plus"
-            onClick={this.addBigPause}
-            tooltip={_t.translate("Add")}
-            disabled={
-              this.state.rules[this.state.index].day !== "–" ||
-              this.state.rules[this.state.index].bigPauses.length > 4 ||
-              this.state.rules[this.state.index].disabled
-            }
-          />
-        </Col>
-      </Row>
-
-      {this.state.rules[this.state.index].bigPauses.map((item, index) => (
-        <Row key={`${this.state.index}_pause_${index}`}>
-          <Col md="12">
-            <Row>
-              <LabeledDatetime
-                size="3"
-                label={_t.translate("Break start")}
-                value={item.start}
-                onChange={start => this.changeBigPauseStart(index, start)}
-                timeFormat="H:mm"
-                dateFormat={false}
-                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+          <Row>
+            <Col md="12" className="text-center">
+              <TooltipButton
+                className="mt-2 mb-4"
+                label={_t.translate("Create a new shift")}
+                onClick={this.changeDisabled}
               />
-              <LabeledDatetime
-                size="3"
-                label={_t.translate("Break end")}
-                value={item.end}
-                onChange={end => this.changeBigPauseEnd(index, end)}
-                timeFormat="H:mm"
-                dateFormat={false}
-                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
-              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="12">{_t.translate("Alternatively, you can utilize a work shift from another day:")}</Col>
+          </Row>
+          <Row>
+            <Col md="12">
+              <FormGroup className="mt-2 mb-4">
+                <Input
+                  type="select"
+                  value={this.state.rules[this.state.index].day}
+                  onChange={this.changeDay}
+                  onKeyPress={this.handleInputKeyPress}
+                >
+                  {this.weekdays.map(
+                    item => item !== this.weekdays[this.state.index] && <option key={item}>{item}</option>
+                  )}
+                  <option>–</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="12" className="text-center">
+              <em>
+                {this.state.rules[this.state.index].day === "–"
+                  ? _t.translate("No massages will be created on this day.")
+                  : _t.translate("Massages for this day will be created based on the selected day.")}
+              </em>
+            </Col>
+          </Row>
+        </div>
+      ) : (
+        <div>
+          <Row>
+            <Col md="12">
+              <Row>
+                <LabeledDatetime
+                  size="6"
+                  label={_t.translate("Shift start")}
+                  value={this.state.rules[this.state.index].startTime}
+                  onChange={this.changeStartTime}
+                  timeFormat="H:mm"
+                  dateFormat={false}
+                />
+                <LabeledDatetime
+                  size="6"
+                  label={_t.translate("Shift end")}
+                  value={this.state.rules[this.state.index].endTime}
+                  onChange={this.changeEndTime}
+                  timeFormat="H:mm"
+                  dateFormat={false}
+                />
+              </Row>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="12">
+              <Label>{_t.translate("Breaks")}</Label>
               <TooltipIconButton
                 className="ml-1"
-                style={{ marginTop: "35px", border: "0px solid transparent" }}
-                icon="times"
-                onClick={() => this.removeBigPause(index)}
-                tooltip={_t.translate("Remove")}
-                disabled={this.state.rules[this.state.index].day !== "–" || this.state.rules[this.state.index].disabled}
+                icon="plus"
+                onClick={this.addBigPause}
+                tooltip={_t.translate("Add")}
+                disabled={this.state.rules[this.state.index].bigPauses.length > 4}
               />
+            </Col>
+          </Row>
+
+          {this.state.rules[this.state.index].bigPauses.map((item, index) => (
+            <Row key={`${this.state.index}_pause_${index}`}>
+              <Col md="12">
+                <Row>
+                  <LabeledDatetime
+                    size="6"
+                    label={_t.translate("Break start")}
+                    value={item.start}
+                    onChange={start => this.changeBigPauseStart(index, start)}
+                    timeFormat="H:mm"
+                    dateFormat={false}
+                  />
+                  <LabeledDatetime
+                    size="6"
+                    label={this.createBreakEndLabel(index)}
+                    labelWidth="100%"
+                    value={item.end}
+                    onChange={end => this.changeBigPauseEnd(index, end)}
+                    timeFormat="H:mm"
+                    dateFormat={false}
+                  />
+                </Row>
+              </Col>
             </Row>
-          </Col>
-        </Row>
-      ))}
-      <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
+          ))}
+
+          <Row>
+            <Col md="12" className="text-center mt-1">
+              <em>{_t.translate("Massages for this day will be created based on this work shift.")}</em>
+              <Button color="link" style={{ marginLeft: "-6px" }} onClick={this.changeDisabled}>
+                <em style={{ color: "#666" }}>{_t.translate("Change")}</em>
+              </Button>
+            </Col>
+          </Row>
+
+          <TooltipGroup targets={this.tooltipTargets} labels={this.tooltipLabels} />
+        </div>
+      )}
 
       <Row className="text-right">
         <Col md="12">
@@ -779,7 +812,7 @@ class MassageBatchAddModal extends Component {
   }
 }
 
-MassageBatchAddModal.propTypes = {
+MassageScheduleModal.propTypes = {
   /** ID of the selected Facility */
   facilityId: PropTypes.number.isRequired,
   /** function called on modal toggle */
@@ -803,11 +836,11 @@ MassageBatchAddModal.propTypes = {
   withPortal: PropTypes.bool
 };
 
-MassageBatchAddModal.defaultProps = {
+MassageScheduleModal.defaultProps = {
   active: false,
   masseuseTooltips: [],
   masseuses: [],
   withPortal: true
 };
 
-export default MassageBatchAddModal;
+export default MassageScheduleModal;

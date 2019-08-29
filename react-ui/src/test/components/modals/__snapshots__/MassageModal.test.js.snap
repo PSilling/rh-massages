@@ -127,6 +127,7 @@ ShallowWrapper {
               dateFormat={false}
               disabled={false}
               label="Duration"
+              labelWidth="auto"
               onChange={[Function]}
               onEnterPress={[Function]}
               size="3"
@@ -138,6 +139,7 @@ ShallowWrapper {
               disabled={false}
               isValidDate={[Function]}
               label="Massage time"
+              labelWidth="auto"
               onChange={[Function]}
               onEnterPress={[Function]}
               size="3"
@@ -298,6 +300,7 @@ ShallowWrapper {
                 dateFormat={false}
                 disabled={false}
                 label="Duration"
+                labelWidth="auto"
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
@@ -309,6 +312,7 @@ ShallowWrapper {
                 disabled={false}
                 isValidDate={[Function]}
                 label="Massage time"
+                labelWidth="auto"
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
@@ -621,6 +625,7 @@ ShallowWrapper {
                   dateFormat={false}
                   disabled={false}
                   label="Duration"
+                  labelWidth="auto"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -632,6 +637,7 @@ ShallowWrapper {
                   disabled={false}
                   isValidDate={[Function]}
                   label="Massage time"
+                  labelWidth="auto"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -651,6 +657,7 @@ ShallowWrapper {
                   "dateFormat": false,
                   "disabled": false,
                   "label": "Duration",
+                  "labelWidth": "auto",
                   "onChange": [Function],
                   "onEnterPress": [Function],
                   "size": "3",
@@ -670,6 +677,7 @@ ShallowWrapper {
                   "disabled": false,
                   "isValidDate": [Function],
                   "label": "Massage time",
+                  "labelWidth": "auto",
                   "onChange": [Function],
                   "onEnterPress": [Function],
                   "size": "3",
@@ -986,6 +994,7 @@ ShallowWrapper {
                 dateFormat={false}
                 disabled={false}
                 label="Duration"
+                labelWidth="auto"
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
@@ -997,6 +1006,7 @@ ShallowWrapper {
                 disabled={false}
                 isValidDate={[Function]}
                 label="Massage time"
+                labelWidth="auto"
                 onChange={[Function]}
                 onEnterPress={[Function]}
                 size="3"
@@ -1157,6 +1167,7 @@ ShallowWrapper {
                   dateFormat={false}
                   disabled={false}
                   label="Duration"
+                  labelWidth="auto"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -1168,6 +1179,7 @@ ShallowWrapper {
                   disabled={false}
                   isValidDate={[Function]}
                   label="Massage time"
+                  labelWidth="auto"
                   onChange={[Function]}
                   onEnterPress={[Function]}
                   size="3"
@@ -1480,6 +1492,7 @@ ShallowWrapper {
                     dateFormat={false}
                     disabled={false}
                     label="Duration"
+                    labelWidth="auto"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1491,6 +1504,7 @@ ShallowWrapper {
                     disabled={false}
                     isValidDate={[Function]}
                     label="Massage time"
+                    labelWidth="auto"
                     onChange={[Function]}
                     onEnterPress={[Function]}
                     size="3"
@@ -1510,6 +1524,7 @@ ShallowWrapper {
                     "dateFormat": false,
                     "disabled": false,
                     "label": "Duration",
+                    "labelWidth": "auto",
                     "onChange": [Function],
                     "onEnterPress": [Function],
                     "size": "3",
@@ -1529,6 +1544,7 @@ ShallowWrapper {
                     "disabled": false,
                     "isValidDate": [Function],
                     "label": "Massage time",
+                    "labelWidth": "auto",
                     "onChange": [Function],
                     "onEnterPress": [Function],
                     "size": "3",

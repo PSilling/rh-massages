@@ -8,7 +8,7 @@ import Massages from "../../views/Massages";
 import TooltipButton from "../../components/buttons/TooltipButton";
 import ConfirmationButton from "../../components/buttons/ConfirmationButton";
 import CalendarPanel from "../../components/panels/CalendarPanel";
-import MassageBatchAddModal from "../../components/modals/MassageBatchAddModal";
+import MassageScheduleModal from "../../components/modals/MassageScheduleModal";
 import MassageModal from "../../components/modals/MassageModal";
 import Tab from "../../components/navs/Tab";
 import Fetch from "../../util/Fetch";
@@ -81,7 +81,7 @@ test("properly changes state variables", () => {
   const tabs = wrapper.find(Tab);
   const tooltipButtons = wrapper.find(TooltipButton);
   const deleteButton = wrapper.find(ConfirmationButton);
-  const addModal = wrapper.find(MassageBatchAddModal);
+  const addModal = wrapper.find(MassageScheduleModal);
   const massageModal = wrapper.find(MassageModal);
   const panel = wrapper.find(CalendarPanel);
 

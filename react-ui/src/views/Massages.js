@@ -11,7 +11,7 @@ import ConfirmationButton from "../components/buttons/ConfirmationButton";
 import CalendarPanel from "../components/panels/CalendarPanel";
 import InfoAlert from "../components/util/InfoAlert";
 import MassageModal from "../components/modals/MassageModal";
-import MassageBatchAddModal from "../components/modals/MassageBatchAddModal";
+import MassageScheduleModal from "../components/modals/MassageScheduleModal";
 import Tab from "../components/navs/Tab";
 import UnauthorizedMessage from "../components/util/UnauthorizedMessage";
 import "../styles/components/loader.css";
@@ -543,7 +543,7 @@ class Massages extends Component {
                       facilityId={this.state.facilities[this.state.index].id}
                       onToggle={() => this.toggleModal(null)}
                     />
-                    <MassageBatchAddModal
+                    <MassageScheduleModal
                       className="ml-2"
                       active={this.state.batchAddModalActive}
                       masseuses={this.state.masseuses}

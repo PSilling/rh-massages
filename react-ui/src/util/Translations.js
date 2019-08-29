@@ -98,8 +98,11 @@ const myLocalize = new Localize({
   Create: {
     cs: "Vytvořit"
   },
-  "New schedule": {
-    cs: "Zadat rozpis"
+  "General options": {
+    cs: "Obecné možnosti"
+  },
+  Shifts: {
+    cs: "Směny"
   },
   "Force cancel": {
     cs: "Vynutit zrušení"
@@ -145,9 +148,6 @@ const myLocalize = new Localize({
   Contact: {
     cs: "Kontakt"
   },
-  "Same as": {
-    cs: "Stejně jako"
-  },
   "Shift start": {
     cs: "Začátek směny"
   },
@@ -160,8 +160,8 @@ const myLocalize = new Localize({
   "Break end": {
     cs: "Konec přestávky"
   },
-  Break: {
-    cs: "Přestávka"
+  "Break duration": {
+    cs: "Délka přestávky"
   },
   Breaks: {
     cs: "Přestávky"
@@ -229,8 +229,8 @@ const myLocalize = new Localize({
   "custom:": {
     cs: "vlastní:"
   },
-  "For:": {
-    cs: "Na:"
+  "I want to create the schedule for…": {
+    cs: "Chci vytvořit rozpis na…"
   },
   " (page doesn't exist): ": {
     cs: " (stránka neexistuje): "
@@ -274,8 +274,8 @@ const myLocalize = new Localize({
   Massage: {
     cs: "Masáž"
   },
-  Ignore: {
-    cs: "Ignorovat"
+  "Create a new shift": {
+    cs: "Vytvořit novou směnu"
   },
   "Free massage": {
     cs: "Volná masáž"
@@ -309,6 +309,24 @@ const myLocalize = new Localize({
   },
   No: {
     cs: "Ne"
+  },
+  "No shift has been set. If you want to create massages on this day, add a work shift:": {
+    cs: "Nebyla nastavena žádná směna. Pokud chcete v tento den vytvořit masáže, přidejte pracovní směnu:"
+  },
+  "Alternatively, you can utilize a work shift from another day:": {
+    cs: "Alternativně můžete využít pracovní směnu z jiného dne:"
+  },
+  "No massages will be created on this day.": {
+    cs: "V tento den nebudou vytvořeny žádné masáže."
+  },
+  "Massages for this day will be created based on the selected day.": {
+    cs: "Masáže se pro tento den vytvoří podle vybraného dne."
+  },
+  "Massages for this day will be created based on this work shift.": {
+    cs: "Masáže se pro tento den vytvoří podle nastavené pracovní směny."
+  },
+  Change: {
+    cs: "Změnit"
   },
 
   // notification messages
@@ -377,14 +395,11 @@ const myLocalize = new Localize({
   "Import previously downloaded rules": {
     cs: "Importovat dříve stažená pravidla"
   },
-  "Download a configuration file that you can use to import these rules at a later date": {
-    cs: "Stáhnout konfigurační soubor, který lze později použít pro importování těchto pravidel"
+  "Download a configuration file that you can use to import the current schedule at a later date": {
+    cs: "Stáhnout konfigurační soubor, který lze později použít pro importování aktuálního rozpisu"
   },
-  "When set to another day, copies the schedule from it": {
-    cs: "Při nastavení na jiný den podle něj okopíruje rozpis"
-  },
-  "Length of the standard break after a massage": {
-    cs: "Délka standardní přestávky po masáží"
+  "The duration of breaks between massages": {
+    cs: "Délka přestávek mezi masážemi"
   },
   "Print my massage schedule": {
     cs: "Tisk rozpisu mých masáží"
@@ -400,9 +415,6 @@ const myLocalize = new Localize({
   },
   "Show massages already taken by someone else": {
     cs: "Zobrazit masáže přiřazené někomu jinému"
-  },
-  "Ignore this day when creating the massages": {
-    cs: "Ignorovat tento den při tvorbě masáží"
   },
   "Create a new facility": {
     cs: "Vytvořit novou budovu"

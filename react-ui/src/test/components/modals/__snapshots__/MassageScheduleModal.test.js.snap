@@ -1,0 +1,3821 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inside content with correct props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MassageScheduleModal
+    active={true}
+    facilityId={1}
+    masseuseNames={
+      Array [
+        "Masseuse Test",
+      ]
+    }
+    masseuseTooltips={Array []}
+    masseuses={
+      Array [
+        Object {
+          "email": "test@masseuse.org",
+          "masseur": true,
+          "name": "Masseuse",
+          "sub": "m-sub",
+          "subscribed": false,
+          "surname": "Test",
+        },
+      ]
+    }
+    onToggle={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            false,
+          ],
+          Array [
+            false,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    withPortal={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <TooltipButton
+          active={false}
+          disabled={false}
+          label="Schedule"
+          masseuseNames={
+            Array [
+              "Masseuse Test",
+            ]
+          }
+          onClick={[Function]}
+          outline={true}
+          tooltip="Create multiple massages at once based on a schedule"
+        />,
+        <ModalBody
+          tag="div"
+        >
+          <Row
+            tag="div"
+          >
+            <Col
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <h3>
+                Shifts
+                <div
+                  className="float-right"
+                >
+                  <Button
+                    color="secondary"
+                    htmlFor="fileImport"
+                    id="Tooltip1"
+                    outline={true}
+                    tag="label"
+                  >
+                    Import
+                  </Button>
+                  <Input
+                    accept=".json"
+                    className="d-none"
+                    id="fileImport"
+                    onChange={[Function]}
+                    type="file"
+                  />
+                  <TooltipButton
+                    active={false}
+                    className="ml-2 mb-2"
+                    disabled={false}
+                    label="Export"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                  />
+                </div>
+              </h3>
+              <hr />
+            </Col>
+          </Row>
+          <Row
+            tag="div"
+          >
+            <Col
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Nav
+                className="mb-3"
+                tabs={true}
+                tag="ul"
+                vertical={false}
+              >
+                <Tab
+                  active={true}
+                  label="Monday"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+                <Tab
+                  active={false}
+                  label="Tuesday"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+                <Tab
+                  active={false}
+                  label="Wednesday"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+                <Tab
+                  active={false}
+                  label="Thursday"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+                <Tab
+                  active={false}
+                  label="Friday"
+                  onClick={[Function]}
+                  onRemoveClick={null}
+                />
+              </Nav>
+            </Col>
+          </Row>
+          <div>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                No shift has been set. If you want to create massages on this day, add a work shift:
+              </Col>
+            </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                className="text-center"
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <TooltipButton
+                  active={false}
+                  className="mt-2 mb-4"
+                  disabled={false}
+                  label="Create a new shift"
+                  onClick={[Function]}
+                  outline={true}
+                  tooltip=""
+                />
+              </Col>
+            </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Alternatively, you can utilize a work shift from another day:
+              </Col>
+            </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <FormGroup
+                  className="mt-2 mb-4"
+                  tag="div"
+                >
+                  <Input
+                    onChange={[Function]}
+                    type="select"
+                    value="–"
+                  >
+                    <option>
+                      Tuesday
+                    </option>
+                    <option>
+                      Wednesday
+                    </option>
+                    <option>
+                      Thursday
+                    </option>
+                    <option>
+                      Friday
+                    </option>
+                    <option>
+                      –
+                    </option>
+                  </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                className="text-center"
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <em>
+                  No massages will be created on this day.
+                </em>
+              </Col>
+            </Row>
+          </div>
+          <Row
+            className="text-right"
+            tag="div"
+          >
+            <Col
+              md="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <hr />
+              <TooltipButton
+                active={false}
+                className="mr-2"
+                disabled={false}
+                label="Previous"
+                onClick={[Function]}
+                outline={true}
+                tooltip=""
+              />
+              <ConfirmationButton
+                className="mr-2"
+                color="primary"
+                dialogMessage="Are you sure you want to create this schedule?"
+                disabled={false}
+                label="Create"
+                onConfirm={[Function]}
+                outline={false}
+                tooltip=""
+              />
+              <Button
+                color="secondary"
+                onClick={[Function]}
+                tag="button"
+              >
+                Dismiss
+              </Button>
+            </Col>
+          </Row>
+        </ModalBody>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "disabled": false,
+          "label": "Schedule",
+          "masseuseNames": Array [
+            "Masseuse Test",
+          ],
+          "onClick": [Function],
+          "outline": true,
+          "tooltip": "Create multiple massages at once based on a schedule",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <h3>
+                  Shifts
+                  <div
+                    className="float-right"
+                  >
+                    <Button
+                      color="secondary"
+                      htmlFor="fileImport"
+                      id="Tooltip1"
+                      outline={true}
+                      tag="label"
+                    >
+                      Import
+                    </Button>
+                    <Input
+                      accept=".json"
+                      className="d-none"
+                      id="fileImport"
+                      onChange={[Function]}
+                      type="file"
+                    />
+                    <TooltipButton
+                      active={false}
+                      className="ml-2 mb-2"
+                      disabled={false}
+                      label="Export"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                    />
+                  </div>
+                </h3>
+                <hr />
+              </Col>
+            </Row>,
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Nav
+                  className="mb-3"
+                  tabs={true}
+                  tag="ul"
+                  vertical={false}
+                >
+                  <Tab
+                    active={true}
+                    label="Monday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Tuesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Wednesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Thursday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Friday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                </Nav>
+              </Col>
+            </Row>,
+            <div>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  No shift has been set. If you want to create massages on this day, add a work shift:
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  className="text-center"
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <TooltipButton
+                    active={false}
+                    className="mt-2 mb-4"
+                    disabled={false}
+                    label="Create a new shift"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip=""
+                  />
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Alternatively, you can utilize a work shift from another day:
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <FormGroup
+                    className="mt-2 mb-4"
+                    tag="div"
+                  >
+                    <Input
+                      onChange={[Function]}
+                      type="select"
+                      value="–"
+                    >
+                      <option>
+                        Tuesday
+                      </option>
+                      <option>
+                        Wednesday
+                      </option>
+                      <option>
+                        Thursday
+                      </option>
+                      <option>
+                        Friday
+                      </option>
+                      <option>
+                        –
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  className="text-center"
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <em>
+                    No massages will be created on this day.
+                  </em>
+                </Col>
+              </Row>
+            </div>,
+            <Row
+              className="text-right"
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <hr />
+                <TooltipButton
+                  active={false}
+                  className="mr-2"
+                  disabled={false}
+                  label="Previous"
+                  onClick={[Function]}
+                  outline={true}
+                  tooltip=""
+                />
+                <ConfirmationButton
+                  className="mr-2"
+                  color="primary"
+                  dialogMessage="Are you sure you want to create this schedule?"
+                  disabled={false}
+                  label="Create"
+                  onConfirm={[Function]}
+                  outline={false}
+                  tooltip=""
+                />
+                <Button
+                  color="secondary"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  Dismiss
+                </Button>
+              </Col>
+            </Row>,
+          ],
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <h3>
+                  Shifts
+                  <div
+                    className="float-right"
+                  >
+                    <Button
+                      color="secondary"
+                      htmlFor="fileImport"
+                      id="Tooltip1"
+                      outline={true}
+                      tag="label"
+                    >
+                      Import
+                    </Button>
+                    <Input
+                      accept=".json"
+                      className="d-none"
+                      id="fileImport"
+                      onChange={[Function]}
+                      type="file"
+                    />
+                    <TooltipButton
+                      active={false}
+                      className="ml-2 mb-2"
+                      disabled={false}
+                      label="Export"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                    />
+                  </div>
+                </h3>
+                <hr />
+              </Col>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <h3>
+                    Shifts
+                    <div
+                      className="float-right"
+                    >
+                      <Button
+                        color="secondary"
+                        htmlFor="fileImport"
+                        id="Tooltip1"
+                        outline={true}
+                        tag="label"
+                      >
+                        Import
+                      </Button>
+                      <Input
+                        accept=".json"
+                        className="d-none"
+                        id="fileImport"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                      <TooltipButton
+                        active={false}
+                        className="ml-2 mb-2"
+                        disabled={false}
+                        label="Export"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                      />
+                    </div>
+                  </h3>,
+                  <hr />,
+                ],
+                "md": "12",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "Shifts",
+                      <div
+                        className="float-right"
+                      >
+                        <Button
+                          color="secondary"
+                          htmlFor="fileImport"
+                          id="Tooltip1"
+                          outline={true}
+                          tag="label"
+                        >
+                          Import
+                        </Button>
+                        <Input
+                          accept=".json"
+                          className="d-none"
+                          id="fileImport"
+                          onChange={[Function]}
+                          type="file"
+                        />
+                        <TooltipButton
+                          active={false}
+                          className="ml-2 mb-2"
+                          disabled={false}
+                          label="Export"
+                          onClick={[Function]}
+                          outline={true}
+                          tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                        />
+                      </div>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Shifts",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <Button
+                            color="secondary"
+                            htmlFor="fileImport"
+                            id="Tooltip1"
+                            outline={true}
+                            tag="label"
+                          >
+                            Import
+                          </Button>,
+                          <Input
+                            accept=".json"
+                            className="d-none"
+                            id="fileImport"
+                            onChange={[Function]}
+                            type="file"
+                          />,
+                          <TooltipButton
+                            active={false}
+                            className="ml-2 mb-2"
+                            disabled={false}
+                            label="Export"
+                            onClick={[Function]}
+                            outline={true}
+                            tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                          />,
+                        ],
+                        "className": "float-right",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "children": "Import",
+                            "color": "secondary",
+                            "htmlFor": "fileImport",
+                            "id": "Tooltip1",
+                            "outline": true,
+                            "tag": "label",
+                          },
+                          "ref": null,
+                          "rendered": "Import",
+                          "type": [Function],
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "accept": ".json",
+                            "className": "d-none",
+                            "id": "fileImport",
+                            "onChange": [Function],
+                            "type": "file",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "active": false,
+                            "className": "ml-2 mb-2",
+                            "disabled": false,
+                            "label": "Export",
+                            "onClick": [Function],
+                            "outline": true,
+                            "tooltip": "Download a configuration file that you can use to import the current schedule at a later date",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                      ],
+                      "type": "div",
+                    },
+                  ],
+                  "type": "h3",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "hr",
+                },
+              ],
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Nav
+                  className="mb-3"
+                  tabs={true}
+                  tag="ul"
+                  vertical={false}
+                >
+                  <Tab
+                    active={true}
+                    label="Monday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Tuesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Wednesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Thursday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Friday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                </Nav>
+              </Col>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Nav
+                  className="mb-3"
+                  tabs={true}
+                  tag="ul"
+                  vertical={false}
+                >
+                  <Tab
+                    active={true}
+                    label="Monday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Tuesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Wednesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Thursday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Friday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                </Nav>,
+                "md": "12",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Tab
+                      active={true}
+                      label="Monday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
+                    <Tab
+                      active={false}
+                      label="Tuesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
+                    <Tab
+                      active={false}
+                      label="Wednesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
+                    <Tab
+                      active={false}
+                      label="Thursday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
+                    <Tab
+                      active={false}
+                      label="Friday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
+                  ],
+                  "className": "mb-3",
+                  "tabs": true,
+                  "tag": "ul",
+                  "vertical": false,
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "Monday",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": true,
+                      "label": "Monday",
+                      "onClick": [Function],
+                      "onRemoveClick": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "Tuesday",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "label": "Tuesday",
+                      "onClick": [Function],
+                      "onRemoveClick": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "Wednesday",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "label": "Wednesday",
+                      "onClick": [Function],
+                      "onRemoveClick": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "Thursday",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "label": "Thursday",
+                      "onClick": [Function],
+                      "onRemoveClick": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "Friday",
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "label": "Friday",
+                      "onClick": [Function],
+                      "onRemoveClick": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    No shift has been set. If you want to create massages on this day, add a work shift:
+                  </Col>
+                </Row>,
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <TooltipButton
+                      active={false}
+                      className="mt-2 mb-4"
+                      disabled={false}
+                      label="Create a new shift"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip=""
+                    />
+                  </Col>
+                </Row>,
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Alternatively, you can utilize a work shift from another day:
+                  </Col>
+                </Row>,
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <FormGroup
+                      className="mt-2 mb-4"
+                      tag="div"
+                    >
+                      <Input
+                        onChange={[Function]}
+                        type="select"
+                        value="–"
+                      >
+                        <option>
+                          Tuesday
+                        </option>
+                        <option>
+                          Wednesday
+                        </option>
+                        <option>
+                          Thursday
+                        </option>
+                        <option>
+                          Friday
+                        </option>
+                        <option>
+                          –
+                        </option>
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                </Row>,
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <em>
+                      No massages will be created on this day.
+                    </em>
+                  </Col>
+                </Row>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    No shift has been set. If you want to create massages on this day, add a work shift:
+                  </Col>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "No shift has been set. If you want to create massages on this day, add a work shift:",
+                    "md": "12",
+                    "tag": "div",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": "No shift has been set. If you want to create massages on this day, add a work shift:",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <TooltipButton
+                      active={false}
+                      className="mt-2 mb-4"
+                      disabled={false}
+                      label="Create a new shift"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip=""
+                    />
+                  </Col>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <TooltipButton
+                      active={false}
+                      className="mt-2 mb-4"
+                      disabled={false}
+                      label="Create a new shift"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip=""
+                    />,
+                    "className": "text-center",
+                    "md": "12",
+                    "tag": "div",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "className": "mt-2 mb-4",
+                      "disabled": false,
+                      "label": "Create a new shift",
+                      "onClick": [Function],
+                      "outline": true,
+                      "tooltip": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Alternatively, you can utilize a work shift from another day:
+                  </Col>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Alternatively, you can utilize a work shift from another day:",
+                    "md": "12",
+                    "tag": "div",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": "Alternatively, you can utilize a work shift from another day:",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <FormGroup
+                      className="mt-2 mb-4"
+                      tag="div"
+                    >
+                      <Input
+                        onChange={[Function]}
+                        type="select"
+                        value="–"
+                      >
+                        <option>
+                          Tuesday
+                        </option>
+                        <option>
+                          Wednesday
+                        </option>
+                        <option>
+                          Thursday
+                        </option>
+                        <option>
+                          Friday
+                        </option>
+                        <option>
+                          –
+                        </option>
+                      </Input>
+                    </FormGroup>
+                  </Col>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <FormGroup
+                      className="mt-2 mb-4"
+                      tag="div"
+                    >
+                      <Input
+                        onChange={[Function]}
+                        type="select"
+                        value="–"
+                      >
+                        <option>
+                          Tuesday
+                        </option>
+                        <option>
+                          Wednesday
+                        </option>
+                        <option>
+                          Thursday
+                        </option>
+                        <option>
+                          Friday
+                        </option>
+                        <option>
+                          –
+                        </option>
+                      </Input>
+                    </FormGroup>,
+                    "md": "12",
+                    "tag": "div",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": <Input
+                        onChange={[Function]}
+                        type="select"
+                        value="–"
+                      >
+                        <option>
+                          Tuesday
+                        </option>
+                        <option>
+                          Wednesday
+                        </option>
+                        <option>
+                          Thursday
+                        </option>
+                        <option>
+                          Friday
+                        </option>
+                        <option>
+                          –
+                        </option>
+                      </Input>,
+                      "className": "mt-2 mb-4",
+                      "tag": "div",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          Array [
+                            false,
+                            <option>
+                              Tuesday
+                            </option>,
+                            <option>
+                              Wednesday
+                            </option>,
+                            <option>
+                              Thursday
+                            </option>,
+                            <option>
+                              Friday
+                            </option>,
+                          ],
+                          <option>
+                            –
+                          </option>,
+                        ],
+                        "onChange": [Function],
+                        "onKeyPress": undefined,
+                        "type": "select",
+                        "value": "–",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        false,
+                        Object {
+                          "instance": null,
+                          "key": "Tuesday",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Tuesday",
+                          },
+                          "ref": null,
+                          "rendered": "Tuesday",
+                          "type": "option",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "Wednesday",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Wednesday",
+                          },
+                          "ref": null,
+                          "rendered": "Wednesday",
+                          "type": "option",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "Thursday",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Thursday",
+                          },
+                          "ref": null,
+                          "rendered": "Thursday",
+                          "type": "option",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "Friday",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Friday",
+                          },
+                          "ref": null,
+                          "rendered": "Friday",
+                          "type": "option",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "–",
+                          },
+                          "ref": null,
+                          "rendered": "–",
+                          "type": "option",
+                        },
+                      ],
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <em>
+                      No massages will be created on this day.
+                    </em>
+                  </Col>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <em>
+                      No massages will be created on this day.
+                    </em>,
+                    "className": "text-center",
+                    "md": "12",
+                    "tag": "div",
+                    "widths": Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "No massages will be created on this day.",
+                    },
+                    "ref": null,
+                    "rendered": "No massages will be created on this day.",
+                    "type": "em",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <hr />
+                <TooltipButton
+                  active={false}
+                  className="mr-2"
+                  disabled={false}
+                  label="Previous"
+                  onClick={[Function]}
+                  outline={true}
+                  tooltip=""
+                />
+                <ConfirmationButton
+                  className="mr-2"
+                  color="primary"
+                  dialogMessage="Are you sure you want to create this schedule?"
+                  disabled={false}
+                  label="Create"
+                  onConfirm={[Function]}
+                  outline={false}
+                  tooltip=""
+                />
+                <Button
+                  color="secondary"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  Dismiss
+                </Button>
+              </Col>,
+              "className": "text-right",
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <hr />,
+                  <TooltipButton
+                    active={false}
+                    className="mr-2"
+                    disabled={false}
+                    label="Previous"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip=""
+                  />,
+                  <ConfirmationButton
+                    className="mr-2"
+                    color="primary"
+                    dialogMessage="Are you sure you want to create this schedule?"
+                    disabled={false}
+                    label="Create"
+                    onConfirm={[Function]}
+                    outline={false}
+                    tooltip=""
+                  />,
+                  <Button
+                    color="secondary"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    Dismiss
+                  </Button>,
+                ],
+                "md": "12",
+                "tag": "div",
+                "widths": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "hr",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "active": false,
+                    "className": "mr-2",
+                    "disabled": false,
+                    "label": "Previous",
+                    "onClick": [Function],
+                    "outline": true,
+                    "tooltip": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "className": "mr-2",
+                    "color": "primary",
+                    "dialogMessage": "Are you sure you want to create this schedule?",
+                    "disabled": false,
+                    "label": "Create",
+                    "onConfirm": [Function],
+                    "outline": false,
+                    "tooltip": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Dismiss",
+                    "color": "secondary",
+                    "onClick": [Function],
+                    "tag": "button",
+                  },
+                  "ref": null,
+                  "rendered": "Dismiss",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "span",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <TooltipButton
+            active={false}
+            disabled={false}
+            label="Schedule"
+            masseuseNames={
+              Array [
+                "Masseuse Test",
+              ]
+            }
+            onClick={[Function]}
+            outline={true}
+            tooltip="Create multiple massages at once based on a schedule"
+          />,
+          <ModalBody
+            tag="div"
+          >
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <h3>
+                  Shifts
+                  <div
+                    className="float-right"
+                  >
+                    <Button
+                      color="secondary"
+                      htmlFor="fileImport"
+                      id="Tooltip1"
+                      outline={true}
+                      tag="label"
+                    >
+                      Import
+                    </Button>
+                    <Input
+                      accept=".json"
+                      className="d-none"
+                      id="fileImport"
+                      onChange={[Function]}
+                      type="file"
+                    />
+                    <TooltipButton
+                      active={false}
+                      className="ml-2 mb-2"
+                      disabled={false}
+                      label="Export"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                    />
+                  </div>
+                </h3>
+                <hr />
+              </Col>
+            </Row>
+            <Row
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Nav
+                  className="mb-3"
+                  tabs={true}
+                  tag="ul"
+                  vertical={false}
+                >
+                  <Tab
+                    active={true}
+                    label="Monday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Tuesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Wednesday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Thursday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                  <Tab
+                    active={false}
+                    label="Friday"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />
+                </Nav>
+              </Col>
+            </Row>
+            <div>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  No shift has been set. If you want to create massages on this day, add a work shift:
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  className="text-center"
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <TooltipButton
+                    active={false}
+                    className="mt-2 mb-4"
+                    disabled={false}
+                    label="Create a new shift"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip=""
+                  />
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Alternatively, you can utilize a work shift from another day:
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <FormGroup
+                    className="mt-2 mb-4"
+                    tag="div"
+                  >
+                    <Input
+                      onChange={[Function]}
+                      type="select"
+                      value="–"
+                    >
+                      <option>
+                        Tuesday
+                      </option>
+                      <option>
+                        Wednesday
+                      </option>
+                      <option>
+                        Thursday
+                      </option>
+                      <option>
+                        Friday
+                      </option>
+                      <option>
+                        –
+                      </option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row
+                tag="div"
+              >
+                <Col
+                  className="text-center"
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <em>
+                    No massages will be created on this day.
+                  </em>
+                </Col>
+              </Row>
+            </div>
+            <Row
+              className="text-right"
+              tag="div"
+            >
+              <Col
+                md="12"
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <hr />
+                <TooltipButton
+                  active={false}
+                  className="mr-2"
+                  disabled={false}
+                  label="Previous"
+                  onClick={[Function]}
+                  outline={true}
+                  tooltip=""
+                />
+                <ConfirmationButton
+                  className="mr-2"
+                  color="primary"
+                  dialogMessage="Are you sure you want to create this schedule?"
+                  disabled={false}
+                  label="Create"
+                  onConfirm={[Function]}
+                  outline={false}
+                  tooltip=""
+                />
+                <Button
+                  color="secondary"
+                  onClick={[Function]}
+                  tag="button"
+                >
+                  Dismiss
+                </Button>
+              </Col>
+            </Row>
+          </ModalBody>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "disabled": false,
+            "label": "Schedule",
+            "masseuseNames": Array [
+              "Masseuse Test",
+            ],
+            "onClick": [Function],
+            "outline": true,
+            "tooltip": "Create multiple massages at once based on a schedule",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <h3>
+                    Shifts
+                    <div
+                      className="float-right"
+                    >
+                      <Button
+                        color="secondary"
+                        htmlFor="fileImport"
+                        id="Tooltip1"
+                        outline={true}
+                        tag="label"
+                      >
+                        Import
+                      </Button>
+                      <Input
+                        accept=".json"
+                        className="d-none"
+                        id="fileImport"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                      <TooltipButton
+                        active={false}
+                        className="ml-2 mb-2"
+                        disabled={false}
+                        label="Export"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                      />
+                    </div>
+                  </h3>
+                  <hr />
+                </Col>
+              </Row>,
+              <Row
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <Nav
+                    className="mb-3"
+                    tabs={true}
+                    tag="ul"
+                    vertical={false}
+                  >
+                    <Tab
+                      active={true}
+                      label="Monday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Tuesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Wednesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Thursday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Friday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                  </Nav>
+                </Col>
+              </Row>,
+              <div>
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    No shift has been set. If you want to create massages on this day, add a work shift:
+                  </Col>
+                </Row>
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <TooltipButton
+                      active={false}
+                      className="mt-2 mb-4"
+                      disabled={false}
+                      label="Create a new shift"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip=""
+                    />
+                  </Col>
+                </Row>
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Alternatively, you can utilize a work shift from another day:
+                  </Col>
+                </Row>
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <FormGroup
+                      className="mt-2 mb-4"
+                      tag="div"
+                    >
+                      <Input
+                        onChange={[Function]}
+                        type="select"
+                        value="–"
+                      >
+                        <option>
+                          Tuesday
+                        </option>
+                        <option>
+                          Wednesday
+                        </option>
+                        <option>
+                          Thursday
+                        </option>
+                        <option>
+                          Friday
+                        </option>
+                        <option>
+                          –
+                        </option>
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row
+                  tag="div"
+                >
+                  <Col
+                    className="text-center"
+                    md="12"
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <em>
+                      No massages will be created on this day.
+                    </em>
+                  </Col>
+                </Row>
+              </div>,
+              <Row
+                className="text-right"
+                tag="div"
+              >
+                <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <hr />
+                  <TooltipButton
+                    active={false}
+                    className="mr-2"
+                    disabled={false}
+                    label="Previous"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip=""
+                  />
+                  <ConfirmationButton
+                    className="mr-2"
+                    color="primary"
+                    dialogMessage="Are you sure you want to create this schedule?"
+                    disabled={false}
+                    label="Create"
+                    onConfirm={[Function]}
+                    outline={false}
+                    tooltip=""
+                  />
+                  <Button
+                    color="secondary"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    Dismiss
+                  </Button>
+                </Col>
+              </Row>,
+            ],
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <h3>
+                    Shifts
+                    <div
+                      className="float-right"
+                    >
+                      <Button
+                        color="secondary"
+                        htmlFor="fileImport"
+                        id="Tooltip1"
+                        outline={true}
+                        tag="label"
+                      >
+                        Import
+                      </Button>
+                      <Input
+                        accept=".json"
+                        className="d-none"
+                        id="fileImport"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                      <TooltipButton
+                        active={false}
+                        className="ml-2 mb-2"
+                        disabled={false}
+                        label="Export"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                      />
+                    </div>
+                  </h3>
+                  <hr />
+                </Col>,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <h3>
+                      Shifts
+                      <div
+                        className="float-right"
+                      >
+                        <Button
+                          color="secondary"
+                          htmlFor="fileImport"
+                          id="Tooltip1"
+                          outline={true}
+                          tag="label"
+                        >
+                          Import
+                        </Button>
+                        <Input
+                          accept=".json"
+                          className="d-none"
+                          id="fileImport"
+                          onChange={[Function]}
+                          type="file"
+                        />
+                        <TooltipButton
+                          active={false}
+                          className="ml-2 mb-2"
+                          disabled={false}
+                          label="Export"
+                          onClick={[Function]}
+                          outline={true}
+                          tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                        />
+                      </div>
+                    </h3>,
+                    <hr />,
+                  ],
+                  "md": "12",
+                  "tag": "div",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "Shifts",
+                        <div
+                          className="float-right"
+                        >
+                          <Button
+                            color="secondary"
+                            htmlFor="fileImport"
+                            id="Tooltip1"
+                            outline={true}
+                            tag="label"
+                          >
+                            Import
+                          </Button>
+                          <Input
+                            accept=".json"
+                            className="d-none"
+                            id="fileImport"
+                            onChange={[Function]}
+                            type="file"
+                          />
+                          <TooltipButton
+                            active={false}
+                            className="ml-2 mb-2"
+                            disabled={false}
+                            label="Export"
+                            onClick={[Function]}
+                            outline={true}
+                            tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                          />
+                        </div>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Shifts",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <Button
+                              color="secondary"
+                              htmlFor="fileImport"
+                              id="Tooltip1"
+                              outline={true}
+                              tag="label"
+                            >
+                              Import
+                            </Button>,
+                            <Input
+                              accept=".json"
+                              className="d-none"
+                              id="fileImport"
+                              onChange={[Function]}
+                              type="file"
+                            />,
+                            <TooltipButton
+                              active={false}
+                              className="ml-2 mb-2"
+                              disabled={false}
+                              label="Export"
+                              onClick={[Function]}
+                              outline={true}
+                              tooltip="Download a configuration file that you can use to import the current schedule at a later date"
+                            />,
+                          ],
+                          "className": "float-right",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "children": "Import",
+                              "color": "secondary",
+                              "htmlFor": "fileImport",
+                              "id": "Tooltip1",
+                              "outline": true,
+                              "tag": "label",
+                            },
+                            "ref": null,
+                            "rendered": "Import",
+                            "type": [Function],
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "accept": ".json",
+                              "className": "d-none",
+                              "id": "fileImport",
+                              "onChange": [Function],
+                              "type": "file",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "active": false,
+                              "className": "ml-2 mb-2",
+                              "disabled": false,
+                              "label": "Export",
+                              "onClick": [Function],
+                              "outline": true,
+                              "tooltip": "Download a configuration file that you can use to import the current schedule at a later date",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "div",
+                      },
+                    ],
+                    "type": "h3",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "hr",
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <Nav
+                    className="mb-3"
+                    tabs={true}
+                    tag="ul"
+                    vertical={false}
+                  >
+                    <Tab
+                      active={true}
+                      label="Monday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Tuesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Wednesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Thursday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Friday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                  </Nav>
+                </Col>,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Nav
+                    className="mb-3"
+                    tabs={true}
+                    tag="ul"
+                    vertical={false}
+                  >
+                    <Tab
+                      active={true}
+                      label="Monday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Tuesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Wednesday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Thursday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                    <Tab
+                      active={false}
+                      label="Friday"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />
+                  </Nav>,
+                  "md": "12",
+                  "tag": "div",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": Array [
+                      <Tab
+                        active={true}
+                        label="Monday"
+                        onClick={[Function]}
+                        onRemoveClick={null}
+                      />,
+                      <Tab
+                        active={false}
+                        label="Tuesday"
+                        onClick={[Function]}
+                        onRemoveClick={null}
+                      />,
+                      <Tab
+                        active={false}
+                        label="Wednesday"
+                        onClick={[Function]}
+                        onRemoveClick={null}
+                      />,
+                      <Tab
+                        active={false}
+                        label="Thursday"
+                        onClick={[Function]}
+                        onRemoveClick={null}
+                      />,
+                      <Tab
+                        active={false}
+                        label="Friday"
+                        onClick={[Function]}
+                        onRemoveClick={null}
+                      />,
+                    ],
+                    "className": "mb-3",
+                    "tabs": true,
+                    "tag": "ul",
+                    "vertical": false,
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "Monday",
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": true,
+                        "label": "Monday",
+                        "onClick": [Function],
+                        "onRemoveClick": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "Tuesday",
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "label": "Tuesday",
+                        "onClick": [Function],
+                        "onRemoveClick": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "Wednesday",
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "label": "Wednesday",
+                        "onClick": [Function],
+                        "onRemoveClick": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "Thursday",
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "label": "Thursday",
+                        "onClick": [Function],
+                        "onRemoveClick": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "Friday",
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "label": "Friday",
+                        "onClick": [Function],
+                        "onRemoveClick": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Row
+                    tag="div"
+                  >
+                    <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      No shift has been set. If you want to create massages on this day, add a work shift:
+                    </Col>
+                  </Row>,
+                  <Row
+                    tag="div"
+                  >
+                    <Col
+                      className="text-center"
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <TooltipButton
+                        active={false}
+                        className="mt-2 mb-4"
+                        disabled={false}
+                        label="Create a new shift"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip=""
+                      />
+                    </Col>
+                  </Row>,
+                  <Row
+                    tag="div"
+                  >
+                    <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Alternatively, you can utilize a work shift from another day:
+                    </Col>
+                  </Row>,
+                  <Row
+                    tag="div"
+                  >
+                    <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <FormGroup
+                        className="mt-2 mb-4"
+                        tag="div"
+                      >
+                        <Input
+                          onChange={[Function]}
+                          type="select"
+                          value="–"
+                        >
+                          <option>
+                            Tuesday
+                          </option>
+                          <option>
+                            Wednesday
+                          </option>
+                          <option>
+                            Thursday
+                          </option>
+                          <option>
+                            Friday
+                          </option>
+                          <option>
+                            –
+                          </option>
+                        </Input>
+                      </FormGroup>
+                    </Col>
+                  </Row>,
+                  <Row
+                    tag="div"
+                  >
+                    <Col
+                      className="text-center"
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <em>
+                        No massages will be created on this day.
+                      </em>
+                    </Col>
+                  </Row>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      No shift has been set. If you want to create massages on this day, add a work shift:
+                    </Col>,
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "No shift has been set. If you want to create massages on this day, add a work shift:",
+                      "md": "12",
+                      "tag": "div",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": "No shift has been set. If you want to create massages on this day, add a work shift:",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <Col
+                      className="text-center"
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <TooltipButton
+                        active={false}
+                        className="mt-2 mb-4"
+                        disabled={false}
+                        label="Create a new shift"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip=""
+                      />
+                    </Col>,
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": <TooltipButton
+                        active={false}
+                        className="mt-2 mb-4"
+                        disabled={false}
+                        label="Create a new shift"
+                        onClick={[Function]}
+                        outline={true}
+                        tooltip=""
+                      />,
+                      "className": "text-center",
+                      "md": "12",
+                      "tag": "div",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "active": false,
+                        "className": "mt-2 mb-4",
+                        "disabled": false,
+                        "label": "Create a new shift",
+                        "onClick": [Function],
+                        "outline": true,
+                        "tooltip": "",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      Alternatively, you can utilize a work shift from another day:
+                    </Col>,
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Alternatively, you can utilize a work shift from another day:",
+                      "md": "12",
+                      "tag": "div",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": "Alternatively, you can utilize a work shift from another day:",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <Col
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <FormGroup
+                        className="mt-2 mb-4"
+                        tag="div"
+                      >
+                        <Input
+                          onChange={[Function]}
+                          type="select"
+                          value="–"
+                        >
+                          <option>
+                            Tuesday
+                          </option>
+                          <option>
+                            Wednesday
+                          </option>
+                          <option>
+                            Thursday
+                          </option>
+                          <option>
+                            Friday
+                          </option>
+                          <option>
+                            –
+                          </option>
+                        </Input>
+                      </FormGroup>
+                    </Col>,
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": <FormGroup
+                        className="mt-2 mb-4"
+                        tag="div"
+                      >
+                        <Input
+                          onChange={[Function]}
+                          type="select"
+                          value="–"
+                        >
+                          <option>
+                            Tuesday
+                          </option>
+                          <option>
+                            Wednesday
+                          </option>
+                          <option>
+                            Thursday
+                          </option>
+                          <option>
+                            Friday
+                          </option>
+                          <option>
+                            –
+                          </option>
+                        </Input>
+                      </FormGroup>,
+                      "md": "12",
+                      "tag": "div",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": <Input
+                          onChange={[Function]}
+                          type="select"
+                          value="–"
+                        >
+                          <option>
+                            Tuesday
+                          </option>
+                          <option>
+                            Wednesday
+                          </option>
+                          <option>
+                            Thursday
+                          </option>
+                          <option>
+                            Friday
+                          </option>
+                          <option>
+                            –
+                          </option>
+                        </Input>,
+                        "className": "mt-2 mb-4",
+                        "tag": "div",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [
+                            Array [
+                              false,
+                              <option>
+                                Tuesday
+                              </option>,
+                              <option>
+                                Wednesday
+                              </option>,
+                              <option>
+                                Thursday
+                              </option>,
+                              <option>
+                                Friday
+                              </option>,
+                            ],
+                            <option>
+                              –
+                            </option>,
+                          ],
+                          "onChange": [Function],
+                          "onKeyPress": undefined,
+                          "type": "select",
+                          "value": "–",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          false,
+                          Object {
+                            "instance": null,
+                            "key": "Tuesday",
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Tuesday",
+                            },
+                            "ref": null,
+                            "rendered": "Tuesday",
+                            "type": "option",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": "Wednesday",
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Wednesday",
+                            },
+                            "ref": null,
+                            "rendered": "Wednesday",
+                            "type": "option",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": "Thursday",
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Thursday",
+                            },
+                            "ref": null,
+                            "rendered": "Thursday",
+                            "type": "option",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": "Friday",
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Friday",
+                            },
+                            "ref": null,
+                            "rendered": "Friday",
+                            "type": "option",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "–",
+                            },
+                            "ref": null,
+                            "rendered": "–",
+                            "type": "option",
+                          },
+                        ],
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": <Col
+                      className="text-center"
+                      md="12"
+                      tag="div"
+                      widths={
+                        Array [
+                          "xs",
+                          "sm",
+                          "md",
+                          "lg",
+                          "xl",
+                        ]
+                      }
+                    >
+                      <em>
+                        No massages will be created on this day.
+                      </em>
+                    </Col>,
+                    "tag": "div",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": <em>
+                        No massages will be created on this day.
+                      </em>,
+                      "className": "text-center",
+                      "md": "12",
+                      "tag": "div",
+                      "widths": Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "No massages will be created on this day.",
+                      },
+                      "ref": null,
+                      "rendered": "No massages will be created on this day.",
+                      "type": "em",
+                    },
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Col
+                  md="12"
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <hr />
+                  <TooltipButton
+                    active={false}
+                    className="mr-2"
+                    disabled={false}
+                    label="Previous"
+                    onClick={[Function]}
+                    outline={true}
+                    tooltip=""
+                  />
+                  <ConfirmationButton
+                    className="mr-2"
+                    color="primary"
+                    dialogMessage="Are you sure you want to create this schedule?"
+                    disabled={false}
+                    label="Create"
+                    onConfirm={[Function]}
+                    outline={false}
+                    tooltip=""
+                  />
+                  <Button
+                    color="secondary"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    Dismiss
+                  </Button>
+                </Col>,
+                "className": "text-right",
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <hr />,
+                    <TooltipButton
+                      active={false}
+                      className="mr-2"
+                      disabled={false}
+                      label="Previous"
+                      onClick={[Function]}
+                      outline={true}
+                      tooltip=""
+                    />,
+                    <ConfirmationButton
+                      className="mr-2"
+                      color="primary"
+                      dialogMessage="Are you sure you want to create this schedule?"
+                      disabled={false}
+                      label="Create"
+                      onConfirm={[Function]}
+                      outline={false}
+                      tooltip=""
+                    />,
+                    <Button
+                      color="secondary"
+                      onClick={[Function]}
+                      tag="button"
+                    >
+                      Dismiss
+                    </Button>,
+                  ],
+                  "md": "12",
+                  "tag": "div",
+                  "widths": Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "hr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "active": false,
+                      "className": "mr-2",
+                      "disabled": false,
+                      "label": "Previous",
+                      "onClick": [Function],
+                      "outline": true,
+                      "tooltip": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "className": "mr-2",
+                      "color": "primary",
+                      "dialogMessage": "Are you sure you want to create this schedule?",
+                      "disabled": false,
+                      "label": "Create",
+                      "onConfirm": [Function],
+                      "outline": false,
+                      "tooltip": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Dismiss",
+                      "color": "secondary",
+                      "onClick": [Function],
+                      "tag": "button",
+                    },
+                    "ref": null,
+                    "rendered": "Dismiss",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "span",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
