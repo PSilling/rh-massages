@@ -10,7 +10,9 @@ ShallowWrapper {
     onChange={
       [MockFunction] {
         "calls": Array [
-          Array [],
+          Array [
+            undefined,
+          ],
         ],
         "results": Array [
           Object {
@@ -23,6 +25,7 @@ ShallowWrapper {
     onEnterPress={[Function]}
     size="12"
     tooltip="tooltip"
+    validate={true}
     value={"1970-01-01T00:00:00.001Z"}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -39,6 +42,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": <FormGroup
+        className=""
         tag="div"
       >
         <Label
@@ -71,26 +75,19 @@ ShallowWrapper {
           input={true}
           inputProps={
             Object {
+              "autoComplete": "off",
               "disabled": false,
               "id": "Tooltip1_input",
+              "onKeyDown": [Function],
               "onKeyPress": [Function],
-              "placeholder": "test",
+              "pattern": "1NVAL1D",
+              "placeholder": "MM/DD/YYYY h:mm A",
+              "ref": [Function],
+              "required": true,
             }
           }
           onBlur={[Function]}
-          onChange={
-            [MockFunction] {
-              "calls": Array [
-                Array [],
-              ],
-              "results": Array [
-                Object {
-                  "isThrow": false,
-                  "value": undefined,
-                },
-              ],
-            }
-          }
+          onChange={[Function]}
           onFocus={[Function]}
           onNavigateBack={[Function]}
           onNavigateForward={[Function]}
@@ -166,26 +163,19 @@ ShallowWrapper {
             input={true}
             inputProps={
               Object {
+                "autoComplete": "off",
                 "disabled": false,
                 "id": "Tooltip1_input",
+                "onKeyDown": [Function],
                 "onKeyPress": [Function],
-                "placeholder": "test",
+                "pattern": "1NVAL1D",
+                "placeholder": "MM/DD/YYYY h:mm A",
+                "ref": [Function],
+                "required": true,
               }
             }
             onBlur={[Function]}
-            onChange={
-              [MockFunction] {
-                "calls": Array [
-                  Array [],
-                ],
-                "results": Array [
-                  Object {
-                    "isThrow": false,
-                    "value": undefined,
-                  },
-                ],
-              }
-            }
+            onChange={[Function]}
             onFocus={[Function]}
             onNavigateBack={[Function]}
             onNavigateForward={[Function]}
@@ -214,6 +204,7 @@ ShallowWrapper {
             tooltip
           </Tooltip>,
         ],
+        "className": "",
         "tag": "div",
       },
       "ref": null,
@@ -254,23 +245,18 @@ ShallowWrapper {
             "defaultValue": "",
             "input": true,
             "inputProps": Object {
+              "autoComplete": "off",
               "disabled": false,
               "id": "Tooltip1_input",
+              "onKeyDown": [Function],
               "onKeyPress": [Function],
-              "placeholder": "test",
+              "pattern": "1NVAL1D",
+              "placeholder": "MM/DD/YYYY h:mm A",
+              "ref": [Function],
+              "required": true,
             },
             "onBlur": [Function],
-            "onChange": [MockFunction] {
-              "calls": Array [
-                Array [],
-              ],
-              "results": Array [
-                Object {
-                  "isThrow": false,
-                  "value": undefined,
-                },
-              ],
-            },
+            "onChange": [Function],
             "onFocus": [Function],
             "onNavigateBack": [Function],
             "onNavigateForward": [Function],
@@ -281,7 +267,7 @@ ShallowWrapper {
             "utc": false,
             "value": "1970-01-01T00:00:00.001Z",
           },
-          "ref": null,
+          "ref": [Function],
           "rendered": null,
           "type": [Function],
         },
@@ -319,6 +305,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": <FormGroup
+          className=""
           tag="div"
         >
           <Label
@@ -351,26 +338,19 @@ ShallowWrapper {
             input={true}
             inputProps={
               Object {
+                "autoComplete": "off",
                 "disabled": false,
                 "id": "Tooltip1_input",
+                "onKeyDown": [Function],
                 "onKeyPress": [Function],
-                "placeholder": "test",
+                "pattern": "1NVAL1D",
+                "placeholder": "MM/DD/YYYY h:mm A",
+                "ref": [Function],
+                "required": true,
               }
             }
             onBlur={[Function]}
-            onChange={
-              [MockFunction] {
-                "calls": Array [
-                  Array [],
-                ],
-                "results": Array [
-                  Object {
-                    "isThrow": false,
-                    "value": undefined,
-                  },
-                ],
-              }
-            }
+            onChange={[Function]}
             onFocus={[Function]}
             onNavigateBack={[Function]}
             onNavigateForward={[Function]}
@@ -446,26 +426,19 @@ ShallowWrapper {
               input={true}
               inputProps={
                 Object {
+                  "autoComplete": "off",
                   "disabled": false,
                   "id": "Tooltip1_input",
+                  "onKeyDown": [Function],
                   "onKeyPress": [Function],
-                  "placeholder": "test",
+                  "pattern": "1NVAL1D",
+                  "placeholder": "MM/DD/YYYY h:mm A",
+                  "ref": [Function],
+                  "required": true,
                 }
               }
               onBlur={[Function]}
-              onChange={
-                [MockFunction] {
-                  "calls": Array [
-                    Array [],
-                  ],
-                  "results": Array [
-                    Object {
-                      "isThrow": false,
-                      "value": undefined,
-                    },
-                  ],
-                }
-              }
+              onChange={[Function]}
               onFocus={[Function]}
               onNavigateBack={[Function]}
               onNavigateForward={[Function]}
@@ -494,6 +467,7 @@ ShallowWrapper {
               tooltip
             </Tooltip>,
           ],
+          "className": "",
           "tag": "div",
         },
         "ref": null,
@@ -534,23 +508,18 @@ ShallowWrapper {
               "defaultValue": "",
               "input": true,
               "inputProps": Object {
+                "autoComplete": "off",
                 "disabled": false,
                 "id": "Tooltip1_input",
+                "onKeyDown": [Function],
                 "onKeyPress": [Function],
-                "placeholder": "test",
+                "pattern": "1NVAL1D",
+                "placeholder": "MM/DD/YYYY h:mm A",
+                "ref": [Function],
+                "required": true,
               },
               "onBlur": [Function],
-              "onChange": [MockFunction] {
-                "calls": Array [
-                  Array [],
-                ],
-                "results": Array [
-                  Object {
-                    "isThrow": false,
-                    "value": undefined,
-                  },
-                ],
-              },
+              "onChange": [Function],
               "onFocus": [Function],
               "onNavigateBack": [Function],
               "onNavigateForward": [Function],
@@ -561,7 +530,7 @@ ShallowWrapper {
               "utc": false,
               "value": "1970-01-01T00:00:00.001Z",
             },
-            "ref": null,
+            "ref": [Function],
             "rendered": null,
             "type": [Function],
           },

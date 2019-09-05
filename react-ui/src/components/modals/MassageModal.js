@@ -26,8 +26,7 @@ class MassageModal extends Component {
     date: moment().add(1, "hours"),
     time: moment("00:30", "H:mm"),
     masseuse: { sub: "", name: "", surname: "", email: "", subscribed: false, masseur: true },
-    user: {},
-    users: []
+    user: {}
   };
 
   yesterday = moment().subtract(1, "day");
@@ -82,16 +81,10 @@ class MassageModal extends Component {
   };
 
   changeDate = date => {
-    if (typeof date === "string") {
-      return;
-    }
     this.setState({ date: date.isBefore(moment().startOf("minute")) ? moment() : date });
   };
 
   changeTime = time => {
-    if (typeof time === "string") {
-      return;
-    }
     this.setState({ time });
   };
 

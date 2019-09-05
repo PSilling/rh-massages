@@ -79,7 +79,9 @@ class MassageScheduleModal extends Component {
     for: this.weekdays[id],
     disabled: true,
     startTime: moment("08:00", "HH:mm"),
+    startInvalid: false,
     endTime: moment("18:00", "HH:mm"),
+    endInvalid: false,
     bigPauses: [this.getBigPause()]
   });
 
@@ -101,10 +103,6 @@ class MassageScheduleModal extends Component {
   };
 
   changeStartTime = time => {
-    if (typeof time === "string") {
-      return;
-    }
-
     this.setState(prevState => {
       const rules = [...prevState.rules];
       rules[prevState.index].startTime = time;
@@ -113,10 +111,6 @@ class MassageScheduleModal extends Component {
   };
 
   changeEndTime = time => {
-    if (typeof time === "string") {
-      return;
-    }
-
     this.setState(prevState => {
       const rules = [...prevState.rules];
       rules[prevState.index].endTime = time;
@@ -125,9 +119,6 @@ class MassageScheduleModal extends Component {
   };
 
   changeNormalPause = normalPause => {
-    if (typeof normalPause === "string") {
-      return;
-    }
     this.setState({ normalPause });
   };
 
@@ -150,9 +141,7 @@ class MassageScheduleModal extends Component {
   };
 
   changeMassageDuration = massageDuration => {
-    if (typeof massageDuration !== "string") {
-      this.setState({ massageDuration });
-    }
+    this.setState({ massageDuration });
   };
 
   changeTabIndex = index => {
@@ -178,9 +167,6 @@ class MassageScheduleModal extends Component {
   };
 
   changeBigPauseStart = (id, start) => {
-    if (typeof start === "string") {
-      return;
-    }
     this.setState(prevState => {
       const rules = [...prevState.rules];
       rules[prevState.index].bigPauses[id].start = start;
@@ -189,9 +175,6 @@ class MassageScheduleModal extends Component {
   };
 
   changeBigPauseEnd = (id, end) => {
-    if (typeof end === "string") {
-      return;
-    }
     this.setState(prevState => {
       const rules = [...prevState.rules];
       rules[prevState.index].bigPauses[id].end = end;
@@ -511,6 +494,7 @@ class MassageScheduleModal extends Component {
       {_t.translate("Break end")}
       <TooltipIconButton
         className="float-right"
+        style={{ marginTop: "-6px", border: "0px solid transparent" }}
         icon="times"
         onClick={() => this.removeBigPause(index)}
         tooltip={_t.translate("Remove")}
