@@ -26,7 +26,7 @@ test("renders content with correct props", () => {
   const wrapper = shallow(<MassageEvent event={testEvent} view="work_week" />);
   const spans = wrapper.find("span");
 
-  expect(spans.length).toBe(2);
+  expect(spans.length).toBe(3);
 
   expect(wrapper).toMatchSnapshot();
 });

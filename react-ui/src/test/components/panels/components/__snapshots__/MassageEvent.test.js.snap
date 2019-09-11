@@ -50,24 +50,30 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <span
-          className="rbc-event-label"
-          style={
-            Object {
-              "marginBottom": "3px",
-              "marginTop": "2px",
-            }
-          }
-        >
-          1:00 AM — 1:00 AM
-        </span>,
         <span>
-          Masseuse
+          <span
+            className="rbc-event-label"
+            style={
+              Object {
+                "marginBottom": "3px",
+                "marginTop": "2px",
+              }
+            }
+          >
+            1:00 AM — 1:00 AM
+          </span>
+          <span>
+            <nobr>
+              Masseuse
+            </nobr>
+          </span>
         </span>,
         false,
         false,
       ],
       "id": "Tooltip1",
+      "onMouseEnter": [Function],
+      "onMouseLeave": [Function],
       "style": Object {
         "minHeight": "100%",
         "minWidth": "100%",
@@ -80,31 +86,72 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "1:00 AM — 1:00 AM",
-          "className": "rbc-event-label",
-          "style": Object {
-            "marginBottom": "3px",
-            "marginTop": "2px",
-          },
-        },
-        "ref": null,
-        "rendered": "1:00 AM — 1:00 AM",
-        "type": "span",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
           "children": Array [
-            false,
-            "Masseuse",
+            <span
+              className="rbc-event-label"
+              style={
+                Object {
+                  "marginBottom": "3px",
+                  "marginTop": "2px",
+                }
+              }
+            >
+              1:00 AM — 1:00 AM
+            </span>,
+            <span>
+              <nobr>
+                Masseuse
+              </nobr>
+            </span>,
           ],
         },
         "ref": null,
         "rendered": Array [
-          false,
-          "Masseuse",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "1:00 AM — 1:00 AM",
+              "className": "rbc-event-label",
+              "style": Object {
+                "marginBottom": "3px",
+                "marginTop": "2px",
+              },
+            },
+            "ref": null,
+            "rendered": "1:00 AM — 1:00 AM",
+            "type": "span",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <nobr>
+                Masseuse
+              </nobr>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  false,
+                  "Masseuse",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                false,
+                "Masseuse",
+              ],
+              "type": "nobr",
+            },
+            "type": "span",
+          },
         ],
         "type": "span",
       },
@@ -120,24 +167,30 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <span
-            className="rbc-event-label"
-            style={
-              Object {
-                "marginBottom": "3px",
-                "marginTop": "2px",
-              }
-            }
-          >
-            1:00 AM — 1:00 AM
-          </span>,
           <span>
-            Masseuse
+            <span
+              className="rbc-event-label"
+              style={
+                Object {
+                  "marginBottom": "3px",
+                  "marginTop": "2px",
+                }
+              }
+            >
+              1:00 AM — 1:00 AM
+            </span>
+            <span>
+              <nobr>
+                Masseuse
+              </nobr>
+            </span>
           </span>,
           false,
           false,
         ],
         "id": "Tooltip1",
+        "onMouseEnter": [Function],
+        "onMouseLeave": [Function],
         "style": Object {
           "minHeight": "100%",
           "minWidth": "100%",
@@ -150,31 +203,72 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "1:00 AM — 1:00 AM",
-            "className": "rbc-event-label",
-            "style": Object {
-              "marginBottom": "3px",
-              "marginTop": "2px",
-            },
-          },
-          "ref": null,
-          "rendered": "1:00 AM — 1:00 AM",
-          "type": "span",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
             "children": Array [
-              false,
-              "Masseuse",
+              <span
+                className="rbc-event-label"
+                style={
+                  Object {
+                    "marginBottom": "3px",
+                    "marginTop": "2px",
+                  }
+                }
+              >
+                1:00 AM — 1:00 AM
+              </span>,
+              <span>
+                <nobr>
+                  Masseuse
+                </nobr>
+              </span>,
             ],
           },
           "ref": null,
           "rendered": Array [
-            false,
-            "Masseuse",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "1:00 AM — 1:00 AM",
+                "className": "rbc-event-label",
+                "style": Object {
+                  "marginBottom": "3px",
+                  "marginTop": "2px",
+                },
+              },
+              "ref": null,
+              "rendered": "1:00 AM — 1:00 AM",
+              "type": "span",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <nobr>
+                  Masseuse
+                </nobr>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    false,
+                    "Masseuse",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  false,
+                  "Masseuse",
+                ],
+                "type": "nobr",
+              },
+              "type": "span",
+            },
           ],
           "type": "span",
         },

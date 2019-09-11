@@ -22,15 +22,31 @@ class MassageEvent extends Component {
   // note that this can cause re-render issues (number overflow); haven't found a better solution though
   tooltipTarget = Util.getTooltipTargets(1)[0];
 
+  hoverChangeTimeout = null;
+
   constructor(props) {
     super(props);
 
-    this.state = { modalActive: false, tooltipOpen: false };
+    this.state = { modalActive: false, tooltipOpen: false, hovered: false };
   }
 
   assignWithCalendar = () => {
     window.open(Util.getEventLink(this.props.event.massage), "_blank");
     this.props.onAssign(this.props.event.massage);
+  };
+
+  setHover = () => {
+    clearTimeout(this.hoverChangeTimeout);
+    this.setState({ hovered: true });
+  };
+
+  dropHover = () => {
+    this.hoverChangeTimeout = setTimeout(
+      () => {
+        this.setState({ hovered: false });
+      },
+      this.props.view === "work_week" ? 75 : 400
+    );
   };
 
   toggleTooltip = () => {
@@ -43,6 +59,25 @@ class MassageEvent extends Component {
       tooltipOpen: prevState.modalActive ? prevState.tooltipOpen : false
     }));
   };
+
+  createTimeInfo = () => (
+    <span className="rbc-event-label" style={{ marginTop: "2px", marginBottom: "3px" }}>
+      {`${moment(this.props.event.massage.date).format("LT")} — ${moment(this.props.event.massage.ending).format(
+        "LT"
+      )}`}
+    </span>
+  );
+
+  createClientInfo = (forMasseur = true) => (
+    <span>
+      <nobr>
+        {this.props.archived && `${this.props.event.massage.facility.name}: `}
+        {forMasseur
+          ? this.props.event.massage.masseuse.name
+          : `${this.props.event.massage.client.name} ${this.props.event.massage.client.surname}`}
+      </nobr>
+    </span>
+  );
 
   createIcons = () => {
     const icons = [];
@@ -121,19 +156,20 @@ class MassageEvent extends Component {
 
   render() {
     return (
-      <div id={this.tooltipTarget} style={{ minHeight: "100%", minWidth: "100%" }}>
-        {this.props.view === "work_week" && (
-          <span className="rbc-event-label" style={{ marginTop: "2px", marginBottom: "3px" }}>
-            {`${moment(this.props.event.massage.date).format("LT")} — ${moment(this.props.event.massage.ending).format(
-              "LT"
-            )}`}
+      <div
+        id={this.tooltipTarget}
+        style={{ minHeight: "100%", minWidth: "100%" }}
+        onMouseEnter={this.setHover}
+        onMouseLeave={this.dropHover}
+      >
+        {this.props.view === "work_week" ? (
+          <span>
+            {this.createTimeInfo()}
+            {this.createClientInfo(!this.state.hovered || Util.isEmpty(this.props.event.massage.client))}
           </span>
+        ) : (
+          <span>{this.state.hovered ? this.createTimeInfo() : this.createClientInfo()}</span>
         )}
-
-        <span>
-          {this.props.archived && `${this.props.event.massage.facility.name}: `}
-          {this.props.event.massage.masseuse.name}
-        </span>
 
         {this.props.activeTooltip === `MassageEventID${this.props.event.massage.id}` && !this.props.archived && (
           <Tooltip
