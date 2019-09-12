@@ -71,7 +71,7 @@ class EventRow extends Component {
           {this.state.active && (
             <MassageEventModal
               event={this.props.event}
-              label={Auth.isMasseur() ? _t.translate("Force cancel") : _t.translate("Unassign me")}
+              label={Auth.isMasseur() ? _t.translate("Remove client") : _t.translate("Unassign me")}
               allowEditation={false}
               allowDeletion={false}
               onClose={this.handleToggle}

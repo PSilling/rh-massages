@@ -128,6 +128,18 @@ class MassageEvent extends Component {
           onClick={() => this.props.onCancel(this.props.event.massage)}
         />
       );
+    } else if (
+      !Util.isEmpty(this.props.event.massage.client) &&
+      (Auth.isAdmin() || (Auth.isMasseur() && this.props.event.massage.masseuse.sub === Auth.getSub()))
+    ) {
+      icons.push(
+        <TooltipIconButton
+          key="force-cancel"
+          icon="times"
+          size="md"
+          onClick={() => this.props.onCancel(this.props.event.massage)}
+        />
+      );
     }
 
     if (Auth.isAdmin() || (Auth.isMasseur() && this.props.event.massage.masseuse.sub === Auth.getSub())) {

@@ -104,8 +104,8 @@ const myLocalize = new Localize({
   Shifts: {
     cs: "Směny"
   },
-  "Force cancel": {
-    cs: "Vynutit zrušení"
+  "Remove client": {
+    cs: "Odhlásit klienta"
   },
   Dismiss: {
     cs: "Zrušit"

@@ -131,7 +131,7 @@ class CalendarPanel extends Component {
         active: true,
         action: "cancel",
         selectedEvent: event,
-        label: _t.translate("Force cancel"),
+        label: _t.translate("Remove client"),
         overtime: false
       });
     } else {
