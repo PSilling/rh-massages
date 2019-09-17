@@ -323,16 +323,23 @@ class Massages extends Component {
   };
 
   cancelMassage = massage => {
-    Fetch.put(Util.MASSAGES_URL, [
-      {
-        id: massage.id,
-        date: massage.date,
-        ending: massage.ending,
-        masseuse: massage.masseuse,
-        client: null,
-        facility: massage.facility
-      }
-    ]);
+    Fetch.put(
+      Util.MASSAGES_URL,
+      [
+        {
+          id: massage.id,
+          date: massage.date,
+          ending: massage.ending,
+          masseuse: massage.masseuse,
+          client: null,
+          facility: massage.facility
+        }
+      ],
+      () => {},
+      true,
+      null,
+      Util.isEmpty(massage.client) || Auth.getSub() === massage.client.sub ? null : {}
+    );
     this.setState({ activeEventTooltip: null });
   };
 

@@ -2,7 +2,11 @@
  * Utility class containing functions for client-server communication using the Fetch API or the WebSocket API.
  */
 
+// react imports
+import React from "react";
+
 // module imports
+import { Button, Row, Col } from "reactstrap";
 import moment from "moment";
 
 // util imports
@@ -12,6 +16,49 @@ import Util from "./Util";
 
 // const WebSocket = require('ws');
 const Fetch = function Fetch() {};
+
+/**
+ * Create a new operation postponement notification. This notification can ten be used to cancel the delayed operation.
+ * @param  postponeData   valid postponement data object
+ * @param  timeout        running operation timeout
+ * @param  delay          operation delay in milliseconds
+ * @param  operation      the postponed operation as a function
+ */
+Fetch.handlePostponement = (postponeData, timeout, delay, operation) => {
+  const title = Util.isEmpty(postponeData.title) ? "" : postponeData.title;
+  const message = Util.isEmpty(postponeData.message)
+    ? _t.translate("Your request will be sent after a while.")
+    : postponeData.message;
+  const skipRequestDelay = () => {
+    clearTimeout(timeout);
+    operation();
+  };
+
+  Util.notify(
+    "info",
+    <div>
+      <Row>
+        <Col md="12">
+          <strong>{message}</strong>
+        </Col>
+      </Row>
+      <Row>
+        <Col md="12">
+          <div className="mt-2 float-right">
+            <Button className="mr-2" color="info" size="sm" onClick={skipRequestDelay}>
+              {_t.translate("Send now")}
+            </Button>
+            <Button color="info" size="sm" onClick={() => clearTimeout(timeout)}>
+              {_t.translate("Cancel")}
+            </Button>
+          </div>
+        </Col>
+      </Row>
+    </div>,
+    title,
+    delay
+  );
+};
 
 /**
  * Fetches data from a given endpoint.
@@ -60,39 +107,58 @@ Fetch.get = (url, update = () => {}) => {
  * @param data            data to send
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
+ * @param postponeData    data object containing information about postponement of the request; null if no postponement
+ *                        should be shown, otherwise should be an object with notification duration 'delay',
+ *                        notification title 'title' and notification message 'message' attributes
  */
-Fetch.post = (url, data, update = () => {}, notify = true) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "post",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
+Fetch.post = (url, data, update = () => {}, notify = true, postponeData = null) => {
+  // Create the request handler for future use.
+  const sendRequest = () => {
+    Auth.keycloak
+      .updateToken(Util.REFRESH_MIN_TIME)
+      .success(() => {
+        fetch(url, {
+          method: "post",
+          credentials: "same-origin",
+          headers: {
+            Authorization: `bearer ${Auth.getToken()}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        }).then(response => {
+          if (response.ok) {
+            if (notify) {
+              Util.notify("success", "", _t.translate("Your request has been successful."));
+            }
+            update();
+          } else {
+            Util.notify(
+              "error",
+              _t.translate("Your request has ended unsuccessfully."),
+              _t.translate("An error occured!")
+            );
+            console.error("Server responsed with an error response:", response); /* eslint-disable-line */
           }
-          update();
-        } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
-          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
-        }
+        });
+      })
+      .error(() => {
+        console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
+        Auth.keycloak.login();
       });
-    })
-    .error(() => {
-      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
-      Auth.keycloak.login();
-    });
+  };
+
+  // If applicable, create the postponement notification and delay the request. If not applicable, send the request.
+  if (
+    postponeData !== null &&
+    (Auth.isAdmin() || Auth.isMasseur()) &&
+    localStorage.getItem("skipPostponement") === null
+  ) {
+    const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
+    const timeout = setTimeout(() => sendRequest(), delay);
+    Fetch.handlePostponement(postponeData, timeout, delay, sendRequest);
+  } else {
+    sendRequest();
+  }
 };
 
 /**
@@ -102,43 +168,62 @@ Fetch.post = (url, data, update = () => {}, notify = true) => {
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
  * @param onError         function that replaces (if not null) standard error notification
+ * @param postponeData    data object containing information about postponement of the request; null if no postponement
+ *                        should be shown, otherwise should be an object with notification duration 'delay',
+ *                        notification title 'title' and notification message 'message' attributes
  */
-Fetch.put = (url, data, update = () => {}, notify = true, onError = null) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "put",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
-          }
-          update();
-        } else {
-          if (onError == null) {
-            Util.notify(
-              "error",
-              _t.translate("Your request has ended unsuccessfully."),
-              _t.translate("An error occured!")
-            );
+Fetch.put = (url, data, update = () => {}, notify = true, onError = null, postponeData = null) => {
+  // Create the request handler for future use.
+  const sendRequest = () => {
+    Auth.keycloak
+      .updateToken(Util.REFRESH_MIN_TIME)
+      .success(() => {
+        fetch(url, {
+          method: "put",
+          credentials: "same-origin",
+          headers: {
+            Authorization: `bearer ${Auth.getToken()}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        }).then(response => {
+          if (response.ok) {
+            if (notify) {
+              Util.notify("success", "", _t.translate("Your request has been successful."));
+            }
+            update();
           } else {
-            onError();
+            if (onError == null) {
+              Util.notify(
+                "error",
+                _t.translate("Your request has ended unsuccessfully."),
+                _t.translate("An error occured!")
+              );
+            } else {
+              onError();
+            }
+            console.error("Server responsed with an error response:", response); /* eslint-disable-line */
           }
-          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
-        }
+        });
+      })
+      .error(() => {
+        console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
+        Auth.keycloak.login();
       });
-    })
-    .error(() => {
-      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
-      Auth.keycloak.login();
-    });
+  };
+
+  // If applicable, create the postponement notification and delay the request. If not applicable, send the request.
+  if (
+    postponeData !== null &&
+    (Auth.isAdmin() || Auth.isMasseur()) &&
+    localStorage.getItem("skipPostponement") === null
+  ) {
+    const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
+    const timeout = setTimeout(() => sendRequest(), delay);
+    Fetch.handlePostponement(postponeData, timeout, delay, sendRequest);
+  } else {
+    sendRequest();
+  }
 };
 
 /**
@@ -146,37 +231,55 @@ Fetch.put = (url, data, update = () => {}, notify = true, onError = null) => {
  * @param url             defined endpoint
  * @param update          callback function to update the resources
  * @param notify          false if success notifications should be suppressed
+ * @param postponeData    data object containing information about postponement of the request; null if no postponement
+ *                        should be shown, otherwise should be an object with notification duration 'delay',
+ *                        notification title 'title' and notification message 'message' attributes
  */
-Fetch.delete = (url, update = () => {}, notify = true) => {
-  Auth.keycloak
-    .updateToken(Util.REFRESH_MIN_TIME)
-    .success(() => {
-      fetch(url, {
-        method: "delete",
-        credentials: "same-origin",
-        headers: {
-          Authorization: `bearer ${Auth.getToken()}`
-        }
-      }).then(response => {
-        if (response.ok) {
-          if (notify) {
-            Util.notify("success", "", _t.translate("Your request has been successful."));
+Fetch.delete = (url, update = () => {}, notify = true, postponeData = null) => {
+  const sendRequest = () => {
+    Auth.keycloak
+      .updateToken(Util.REFRESH_MIN_TIME)
+      .success(() => {
+        fetch(url, {
+          method: "delete",
+          credentials: "same-origin",
+          headers: {
+            Authorization: `bearer ${Auth.getToken()}`
           }
-          update();
-        } else {
-          Util.notify(
-            "error",
-            _t.translate("Your request has ended unsuccessfully."),
-            _t.translate("An error occured!")
-          );
-          console.error("Server responsed with an error response:", response); /* eslint-disable-line */
-        }
+        }).then(response => {
+          if (response.ok) {
+            if (notify) {
+              Util.notify("success", "", _t.translate("Your request has been successful."));
+            }
+            update();
+          } else {
+            Util.notify(
+              "error",
+              _t.translate("Your request has ended unsuccessfully."),
+              _t.translate("An error occured!")
+            );
+            console.error("Server responsed with an error response:", response); /* eslint-disable-line */
+          }
+        });
+      })
+      .error(() => {
+        console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
+        Auth.keycloak.login();
       });
-    })
-    .error(() => {
-      console.log("Failed to refresh the Keycloak user token!"); /* eslint-disable-line */
-      Auth.keycloak.login();
-    });
+  };
+
+  // If applicable, create the postponement notification and delay the request. If not applicable, send the request.
+  if (
+    postponeData !== null &&
+    (Auth.isAdmin() || Auth.isMasseur()) &&
+    localStorage.getItem("skipPostponement") === null
+  ) {
+    const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
+    const timeout = setTimeout(() => sendRequest(), delay);
+    Fetch.handlePostponement(postponeData, timeout, delay, sendRequest);
+  } else {
+    sendRequest();
+  }
 };
 
 /**

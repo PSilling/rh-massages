@@ -17,29 +17,42 @@ test("checks empty objects correctly", () => {
 
 test("fires correct notification types", () => {
   const notificationDuration = 2000;
+  const callback = jest.fn();
   NotificationManager.info = jest.fn();
   NotificationManager.success = jest.fn();
   NotificationManager.warning = jest.fn();
   NotificationManager.error = jest.fn();
 
-  Util.notify("info", "infoMessage", "infoTitle");
-  expect(NotificationManager.info).toHaveBeenLastCalledWith("infoMessage", "infoTitle", notificationDuration);
-  Util.notify("success", "successMessage", "successTitle");
+  Util.notify("info", "infoMessage", "infoTitle", notificationDuration, callback);
+  expect(NotificationManager.info).toHaveBeenLastCalledWith(
+    "infoMessage",
+    "infoTitle",
+    notificationDuration,
+    callback,
+    true
+  );
+  Util.notify("success", "successMessage", "successTitle", notificationDuration, callback);
   expect(NotificationManager.success).toHaveBeenLastCalledWith(
     "successMessage",
     "successTitle",
     notificationDuration,
-    null,
+    callback,
     true
   );
-  Util.notify("warning", "warningMessage", "warningTitle");
-  expect(NotificationManager.warning).toHaveBeenLastCalledWith("warningMessage", "warningTitle", notificationDuration);
-  Util.notify("error", "errorMessage", "errorTitle");
+  Util.notify("warning", "warningMessage", "warningTitle", notificationDuration, callback);
+  expect(NotificationManager.warning).toHaveBeenLastCalledWith(
+    "warningMessage",
+    "warningTitle",
+    notificationDuration,
+    callback,
+    true
+  );
+  Util.notify("error", "errorMessage", "errorTitle", notificationDuration, callback);
   expect(NotificationManager.error).toHaveBeenLastCalledWith(
     "errorMessage",
     "errorTitle",
     notificationDuration,
-    null,
+    callback,
     true
   );
 });

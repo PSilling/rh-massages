@@ -130,8 +130,11 @@ class MassageModal extends Component {
           facility: { id: this.props.facilityId }
         }
       ],
-      this.props.onToggle
+      () => {},
+      true,
+      {}
     );
+    this.props.onToggle();
   };
 
   editMassage = () => {
@@ -154,15 +157,17 @@ class MassageModal extends Component {
           facility: this.props.massage.facility
         }
       ],
-      this.props.onToggle,
+      () => {},
       true,
       () =>
         Util.notify(
           "error",
           _t.translate("It is possible that the selected client does not have enough massage time."),
           _t.translate("Failed to finish the request")
-        )
+        ),
+      {}
     );
+    this.props.onToggle();
   };
 
   handleKeyPress = event => {

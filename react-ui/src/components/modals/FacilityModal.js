@@ -44,8 +44,11 @@ class FacilityModal extends Component {
       {
         name: this.state.name
       },
-      this.props.onToggle
+      () => {},
+      true,
+      {}
     );
+    this.props.onToggle();
   };
 
   editFacility = () => {
@@ -58,8 +61,12 @@ class FacilityModal extends Component {
       {
         name: this.state.name
       },
-      this.props.onToggle
+      () => {},
+      true,
+      null,
+      {}
     );
+    this.props.onToggle();
   };
 
   handleKeyPress = event => {

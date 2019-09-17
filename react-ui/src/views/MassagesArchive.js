@@ -118,12 +118,12 @@ class MassagesArchive extends Component {
       let idString = "?";
       for (let i = 0; i < json.massages.length; i++) {
         if (idString.length > 2000) {
-          Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages);
+          Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages, true, {});
           idString = "?";
         }
         idString += `ids=${json.massages[i].id}&`;
       }
-      Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages);
+      Fetch.delete(Util.MASSAGES_URL + idString, this.getMassages, true, {});
     });
   };
 

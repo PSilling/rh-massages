@@ -18,7 +18,12 @@ import Util from "../util/Util";
  * View containing portal and user settings.
  */
 class Settings extends Component {
-  state = { notify: true, loading: true, tooltipOpen: false };
+  state = {
+    notify: true,
+    skipPostpone: localStorage.getItem("skipPostponement") !== null,
+    loading: true,
+    tooltipOpen: false
+  };
 
   alertMessage =
     _t.translate("On this page you can manage your local user settings. ") +
@@ -56,7 +61,7 @@ class Settings extends Component {
         }
         break;
       default:
-        console.log(`Invalid WebSocket operation. Found: ${operation}.`);  /* eslint-disable-line */
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
         break;
     }
   };
@@ -66,6 +71,15 @@ class Settings extends Component {
     client.subscribed = event.target.checked;
     Fetch.put(Util.CLIENTS_URL, client, () => {}, false);
     this.setState({ notify: event.target.checked });
+  };
+
+  changeSkipPostpone = event => {
+    if (event.target.checked) {
+      localStorage.setItem("skipPostponement", event.target.checked);
+    } else {
+      localStorage.removeItem("skipPostponement", event.target.checked);
+    }
+    this.setState({ skipPostpone: event.target.checked });
   };
 
   closeAlert = () => {
@@ -105,6 +119,24 @@ class Settings extends Component {
             </Tooltip>
           </Col>
         </Row>
+
+        {(Auth.isAdmin() || Auth.isMasseur()) && (
+          <Row>
+            <Col md="12">
+              <FormGroup check inline>
+                <Label for="postponementInput">
+                  <Input
+                    id="postponementInput"
+                    type="checkbox"
+                    onChange={this.changeSkipPostpone}
+                    checked={this.state.skipPostpone}
+                  />
+                  {_t.translate("Skip cancellation notification for all requests")}
+                </Label>
+              </FormGroup>
+            </Col>
+          </Row>
+        )}
 
         <h3>{_t.translate("About")}</h3>
         <Row>

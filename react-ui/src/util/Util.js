@@ -16,23 +16,26 @@ const Util = function Util() {};
  * @param type            notification type
  * @param message         notification message
  * @param title           notification title
+ * @param timeout         notification timeout in milliseconds
+ * @param callback        callback fired on notification click
+ * @param priority        whether the notification should be displayed as a priority one on top
  */
-Util.notify = (type, message, title) => {
+Util.notify = (type, message, title, timeout = 2000, callback = () => {}, priority = true) => {
   switch (type) {
     case "info":
-      NotificationManager.info(message, title, 2000);
+      NotificationManager.info(message, title, timeout, callback, priority);
       break;
     case "success":
-      NotificationManager.success(message, title, 2000, null, true);
+      NotificationManager.success(message, title, timeout, callback, priority);
       break;
     case "warning":
-      NotificationManager.warning(message, title, 2000);
+      NotificationManager.warning(message, title, timeout, callback, priority);
       break;
     case "error":
-      NotificationManager.error(message, title, 2000, null, true);
+      NotificationManager.error(message, title, timeout, callback, priority);
       break;
     default:
-      NotificationManager.info(message, title, 2000);
+      NotificationManager.info(message, title, timeout, callback, priority);
       break;
   }
 };

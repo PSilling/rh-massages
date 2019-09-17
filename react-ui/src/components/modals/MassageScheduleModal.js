@@ -316,7 +316,7 @@ class MassageScheduleModal extends Component {
     }
 
     if (postArray.length > 0) {
-      Fetch.post(Util.MASSAGES_URL, postArray, () => {});
+      Fetch.post(Util.MASSAGES_URL, postArray, () => {}, true, {});
     }
     this.props.onToggle(true);
   };

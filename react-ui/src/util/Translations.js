@@ -134,6 +134,12 @@ const myLocalize = new Localize({
   "Add to Google Calendar": {
     cs: "Přidat do Google kalendáře"
   },
+  "Send now": {
+    cs: "Odeslat ihned"
+  },
+  Cancel: {
+    cs: "Zrušit"
+  },
 
   // other labels and titles
   "Massage time": {
@@ -328,6 +334,9 @@ const myLocalize = new Localize({
   Change: {
     cs: "Změnit"
   },
+  "Skip cancellation notification for all requests": {
+    cs: "Přeskakovat všechny notifikace umožňující zrušení aktuálního požadavku"
+  },
 
   // notification messages
   Warning: {
@@ -386,6 +395,9 @@ const myLocalize = new Localize({
   },
   "Are you sure? This action will affect all affiliated massages.": {
     cs: "Jste si jisti? Tato akce ovlivní všechny přidružené masáže."
+  },
+  "Your request will be sent after a while.": {
+    cs: "Váš požadavek bude za chvíli odeslán."
   },
 
   // tooltips
