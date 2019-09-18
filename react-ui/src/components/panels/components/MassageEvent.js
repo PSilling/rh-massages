@@ -83,10 +83,7 @@ class MassageEvent extends Component {
     const icons = [];
 
     if (!Auth.isMasseur() && Util.isEmpty(this.props.event.massage.client)) {
-      const assignDisabled =
-        this.props.massageMinutes +
-          moment(this.props.event.massage.ending).diff(moment(this.props.event.massage.date), "minutes") >
-        Util.MAX_MASSAGE_MINS;
+      const assignDisabled = Util.isOverTimeLimit(this.props.massageMinutes, this.props.event.massage);
       const title = assignDisabled ? _t.translate("Over the limit") : "";
       icons.push(
         <span key="assignCal" title={title}>
@@ -241,8 +238,8 @@ MassageEvent.propTypes = {
   archived: PropTypes.bool,
   /** whether the event tooltip should be visible or not */
   activeTooltip: PropTypes.string,
-  /** number of currently used Massage time in minutes */
-  massageMinutes: PropTypes.number,
+  /** number of currently used Massage times per each month in minutes */
+  massageMinutes: PropTypes.objectOf(PropTypes.number),
   /** function called on event assignment */
   onAssign: PropTypes.func,
   /** function called on event cancellation */
@@ -260,7 +257,7 @@ MassageEvent.propTypes = {
 MassageEvent.defaultProps = {
   archived: false,
   activeTooltip: null,
-  massageMinutes: 0,
+  massageMinutes: {},
   onAssign() {},
   onCancel() {},
   onDelete() {},

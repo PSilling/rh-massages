@@ -76,7 +76,7 @@ ShallowWrapper {
           activeEventTooltip={null}
           allowEditation={false}
           events={Array []}
-          massageMinutes={0}
+          massageMinutes={Object {}}
           onAdd={[Function]}
           onAssign={[Function]}
           onCancel={[Function]}
@@ -293,7 +293,7 @@ ShallowWrapper {
           "activeEventTooltip": null,
           "allowEditation": false,
           "events": Array [],
-          "massageMinutes": 0,
+          "massageMinutes": Object {},
           "onAdd": [Function],
           "onAssign": [Function],
           "onCancel": [Function],
@@ -378,7 +378,7 @@ ShallowWrapper {
             activeEventTooltip={null}
             allowEditation={false}
             events={Array []}
-            massageMinutes={0}
+            massageMinutes={Object {}}
             onAdd={[Function]}
             onAssign={[Function]}
             onCancel={[Function]}
@@ -595,7 +595,7 @@ ShallowWrapper {
             "activeEventTooltip": null,
             "allowEditation": false,
             "events": Array [],
-            "massageMinutes": 0,
+            "massageMinutes": Object {},
             "onAdd": [Function],
             "onAssign": [Function],
             "onCancel": [Function],

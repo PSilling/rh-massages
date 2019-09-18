@@ -27,6 +27,8 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -388,15 +390,19 @@ public class MassageResource {
   private void checkTimeAvailability(Massage massage, Massage daoMassage) {
     if (massage.getClient() != null) {
       long massageTime = massage.calculateDuration();
+      DateFormat dateFormat = new SimpleDateFormat("MM-YYYY");
+      String formattedMassageDate = dateFormat.format(massage.getDate());
       List<Massage> daoMassagesClient = massageDao.findNewByClient(massage.getClient());
 
       daoMassagesClient.remove(daoMassage);
 
       for (Massage clientMassage : daoMassagesClient) {
-        massageTime += clientMassage.calculateDuration();
+        if (formattedMassageDate.equals(dateFormat.format(clientMassage.getDate()))) {
+          massageTime += clientMassage.calculateDuration();
+        }
       }
 
-      // time limit for total User Massage time
+      // time limit for total User Massage time in milliseconds (currently a little above 2 hours)
       long massageLimit = 7202000;
       if (massageTime > massageLimit) {
         throw new WebApplicationException(Status.FORBIDDEN);

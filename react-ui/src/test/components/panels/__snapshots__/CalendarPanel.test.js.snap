@@ -77,7 +77,7 @@ ShallowWrapper {
         },
       ]
     }
-    massageMinutes={0}
+    massageMinutes={Object {}}
     onAdd={[MockFunction]}
     onAssign={[MockFunction]}
     onCancel={[MockFunction]}

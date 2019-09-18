@@ -68,6 +68,9 @@ test("properly changes state variables", () => {
     bgColor: "white",
     massage: testMassages[0]
   };
+  const testMassageMinutes = {
+    "09-2019": 60000
+  };
   const wrapper = shallow(<Massages />);
 
   expect(Fetch.get).toHaveBeenCalledTimes(4);
@@ -86,9 +89,10 @@ test("properly changes state variables", () => {
   const panel = wrapper.find(CalendarPanel);
 
   wrapper.instance().setState({ loading: true });
-  wrapper.instance().updateEvents(testMassages, 0);
+  wrapper.instance().updateEvents(testMassages, testMassageMinutes);
   expect(wrapper.instance().state.events[0].massage).toBe(testMassages[0]);
-  expect(wrapper.instance().state.massageMinutes).toBe(0);
+  expect(wrapper.instance().state.massageMinutes).toBe(testMassageMinutes);
+  expect(wrapper.instance().state.massageMinutes["09-2019"]).toBe(1);
   expect(wrapper.instance().state.loading).toBe(false);
 
   expect(wrapper.instance().state.activeEventTooltip).toBe(null);

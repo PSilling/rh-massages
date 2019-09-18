@@ -126,6 +126,23 @@ Util.getTooltipTargets = count => {
   return targets;
 };
 
+/**
+ * Check whether a given massage would be over the month time limit or not.
+ * @param  massageMinutes number of currently used Massage times per each month in minutes
+ * @param  massage massage to be evaluated
+ * @return true if the massage is over the limit, false otherwise
+ */
+Util.isOverTimeLimit = (massageMinutes, massage) => {
+  let minutesTotal = moment(massage.ending).diff(moment(massage.date), "minutes");
+
+  const month = moment(massage.date).format("MM-YYYY");
+  if (Object.hasOwnProperty.call(massageMinutes, month)) {
+    minutesTotal += massageMinutes[month];
+  }
+
+  return minutesTotal > Util.MAX_MASSAGE_MINS;
+};
+
 /** url of /facilities endpoint */
 Util.FACILITIES_URL = process.env.REACT_APP_FACILITIES_URL || "api/facilities/";
 /** url of /massages endpoint */

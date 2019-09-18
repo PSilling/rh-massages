@@ -38,7 +38,7 @@ class Massages extends Component {
     index: 0,
     selectEvents: false,
     editMassage: null,
-    massageMinutes: 0,
+    massageMinutes: {},
     loading: true,
     modalActive: false,
     batchAddModalActive: false,
@@ -102,8 +102,8 @@ class Massages extends Component {
   getMassages = (index = this.state.index, free = !this.state.showAll) => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
       Fetch.get(`${Util.FACILITIES_URL + this.state.facilities[index].id}/massages?free=${free}`, json => {
-        if (json !== undefined && json.massages !== undefined && json.clientTime !== undefined) {
-          this.updateEvents(json.massages, json.clientTime / 60000);
+        if (json !== undefined && json.massages !== undefined && json.clientTimes !== undefined) {
+          this.updateEvents(json.massages, json.clientTimes);
         }
       });
     }
@@ -231,12 +231,16 @@ class Massages extends Component {
     this.setState(() => ({ clients, clientTooltips, masseuses, masseuseTooltips }));
   };
 
-  updateEvents = (massages, minutes) => {
+  updateEvents = (massages, timesPerMonth) => {
     const events = [];
 
     for (let i = 0; i < massages.length; i++) {
       events.push({ massage: massages[i], bgColor: this.getBgColor(massages[i]) });
     }
+
+    Object.keys(timesPerMonth).forEach(key => {
+      timesPerMonth[key] /= 60000; // convert millisecond times to minute times
+    });
 
     this.setState(prevState => {
       const selected = [...prevState.selected];
@@ -249,7 +253,7 @@ class Massages extends Component {
 
       return {
         events,
-        massageMinutes: minutes,
+        massageMinutes: timesPerMonth,
         selected,
         loading: false
       };
@@ -286,9 +290,27 @@ class Massages extends Component {
     return 0;
   };
 
+  handleMassageMinutesChange = (massageMinutes, changedMassage, addChange) => {
+    const minuteChange = addChange ? this.getMinutesChange(changedMassage) : -this.getMinutesChange(changedMassage);
+    if (minuteChange === 0) {
+      return;
+    }
+
+    const month = moment(changedMassage.date).format("MM-YYYY");
+    if (Object.hasOwnProperty.call(massageMinutes, month)) {
+      massageMinutes[month] += minuteChange;
+    } else {
+      massageMinutes[month] = minuteChange;
+    }
+
+    if (massageMinutes[month] <= 0) {
+      delete massageMinutes[month];
+    }
+  };
+
   handleAddOperation = (resultState, massage) => {
     if (this.state.facilities[this.state.index].id === massage.facility.id) {
-      resultState.massageMinutes += this.getMinutesChange(massage);
+      this.handleMassageMinutesChange(resultState.massageMinutes, massage, true);
       if (this.state.showAll || Util.isEmpty(massage.client) || Auth.getSub() === massage.client.sub) {
         resultState.events.push({ massage, bgColor: this.getBgColor(massage) });
       }
@@ -297,7 +319,7 @@ class Massages extends Component {
 
   handleRemoveOperation = (resultState, massage) => {
     if (resultState.index !== -1) {
-      resultState.massageMinutes -= this.getMinutesChange(resultState.events[resultState.index].massage);
+      this.handleMassageMinutesChange(resultState.massageMinutes, resultState.events[resultState.index].massage, false);
       resultState.selected = [...this.state.selected];
 
       const selectedIndex = Util.findInArrayById(resultState.selected, massage.id);

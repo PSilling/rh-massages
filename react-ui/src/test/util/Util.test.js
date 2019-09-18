@@ -1,5 +1,6 @@
 // test imports
 import { NotificationManager } from "react-notifications";
+import moment from "moment";
 import Util from "../../util/Util";
 
 afterEach(() => {
@@ -82,4 +83,27 @@ test("generates correct tooltip targets", () => {
   expect(testTargets.length).toBe(10);
   expect(testTargets[9]).toEqual("Tooltip10");
   expect(Util.tooltipCount).toBe(11);
+});
+
+test("correctly restricts massage per month time", () => {
+  const testMassageMinutes = {
+    "03-2020": 42,
+    "07-2022": 120
+  };
+  const testMarchMassage = {
+    date: moment("2020-03-04T10:00:00"),
+    ending: moment("2020-03-04T10:30:00")
+  };
+  const testJanuaryMassage = {
+    date: moment("2020-01-25T11:00:00"),
+    ending: moment("2020-01-25T11:45:00")
+  };
+  const testJulyMassage = {
+    date: moment("2022-07-18T11:00:00"),
+    ending: moment("2022-07-18T11:01:00")
+  };
+
+  expect(Util.isOverTimeLimit(testMassageMinutes, testMarchMassage)).toBe(false);
+  expect(Util.isOverTimeLimit(testMassageMinutes, testJanuaryMassage)).toBe(false);
+  expect(Util.isOverTimeLimit(testMassageMinutes, testJulyMassage)).toBe(true);
 });

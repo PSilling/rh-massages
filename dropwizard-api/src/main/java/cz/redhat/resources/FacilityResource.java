@@ -27,7 +27,10 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.security.PermitAll;
@@ -246,18 +249,27 @@ public class FacilityResource {
     @SuppressWarnings("unchecked")
     List<Massage> massages = (List<Massage>) response.get("massages");
 
-    // Add total massage time to the response.
-    long massageTime = 0;
+    // Add total per month massage times to the response. Also add client massages if applicable.
+    Map<String, Long> massageMonthTimes = new HashMap<>();
+    DateFormat dateFormat = new SimpleDateFormat("MM-YYYY");
     List<Massage> daoMassagesClient =
         massageDao.findNewByClient(clientDao.findBySub(user.getSubject()));
     for (Massage clientMassage : daoMassagesClient) {
-      massageTime += clientMassage.calculateDuration();
+      String formattedDate = dateFormat.format(clientMassage.getDate());
+      Long interimMonthTime = massageMonthTimes.remove(formattedDate);
+
+      if (interimMonthTime == null) {
+        massageMonthTimes.put(formattedDate, clientMassage.calculateDuration());
+      } else {
+        massageMonthTimes.put(formattedDate, interimMonthTime + clientMassage.calculateDuration());
+      }
+
 
       if (free) {
         massages.add(clientMassage);
       }
     }
-    response.put("clientTime", massageTime);
+    response.put("clientTimes", massageMonthTimes);
 
     return response;
   }

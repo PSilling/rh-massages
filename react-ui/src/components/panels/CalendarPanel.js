@@ -98,10 +98,7 @@ class CalendarPanel extends Component {
    */
   configureModalActions = event => {
     if (Util.isEmpty(event.massage.client)) {
-      if (
-        this.props.massageMinutes + moment(event.massage.ending).diff(moment(event.massage.date), "minutes") >
-        Util.MAX_MASSAGE_MINS
-      ) {
+      if (Util.isOverTimeLimit(this.props.massageMinutes, event.massage)) {
         this.setState({
           active: true,
           action: "none",
@@ -386,8 +383,8 @@ CalendarPanel.propTypes = {
   activeEventTooltip: PropTypes.string,
   /** whether the edit button should be shown (Admin only) */
   allowEditation: PropTypes.bool,
-  /** number of currently used Massage time in minutes */
-  massageMinutes: PropTypes.number,
+  /** number of currently used Massage times per each month in minutes */
+  massageMinutes: PropTypes.objectOf(PropTypes.number),
   /** function called on selected slot event addition */
   onAdd: PropTypes.func,
   /** function called on event assignment */
@@ -405,7 +402,7 @@ CalendarPanel.propTypes = {
 CalendarPanel.defaultProps = {
   activeEventTooltip: null,
   allowEditation: true,
-  massageMinutes: 0,
+  massageMinutes: {},
   onAdd() {},
   onAssign() {},
   onCancel() {},

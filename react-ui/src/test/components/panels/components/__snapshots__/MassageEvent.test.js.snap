@@ -28,7 +28,7 @@ ShallowWrapper {
         },
       }
     }
-    massageMinutes={0}
+    massageMinutes={Object {}}
     onAssign={[Function]}
     onCancel={[Function]}
     onDelete={[Function]}
