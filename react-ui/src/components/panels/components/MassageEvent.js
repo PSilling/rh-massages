@@ -68,11 +68,11 @@ class MassageEvent extends Component {
     </span>
   );
 
-  createClientInfo = (forMasseur = true) => (
+  createClientInfo = () => (
     <span>
       <nobr>
         {this.props.archived && `${this.props.event.massage.facility.name}: `}
-        {forMasseur
+        {this.state.hovered || Util.isEmpty(this.props.event.massage.client)
           ? this.props.event.massage.masseuse.name
           : `${this.props.event.massage.client.name} ${this.props.event.massage.client.surname}`}
       </nobr>
@@ -174,7 +174,7 @@ class MassageEvent extends Component {
         {this.props.view === "work_week" ? (
           <span>
             {this.createTimeInfo()}
-            {this.createClientInfo(!this.state.hovered || Util.isEmpty(this.props.event.massage.client))}
+            {this.createClientInfo()}
           </span>
         ) : (
           <span>{this.state.hovered ? this.createTimeInfo() : this.createClientInfo()}</span>

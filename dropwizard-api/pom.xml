@@ -7,13 +7,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <version>1.7.4</version>
+        <version>1.7.5</version>
         <artifactId>parent</artifactId>
         <groupId>cz.redhat</groupId>
     </parent>
 
     <artifactId>Massages</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
     <name>Red Hat Massages Server</name>
@@ -39,7 +39,7 @@
             <groupId>cz.redhat</groupId>
             <artifactId>react-ui</artifactId>
             <classifier>assets</classifier>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
