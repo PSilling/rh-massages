@@ -39,43 +39,6 @@ ShallowWrapper {
                 onClick={[Function]}
                 onRemoveClick={null}
               />
-              <span
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
-              >
-                <span
-                  className="float-right"
-                >
-                  <div
-                    style={
-                      Object {
-                        "marginLeft": "2.2em",
-                        "marginTop": "-3em",
-                      }
-                    }
-                  >
-                    <TooltipButton
-                      active={true}
-                      disabled={false}
-                      label="Show all"
-                      onClick={[Function]}
-                      outline={true}
-                      tooltip="Show massages already taken by someone else"
-                    />
-                  </div>
-                  <div
-                    className="loader"
-                    style={
-                      Object {
-                        "marginTop": "-1.9em",
-                      }
-                    }
-                  />
-                </span>
-              </span>
             </Nav>
             <Row
               className="mt-3"
@@ -200,43 +163,6 @@ ShallowWrapper {
                 onClick={[Function]}
                 onRemoveClick={null}
               />
-              <span
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
-              >
-                <span
-                  className="float-right"
-                >
-                  <div
-                    style={
-                      Object {
-                        "marginLeft": "2.2em",
-                        "marginTop": "-3em",
-                      }
-                    }
-                  >
-                    <TooltipButton
-                      active={true}
-                      disabled={false}
-                      label="Show all"
-                      onClick={[Function]}
-                      outline={true}
-                      tooltip="Show massages already taken by someone else"
-                    />
-                  </div>
-                  <div
-                    className="loader"
-                    style={
-                      Object {
-                        "marginTop": "-1.9em",
-                      }
-                    }
-                  />
-                </span>
-              </span>
             </Nav>
             <Row
               className="mt-3"
@@ -347,43 +273,6 @@ ShallowWrapper {
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
-                <span
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <span
-                    className="float-right"
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginLeft": "2.2em",
-                          "marginTop": "-3em",
-                        }
-                      }
-                    >
-                      <TooltipButton
-                        active={true}
-                        disabled={false}
-                        label="Show all"
-                        onClick={[Function]}
-                        outline={true}
-                        tooltip="Show massages already taken by someone else"
-                      />
-                    </div>
-                    <div
-                      className="loader"
-                      style={
-                        Object {
-                          "marginTop": "-1.9em",
-                        }
-                      }
-                    />
-                  </span>
-                </span>
               </Nav>,
               <Row
                 className="mt-3"
@@ -482,51 +371,12 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "children": Array [
-                  Array [
-                    <Tab
-                      active={true}
-                      label="test"
-                      onClick={[Function]}
-                      onRemoveClick={null}
-                    />,
-                  ],
-                  <span
-                    style={
-                      Object {
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    <span
-                      className="float-right"
-                    >
-                      <div
-                        style={
-                          Object {
-                            "marginLeft": "2.2em",
-                            "marginTop": "-3em",
-                          }
-                        }
-                      >
-                        <TooltipButton
-                          active={true}
-                          disabled={false}
-                          label="Show all"
-                          onClick={[Function]}
-                          outline={true}
-                          tooltip="Show massages already taken by someone else"
-                        />
-                      </div>
-                      <div
-                        className="loader"
-                        style={
-                          Object {
-                            "marginTop": "-1.9em",
-                          }
-                        }
-                      />
-                    </span>
-                  </span>,
+                  <Tab
+                    active={true}
+                    label="test"
+                    onClick={[Function]}
+                    onRemoveClick={null}
+                  />,
                 ],
                 "className": "mb-1 mt-4",
                 "tabs": true,
@@ -548,137 +398,6 @@ ShallowWrapper {
                   "ref": null,
                   "rendered": null,
                   "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": <span
-                      className="float-right"
-                    >
-                      <div
-                        style={
-                          Object {
-                            "marginLeft": "2.2em",
-                            "marginTop": "-3em",
-                          }
-                        }
-                      >
-                        <TooltipButton
-                          active={true}
-                          disabled={false}
-                          label="Show all"
-                          onClick={[Function]}
-                          outline={true}
-                          tooltip="Show massages already taken by someone else"
-                        />
-                      </div>
-                      <div
-                        className="loader"
-                        style={
-                          Object {
-                            "marginTop": "-1.9em",
-                          }
-                        }
-                      />
-                    </span>,
-                    "style": Object {
-                      "width": "100%",
-                    },
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
-                        <div
-                          style={
-                            Object {
-                              "marginLeft": "2.2em",
-                              "marginTop": "-3em",
-                            }
-                          }
-                        >
-                          <TooltipButton
-                            active={true}
-                            disabled={false}
-                            label="Show all"
-                            onClick={[Function]}
-                            outline={true}
-                            tooltip="Show massages already taken by someone else"
-                          />
-                        </div>,
-                        <div
-                          className="loader"
-                          style={
-                            Object {
-                              "marginTop": "-1.9em",
-                            }
-                          }
-                        />,
-                      ],
-                      "className": "float-right",
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": <TooltipButton
-                            active={true}
-                            disabled={false}
-                            label="Show all"
-                            onClick={[Function]}
-                            outline={true}
-                            tooltip="Show massages already taken by someone else"
-                          />,
-                          "style": Object {
-                            "marginLeft": "2.2em",
-                            "marginTop": "-3em",
-                          },
-                        },
-                        "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "active": true,
-                            "disabled": false,
-                            "label": "Show all",
-                            "onClick": [Function],
-                            "outline": true,
-                            "tooltip": "Show massages already taken by someone else",
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        "type": "div",
-                      },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "className": "loader",
-                          "style": Object {
-                            "marginTop": "-1.9em",
-                          },
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": "div",
-                      },
-                    ],
-                    "type": "span",
-                  },
-                  "type": "span",
                 },
               ],
               "type": [Function],
@@ -973,43 +692,6 @@ ShallowWrapper {
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
-                <span
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <span
-                    className="float-right"
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginLeft": "2.2em",
-                          "marginTop": "-3em",
-                        }
-                      }
-                    >
-                      <TooltipButton
-                        active={true}
-                        disabled={false}
-                        label="Show all"
-                        onClick={[Function]}
-                        outline={true}
-                        tooltip="Show massages already taken by someone else"
-                      />
-                    </div>
-                    <div
-                      className="loader"
-                      style={
-                        Object {
-                          "marginTop": "-1.9em",
-                        }
-                      }
-                    />
-                  </span>
-                </span>
               </Nav>
               <Row
                 className="mt-3"
@@ -1134,43 +816,6 @@ ShallowWrapper {
                   onClick={[Function]}
                   onRemoveClick={null}
                 />
-                <span
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <span
-                    className="float-right"
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginLeft": "2.2em",
-                          "marginTop": "-3em",
-                        }
-                      }
-                    >
-                      <TooltipButton
-                        active={true}
-                        disabled={false}
-                        label="Show all"
-                        onClick={[Function]}
-                        outline={true}
-                        tooltip="Show massages already taken by someone else"
-                      />
-                    </div>
-                    <div
-                      className="loader"
-                      style={
-                        Object {
-                          "marginTop": "-1.9em",
-                        }
-                      }
-                    />
-                  </span>
-                </span>
               </Nav>
               <Row
                 className="mt-3"
@@ -1281,43 +926,6 @@ ShallowWrapper {
                     onClick={[Function]}
                     onRemoveClick={null}
                   />
-                  <span
-                    style={
-                      Object {
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    <span
-                      className="float-right"
-                    >
-                      <div
-                        style={
-                          Object {
-                            "marginLeft": "2.2em",
-                            "marginTop": "-3em",
-                          }
-                        }
-                      >
-                        <TooltipButton
-                          active={true}
-                          disabled={false}
-                          label="Show all"
-                          onClick={[Function]}
-                          outline={true}
-                          tooltip="Show massages already taken by someone else"
-                        />
-                      </div>
-                      <div
-                        className="loader"
-                        style={
-                          Object {
-                            "marginTop": "-1.9em",
-                          }
-                        }
-                      />
-                    </span>
-                  </span>
                 </Nav>,
                 <Row
                   className="mt-3"
@@ -1416,51 +1024,12 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "children": Array [
-                    Array [
-                      <Tab
-                        active={true}
-                        label="test"
-                        onClick={[Function]}
-                        onRemoveClick={null}
-                      />,
-                    ],
-                    <span
-                      style={
-                        Object {
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <span
-                        className="float-right"
-                      >
-                        <div
-                          style={
-                            Object {
-                              "marginLeft": "2.2em",
-                              "marginTop": "-3em",
-                            }
-                          }
-                        >
-                          <TooltipButton
-                            active={true}
-                            disabled={false}
-                            label="Show all"
-                            onClick={[Function]}
-                            outline={true}
-                            tooltip="Show massages already taken by someone else"
-                          />
-                        </div>
-                        <div
-                          className="loader"
-                          style={
-                            Object {
-                              "marginTop": "-1.9em",
-                            }
-                          }
-                        />
-                      </span>
-                    </span>,
+                    <Tab
+                      active={true}
+                      label="test"
+                      onClick={[Function]}
+                      onRemoveClick={null}
+                    />,
                   ],
                   "className": "mb-1 mt-4",
                   "tabs": true,
@@ -1482,137 +1051,6 @@ ShallowWrapper {
                     "ref": null,
                     "rendered": null,
                     "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": <span
-                        className="float-right"
-                      >
-                        <div
-                          style={
-                            Object {
-                              "marginLeft": "2.2em",
-                              "marginTop": "-3em",
-                            }
-                          }
-                        >
-                          <TooltipButton
-                            active={true}
-                            disabled={false}
-                            label="Show all"
-                            onClick={[Function]}
-                            outline={true}
-                            tooltip="Show massages already taken by someone else"
-                          />
-                        </div>
-                        <div
-                          className="loader"
-                          style={
-                            Object {
-                              "marginTop": "-1.9em",
-                            }
-                          }
-                        />
-                      </span>,
-                      "style": Object {
-                        "width": "100%",
-                      },
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": Array [
-                          <div
-                            style={
-                              Object {
-                                "marginLeft": "2.2em",
-                                "marginTop": "-3em",
-                              }
-                            }
-                          >
-                            <TooltipButton
-                              active={true}
-                              disabled={false}
-                              label="Show all"
-                              onClick={[Function]}
-                              outline={true}
-                              tooltip="Show massages already taken by someone else"
-                            />
-                          </div>,
-                          <div
-                            className="loader"
-                            style={
-                              Object {
-                                "marginTop": "-1.9em",
-                              }
-                            }
-                          />,
-                        ],
-                        "className": "float-right",
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": <TooltipButton
-                              active={true}
-                              disabled={false}
-                              label="Show all"
-                              onClick={[Function]}
-                              outline={true}
-                              tooltip="Show massages already taken by someone else"
-                            />,
-                            "style": Object {
-                              "marginLeft": "2.2em",
-                              "marginTop": "-3em",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "active": true,
-                              "disabled": false,
-                              "label": "Show all",
-                              "onClick": [Function],
-                              "outline": true,
-                              "tooltip": "Show massages already taken by someone else",
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          "type": "div",
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "className": "loader",
-                            "style": Object {
-                              "marginTop": "-1.9em",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": "div",
-                        },
-                      ],
-                      "type": "span",
-                    },
-                    "type": "span",
                   },
                 ],
                 "type": [Function],

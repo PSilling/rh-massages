@@ -42,8 +42,7 @@ class Massages extends Component {
     loading: true,
     modalActive: false,
     batchAddModalActive: false,
-    activeEventTooltip: null,
-    showAll: !JSON.parse(localStorage.getItem("hideAssignedMassages"))
+    activeEventTooltip: null
   };
 
   alertMessage =
@@ -99,9 +98,9 @@ class Massages extends Component {
     });
   };
 
-  getMassages = (index = this.state.index, free = !this.state.showAll) => {
+  getMassages = (index = this.state.index) => {
     if (this.state.facilities !== undefined && this.state.facilities.length > 0) {
-      Fetch.get(`${Util.FACILITIES_URL + this.state.facilities[index].id}/massages?free=${free}`, json => {
+      Fetch.get(`${Util.FACILITIES_URL + this.state.facilities[index].id}/massages`, json => {
         if (json !== undefined && json.massages !== undefined && json.clientTimes !== undefined) {
           this.updateEvents(json.massages, json.clientTimes);
         }
@@ -311,9 +310,7 @@ class Massages extends Component {
   handleAddOperation = (resultState, massage) => {
     if (this.state.facilities[this.state.index].id === massage.facility.id) {
       this.handleMassageMinutesChange(resultState.massageMinutes, massage, true);
-      if (this.state.showAll || Util.isEmpty(massage.client) || Auth.getSub() === massage.client.sub) {
-        resultState.events.push({ massage, bgColor: this.getBgColor(massage) });
-      }
+      resultState.events.push({ massage, bgColor: this.getBgColor(massage) });
     }
   };
 
@@ -449,12 +446,6 @@ class Massages extends Component {
     });
   };
 
-  changeShowAll = () => {
-    this.getMassages(this.state.index, this.state.showAll);
-    localStorage.setItem("hideAssignedMassages", JSON.stringify(this.state.showAll));
-    this.setState(prevState => ({ showAll: !prevState.showAll }));
-  };
-
   changeSelectEvents = () => {
     this.setState(prevState => ({ selected: [], selectEvents: !prevState.selectEvents }));
   };
@@ -545,19 +536,6 @@ class Massages extends Component {
                     onClick={() => this.changeTabIndex(index)}
                   />
                 ))}
-                <span style={{ width: "100%" }}>
-                  <span className="float-right">
-                    <div style={{ marginTop: "-3em", marginLeft: "2.2em" }}>
-                      <TooltipButton
-                        label={_t.translate("Show all")}
-                        onClick={this.changeShowAll}
-                        active={this.state.showAll}
-                        tooltip={_t.translate("Show massages already taken by someone else")}
-                      />
-                    </div>
-                    {this.state.loading && <div className="loader" style={{ marginTop: "-1.9em" }} />}
-                  </span>
-                </span>
               </Nav>
               {Auth.isAdminOrMasseur() && (
                 <Row className="mt-3">

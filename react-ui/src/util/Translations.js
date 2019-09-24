@@ -199,9 +199,6 @@ const myLocalize = new Localize({
   "Masseur role": {
     cs: "Masérská role"
   },
-  "Show all": {
-    cs: "Zobrazit vše"
-  },
   Select: {
     cs: "Vybírat"
   },
@@ -424,9 +421,6 @@ const myLocalize = new Localize({
   },
   "Select multiple massages for batch operations": {
     cs: "Výběr více masáží pro hromadné operace"
-  },
-  "Show massages already taken by someone else": {
-    cs: "Zobrazit masáže přiřazené někomu jinému"
   },
   "Create a new facility": {
     cs: "Vytvořit novou budovu"
