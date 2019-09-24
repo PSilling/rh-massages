@@ -83,8 +83,12 @@ class MassageEvent extends Component {
     const icons = [];
 
     if (!Auth.isMasseur() && Util.isEmpty(this.props.event.massage.client)) {
-      const assignDisabled = Util.isOverTimeLimit(this.props.massageMinutes, this.props.event.massage);
-      const title = assignDisabled ? _t.translate("Over the limit") : "";
+      const assignDisabled =
+        Util.isOverTimeLimit(this.props.massageMinutes, this.props.event.massage) || Auth.isAdmin();
+      let title = "";
+      if (assignDisabled) {
+        title = Auth.isAdmin() ? _t.translate("Logged in as an administrator") : _t.translate("Over the limit");
+      }
       icons.push(
         <span key="assignCal" title={title}>
           <TooltipIconButton

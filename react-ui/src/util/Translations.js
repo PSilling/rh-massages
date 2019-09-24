@@ -452,6 +452,9 @@ const myLocalize = new Localize({
   "Over the limit": {
     cs: "Nad limit"
   },
+  "Logged in as an administrator": {
+    cs: "Přihlášen jako administrátor"
+  },
 
   // moment localization
   January_February_March_April_May_June_July_August_September_October_November_December: {
