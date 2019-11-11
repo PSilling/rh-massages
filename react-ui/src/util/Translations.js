@@ -92,6 +92,9 @@ const myLocalize = new Localize({
   Add: {
     cs: "Přidat"
   },
+  "E-mail the client": {
+    cs: "Poslat e-mail klientovi"
+  },
   Print: {
     cs: "Tisk"
   },

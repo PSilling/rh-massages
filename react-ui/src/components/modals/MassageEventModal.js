@@ -42,7 +42,7 @@ class MassageEventModal extends Component {
     }
   };
 
-  createChildrenButton = () => {
+  createChildrenButtons = () => {
     let onConfirm;
     let label;
     let tooltip;
@@ -51,6 +51,7 @@ class MassageEventModal extends Component {
       return null;
     }
 
+    // Set correct variables based on massage availability.
     if (this.props.label === _t.translate("Assign me")) {
       onConfirm = this.onCalendarConfirm;
       label = _t.translate("Assign and add to calendar");
@@ -66,32 +67,55 @@ class MassageEventModal extends Component {
       tooltip = _t.translate("Opens a predefined Google event editor in a new tab");
     }
 
-    if (label === undefined) {
-      return null;
+    // Create a mailing button when a different client is assinged to the selected massage.
+    let mailButton = null;
+    if (this.props.event.massage.client !== null && Auth.getSub() !== this.props.event.massage.client.sub) {
+      const openGmailLink = () => {
+        window.open(
+          `https://mail.google.com/mail/?view=cm&fs=1&to=${this.props.event.massage.client.email}`,
+          "gmailClientWindow"
+        );
+      };
+
+      mailButton = (
+        <span>
+          <Button className="mr-2" color="primary" onClick={openGmailLink}>
+            {_t.translate("E-mail the client")}
+          </Button>
+        </span>
+      );
     }
+
+    if (label === undefined) {
+      return mailButton;
+    }
+
     return (
-      <span title={this.props.disabled ? _t.translate("Over the limit") : ""}>
-        <Button
-          id={this.tooltipTarget}
-          className="mr-2"
-          tag="a"
-          color="primary"
-          disabled={this.props.disabled}
-          onClick={onConfirm}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex="-1"
-        >
-          {label}
-        </Button>
-        <Tooltip
-          isOpen={this.state.tooltipActive}
-          target={this.tooltipTarget}
-          toggle={this.toggleTooltip}
-          trigger="hover"
-        >
-          {tooltip}
-        </Tooltip>
+      <span>
+        {mailButton}
+        <span title={this.props.disabled ? _t.translate("Over the limit") : ""}>
+          <Button
+            id={this.tooltipTarget}
+            className="mr-2"
+            tag="a"
+            color="primary"
+            disabled={this.props.disabled}
+            onClick={onConfirm}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex="-1"
+          >
+            {label}
+          </Button>
+          <Tooltip
+            isOpen={this.state.tooltipActive}
+            target={this.tooltipTarget}
+            toggle={this.toggleTooltip}
+            trigger="hover"
+          >
+            {tooltip}
+          </Tooltip>
+        </span>
       </span>
     );
   };
@@ -194,7 +218,7 @@ class MassageEventModal extends Component {
         onProceed={this.props.onConfirm}
         onClose={this.props.onClose}
       >
-        {this.createChildrenButton()}
+        {this.createChildrenButtons()}
       </ModalActions>
     </ModalBody>
   );

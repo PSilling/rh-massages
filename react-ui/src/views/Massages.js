@@ -49,7 +49,6 @@ class Massages extends Component {
     _t.translate("On this page you can view all upcoming massages. ") +
     _t.translate("To view details about or register a massage click on the appropriate event in the calendar below.");
 
-  //  if (this.state.modalActive || this.state.batchAddModalActive || this.state.activeEventTooltip !== null) return;
   componentDidMount() {
     this.getUsers();
     this.getFacilities();
