@@ -64,7 +64,6 @@ ShallowWrapper {
             </Switch>
           </ErrorBoundary>
         </div>
-        <Footer />
       </div>,
     },
     "ref": null,
@@ -120,7 +119,6 @@ ShallowWrapper {
               </Switch>
             </ErrorBoundary>
           </div>,
-          <Footer />,
         ],
       },
       "ref": null,
@@ -372,15 +370,6 @@ ShallowWrapper {
           },
           "type": "div",
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
       ],
       "type": "div",
     },
@@ -439,7 +428,6 @@ ShallowWrapper {
               </Switch>
             </ErrorBoundary>
           </div>
-          <Footer />
         </div>,
       },
       "ref": null,
@@ -495,7 +483,6 @@ ShallowWrapper {
                 </Switch>
               </ErrorBoundary>
             </div>,
-            <Footer />,
           ],
         },
         "ref": null,
@@ -746,15 +733,6 @@ ShallowWrapper {
               "type": [Function],
             },
             "type": "div",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
           },
         ],
         "type": "div",
