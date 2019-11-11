@@ -6,6 +6,7 @@
 **/.settings/
 **/.idea/
 **/package-lock.json
+**/.tags*
 
 # environmental variables settings file
 **/.env
