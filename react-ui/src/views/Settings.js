@@ -115,7 +115,7 @@ class Settings extends Component {
               </Label>
             </FormGroup>
             <Tooltip isOpen={this.state.tooltipOpen} target={this.tooltipTarget} toggle={this.toggleTooltip}>
-              {_t.translate("Scheduling of new and cancellation of assigned massages")}
+              {_t.translate("Scheduling of new massages and changes to assignment")}
             </Tooltip>
           </Col>
         </Row>

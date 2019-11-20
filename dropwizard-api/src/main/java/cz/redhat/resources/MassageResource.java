@@ -20,6 +20,7 @@ import cz.redhat.configuration.MailClient;
 import cz.redhat.core.Client;
 import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
+import cz.redhat.db.FacilityDao;
 import cz.redhat.db.MassageDao;
 import cz.redhat.websockets.OperationType;
 import cz.redhat.websockets.WebSocketResource;
@@ -30,6 +31,7 @@ import io.dropwizard.jersey.params.LongParam;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +66,7 @@ import javax.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MassageResource {
 
+  private final FacilityDao facilityDao; // Facility data access object
   private final MassageDao massageDao; // Massage data access object
   private final ClientDao clientDao; // Client data access object
   private final MailClient mailClient; // Mailing client
@@ -71,11 +74,14 @@ public class MassageResource {
   /**
    * Constructor.
    *
-   * @param massageDao {@link MassageDao} to work with
-   * @param clientDao  {@link ClientDao} to work with
-   * @param mailClient {@link MailClient} to use for messaging
+   * @param facilityDao {@link cz.redhat.db.FacilityDao} to work with
+   * @param massageDao  {@link MassageDao} to work with
+   * @param clientDao   {@link ClientDao} to work with
+   * @param mailClient  {@link MailClient} to use for messaging
    */
-  public MassageResource(MassageDao massageDao, ClientDao clientDao, MailClient mailClient) {
+  public MassageResource(FacilityDao facilityDao, MassageDao massageDao, ClientDao clientDao,
+                         MailClient mailClient) {
+    this.facilityDao = facilityDao;
     this.massageDao = massageDao;
     this.clientDao = clientDao;
     this.mailClient = mailClient;
@@ -135,19 +141,32 @@ public class MassageResource {
 
       massageDao.create(massage);
 
-      if (massageDao.findById(massage.getId()) == null) {
+      Massage daoMassage = massageDao.findById(massage.getId());
+
+      if (daoMassage == null) {
         throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
       }
 
       WebSocketResource.informSubscribed("Massage", OperationType.ADD, massage);
+
+      // Send an e-mail to subscribed Users if they are set as Clients of the created Massages.
+      Client emailingClient = massage.getEmailingClient(user);
+      if (emailingClient != null) {
+        // Find the Facility as the current session is not yet finished and the Facility is null.
+        massage.setFacility(facilityDao.findById(massage.getFacility().getId()));
+        Map<String, String> arguments = new HashMap<>();
+        arguments.put("MASSAGE", massage.getEmailRepresentation());
+        mailClient.sendEmail(
+            emailingClient.getEmail(), "Massage Assigned", "massageAssigned.html", arguments
+        );
+      }
     }
 
-    // Send an information email to subscribed Users if more than sendMailLimit
-    // Massages get created
-    // number of simultaneously created Massages necessary for sending an email
+    // Send an informational e-mail to subscribed Users if more than sendMailLimit
+    // Massages get created simultaneously
     int sendMailLimit = 5;
     if (massages.size() >= sendMailLimit) {
-      sendInformationEmail();
+      sendInformationalEmail();
     }
 
     return Response.ok(massages).build();
@@ -215,6 +234,7 @@ public class MassageResource {
       }
 
       massageDao.update(massage);
+      WebSocketResource.informSubscribed("Massage", OperationType.CHANGE, massage);
 
       // Remove the colliding Massages (after update to avoid session clearing).
       for (Massage massageForRemoval : massagesForRemoval) {
@@ -222,7 +242,41 @@ public class MassageResource {
         WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
       }
 
-      WebSocketResource.informSubscribed("Massage", OperationType.CHANGE, massage);
+      // Send an e-mail to subscribed Users if they now are, or originally were, set as Clients of
+      // the updated Massages.
+      Client emailingClient = daoMassage.getEmailingClient(user);
+      if (emailingClient != null) {
+        Map<String, String> arguments = new HashMap<>();
+        arguments.put("MASSAGE", daoMassage.getEmailRepresentation());
+
+        if (massage.getClient() == null || !massage.getClient().equals(emailingClient)) {
+          mailClient.sendEmail(
+              emailingClient.getEmail(), "Massage Cancelled", "massageUnassigned.html", arguments
+          );
+        } else if (!massage.getDate().equals(daoMassage.getDate())
+            || !massage.getEnding().equals(daoMassage.getEnding())
+            || !massage.getMasseuse().getSub().equals(daoMassage.getMasseuse().getSub())
+            || massage.getFacility().getId() != daoMassage.getFacility().getId()) {
+          // Find the Facility as the current session is not yet finished and the Facility is null.
+          massage.setFacility(facilityDao.findById(massage.getFacility().getId()));
+          arguments.put("MASSAGE_AFTER_CHANGE", massage.getEmailRepresentation());
+          mailClient.sendEmail(
+              emailingClient.getEmail(), "Massage Changed", "massageChanged.html", arguments
+          );
+        }
+      }
+
+      // Inform the new Client, if he is subscribed to e-mails.
+      emailingClient = massage.getEmailingClient(user);
+      if (emailingClient != null) {
+        if (daoMassage.getClient() == null || !daoMassage.getClient().equals(emailingClient)) {
+          Map<String, String> arguments = new HashMap<>();
+          arguments.put("MASSAGE", massage.getEmailRepresentation());
+          mailClient.sendEmail(
+              emailingClient.getEmail(), "Massage Assigned", "massageAssigned.html", arguments
+          );
+        }
+      }
     }
 
     return Response.ok(massages).build();
@@ -256,14 +310,17 @@ public class MassageResource {
         throw new WebApplicationException(Status.FORBIDDEN);
       }
 
-      // If a Massage with a subscribed Client is being deleted, send a notification email.
-      if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
-        mailClient.sendEmail(
-            daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null);
-      }
       massageDao.delete(daoMassage);
-
       WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
+
+      // If a Massage with a subscribed Client is being deleted, send a notification email.
+      Client emailingClient = daoMassage.getEmailingClient(user);
+      if (emailingClient != null) {
+        Map<String, String> arguments = new HashMap<>();
+        arguments.put("MASSAGE", daoMassage.getEmailRepresentation());
+        mailClient.sendEmail(
+            emailingClient.getEmail(), "Massage Cancelled", "massageRemoved.html", arguments);
+      }
     }
 
     return Response.noContent().build();
@@ -352,7 +409,7 @@ public class MassageResource {
   private void validateMassageEditRights(
       User user, Client daoClient, Massage massage, Massage daoMassage) {
     // Forbid normal Users to edit anything other than the Client and even then the
-    // Client has to be the User himself or a null when it was him. Normal User is
+    // Client has to be the User himself, or a null when it was him. Normal User is
     // also forbidden to cancel a Massage after maxOffset. Masseurs have admin-like
     // edit privileges, unless they try to change the value of masseur.
     if (!user.isAdmin()) {
@@ -369,14 +426,6 @@ public class MassageResource {
           throw new WebApplicationException(Status.FORBIDDEN);
         }
       }
-    }
-
-    if (daoMassage.getClient() != null
-        && massage.getClient() == null
-        && !user.getSubject().equals(daoMassage.getClient().getSub())
-        && daoMassage.getClient().isSubscribed()) {
-      mailClient.sendEmail(
-          daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null);
     }
   }
 
@@ -411,9 +460,9 @@ public class MassageResource {
   }
 
   /**
-   * Sends an email informing all subscribed users about new {@link Massage} availability.
+   * Sends an e-mail informing all subscribed users about new {@link Massage} availability.
    */
-  private void sendInformationEmail() {
+  private void sendInformationalEmail() {
     String recipients = "";
     List<Client> clients = clientDao.findAllSubscribed();
 
@@ -425,6 +474,6 @@ public class MassageResource {
       recipients = client.getEmail() + ",";
     }
 
-    mailClient.sendEmail(recipients, "New Massages Available", "newMassages.html", null);
+    mailClient.sendEmail(recipients, "New Massages Available", "massagesCreated.html", null);
   }
 }

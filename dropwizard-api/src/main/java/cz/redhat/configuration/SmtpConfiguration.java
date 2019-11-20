@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 public class SmtpConfiguration {
 
   @NotNull
+  private String applicationUrl; // address of the client application
   private String server; // SMTP server address
 
   @NotNull
@@ -46,16 +47,18 @@ public class SmtpConfiguration {
   /**
    * Constructor.
    *
-   * @param server    SMTP server address
-   * @param port      SMTP connection port
-   * @param username  SMTP username
-   * @param password  SMTP password
-   * @param fromEmail email address to send the emails from
-   * @param fromName  name of the sender of the emails
-   * @param async     whether to send emails asynchronously
+   * @param applicationUrl address of the client application
+   * @param server         SMTP server address
+   * @param port           SMTP connection port
+   * @param username       SMTP username
+   * @param password       SMTP password
+   * @param fromEmail      email address to send the emails from
+   * @param fromName       name of the sender of the emails
+   * @param async          whether to send emails asynchronously
    */
-  public SmtpConfiguration(String server, int port, String username, String password,
-                           String fromEmail, String fromName, boolean async) {
+  public SmtpConfiguration(String applicationUrl, String server, int port, String username,
+                           String password, String fromEmail, String fromName, boolean async) {
+    this.applicationUrl = applicationUrl;
     this.fromEmail = fromEmail;
     this.fromName = fromName;
     this.server = server;
@@ -63,6 +66,20 @@ public class SmtpConfiguration {
     this.username = username;
     this.password = password;
     this.async = async;
+  }
+
+  /**
+   * @return current value of application url
+   */
+  public String getApplicationUrl() {
+    return applicationUrl;
+  }
+
+  /**
+   * @param applicationUrl new value of application url to be set
+   */
+  public void setApplicationUrl(String applicationUrl) {
+    this.applicationUrl = applicationUrl;
   }
 
   /**

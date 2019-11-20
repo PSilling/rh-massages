@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -8,24 +8,18 @@
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <title>${title}</title>
     <style type="text/css">
-body {
-	font-family: sans-serif;
-}
+            body {
+                font-family: sans-serif;
+            }
 
-.container {
-	box-shadow: 1px 1px 8px #999;
-	background-color: #F9F9F9;
-}
+            .container {
+                box-shadow: 1px 1px 8px #999;
+                background-color: #FAFAFA;
+            }
 
-
-
-
-
-
-
-
-
-
+            hr.secondary {
+                border-top: 1px solid #F0F0F0;
+            }
 
 
 
@@ -59,18 +53,19 @@ body {
 
     </style>
 </head>
+
 <body style="margin-top: 25px;">
 <center>
-    <table width="720" cellpadding="0" cellspacing="0" class="container">
+    <table width="1280" cellpadding="0" cellspacing="0" class="container">
         <tr>
             <td align="center">
-                <table width="620" cellpadding="0" cellspacing="0" border="0">
+                <table width="1200" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                         <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <h1>${title}</h1>
+                            <h1>${TITLE}</h1>
                             <hr/>
                         </td>
                     </tr>
@@ -78,7 +73,7 @@ body {
                         <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>${body}</td>
+                        <td>${BODY}</td>
                     </tr>
                     <tr>
                         <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
@@ -86,7 +81,7 @@ body {
                     <tr>
                         <td align="center" valign="top">
                             <hr/>
-                            <p>Red Hat Massages &copy; 2018</p>
+                            <p><a href="${LINK}">Red Hat Massages Portal</a> &copy; ${YEAR}</p>
                         </td>
                     </tr>
                     <tr>

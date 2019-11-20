@@ -25,9 +25,11 @@ import cz.redhat.auth.TestAuthenticator;
 import cz.redhat.auth.TestAuthorizer;
 import cz.redhat.auth.TestUser;
 import cz.redhat.auth.User;
+import cz.redhat.configuration.MailClient;
 import cz.redhat.core.Client;
 import cz.redhat.core.Facility;
 import cz.redhat.core.Massage;
+import cz.redhat.db.FacilityDao;
 import cz.redhat.db.MassageDao;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -53,7 +55,10 @@ import org.junit.Test;
  */
 public class MassageResourceTest {
 
+  private static final FacilityDao facilityDao = mock(FacilityDao.class); // mock of FacilityDao
   private static final MassageDao massageDao = mock(MassageDao.class); // mock of MassageDao
+  private static final MailClient mailClient = mock(MailClient.class); // mock of MailClient
+
   /**
    * Creates a new static {@link ResourceTestRule} that tests a given resource. Uses {@link
    * GrizzlyWebTestContainerFactory} to deal with resource authentication.
@@ -73,7 +78,7 @@ public class MassageResourceTest {
                       .buildAuthFilter()))
           .addProvider(RolesAllowedDynamicFeature.class)
           .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
-          .addResource(new MassageResource(massageDao, null, null))
+          .addResource(new MassageResource(facilityDao, massageDao, null, mailClient))
           .build();
   private final long milliseconds = new Date().getTime(); // current time milliseconds
   private final Facility facility = new Facility("Facility"); // test Facility
@@ -97,6 +102,11 @@ public class MassageResourceTest {
   @Before
   public void setup() {
     List<Massage> massages = new ArrayList<>();
+    int assignEmailSentTimes = 0;
+    int unassignEmailSentTimes = 0;
+    int changedEmailSentTimes = 0;
+    int removedEmailSentTimes = 0;
+
     massages.add(massage);
 
     when(massageDao.findAll()).thenReturn(massages);

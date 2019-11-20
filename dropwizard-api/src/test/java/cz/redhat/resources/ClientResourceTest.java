@@ -28,10 +28,12 @@ import cz.redhat.auth.TestAuthenticator;
 import cz.redhat.auth.TestAuthorizer;
 import cz.redhat.auth.TestUser;
 import cz.redhat.auth.User;
+import cz.redhat.configuration.MailClient;
 import cz.redhat.core.Client;
 import cz.redhat.core.Facility;
 import cz.redhat.core.Massage;
 import cz.redhat.db.ClientDao;
+import cz.redhat.db.FacilityDao;
 import cz.redhat.db.MassageDao;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -39,7 +41,9 @@ import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
@@ -58,8 +62,10 @@ import org.mockito.stubbing.Answer;
  */
 public class ClientResourceTest {
 
+  private static final FacilityDao facilityDao = mock(FacilityDao.class); // mock of FacilityDao
   private static final MassageDao massageDao = mock(MassageDao.class); // mock of MassageDao
   private static final ClientDao clientDao = mock(ClientDao.class); // mock of ClientDao
+  private static final MailClient mailClient = mock(MailClient.class); // mock of MailClient
 
   /**
    * Creates a new static {@link ResourceTestRule} that tests a given resource. Uses {@link
@@ -80,20 +86,22 @@ public class ClientResourceTest {
                       .buildAuthFilter()))
           .addProvider(RolesAllowedDynamicFeature.class)
           .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
-          .addResource(new MassageResource(massageDao, clientDao, null))
-          .addResource(new ClientResource(massageDao, clientDao, null))
+          .addResource(new MassageResource(facilityDao, massageDao, clientDao, mailClient))
+          .addResource(new ClientResource(massageDao, clientDao, mailClient))
           .build();
   private final Facility facility = new Facility("Facility"); // test Facility
   private final Client client =
-      new Client("Subject1", "example1@email.com", "FName", "SName", false, false); // test Client
+      new Client("Subject1", "example1@email.com", "FName", "SName", false, true); // test Client
   private final Client masseur = new Client(
-      "Subject2", "example2@email.com", "Name", "Surname", true, false
+      "Subject2", "example2@email.com", "Name", "Surname", true, true
   ); // test masseur Client
   private final Massage clientMassage =
       new Massage(new Date(0), new Date(1), masseur, client, facility); // Client test Massage
   private final Massage freeClientMassage =
       new Massage(new Date(0), new Date(1), masseur, null, facility); // freed Client test Massage
   private boolean massageRemoved = false; // true after a massage removal (concurrency protection)
+  private int accountEmailSentTimes = 0;
+  private int cancelEmailSentTimes = 0;
 
   /**
    * Configures mocks before each test.
@@ -104,12 +112,16 @@ public class ClientResourceTest {
     final List<Client> masseurs = new ArrayList<>();
     final List<Client> users = new ArrayList<>();
     final List<Massage> massages = new ArrayList<>();
+    final Map<String, String> mailArguments = new HashMap<>();
+    accountEmailSentTimes = 0;
+    cancelEmailSentTimes = 0;
 
     clients.add(client);
     clients.add(masseur);
     masseurs.add(masseur);
     users.add(client);
     massages.add(clientMassage);
+    mailArguments.put("MASSAGE", clientMassage.getEmailRepresentation());
 
     when(clientDao.findAll()).thenReturn(clients);
     when(clientDao.findAllMasseurs()).thenReturn(masseurs);
@@ -152,6 +164,38 @@ public class ClientResourceTest {
         })
         .when(massageDao)
         .clearClient(massages);
+
+    doAnswer(
+        (Answer<MailClient>) invocation -> {
+          accountEmailSentTimes++;
+          return null;
+        })
+        .when(mailClient)
+        .sendEmail(client.getEmail(), "Account Removed", "accountRemoved.html", null);
+
+    doAnswer(
+        (Answer<MailClient>) invocation -> {
+          accountEmailSentTimes++;
+          return null;
+        })
+        .when(mailClient)
+        .sendEmail(masseur.getEmail(), "Account Removed", "accountRemoved.html", null);
+
+    doAnswer(
+        (Answer<MailClient>) invocation -> {
+          cancelEmailSentTimes++;
+          return null;
+        })
+        .when(mailClient)
+        .sendEmail(client.getEmail(), "Massage Cancelled", "massageRemoved.html", mailArguments);
+
+    doAnswer(
+        (Answer<MailClient>) invocation -> {
+          accountEmailSentTimes++;
+          return null;
+        })
+        .when(mailClient)
+        .sendEmail(masseur.getEmail(), "Massage Cancelled", "massageRemoved.html", null);
   }
 
   /**
@@ -254,6 +298,8 @@ public class ClientResourceTest {
     assertEquals(masseur, clients.get(0));
     assertEquals(1, massages.size());
     assertNull(massages.get(0).getClient());
+    assertEquals(1, accountEmailSentTimes);
+    assertEquals(0, cancelEmailSentTimes);
   }
 
   /**
@@ -276,5 +322,7 @@ public class ClientResourceTest {
     assertEquals(client, clients.get(0));
     assertTrue(massageRemoved);
     assertEquals(clientMassage, massages.get(0));
+    assertEquals(1, accountEmailSentTimes);
+    assertEquals(1, cancelEmailSentTimes);
   }
 }

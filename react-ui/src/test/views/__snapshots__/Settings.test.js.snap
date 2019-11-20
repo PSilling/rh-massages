@@ -99,7 +99,7 @@ ShallowWrapper {
               target="Tooltip1"
               toggle={[Function]}
             >
-              Scheduling of new and cancellation of assigned massages
+              Scheduling of new massages and changes to assignment
             </Tooltip>
           </Col>
         </Row>,
@@ -339,7 +339,7 @@ ShallowWrapper {
               target="Tooltip1"
               toggle={[Function]}
             >
-              Scheduling of new and cancellation of assigned massages
+              Scheduling of new massages and changes to assignment
             </Tooltip>
           </Col>,
           "tag": "div",
@@ -404,7 +404,7 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Scheduling of new and cancellation of assigned massages
+                Scheduling of new massages and changes to assignment
               </Tooltip>,
             ],
             "md": "12",
@@ -540,7 +540,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "autohide": true,
-                "children": "Scheduling of new and cancellation of assigned massages",
+                "children": "Scheduling of new massages and changes to assignment",
                 "delay": Object {
                   "hide": 250,
                   "show": 0,
@@ -553,7 +553,7 @@ ShallowWrapper {
                 "toggle": [Function],
               },
               "ref": null,
-              "rendered": "Scheduling of new and cancellation of assigned massages",
+              "rendered": "Scheduling of new massages and changes to assignment",
               "type": [Function],
             },
           ],
@@ -1030,7 +1030,7 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Scheduling of new and cancellation of assigned massages
+                Scheduling of new massages and changes to assignment
               </Tooltip>
             </Col>
           </Row>,
@@ -1270,7 +1270,7 @@ ShallowWrapper {
                 target="Tooltip1"
                 toggle={[Function]}
               >
-                Scheduling of new and cancellation of assigned massages
+                Scheduling of new massages and changes to assignment
               </Tooltip>
             </Col>,
             "tag": "div",
@@ -1335,7 +1335,7 @@ ShallowWrapper {
                   target="Tooltip1"
                   toggle={[Function]}
                 >
-                  Scheduling of new and cancellation of assigned massages
+                  Scheduling of new massages and changes to assignment
                 </Tooltip>,
               ],
               "md": "12",
@@ -1471,7 +1471,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "autohide": true,
-                  "children": "Scheduling of new and cancellation of assigned massages",
+                  "children": "Scheduling of new massages and changes to assignment",
                   "delay": Object {
                     "hide": 250,
                     "show": 0,
@@ -1484,7 +1484,7 @@ ShallowWrapper {
                   "toggle": [Function],
                 },
                 "ref": null,
-                "rendered": "Scheduling of new and cancellation of assigned massages",
+                "rendered": "Scheduling of new massages and changes to assignment",
                 "type": [Function],
               },
             ],

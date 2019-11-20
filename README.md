@@ -61,6 +61,7 @@ The application supports these environmental variables for the SMTP server:
 
 | VARIABLE        | MEANING                       | DEFAULT VALUE                             |
 | --------------- |------------------------------ | ----------------------------------------- |
+| SMTP_APP_URL    | Client application url        | http://localhost:8080                     |
 | SMTP_SERVER     | SMTP server name              | localhost                                 |
 | SMTP_PORT  	  | SMTP server port              | 587                                       |
 | SMTP_USERNAME   | SMTP username                 | –                                         |

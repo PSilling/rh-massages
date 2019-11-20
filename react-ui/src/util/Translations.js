@@ -449,8 +449,8 @@ const myLocalize = new Localize({
   "Too late to cancel this massage": {
     cs: "Příliš pozdě na zrušení této masáže"
   },
-  "Scheduling of new and cancellation of assigned massages": {
-    cs: "Rozpis nových a zrušení připsaných masáží"
+  "Scheduling of new massages and changes to assignment": {
+    cs: "Rozpis nových masáží a změny zapsaných masáží"
   },
   "Over the limit": {
     cs: "Nad limit"

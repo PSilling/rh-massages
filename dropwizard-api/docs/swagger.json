@@ -2,7 +2,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.7.5",
+        "version": "1.7.6",
         "title": "Red Hat Massages Server"
     },
     "host": "localhost:8080",

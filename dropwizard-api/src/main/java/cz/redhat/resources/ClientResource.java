@@ -25,7 +25,9 @@ import cz.redhat.websockets.OperationType;
 import cz.redhat.websockets.WebSocketResource;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
@@ -173,13 +175,20 @@ public class ClientResource {
     if (daoClient.isMasseur()) {
       clientMassages = massageDao.findAllByMasseuse(daoClient);
       for (Massage daoMassage : clientMassages) {
-        if (daoMassage.getClient() != null && daoMassage.getClient().isSubscribed()) {
-          mailClient.sendEmail(
-              daoMassage.getClient().getEmail(), "Massage Cancelled", "assignedRemoved.html", null
-          );
-        }
+
+        Client emailingClient = daoMassage.getEmailingClient(null);
+
         massageDao.delete(daoMassage);
         WebSocketResource.informSubscribed("Massage", OperationType.REMOVE, daoMassage);
+
+        // Send an e-mail to subscribed Users if they are set as Clients of the removed Massages.
+        if (emailingClient != null) {
+          Map<String, String> arguments = new HashMap<>();
+          arguments.put("MASSAGE", daoMassage.getEmailRepresentation());
+          mailClient.sendEmail(
+              emailingClient.getEmail(), "Massage Cancelled", "massageRemoved.html", arguments
+          );
+        }
       }
     } else {
       clientMassages = massageDao.findAllByClient(daoClient);
@@ -187,8 +196,12 @@ public class ClientResource {
     }
 
     clientDao.delete(daoClient);
-
     WebSocketResource.informSubscribed("Client", OperationType.REMOVE, daoClient);
+
+    // Send an e-mail to the removed User. This e-mail will be sent regardless of subscription.
+    mailClient.sendEmail(
+        daoClient.getEmail(), "Account Removed", "accountRemoved.html", null
+    );
 
     return Response.noContent().build();
   }

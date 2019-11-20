@@ -15,6 +15,10 @@
 
 package cz.redhat.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import cz.redhat.auth.User;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.annotation.Nullable;
@@ -206,6 +210,42 @@ public class Massage {
    */
   public void setFacility(Facility facility) {
     this.facility = facility;
+  }
+
+  /**
+   * Returns the {@link Client} if one is assigned, has the e-mail subscription enabled and is not
+   * represented by the given {@link User}.
+   *
+   * @return assigned {@link Client} with e-mail subscription enabled, or null if not found or same
+   *     as the given {@link User}, if one is given
+   */
+  @JsonIgnore
+  public Client getEmailingClient(User user) {
+    if (client != null && client.isSubscribed()
+        && (user == null || !user.getSubject().equals(client.getSub()))) {
+      return client;
+    }
+    return null;
+  }
+
+  /**
+   * Returns the e-mail representation of this {@link Massage}.
+   *
+   * @return string representation of this {@link Massage} for e-mails
+   */
+  @JsonIgnore
+  public String getEmailRepresentation() {
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+    return String.format(
+        "Facility: %s <br />"
+            + "Masseur/Masseuse: %s <br/>"
+            + "When: %s–%s <br />",
+        facility.getName(),
+        masseuse.createContact(),
+        dateFormat.format(date),
+        timeFormat.format(new Date(ending.getTime())));
   }
 
   /**

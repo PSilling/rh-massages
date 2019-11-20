@@ -29,6 +29,7 @@ keycloakConfiguration:
     secret: ${KC_SECRET:-b4a1ee69-6441-49a0-b653-e2875234c0ef}
 
 smtpConfiguration:
+  applicationUrl: ${SMTP_APP_URL:-http://localhost:8080}
   server: ${SMTP_SERVER:-localhost}
   port: ${SMTP_PORT:-587}
   username: ${SMTP_USERNAME}

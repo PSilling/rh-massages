@@ -16,6 +16,7 @@
 package cz.redhat.configuration;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -62,12 +63,12 @@ public class MailClient {
    * @param recipients recipients of the email message separated by a comma
    * @param subject    message subject
    * @param template   template file to be used
-   * @param args       arguments for template substitutions
+   * @param arguments  arguments for template substitutions
    */
   public void sendEmail(
-      String recipients, String subject, String template, Map<String, ?> args) {
+      String recipients, String subject, String template, Map<String, ?> arguments) {
     // Inject arguments into the subject
-    StrSubstitutor sub = new StrSubstitutor(args);
+    StrSubstitutor sub = new StrSubstitutor(arguments);
     subject = StringUtils.capitalize(sub.replace(subject));
 
     // Create the email itself and then send it
@@ -105,8 +106,10 @@ public class MailClient {
       // Inject template arguments
       template = sub.replace(template);
       Map<String, String> arguments = new HashMap<>();
-      arguments.put("title", title);
-      arguments.put("body", template);
+      arguments.put("TITLE", title);
+      arguments.put("BODY", template);
+      arguments.put("LINK", smtpConfiguration.getApplicationUrl());
+      arguments.put("YEAR", String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
       StrSubstitutor modelSub = new StrSubstitutor(arguments);
       html = modelSub.replace(genericTemplate);
