@@ -28,7 +28,6 @@ import cz.redhat.db.MassageDao;
 import cz.redhat.health.MassagesHealthCheck;
 import cz.redhat.resources.ClientResource;
 import cz.redhat.resources.FacilityResource;
-import cz.redhat.resources.LogoutResource;
 import cz.redhat.resources.MassageResource;
 import cz.redhat.resources.WebSocketAuthResource;
 import cz.redhat.websockets.WebSocketResource;
@@ -177,7 +176,6 @@ public class MassagesApplication extends Application<MassagesConfiguration> {
     );
     environment.jersey().register(new ClientResource(massageDao, clientDao, mailClient));
     environment.jersey().register(new WebSocketAuthResource());
-    environment.jersey().register(new LogoutResource());
 
     // Register ErrorPageErrorHandler so that the server routing is connected to
     // React routing

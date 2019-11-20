@@ -151,8 +151,6 @@ Util.MASSAGES_URL = process.env.REACT_APP_MASSAGES_URL || "api/massages/";
 Util.CLIENTS_URL = process.env.REACT_APP_CLIENTS_URL || "api/clients/";
 /** url of /websockets authentication endpoint */
 Util.WEBSOCKETS_URL = process.env.REACT_APP_WEBSOCKETS_URL || "api/websockets";
-/** url of /logout endpoint */
-Util.LOGOUT_URL = process.env.REACT_APP_LOGOUT_URL || "api/logout/";
 /** GitHub project url */
 Util.GITHUB_URL = process.env.REACT_APP_GITHUB_URL || "https://github.com/";
 /** refresh time for authorization tokens in milliseconds */

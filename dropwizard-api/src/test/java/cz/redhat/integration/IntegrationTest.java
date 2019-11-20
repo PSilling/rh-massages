@@ -17,17 +17,12 @@ package cz.redhat.integration;
 
 import cz.redhat.MassagesApplication;
 import cz.redhat.MassagesConfiguration;
-import cz.redhat.resources.LogoutResource;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.core.GenericType;
 import org.junit.ClassRule;
-import org.junit.Test;
 
 /**
- * JUnit integration test that also checks whether authorization is applied to {@link
- * LogoutResource}.
+ * JUnit integration test.
  *
  * @author psilling
  * @since 1.0.0
@@ -42,16 +37,4 @@ public class IntegrationTest {
   public static final DropwizardAppRule<MassagesConfiguration> RULE =
       new DropwizardAppRule<>(
           MassagesApplication.class, ResourceHelpers.resourceFilePath("config-test.yml"));
-
-  /**
-   * Tests whether {@link LogoutResource} endpoint requires authentication.
-   */
-  @Test(expected = NotAuthorizedException.class)
-  public void testLogoutAuth() {
-    RULE.client()
-        .target("http://localhost:" + RULE.getLocalPort() + "/api/logout")
-        .request()
-        .get(new GenericType<String>() {
-        });
-  }
 }

@@ -465,27 +465,6 @@
                 }
             }
         },
-        "/logout": {
-            "get": {
-                "description": "Logs out the {@link User} from the application.",
-                "consumes": [
-                ],
-                "produces": [
-                ],
-                "parameters": [
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "headers": {
-                        },
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/massages": {
             "get": {
                 "description": "GETs all {@link Massage}s that can be found.",
