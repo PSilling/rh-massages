@@ -49,6 +49,8 @@ class Massages extends Component {
     _t.translate("On this page you can view all upcoming massages. ") +
     _t.translate("To view details about or register a massage click on the appropriate event in the calendar below.");
 
+  closeAlertStorageString = `closeMassagesAlert-${Auth.getSub()}`;
+
   componentDidMount() {
     this.getUsers();
     this.getFacilities();
@@ -455,7 +457,7 @@ class Massages extends Component {
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeMassagesAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -520,7 +522,7 @@ class Massages extends Component {
 
     return (
       <div>
-        {!localStorage.getItem("closeMassagesAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <div className="my-3">

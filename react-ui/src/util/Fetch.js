@@ -151,7 +151,7 @@ Fetch.post = (url, data, update = () => {}, notify = true, postponeData = null) 
   if (
     postponeData !== null &&
     (Auth.isAdmin() || Auth.isMasseur()) &&
-    localStorage.getItem("skipPostponement") === null
+    localStorage.getItem(`skipPostponement-${Auth.getSub()}`) === null
   ) {
     const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
     const timeout = setTimeout(() => sendRequest(), delay);
@@ -216,7 +216,7 @@ Fetch.put = (url, data, update = () => {}, notify = true, onError = null, postpo
   if (
     postponeData !== null &&
     (Auth.isAdmin() || Auth.isMasseur()) &&
-    localStorage.getItem("skipPostponement") === null
+    localStorage.getItem(`skipPostponement-${Auth.getSub()}`) === null
   ) {
     const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
     const timeout = setTimeout(() => sendRequest(), delay);
@@ -272,7 +272,7 @@ Fetch.delete = (url, update = () => {}, notify = true, postponeData = null) => {
   if (
     postponeData !== null &&
     (Auth.isAdmin() || Auth.isMasseur()) &&
-    localStorage.getItem("skipPostponement") === null
+    localStorage.getItem(`skipPostponement-${Auth.getSub()}`) === null
   ) {
     const delay = Util.isEmpty(postponeData.delay) ? 5000 : postponeData.delay;
     const timeout = setTimeout(() => sendRequest(), delay);

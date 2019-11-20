@@ -25,6 +25,8 @@ class Facilities extends Component {
 
   alertMessage = _t.translate("On this page you can manage facilities in which massages take place.");
 
+  closeAlertStorageString = `closeFacilitiesAlert-${Auth.getSub()}`;
+
   componentDidMount() {
     this.getFacilities();
     Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
@@ -65,7 +67,7 @@ class Facilities extends Component {
         facilities.splice(index, 1);
         break;
       default:
-        console.log(`Invalid WebSocket operation. Found: ${operation}.`);  /* eslint-disable-line */
+        console.log(`Invalid WebSocket operation. Found: ${operation}.`); /* eslint-disable-line */
         break;
     }
 
@@ -79,7 +81,7 @@ class Facilities extends Component {
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeFacilitiesAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -94,7 +96,7 @@ class Facilities extends Component {
 
     return (
       <div>
-        {!localStorage.getItem("closeFacilitiesAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <h1>

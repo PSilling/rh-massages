@@ -20,7 +20,7 @@ import Util from "../util/Util";
 class Settings extends Component {
   state = {
     notify: true,
-    skipPostpone: localStorage.getItem("skipPostponement") !== null,
+    skipPostpone: localStorage.getItem(`skipPostponement-${Auth.getSub()}`) !== null,
     loading: true,
     tooltipOpen: false
   };
@@ -28,6 +28,10 @@ class Settings extends Component {
   alertMessage =
     _t.translate("On this page you can manage your local user settings. ") +
     _t.translate("You can also use this page to access our repository on GitHub.");
+
+  posponementStorageString = `skipPostponement-${Auth.getSub()}`;
+
+  closeAlertStorageString = `closeSettingsAlert-${Auth.getSub()}`;
 
   tooltipTarget = `Tooltip${Util.tooltipCount++}`;
 
@@ -75,15 +79,15 @@ class Settings extends Component {
 
   changeSkipPostpone = event => {
     if (event.target.checked) {
-      localStorage.setItem("skipPostponement", event.target.checked);
+      localStorage.setItem(this.posponementStorageString, event.target.checked);
     } else {
-      localStorage.removeItem("skipPostponement", event.target.checked);
+      localStorage.removeItem(this.posponementStorageString, event.target.checked);
     }
     this.setState({ skipPostpone: event.target.checked });
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeSettingsAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -94,7 +98,7 @@ class Settings extends Component {
   render() {
     return (
       <div className="my-3">
-        {!localStorage.getItem("closeSettingsAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <h1>

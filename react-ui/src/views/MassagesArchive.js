@@ -39,6 +39,8 @@ class MassagesArchive extends Component {
 
   alertMessage = _t.translate("On this page you can view finished, archived massages.");
 
+  closeAlertStorageString = `closeArchiveAlert-${Auth.getSub()}`;
+
   componentDidMount() {
     this.getMassages();
     Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
@@ -199,7 +201,7 @@ class MassagesArchive extends Component {
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeArchiveAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -210,7 +212,7 @@ class MassagesArchive extends Component {
 
     return (
       <div className="my-3">
-        {!localStorage.getItem("closeArchiveAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <h1>

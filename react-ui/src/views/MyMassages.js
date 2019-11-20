@@ -26,6 +26,8 @@ class MyMassages extends Component {
     _t.translate("On this page you can view all your assigned massages. ") +
     _t.translate("To view massage details click on the event name.");
 
+  closeAlertStorageString = `closeMyMassagesAlert-${Auth.getSub()}`;
+
   componentDidMount() {
     this.getFacilities();
     Fetch.WEBSOCKET_CALLBACKS.facility = this.facilityCallback;
@@ -184,7 +186,7 @@ class MyMassages extends Component {
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeMyMassagesAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -195,7 +197,7 @@ class MyMassages extends Component {
   render() {
     return (
       <div className="my-3">
-        {!localStorage.getItem("closeMyMassagesAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <div className="no-print">

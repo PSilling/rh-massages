@@ -29,6 +29,8 @@ class Users extends Component {
     _t.translate("if the user is a massuer or a masseuse, completely remove such massages. Removing a logged in ") +
     _t.translate("user will cause an automatic logout.");
 
+  closeAlertStorageString = `closeUsersAlert-${Auth.getSub()}`;
+
   componentDidMount() {
     this.getUsers();
     Fetch.WEBSOCKET_CALLBACKS.client = this.clientCallback;
@@ -76,7 +78,7 @@ class Users extends Component {
   };
 
   closeAlert = () => {
-    localStorage.setItem("closeUsersAlert", true);
+    localStorage.setItem(this.closeAlertStorageString, true);
     this.setState(prevState => ({ loading: prevState.loading }));
   };
 
@@ -87,7 +89,7 @@ class Users extends Component {
 
     return (
       <div>
-        {!localStorage.getItem("closeUsersAlert") && (
+        {!localStorage.getItem(this.closeAlertStorageString) && (
           <InfoAlert onClose={this.closeAlert}>{this.alertMessage}</InfoAlert>
         )}
         <h1>
