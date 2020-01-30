@@ -54,7 +54,8 @@ public class MailClient {
             smtpConfiguration.getPort(),
             smtpConfiguration.getUsername(),
             smtpConfiguration.getPassword(),
-            TransportStrategy.SMTP_TLS);
+            smtpConfiguration.getPort() == 25 ? TransportStrategy.SMTP_PLAIN
+                : TransportStrategy.SMTP_TLS);
   }
 
   /**
